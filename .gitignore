@@ -5,3 +5,9 @@
 /.env*
 /node_modules/
 /dist/
+
+# Extracted private worldbuilding references
+/.local-references/
+
+# Local VS Code workspace paths
+/*.code-workspace

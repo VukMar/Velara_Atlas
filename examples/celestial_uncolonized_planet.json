@@ -1,0 +1,36 @@
+{
+  "id": "obj_demo_unsettled_planet",
+  "entityType": "celestial_body",
+  "objectType": "planet",
+  "discoveredAE": 130,
+  "colonizedAE": null,
+  "nameHistory": [
+    {
+      "fromAE": 130,
+      "untilAE": null,
+      "name": "Demo Outer World",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": -11000,
+    "y": -230,
+    "z": 4500
+  },
+  "icon": "planet_rocky",
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 130,
+        "untilAE": null,
+        "text": "A rocky world without a recorded permanent settlement. Its ownership, population, and surface infrastructure have not been established."
+      }
+    ]
+  }
+}

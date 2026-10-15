@@ -41,8 +41,7 @@
         }
       ],
       "publicDetailPath": null,
-      "visibility": "placeholder",
-      "editorialNotes": "Canon founding system is real. Official system name and 3D coordinates are not yet entered; do not render a map marker until positionLY is defined."
+      "visibility": "placeholder"
     }
   ]
 }

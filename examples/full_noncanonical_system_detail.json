@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "0.2-draft",
+  "id": "sys_demo_001",
+  "entityType": "system_detail",
+  "localUnits": "map_units",
+  "referencePlaneY": 0,
+  "objects": [
+    {
+      "id": "obj_demo_star",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "discoveredAE": 125,
+      "nameHistory": [
+        {
+          "fromAE": 125,
+          "untilAE": null,
+          "name": "Demo Primary",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": "star_main_sequence",
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 125,
+            "untilAE": null,
+            "text": "The primary star of this demonstration system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "obj_demo_unsettled_planet",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "discoveredAE": 130,
+      "colonizedAE": null,
+      "nameHistory": [
+        {
+          "fromAE": 130,
+          "untilAE": null,
+          "name": "Demo Outer World",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -11000,
+        "y": -230,
+        "z": 4500
+      },
+      "icon": "planet_rocky",
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 130,
+            "untilAE": null,
+            "text": "A rocky world without a recorded permanent settlement. Its ownership, population, and surface infrastructure have not been established."
+          }
+        ]
+      }
+    },
+    {
+      "id": "obj_demo_colony_planet",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "discoveredAE": 130,
+      "colonizedAE": 178,
+      "nameHistory": [
+        {
+          "fromAE": 130,
+          "untilAE": 178,
+          "name": "SURV-021-b",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 178,
+          "untilAE": null,
+          "name": "Demo Colony World",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 10000,
+        "y": 150,
+        "z": -7000
+      },
+      "icon": "planet_terrestrial",
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 178,
+            "untilAE": null,
+            "entityId": "cantum_a"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": [
+          {
+            "fromAE": 178,
+            "untilAE": null,
+            "count": null,
+            "note": "Population figure not defined in the demonstration material."
+          }
+        ],
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 130,
+            "untilAE": 178,
+            "text": "Surveyed terrestrial world."
+          },
+          {
+            "fromAE": 178,
+            "untilAE": null,
+            "text": "A settled terrestrial world used for the atlas schema demonstration."
+          }
+        ]
+      }
+    },
+    {
+      "id": "obj_demo_station",
+      "entityType": "station",
+      "objectType": "orbital_station",
+      "constructedAE": 460,
+      "discoveredAE": 460,
+      "nameHistory": [
+        {
+          "fromAE": 460,
+          "untilAE": null,
+          "name": "Demo Guard Station",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 11000,
+        "y": 2300,
+        "z": -8500
+      },
+      "icon": "station_military",
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 460,
+            "untilAE": null,
+            "entityId": "cantum_a"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 460,
+            "untilAE": null,
+            "code": "orbital_security_station",
+            "label": "Orbital Security Station"
+          }
+        ],
+        "crew": [
+          {
+            "fromAE": 460,
+            "untilAE": null,
+            "count": 120,
+            "note": null
+          }
+        ],
+        "population": null,
+        "armament": [
+          {
+            "fromAE": 460,
+            "untilAE": null,
+            "summary": "Point-defense batteries",
+            "systems": [
+              {
+                "type": "point_defense_battery",
+                "label": "Point-Defense Battery",
+                "quantity": 4
+              }
+            ]
+          }
+        ],
+        "description": [
+          {
+            "fromAE": 460,
+            "untilAE": null,
+            "text": "Noncanonical orbital security station serving as a demonstration of station InfoCard fields."
+          }
+        ]
+      }
+    }
+  ]
+}

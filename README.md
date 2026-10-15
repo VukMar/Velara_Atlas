@@ -1,37 +1,64 @@
-# MCR / Velara Atlas — JSON and timeline foundation v0.1
+# Velara Atlas
 
-This is a data-and-timeline starter, **not yet a rendered Three.js atlas**. It is designed for a future GitHub Pages static read-only viewer and separate local editor.
+*A developing historical atlas of the Velara Sector, presented by NEXUS — the archivist of Maric Cosmic Records (MCR) / The New World.*
 
-## Files
-- `public/data/political.json` — political names, seven Cantums, eras and dated milestones. At 1200 A.E. there are six sovereign Cantums (A, B, C, E, F, G); historical D is within C.
-- `public/data/sector.json` — master sector settings and one coordinate-free founding-system placeholder (not visible on map until positioned). Its `publicDetailPath` is null so it resolves to the NEXUS fallback.
-- `public/data/systems/` — intentionally empty for approved system details.
-- `examples/noncanon_sector_system.json` — example survey-to-settlement system rename with deliberately fictional names and dates.
-- `examples/noncanon_system_detail.json` — example per-object discovery and height Y properties.
-- `src/timeline/resolve.mjs` — pure JavaScript resolution functions usable in Three.js viewer or Node.
-- `tests/check.mjs`, `tests/demo.mjs` — verify logic and print timeline examples.
-- `docs/DATA_RULES.md` — critical decisions, precision flags and pending canonical entries.
+The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-## Try it
-Install Node.js (18+), then run in this folder:
+> **Project status — foundation stage:** The repository currently contains JSON examples, historical/political records, and JavaScript timeline logic. **A public interactive map, Three.js viewer, and local visual editor have not yet been implemented.** Some example data is intentionally noncanonical.
+
+## The planned atlas
+
+- **Sector view:** select a historical year (A.E.) and inspect discovered systems, changing regional/political context, and interstellar connections as the published records become available.
+- **System view:** explore a navigational X/Z map with real Y elevation for stars, planets, stations, gates, and other mapped objects.
+- **NEXUS archival interface:** an original in-universe visual design, searchable InfoCards, and an archival notice for systems whose detailed maps are not yet released.
+- **Living archive:** systems can be known in-universe without yet having a finished public detail map. More information appears as MCR stories and canon are released.
+- **Historical accuracy within the fiction:** names, discovery dates, affiliations, and political conditions are resolved for the selected year rather than displaying every object as though it always existed.
+
+The intended public viewer will be **read-only and statically hosted**, initially on GitHub Pages. Atlas editing and private worldbuilding remain local. This separation is a planned architecture, not a claim that public deployment is active today.
+
+## Repository at a glance
+
+| Location | Contents |
+| --- | --- |
+| `public/data/` | Approved publicly distributable atlas records (currently a preliminary foundation) |
+| `examples/` | Illustrative/noncanonical JSON data shapes and fixtures |
+| `src/timeline/` | Existing historical resolver (v0.1) |
+| `tests/` | Automated checks and a console timeline demonstration |
+| `docs/DATA_RULES.md` | Historical conventions and known outstanding decisions |
+| `docs/DATA_MODEL_DRAFT.md` | InfoCard and entity model examples; integration is not yet complete |
+| `docs/ARCHITECTURE.md` | Design boundaries and proposed software components |
+| `docs/REPOSITORY_STRUCTURE.md` | Repository and private-data organization |
+| `docs/DEVELOPMENT_ROADMAP.md` | Planned milestones and acceptance criteria |
+| `docs/CONTENT_WORKFLOW.md` | How source lore is reviewed, approved, and released |
+| `AGENTS.md` | Rules for coding assistants working in this repository |
+
+See the documentation before adding or changing historical records. Files in `public/data/` may include placeholders and approximate dates awaiting refinement; do not interpret all map-display boundaries as exact historical events.
+
+## Try the current foundation
+
+Install a current supported [Node.js](https://nodejs.org/) version and run in the repository root:
 
 ```bash
 npm test
 npm run demo
 ```
 
-No external npm dependencies are required for these tests. For the actual map viewer, use Vite + Three.js in a subsequent development phase.
+`npm test` checks historical state resolution, names, Cantum status, and current fallback/object discovery behavior. `npm run demo` prints sample political states at selected A.E. years. No frontend server is needed for these commands. **There is no visual map to launch yet.**
 
-## Visual narrative
-At 0–359 A.E. NEXUS describes the founding civilization as `Drevnasel`. At 360–899 she presents `The Continuance`, unified. At 900–1199 she may say `The Continuance — Age of Fragmentation`. At 1200+ the map presents `Velara Sector` with independent Cantums; `The Continuance` remains an important **historical** name, not a current unified state.
+## Data and disclosure policy
 
-## Keep private lore private
-This starter can be committed once reviewed. Never put unpublished objects or full private system JSON in `public/`. Only released system objects go into the static build. Store canon master/private detail under a local-only `private/` or separate private repository, and publish deliberately selected records.
+The complete fictional canon is maintained privately in writing/source documents, currently including RTF files. The public repository holds only intentionally publishable material. Approved map records are extracted into JSON; unreleased story secrets and private source files must not be committed anywhere in this public repository, including tests and examples.
 
-## Updating historical records
-Use `fromAE` inclusive and `untilAE` exclusive. To add a new name, close the prior interval at the same year the new interval begins. Do not change stable IDs or duplicate files for different years.
+The historical date on a record describes **when that object or fact was known or applicable in-universe**. Publication is a separate editorial decision. A system can be visible on the sector overview while its detail view shows an NEXUS archival notice; a released system can also have only some of its objects published.
 
-## Sources and editorial notes
-- Historical milestones and seven Cantum names follow the established creator-directed working canon; inexact dates are explicitly marked `circa` or `confirmed_by`.
-- Names and survey codes in `examples/` are noncanonical illustration only.
-- All `public/data/` JSON is public once deployed. Do not store plot twists, secret sites, or unpublished story content there.
+## Development
+
+This project is being built incrementally. Planned technologies are vanilla JavaScript, Three.js, Vite, JSON, and small local Node.js utilities. The data and timeline logic are deliberately independent from the visual renderer so future interfaces can reuse the same history.
+
+Consult [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md) for the next milestones and [`AGENTS.md`](AGENTS.md) for AI-assisted development rules.
+
+## Attribution and licensing
+
+Velara, the Continuance setting, NEXUS, and associated MCR worldbuilding content belong to their respective creator(s). No third-party game assets are included by implication of design inspiration. **A public software/content license has not yet been selected**; do not assume the repository is licensed for reuse just because it is publicly visible. A `LICENSE` file can be added after that decision.
+
+This is a fictional setting and a work in progress; the atlas does not claim to chart real astronomical positions.

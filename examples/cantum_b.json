@@ -1,0 +1,63 @@
+{
+  "id": "cantum_b",
+  "letter": "B",
+  "names": [
+    {
+      "fromAE": 320,
+      "untilAE": 360,
+      "name": "Second Regional Administration",
+      "kind": "descriptive_not_official",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 360,
+      "untilAE": null,
+      "name": "Visshum",
+      "kind": "official",
+      "datePrecision": "circa"
+    }
+  ],
+  "regionFirstAttestedByAE": 320,
+  "statusHistory": [
+    {
+      "fromAE": 320,
+      "untilAE": 900,
+      "status": "administrative_cantum",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 900,
+      "untilAE": null,
+      "status": "sovereign",
+      "datePrecision": "circa"
+    }
+  ],
+  "entityType": "cantum",
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 320,
+        "untilAE": 900,
+        "entityId": "state_continuance",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 900,
+        "untilAE": null,
+        "entityId": null,
+        "datePrecision": "circa"
+      }
+    ],
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 360,
+        "untilAE": null,
+        "text": "The second officially named Cantum of the Continuance, following an earlier regional administration."
+      }
+    ]
+  }
+}

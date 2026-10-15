@@ -1,0 +1,35 @@
+{
+  "id": "obj_demo_star",
+  "entityType": "celestial_body",
+  "objectType": "star",
+  "discoveredAE": 125,
+  "nameHistory": [
+    {
+      "fromAE": 125,
+      "untilAE": null,
+      "name": "Demo Primary",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "icon": "star_main_sequence",
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 125,
+        "untilAE": null,
+        "text": "The primary star of this demonstration system."
+      }
+    ]
+  }
+}

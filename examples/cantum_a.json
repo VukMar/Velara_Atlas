@@ -1,0 +1,75 @@
+{
+  "id": "cantum_a",
+  "letter": "A",
+  "names": [
+    {
+      "fromAE": 0,
+      "untilAE": 360,
+      "name": "Founding Region",
+      "kind": "descriptive_not_official",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 360,
+      "untilAE": null,
+      "name": "Drevnasel",
+      "kind": "official",
+      "datePrecision": "circa"
+    }
+  ],
+  "regionFirstAttestedByAE": 0,
+  "statusHistory": [
+    {
+      "fromAE": 0,
+      "untilAE": 360,
+      "status": "founding_core",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 360,
+      "untilAE": 900,
+      "status": "central_administrative_cantum",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 900,
+      "untilAE": 1200,
+      "status": "central_remnant",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 1200,
+      "untilAE": null,
+      "status": "sovereign",
+      "datePrecision": "atlas_snapshot"
+    }
+  ],
+  "entityType": "cantum",
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 0,
+        "untilAE": 1200,
+        "entityId": "state_continuance",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 1200,
+        "untilAE": null,
+        "entityId": null,
+        "datePrecision": "atlas_snapshot"
+      }
+    ],
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 360,
+        "untilAE": null,
+        "text": "The founding Cantum and central region of the historical Continuance. See the political chronology for changes in government and sovereignty."
+      }
+    ]
+  }
+}

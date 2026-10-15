@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "0.2-draft",
+  "id": "velara_sector",
+  "title": "Velara Sector",
+  "view": {
+    "projection": "orthographic_topdown_xz",
+    "upAxis": "Y",
+    "sectorCoordinateUnit": "light_year",
+    "planeY": 0
+  },
+  "timeline": {
+    "epoch": "A.E.",
+    "startAE": 0,
+    "defaultAE": 1200
+  },
+  "systems": [],
+  "entityType": "sector",
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 0,
+        "untilAE": null,
+        "text": "A human-defined stellar region in the Milky Way, approximately 600 light-years from Sol. This is a geographical label, not the name of a unified government."
+      }
+    ]
+  },
+  "politicalHistoryPath": "data/political.json",
+  "nexusPresentationId": "nexus_default"
+}

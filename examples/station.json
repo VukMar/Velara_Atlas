@@ -1,0 +1,69 @@
+{
+  "id": "obj_demo_station",
+  "entityType": "station",
+  "objectType": "orbital_station",
+  "constructedAE": 460,
+  "discoveredAE": 460,
+  "nameHistory": [
+    {
+      "fromAE": 460,
+      "untilAE": null,
+      "name": "Demo Guard Station",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": 11000,
+    "y": 2300,
+    "z": -8500
+  },
+  "icon": "station_military",
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 460,
+        "untilAE": null,
+        "entityId": "cantum_a"
+      }
+    ],
+    "class": [
+      {
+        "fromAE": 460,
+        "untilAE": null,
+        "code": "orbital_security_station",
+        "label": "Orbital Security Station"
+      }
+    ],
+    "crew": [
+      {
+        "fromAE": 460,
+        "untilAE": null,
+        "count": 120,
+        "note": null
+      }
+    ],
+    "population": null,
+    "armament": [
+      {
+        "fromAE": 460,
+        "untilAE": null,
+        "summary": "Point-defense batteries",
+        "systems": [
+          {
+            "type": "point_defense_battery",
+            "label": "Point-Defense Battery",
+            "quantity": 4
+          }
+        ]
+      }
+    ],
+    "description": [
+      {
+        "fromAE": 460,
+        "untilAE": null,
+        "text": "Noncanonical orbital security station serving as a demonstration of station InfoCard fields."
+      }
+    ]
+  }
+}

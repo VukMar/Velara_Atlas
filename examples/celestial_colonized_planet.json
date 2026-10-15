@@ -1,0 +1,61 @@
+{
+  "id": "obj_demo_colony_planet",
+  "entityType": "celestial_body",
+  "objectType": "planet",
+  "discoveredAE": 130,
+  "colonizedAE": 178,
+  "nameHistory": [
+    {
+      "fromAE": 130,
+      "untilAE": 178,
+      "name": "SURV-021-b",
+      "kind": "survey_designation",
+      "datePrecision": "exact"
+    },
+    {
+      "fromAE": 178,
+      "untilAE": null,
+      "name": "Demo Colony World",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": 10000,
+    "y": 150,
+    "z": -7000
+  },
+  "icon": "planet_terrestrial",
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 178,
+        "untilAE": null,
+        "entityId": "cantum_a"
+      }
+    ],
+    "class": null,
+    "crew": null,
+    "population": [
+      {
+        "fromAE": 178,
+        "untilAE": null,
+        "count": null,
+        "note": "Population figure not defined in the demonstration material."
+      }
+    ],
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 130,
+        "untilAE": 178,
+        "text": "Surveyed terrestrial world."
+      },
+      {
+        "fromAE": 178,
+        "untilAE": null,
+        "text": "A settled terrestrial world used for the atlas schema demonstration."
+      }
+    ]
+  }
+}
