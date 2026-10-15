@@ -1,8 +1,8 @@
 # Velara Atlas — Viewer Specification
 
 **Document status:** Approved Milestone 3 functional specification  
-**Version:** 1.0 (viewer requirements; **not** JSON Schema v1.0)  
-**Approved:** 2026-10-15  
+**Version:** 1.1 (viewer requirements; **not** JSON Schema v1.0)  
+**Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  
 **Audience:** Project owner, Codex, and future contributors  
 **Implementation status:** Specification only. The Three.js viewer is **not implemented** by this document.
 
@@ -16,7 +16,7 @@ The viewer must remain **data-driven**: adding another supported object, system,
 
 ### Non-negotiable boundaries
 
-- **Public viewer only:** GitHub Pages–compatible, static, no publicly writable API, editing controls, or admin login. A local editor is a **separate future milestone**.
+- **Public viewer only:** GitHub Pages–compatible, static, no publicly writable API, editing controls, or admin login. A visual local editor is **deferred as an optional future feature**; initial positioning/editing uses validated JSON in VS Code and, optionally, lightweight local-only debug readouts.
 - **Public data only:** Everything a browser fetches, everything committed to the public repo, and everything emitted in a production bundle is assumed publicly accessible. Never ship hidden spoilers under `hidden: true` or rely on client-side authorization to protect them.
 - **Historical truth is separate from publication:** Date filters determine what was known or existed at a selected year; release/publishing determines which approved details are downloadable. The former must never override the latter.
 - **Stable IDs:** IDs never change when names, coordinates, affiliations, descriptions, or political control change.
@@ -32,10 +32,11 @@ Use the repository's existing source of truth, in this priority for matters of s
 3. `docs/ARCHITECTURE.md` and `docs/CONTENT_WORKFLOW.md` — viewer/publication boundaries.
 4. `examples/demo_atlas/` — **noncanonical** test fixture (not official sector geography).
 5. `AGENTS.md` — agent workflow and canon guardrails.
+6. `docs/CANTUM_TERRITORY_RENDERING.md` — approved algorithm and render-order rules for the generated Cantum overlay (companion to this viewer specification).
 
 The v0.1 `src/timeline/resolve.mjs` and old `public/data/*.json` are **not yet migrated** to the v1.0.0 schema. Implementing this specification requires planned adapter/migration work and regression tests; do not silently overwrite legacy canon or treat passing old tests as proof of new-feature support.
 
-**Planned schema additions are called out in §11.** They are approved *viewer behavior* but not yet encoded by JSON Schema v1.0.0. Implement those as a versioned schema update, not as undocumented ad hoc JSON properties.
+**Planned schema additions are called out in §14.** They are approved *viewer behavior* but not yet encoded by JSON Schema v1.0.0. Implement those as a versioned schema update, not as undocumented ad hoc JSON properties.
 
 ## 3. Spatial conventions and map hierarchy
 
@@ -43,7 +44,7 @@ The v0.1 `src/timeline/resolve.mjs` and old `public/data/*.json` are **not yet m
 
 | Level | Contains / renders | Coordinate unit | Data source |
 |---|---|---|---|
-| **Sector map** | Cantum territory overlays, positioned star-system markers, interstellar Jump Gate / Jump Hole connections | `ly` (light-years) | `sector.json`, `cantums.json`, `connections.json` and later region records |
+| **Sector map** | Procedurally merged Cantum influence overlays, positioned star-system markers, interstellar Jump Gate / Jump Hole connections | `ly` (light-years) | `sector.json`, `cantums.json`, `connections.json` and public presentation settings |
 | **System map** | Celestial bodies, stations, short-range gates and routes, Jump Gates, Jump Holes, spatial zones | **CNU** (Continuance Navigation Unit) | `systems/sys_XXXX.json` and relevant `connections.json` entries |
 
 All maps have their **own** independent `(0, 0, 0)` origin; `map.size.x/y/z` indicates **full** extents, not half-extents. The X/Z plane is the standard chart surface, with Y representing elevation. The sector and system contexts cannot be directly mixed: an interstellar route is drawn **between sector star-system positions** in light-years, not as a line between two endpoints in unrelated CNU spaces.
@@ -213,16 +214,26 @@ All layers are **view filters**, not modifications to source data. Maintain **se
 |---|---|
 | Star-system markers | Celestial-body markers |
 | System labels | Stations |
-| Cantum territory shapes | Short-range gate routes |
+| Cantum influence regions (metaball overlay) | Short-range gate routes |
 | Jump Gate routes | Jump Gates and Jump Holes |
 | Jump Hole routes | Spatial zones |
 | Coordinate grid | Coordinate grid |
 | Political affiliation colors | Object labels |
 | Historical event indicators | Elevation indicators |
 
-### Manually authored Cantum territories
+### Generated Cantum regions — approved revision (supersedes manual territories as default)
 
-Cantum regions must be **authored**, not automatically inferred from nearby member systems. These are optional geometric records with Cantum IDs and dated validity. Present them as subdued, transparent 2D **X/Z navigation-chart projections**; one Cantum may eventually require multiple disconnected shapes. Political border shapes are map representations, **not assumed full 3D sovereign volumes**. The editor and an explicit schema extension will define how these polygons are created, stored, and changed through history. **If no published geometry exists, show no polygon rather than fabricating one.** The Cantum remains searchable and identifiable without a border.
+The sector political overlay uses **soft, semi-transparent, blurred-edge Cantum influence regions** computed from **historically eligible, positioned, publicly released** star systems belonging to each Cantum at the selected A.E. year. Each system contributes an X/Z-centered influence bubble; **same-Cantum bubbles merge by a continuous metaball-like scalar field**. Different Cantums never merge into one political entity. These are **suggestive cartographic regions**, **not legally precise borders**, and do not establish 3D sovereignty. This region layer is below every system marker, interstellar route, label and selection target.
+
+- Use a single approved historical ownership input for system-to-Cantum membership: the effective `cantumHistory` entry at the selected year. Do not assume the current name, InfoCard text, Jump Gate links, proximity or `controlHistory` proves Cantum membership.
+- Exclude unplaced (`positionLY: null`), unreleased, future-undiscovered, or unassigned systems. A known-but-unexpanded system **with a sector position** still contributes a bubble; no system detail file is needed.
+- A lone system forms one soft bubble. Nearby same-Cantum bubbles join; far-separated clusters remain islands. Never draw a forced bridge across empty space solely to connect all of a Cantum's systems.
+- Take color from explicit **public-safe presentation settings** keyed by Cantum ID, not generated from names. Radius is defined in **sector light-years**, not screen pixels or system-level CNU; allow a fixed global default and per-Cantum overrides. Radius is independent of zoom, count of systems, and which systems happen to be visible.
+- Changes to selected year can change the contributor set, so regions update automatically with *recorded* discoveries, Cantum formations and membership changes. The overlay never modifies political truth or JSON history.
+- Exclude all unpublished data from calculations. A political layer toggle hides/shows the drawing only; no lore data is deleted or inferred.
+- No manually authored region polygon is required for version 1. Manual *precise* boundary overlays may be added later as a separately approved feature, not as the default renderer and not as a prerequisite for deployment.
+
+**Implementation contract and numeric defaults:** Follow `docs/CANTUM_TERRITORY_RENDERING.md`, including the exact influence field, configurable blending and opacity, compositing order, 3D presentation, performance bounds, and test cases. The approved geometry is **generated X/Z region shading**; the existing JSON Schema v1.0.0 is not claimed to already specify its presentation configuration.
 
 ### Elevation
 
@@ -285,7 +296,7 @@ The first Milestone 3 implementation is complete when all of the following can b
 7. Continuous timeline, typed year, event markers and previous/next recorded-event navigation update names, existence, InfoCards, routes, and available maps correctly.
 8. Collapse/expand both sidebars, search/filter historically eligible entries, and toggle map overlays without mutating data.
 9. Noncanonical fallback, partial-detail, unplaced-system and historically unknown records display the correct distinct states; actual load errors show retry feedback.
-10. Once the approved schema extensions are introduced, noncanonical fixtures for **ellipsoid, box, and polygon-volume zones** and a **dated, hand-authored Cantum territory polygon** render and toggle correctly in 2D/3D as applicable; the viewer does not fabricate polygons when none are recorded.
+10. The **test Cantum bubble overlay** is rendered from the two-system demo using current-year `cantumHistory`: no membership before 210 A.E.; one bubble starting 210 A.E.; two merged bubbles by 330 A.E. with an appropriately configured fixed radius. The overlay stays below system markers/routes/labels, is optional, and does not change when the camera merely zooms. Once the approved zone-schema extension is introduced, noncanonical ellipsoid, box, and polygon-volume fixtures render correctly in 2D/3D.
 11. Editing a **supported** object position, name record, or quantity in demo JSON and reloading changes the viewer without code edits.
 12. The page runs as a static, read-only site under a GitHub Pages–style repository subpath; private files and editor code are **not included** in its release artifact.
 13. Historical resolver, schema validation, route exclusivity, and essential navigation behaviors have automated regression tests; the existing v0.1 test behavior remains intact unless an explicitly approved migration changes it.
@@ -294,9 +305,9 @@ The first Milestone 3 implementation is complete when all of the following can b
 
 - Canonical star-system placement or colonization data extraction from RTF.
 - Production-quality NEXUS artwork, animation or voice avatar.
-- Author-side visual drag-and-drop editing and file saving (**Milestone 4**).
+- Author-side visual drag-and-drop editing and file saving (**deferred optional milestone**); for now, edit JSON in VS Code, validate, and reload. Optional local-only coordinate-debug overlay is allowed.
 - Simulated orbital mechanics, physically accurate distance conversion, pathfinding, ship travel simulation, or real-time celestial motion.
-- Automatic territory generation, automatic political inference, or full volumetric political borders.
+- Exact/legal political boundary inference, manual polygon authoring, or full volumetric political borders. **Generated decorative Cantum influence regions are in scope** and must not be misrepresented as exact sovereign borders.
 
 ## 14. Required compatibility and schema follow-ups
 
@@ -305,7 +316,7 @@ These are **pending technical changes**, not claims about features currently sup
 | Proposed versioned addition | Why needed | Current status |
 |---|---|---|
 | `zon_XXXX` spatial-zone entities and ellipsoid/box/polygon-volume definitions | Approved zone overlays and 3D shapes | **Not in schema v1.0.0** |
-| Authored Cantum territory geometry with dated validity | Approved manual historical border overlays | **Not in schema v1.0.0** |
+| Public-safe visual settings for procedural Cantum influence bubbles (color and fixed radius in `ly`, plus global style parameters) | Approved sector overlay; **no manual boundary polygons required** | **Presentation config format to define and validate before implementation; not part of canon schema v1.0.0** |
 | Explicit `knownByAE` or equivalent confidence-aware visibility rule | Historically known by a snapshot date but exact discovery year unknown | **Proposal; naming/behavior must be approved** |
 | Historical event-marker sources and event date precision | Continuous slider with next/previous real events | **Specify public event registry or derive safely from dated records** |
 | Theme/icon metadata as reusable presentation mapping | Original NEXUS visuals, replaceable assets | **Implementation convention; don't embed hardcoded lore** |
@@ -322,11 +333,11 @@ Before implementation, Codex must inspect the repository, existing tests, schema
 3. Render top-down sector scene, two systems, historical interstellar links, and selection.
 4. Add system scene, object rendering, local routes, 3D camera toggle, and interstellar navigation.
 5. Add catalogue, InfoCard, search, overlays, timeline, and NEXUS fallback/error states.
-6. Add approved versioned schema extensions for zones and territory overlays, then render them with simple geometries.
+6. Implement the procedural Cantum territory overlay using the companion rendering contract; define/validate public presentation settings. Add the independently approved zone entity schema extension and render simple volumes. Do not create or require political boundary polygons.
 7. Test responsive behavior, build safety, GitHub Pages deployment, and acceptance cases.
 
 **Stop at authorized scope and ask before breaking the approved JSON contract or rewriting canonical records.**
 
 ---
 
-**Approval note:** This file consolidates the user's Milestone 3 decisions: top-down default with optional 3D, manually authored political overlays, hybrid markers/geometry, three zone shapes, continuous A.E. history, collapsible sidebars and persistent timeline, date-aware search and overlays, and the NEXUS archival fallback. It is the **behavioral specification**, while the repository's JSON Schema and data-model documentation govern exact file structures.
+**Approval note:** This file consolidates the user's Milestone 3 decisions: top-down default with optional 3D, **generated soft metaball Cantum influence overlays (replacing manual territory polygons as default)**, hybrid markers/geometry, three zone shapes, continuous A.E. history, collapsible sidebars and persistent timeline, date-aware search and overlays, and the NEXUS archival fallback. It is the **behavioral specification**, while the repository's JSON Schema and data-model documentation govern exact file structures.
