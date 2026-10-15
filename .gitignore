@@ -5,6 +5,7 @@
 /.env*
 /node_modules/
 /dist/
+/.playwright-mcp/
 
 # Extracted private worldbuilding references
 /.local-references/

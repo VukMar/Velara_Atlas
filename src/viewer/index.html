@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Read-only, noncanonical two-system Velara Atlas prototype.">
+    <link rel="icon" href="data:,">
+    <title>Velara Atlas — Noncanonical Demo</title>
+  </head>
+  <body>
+    <header>
+      <div><strong>VELARA ATLAS</strong><span class="prototype">Checkpoint 2 · working prototype</span></div>
+      <span class="demo-badge">NONCANONICAL DEMONSTRATION</span>
+      <span id="year">1200 A.E.</span>
+    </header>
+    <nav aria-label="Map navigation">
+      <button id="sector" disabled>Sector View</button>
+      <span aria-hidden="true">/</span><strong id="location">Demo Sector</strong>
+      <span id="units">Light-years (ly) · X/Z top-down</span>
+    </nav>
+    <main>
+      <section class="map-panel" aria-label="Atlas map">
+        <div class="toolbar" aria-label="Map controls">
+          <button id="reset">Reset view</button>
+          <button id="zoom-in" aria-label="Zoom in">+</button>
+          <button id="zoom-out" aria-label="Zoom out">−</button>
+          <label>Selection <select id="selection" aria-label="Select mapped entity"><option value="">Select an entity…</option></select></label>
+        </div>
+        <div id="viewport">
+          <div id="labels" aria-label="Map labels"></div>
+          <p id="map-message" role="status">Preparing demonstration map…</p>
+        </div>
+        <p class="instructions">Drag to pan · Scroll or pinch to zoom · Click a marker to select · Double-click a system to open</p>
+      </section>
+      <aside aria-label="Selected entity information">
+        <p class="eyebrow">NEXUS / DEMO RECORD</p>
+        <h1 id="selected-name">Select a system</h1>
+        <p id="selected-kind">Read-only chart · temporary geometric markers</p>
+        <dl id="facts"></dl>
+        <p id="description">Choose a marker or use the selection control above the map.</p>
+        <button id="enter" disabled>Enter system</button>
+        <p class="notice">Marker sizes and colors are display aids. Coordinates, names and dates come from noncanonical test records.</p>
+      </aside>
+    </main>
+    <footer>Demonstration fixtures only · Fixed historical snapshot · No routes or spatial-zone graphics in this checkpoint</footer>
+    <noscript>This local Atlas prototype requires JavaScript and WebGL.</noscript>
+    <script type="module" src="./main.mjs"></script>
+  </body>
+</html>
