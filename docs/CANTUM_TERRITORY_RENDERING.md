@@ -119,3 +119,7 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 ---
 
 **Implementation note:** This contract defines **approved behavior** plus **proposed initial numeric style defaults**. Tune the numbers against real screenshots in Milestone 5 without altering who belongs to which Cantum, the field's world-space nature, public/private separation or layer order.
+
+## Schema v1.1 status
+
+A separate validated presentation.json style file now uses the territoryOverlay structure illustrated above, with an optional sector.presentationPath. The actual historical metaball renderer is not yet implemented.

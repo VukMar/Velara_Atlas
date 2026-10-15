@@ -1,4 +1,4 @@
-# Velara Atlas — JSON Data Contract v1.0.0
+# Velara Atlas — JSON Data Contract v1.1.0
 
 **Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in `DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
@@ -17,7 +17,7 @@ All entities have stable, globally unique IDs. The prefix is a type discriminato
 | `systems/sys_XXXX.json` | Per-system CNU map and `objects[]` (celestial bodies, stations, gates and Jump Holes) |
 | `connections.json` | **Single source of truth** for all short-range and interstellar routes |
 
-Each file's `schemaVersion` is `1.0.0`. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
+Each new noncanonical demo file's schemaVersion is 1.1.0. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
@@ -71,3 +71,7 @@ Structural JSON Schema Draft 2020-12 checks types, enums, required fields, ID pa
 This schema does **not** define Cantum border polygons, detailed nebula volumes, asteroid-field procedural generation, star systems with orbital animation, private publication manifests, or detailed polity entities. They can be versioned later; do not invent incompatible new keys in v1.0 files.
 
 The demonstration data in `examples/demo_atlas` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. No 43 real systems are included here.
+
+## v1.1 extension note
+
+New demo schema accepts nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates distinct from exact discovery, zon_XXXX ellipsoid/box/polygon-volume records, and a separate presentation.json file for Cantum colors, radius and transparency. Gate and Jump Hole pairing rules are unchanged. The published v0.1 canonical chronology is NOT migrated by this change; permanent-ID conversion requires creator approval. See LEGACY_MIGRATION_PLAN.md.

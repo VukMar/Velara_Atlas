@@ -341,3 +341,7 @@ Before implementation, Codex must inspect the repository, existing tests, schema
 ---
 
 **Approval note:** This file consolidates the user's Milestone 3 decisions: top-down default with optional 3D, **generated soft metaball Cantum influence overlays (replacing manual territory polygons as default)**, hybrid markers/geometry, three zone shapes, continuous A.E. history, collapsible sidebars and persistent timeline, date-aware search and overlays, and the NEXUS archival fallback. It is the **behavioral specification**, while the repository's JSON Schema and data-model documentation govern exact file structures.
+
+## v1.1 implementation status correction
+
+The data contract now defines optional spatial zones, knownByAE, nullable icons and a validated presentation file for noncanonical fixtures. The older pending-extension table predates this versioned schema change. Browser implementation and migration of public canonical v0.1 data remain outstanding.

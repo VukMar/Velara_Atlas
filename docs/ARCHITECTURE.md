@@ -77,3 +77,7 @@ A system can have three user-visible outcomes for a selected year:
 7. License for software and lore has not been chosen; don't assume reuse rights.
 
 See `REPOSITORY_STRUCTURE.md`, `CONTENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.md` for actionable ownership and implementation order.
+
+## Current approved design state
+
+Local visual editor deferred; the approved Milestone 3/5 specifications supersede references to pending visual decisions. Routes exist in v1.0+ schema, zones and optional display settings in v1.1; none of these constitutes a completed browser renderer. Canonical public v0.1 records await explicit creator-approved migration (docs/LEGACY_MIGRATION_PLAN.md).

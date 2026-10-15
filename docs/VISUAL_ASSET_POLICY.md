@@ -132,3 +132,7 @@ If the user chooses to keep the existing string `icon` field longer, implement a
 - Fallbacks must be visually neutral, non-disruptive and transparent about unknown visual subtypes.
 
 **Authority:** This document governs appearance and fallback. `docs/DATA_MODEL.md` and `schemas/` govern the currently valid stored JSON, until an approved migration changes them.
+
+## Schema v1.1 status
+
+Nullable icon and visualVariant are now structurally valid in the v1.1 noncanonical demo; fallback handling remains a renderer requirement. Canonical public v0.1 records are unchanged until separately approved migration.

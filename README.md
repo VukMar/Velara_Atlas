@@ -62,3 +62,7 @@ Consult [`docs/DEVELOPMENT_ROADMAP.md`](docs/DEVELOPMENT_ROADMAP.md) for the nex
 Velara, the Continuance setting, NEXUS, and associated MCR worldbuilding content belong to their respective creator(s). No third-party game assets are included by implication of design inspiration. **A public software/content license has not yet been selected**; do not assume the repository is licensed for reuse just because it is publicly visible. A `LICENSE` file can be added after that decision.
 
 This is a fictional setting and a work in progress; the atlas does not claim to chart real astronomical positions.
+
+## October 2026 update
+
+Milestone 3 viewer design and Milestone 5 NEXUS visuals are approved. The local editor is deferred. The v1.1 data schema applies to noncanonical examples; original public canonical v0.1 political records are intentionally unchanged. Install dependencies with npm ci, then use npm test to run both historical checks and v1.1 validation. See docs/LEGACY_MIGRATION_PLAN.md.

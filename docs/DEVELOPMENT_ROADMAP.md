@@ -1,63 +1,21 @@
-# Velara Atlas — Development roadmap
+# Velara Atlas — Approved milestone roadmap
 
-**Status:** Planning/approval roadmap. Milestones are gates; **do not begin a new milestone until the creator authorizes it**. This is not a promise that future milestones are complete.
+Status: updated October 2026. Approved specifications are not implemented runtime features.
 
-## M0 — Organize and protect the foundation (current)
+## Completed planning and foundations
 
-**Work:** Read/approve repository ownership docs, install `AGENTS.md` and public README, keep original tests/examples and JSON untouched, identify private RTF location and ignored local reference cache, commit a safe checkpoint.
+1. Repository foundation: documented security boundaries and legacy timeline tests.
+2. JSON contract: v1.0, updated to v1.1 for nullable icons, visual variants, zones, known-by dates and separate visual settings. Demo data is noncanonical.
+3. Viewer design: 2D top-down and optional true 3D, chronological navigation, gate routes, Cantum influence metaballs, InfoCards and fallback.
+4. Local visual editor: DEFERRED; use validated JSON and possible read-only debug mode.
+5. NEXUS visual identity: approved hybrid visuals, default asset policy, contextual targeting rings, selective portraits.
 
-**Acceptance:** `npm test` passes unchanged; documentation matches the real directory tree; no private material is tracked or accidentally staged; creator greenlights architecture.
+## Current pre-implementation consolidation
 
-## M1 — Versioned JSON schema and migration plan
+Synchronize docs, validators, tests and v1.1 noncanonical fixtures; preserve public v0.1 canonical records until an approved identity/history migration.
 
-**Work:** Inventory v0.1 political/sector records and adopted v0.2 InfoCard examples. Specify formal validation for sector, Cantum, star-system entries, system detail, celestial bodies, stations and reusable historical periods. Mark noncanonical examples. Resolve whether/how publication metadata fits each record. Distinguish required, optional, unknown, and null values. Write migration rules from v0.1.
+## Next: Milestone 6, Codex implementation handoff
 
-**Acceptance:** JSON Schema validates examples as intended; all cross-references and date ranges have clear semantics; a migration document identifies any breaking changes; all canon-sensitive fields remain under creator approval.
+With the creator's approval, implement in reviewable checkpoints: historical resolver/migration; Vite and Three.js viewer; timeline/routes/zones/territory overlays; NEXUS styling/assets; audited GitHub Pages publication.
 
-## M2 — Robust historical resolver
-
-**Work:** Extend the engine-independent resolver to handle InfoCard fields, renamed systems, multiple status histories, construction/colonization, null/unknown dates, dated affiliations and partial system visibility. Keep the old tests; add edge cases and boundary-year tests.
-
-**Acceptance:** Unit tests cover intervals (`fromAE` inclusive, `untilAE` exclusive), no null-as-zero bug, nonoverlap, six sovereign Cantums in the 1200 snapshot, known-system fallback and unpublished-object absence.
-
-## M3 — Local publication/validation pipeline
-
-**Work:** Read author-approved private candidates from an explicit local input; apply an explicit public release allowlist to **records and fields**; generate public-safe JSON. Check IDs, paths, foreign keys, date windows, asset references, unauthorized extra fields, secrets, and build inputs.
-
-**Acceptance:** Reproducible public output; secrets excluded even when present in private data; preview/review before any repository change; pipeline does not read unintended private folders or write to the private RTF source.
-
-## M4 — Public navigational viewer prototype
-
-**Work:** Vite + Three.js, read-only sector view, selectable system, basic fallback, top-down X/Z camera, Y elevation, basic InfoCards, timeline UI; noncanonical fixtures first.
-
-**Acceptance:** Runs locally in a browser; no editing, private files or write endpoints in public build; historic date resolves relevant records; one known but unpublished system opens fallback; no mock data mistaken for canon.
-
-## M5 — Local editor
-
-**Work:** Select/move objects in 3D, change Y elevation, edit typed fields and temporal records, add/delete noncanonical test entities, undo/redo, save JSON locally or via localhost-only helper, validation and public-release preview.
-
-**Acceptance:** Round-trip JSON retains IDs and units; invalid edits blocked; local-only save cannot be used from GitHub Pages; tests and reviewer checks pass.
-
-## M6 — NEXUS presentation and cartographic depth
-
-**Work:** Author-approved NEXUS colors/icons/typography, InfoCard presentation, zones (nebulae, asteroid fields), trade routes, gate connections, discoverable overlays, historical political borders and conflict states once their schemas are agreed.
-
-**Acceptance:** Original assets only or appropriately licensed assets; UI labels remain legible at multiple scales; overlapping Y-position objects remain selectable; user approves the visual language.
-
-## M7 — GitHub Pages publication
-
-**Work:** Choose hosting path, Vite base URL, GitHub Actions deployment, caching/versioned data behavior, checks for leaked private files, user-facing documentation.
-
-**Acceptance:** Public read-only site deploys successfully; content matches reviewed public JSON; link sharing and page reload work; no local authoring code or confidential material is served; creator confirms release.
-
-## Out of scope for the foundation
-
-Full orbital mechanics, live astronomical ephemerides, realtime multiplayer editing, accounts/admin logins, public databases, speculative autogenerated canon, 3D ship models, and complete political border reconstruction without authoritative geography. Introduce these only with explicit design approval.
-
-## Common release rules
-
-- After implementation tasks, run `npm test` and any new validation/build checks.
-- Use small increments and reviewable commits, especially around data migrations.
-- Keep proposed canon separate from approved data.
-- Update docs and tests whenever a public JSON contract changes.
-- Stop and ask one focused question rather than guessing when a major canon or privacy ambiguity blocks progress.
+Never invent canon, copy noncanonical fixtures into public data, publish private RTF lore or start the deferred editor without explicit approval.

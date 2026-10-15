@@ -12,12 +12,13 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 2. `docs/ARCHITECTURE.md` — planned runtime components and security boundary.
 3. `docs/REPOSITORY_STRUCTURE.md` — file ownership and publication rules.
 4. `docs/DATA_RULES.md` — existing chronology, identity, and disclosure rules.
-5. `docs/DATA_MODEL_DRAFT.md` — adopted InfoCard example shape; **draft integration contract**, not fully supported by the v0.1 resolver.
+5. `docs/DATA_MODEL.md` and `schemas/atlas.schema.json` — v1.1 noncanonical data contract; legacy canonical migration is planned separately.
 6. `docs/DEVELOPMENT_ROADMAP.md` and `docs/CONTENT_WORKFLOW.md` — milestones and safe extraction/release process.
 7. `docs/VIEWER_SPECIFICATION.md` — Approved Milestone 3 requirements for the public atlas viewer, including navigation, historical timeline, rendering, search, overlays, and NEXUS archival behavior.
 8. `docs/CANTUM_TERRITORY_RENDERING.md` — Approved rules for procedurally generated Cantum influence overlays, historical filtering, metaball blending, visual layering and rendering performance.
 9. `docs/NEXUS_VISUAL_IDENTITY.md` — Approved Milestone 5: visual design, palette, targeting and NEXUS presentation.
-10. `docs/VISUAL_ASSET_POLICY.md` — Approved hybrid: rendering, default icons, fallbacks and asset rules.
+10. `docs/VISUAL_ASSET_POLICY.md` — Approved visual asset fallback rules.
+11. `docs/LEGACY_MIGRATION_PLAN.md` — Required approval before migrating public canonical records.
 
 If a file is absent in the actual checkout, report that and work with available material instead of inventing its contents.
 
@@ -48,4 +49,8 @@ If a file is absent in the actual checkout, report that and work with available 
 
 The founding civilization is Drevnasel; the Visshum name, Drevnasel as the founding/capital Cantum, and unified name The Continuance emerge around the draft 360 A.E. display boundary. Cantums were initially **administrative divisions of a centralized republic, not federal sovereign states**. The 1200 A.E. atlas snapshot shows six sovereign Cantums, with Rekdolin a historic region within Okeanberg. Existing `datePrecision` notes qualify these boundaries; **never claim they are precise legal event dates**. Consult `public/data/political.json` and `docs/DATA_RULES.md` for specifics and known uncertainties.
 
-The public-facing NEXUS aesthetic and narrative are part of the project identity; detailed visuals have **not** been approved or implemented. Never use proprietary Freelancer/Discovery artwork as atlas assets without appropriate permission.
+The public-facing NEXUS aesthetic and narrative are part of the project identity; detailed visuals **have been approved** but not implemented. Never use proprietary Freelancer/Discovery artwork as atlas assets without appropriate permission.
+
+## Current scope correction
+
+Local visual editor is deferred, not part of the MVP. The v1.1 schema is valid for noncanonical test data; canonical public v0.1 records and permanent IDs require an approved migration. Do not silently move records or implement the viewer without explicit instruction.
