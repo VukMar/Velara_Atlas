@@ -976,10 +976,8 @@
             ]
           },
           "else": {
-            "not": {
-              "required": [
-                "visualVariant"
-              ]
+            "properties": {
+              "visualVariant": false
             }
           }
         }
