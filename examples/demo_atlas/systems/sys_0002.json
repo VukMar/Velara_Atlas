@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "sys_0002",
   "entityType": "system_detail",
   "map": {
@@ -37,7 +37,7 @@
         "y": 0,
         "z": 0
       },
-      "icon": "star",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -74,7 +74,7 @@
         "y": -200,
         "z": 7000
       },
-      "icon": "planet",
+      "icon": null,
       "infoCard": {
         "affiliation": [
           {
@@ -103,7 +103,8 @@
         ]
       },
       "orbitingId": null,
-      "colonizedAE": 330
+      "colonizedAE": 330,
+      "visualVariant": "unknown"
     },
     {
       "id": "cb_0007",
@@ -124,7 +125,7 @@
         "y": 250,
         "z": 10500
       },
-      "icon": "planet",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -140,7 +141,8 @@
         ]
       },
       "orbitingId": null,
-      "colonizedAE": null
+      "colonizedAE": null,
+      "visualVariant": "unknown"
     },
     {
       "id": "cb_0008",
@@ -161,7 +163,7 @@
         "y": -500,
         "z": -13000
       },
-      "icon": "planet",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -177,7 +179,8 @@
         ]
       },
       "orbitingId": null,
-      "colonizedAE": null
+      "colonizedAE": null,
+      "visualVariant": "unknown"
     },
     {
       "id": "cb_0009",
@@ -198,7 +201,7 @@
         "y": -50,
         "z": 7450
       },
-      "icon": "moon",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -235,7 +238,7 @@
         "y": 1300,
         "z": 6500
       },
-      "icon": "station_science",
+      "icon": null,
       "infoCard": {
         "affiliation": [
           {
@@ -272,7 +275,8 @@
       },
       "constructedAE": 380,
       "decommissionedAE": null,
-      "orbitingId": "cb_0006"
+      "orbitingId": "cb_0006",
+      "visualVariant": "regular"
     },
     {
       "id": "gat_0005",
@@ -293,7 +297,7 @@
         "y": 0,
         "z": 8500
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -330,7 +334,7 @@
         "y": 900,
         "z": 5900
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -367,7 +371,7 @@
         "y": -100,
         "z": 9000
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -404,7 +408,7 @@
         "y": 400,
         "z": -22000
       },
-      "icon": "gate_jump",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -441,7 +445,7 @@
         "y": -3400,
         "z": -25000
       },
-      "icon": "jumphole",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -455,6 +459,59 @@
             "text": "Noncanonical interstellar Jump Hole."
           }
         ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "id": "zon_0003",
+      "entityType": "spatial_zone",
+      "category": "hazard",
+      "discoveredAE": null,
+      "knownByAE": 320,
+      "nameHistory": [
+        {
+          "fromAE": 320,
+          "untilAE": null,
+          "name": "TEST Passage",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "geometry": {
+        "kind": "polygon_volume",
+        "footprint": [
+          {
+            "x": -200,
+            "z": -100
+          },
+          {
+            "x": 100,
+            "z": -100
+          },
+          {
+            "x": 200,
+            "z": 200
+          },
+          {
+            "x": -100,
+            "z": 200
+          }
+        ],
+        "minY": -100,
+        "maxY": 100
+      },
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
       }
     }
   ]

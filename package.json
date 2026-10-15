@@ -2,10 +2,11 @@
   "name": "velara-atlas-data-foundation",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
-    "test": "node tests/check.mjs",
-    "demo": "node tests/demo.mjs"
+    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs && node scripts/validate-demo.mjs",
+    "demo": "node tests/demo.mjs",
+    "validate": "node scripts/validate-demo.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0"

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "id": "sys_0001",
   "entityType": "system_detail",
   "map": {
@@ -37,7 +37,7 @@
         "y": 0,
         "z": 0
       },
-      "icon": "star",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -81,7 +81,7 @@
         "y": 100,
         "z": -8000
       },
-      "icon": "planet",
+      "icon": null,
       "infoCard": {
         "affiliation": [
           {
@@ -121,7 +121,8 @@
         ]
       },
       "orbitingId": null,
-      "colonizedAE": 210
+      "colonizedAE": 210,
+      "visualVariant": "unknown"
     },
     {
       "id": "cb_0003",
@@ -142,7 +143,7 @@
         "y": -200,
         "z": 10500
       },
-      "icon": "planet_rocky",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -158,7 +159,8 @@
         ]
       },
       "orbitingId": null,
-      "colonizedAE": null
+      "colonizedAE": null,
+      "visualVariant": "unknown"
     },
     {
       "id": "cb_0004",
@@ -179,7 +181,7 @@
         "y": 500,
         "z": -8200
       },
-      "icon": "moon",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -216,7 +218,7 @@
         "y": 1900,
         "z": -9700
       },
-      "icon": "station_military",
+      "icon": null,
       "infoCard": {
         "affiliation": [
           {
@@ -272,7 +274,8 @@
       },
       "constructedAE": 300,
       "decommissionedAE": null,
-      "orbitingId": "cb_0002"
+      "orbitingId": "cb_0002",
+      "visualVariant": "regular"
     },
     {
       "id": "gat_0001",
@@ -293,7 +296,7 @@
         "y": 0,
         "z": -6500
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -330,7 +333,7 @@
         "y": 1200,
         "z": -9300
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -367,7 +370,7 @@
         "y": -150,
         "z": 10000
       },
-      "icon": "gate_short",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -404,7 +407,7 @@
         "y": 700,
         "z": 23000
       },
-      "icon": "gate_jump",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -441,7 +444,7 @@
         "y": -2400,
         "z": -25000
       },
-      "icon": "jumphole",
+      "icon": null,
       "infoCard": {
         "affiliation": null,
         "class": null,
@@ -455,6 +458,43 @@
             "text": "Noncanonical interstellar Jump Hole."
           }
         ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "id": "zon_0002",
+      "entityType": "spatial_zone",
+      "category": "asteroid_field",
+      "discoveredAE": 260,
+      "nameHistory": [
+        {
+          "fromAE": 260,
+          "untilAE": null,
+          "name": "TEST Belt",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "geometry": {
+        "kind": "box",
+        "size": {
+          "x": 500,
+          "y": 200,
+          "z": 500
+        }
+      },
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
       }
     }
   ]

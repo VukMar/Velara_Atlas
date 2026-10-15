@@ -7,12 +7,12 @@ export function readDataset(root) {
   const read = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
   const sector = read('sector.json');
   return {
-    sector, cantums:read(sector.cantumsPath), connections:read(sector.connectionsPath),
+    sector, presentation: sector.presentationPath ? read(sector.presentationPath) : null, cantums:read(sector.cantumsPath), connections:read(sector.connectionsPath),
     detailFiles:new Map(sector.systems.filter(s=>s.publicDetailPath!==null).map(s=>[s.id,read(s.publicDetailPath)]))
   };
 }
 
-export function validateRelationships({sector,cantums,connections,detailFiles}) {
+export function validateRelationships({sector,cantums,connections,detailFiles,presentation=null}) {
   const errors=[], fail=(loc,msg)=>errors.push(`${loc}: ${msg}`), ids=new Set();
   const addId=(id,loc)=>{if(ids.has(id))fail(loc,`duplicate ID ${id}`);ids.add(id);};
   const period=(p,loc)=>{if(!Number.isInteger(p.fromAE)||p.fromAE<0)fail(loc,'invalid fromAE');if(p.untilAE!==null&&(!Number.isInteger(p.untilAE)||p.untilAE<=p.fromAE))fail(loc,'untilAE must be null or greater than fromAE');};
@@ -29,23 +29,50 @@ export function validateRelationships({sector,cantums,connections,detailFiles}) 
     if(point===null)return;
     for(const axis of ['x','y','z'])if(!Number.isFinite(point[axis])||Math.abs(point[axis]-map.origin[axis])>map.size[axis]/2)fail(loc,`${axis} outside map bounds`);
   };
-  addId(sector.id,'sector');checkHistory(sector,'sector');
+
+  const checkKnowledge=(entity,loc)=>{
+    if(entity.knownByAE!==undefined){
+      if(!Number.isInteger(entity.knownByAE)||entity.knownByAE<0)fail(loc,'invalid knownByAE');
+      if(entity.discoveredAE!==null)fail(loc,'knownByAE is only for unknown exact discoveredAE');
+    }
+  };
+  const checkZones=(zones,map,loc)=>{
+    for(const z of zones??[]){
+      addId(z.id,loc+'.zone');checkHistory(z,z.id);checkKnowledge(z,z.id);bounds(z.position,map,z.id);
+      const g=z.geometry; if(!g)continue;
+      const box=g.kind==='box'?Object.fromEntries(['x','y','z'].map(k=>[k,g.size[k]/2])):g.kind==='ellipsoid'?g.radii:null;
+      if(box)for(const axis of ['x','y','z'])if(Math.abs(z.position[axis]-map.origin[axis])+box[axis]>map.size[axis]/2)fail(z.id,'zone geometry outside map bounds');
+      if(g.kind==='polygon_volume'){
+        if(!(g.minY<g.maxY))fail(z.id,'polygon volume Y range invalid');
+        if(g.footprint.length<3)fail(z.id,'polygon footprint needs at least 3 vertices');
+        const area=g.footprint.reduce((a,v,i)=>{const n=g.footprint[(i+1)%g.footprint.length];return a+v.x*n.z-n.x*v.z;},0);
+        if(Math.abs(area)<1e-6)fail(z.id,'polygon footprint has zero area');
+        for(const v of g.footprint)for(const axis of ['x','z'])if(Math.abs(z.position[axis]+v[axis]-map.origin[axis])>map.size[axis]/2)fail(z.id,'polygon footprint outside map bounds');
+        for(const h of [g.minY,g.maxY])if(Math.abs(z.position.y+h-map.origin.y)>map.size.y/2)fail(z.id,'polygon height outside map bounds');
+      }
+    }
+  };
+  addId(sector.id,'sector');checkHistory(sector,'sector');checkZones(sector.zones,sector.map,'sector');
   if(sector.map.unit!=='ly')fail('sector.map','expected ly');
   if(sector.timeline.defaultAE<sector.timeline.startAE)fail('sector.timeline','defaultAE before startAE');
   const cantumIds=new Set(cantums.cantums.map(c=>c.id));
   for(const c of cantums.cantums){addId(c.id,'cantum');checkHistory(c,c.id);}
   const systemIds=new Set(sector.systems.map(s=>s.id)),objects=new Map();
   for(const s of sector.systems){
-    addId(s.id,'system');checkHistory(s,s.id);bounds(s.positionLY,sector.map,s.id);
+    addId(s.id,'system');checkHistory(s,s.id);checkKnowledge(s,s.id);bounds(s.positionLY,sector.map,s.id);
     if(s.colonizedAE!==null&&s.discoveredAE!==null&&s.colonizedAE<s.discoveredAE)fail(s.id,'colonization before discovery');
     if(s.publicDetailPath!==null&&s.publicDetailPath!==`systems/${s.id}.json`)fail(s.id,'publicDetailPath does not match ID');
     for(const t of s.cantumHistory??[])if(t.cantumId!==null&&!cantumIds.has(t.cantumId))fail(s.id,'unknown cantumId '+t.cantumId);
   }
   for(const [sid,detail] of detailFiles){
     if(!systemIds.has(sid)||detail.id!==sid)fail(sid,'missing or mismatching detail system');
-    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');
+    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');checkZones(detail.zones,detail.map,sid);
     for(const obj of detail.objects){
-      addId(obj.id,'object');objects.set(obj.id,{obj,sid});checkHistory(obj,obj.id);bounds(obj.position,detail.map,obj.id);
+      addId(obj.id,'object');objects.set(obj.id,{obj,sid});checkHistory(obj,obj.id);checkKnowledge(obj,obj.id);bounds(obj.position,detail.map,obj.id);
+      if(obj.visualVariant!=null&&obj.entityType==='celestial_body'&&obj.objectType!=='planet')fail(obj.id,'visualVariant only supported for planets');
+      if(typeof obj.icon==='string'&&obj.icon.includes('/')){
+        if(!/^custom\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]+\.(svg|png|webp)$/.test(obj.icon))fail(obj.id,'invalid custom icon path');
+      }
       if(obj.decommissionedAE!=null&&obj.constructedAE!=null&&obj.decommissionedAE<=obj.constructedAE)fail(obj.id,'decommissioning before construction');
       if(obj.colonizedAE!=null&&obj.discoveredAE!=null&&obj.colonizedAE<obj.discoveredAE)fail(obj.id,'colonization before discovery');
       for(const t of obj.infoCard.affiliation??[])if(t.entityId?.startsWith('can_')&&!cantumIds.has(t.entityId))fail(obj.id,'unknown affiliation');
@@ -85,6 +112,14 @@ export function validateRelationships({sector,cantums,connections,detailFiles}) 
     if(!local)for(const endpoint of [a.objectId,b.objectId]){
       if(partners.has(endpoint))fail(c.id,`interstellar endpoint ${endpoint} already linked by ${partners.get(endpoint)}; one partner maximum`);
       else partners.set(endpoint,c.id);
+    }
+  }
+  if(presentation){
+    const t=presentation.territoryOverlay;
+    if(t){
+      if(t.opacityMaxPerCantum>t.opacityCapTotal)fail('presentation','Cantum alpha greater than overlap cap');
+      if(t.fieldThresholdStart>=t.fieldThresholdEnd)fail('presentation','invalid field thresholds');
+      for(const id of Object.keys(t.cantums??{}))if(!cantumIds.has(id))fail('presentation','unknown Cantum palette ID '+id);
     }
   }
   return errors;

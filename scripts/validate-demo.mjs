@@ -10,9 +10,9 @@ const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const dataset=readDataset(path.resolve(process.argv[2]??path.join(repo,'examples/demo_atlas')));
 const schema=JSON.parse(fs.readFileSync(path.join(repo,'schemas/atlas.schema.json'),'utf8'));
 const ajv=new Ajv2020({allErrors:true,strict:true});ajv.addSchema(schema);
-const validators=Object.fromEntries([['sector','sector'],['cantums','cantumsFile'],['connections','connectionsFile'],['system','systemDetail']].map(([k,def])=>[k,ajv.compile({$ref:schema.$id+'#/$defs/'+def})]));
+const validators=Object.fromEntries([['sector','sector'],['cantums','cantumsFile'],['connections','connectionsFile'],['system','systemDetail'],['presentation','presentationFile']].map(([k,def])=>[k,ajv.compile({$ref:schema.$id+'#/$defs/'+def})]));
 let bad=false;
-for(const [kind,entity] of [['sector',dataset.sector],['cantums',dataset.cantums],['connections',dataset.connections],...[...dataset.detailFiles.values()].map(d=>['system',d])]){
+for(const [kind,entity] of [['sector',dataset.sector],['cantums',dataset.cantums],['connections',dataset.connections],...(dataset.presentation?[['presentation',dataset.presentation]]:[]),...[...dataset.detailFiles.values()].map(d=>['system',d])]){
   const valid=validators[kind](entity);console.log(`${valid?'PASS':'FAIL'} schema: ${kind}${entity.id?' '+entity.id:''}`);
   if(!valid){bad=true;for(const e of validators[kind].errors)console.error(' ',e.instancePath||'/',e.message);}
 }

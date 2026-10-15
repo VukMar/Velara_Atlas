@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mcr.example.invalid/schemas/atlas.schema.json",
-  "title": "Velara Atlas entity contract v1.0",
+  "title": "Velara Atlas entity contract v1.1",
   "description": "The URL is a schema identifier only; no network access required. Test content is NONCANON.",
   "type": "object",
   "$defs": {
@@ -649,6 +649,11 @@
         },
         "infoCard": {
           "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
         }
       },
       "required": [
@@ -668,7 +673,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "id": {
           "type": "string",
@@ -738,6 +743,22 @@
             "fallbackText"
           ],
           "additionalProperties": false
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        },
+        "presentationPath": {
+          "oneOf": [
+            {
+              "const": "presentation.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -815,7 +836,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "cantums": {
           "type": "array",
@@ -902,11 +923,31 @@
           "$ref": "#/$defs/xyz"
         },
         "icon": {
-          "type": "string",
-          "minLength": 1
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
         },
         "infoCard": {
           "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "visualVariant": {
+          "enum": [
+            "rocky",
+            "gas",
+            "water",
+            "unknown"
+          ]
         }
       },
       "required": [
@@ -921,7 +962,28 @@
         "icon",
         "infoCard"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "planet"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "visualVariant"
+              ]
+            }
+          }
+        }
+      ]
     },
     "station": {
       "type": "object",
@@ -999,11 +1061,30 @@
           "$ref": "#/$defs/xyz"
         },
         "icon": {
-          "type": "string",
-          "minLength": 1
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
         },
         "infoCard": {
           "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "visualVariant": {
+          "enum": [
+            "regular",
+            "shipyard",
+            "unknown"
+          ]
         }
       },
       "required": [
@@ -1088,11 +1169,23 @@
           "$ref": "#/$defs/xyz"
         },
         "icon": {
-          "type": "string",
-          "minLength": 1
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
         },
         "infoCard": {
           "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
         }
       },
       "required": [
@@ -1151,11 +1244,23 @@
           "$ref": "#/$defs/xyz"
         },
         "icon": {
-          "type": "string",
-          "minLength": 1
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
         },
         "infoCard": {
           "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
         }
       },
       "required": [
@@ -1174,7 +1279,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "id": {
           "type": "string",
@@ -1203,6 +1308,12 @@
                 "$ref": "#/$defs/jumpHole"
               }
             ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
           }
         }
       },
@@ -1346,7 +1457,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.0.0"
+          "const": "1.1.0"
         },
         "connections": {
           "type": "array",
@@ -1398,6 +1509,262 @@
         "fromAE",
         "untilAE",
         "entityId"
+      ],
+      "additionalProperties": false
+    },
+    "positiveXYZ": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "y": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "z": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "zoneVertex": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "zoneGeometry": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ellipsoid"
+            },
+            "radii": {
+              "$ref": "#/$defs/positiveXYZ"
+            }
+          },
+          "required": [
+            "kind",
+            "radii"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "box"
+            },
+            "size": {
+              "$ref": "#/$defs/positiveXYZ"
+            }
+          },
+          "required": [
+            "kind",
+            "size"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "polygon_volume"
+            },
+            "footprint": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "$ref": "#/$defs/zoneVertex"
+              }
+            },
+            "minY": {
+              "type": "number"
+            },
+            "maxY": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "footprint",
+            "minY",
+            "maxY"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "zone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^zon_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "spatial_zone"
+        },
+        "category": {
+          "enum": [
+            "nebula",
+            "asteroid_field",
+            "hazard",
+            "other"
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "geometry": {
+          "$ref": "#/$defs/zoneGeometry"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "category",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "geometry",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "presentationFile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "territoryOverlay": {
+          "type": "object",
+          "properties": {
+            "enabledByDefault": {
+              "type": "boolean"
+            },
+            "fallbackRadiusFraction": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "opacityMaxPerCantum": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "opacityCapTotal": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "fieldThresholdStart": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fieldThresholdEnd": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "fallbackColor": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "cantums": {
+              "type": "object",
+              "patternProperties": {
+                "^can_[0-9]{4,}$": {
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9A-Fa-f]{6}$"
+                    },
+                    "radiusLY": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "color",
+                    "radiusLY"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "enabledByDefault",
+            "fallbackRadiusFraction",
+            "opacityMaxPerCantum",
+            "opacityCapTotal",
+            "fieldThresholdStart",
+            "fieldThresholdEnd",
+            "fallbackColor",
+            "cantums"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "territoryOverlay"
       ],
       "additionalProperties": false
     }
