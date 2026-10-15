@@ -4,7 +4,7 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs && node scripts/validate-demo.mjs",
+    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs tests/history-v1_1.test.mjs && node scripts/validate-demo.mjs",
     "demo": "node tests/demo.mjs",
     "validate": "node scripts/validate-demo.mjs"
   },
