@@ -1,0 +1,439 @@
+{
+  "schemaVersion": "0.1.0",
+  "eraTitles": [
+    {
+      "fromAE": 0,
+      "untilAE": 360,
+      "title": "Drevnasel",
+      "subtitle": "Founding civilization",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 360,
+      "untilAE": 900,
+      "title": "The Continuance",
+      "subtitle": "Unified republic of the Cantums",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 900,
+      "untilAE": 1200,
+      "title": "The Continuance — Age of Fragmentation",
+      "subtitle": "Central authority and seceding Cantums",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 1200,
+      "untilAE": null,
+      "title": "Velara Sector",
+      "subtitle": "Six sovereign Cantums; seven historical Cantum regions",
+      "datePrecision": "atlas_snapshot_not_formal_dissolution_date"
+    }
+  ],
+  "unifiedState": {
+    "id": "state_continuance",
+    "form": "centralized_constitutional_republic",
+    "federal": false,
+    "names": [
+      {
+        "fromAE": 0,
+        "untilAE": 360,
+        "name": "Drevnasel",
+        "kind": "official",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 360,
+        "untilAE": 1200,
+        "name": "The Continuance",
+        "kind": "official",
+        "datePrecision": "circa"
+      }
+    ],
+    "historicalNote": "The Continuance was a single centralized constitutional republic; Cantums were administrative divisions, not original sovereign states. The 1200 A.E. cutoff is a map-presentation period, not an established precise legal dissolution date.",
+    "politicalPhases": [
+      {
+        "fromAE": 0,
+        "untilAE": 360,
+        "status": "founding_republic",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 360,
+        "untilAE": 900,
+        "status": "unified_republic",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 900,
+        "untilAE": 1200,
+        "status": "fragmentation",
+        "datePrecision": "circa"
+      },
+      {
+        "fromAE": 1200,
+        "untilAE": null,
+        "status": "historical_legacy",
+        "datePrecision": "atlas_snapshot_not_formal_dissolution_date"
+      }
+    ]
+  },
+  "cantums": [
+    {
+      "id": "cantum_a",
+      "letter": "A",
+      "names": [
+        {
+          "fromAE": 0,
+          "untilAE": 360,
+          "name": "Founding Region",
+          "kind": "descriptive_not_official",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 360,
+          "untilAE": null,
+          "name": "Drevnasel",
+          "kind": "official",
+          "datePrecision": "circa"
+        }
+      ],
+      "regionFirstAttestedByAE": 0,
+      "statusHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 360,
+          "status": "founding_core",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 360,
+          "untilAE": 900,
+          "status": "central_administrative_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 900,
+          "untilAE": 1200,
+          "status": "central_remnant",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1200,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "atlas_snapshot"
+        }
+      ],
+      "sovereignAt1200": true
+    },
+    {
+      "id": "cantum_b",
+      "letter": "B",
+      "names": [
+        {
+          "fromAE": 320,
+          "untilAE": 360,
+          "name": "Second Regional Administration",
+          "kind": "descriptive_not_official",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 360,
+          "untilAE": null,
+          "name": "Visshum",
+          "kind": "official",
+          "datePrecision": "circa"
+        }
+      ],
+      "regionFirstAttestedByAE": 320,
+      "statusHistory": [
+        {
+          "fromAE": 320,
+          "untilAE": 900,
+          "status": "administrative_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 900,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "circa"
+        }
+      ],
+      "sovereignAt1200": true
+    },
+    {
+      "id": "cantum_c",
+      "letter": "C",
+      "names": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Okeanberg",
+          "kind": "official_first_confirmed_by_date",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "regionFirstAttestedByAE": 600,
+      "foundingYearAE": null,
+      "statusHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 970,
+          "status": "administrative_cantum",
+          "datePrecision": "first_confirmed_by"
+        },
+        {
+          "fromAE": 970,
+          "untilAE": 1126,
+          "status": "sovereign",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1126,
+          "untilAE": 1175,
+          "status": "contested_occupation_and_recovery",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "circa"
+        }
+      ],
+      "sovereignAt1200": true
+    },
+    {
+      "id": "cantum_d",
+      "letter": "D",
+      "names": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Rekdolin",
+          "kind": "official_first_confirmed_by_date",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "regionFirstAttestedByAE": 600,
+      "foundingYearAE": null,
+      "statusHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 1000,
+          "status": "administrative_cantum",
+          "datePrecision": "first_confirmed_by"
+        },
+        {
+          "fromAE": 1000,
+          "untilAE": 1200,
+          "status": "independence_and_annexation_period_unresolved",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1200,
+          "untilAE": null,
+          "status": "historical_cantum_within_other",
+          "datePrecision": "atlas_snapshot",
+          "includedIn": "cantum_c"
+        }
+      ],
+      "sovereignAt1200": false,
+      "includedInAt1200": "cantum_c"
+    },
+    {
+      "id": "cantum_e",
+      "letter": "E",
+      "names": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Zaklun",
+          "kind": "official_first_confirmed_by_date",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "regionFirstAttestedByAE": 600,
+      "foundingYearAE": null,
+      "statusHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 1167,
+          "status": "administrative_cantum",
+          "datePrecision": "first_confirmed_by"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "established_year"
+        }
+      ],
+      "sovereignAt1200": true
+    },
+    {
+      "id": "cantum_f",
+      "letter": "F",
+      "names": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Gornebes",
+          "kind": "official_first_confirmed_by_date",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "regionFirstAttestedByAE": 600,
+      "foundingYearAE": null,
+      "statusHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 1138,
+          "status": "administrative_cantum",
+          "datePrecision": "first_confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1167,
+          "status": "peaceful_separation_date_unresolved",
+          "datePrecision": "within_window"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "sovereignAt1200": true
+    },
+    {
+      "id": "cantum_g",
+      "letter": "G",
+      "names": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Vodravan",
+          "kind": "official_first_confirmed_by_date",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "regionFirstAttestedByAE": 600,
+      "foundingYearAE": null,
+      "statusHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 1138,
+          "status": "administrative_cantum",
+          "datePrecision": "first_confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1167,
+          "status": "peaceful_separation_date_unresolved",
+          "datePrecision": "within_window"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": null,
+          "status": "sovereign",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "sovereignAt1200": true
+    }
+  ],
+  "events": [
+    {
+      "id": "founding",
+      "yearAE": 0,
+      "precision": "exact",
+      "kind": "settlement",
+      "description": "Founding settlement established; year zero begins with the initial central building."
+    },
+    {
+      "id": "first_regional_administration",
+      "yearAE": 320,
+      "precision": "circa",
+      "kind": "administrative",
+      "description": "Second regional administration formed after the remote gate link."
+    },
+    {
+      "id": "visshum_official",
+      "yearAE": 360,
+      "precision": "circa",
+      "kind": "naming",
+      "description": "Visshum receives its official name; founding capital Cantum is named Drevnasel; unified civilization takes the name The Continuance."
+    },
+    {
+      "id": "seven_cantums_established",
+      "yearAE": 600,
+      "precision": "confirmed_by",
+      "kind": "administrative",
+      "description": "All seven Cantums established or authorized by this point; founding dates of some remain unspecified."
+    },
+    {
+      "id": "expansion_high_age",
+      "fromAE": 600,
+      "untilAE": 800,
+      "precision": "era",
+      "kind": "expansion",
+      "description": "Expansion and development of the newer Cantums."
+    },
+    {
+      "id": "fragmentation_begins",
+      "yearAE": 900,
+      "precision": "circa",
+      "kind": "political",
+      "description": "The Continuance begins to fragment following the death of its long-serving president; Visshum is first to separate."
+    },
+    {
+      "id": "okeanberg_independence",
+      "yearAE": 970,
+      "precision": "circa",
+      "kind": "political",
+      "description": "Okeanberg declares independence."
+    },
+    {
+      "id": "a_c_war",
+      "fromAE": 1105,
+      "untilAE": 1126,
+      "precision": "range",
+      "kind": "war",
+      "description": "Drevnasel–Okeanberg war, 1105–1125 inclusive."
+    },
+    {
+      "id": "b_conquests",
+      "fromAE": 1126,
+      "untilAE": 1139,
+      "precision": "range",
+      "kind": "war",
+      "description": "Visshum campaigns and conquests involving Okeanberg, Rekdolin, and Drevnasel systems, 1126–1138 inclusive."
+    },
+    {
+      "id": "zaklun_independence",
+      "yearAE": 1167,
+      "precision": "established_year",
+      "kind": "political",
+      "description": "Zaklun separates."
+    },
+    {
+      "id": "a_b_war",
+      "fromAE": 1172,
+      "untilAE": 1176,
+      "precision": "range",
+      "kind": "war",
+      "description": "Drevnasel–Visshum war, 1172–1175 inclusive."
+    },
+    {
+      "id": "six_sovereign_cantums",
+      "yearAE": 1200,
+      "precision": "snapshot",
+      "kind": "political",
+      "description": "Six sovereign Cantums: Drevnasel, Visshum, Okeanberg, Zaklun, Gornebes, Vodravan. Rekdolin is a historic Cantum within Okeanberg."
+    }
+  ]
+}

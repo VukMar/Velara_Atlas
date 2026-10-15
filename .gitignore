@@ -1,0 +1,7 @@
+# Private canon must never be committed or copied into public/.
+/private/
+/secrets/
+/unreleased/
+/.env*
+/node_modules/
+/dist/

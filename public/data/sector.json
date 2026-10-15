@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "0.1.0",
+  "id": "velara_sector",
+  "title": "Velara Sector",
+  "view": {
+    "projection": "orthographic_topdown_xz",
+    "upAxis": "Y",
+    "sectorCoordinateUnit": "light_year",
+    "planeY": 0
+  },
+  "timeline": {
+    "epoch": "A.E.",
+    "startAE": 0,
+    "defaultAE": 1200
+  },
+  "presentation": {
+    "curator": "NEXUS",
+    "unknownSystemTitle": "ARCHIVAL RECORD UNAVAILABLE",
+    "unknownSystemText": "This system is acknowledged in the historical record. An expanded navigational survey has not yet been integrated into this archive edition."
+  },
+  "systems": [
+    {
+      "id": "sys_foundation",
+      "discoveredAE": 0,
+      "colonizedAE": 0,
+      "positionLY": null,
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": null,
+          "name": "Founding System — name pending",
+          "kind": "editorial_placeholder",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": null,
+          "cantumId": "cantum_a"
+        }
+      ],
+      "publicDetailPath": null,
+      "visibility": "placeholder",
+      "editorialNotes": "Canon founding system is real. Official system name and 3D coordinates are not yet entered; do not render a map marker until positionLY is defined."
+    }
+  ]
+}

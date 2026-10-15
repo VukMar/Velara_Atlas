@@ -1,0 +1,10 @@
+{
+  "name": "velara-atlas-data-foundation",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "node tests/check.mjs",
+    "demo": "node tests/demo.mjs"
+  }
+}

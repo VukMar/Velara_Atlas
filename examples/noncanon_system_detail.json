@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "0.1.0",
+  "id": "sys_demo_001",
+  "localUnits": "map_units",
+  "referencePlaneY": 0,
+  "objects": [
+    {
+      "id": "obj_star",
+      "type": "star",
+      "discoveredAE": 125,
+      "nameHistory": [
+        {
+          "fromAE": 125,
+          "untilAE": 178,
+          "name": "SURV-021 Primary",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 178,
+          "untilAE": null,
+          "name": "Demonstration Primary",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": "star_main_sequence"
+    },
+    {
+      "id": "obj_planet",
+      "type": "planet",
+      "discoveredAE": 130,
+      "colonizedAE": 178,
+      "nameHistory": [
+        {
+          "fromAE": 130,
+          "untilAE": 178,
+          "name": "SURV-021-b",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 178,
+          "untilAE": null,
+          "name": "Example Planet",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 10000,
+        "y": 150,
+        "z": -7000
+      },
+      "icon": "planet_terrestrial"
+    },
+    {
+      "id": "obj_station",
+      "type": "station",
+      "discoveredAE": 460,
+      "constructedAE": 460,
+      "nameHistory": [
+        {
+          "fromAE": 460,
+          "untilAE": null,
+          "name": "Example Port",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 11000,
+        "y": 2300,
+        "z": -8500
+      },
+      "icon": "station_civilian"
+    }
+  ],
+  "hiddenObjectPolicy": "Secret/unreleased objects are absent from this JSON. Do not store them with hidden=true."
+}
