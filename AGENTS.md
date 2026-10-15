@@ -15,7 +15,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 5. `docs/DATA_MODEL_DRAFT.md` — adopted InfoCard example shape; **draft integration contract**, not fully supported by the v0.1 resolver.
 6. `docs/DEVELOPMENT_ROADMAP.md` and `docs/CONTENT_WORKFLOW.md` — milestones and safe extraction/release process.
 7. `docs/VIEWER_SPECIFICATION.md` — Approved Milestone 3 requirements for the public atlas viewer, including navigation, historical timeline, rendering, search, overlays, and NEXUS archival behavior.
-8.  `docs/CANTUM_TERRITORY_RENDERING.md` — Approved rules for procedurally generated Cantum influence overlays, historical filtering, metaball blending, visual layering and rendering performance.
+8. `docs/CANTUM_TERRITORY_RENDERING.md` — Approved rules for procedurally generated Cantum influence overlays, historical filtering, metaball blending, visual layering and rendering performance.
 9. `docs/NEXUS_VISUAL_IDENTITY.md` — Approved Milestone 5: visual design, palette, targeting and NEXUS presentation.
 10. `docs/VISUAL_ASSET_POLICY.md` — Approved hybrid: rendering, default icons, fallbacks and asset rules.
 
