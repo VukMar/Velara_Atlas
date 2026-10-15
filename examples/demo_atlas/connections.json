@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0.0",
+  "connections": [
+    {
+      "id": "lnk_0001",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0001"
+      },
+      "endpointB": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0002"
+      },
+      "direction": "bidirectional",
+      "fromAE": 350,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0002",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0001"
+      },
+      "endpointB": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0003"
+      },
+      "direction": "bidirectional",
+      "fromAE": 370,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0003",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0002",
+        "objectId": "gat_0005"
+      },
+      "endpointB": {
+        "systemId": "sys_0002",
+        "objectId": "gat_0006"
+      },
+      "direction": "bidirectional",
+      "fromAE": 440,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0004",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0002",
+        "objectId": "gat_0005"
+      },
+      "endpointB": {
+        "systemId": "sys_0002",
+        "objectId": "gat_0007"
+      },
+      "direction": "bidirectional",
+      "fromAE": 460,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0005",
+      "linkType": "interstellar",
+      "transportType": "jump_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0004"
+      },
+      "endpointB": {
+        "systemId": "sys_0002",
+        "objectId": "gat_0008"
+      },
+      "direction": "bidirectional",
+      "fromAE": 500,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0006",
+      "linkType": "interstellar",
+      "transportType": "jump_hole",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "jhl_0001"
+      },
+      "endpointB": {
+        "systemId": "sys_0002",
+        "objectId": "jhl_0002"
+      },
+      "direction": "bidirectional",
+      "fromAE": 650,
+      "untilAE": null
+    }
+  ]
+}

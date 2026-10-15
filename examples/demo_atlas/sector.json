@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "sec_0001",
+  "entityType": "sector",
+  "title": "DEMO SECTOR — NONCANONICAL",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 160,
+      "y": 60,
+      "z": 160
+    },
+    "unit": "ly",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "timeline": {
+    "epoch": "A.E.",
+    "startAE": 0,
+    "defaultAE": 1200
+  },
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 0,
+        "untilAE": null,
+        "text": "Isolated development fixture. Does not contain real Velara systems or political history."
+      }
+    ]
+  },
+  "cantumsPath": "cantums.json",
+  "connectionsPath": "connections.json",
+  "systems": [
+    {
+      "id": "sys_0001",
+      "entityType": "star_system",
+      "discoveredAE": 100,
+      "colonizedAE": 210,
+      "positionLY": {
+        "x": -20,
+        "y": 4,
+        "z": 15
+      },
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": 210,
+          "name": "TS-01",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 210,
+          "untilAE": null,
+          "name": "Test System A",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 210,
+          "untilAE": null,
+          "cantumId": "can_0001"
+        }
+      ],
+      "publicDetailPath": "systems/sys_0001.json",
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 210,
+            "untilAE": null,
+            "entityId": "can_0001"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "Noncanonical test system; coordinates and dates are made solely to validate the atlas."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sys_0002",
+      "entityType": "star_system",
+      "discoveredAE": 190,
+      "colonizedAE": 330,
+      "positionLY": {
+        "x": 30,
+        "y": -3,
+        "z": -20
+      },
+      "nameHistory": [
+        {
+          "fromAE": 190,
+          "untilAE": 330,
+          "name": "TS-02",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 330,
+          "untilAE": null,
+          "name": "Test System B",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 330,
+          "untilAE": null,
+          "cantumId": "can_0001"
+        }
+      ],
+      "publicDetailPath": "systems/sys_0002.json",
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 330,
+            "untilAE": null,
+            "entityId": "can_0001"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 190,
+            "untilAE": null,
+            "text": "Noncanonical test system; coordinates and dates are made solely to validate the atlas."
+          }
+        ]
+      }
+    }
+  ],
+  "nexusPresentation": {
+    "fallbackTitle": "NEXUS // ARCHIVAL SURVEY UNAVAILABLE",
+    "fallbackText": "A record of this system exists, but its detailed survey is not part of this archive edition."
+  }
+}

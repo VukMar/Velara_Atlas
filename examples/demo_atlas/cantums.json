@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "cantums": [
+    {
+      "id": "can_0001",
+      "entityType": "cantum",
+      "letter": "T",
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": null,
+          "name": "Test Cantum",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": null,
+          "status": "noncanonical_testing_only"
+        }
+      ],
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 0,
+            "untilAE": null,
+            "text": "Development-only Cantum for testing the atlas. Not MCR canon."
+          }
+        ]
+      }
+    }
+  ]
+}
