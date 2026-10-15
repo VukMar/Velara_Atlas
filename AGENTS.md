@@ -14,6 +14,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 4. `docs/DATA_RULES.md` — existing chronology, identity, and disclosure rules.
 5. `docs/DATA_MODEL_DRAFT.md` — adopted InfoCard example shape; **draft integration contract**, not fully supported by the v0.1 resolver.
 6. `docs/DEVELOPMENT_ROADMAP.md` and `docs/CONTENT_WORKFLOW.md` — milestones and safe extraction/release process.
+7. `docs/VIEWER_SPECIFICATION.md` — Approved Milestone 3 requirements for the public atlas viewer, including navigation, historical timeline, rendering, search, overlays, and NEXUS archival behavior.
 
 If a file is absent in the actual checkout, report that and work with available material instead of inventing its contents.
 
