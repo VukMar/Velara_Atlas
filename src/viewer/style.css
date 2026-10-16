@@ -12,12 +12,14 @@ button { cursor: pointer; }
 button:hover:not(:disabled), select:hover { border-color: #00d6ff; }
 button:disabled { opacity: .45; cursor: default; }
 button:focus-visible, select:focus-visible, canvas:focus-visible { outline: 2px solid #00d6ff; outline-offset: 3px; }
-main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+main { --left: 240px; --right: 300px; display: grid; grid-template-columns: var(--left) minmax(0, 1fr) var(--right); position: relative; }
+main:has(#catalogue-panel:not([open])) { --left: 44px; }
+main:has(#info-panel:not([open])) { --right: 44px; }
 .map-panel { min-width: 0; }
 .toolbar { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; padding: .75rem 1rem; background: #081722; }
 .toolbar label { display: flex; gap: .5rem; align-items: center; font-size: .85rem; min-width: 0; }
 select { max-width: min(360px, 65vw); }
-#viewport { position: relative; height: clamp(360px, 66vh, 900px); overflow: hidden; }
+#viewport { position: relative; height: clamp(340px, 56vh, 820px); overflow: hidden; }
 canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 #labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .map-label { position: absolute; border: 0; background: transparent; padding: 0; width: 30px; height: 30px; transform: translate(-50%, -50%); pointer-events: auto; }
@@ -29,6 +31,32 @@ canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 .instructions, footer { font-size: .8rem; color: #94b2c2; }
 .instructions { padding: 0 1rem; }
 aside { background: #081722; border-left: 1px solid #234052; padding: 1.25rem; overflow-wrap: anywhere; }
+.catalogue-panel, .info-panel { min-width: 0; background: #081722; border-right: 1px solid #234052; }
+summary { cursor: pointer; padding: .8rem; border-bottom: 1px solid #234052; }
+summary:focus-visible, input:focus-visible { outline: 2px solid #00d6ff; outline-offset: 2px; }
+.catalogue-panel:not([open]) > summary, .info-panel:not([open]) > summary { writing-mode: vertical-rl; }
+.panel-content { padding: .8rem; }
+.panel-content label { display: block; font-size: .85rem; margin: .6rem 0; }
+input[type="search"], input[type="number"] { width: 100%; background: #102735; color: inherit; border: 1px solid #43637a; padding: .5rem; font: inherit; }
+#category { width: 100%; }
+#catalogue { list-style: none; padding: 0; margin: .5rem 0; max-height: 60vh; overflow-y: auto; }
+#catalogue li { margin-bottom: .35rem; }
+#catalogue button { width: 100%; text-align: left; font-size: .85rem; overflow-wrap: anywhere; }
+#catalogue button[aria-pressed="true"] { border-color: #e6ba7b; }
+#result-count { font-size: .8rem; color: #94b2c2; }
+.layer-panel { border-top: 1px solid #234052; padding: 0 .7rem; font-size: .85rem; }
+#layers { display: flex; flex-wrap: wrap; gap: .7rem; padding: .7rem 0; }
+#layers label { display: flex; align-items: center; gap: .3rem; }
+#tilt { width: 100px; }
+.timeline-panel { position: sticky; bottom: 0; z-index: 6; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding: .8rem 1rem; border-top: 1px solid #43637a; background: #081722; }
+#timeline { flex: 1; min-width: 150px; }
+#year-input { width: 6rem; }
+.timeline-panel small { display: block; width: 100%; color: #94b2c2; }
+#notice { width: 100%; margin: 0; color: #e6ba7b; font-size: .85rem; }
+#notice:empty { display: none; }
+#map-message { white-space: pre-line; }
+#destinations { font-size: .85rem; line-height: 1.5; }
+button[hidden] { display: none; }
 .eyebrow { font-size: .75rem; color: #94b2c2; letter-spacing: .08em; }
 h1 { font-size: 1.3rem; line-height: 1.3; margin: .6rem 0; }
 #selected-kind, .notice { font-size: .85rem; color: #94b2c2; }
@@ -39,10 +67,17 @@ dd { margin: .2rem 0 0; white-space: pre-line; font-family: ui-monospace, Consol
 .notice { line-height: 1.5; margin-top: 1.5rem; }
 footer { border-top: 1px solid #234052; border-bottom: 0; }
 @media (max-width: 760px) {
-  main { grid-template-columns: 1fr; }
+  main { display: block; }
   header, nav { padding: .75rem; gap: .6rem; }
   .demo-badge { margin-left: 0; }
   #units { width: 100%; margin-left: 0; }
   #viewport { height: 52vh; min-height: 320px; }
   aside { border-left: 0; border-top: 1px solid #234052; }
+  .catalogue-panel, .info-panel { position: absolute; top: 0; width: 88%; max-height: 65vh; overflow-y: auto; z-index: 5; border: 1px solid #43637a; }
+  .catalogue-panel { left: 0; } .info-panel { right: 0; }
+  .catalogue-panel:not([open]), .info-panel:not([open]) { width: auto; }
+  .catalogue-panel:not([open]) > summary, .info-panel:not([open]) > summary { writing-mode: horizontal-tb; }
+  .toolbar { padding-top: 3.5rem; }
+  .timeline-panel { font-size: .85rem; }
+  .timeline-panel button { font-size: .8rem; padding: .4rem; }
 }

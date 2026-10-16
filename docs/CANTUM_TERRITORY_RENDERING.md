@@ -122,4 +122,4 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 
 ## Schema v1.1 status
 
-A separate validated presentation.json style file now uses the territoryOverlay structure illustrated above, with an optional sector.presentationPath. The actual historical metaball renderer is not yet implemented.
+A separate validated presentation.json style file uses the territoryOverlay structure illustrated above, with an optional sector.presentationPath. Milestone 6 Checkpoint 3 implements the noncanonical demo overlay using a cached, world-space RGBA field, the approved Gaussian/smoothstep formula, deterministic overlap mixing and opacity caps. See VIEWER_PROTOTYPE.md for verification and limits. Canonical public data is unchanged.

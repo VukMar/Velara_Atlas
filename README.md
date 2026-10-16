@@ -4,7 +4,7 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Milestone 6, Checkpoint 2:** A local, read-only Three.js prototype now renders the **noncanonical two-system demonstration** at 1200 A.E. It supports selection, panning, zooming and sector/system navigation. The complete viewer, canonical migration, publication and local visual editor remain unimplemented.
+> **Project status — Milestone 6, Checkpoint 3:** The local, read-only **noncanonical two-system demonstration** supports historical navigation, searchable records, routes, top-down/perspective cameras, spatial zones and approximate Cantum influence shading. Final visual polish, canonical migration, publication and the deferred local editor are not implemented.
 
 ## The planned atlas
 
@@ -24,6 +24,7 @@ The intended public viewer will be **read-only and statically hosted**, initiall
 | `examples/` | Illustrative/noncanonical JSON data shapes and fixtures |
 | `src/timeline/` | Existing historical resolver (v0.1) |
 | `src/core/history.mjs` | Independent noncanonical v1.1 historical resolver |
+| `src/core/cartography.mjs` | Pure historical catalogue, route and influence calculations |
 | `src/viewer/` | Local demo-only Vite/Three.js prototype |
 | `tests/` | Automated checks and a console timeline demonstration |
 | `docs/DATA_RULES.md` | Historical conventions and known outstanding decisions |
@@ -47,7 +48,7 @@ npm run dev
 
 Open **http://127.0.0.1:5173/Velara_Atlas/** (or the local URL printed by Vite). Select a system marker, then **Enter system**, or double-click the marker. Use **Sector View** to return. Drag empty map space to pan, scroll/pinch to zoom, or use the zoom/reset buttons. The Selection control provides keyboard access to the current map's entities; focused map canvas also accepts arrow keys and +/−.
 
-The snapshot is fixed at the demo's configured default of 1200 A.E. Shapes are temporary category markers, not physical dimensions or final artwork. See [prototype implementation and limitations](docs/VIEWER_PROTOTYPE.md).
+The initial year is 1200 A.E.; the timeline and numeric input cover the demo range 0–1200. Search uses names valid at the selected year. Switch to 3D and right-drag to orbit, or use Camera elevation. Select a gate to inspect its active links; View destination system is an explicit action. Map layers are optional, and the political influence shading is not a legal border. Shapes remain temporary category markers, not physical dimensions or final artwork. See [implementation, verification and limitations](docs/VIEWER_PROTOTYPE.md).
 
 ```bash
 npm test
@@ -83,4 +84,4 @@ This is a fictional setting and a work in progress; the atlas does not claim to 
 
 Milestone 3 viewer design and Milestone 5 NEXUS visuals are approved. The local editor is deferred. The v1.1 data schema applies to noncanonical examples; original public canonical v0.1 political records are intentionally unchanged. Install dependencies with npm ci, then use npm test to run both historical checks and v1.1 validation. See docs/LEGACY_MIGRATION_PLAN.md.
 
-Milestone 6 Checkpoint 1 adds an engine-independent historical resolver for the noncanonical v1.1 demo in `src/core/history.mjs`. See [the API and usage notes](docs/HISTORICAL_RESOLVER.md). Checkpoint 2 adds the local demonstration viewer. The legacy resolver and public canonical records remain unchanged. Checkpoint 3 needs separate creator approval.
+Milestone 6 Checkpoint 1 adds an engine-independent historical resolver for the noncanonical v1.1 demo in `src/core/history.mjs`. See [the API and usage notes](docs/HISTORICAL_RESOLVER.md). Checkpoints 2–3 add the local demonstration viewer and historical cartography. The legacy resolver and public canonical records remain unchanged. Checkpoint 4 needs separate creator approval.

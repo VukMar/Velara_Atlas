@@ -155,42 +155,5 @@
     "fallbackTitle": "NEXUS // ARCHIVAL SURVEY UNAVAILABLE",
     "fallbackText": "A record of this system exists, but its detailed survey is not part of this archive edition."
   },
-  "presentationPath": "presentation.json",
-  "zones": [
-    {
-      "id": "zon_0001",
-      "entityType": "spatial_zone",
-      "category": "nebula",
-      "discoveredAE": 160,
-      "nameHistory": [
-        {
-          "fromAE": 160,
-          "untilAE": null,
-          "name": "TEST Nebula",
-          "kind": "noncanonical_demo"
-        }
-      ],
-      "position": {
-        "x": 5,
-        "y": 0,
-        "z": 0
-      },
-      "geometry": {
-        "kind": "ellipsoid",
-        "radii": {
-          "x": 12,
-          "y": 8,
-          "z": 20
-        }
-      },
-      "infoCard": {
-        "affiliation": null,
-        "class": null,
-        "crew": null,
-        "population": null,
-        "armament": null,
-        "description": null
-      }
-    }
-  ]
+  "presentationPath": "presentation.json"
 }

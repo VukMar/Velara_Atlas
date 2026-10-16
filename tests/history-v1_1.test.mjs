@@ -253,9 +253,11 @@ test('a released partial record or empty historical map is map-available', () =>
 test('zones: ellipsoid, box and polygon use independent discovery/known-by filtering', () => {
   const d = validated(load()), a = d.detailFiles.get('sys_0001'), b = d.detailFiles.get('sys_0002');
   assert.deepEqual(resolveZones(d.sector, 159), []);
-  assert.equal(resolveZones(d.sector, 160)[0].geometry.kind, 'ellipsoid');
-  assert.deepEqual(resolveZones(a, 259), []);
-  assert.equal(resolveZones(a, 260)[0].geometry.kind, 'box');
+  assert.deepEqual(resolveZones(d.sector, 1200), []);
+  assert.deepEqual(resolveZones(a, 159), []);
+  assert.equal(resolveZones(a, 160)[0].geometry.kind, 'ellipsoid');
+  assert.deepEqual(ids(resolveZones(a, 259)), ['zon_0001']);
+  assert.equal(resolveZones(a, 260).find(z => z.id === 'zon_0002').geometry.kind, 'box');
   assert.deepEqual(resolveZones(b, 319), []);
   assert.equal(resolveZones(b, 320)[0].geometry.kind, 'polygon_volume');
   assert.equal(resolveZones(b, 321)[0].knowledge.discoveredAE, null);

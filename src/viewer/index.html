@@ -1,49 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Read-only, noncanonical two-system Velara Atlas prototype.">
-    <link rel="icon" href="data:,">
-    <title>Velara Atlas — Noncanonical Demo</title>
-  </head>
-  <body>
-    <header>
-      <div><strong>VELARA ATLAS</strong><span class="prototype">Checkpoint 2 · working prototype</span></div>
-      <span class="demo-badge">NONCANONICAL DEMONSTRATION</span>
-      <span id="year">1200 A.E.</span>
-    </header>
-    <nav aria-label="Map navigation">
-      <button id="sector" disabled>Sector View</button>
-      <span aria-hidden="true">/</span><strong id="location">Demo Sector</strong>
-      <span id="units">Light-years (ly) · X/Z top-down</span>
-    </nav>
-    <main>
-      <section class="map-panel" aria-label="Atlas map">
-        <div class="toolbar" aria-label="Map controls">
-          <button id="reset">Reset view</button>
-          <button id="zoom-in" aria-label="Zoom in">+</button>
-          <button id="zoom-out" aria-label="Zoom out">−</button>
-          <label>Selection <select id="selection" aria-label="Select mapped entity"><option value="">Select an entity…</option></select></label>
-        </div>
-        <div id="viewport">
-          <div id="labels" aria-label="Map labels"></div>
-          <p id="map-message" role="status">Preparing demonstration map…</p>
-        </div>
-        <p class="instructions">Drag to pan · Scroll or pinch to zoom · Click a marker to select · Double-click a system to open</p>
-      </section>
-      <aside aria-label="Selected entity information">
-        <p class="eyebrow">NEXUS / DEMO RECORD</p>
-        <h1 id="selected-name">Select a system</h1>
-        <p id="selected-kind">Read-only chart · temporary geometric markers</p>
-        <dl id="facts"></dl>
-        <p id="description">Choose a marker or use the selection control above the map.</p>
-        <button id="enter" disabled>Enter system</button>
-        <p class="notice">Marker sizes and colors are display aids. Coordinates, names and dates come from noncanonical test records.</p>
-      </aside>
-    </main>
-    <footer>Demonstration fixtures only · Fixed historical snapshot · No routes or spatial-zone graphics in this checkpoint</footer>
-    <noscript>This local Atlas prototype requires JavaScript and WebGL.</noscript>
-    <script type="module" src="./main.mjs"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only noncanonical historical Velara Atlas demonstration.">
+  <link rel="icon" href="data:,"><title>Velara Atlas — Noncanonical Demo</title>
+</head>
+<body>
+  <header><div><strong>VELARA ATLAS</strong><span class="prototype">Checkpoint 3 · historical navigation and cartography</span></div>
+    <span class="demo-badge">NONCANONICAL DEMONSTRATION</span><span id="year">1200 A.E.</span></header>
+  <nav aria-label="Map navigation"><button id="sector" disabled>Sector View</button><span aria-hidden="true">/</span>
+    <strong id="location">Demo Sector</strong><span id="units">ly · X/Z top-down</span></nav>
+  <main>
+    <details id="catalogue-panel" class="catalogue-panel" open><summary>Catalogue and search</summary>
+      <div class="panel-content"><label for="search">Search current-year records</label><input id="search" type="search" autocomplete="off">
+        <label for="category">Record type</label><select id="category"><option value="all">All records</option>
+          <option value="star_system">Systems</option><option value="cantum">Cantums</option><option value="celestial_body">Celestial bodies</option>
+          <option value="station">Stations</option><option value="gate">Gates</option><option value="jump_hole">Jump Holes</option>
+          <option value="spatial_zone">Spatial zones</option><option value="connection">Connections</option></select>
+        <p id="result-count" role="status"></p><ul id="catalogue" aria-label="Historical catalogue"></ul></div>
+    </details>
+    <section class="map-panel" aria-label="Atlas map">
+      <div class="toolbar" aria-label="Map controls"><button id="reset">Reset view</button><button id="zoom-in" aria-label="Zoom in">+</button>
+        <button id="zoom-out" aria-label="Zoom out">−</button><button id="mode">Switch to 3D</button>
+        <label id="tilt-control" hidden>Camera elevation <input id="tilt" type="range" min="10" max="80" value="53" aria-label="Camera elevation"></label>
+        <label>Selection <select id="selection" aria-label="Select mapped entity"><option value="">Select an entity…</option></select></label></div>
+      <div id="viewport"><div id="labels" aria-label="Map labels"></div><p id="map-message" role="status">Preparing demonstration map…</p></div>
+      <p class="instructions">Drag to pan · Scroll/pinch to zoom · 3D: right-drag to orbit · Double-click a system to open</p>
+      <details class="layer-panel"><summary>Map layers</summary><div id="layers"></div><p>Solid: gates · Dashed: Jump Holes. Influence shading is approximate, not a legal border.</p></details>
+      <button id="retry" hidden>Retry loading demo</button>
+    </section>
+    <details id="info-panel" class="info-panel" open><summary>Selected record</summary><aside aria-label="Selected entity information">
+      <p class="eyebrow">NEXUS / DEMO RECORD</p><h1 id="selected-name">Select a record</h1><p id="selected-kind">Read-only noncanonical chart</p>
+      <dl id="facts"></dl><p id="description"></p><button id="enter" hidden>Enter system</button><button id="focus" disabled>Focus selection</button>
+      <div id="destinations"></div><p class="notice">Marker sizes and colors are display aids. No physical CNU conversion or orbital simulation is implied.</p>
+    </aside></details>
+  </main>
+  <section class="timeline-panel" aria-label="Historical timeline"><p id="notice" role="status"></p>
+    <label for="timeline">Selected A.E. year</label><input id="timeline" type="range" min="0" max="1200" step="1" value="1200">
+    <label for="year-input">Year</label><input id="year-input" type="number" min="0" max="1200" step="1" value="1200">
+    <button id="previous">Previous exact record</button><button id="next">Next exact record</button><button id="latest">Reset to latest</button>
+    <small id="range-label"></small><small>Record jumps omit qualified dates; confirmed-known-by is not an exact discovery.</small></section>
+  <footer>Released demonstration fixtures only · Public viewer is read-only · No canonical migration or deployment</footer>
+  <noscript>This Atlas requires JavaScript and WebGL.</noscript><script type="module" src="./main.mjs"></script>
+</body></html>

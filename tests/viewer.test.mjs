@@ -87,7 +87,8 @@ test('demo build permits only viewer/core, explicit demo JSON and package module
   const path = relative => fileURLToPath(new URL(relative, import.meta.url));
   const context = {error(message) { throw new Error(message); }};
   assert.doesNotThrow(() => hook.call(context, {}, bundle([
-    path('../src/viewer/main.mjs'), path('../src/core/history.mjs'), path('../examples/demo_atlas/systems/sys_0001.json')
+    path('../src/viewer/main.mjs'), path('../src/core/history.mjs'), path('../src/core/cartography.mjs'),
+    ...['sector.json', 'cantums.json', 'connections.json', 'presentation.json', 'systems/sys_0001.json', 'systems/sys_0002.json'].map(f => path('../examples/demo_atlas/' + f))
   ])));
   for (const file of ['../public/data/political.json', '../private/fixture.json', '../examples/cantum_b.json', '../src/timeline/resolve.mjs']) {
     assert.throws(() => hook.call(context, {}, bundle([path(file)])), /Unexpected input/);

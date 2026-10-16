@@ -33,7 +33,18 @@ test('knownByAE only when exact discovery is unknown',()=>{
  sys.discoveredAE=100;assert.ok(validateRelationships(d).some(e=>e.includes('knownByAE is only')));
 });
 test('zone out of bounds rejected',()=>{
- const d=load();d.sector.zones[0].geometry.radii.x=1e9;
+ const d=load();d.detailFiles.get('sys_0001').zones.find(z=>z.id==='zon_0001').geometry.radii.x=1e9;
+ assert.ok(validateRelationships(d).some(e=>e.includes('zone geometry outside map')));
+});
+
+test('synthetic sector ellipsoid remains supported, with bounds enforced in light-years',()=>{
+ const d=load(),zone=structuredClone(d.detailFiles.get('sys_0001').zones.find(z=>z.id==='zon_0001'));
+ zone.id='zon_9999';zone.nameHistory[0].name='SYNTHETIC sector zone';
+ // Independently authored synthetic light-year geometry; no CNU conversion.
+ zone.position={x:5,y:0,z:0};zone.geometry.radii={x:12,y:8,z:20};d.sector.zones=[zone];
+ assert.equal(validator('sector')(d.sector),true);
+ assert.deepEqual(validateRelationships(d),[]);
+ zone.geometry.radii.x=1e9;
  assert.ok(validateRelationships(d).some(e=>e.includes('zone geometry outside map')));
 });
 test('degenerate polygon footprint rejected',()=>{
@@ -41,7 +52,7 @@ test('degenerate polygon footprint rejected',()=>{
  assert.ok(validateRelationships(d).some(e=>e.includes('zero area')));
 });
 test('duplicate zone ID rejected',()=>{
- const d=load();d.detailFiles.get('sys_0001').zones[0].id='zon_0001';
+ const d=load();d.detailFiles.get('sys_0002').zones[0].id='zon_0001';
  assert.ok(validateRelationships(d).some(e=>e.includes('duplicate ID')));
 });
 test('bad territory settings rejected',()=>{

@@ -344,4 +344,4 @@ Before implementation, Codex must inspect the repository, existing tests, schema
 
 ## v1.1 implementation status correction
 
-The data contract now defines optional spatial zones, knownByAE, nullable icons and a validated presentation file for noncanonical fixtures. The older pending-extension table predates this versioned schema change. Browser implementation and migration of public canonical v0.1 data remain outstanding.
+The data contract defines optional spatial zones, knownByAE, nullable icons and a validated presentation file for noncanonical fixtures. The older pending-extension table predates this versioned schema change. Milestone 6 Checkpoints 2–3 implement the noncanonical viewer's navigation and historical cartography; final visual assets/polish, publication and canonical v0.1 migration remain outstanding. See VIEWER_PROTOTYPE.md for implemented behavior and verification limits.

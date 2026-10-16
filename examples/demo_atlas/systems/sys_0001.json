@@ -496,6 +496,41 @@
         "armament": null,
         "description": null
       }
+    },
+    {
+      "id": "zon_0001",
+      "entityType": "spatial_zone",
+      "category": "nebula",
+      "discoveredAE": 160,
+      "nameHistory": [
+        {
+          "fromAE": 160,
+          "untilAE": null,
+          "name": "TEST Nebula",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": -11000,
+        "y": 1200,
+        "z": -6000
+      },
+      "geometry": {
+        "kind": "ellipsoid",
+        "radii": {
+          "x": 6500,
+          "y": 1800,
+          "z": 3800
+        }
+      },
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
     }
   ]
 }

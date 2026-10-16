@@ -81,3 +81,5 @@ See `REPOSITORY_STRUCTURE.md`, `CONTENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.m
 ## Current approved design state
 
 Local visual editor deferred; the approved Milestone 3/5 specifications supersede references to pending visual decisions. Routes exist in v1.0+ schema, zones and optional display settings in v1.1; none of these constitutes a completed browser renderer. Canonical public v0.1 records await explicit creator-approved migration (docs/LEGACY_MIGRATION_PLAN.md).
+
+Milestone 6 Checkpoints 2–3 now provide a local noncanonical viewer under src/viewer/, reusing src/core/history.mjs and pure cartography helpers. This supersedes the earlier foundation-only implementation status; it does not claim completion of final NEXUS visuals, deployment or canonical migration. See VIEWER_PROTOTYPE.md.
