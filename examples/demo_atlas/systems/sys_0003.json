@@ -46,20 +46,6 @@
         "population": null,
         "armament": null,
         "description": null
-      },
-      "navigation": {
-        "boundaryRadiusCNU": 2200,
-        "localLinks": [
-          {
-            "id": "lnk_0007",
-            "targetObjectId": "cb_0011",
-            "sourceGateId": "gat_0013",
-            "targetGateId": "gat_0014",
-            "direction": "bidirectional",
-            "fromAE": 720,
-            "untilAE": null
-          }
-        ]
       }
     },
     {
@@ -68,10 +54,10 @@
       "objectType": "planet",
       "orbitingId": null,
       "colonizedAE": null,
-      "discoveredAE": 610,
+      "discoveredAE": 600,
       "nameHistory": [
         {
-          "fromAE": 610,
+          "fromAE": 600,
           "untilAE": null,
           "name": "TEST C World",
           "kind": "noncanonical_demo"
@@ -92,19 +78,30 @@
         "description": null
       },
       "navigation": {
-        "boundaryRadiusCNU": 2300
+        "boundaryRadiusCNU": 2200,
+        "localLinks": [
+          {
+            "id": "lnk_0007",
+            "targetObjectId": "gat_0012",
+            "sourceGateId": "gat_0013",
+            "targetGateId": "gat_0014",
+            "direction": "bidirectional",
+            "fromAE": 613,
+            "untilAE": null
+          }
+        ]
       }
     },
     {
       "id": "gat_0012",
       "entityType": "gate",
       "objectType": "jump_gate",
-      "constructedAE": 820,
+      "constructedAE": 610,
       "decommissionedAE": null,
-      "discoveredAE": 820,
+      "discoveredAE": 610,
       "nameHistory": [
         {
-          "fromAE": 820,
+          "fromAE": 610,
           "untilAE": null,
           "name": "TEST C Jump Gate to A",
           "kind": "noncanonical_demo"
@@ -123,27 +120,30 @@
         "population": null,
         "armament": null,
         "description": null
+      },
+      "navigation": {
+        "boundaryRadiusCNU": 2000
       }
     },
     {
       "id": "gat_0013",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "constructedAE": 700,
+      "constructedAE": 613,
       "decommissionedAE": null,
-      "discoveredAE": 700,
+      "discoveredAE": 613,
       "nameHistory": [
         {
-          "fromAE": 700,
+          "fromAE": 613,
           "untilAE": null,
           "name": "TEST C Primary Transfer",
           "kind": "noncanonical_demo"
         }
       ],
       "position": {
-        "x": 1993.097828,
-        "y": 287.891908,
-        "z": 885.821257
+        "x": 15904.55658,
+        "y": 2402.09701,
+        "z": 8640.274378
       },
       "icon": null,
       "infoCard": {
@@ -160,21 +160,21 @@
       "id": "gat_0014",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "constructedAE": 710,
+      "constructedAE": 613,
       "decommissionedAE": null,
-      "discoveredAE": 710,
+      "discoveredAE": 613,
       "nameHistory": [
         {
-          "fromAE": 710,
+          "fromAE": 613,
           "untilAE": null,
           "name": "TEST C World Transfer",
           "kind": "noncanonical_demo"
         }
       ],
       "position": {
-        "x": 15916.306817,
-        "y": 2299.022096,
-        "z": 7073.914141
+        "x": -16095.051436,
+        "y": -620.088191,
+        "z": 18417.932383
       },
       "icon": null,
       "infoCard": {

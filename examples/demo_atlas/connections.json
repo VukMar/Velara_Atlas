@@ -30,7 +30,7 @@
         "objectId": "gat_0003"
       },
       "direction": "bidirectional",
-      "fromAE": 370,
+      "fromAE": 452,
       "untilAE": null
     },
     {
@@ -110,7 +110,7 @@
         "objectId": "gat_0014"
       },
       "direction": "bidirectional",
-      "fromAE": 720,
+      "fromAE": 613,
       "untilAE": null
     },
     {
@@ -126,7 +126,7 @@
         "objectId": "gat_0012"
       },
       "direction": "bidirectional",
-      "fromAE": 850,
+      "fromAE": 611,
       "untilAE": null
     },
     {
@@ -142,7 +142,23 @@
         "objectId": "gat_0016"
       },
       "direction": "bidirectional",
-      "fromAE": 550,
+      "fromAE": 606,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0010",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0017"
+      },
+      "endpointB": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0018"
+      },
+      "direction": "bidirectional",
+      "fromAE": 451,
       "untilAE": null
     }
   ]

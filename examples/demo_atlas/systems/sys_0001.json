@@ -134,15 +134,6 @@
             "direction": "bidirectional",
             "fromAE": 350,
             "untilAE": null
-          },
-          {
-            "id": "lnk_0002",
-            "targetObjectId": "cb_0003",
-            "sourceGateId": "gat_0009",
-            "targetGateId": "gat_0003",
-            "direction": "bidirectional",
-            "fromAE": 370,
-            "untilAE": null
           }
         ]
       }
@@ -185,7 +176,18 @@
       "colonizedAE": null,
       "visualVariant": "unknown",
       "navigation": {
-        "boundaryRadiusCNU": 2100
+        "boundaryRadiusCNU": 2100,
+        "localLinks":[
+          {
+            "id": "lnk_0002",
+            "targetObjectId": "gat_0004",
+            "sourceGateId": "gat_0009",
+            "targetGateId": "gat_0003",
+            "direction": "bidirectional",
+            "fromAE": 452,
+            "untilAE": null
+          }
+        ]
       }
     },
     {
@@ -242,7 +244,7 @@
       "position": {
         "x": 15200,
         "y": 1900,
-        "z": -9700
+        "z": 10700
       },
       "icon": null,
       "infoCard": {
@@ -300,22 +302,93 @@
       },
       "constructedAE": 300,
       "decommissionedAE": null,
-      "orbitingId": "cb_0002",
+      "orbitingId": "cb_0001",
       "visualVariant": "regular",
       "navigation": {
         "boundaryRadiusCNU": 900,
         "localLinks": [
           {
             "id": "lnk_0009",
-            "targetObjectId": "gat_0004",
+            "targetObjectId": "gat_0011",
             "sourceGateId": "gat_0015",
             "targetGateId": "gat_0016",
             "direction": "bidirectional",
-            "fromAE": 550,
+            "fromAE": 606,
+            "untilAE": null
+          },
+          {
+            "id": "lnk_0010",
+            "targetObjectId": "cb_0003",
+            "sourceGateId": "gat_0017",
+            "targetGateId": "gat_0018",
+            "direction": "bidirectional",
+            "fromAE": 451,
             "untilAE": null
           }
         ]
       }
+    },
+    {
+      "id": "gat_0017",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 451,
+      "decommissionedAE": null,
+      "discoveredAE": 451,
+      "nameHistory": [
+        {
+          "fromAE": 451,
+          "untilAE": null,
+          "name": "To C System Jump Gate",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 14302.507589,
+        "y": 1833.165459,
+        "z": 10693.634806
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    },
+    {
+      "id": "gat_0018",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 451,
+      "decommissionedAE": null,
+      "discoveredAE": 451,
+      "nameHistory": [
+        {
+          "fromAE": 451,
+          "untilAE": null,
+          "name": "To Relay Station",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": -10905.85104,
+        "y": -44.052737,
+        "z": 10514.85212
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0001",
@@ -332,9 +405,9 @@
         }
       ],
       "position": {
-        "x": 11625.186152,
-        "y": 662.564437,
-        "z": -8531.310857
+        "x": 10480.176823,
+        "y": 266.215054,
+        "z": -6273.210269
       },
       "icon": null,
       "infoCard": {
@@ -370,9 +443,9 @@
         }
       ],
       "position": {
-        "x": 14387.406924,
-        "y": 1618.717781,
-        "z": -9434.344571
+        "x": 14959.911588,
+        "y": 1816.892473,
+        "z": 9836.605135
       },
       "icon": null,
       "infoCard": {
@@ -397,10 +470,10 @@
       "id": "gat_0003",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "discoveredAE": 340,
+      "discoveredAE": 452,
       "nameHistory": [
         {
-          "fromAE": 340,
+          "fromAE": 452,
           "untilAE": null,
           "name": "Test gat_0003",
           "kind": "noncanon_example",
@@ -408,9 +481,9 @@
         }
       ],
       "position": {
-        "x": -11363.736265,
-        "y": -178.65743,
-        "z": 9183.874822
+        "x": -21183.366239,
+        "y": 618.336624,
+        "z": 21865.786443
       },
       "icon": null,
       "infoCard": {
@@ -526,21 +599,21 @@
       "id": "gat_0009",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "constructedAE": 340,
+      "constructedAE": 452,
       "decommissionedAE": null,
-      "discoveredAE": 340,
+      "discoveredAE": 452,
       "nameHistory": [
         {
-          "fromAE": 340,
+          "fromAE": 452,
           "untilAE": null,
           "name": "TEST A Dedicated Outer Transfer",
           "kind": "noncanonical_demo"
         }
       ],
       "position": {
-        "x": 8597.488227,
-        "y": 81.706368,
-        "z": -6871.892704
+        "x": -14224.950642,
+        "y": -77.504936,
+        "z": 12201.320336
       },
       "icon": null,
       "infoCard": {
@@ -557,12 +630,12 @@
       "id": "gat_0011",
       "entityType": "gate",
       "objectType": "jump_gate",
-      "constructedAE": 810,
+      "constructedAE": 605,
       "decommissionedAE": null,
-      "discoveredAE": 810,
+      "discoveredAE": 605,
       "nameHistory": [
         {
-          "fromAE": 810,
+          "fromAE": 605,
           "untilAE": null,
           "name": "TEST A Jump Gate to C",
           "kind": "noncanonical_demo"
@@ -587,29 +660,33 @@
         "targetSystemId": "sys_0003",
         "targetObjectId": "gat_0012",
         "direction": "bidirectional",
-        "fromAE": 850,
+        "fromAE": 611,
         "untilAE": null
+      },
+      "navigation": {
+        "boundaryRadiusCNU": 1800,
+        "localLinks": []
       }
     },
     {
       "id": "gat_0015",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "constructedAE": 510,
+      "constructedAE": 605,
       "decommissionedAE": null,
-      "discoveredAE": 510,
+      "discoveredAE": 605,
       "nameHistory": [
         {
-          "fromAE": 510,
+          "fromAE": 605,
           "untilAE": null,
           "name": "TEST A Relay Departure",
           "kind": "noncanonical_demo"
         }
       ],
       "position": {
-        "x": 14524.23182,
-        "y": 1878.201026,
-        "z": -9105.977971
+        "x": 15711.252401,
+        "y": 1893.445482,
+        "z": 11440.66053
       },
       "icon": null,
       "infoCard": {
@@ -626,21 +703,21 @@
       "id": "gat_0016",
       "entityType": "gate",
       "objectType": "short_range_gate",
-      "constructedAE": 520,
+      "constructedAE": 605,
       "decommissionedAE": null,
-      "discoveredAE": 520,
+      "discoveredAE": 605,
       "nameHistory": [
         {
-          "fromAE": 520,
+          "fromAE": 605,
           "untilAE": null,
           "name": "TEST A Jump Gate Local Approach",
           "kind": "noncanonical_demo"
         }
       ],
       "position": {
-        "x": -20948.805053,
-        "y": 733.909514,
-        "z": 22075.965732
+        "x": 21977.495198,
+        "y": 1813.109036,
+        "z": 20518.67894
       },
       "icon": null,
       "infoCard": {
@@ -674,11 +751,11 @@
         "z": 0
       },
       "geometry": {
-        "kind": "box",
-        "size": {
-          "x": 500,
-          "y": 200,
-          "z": 500
+        "kind": "ellipsoid",
+        "radii": {
+          "x": 2500,
+          "y": 2000,
+          "z": 1500
         }
       },
       "infoCard": {

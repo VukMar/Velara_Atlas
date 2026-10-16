@@ -62,6 +62,30 @@ npm run preview
 
 The prototype uses Vite 6 (compatible with the installed Node 20.5.1) and Three.js. Use a supported Node LTS for ongoing development. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured.
 
+## ID Finder (read-only authoring utility)
+
+```text
+npm run idfind -- cb
+npm run idfind -- all --demo
+npm run idfind -- sys --public
+```
+
+Supported prefixes: `cb`, `gat`, `sta`, `jhl`, `sys`, `lnk`, `can`, `zon`, `sec`,
+or `all` for a table. The default scope is `--demo`. The scanner reads only the
+chosen dataset's sector/Cantum/connection registries and direct `systems/*.json`
+files, including systems not yet indexed. References and presentation settings
+do not count as definitions. Catalogue/detail system IDs and authored/generated
+link pairs count once; generated-only link IDs remain used. It does not run the
+navigation generator or check graph freshness (`connections:check` does that).
+
+The highest numeric suffix is dataset-wide; suggestions use at least four digits
+and never fill historical gaps, reserve IDs or change files. Public v0.1 legacy
+IDs are listed separately without conversion; suggestions there apply only to
+the numbered namespace, not to a canonical migration. Duplicate definitions,
+malformed IDs and missing required files fail and withhold next-ID suggestions;
+bad arguments also return nonzero. No unrelated examples, frozen test fixtures,
+dependencies, build assets, documentation or private folders are traversed.
+
 ## Data and disclosure policy
 
 The complete fictional canon is maintained privately in writing/source documents, currently including RTF files. The public repository holds only intentionally publishable material. Approved map records are extracted into JSON; unreleased story secrets and private source files must not be committed anywhere in this public repository, including tests and examples.

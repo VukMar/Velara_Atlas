@@ -4,14 +4,15 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs tests/history-v1_1.test.mjs tests/viewer.test.mjs tests/cartography.test.mjs tests/navigation-v1_2.test.mjs && node scripts/validate-demo.mjs",
+    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs tests/history-v1_1.test.mjs tests/viewer.test.mjs tests/cartography.test.mjs tests/navigation-v1_2.test.mjs tests/idfind.test.mjs && node scripts/validate-demo.mjs",
     "demo": "node tests/demo.mjs",
     "validate": "node scripts/validate-demo.mjs",
     "dev": "npm run validate && vite",
     "build": "npm run validate && vite build && node scripts/audit-demo-build.mjs",
     "preview": "vite preview",
     "connections": "node scripts/connections.mjs",
-    "connections:check": "node scripts/connections.mjs --check"
+    "connections:check": "node scripts/connections.mjs --check",
+    "idfind": "node scripts/idfind.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
