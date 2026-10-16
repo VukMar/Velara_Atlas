@@ -83,3 +83,7 @@ See `REPOSITORY_STRUCTURE.md`, `CONTENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.m
 Local visual editor deferred; the approved Milestone 3/5 specifications supersede references to pending visual decisions. Routes exist in v1.0+ schema, zones and optional display settings in v1.1; none of these constitutes a completed browser renderer. Canonical public v0.1 records await explicit creator-approved migration (docs/LEGACY_MIGRATION_PLAN.md).
 
 Milestone 6 Checkpoints 2–3 now provide a local noncanonical viewer under src/viewer/, reusing src/core/history.mjs and pure cartography helpers. This supersedes the earlier foundation-only implementation status; it does not claim completion of final NEXUS visuals, deployment or canonical migration. See VIEWER_PROTOTYPE.md.
+
+## Pre-Checkpoint-4 v1.2 navigation
+
+The secured Checkpoint 3 baseline is extended by the approved noncanonical navigation task. System-object declarations are the authoring source of truth; manually generated, Git-tracked `connections.json` is the runtime index. `npm run connections` also updates only explicitly boundary-derived short-range gate positions; `connections:check` makes stale artifacts fail validation/build without repair. Frozen v1.1 regressions preserve older behavior. The demo has three systems and two Cantums. See [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md). No canonical migration, editor, deployment or Checkpoint 4 visual work is included.

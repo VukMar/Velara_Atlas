@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mcr.example.invalid/schemas/atlas.schema.json",
-  "title": "Velara Atlas entity contract v1.1",
+  "$id": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json",
+  "title": "Velara Atlas entity contract v1.2",
   "description": "The URL is a schema identifier only; no network access required. Test content is NONCANON.",
   "type": "object",
   "$defs": {
@@ -673,7 +673,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.1.0"
+          "const": "1.2.0"
         },
         "id": {
           "type": "string",
@@ -836,7 +836,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.1.0"
+          "const": "1.2.0"
         },
         "cantums": {
           "type": "array",
@@ -948,6 +948,9 @@
             "water",
             "unknown"
           ]
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
         }
       },
       "required": [
@@ -1083,6 +1086,9 @@
             "shipyard",
             "unknown"
           ]
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
         }
       },
       "required": [
@@ -1184,6 +1190,15 @@
           "type": "integer",
           "minimum": 0,
           "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
+        },
+        "positionMode": {
+          "const": "boundary_derived"
         }
       },
       "required": [
@@ -1198,7 +1213,32 @@
         "icon",
         "infoCard"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "navigation": false,
+              "interstellarConnection": false
+            }
+          },
+          "else": {
+            "properties": {
+              "positionMode": false
+            }
+          }
+        }
+      ]
     },
     "jumpHole": {
       "type": "object",
@@ -1259,6 +1299,12 @@
           "type": "integer",
           "minimum": 0,
           "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
         }
       },
       "required": [
@@ -1277,7 +1323,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.1.0"
+          "const": "1.2.0"
         },
         "id": {
           "type": "string",
@@ -1455,7 +1501,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.1.0"
+          "const": "1.2.0"
         },
         "connections": {
           "type": "array",
@@ -1687,7 +1733,7 @@
       "type": "object",
       "properties": {
         "schemaVersion": {
-          "const": "1.1.0"
+          "const": "1.2.0"
         },
         "territoryOverlay": {
           "type": "object",
@@ -1763,6 +1809,346 @@
       "required": [
         "schemaVersion",
         "territoryOverlay"
+      ],
+      "additionalProperties": false
+    },
+    "localLink": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^lnk_[0-9]{4,}$"
+        },
+        "direction": {
+          "enum": [
+            "bidirectional",
+            "a_to_b",
+            "b_to_a"
+          ]
+        },
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "targetObjectId": {
+          "type": "string",
+          "pattern": "^(?:cb|sta|gat|jhl)_[0-9]{4,}$"
+        },
+        "sourceGateId": {
+          "type": "string",
+          "pattern": "^gat_[0-9]{4,}$"
+        },
+        "targetGateId": {
+          "type": "string",
+          "pattern": "^gat_[0-9]{4,}$"
+        }
+      },
+      "required": [
+        "id",
+        "targetObjectId",
+        "sourceGateId",
+        "targetGateId",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false
+    },
+    "interstellarDeclaration": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^lnk_[0-9]{4,}$"
+        },
+        "direction": {
+          "enum": [
+            "bidirectional",
+            "a_to_b",
+            "b_to_a"
+          ]
+        },
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "targetSystemId": {
+          "type": "string",
+          "pattern": "^sys_[0-9]{4,}$"
+        },
+        "targetObjectId": {
+          "type": "string",
+          "pattern": "^(?:gat|jhl)_[0-9]{4,}$"
+        }
+      },
+      "required": [
+        "id",
+        "targetSystemId",
+        "targetObjectId",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false
+    },
+    "navigation": {
+      "type": "object",
+      "properties": {
+        "boundaryRadiusCNU": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "localLinks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/localLink"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "gateAuthoring": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^gat_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "gate"
+        },
+        "objectType": {
+          "enum": [
+            "short_range_gate",
+            "jump_gate"
+          ]
+        },
+        "constructedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decommissionedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "icon": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
+        },
+        "positionMode": {
+          "const": "boundary_derived"
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "navigation": false,
+              "interstellarConnection": false
+            }
+          },
+          "else": {
+            "properties": {
+              "positionMode": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "position": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "position"
+            ]
+          },
+          "then": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              },
+              "positionMode": {
+                "const": "boundary_derived"
+              }
+            },
+            "required": [
+              "positionMode"
+            ]
+          }
+        }
+      ]
+    },
+    "systemAuthoring": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.2.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^sys_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "system_detail"
+        },
+        "map": {
+          "$ref": "#/$defs/map"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/celestial"
+              },
+              {
+                "$ref": "#/$defs/station"
+              },
+              {
+                "$ref": "#/$defs/gateAuthoring"
+              },
+              {
+                "$ref": "#/$defs/jumpHole"
+              }
+            ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "map",
+        "objects"
       ],
       "additionalProperties": false
     }

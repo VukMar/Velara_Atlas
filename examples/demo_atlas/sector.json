@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "id": "sec_0001",
   "entityType": "sector",
   "title": "DEMO SECTOR — NONCANONICAL",
@@ -148,6 +148,47 @@
             "text": "Noncanonical test system; coordinates and dates are made solely to validate the atlas."
           }
         ]
+      }
+    },
+    {
+      "id": "sys_0003",
+      "entityType": "star_system",
+      "discoveredAE": 600,
+      "colonizedAE": 700,
+      "positionLY": {
+        "x": -55,
+        "y": 8,
+        "z": -55
+      },
+      "nameHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": 700,
+          "name": "TEST C Survey",
+          "kind": "noncanonical_demo"
+        },
+        {
+          "fromAE": 700,
+          "untilAE": null,
+          "name": "Test System C",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 700,
+          "untilAE": null,
+          "cantumId": "can_0002"
+        }
+      ],
+      "publicDetailPath": "systems/sys_0003.json",
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
       }
     }
   ],

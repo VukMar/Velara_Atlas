@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {readDataset,validateRelationships} from '../scripts/check-relations.mjs';
-const folder=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../examples/demo_atlas');
+const folder=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'./fixtures/v1_1');
 const load=()=>structuredClone(readDataset(folder));
 test('demo passes relational validation',()=>assert.deepEqual(validateRelationships(load()),[]));
 test('Jump Gate cannot link to two destinations',()=>{

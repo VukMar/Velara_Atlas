@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "id": "sys_0001",
   "entityType": "system_detail",
   "map": {
@@ -122,7 +122,30 @@
       },
       "orbitingId": null,
       "colonizedAE": 210,
-      "visualVariant": "unknown"
+      "visualVariant": "unknown",
+      "navigation": {
+        "boundaryRadiusCNU": 1800,
+        "localLinks": [
+          {
+            "id": "lnk_0001",
+            "targetObjectId": "sta_0001",
+            "sourceGateId": "gat_0001",
+            "targetGateId": "gat_0002",
+            "direction": "bidirectional",
+            "fromAE": 350,
+            "untilAE": null
+          },
+          {
+            "id": "lnk_0002",
+            "targetObjectId": "cb_0003",
+            "sourceGateId": "gat_0009",
+            "targetGateId": "gat_0003",
+            "direction": "bidirectional",
+            "fromAE": 370,
+            "untilAE": null
+          }
+        ]
+      }
     },
     {
       "id": "cb_0003",
@@ -160,7 +183,10 @@
       },
       "orbitingId": null,
       "colonizedAE": null,
-      "visualVariant": "unknown"
+      "visualVariant": "unknown",
+      "navigation": {
+        "boundaryRadiusCNU": 2100
+      }
     },
     {
       "id": "cb_0004",
@@ -275,7 +301,21 @@
       "constructedAE": 300,
       "decommissionedAE": null,
       "orbitingId": "cb_0002",
-      "visualVariant": "regular"
+      "visualVariant": "regular",
+      "navigation": {
+        "boundaryRadiusCNU": 900,
+        "localLinks": [
+          {
+            "id": "lnk_0009",
+            "targetObjectId": "gat_0004",
+            "sourceGateId": "gat_0015",
+            "targetGateId": "gat_0016",
+            "direction": "bidirectional",
+            "fromAE": 550,
+            "untilAE": null
+          }
+        ]
+      }
     },
     {
       "id": "gat_0001",
@@ -292,9 +332,9 @@
         }
       ],
       "position": {
-        "x": 8000,
-        "y": 0,
-        "z": -6500
+        "x": 11625.186152,
+        "y": 662.564437,
+        "z": -8531.310857
       },
       "icon": null,
       "infoCard": {
@@ -312,7 +352,8 @@
         ]
       },
       "constructedAE": 230,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0002",
@@ -329,9 +370,9 @@
         }
       ],
       "position": {
-        "x": 14800,
-        "y": 1200,
-        "z": -9300
+        "x": 14387.406924,
+        "y": 1618.717781,
+        "z": -9434.344571
       },
       "icon": null,
       "infoCard": {
@@ -349,7 +390,8 @@
         ]
       },
       "constructedAE": 310,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0003",
@@ -366,9 +408,9 @@
         }
       ],
       "position": {
-        "x": -20000,
-        "y": -150,
-        "z": 10000
+        "x": -11363.736265,
+        "y": -178.65743,
+        "z": 9183.874822
       },
       "icon": null,
       "infoCard": {
@@ -386,7 +428,8 @@
         ]
       },
       "constructedAE": 340,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0004",
@@ -423,7 +466,18 @@
         ]
       },
       "constructedAE": 450,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "navigation": {
+        "boundaryRadiusCNU": 1400
+      },
+      "interstellarConnection": {
+        "id": "lnk_0005",
+        "targetSystemId": "sys_0002",
+        "targetObjectId": "gat_0008",
+        "direction": "bidirectional",
+        "fromAE": 500,
+        "untilAE": null
+      }
     },
     {
       "id": "jhl_0001",
@@ -458,7 +512,146 @@
             "text": "Noncanonical interstellar Jump Hole."
           }
         ]
+      },
+      "interstellarConnection": {
+        "id": "lnk_0006",
+        "targetSystemId": "sys_0002",
+        "targetObjectId": "jhl_0002",
+        "direction": "bidirectional",
+        "fromAE": 650,
+        "untilAE": null
       }
+    },
+    {
+      "id": "gat_0009",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 340,
+      "decommissionedAE": null,
+      "discoveredAE": 340,
+      "nameHistory": [
+        {
+          "fromAE": 340,
+          "untilAE": null,
+          "name": "TEST A Dedicated Outer Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 8597.488227,
+        "y": 81.706368,
+        "z": -6871.892704
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    },
+    {
+      "id": "gat_0011",
+      "entityType": "gate",
+      "objectType": "jump_gate",
+      "constructedAE": 810,
+      "decommissionedAE": null,
+      "discoveredAE": 810,
+      "nameHistory": [
+        {
+          "fromAE": 810,
+          "untilAE": null,
+          "name": "TEST A Jump Gate to C",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 23000,
+        "y": 1800,
+        "z": 22000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "interstellarConnection": {
+        "id": "lnk_0008",
+        "targetSystemId": "sys_0003",
+        "targetObjectId": "gat_0012",
+        "direction": "bidirectional",
+        "fromAE": 850,
+        "untilAE": null
+      }
+    },
+    {
+      "id": "gat_0015",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 510,
+      "decommissionedAE": null,
+      "discoveredAE": 510,
+      "nameHistory": [
+        {
+          "fromAE": 510,
+          "untilAE": null,
+          "name": "TEST A Relay Departure",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 14524.23182,
+        "y": 1878.201026,
+        "z": -9105.977971
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    },
+    {
+      "id": "gat_0016",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 520,
+      "decommissionedAE": null,
+      "discoveredAE": 520,
+      "nameHistory": [
+        {
+          "fromAE": 520,
+          "untilAE": null,
+          "name": "TEST A Jump Gate Local Approach",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": -20948.805053,
+        "y": 733.909514,
+        "z": 22075.965732
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
     }
   ],
   "zones": [

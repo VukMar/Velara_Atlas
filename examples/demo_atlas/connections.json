@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "connections": [
     {
       "id": "lnk_0001",
@@ -23,7 +23,7 @@
       "transportType": "short_range_gate",
       "endpointA": {
         "systemId": "sys_0001",
-        "objectId": "gat_0001"
+        "objectId": "gat_0009"
       },
       "endpointB": {
         "systemId": "sys_0001",
@@ -55,7 +55,7 @@
       "transportType": "short_range_gate",
       "endpointA": {
         "systemId": "sys_0002",
-        "objectId": "gat_0005"
+        "objectId": "gat_0010"
       },
       "endpointB": {
         "systemId": "sys_0002",
@@ -95,6 +95,54 @@
       },
       "direction": "bidirectional",
       "fromAE": 650,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0007",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0003",
+        "objectId": "gat_0013"
+      },
+      "endpointB": {
+        "systemId": "sys_0003",
+        "objectId": "gat_0014"
+      },
+      "direction": "bidirectional",
+      "fromAE": 720,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0008",
+      "linkType": "interstellar",
+      "transportType": "jump_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0011"
+      },
+      "endpointB": {
+        "systemId": "sys_0003",
+        "objectId": "gat_0012"
+      },
+      "direction": "bidirectional",
+      "fromAE": 850,
+      "untilAE": null
+    },
+    {
+      "id": "lnk_0009",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0015"
+      },
+      "endpointB": {
+        "systemId": "sys_0001",
+        "objectId": "gat_0016"
+      },
+      "direction": "bidirectional",
+      "fromAE": 550,
       "untilAE": null
     }
   ]

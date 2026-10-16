@@ -6,7 +6,7 @@ import {readDataset} from '../scripts/check-relations.mjs';
 import {resolveAtlas, searchRecords, recordedYears, endpointDestinations, routePoints, territoryGroups, sampleInfluence, zoneContains, zoneParticles} from '../src/core/cartography.mjs';
 import {createZone, createRoute, createInfluence, influencePixels, disposeTree, layerOrder} from '../src/viewer/cartographic-layers.mjs';
 import {fitCamera} from '../src/viewer/map-scene.mjs';
-const load = () => readDataset(fileURLToPath(new URL('../examples/demo_atlas/', import.meta.url)));
+const load = () => readDataset(fileURLToPath(new URL('./fixtures/v1_1/', import.meta.url)));
 const ids = records => records.map(r => r.id);
 
 test('year boundaries, names, catalogue membership and influence contributors remain independent', () => {

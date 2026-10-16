@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mcr.example.invalid/schemas/presentation.schema.json",
-  "$ref": "atlas.schema.json#/$defs/presentationFile"
+  "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/presentationFile",
+  "title": "Velara presentation v1.2"
 }

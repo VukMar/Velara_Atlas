@@ -4,7 +4,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The target is a **public, read-only GitHub Pages viewer**, backed by approved JSON, plus **local-only authoring/editing tools**. The atlas is not yet implemented as a Three.js application: the current repository is a data/timeline foundation.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The target is a **public, read-only GitHub Pages viewer**. Checkpoint 3 is committed; the local Three.js demo is noncanonical. The focused pre-Checkpoint-4 v1.2 navigation task is authorized; visual polish, deployment, canonical migration and the deferred editor are not.
 
 ## Read first
 
@@ -12,7 +12,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 2. `docs/ARCHITECTURE.md` — planned runtime components and security boundary.
 3. `docs/REPOSITORY_STRUCTURE.md` — file ownership and publication rules.
 4. `docs/DATA_RULES.md` — existing chronology, identity, and disclosure rules.
-5. `docs/DATA_MODEL.md` and `schemas/atlas.schema.json` — v1.1 noncanonical data contract; legacy canonical migration is planned separately.
+5. `docs/DATA_MODEL.md`, `docs/SCHEMA_V1_2_NAVIGATION.md`, `docs/NAVIGATION_AUTHORING.md` and `schemas/atlas.schema.json` — v1.2 noncanonical contract and authoring workflow. Frozen v1.1 regression fixtures/schema remain separate.
 6. `docs/DEVELOPMENT_ROADMAP.md` and `docs/CONTENT_WORKFLOW.md` — milestones and safe extraction/release process.
 7. `docs/VIEWER_SPECIFICATION.md` — Approved Milestone 3 requirements for the public atlas viewer, including navigation, historical timeline, rendering, search, overlays, and NEXUS archival behavior.
 8. `docs/CANTUM_TERRITORY_RENDERING.md` — Approved rules for procedurally generated Cantum influence overlays, historical filtering, metaball blending, visual layering and rendering performance.
@@ -29,7 +29,8 @@ If a file is absent in the actual checkout, report that and work with available 
 - **Timeline:** `fromAE` is inclusive; `untilAE` is exclusive; `null` ending means open-ended. The historical resolver must not depend on Three.js. Distinguish unknown/null dates from year zero; validate numeric years explicitly.
 - **Public knowledge is not author knowledge.** A system may appear at its historical discovery date while opening a NEXUS fallback if its detail file has not been published. Only released objects and fields may enter public JSON, examples, documentation, browser bundles, logs, or committed history.
 - **Private lore never goes in Git.** RTF source documents remain in a separate private folder; generated local text caches must be excluded from Git and the website build. `.gitignore` alone is not a confidentiality guarantee.
-- **Preserve current behavior.** `src/timeline/resolve.mjs` and `npm test` reflect v0.1. The v0.2 InfoCard examples are accepted templates, but adding InfoCard resolution/schema validation requires a deliberate migration and tests. Do not silently rewrite historical records or test expectations.
+- **Preserve current behavior.** `src/timeline/resolve.mjs` and legacy tests preserve v0.1 canon. The modern historical resolver is reused unchanged. Keep v1.1 regression coverage; v1.2 supersedes only its local-gate branching rule and navigation authoring contract.
+- **Navigation source of truth:** v1.2 system objects author `navigation.localLinks` and `interstellarConnection`. `connections.json` is the generated, Git-tracked runtime index. Every connected short-range gate has one lifetime link and explicit `positionMode: "boundary_derived"`. All gate/hole types have at most one lifetime partner; no repointing. Run `npm run connections` manually, then `npm run connections:check`, tests/build, and review the diff. Only this offline command writes the graph and eligible short-range gate `position` fields; no sidecar, browser generation or build-time repair. Do not discard pending recovery journals/backups.
 - **Coordinates:** sector space uses XYZ in light-years; individual system space uses separate local XYZ and declared units. X/Z is the default map plane; Y is elevation. A coordinate of `null` means no canonical placement, not `(0,0,0)`.
 - **Technology:** prefer vanilla JavaScript, ES modules, Three.js, Vite, and small focused Node tools. No backend is required for the GitHub Pages viewer. Do not add frameworks/dependencies or server-side authentication without approval.
 - **Local editor:** never publish private content, credentials, or a publicly writable endpoint. Editor code may live in the source repository if the release build excludes it; local-only access is enforced by deployment/build design, not by hiding a button.
@@ -53,4 +54,4 @@ The public-facing NEXUS aesthetic and narrative are part of the project identity
 
 ## Current scope correction
 
-Local visual editor is deferred, not part of the MVP. The v1.1 schema is valid for noncanonical test data; canonical public v0.1 records and permanent IDs require an approved migration. Do not silently move records or implement the viewer without explicit instruction.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the v1.2 navigation task; do not start Checkpoint 4 without explicit approval.

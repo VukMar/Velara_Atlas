@@ -1,5 +1,6 @@
 import {fileURLToPath} from 'node:url';
 import {defineConfig, normalizePath} from 'vite';
+import {runConnections} from './scripts/connections.mjs';
 
 const local = relative => fileURLToPath(new URL(relative, import.meta.url));
 const demoJSON = new Set([
@@ -8,7 +9,8 @@ const demoJSON = new Set([
   'examples/demo_atlas/connections.json',
   'examples/demo_atlas/presentation.json',
   'examples/demo_atlas/systems/sys_0001.json',
-  'examples/demo_atlas/systems/sys_0002.json'
+  'examples/demo_atlas/systems/sys_0002.json',
+  'examples/demo_atlas/systems/sys_0003.json'
 ].map(file => normalizePath(local(file))));
 
 // Fail a build that accidentally imports other repository data/code. This is
@@ -16,6 +18,7 @@ const demoJSON = new Set([
 export function demoInputAudit() {
   return {
     name: 'explicit-demo-inputs',
+    buildStart() { runConnections({check: true}); },
     generateBundle(_options, bundle) {
       for (const output of Object.values(bundle)) {
         if (output.type !== 'chunk') continue;

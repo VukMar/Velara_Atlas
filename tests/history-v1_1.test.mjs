@@ -10,8 +10,8 @@ import {
   resolveZones, resolveSystem, resolveCatalogue, resolveConnections
 } from '../src/core/history.mjs';
 
-const load = () => readDataset(fileURLToPath(new URL('../examples/demo_atlas', import.meta.url)));
-const schema = JSON.parse(fs.readFileSync(new URL('../schemas/atlas.schema.json', import.meta.url), 'utf8'));
+const load = () => readDataset(fileURLToPath(new URL('./fixtures/v1_1', import.meta.url)));
+const schema = JSON.parse(fs.readFileSync(new URL('../schemas/atlas-v1_1.schema.json', import.meta.url), 'utf8'));
 const ajv = new Ajv2020({allErrors: true, strict: true});
 ajv.addSchema(schema);
 const validators = Object.fromEntries(['sector', 'cantumsFile', 'connectionsFile', 'systemDetail', 'presentationFile']

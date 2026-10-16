@@ -25,7 +25,7 @@ async (page) => {
   await page.setViewportSize({width: 1440, height: 1000}); await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state: 'attached'});
   for (const [y, markers, contributors, routes] of [[99, 0, 0, 0], [100, 1, 0, 0], [209, 2, 0, 0], [210, 2, 1, 0],
-    [329, 2, 1, 0], [330, 2, 2, 0], [499, 2, 2, 0], [500, 2, 2, 1], [649, 2, 2, 1], [650, 2, 2, 2]]) {
+    [329, 2, 1, 0], [330, 2, 2, 0], [499, 2, 2, 0], [500, 2, 2, 1], [649, 3, 2, 1], [650, 3, 2, 2]]) {
     await year(y); const s = await stats(); assert.equal(s.markers, markers); assert.equal(s.contributors, contributors); assert.equal(s.routes, routes);
     assert.equal(s.zones, 0);
     assert.equal(await page.locator('#selection option[value="zon_0001"]').count(), 0);
@@ -45,7 +45,7 @@ async (page) => {
     await page.locator(`#labels button[title$="(${object.id})"]`).click();
     assert.equal(await page.locator('#selection').inputValue(), object.id);
   }
-  results.push('nebula absent from sector, visible only in System A from 160 A.E., filtered on rewind; all ten System A objects pointer-selectable');
+  results.push(`nebula absent from sector, visible only in System A from 160 A.E., filtered on rewind; all ${detail.objects.length} System A objects pointer-selectable`);
   await year(210); await choose('cb_0002');
   assert.match(await page.locator('#facts').innerText(), /5000/);
   await year(209); assert.doesNotMatch(await page.locator('#facts').innerText(), /Population/);
@@ -68,7 +68,7 @@ async (page) => {
   await page.locator('#mode').click();
   await choose('lnk_0005'); assert.match(await page.locator('#facts').innerText(), /jump gate/);
   await choose('lnk_0006'); assert.match(await page.locator('#facts').innerText(), /jump hole/);
-  await open('sys_0001'); await choose('gat_0001'); assert.equal(await page.locator('#destinations p').count(), 2);
+  await open('sys_0001'); await choose('gat_0001'); assert.equal(await page.locator('#destinations p').count(), 1);
   await choose('gat_0004'); assert.equal(await page.locator('#location').innerText(), 'Test System A');
   await page.getByRole('button', {name: 'View destination system: Test System B', exact: true}).click();
   assert.equal(await page.locator('#location').innerText(), 'Test System B');
@@ -76,12 +76,12 @@ async (page) => {
   await page.locator('#focus').click(); await page.locator('#mode').click();
   await page.locator('#tilt').fill('40'); await page.locator('#tilt').dispatchEvent('input');
   await page.locator('#sector').click(); assert.equal(await page.locator('#year').innerText(), '1200 A.E.');
-  results.push('separate routes, local branching, explicit destination, layer toggle, perspective/tilt/pan and zone focus');
+  results.push('separate routes, exclusive local pair, explicit destination, layer toggle, perspective/tilt/pan and zone focus');
 
   const timing = [];
   for (let i = 0; i < 20; i++) {
     const started = Date.now(); await year(i % 2 ? 1200 : 210); timing.push(Date.now() - started);
-    assert.ok(await page.locator('#labels button').count() <= 5);
+    assert.ok(await page.locator('#labels button').count() <= 6);
   }
   results.push({scrubMedianMs: timing.sort((a, b) => a - b)[10], maxScrubMs: Math.max(...timing), boundedLabelCount: true});
 
@@ -94,7 +94,7 @@ async (page) => {
   sector.systems[1].publicDetailPath = null; sector.systems[1].positionLY = null;
   await page.route(sectorPattern, serve(sector)); await page.goto(base);
   await page.locator('#selection option[value="sys_0002"]').waitFor({state: 'attached'});
-  assert.equal((await stats()).markers, 1); await open('sys_0002');
+  assert.equal((await stats()).markers, 2); await open('sys_0002');
   assert.match(await page.locator('#map-message').innerText(), /NEXUS.*ARCHIVAL/s);
   assert.equal((await stats()).markers, 0); await page.locator('#sector').click();
   assert.match(await page.locator('#facts').innerText(), /Unplaced/);

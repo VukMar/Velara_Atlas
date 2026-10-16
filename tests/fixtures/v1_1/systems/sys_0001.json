@@ -1,0 +1,536 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "sys_0001",
+  "entityType": "system_detail",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 100000,
+      "y": 20000,
+      "z": 100000
+    },
+    "unit": "CNU",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "objects": [
+    {
+      "id": "cb_0001",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "discoveredAE": 100,
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "name": "A Primary",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "Main star of System A."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": null
+    },
+    {
+      "id": "cb_0002",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "discoveredAE": 100,
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": 210,
+          "name": "A-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 210,
+          "untilAE": null,
+          "name": "A Colony",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 10000,
+        "y": 100,
+        "z": -8000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 210,
+            "untilAE": null,
+            "entityId": "can_0001"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": [
+          {
+            "fromAE": 210,
+            "untilAE": 600,
+            "count": 5000,
+            "note": null
+          },
+          {
+            "fromAE": 600,
+            "untilAE": null,
+            "count": 25000,
+            "note": null
+          }
+        ],
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": 210,
+            "text": "Surveyed terrestrial world."
+          },
+          {
+            "fromAE": 210,
+            "untilAE": null,
+            "text": "Settled terrestrial world used for testing dated population figures."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": 210,
+      "visualVariant": "unknown"
+    },
+    {
+      "id": "cb_0003",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "discoveredAE": 105,
+      "nameHistory": [
+        {
+          "fromAE": 105,
+          "untilAE": null,
+          "name": "A Outer World",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -13000,
+        "y": -200,
+        "z": 10500
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 105,
+            "untilAE": null,
+            "text": "Uncolonized test world."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": null,
+      "visualVariant": "unknown"
+    },
+    {
+      "id": "cb_0004",
+      "entityType": "celestial_body",
+      "objectType": "moon",
+      "discoveredAE": 115,
+      "nameHistory": [
+        {
+          "fromAE": 115,
+          "untilAE": null,
+          "name": "A Colony Moon",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 11500,
+        "y": 500,
+        "z": -8200
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 115,
+            "untilAE": null,
+            "text": "Static navigational position near its parent world."
+          }
+        ]
+      },
+      "orbitingId": "cb_0002",
+      "colonizedAE": null
+    },
+    {
+      "id": "sta_0001",
+      "entityType": "station",
+      "objectType": "orbital_station",
+      "discoveredAE": 300,
+      "nameHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "name": "A Relay Station",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 15200,
+        "y": 1900,
+        "z": -9700
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "entityId": "can_0001"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "code": "orbital_relay",
+            "label": "Orbital Relay Station"
+          }
+        ],
+        "crew": [
+          {
+            "fromAE": 300,
+            "untilAE": 550,
+            "count": 60,
+            "note": null
+          },
+          {
+            "fromAE": 550,
+            "untilAE": null,
+            "count": 85,
+            "note": null
+          }
+        ],
+        "population": null,
+        "armament": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "summary": "Two defensive batteries",
+            "systems": [
+              {
+                "type": "point_defense",
+                "label": "Point-defense battery",
+                "quantity": 2
+              }
+            ]
+          }
+        ],
+        "description": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "text": "Test station with crew and defensive weapons."
+          }
+        ]
+      },
+      "constructedAE": 300,
+      "decommissionedAE": null,
+      "orbitingId": "cb_0002",
+      "visualVariant": "regular"
+    },
+    {
+      "id": "gat_0001",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "discoveredAE": 230,
+      "nameHistory": [
+        {
+          "fromAE": 230,
+          "untilAE": null,
+          "name": "Test gat_0001",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 8000,
+        "y": 0,
+        "z": -6500
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 230,
+            "untilAE": null,
+            "text": "Noncanonical navigation gate."
+          }
+        ]
+      },
+      "constructedAE": 230,
+      "decommissionedAE": null
+    },
+    {
+      "id": "gat_0002",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "discoveredAE": 310,
+      "nameHistory": [
+        {
+          "fromAE": 310,
+          "untilAE": null,
+          "name": "Test gat_0002",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 14800,
+        "y": 1200,
+        "z": -9300
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 310,
+            "untilAE": null,
+            "text": "Noncanonical navigation gate."
+          }
+        ]
+      },
+      "constructedAE": 310,
+      "decommissionedAE": null
+    },
+    {
+      "id": "gat_0003",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "discoveredAE": 340,
+      "nameHistory": [
+        {
+          "fromAE": 340,
+          "untilAE": null,
+          "name": "Test gat_0003",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -20000,
+        "y": -150,
+        "z": 10000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 340,
+            "untilAE": null,
+            "text": "Noncanonical navigation gate."
+          }
+        ]
+      },
+      "constructedAE": 340,
+      "decommissionedAE": null
+    },
+    {
+      "id": "gat_0004",
+      "entityType": "gate",
+      "objectType": "jump_gate",
+      "discoveredAE": 450,
+      "nameHistory": [
+        {
+          "fromAE": 450,
+          "untilAE": null,
+          "name": "Test gat_0004",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -22000,
+        "y": 700,
+        "z": 23000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 450,
+            "untilAE": null,
+            "text": "Noncanonical navigation gate."
+          }
+        ]
+      },
+      "constructedAE": 450,
+      "decommissionedAE": null
+    },
+    {
+      "id": "jhl_0001",
+      "entityType": "jump_hole",
+      "objectType": "jump_hole",
+      "discoveredAE": 600,
+      "nameHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "Test jhl_0001",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 26000,
+        "y": -2400,
+        "z": -25000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 600,
+            "untilAE": null,
+            "text": "Noncanonical interstellar Jump Hole."
+          }
+        ]
+      }
+    }
+  ],
+  "zones": [
+    {
+      "id": "zon_0002",
+      "entityType": "spatial_zone",
+      "category": "asteroid_field",
+      "discoveredAE": 260,
+      "nameHistory": [
+        {
+          "fromAE": 260,
+          "untilAE": null,
+          "name": "TEST Belt",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "geometry": {
+        "kind": "box",
+        "size": {
+          "x": 500,
+          "y": 200,
+          "z": 500
+        }
+      },
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "zon_0001",
+      "entityType": "spatial_zone",
+      "category": "nebula",
+      "discoveredAE": 160,
+      "nameHistory": [
+        {
+          "fromAE": 160,
+          "untilAE": null,
+          "name": "TEST Nebula",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": -11000,
+        "y": 1200,
+        "z": -6000
+      },
+      "geometry": {
+        "kind": "ellipsoid",
+        "radii": {
+          "x": 6500,
+          "y": 1800,
+          "z": 3800
+        }
+      },
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    }
+  ]
+}

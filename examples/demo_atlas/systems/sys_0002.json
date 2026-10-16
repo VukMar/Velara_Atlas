@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1.0",
+  "schemaVersion": "1.2.0",
   "id": "sys_0002",
   "entityType": "system_detail",
   "map": {
@@ -104,7 +104,30 @@
       },
       "orbitingId": null,
       "colonizedAE": 330,
-      "visualVariant": "unknown"
+      "visualVariant": "unknown",
+      "navigation": {
+        "boundaryRadiusCNU": 1600,
+        "localLinks": [
+          {
+            "id": "lnk_0003",
+            "targetObjectId": "sta_0002",
+            "sourceGateId": "gat_0005",
+            "targetGateId": "gat_0006",
+            "direction": "bidirectional",
+            "fromAE": 440,
+            "untilAE": null
+          },
+          {
+            "id": "lnk_0004",
+            "targetObjectId": "cb_0007",
+            "sourceGateId": "gat_0010",
+            "targetGateId": "gat_0007",
+            "direction": "bidirectional",
+            "fromAE": 460,
+            "untilAE": null
+          }
+        ]
+      }
     },
     {
       "id": "cb_0007",
@@ -142,7 +165,10 @@
       },
       "orbitingId": null,
       "colonizedAE": null,
-      "visualVariant": "unknown"
+      "visualVariant": "unknown",
+      "navigation": {
+        "boundaryRadiusCNU": 1800
+      }
     },
     {
       "id": "cb_0008",
@@ -276,7 +302,10 @@
       "constructedAE": 380,
       "decommissionedAE": null,
       "orbitingId": "cb_0006",
-      "visualVariant": "regular"
+      "visualVariant": "regular",
+      "navigation": {
+        "boundaryRadiusCNU": 700
+      }
     },
     {
       "id": "gat_0005",
@@ -293,9 +322,9 @@
         }
       ],
       "position": {
-        "x": 10500,
-        "y": 0,
-        "z": 8500
+        "x": 13950.795632,
+        "y": 440.056896,
+        "z": 6786.647701
       },
       "icon": null,
       "infoCard": {
@@ -313,7 +342,8 @@
         ]
       },
       "constructedAE": 390,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0006",
@@ -330,9 +360,9 @@
         }
       ],
       "position": {
-        "x": 16000,
-        "y": 900,
-        "z": 5900
+        "x": 15265.276911,
+        "y": 1019.975108,
+        "z": 6593.341631
       },
       "icon": null,
       "infoCard": {
@@ -350,7 +380,8 @@
         ]
       },
       "constructedAE": 400,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0007",
@@ -367,9 +398,9 @@
         }
       ],
       "position": {
-        "x": -24000,
-        "y": -100,
-        "z": 9000
+        "x": -12715.179266,
+        "y": 220.252988,
+        "z": 10268.634349
       },
       "icon": null,
       "infoCard": {
@@ -387,7 +418,8 @@
         ]
       },
       "constructedAE": 430,
-      "decommissionedAE": null
+      "decommissionedAE": null,
+      "positionMode": "boundary_derived"
     },
     {
       "id": "gat_0008",
@@ -460,6 +492,37 @@
           }
         ]
       }
+    },
+    {
+      "id": "gat_0010",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 430,
+      "decommissionedAE": null,
+      "discoveredAE": 430,
+      "nameHistory": [
+        {
+          "fromAE": 430,
+          "untilAE": null,
+          "name": "TEST B Dedicated Outer Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 10913.492681,
+        "y": -173.558211,
+        "z": 7205.658356
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
     }
   ],
   "zones": [

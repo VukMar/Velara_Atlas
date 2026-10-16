@@ -1,5 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Velara system-detail v1.0",
-  "$ref": "https://mcr.example.invalid/schemas/atlas.schema.json#/$defs/systemDetail"
+  "title": "Velara system-detail v1.2",
+  "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemDetail"
 }

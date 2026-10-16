@@ -1,8 +1,8 @@
 # Milestone 6 — Checkpoint 3 historical viewer
 
 The local app is a **read-only, noncanonical demonstration** using only
-`examples/demo_atlas/`. Checkpoints 1–2 are creator-approved; Checkpoint 3 adds
-historical navigation and cartography and awaits review. No canonical migration,
+`examples/demo_atlas/`. Checkpoint 3 is secured in commit `32f43d6`; v1.2 adds
+only navigation authoring, generation and the third-system fixture. No canonical migration,
 publication, editor, final icon library, portrait or polished NEXUS art is implied.
 
 ## Run and verify
@@ -52,8 +52,9 @@ No dependency was added in Checkpoint 3.
 
 ## Phase B — Routes and perspective
 
-`connections.json` is the sole graph. The historical resolver filters links and
-released endpoints before display. Short-range branching is retained. Each
+`connections.json` is the sole runtime graph, generated manually from v1.2
+system-object declarations. The unchanged historical resolver filters links and
+released endpoints before display. Short-range endpoints use exclusive lifetime pairs. Each
 interstellar gate/hole remains paired under the existing global validator;
 direction is copied, displayed and used for endpoint departure metadata. Viewing
 a destination is explicit and never a claim about pathfinding or travel time.
@@ -63,7 +64,7 @@ local strokes use gate XYZ positions in **CNU**. Gate links are solid, Jump Hole
 dashed. Multiple links for the same system pair use separate offset curves and
 selection anchors, preserving their exact authored endpoints. One-way links get
 directional arrows. Missing sector placement yields no fabricated stroke.
-Selecting a local gate highlights its active branches and linked gates.
+Selecting a local gate highlights its active link and paired gate.
 
 Archival endpoint references permitted by public validation are retained with
 their explicit unverified-detail flag. No unpublished endpoint object is created
@@ -117,7 +118,7 @@ for each map and do not modify data or catalogue eligibility.
 ## Public-demo build boundary
 
 `demo-data.mjs` explicitly imports the demo sector, Cantums, connections and
-presentation file. It preloads exactly the two allowlisted **released** system
+presentation file. It preloads exactly the three allowlisted **released** system
 details so historical endpoint eligibility can be checked before route drawing.
 This is an intentional small-demo preload, not arbitrary filesystem loading.
 Archival systems with null paths do not trigger detail imports. A general large
@@ -126,7 +127,7 @@ the existing strict Ajv and relationship validation first.
 
 Vite's root remains `src/viewer/`, `publicDir` is disabled, and the dev server
 binds to loopback with filesystem restrictions. The production input plugin
-allows only viewer code, the two modern core modules, six exact demo JSON paths
+allows only viewer code, the two modern core modules, seven exact demo JSON paths
 and installed dependencies. The output audit still permits HTML/CSS/JS only and
 checks base paths and forbidden references. Canonical `public/data/`, private
 lore, source maps, editor code and unrelated examples are not build inputs.
@@ -144,7 +145,7 @@ The reusable **Playwright MCP** suite is `tests/browser-checkpoint3.mjs`. With
 the dev server running, invoke `browser_run_code_unsafe` with that file's absolute
 path as `filename`; it takes the connected page and needs no extra npm package.
 It covers chronological search, historical record updates, invalid selection,
-branching and explicit destination navigation, 2D/3D controls, zone focus, layer
+exclusive local pairing and explicit destination navigation, 2D/3D controls, zone focus, layer
 toggles and narrow layouts. Synthetic network responses exercise fallback,
 unplaced, partial and failed-load states without changing fixtures. Expected
 errors from the deliberately aborted request are followed by a clean reload.
@@ -162,3 +163,7 @@ framing if needed. Final materials/icons, targeting rings, NEXUS portraits and
 visual polish are Checkpoint 4 work. Only the approved demonstration nebula's
 placement changed in fixture JSON. No canonical JSON, schema, legacy
 resolver, private source or deployment configuration was changed.
+
+## v1.2 compatibility update
+
+The loader adds `sys_0003`; graph generation/validation remains offline. No rendering, history, cartography, InfoCard or camera code changed. `npm run connections:check` guards validation/dev/build, including direct Vite builds. The two Cantum colors and three-system navigation use existing rendering. See [workflow and compatibility details](NAVIGATION_AUTHORING.md) and [current verification results](NAVIGATION_V1_2_RESULTS.md). Earlier Checkpoint 3 evidence above describes its accepted two-system baseline.

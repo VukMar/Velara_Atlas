@@ -7,7 +7,8 @@ import presentation from '../../examples/demo_atlas/presentation.json';
 // each public demo detail as a base-aware lazy chunk; public/ is never copied.
 const detailLoaders = new Map([
   ['systems/sys_0001.json', () => import('../../examples/demo_atlas/systems/sys_0001.json')],
-  ['systems/sys_0002.json', () => import('../../examples/demo_atlas/systems/sys_0002.json')]
+  ['systems/sys_0002.json', () => import('../../examples/demo_atlas/systems/sys_0002.json')],
+  ['systems/sys_0003.json', () => import('../../examples/demo_atlas/systems/sys_0003.json')]
 ]);
 
 export const demoSector = sector;

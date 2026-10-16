@@ -13,6 +13,7 @@ export function readDataset(root) {
 }
 
 export function validateRelationships({sector,cantums,connections,detailFiles,presentation=null}) {
+  const v12=sector.schemaVersion==='1.2.0';
   const errors=[], fail=(loc,msg)=>errors.push(`${loc}: ${msg}`), ids=new Set();
   const addId=(id,loc)=>{if(ids.has(id))fail(loc,`duplicate ID ${id}`);ids.add(id);};
   const period=(p,loc)=>{if(!Number.isInteger(p.fromAE)||p.fromAE<0)fail(loc,'invalid fromAE');if(p.untilAE!==null&&(!Number.isInteger(p.untilAE)||p.untilAE<=p.fromAE))fail(loc,'untilAE must be null or greater than fromAE');};
@@ -108,9 +109,16 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
       if(obj.objectType!==c.transportType||obj.entityType!==(c.transportType==='jump_hole'?'jump_hole':'gate'))fail(c.id,'endpoint object type mismatch');
       if(obj.discoveredAE!==null&&c.fromAE<obj.discoveredAE)fail(c.id,'connection before discovery');
       if(obj.constructedAE!=null&&c.fromAE<obj.constructedAE)fail(c.id,'connection before gate construction');
+      if(v12){
+        if(obj.knownByAE!=null&&c.fromAE<obj.knownByAE)fail(c.id,'connection before confirmed knowledge');
+        const systemKnown=indexed.discoveredAE??indexed.knownByAE;
+        if(systemKnown!=null&&c.fromAE<systemKnown)fail(c.id,'connection before system knowledge');
+        if(obj.decommissionedAE!=null&&(c.fromAE>=obj.decommissionedAE||c.untilAE===null||c.untilAE>obj.decommissionedAE))fail(c.id,'connection extends past decommissioning');
+        if(local&&obj.positionMode!=='boundary_derived')fail(c.id,'connected short-range gate must be boundary_derived');
+      }
     }
-    if(!local)for(const endpoint of [a.objectId,b.objectId]){
-      if(partners.has(endpoint))fail(c.id,`interstellar endpoint ${endpoint} already linked by ${partners.get(endpoint)}; one partner maximum`);
+    if(v12||!local)for(const endpoint of [a.objectId,b.objectId]){
+      if(partners.has(endpoint))fail(c.id,`endpoint ${endpoint} already linked by ${partners.get(endpoint)}; one partner maximum`);
       else partners.set(endpoint,c.id);
     }
   }

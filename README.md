@@ -4,7 +4,7 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Milestone 6, Checkpoint 3:** The local, read-only **noncanonical two-system demonstration** supports historical navigation, searchable records, routes, top-down/perspective cameras, spatial zones and approximate Cantum influence shading. Final visual polish, canonical migration, publication and the deferred local editor are not implemented.
+> **Project status — Milestone 6, Checkpoint 3:** The local, read-only **noncanonical three-system demonstration** supports historical navigation, searchable records, routes, top-down/perspective cameras, spatial zones and approximate Cantum influence shading. Final visual polish, canonical migration, publication and the deferred local editor are not implemented.
 
 ## The planned atlas
 
@@ -23,7 +23,7 @@ The intended public viewer will be **read-only and statically hosted**, initiall
 | `public/data/` | Approved publicly distributable atlas records (currently a preliminary foundation) |
 | `examples/` | Illustrative/noncanonical JSON data shapes and fixtures |
 | `src/timeline/` | Existing historical resolver (v0.1) |
-| `src/core/history.mjs` | Independent noncanonical v1.1 historical resolver |
+| `src/core/history.mjs` | Independent historical resolver (v1.1/v1.2 runtime records) |
 | `src/core/cartography.mjs` | Pure historical catalogue, route and influence calculations |
 | `src/viewer/` | Local demo-only Vite/Three.js prototype |
 | `tests/` | Automated checks and a console timeline demonstration |
@@ -58,7 +58,7 @@ npm run build
 npm run preview
 ```
 
-`npm test` runs legacy history, v1.1 history/schema/relationship checks and prototype spatial/build-boundary tests. `npm run demo` remains the legacy **console** political-history demonstration; it is separate from the browser app. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
+`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run demo` remains the legacy **console** political-history demonstration; it is separate from the browser app. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
 The prototype uses Vite 6 (compatible with the installed Node 20.5.1) and Three.js. Use a supported Node LTS for ongoing development. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured.
 
@@ -82,6 +82,16 @@ This is a fictional setting and a work in progress; the atlas does not claim to 
 
 ## October 2026 update
 
-Milestone 3 viewer design and Milestone 5 NEXUS visuals are approved. The local editor is deferred. The v1.1 data schema applies to noncanonical examples; original public canonical v0.1 political records are intentionally unchanged. Install dependencies with npm ci, then use npm test to run both historical checks and v1.1 validation. See docs/LEGACY_MIGRATION_PLAN.md.
+Milestone 3 viewer design and Milestone 5 NEXUS visuals are approved. The local editor is deferred. The v1.2 schema applies to the noncanonical demo, with frozen v1.1 regressions retained; original public canonical v0.1 political records are intentionally unchanged. Install dependencies with npm ci, then use npm test to run historical and versioned data checks. See docs/LEGACY_MIGRATION_PLAN.md.
 
 Milestone 6 Checkpoint 1 adds an engine-independent historical resolver for the noncanonical v1.1 demo in `src/core/history.mjs`. See [the API and usage notes](docs/HISTORICAL_RESOLVER.md). Checkpoints 2–3 add the local demonstration viewer and historical cartography. The legacy resolver and public canonical records remain unchanged. Checkpoint 4 needs separate creator approval.
+
+## v1.2 navigation authoring (pre-Checkpoint-4)
+
+The three-system NONCANONICAL demo now has two distinct Cantum presentation colors. System object declarations author navigation; `connections.json` is the generated, Git-tracked runtime index. Connected short-range gates are dedicated lifetime pairs with explicitly boundary-derived CNU positions. The original A/B Jump Gate and Jump Hole pairings remain; a separate new Jump Gate pair connects A/C. The viewer is read-only and does no generation.
+
+```text
+Edit system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
+```
+
+Generation is a standalone offline manual command, restricted to the vetted demo allowlist. It writes only the complete graph and eligible short-range gates' `position` values in system JSON. Tests/dev/build run a read-only freshness check and fail on stale output. See [authoring, rounding, migration and recovery](docs/NAVIGATION_AUTHORING.md) and [verification results](docs/NAVIGATION_V1_2_RESULTS.md). Canonical data, the historical resolvers and renderer are unchanged; Checkpoint 4 needs separate approval.

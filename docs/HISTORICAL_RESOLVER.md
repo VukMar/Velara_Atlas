@@ -1,6 +1,8 @@
 # Noncanonical v1.1 historical resolver — Checkpoint 1
 
-`src/core/history.mjs` resolves **released v1.1 JSON only**. It has no imports,
+`src/core/history.mjs` resolves released v1.1 and compatible v1.2 runtime records;
+v1.2 navigation declarations are handled offline and require no resolver change.
+It has no imports,
 I/O, renderer, DOM, loading, framework or backend dependency. It does not adapt
 legacy v0.1 records or replace `src/timeline/resolve.mjs`. The fixtures in
 `examples/demo_atlas/` remain noncanonical and outside `public/data/`.

@@ -23,3 +23,7 @@ Never invent canon, copy noncanonical fixtures into public data, publish private
 ## Milestone 6 implementation status
 
 Checkpoints 1–2 are creator-approved. Checkpoint 3 implements historical navigation/search, dated routes, true XYZ perspective, spatial zones and Cantum influence, with automated and browser checks; it awaits creator review. Checkpoint 4 visual polish and Checkpoint 5 publication are not started. Canonical migration remains a separately approved workstream. See VIEWER_PROTOTYPE.md for current commands, contracts and limitations.
+
+## Pre-Checkpoint-4 v1.2 navigation
+
+The secured Checkpoint 3 baseline is extended by the approved noncanonical navigation task. System-object declarations are the authoring source of truth; manually generated, Git-tracked `connections.json` is the runtime index. `npm run connections` also updates only explicitly boundary-derived short-range gate positions; `connections:check` makes stale artifacts fail validation/build without repair. Frozen v1.1 regressions preserve older behavior. The demo has three systems and two Cantums. See [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md). No canonical migration, editor, deployment or Checkpoint 4 visual work is included.

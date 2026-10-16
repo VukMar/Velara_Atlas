@@ -1,4 +1,4 @@
-# Velara Atlas — JSON Data Contract v1.1.0
+# Velara Atlas — JSON Data Contract v1.2.0
 
 **Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in `DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
@@ -15,9 +15,9 @@ All entities have stable, globally unique IDs. The prefix is a type discriminato
 | `sector.json` | One sector coordinate context, an index of star systems, common NEXUS fallback text and dataset paths |
 | `cantums.json` | Cantum names, status histories, universal InfoCards |
 | `systems/sys_XXXX.json` | Per-system CNU map and `objects[]` (celestial bodies, stations, gates and Jump Holes) |
-| `connections.json` | **Single source of truth** for all short-range and interstellar routes |
+| `connections.json` | Generated, Git-tracked runtime graph; authoring declarations live in system objects |
 
-Each new noncanonical demo file's schemaVersion is 1.1.0. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
+Each current noncanonical demo file's schemaVersion is 1.2.0. Frozen v1.1 regression fixtures live under `tests/fixtures/v1_1/`, with `schemas/atlas-v1_1.schema.json`; historical semantics are unchanged. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
@@ -56,11 +56,11 @@ Historical existence and historical **discovery** are distinct. A station has `c
 
 There are three navigational object types:
 
-- `gat_XXXX`, `objectType: short_range_gate`: intrasystem device, may have **multiple** links to distinct short-range gates within its system.
+- `gat_XXXX`, `objectType: short_range_gate`: intrasystem device, at most **one fixed lifetime partner** in its system. Separate links around one anchor require separate physical gates. This supersedes v1.1 branching.
 - `gat_XXXX`, `objectType: jump_gate`: interstellar device, **one fixed corresponding gate on the other side**; zero links permitted while undeveloped/unconnected, **never two**. To connect System A to B and C requires **two** interstellar gates in System A.
 - `jhl_XXXX`, `objectType: jump_hole`: natural interstellar passage, modeled as one-to-one paired Jump Hole endpoints for this schema; subject to the same exclusivity rule. Its discovery date is distinct from when its passage becomes usable.
 
-Connections are stored once in `connections.json`: `lnk_XXXX`, `linkType`, `transportType`, two endpoints (each `systemId` and `objectId`), `direction`, `fromAE`, `untilAE`. `transportType` is `short_range_gate`, `jump_gate` or `jump_hole`. `direction` may be `bidirectional`, `a_to_b`, or `b_to_a`. The two endpoints must agree with the transport type and be in the same system for short-range links or **different** systems for interstellar links. **No gate-to-hole mixed connections. If a destination system is a published **fallback** with no released detail file, the public validator permits a reference to its endpoint ID without pretending to validate the unpublished object itself; the private canonical validator must verify that endpoint before release.**
+Connections are authored once in system objects and compiled into `connections.json`: `lnk_XXXX`, `linkType`, `transportType`, two endpoints (each `systemId` and `objectId`), `direction`, `fromAE`, `untilAE`. `transportType` is `short_range_gate`, `jump_gate` or `jump_hole`. `direction` may be `bidirectional`, `a_to_b`, or `b_to_a`. The two endpoints must agree with the transport type and be in the same system for short-range links or **different** systems for interstellar links. **No gate-to-hole mixed connections. If a destination system is a published **fallback** with no released detail file, the public validator permits a reference to its endpoint ID without pretending to validate the unpublished object itself; the private canonical validator must verify that endpoint before release.**
 
 A Jump Gate or Jump Hole endpoint may appear in **at most one interstellar connection across the entire released dataset**, not merely one at a time. Reconfiguration of a gate to point to a different destination is deliberately out of scope for v1.0. Historical activation uses `fromAE` on the connection. The sector renderer draws interstellar connections between system positions; the system renderer draws local gate lines between local positions. Do not mix CNU and ly coordinates in a single line.
 
@@ -68,10 +68,16 @@ A Jump Gate or Jump Hole endpoint may appear in **at most one interstellar conne
 
 Structural JSON Schema Draft 2020-12 checks types, enums, required fields, ID patterns and JSON shape. `scripts/check-relations.mjs` checks cross-file IDs, link endpoint types, route cardinality, bounds, orbital parents, referenced Cantums and overlap of dated fields. Neither script reads or verifies MCR historical prose. That remains the creator's responsibility.
 
-This schema does **not** define Cantum border polygons, detailed nebula volumes, asteroid-field procedural generation, star systems with orbital animation, private publication manifests, or detailed polity entities. They can be versioned later; do not invent incompatible new keys in v1.0 files.
+This schema defines spatial-zone geometry and public presentation settings. It does **not** define exact Cantum border polygons, orbital simulation, private publication manifests or detailed polity entities. Unsupported extensions require a versioned approval; do not invent ad hoc keys.
 
 The demonstration data in `examples/demo_atlas` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. No 43 real systems are included here.
 
 ## v1.1 extension note
 
 New demo schema accepts nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates distinct from exact discovery, zon_XXXX ellipsoid/box/polygon-volume records, and a separate presentation.json file for Cantum colors, radius and transparency. Gate and Jump Hole pairing rules are unchanged. The published v0.1 canonical chronology is NOT migrated by this change; permanent-ID conversion requires creator approval. See LEGACY_MIGRATION_PLAN.md.
+
+## v1.2 navigation authoring
+
+System objects are the authoring source of truth. Eligible anchors use `navigation.boundaryRadiusCNU` and `navigation.localLinks[]`; Jump Gates/Holes may use one `interstellarConnection`. Connected short-range gates must be `positionMode: "boundary_derived"`; their normal `position` XYZ is written by the manual generator. Only the `systemAuthoring` schema permits a temporary null position for those gates. Release `systemDetail` validation requires XYZ. All other object coordinates remain absolute and required.
+
+Run `npm run connections`, then the read-only `npm run connections:check`; tests, validation and builds refuse stale output. No browser generation, positions sidecar or automatic repair exists. See [approved design](SCHEMA_V1_2_NAVIGATION.md) and [workflow, precision, migration and recovery](NAVIGATION_AUTHORING.md).

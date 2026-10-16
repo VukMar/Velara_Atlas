@@ -1,0 +1,1770 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcr.example.invalid/schemas/atlas.schema.json",
+  "title": "Velara Atlas entity contract v1.1",
+  "description": "The URL is a schema identifier only; no network access required. Test content is NONCANON.",
+  "type": "object",
+  "$defs": {
+    "xyz": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "origin": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "const": 0
+        },
+        "y": {
+          "const": 0
+        },
+        "z": {
+          "const": 0
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "size": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "y": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "z": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "map": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/origin"
+        },
+        "size": {
+          "$ref": "#/$defs/size"
+        },
+        "unit": {
+          "enum": [
+            "ly",
+            "CNU"
+          ]
+        },
+        "projection": {
+          "const": "topdown_xz"
+        },
+        "planeY": {
+          "const": 0
+        }
+      },
+      "required": [
+        "origin",
+        "size",
+        "unit",
+        "projection",
+        "planeY"
+      ],
+      "additionalProperties": false
+    },
+    "datePrecision": {
+      "enum": [
+        "exact",
+        "circa",
+        "confirmed_by",
+        "within_window",
+        "atlas_snapshot",
+        "unknown"
+      ]
+    },
+    "namePeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "name",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "cantumPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "cantumId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^can_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "cantumId"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "statusPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "affiliationPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "entityId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(?:can|pol|org)_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "entityId"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "classPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "code",
+        "label"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "countPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "count": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "count",
+        "note"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "weaponSystem": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "quantity"
+      ],
+      "additionalProperties": false
+    },
+    "armamentPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "systems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/weaponSystem"
+          }
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "summary",
+        "systems"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "descriptionPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "text"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator)."
+    },
+    "infoCard": {
+      "type": "object",
+      "properties": {
+        "affiliation": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/affiliationPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "class": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/classPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "crew": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "population": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "armament": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/armamentPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/descriptionPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "affiliation",
+        "class",
+        "crew",
+        "population",
+        "armament",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "sectorSystem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^sys_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "star_system"
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "colonizedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positionLY": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/xyz"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cantumHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/cantumPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "controlHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/controlPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publicDetailPath": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^systems/sys_[0-9]{4,}\\.json$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "discoveredAE",
+        "colonizedAE",
+        "positionLY",
+        "nameHistory",
+        "cantumHistory",
+        "publicDetailPath",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "sector": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^sec_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "sector"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "map": {
+          "$ref": "#/$defs/map"
+        },
+        "timeline": {
+          "type": "object",
+          "properties": {
+            "epoch": {
+              "const": "A.E."
+            },
+            "startAE": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "defaultAE": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "epoch",
+            "startAE",
+            "defaultAE"
+          ],
+          "additionalProperties": false
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "cantumsPath": {
+          "const": "cantums.json"
+        },
+        "connectionsPath": {
+          "const": "connections.json"
+        },
+        "systems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sectorSystem"
+          }
+        },
+        "nexusPresentation": {
+          "type": "object",
+          "properties": {
+            "fallbackTitle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "fallbackText": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "fallbackTitle",
+            "fallbackText"
+          ],
+          "additionalProperties": false
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        },
+        "presentationPath": {
+          "oneOf": [
+            {
+              "const": "presentation.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "title",
+        "map",
+        "timeline",
+        "infoCard",
+        "cantumsPath",
+        "connectionsPath",
+        "systems",
+        "nexusPresentation"
+      ],
+      "additionalProperties": false
+    },
+    "cantum": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^can_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "cantum"
+        },
+        "letter": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "statusHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/statusPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "letter",
+        "nameHistory",
+        "statusHistory",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "cantumsFile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "cantums": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cantum"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "cantums"
+      ],
+      "additionalProperties": false
+    },
+    "celestial": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^cb_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "celestial_body"
+        },
+        "objectType": {
+          "enum": [
+            "star",
+            "planet",
+            "moon",
+            "planetoid",
+            "asteroid",
+            "comet",
+            "other"
+          ]
+        },
+        "orbitingId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^cb_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "colonizedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "icon": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "visualVariant": {
+          "enum": [
+            "rocky",
+            "gas",
+            "water",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "orbitingId",
+        "colonizedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "planet"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "else": {
+            "properties": {
+              "visualVariant": false
+            }
+          }
+        }
+      ]
+    },
+    "station": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^sta_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "station"
+        },
+        "objectType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "constructedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decommissionedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "orbitingId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^cb_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "icon": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "visualVariant": {
+          "enum": [
+            "regular",
+            "shipyard",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "orbitingId",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^gat_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "gate"
+        },
+        "objectType": {
+          "enum": [
+            "short_range_gate",
+            "jump_gate"
+          ]
+        },
+        "constructedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decommissionedAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "icon": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "jumpHole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^jhl_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "jump_hole"
+        },
+        "objectType": {
+          "const": "jump_hole"
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "icon": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:[a-z][a-z0-9_]*|custom/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:svg|png|webp))$"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "systemDetail": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^sys_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "system_detail"
+        },
+        "map": {
+          "$ref": "#/$defs/map"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/celestial"
+              },
+              {
+                "$ref": "#/$defs/station"
+              },
+              {
+                "$ref": "#/$defs/gate"
+              },
+              {
+                "$ref": "#/$defs/jumpHole"
+              }
+            ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "map",
+        "objects"
+      ],
+      "additionalProperties": false
+    },
+    "endpoint": {
+      "type": "object",
+      "properties": {
+        "systemId": {
+          "type": "string",
+          "pattern": "^sys_[0-9]{4,}$"
+        },
+        "objectId": {
+          "type": "string",
+          "pattern": "^(?:gat|jhl)_[0-9]{4,}$"
+        }
+      },
+      "required": [
+        "systemId",
+        "objectId"
+      ],
+      "additionalProperties": false
+    },
+    "connection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^lnk_[0-9]{4,}$"
+        },
+        "linkType": {
+          "enum": [
+            "short_range",
+            "interstellar"
+          ]
+        },
+        "transportType": {
+          "enum": [
+            "short_range_gate",
+            "jump_gate",
+            "jump_hole"
+          ]
+        },
+        "endpointA": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "endpointB": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "direction": {
+          "enum": [
+            "bidirectional",
+            "a_to_b",
+            "b_to_a"
+          ]
+        },
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        }
+      },
+      "required": [
+        "id",
+        "linkType",
+        "transportType",
+        "endpointA",
+        "endpointB",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "transportType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "transportType"
+            ],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "linkType": {
+                "const": "short_range"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "transportType": {
+                "enum": [
+                  "jump_gate",
+                  "jump_hole"
+                ]
+              }
+            },
+            "required": [
+              "transportType"
+            ],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "linkType": {
+                "const": "interstellar"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "connectionsFile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/connection"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "connections"
+      ],
+      "additionalProperties": false
+    },
+    "controlPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "untilAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "entityId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(?:can|pol)_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "entityId"
+      ],
+      "additionalProperties": false
+    },
+    "positiveXYZ": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "y": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "z": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "zoneVertex": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "z"
+      ],
+      "additionalProperties": false
+    },
+    "zoneGeometry": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ellipsoid"
+            },
+            "radii": {
+              "$ref": "#/$defs/positiveXYZ"
+            }
+          },
+          "required": [
+            "kind",
+            "radii"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "box"
+            },
+            "size": {
+              "$ref": "#/$defs/positiveXYZ"
+            }
+          },
+          "required": [
+            "kind",
+            "size"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "polygon_volume"
+            },
+            "footprint": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "$ref": "#/$defs/zoneVertex"
+              }
+            },
+            "minY": {
+              "type": "number"
+            },
+            "maxY": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "footprint",
+            "minY",
+            "maxY"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "zone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^zon_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "spatial_zone"
+        },
+        "category": {
+          "enum": [
+            "nebula",
+            "asteroid_field",
+            "hazard",
+            "other"
+          ]
+        },
+        "discoveredAE": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "knownByAE": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Confirmed publicly known by this year, when exact discoveredAE is null; not an exact discovery year."
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "#/$defs/xyz"
+        },
+        "geometry": {
+          "$ref": "#/$defs/zoneGeometry"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        }
+      },
+      "required": [
+        "id",
+        "entityType",
+        "category",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "geometry",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "presentationFile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.1.0"
+        },
+        "territoryOverlay": {
+          "type": "object",
+          "properties": {
+            "enabledByDefault": {
+              "type": "boolean"
+            },
+            "fallbackRadiusFraction": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "opacityMaxPerCantum": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "opacityCapTotal": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "fieldThresholdStart": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fieldThresholdEnd": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "fallbackColor": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "cantums": {
+              "type": "object",
+              "patternProperties": {
+                "^can_[0-9]{4,}$": {
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9A-Fa-f]{6}$"
+                    },
+                    "radiusLY": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "color",
+                    "radiusLY"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "enabledByDefault",
+            "fallbackRadiusFraction",
+            "opacityMaxPerCantum",
+            "opacityCapTotal",
+            "fieldThresholdStart",
+            "fieldThresholdEnd",
+            "fallbackColor",
+            "cantums"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "territoryOverlay"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
