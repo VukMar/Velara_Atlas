@@ -4,7 +4,7 @@
 **Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2 and Checkpoint 3.6 layout (separate from the JSON Schema version)
 **Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  
 **Audience:** Project owner, Codex, and future contributors  
-**Implementation status:** Local noncanonical viewer implemented through Checkpoint 3.6. Final visual assets, deployment and canonical migration remain separate. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
+**Implementation status:** Local noncanonical viewer implemented through Checkpoint 3.6 with the authorized [cartographic labeling refinement](CARTOGRAPHIC_LABELING_RESULTS.md). Final visual assets, deployment and canonical migration remain separate. See [repository baseline and limits](REPOSITORY_AUDIT_3_6.md).
 
 > **Checkpoint 3.6 layout revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
 > supersedes the former persistent bottom timeline, permanent side columns/right InfoCard,
@@ -238,13 +238,52 @@ All layers are **view filters**, not modifications to source data. Maintain **se
 | Political affiliation colors | Object labels |
 | Historical event indicators | Elevation indicators |
 
-The current prototype groups labels with their object layer and combines route
-transports under one Connections toggle; it does not yet expose separate label,
-transport, political marker-color, event-indicator or elevation-guide switches.
-Those table entries describe approved possible overlays, not tested controls.
-Grid, influence, zones and entity/route groups already have floating layer controls.
+The prototype provides independent **Cantum Names** (sector only) and **Object
+Names** (both levels), enabled by default. Cantum Names remains independent of
+influence shading. Object Names controls passive captions; hover, keyboard focus
+and selection retain temporary identification. Hiding an object layer also hides
+its captions. Preferences survive year changes, navigation and camera switching,
+using the existing per-sector/per-system session preferences.
+
+Route transports remain combined under one Connections toggle. Separate transport,
+political marker-color, event-indicator and elevation-guide switches are not
+implemented. Grid, influence, zones and entity/route groups have floating controls.
 Final icon/material representations in §5 remain Checkpoint 4 work; temporary
 geometric markers are the current implementation.
+
+### Cartographic typography and adaptive captions — implemented refinement
+
+[The approved labeling specification](CARTOGRAPHIC_LABELING.md) defines two
+independent systems. Sector Cantum lettering uses currently resolved names and
+`territoryGroups` contributors. A cached 128×128 per-Cantum Gaussian field mask
+uses the overlay's visibility threshold and four-neighbor components. Each
+sufficiently large component can receive one complete name; disconnected holdings
+never gain a forced bridge or shared spanning name. Weighted principal axes,
+interior clearance and padded rectangle fitting determine fixed X/Z positions,
+world dimensions and upright angles bounded to ±30°. Small or unnamed regions
+are omitted. This represents approximate influence geography, not legal borders
+or a claim of historical sovereignty.
+
+Locally rendered system-font CanvasTextures sit above shading and below routes
+and markers, with no picking targets or separate accessibility nodes. Their
+physical chart dimensions remain fixed during camera movement. Opacity decreases
+continuously from overview to zero at 5× fit zoom; tiny, steeply foreshortened or
+backward-facing projections fade away. Map/year rebuilds dispose GPU resources;
+topology/placement caches retain only eight resolved input sets.
+
+Projected HTML object captions stay centered beneath marker footprints at readable
+CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.
+Priority is focus, hover/touch, selection, systems, stars/planets, interstellar
+gate/hole objects, stations, moons and short-range gates. Lower categories become
+eligible progressively with zoom and a 6% threshold deadband. Stable ID tie-breaks
+and a screen-space spatial hash suppress collisions with other captions, marker
+footprints, grid annotations (including H8), and floating panels. Detectable
+nearer-marker occlusion suppresses passive names. Interaction feedback wins over
+passive obstacles; the active caption wins if several active names collide.
+Routes/zones retain temporary identification only. Suppression affects text alone;
+marker buttons, picking, catalogue and Selection access remain available.
+
+See [implementation evidence and limitations](CARTOGRAPHIC_LABELING_RESULTS.md).
 
 ### Generated Cantum regions — approved revision (supersedes manual territories as default)
 

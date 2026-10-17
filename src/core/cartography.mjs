@@ -98,6 +98,11 @@ export function territoryGroups(view, sector, presentation) {
   return [...groups.values()].sort((a, b) => a.id.localeCompare(b.id));
 }
 
+/** Shared per-Cantum field; geography never depends on routes or blended colors. */
+export function cantumField(group, x, z) {
+  return group.points.reduce((sum, p) => sum + Math.exp(-Math.LN2 * ((x - p.x) ** 2 + (z - p.z) ** 2) / group.radius ** 2), 0);
+}
+
 export function sampleInfluence(groups, x, z, presentation) {
   const t = presentation?.territoryOverlay ?? {};
   const start = t.fieldThresholdStart ?? .35, end = t.fieldThresholdEnd ?? .65;
@@ -105,7 +110,7 @@ export function sampleInfluence(groups, x, z, presentation) {
   let total = 0;
   const rgb = [0, 0, 0];
   for (const group of [...groups].sort((a, b) => a.id.localeCompare(b.id))) {
-    const field = group.points.reduce((sum, p) => sum + Math.exp(-Math.LN2 * ((x - p.x) ** 2 + (z - p.z) ** 2) / group.radius ** 2), 0);
+    const field = cantumField(group, x, z);
     const v = Math.max(0, Math.min(1, (field - start) / (end - start)));
     const alpha = Math.max(0, Math.min(.16, Number.isFinite(t.opacityMaxPerCantum) ? t.opacityMaxPerCantum : .16)) * v * v * (3 - 2 * v);
     total += alpha;

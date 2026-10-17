@@ -13,6 +13,8 @@ editor remain separate future work.
 | `src/viewer/demo-data.mjs` | Explicit imports of four demo registries plus three allowlisted detail loaders; preloads released details for endpoint eligibility |
 | `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
 | `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
+| `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
+| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic lettering placement, fitting and fade calculations |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom, world-space 8×8 system grid and CNU cell measurement |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
 | `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |

@@ -10,9 +10,9 @@ const cameras = new Map(), preferences = new Map();
 let search = '', category = 'all';
 let returnFocus = null, returnId = null;
 const scope = () => systemId ?? 'sector';
-const layerDefaults = {grid: true, territory: true, zones: true, routes: true, star_system: true, celestial_body: true, station: true, gate: true, jump_hole: true};
+const layerDefaults = {cantumNames:true, objectNames:true, grid: true, territory: true, zones: true, routes: true, star_system: true, celestial_body: true, station: true, gate: true, jump_hole: true};
 const labels = {grid: 'Coordinate grid', territory: 'Cantum influence / approximate chart overlay', zones: 'Spatial zones', routes: 'Connections',
-  star_system: 'Star systems', celestial_body: 'Celestial bodies', station: 'Stations', gate: 'Gates', jump_hole: 'Jump Holes'};
+  cantumNames:'Cantum Names', objectNames:'Object Names', star_system: 'Star systems', celestial_body: 'Celestial bodies', station: 'Stations', gate: 'Gates', jump_hole: 'Jump Holes'};
 
 function message(text) { $('map-message').textContent = text; $('map-message').hidden = !text; }
 function notice(text) { $('notice').textContent = text; }
@@ -118,7 +118,7 @@ function renderCatalogue() {
 function renderLayers() {
   if (!preferences.has(scope())) preferences.set(scope(), {...layerDefaults, territory: dataset.presentation?.territoryOverlay?.enabledByDefault !== false});
   const prefs = preferences.get(scope()); $('layers').replaceChildren();
-  for (const key of systemId ? ['grid', 'zones', 'routes', 'celestial_body', 'station', 'gate', 'jump_hole'] : ['grid', 'territory', 'zones', 'routes', 'star_system']) {
+  for (const key of systemId ? ['objectNames', 'grid', 'zones', 'routes', 'celestial_body', 'station', 'gate', 'jump_hole'] : ['cantumNames', 'objectNames', 'grid', 'territory', 'zones', 'routes', 'star_system']) {
     const label = document.createElement('label'), input = document.createElement('input');
     input.type = 'checkbox'; input.checked = prefs[key]; input.addEventListener('change', () => { prefs[key] = input.checked; atlas.setLayers(prefs); });
     label.append(input, document.createTextNode(labels[key])); $('layers').append(label);
@@ -138,7 +138,7 @@ function refresh(preserve = true) {
   $('location').textContent = view.system ? recordName(view.system) : 'Demo Sector'; $('sector').disabled = !systemId;
   const groups = systemId ? [] : territoryGroups(view, dataset.sector, dataset.presentation);
   atlas.setMap(view.map, view.markers, view.positionKey, returned ? cameras.get('sector') : saved,
-    {contextId: scope(), zones: view.zones, routes: view.routes, groups, presentation: dataset.presentation});
+    {contextId: scope(), zones: view.zones, routes: view.routes, groups, cantums:view.cantums, presentation: dataset.presentation});
   $('units').textContent = view.map ? `${view.map.unit} · ${atlas.mode === 'top' ? 'X/Z top-down' : 'true XYZ perspective'}` : 'Public detail unavailable';
   $('viewport').dataset.contributors = String(groups.reduce((n, group) => n + group.points.length, 0)); $('viewport').dataset.zones = String(view.zones.length);
   $('selection').replaceChildren(new Option('Select an entity…', ''));

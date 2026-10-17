@@ -1,9 +1,37 @@
 import * as THREE from 'three';
 import {routePoints, sampleInfluence, zoneParticles} from '../core/cartography.mjs';
+import {territorialLabels} from './territorial-labels.mjs';
 
-export const layerOrder = {grid: 0, territory: 1, zone: 2, route: 3, marker: 4};
+export const layerOrder = {grid: 0, territory: 1, cantumNames: 1.5, zone: 2, route: 3, marker: 4};
 const vector = p => new THREE.Vector3(p.x, p.y, p.z);
 const fieldCache = new Map();
+
+/** Original browser-font lettering, baked once per map/year, never a pointer target. */
+export function createTerritorialLettering(groups, cantums, map, presentation) {
+  if (!groups.length) return [];
+  const sources = new Map(), aspects = {};
+  for (const cantum of cantums) {
+    if (!cantum.statusRecord || typeof cantum.name !== 'string' || !cantum.name.trim()) continue;
+    const canvas=document.createElement('canvas'), context=canvas.getContext('2d');
+    const glyphs=typeof Intl.Segmenter === 'function' ? [...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(cantum.name)].map(s=>s.segment) : Array.from(cantum.name);
+    context.font='500 64px system-ui, sans-serif';
+    const widths=glyphs.map(c=>context.measureText(c).width), spacing=6;
+    const width=widths.reduce((a,b)=>a+b,0)+Math.max(0,glyphs.length-1)*spacing+16;
+    canvas.width=Math.ceil(width);canvas.height=88;
+    context.font='500 64px system-ui, sans-serif';context.textBaseline='middle';context.fillStyle='white';
+    let x=8;glyphs.forEach((c,i)=>{context.fillText(c,x,44);x+=widths[i]+spacing;});
+    aspects[cantum.id]=canvas.width/canvas.height;sources.set(cantum.id,canvas);
+  }
+  return territorialLabels(groups,cantums,map,presentation,aspects).map(label=>{
+    const texture=new THREE.CanvasTexture(sources.get(label.cantumId));texture.colorSpace=THREE.SRGBColorSpace;
+    const material=new THREE.MeshBasicMaterial({map:texture,color:label.color,transparent:true,opacity:.46,depthWrite:false,depthTest:false,side:THREE.DoubleSide});
+    const mesh=new THREE.Mesh(new THREE.PlaneGeometry(label.width,label.height),material);
+    mesh.rotation.x=-Math.PI/2;mesh.rotateZ(-label.angle);
+    mesh.position.set(label.x,map.origin.y-map.size.y/2+.002,label.z);
+    mesh.renderOrder=layerOrder.cantumNames;mesh.userData={layer:'cantumNames',label};
+    return mesh;
+  });
+}
 
 /** One deterministic, bounded RGBA field for all Cantums; never additive overdraw. */
 export function influencePixels(groups, map, presentation, resolution = 256) {

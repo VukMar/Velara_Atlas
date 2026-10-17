@@ -27,8 +27,8 @@ canvas { display:block; width:100%; height:100%; touch-action:none; }
 .grid-label[data-kind="scale"] { font-size:11px; line-height:1; overflow-wrap:normal; }
 .sector-width-arrow { display:block; position:relative; left:50%; margin-top:2px; fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.85; overflow:visible; transform-origin:center; pointer-events:none; }
 .map-label { position:absolute; border:0; background:transparent; padding:0; min-height:0; width:30px; height:30px; transform:translate(-50%,-50%); pointer-events:auto; }
-.map-label span { position:absolute; left:18px; top:4px; white-space:nowrap; font-size:.8rem; background:#03090fe8; padding:.2rem .35rem; border-radius:2px; display:none; text-align:left; pointer-events:none; }
-.map-label[data-system] span,.map-label:hover span,.map-label:focus-visible span,.map-label[aria-pressed="true"] span { display:block; }
+.map-label span { position:absolute; left:50%; top:calc(50% + var(--caption-offset,17px)); transform:translateX(-50%); white-space:nowrap; font-size:.8rem; line-height:1.35; text-shadow:0 1px 3px #03090f,0 0 3px #03090f; display:block; visibility:hidden; text-align:center; pointer-events:none; }
+.map-label[data-caption="true"] span { visibility:visible; }
 .map-label[aria-pressed="true"] { outline:1px solid #e6ba7b; outline-offset:3px; }
 .map-label[aria-pressed="true"] span { color:#e6ba7b; }
 .map-label[data-highlighted="true"] span { color:#00d6ff; }

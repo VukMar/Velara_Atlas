@@ -23,7 +23,9 @@ async(page)=>{
     for(const id of systems) {
       await page.locator('#controls-panel > summary').click();await page.locator('#selection').selectOption(id);
       await page.getByRole('button',{name:'Enter system',exact:true}).click();
-      check(await page.locator('#grid-labels [data-cell="H8"]').innerText()==='12.5K CNU','current demo chart measurement');
+      // C's existing 120K chart has 15K cells; A/B retain 100K charts.
+      const expectedScale=id==='sys_0003'?'15K CNU':'12.5K CNU';
+      check(await page.locator('#grid-labels [data-cell="H8"]').innerText()===expectedScale,'current demo chart measurement');
       const celestial=await page.locator('#selection option').evaluateAll(nodes=>nodes.map(n=>n.value).find(id=>/^cb_/.test(id)));
       await page.locator('#selection').selectOption(celestial);
       check((await page.locator('#facts').innerText()).includes('CNU'),'record coordinates in local units');

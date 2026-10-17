@@ -66,10 +66,30 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 1. Near-black map / restrained starfield and background.
 2. Coordinate grid and reference guides.
 3. Metaball-like Cantum influence regions (sector only), soft and nearly transparent.
+   World-space Cantum lettering follows the fill, before any route or marker.
 4. Nav routes (short-range in systems; Jump Gate and Jump Hole routes in sector view).
 5. Spatial objects (2D icons in top-down; appropriate physical/simple 3D rendering in perspective).
 6. Historical names, spatial labels and visible coordinate readouts.
 7. Hover/selection targeting and direct interface overlays.
+
+**Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
+adds restrained, spaced system-font Cantum names per sufficiently large connected
+influence component. Historical names and memberships remain authoritative. Text
+is straight, at most ±30°, fitted completely inside sampled geography; small or
+unnamed regions have none. World-space lettering zooms with the chart, fades at
+close zoom or unreadable perspective, and never receives pointer events. Its
+Cantum-linked tint is independent of NEXUS interface colors and influence opacity
+caps. The **Cantum Names** control is sector-only and independent of shading.
+
+Object captions use the existing projected HTML layer, centered beneath markers,
+with controlled screen-space font sizes, subtle shadow and no opaque pills.
+Deterministic priorities/collision suppression favor systems, stars and planets;
+zoom reveals smaller objects where space permits. **Object Names** hides passive
+captions while focus, hover and selection preserve identification. Markers and
+catalogue access survive decluttering. Names use released, historically resolved
+text only. These controls retain session preferences through timeline, navigation
+and 2D/3D changes. [Results and limits](CARTOGRAPHIC_LABELING_RESULTS.md) record
+verification; final assets/reticles remain separate work.
 
 **2D:** default top-down navigational icons, readable labels, real X/Z projection of stored XYZ positions. Y remains available in InfoCard and optional elevation overlay.  
 **3D:** stars and planets use simplified procedural spheres; stations and built gates use camera-facing billboards at real XYZ positions initially; Jump Holes can use a restrained anomalous geometry/effect. A billboard is a navigational sign, not a claim that the station physically has the shape of its icon. Elaborate 3D station/gate models are deliberately outside the first viewer scope.  

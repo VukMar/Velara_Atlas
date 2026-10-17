@@ -59,6 +59,10 @@ Open **Map controls** for Selection, zoom/reset and camera mode. Open **History*
 for the vertical slider and numeric year (0–1200, initially 1200 A.E.); the header
 always shows the selected year. **Catalogue** searches only names valid then.
 **Map layers** controls optional overlays. These panels never move the chart.
+**Cantum Names** toggles geographic region lettering independently of influence
+shading in Sector View. **Object Names** toggles adaptive captions beneath markers
+in both views; hover, keyboard focus and selection still identify objects.
+See [labeling implementation and verification](docs/CARTOGRAPHIC_LABELING_RESULTS.md).
 Close the centered InfoCard with its top-right button or Escape to clear selection
 without resetting the camera. Hover a gate/route, or focus it with the keyboard,
 to highlight active links; selecting it opens its record and destination actions.

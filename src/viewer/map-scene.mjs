@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {createInfluence, createZone, createRoute, disposeTree, layerOrder} from './cartographic-layers.mjs';
+import {createInfluence, createZone, createRoute, createTerritorialLettering, disposeTree, layerOrder} from './cartographic-layers.mjs';
+import {territorialOpacity} from './territorial-labels.mjs';
 import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './chart-layout.mjs';
+import {layoutCaptions} from './caption-layout.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -84,6 +86,15 @@ export class AtlasMap {
     container.append(this.gridLabels);
     this.gridAnchors = [];
     this.labelsById = new Map();
+    this.captionEligibility = new Set();
+    this.textMeasure = document.createElement('canvas').getContext('2d');
+    this.overlayChanged = () => this.render();
+    document.addEventListener('toggle', this.overlayChanged, true);
+    this.overlayObserver = new MutationObserver(this.overlayChanged);
+    const info = document.getElementById('info-panel');
+    if (info) this.overlayObserver.observe(info, {attributes:true, attributeFilter:['open']});
+    this.panelObserver = new ResizeObserver(this.overlayChanged);
+    for (const panel of document.querySelectorAll('.floating, #info-panel')) this.panelObserver.observe(panel);
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.drag = null;
@@ -162,6 +173,8 @@ export class AtlasMap {
     });
     const influence = createInfluence(extras.groups ?? [], map, extras.presentation);
     if (influence) this.scene.add(influence);
+    this.territorialLettering = createTerritorialLettering(extras.groups ?? [], extras.cantums ?? [], map, extras.presentation);
+    for (const mesh of this.territorialLettering) this.scene.add(mesh);
     for (const zone of extras.zones ?? []) {
       this.scene.add(createZone(zone));
       this.addLabel(zone, point(zone.position), 'zones');
@@ -212,7 +225,7 @@ export class AtlasMap {
       });
       this.labels.append(button);
       this.labelsById.set(entity.id, button);
-      this.anchors.push({entity, position, button, layer});
+      this.anchors.push({entity, position, button, text, layer, radius: ['routes','zones'].includes(layer) ? 4 : 13});
   }
 
   clearMap() {
@@ -223,7 +236,9 @@ export class AtlasMap {
     }
     this.meshes = [];
     this.routeLines = [];
+    this.territorialLettering = [];
     this.anchors = [];
+    this.captionEligibility.clear();
     this.labelsById.clear();
     this.labels.replaceChildren();
     this.gridLabels.replaceChildren(); this.gridAnchors = [];
@@ -390,6 +405,7 @@ export class AtlasMap {
   }
 
   resize() {
+    for (const anchor of this.anchors) anchor.metrics = null;
     this.width = Math.max(1, this.container.clientWidth);
     this.height = Math.max(1, this.container.clientHeight);
     this.renderer.setSize(this.width, this.height, false);
@@ -419,6 +435,18 @@ export class AtlasMap {
     }
     this.container.dataset.zoom=String(this.camera.zoom);
     this.camera.updateMatrixWorld();
+    const elevation = Math.abs(this.camera.position.y-this.controls.target.y)/this.camera.position.distanceTo(this.controls.target);
+    for (const mesh of this.territorialLettering ?? []) {
+      const center=mesh.position.clone().project(this.camera);
+      const edge=mesh.localToWorld(new THREE.Vector3(0,mesh.geometry.parameters.height/2,0)).project(this.camera);
+      const pixels=Math.hypot((edge.x-center.x)*this.width,(edge.y-center.y)*this.height);
+      const baseline=mesh.localToWorld(new THREE.Vector3(mesh.geometry.parameters.width/2,0,0)).project(this.camera).sub(center);
+      const upright=baseline.x/Math.hypot(baseline.x,baseline.y);
+      mesh.material.opacity=territorialOpacity(this.map.size.x/this.viewSpan(),this.mode==='top'?1:elevation)
+        * THREE.MathUtils.clamp((pixels-8)/4,0,1) * THREE.MathUtils.clamp((upright-.2)/.4,0,1);
+      mesh.visible=this.layerPreferences.cantumNames!==false && mesh.material.opacity>0;
+    }
+    this.container.dataset.cantumLabels=String((this.territorialLettering ?? []).filter(m=>m.visible).length);
     for(const annotation of this.gridAnchors) {
       const p=annotation.position.clone().project(this.camera), e=annotation.element;
       if(annotation.widthEndpoints) {
@@ -449,6 +477,7 @@ export class AtlasMap {
         }
       }
     }
+    const candidates = [];
     for (const [index, anchor] of this.anchors.entries()) {
       const projected = projections[index];
       const button = anchor.button;
@@ -458,7 +487,28 @@ export class AtlasMap {
       const hitSize = markerHitSize(index, anchors);
       button.style.width = `${hitSize}px`;
       button.style.height = `${hitSize}px`;
+      button.style.setProperty('--caption-offset', `${anchor.radius + 4}px`);
+      // Measure only after creation or a font/viewport change, never each pan frame.
+      if (!anchor.metrics) {
+        const style = getComputedStyle(anchor.text);
+        this.textMeasure.font = style.font;
+        anchor.metrics = {width:this.textMeasure.measureText(anchor.text.textContent).width, height:parseFloat(style.lineHeight)};
+      }
+      const id = anchor.entity.id;
+      candidates.push({id, entity:anchor.entity, ...anchors[index], ...anchor.metrics, radius:anchor.radius, depth:projected.z,
+        marker: !['routes','zones'].includes(anchor.layer), visible:!button.hidden,
+        interaction: this.hoverSources.focus === id ? 4 : [this.hoverSources.pointer,this.hoverSources.touch].includes(id) ? 3 : this.selectedId === id ? 2 : 0});
     }
+    const origin = this.container.getBoundingClientRect(), obstacles = [];
+    for (const element of [...document.querySelectorAll('.floating, #info-panel[open]'), ...this.gridAnchors.filter(a=>!a.element.hidden).map(a=>a.element)]) {
+      const r = element.getBoundingClientRect();
+      if (r.width && r.height) obstacles.push({left:r.left-origin.left-3, right:r.right-origin.left+3, top:r.top-origin.top-3, bottom:r.bottom-origin.top+3});
+    }
+    const layout = layoutCaptions(candidates, {width:this.width, height:this.height,
+      zoom:this.map ? this.map.size.x / this.viewSpan() : 1, passive:this.layerPreferences.objectNames !== false,
+      obstacles, eligible:this.captionEligibility});
+    this.captionEligibility = layout.eligible;
+    for (const a of this.anchors) a.button.dataset.caption = String(layout.shown.has(a.entity.id));
     this.renderer.render(this.scene, this.camera);
     this.container.dataset.mode = this.mode;
     this.container.dataset.markers = String(this.meshes.length);
@@ -466,6 +516,9 @@ export class AtlasMap {
   }
 
   dispose() {
+    document.removeEventListener('toggle', this.overlayChanged, true);
+    this.overlayObserver.disconnect();
+    this.panelObserver.disconnect();
     this.resizeObserver.disconnect();
     this.controls.dispose();
     this.clearMap();
