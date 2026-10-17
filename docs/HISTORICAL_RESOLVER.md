@@ -1,4 +1,4 @@
-# Noncanonical v1.1 historical resolver — Checkpoint 1
+# Modern historical resolver — v1.1/v1.2 runtime API
 
 `src/core/history.mjs` resolves released v1.1 and compatible v1.2 runtime records;
 v1.2 navigation declarations are handled offline and require no resolver change.
@@ -18,7 +18,8 @@ without changing input or another snapshot. Input order is preserved.
 Every `yearAE` argument must be a **nonnegative safe integer**; zero is valid.
 Invalid years throw `RangeError`, including null, strings, booleans, fractions,
 negative numbers, infinities and unsafe integers. The functions do not clamp to
-the sector timeline: a future UI must enforce its dataset's supported range.
+the sector timeline: the current viewer enforces its dataset's `startAE` through
+`defaultAE` range. This remains the caller's responsibility for other consumers.
 
 | Export | Contract |
 | --- | --- |
@@ -89,10 +90,10 @@ record. No origin or coordinates are manufactured. Sector positions remain ly;
 local positions remain in the detail map's CNU context. `orbitingId` never changes
 absolute coordinates. Geometry is copied without generating particles or shapes.
 
-There is no full/partial publication flag in v1.1. A released one-object detail
+There is no full/partial publication flag in the current v1.1/v1.2 runtime shape. A released one-object detail
 is `map_available`; the resolver does not label it complete, demand other objects,
 or invent a `visibility` property. Loading, parsing and validation errors must be
-handled separately by a future loader, never relabeled as archival fallback.
+handled separately by the loader/interface, never relabeled as archival fallback.
 Standalone object/zone helpers require the caller to establish parent eligibility;
 `resolveSystem` handles the system check before resolving its children.
 
@@ -110,27 +111,32 @@ must separately check positions for drawing and respect direction for navigation
 The existing validator still enforces graph types, global partner exclusivity
 and cross-file references before resolution.
 
-## Contract observations and deferred work
+## Present integration and remaining limits
 
-- Older architecture/viewer/visual-policy paragraphs describe zones, nullable
-  icons, visual variants, known-by and presentation settings as pending; their
-  appended v1.1 corrections and the actual v1.1 schema supersede those statements.
-  Wrapper schema titles still say v1.0, but reference the v1.1 definitions.
-- The relationship validator checks exact endpoint discovery and construction
-  against connection starts, but currently permits a start before `knownByAE` or
-  an end after endpoint decommissioning. Resolution filters both historical cases
-  conservatively; no schema/validator behavior is changed in this checkpoint.
+- Current wrappers target v1.2 definitions; the frozen v1.1 schema and fixtures
+  remain separate. Navigation declarations are compiled offline and are not
+  interpreted as a second historical source. No resolver code changed for v1.2
+  or the Checkpoint 3.6 layout/documentation work.
+- v1.2 validation/generation checks exact discovery, known-by, construction,
+  system knowledge and decommissioning against link availability, plus local
+  anchor constraints in the compiler. Older v1.1 validation intentionally retains
+  its original looser start/end and branching behavior in regressions; the resolver
+  conservatively filters endpoint visibility in both versions.
 - Zones have discovery/known-by and dated InfoCards, but no existence/expiry
-  interval in v1.1. Their visibility follows knowledge; no zone expiry is invented.
+  interval in v1.1/v1.2. Their visibility follows knowledge; no expiry is invented.
 - Timeline configuration defines `startAE` and `defaultAE`, without an explicit
-  latest-published-year field. Range configuration for a future UI needs review.
-- Optional jumpable event derivation is deferred. Scalar construction,
-  settlement and discovery fields lack per-date precision metadata, while period
-  boundaries may be qualified or unspecified. A separate event-source contract
-  is needed before presenting those dates as exact historical events. In
-  particular, `knownByAE`, `circa` and `confirmed_by` are not exact event dates.
-- No viewer, Vite/Three.js setup, assets, deployment, editor or canonical migration
-  is part of Checkpoint 1. Checkpoint 2 requires explicit creator approval.
+  latest-published-year field. The implemented demo treats these as lower/upper
+  bounds; a general release-range extension remains a future schema decision.
+- `src/core/cartography.mjs::recordedYears` now supplies conservative jump years
+  from public exact scalar discovery dates and interval boundaries explicitly
+  marked `datePrecision: exact`. It omits known-by, scalar construction/settlement
+  without per-date precision, and qualified/unspecified periods. The continuous
+  vertical History slider still visits every supported year. Rich event markers
+  or a dedicated event registry remain deferred; uncertainty is never normalized.
+- Checkpoints 2–3 and 3.6 integrate this API with the implemented local Three.js
+  demo. Final artwork, deployment, editor and canonical migration remain outside
+  the current authorization. See [architecture](ARCHITECTURE.md) and
+  [viewer behavior](VIEWER_SPECIFICATION.md).
 
 ## Noncanonical usage
 
@@ -148,6 +154,8 @@ console.log(later.name, later.cantumId);     // Test System A, can_0001
 ```
 
 `npm test` includes `tests/history-v1_1.test.mjs`, the unchanged legacy checks,
-existing transport/schema regressions, and strict demo validation. New tests use
-only demo JSON and explicitly synthetic in-memory variants, with schema and
-relationship checks on valid variants. No fixture is promoted to public lore.
+existing transport/schema regressions, and strict live-demo validation. Historical
+tests use frozen v1.1 fixtures and synthetic variants; navigation regressions use
+the fixed v1.2 snapshot, while viewer/browser validation exercises live data.
+No fixture is promoted to public lore. [The audit](REPOSITORY_AUDIT_3_6.md)
+records current checks and outstanding browser limitations.

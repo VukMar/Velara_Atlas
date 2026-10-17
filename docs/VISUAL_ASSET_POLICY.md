@@ -1,14 +1,14 @@
 # Velara Atlas — Visual Asset Policy and Fallback Contract
 
 **Version:** 1.0.0 · **Milestone 5 companion** · **2026-10-15**  
-**Status:** Rendering and fallback **behavior approved**; exact asset identifiers and nullable-icon data fields require a deliberate **versioned schema migration**. Do not modify existing canonical JSON on the basis of this document alone.
+**Status:** Rendering/fallback policy approved. Nullable icons and optional visual variants are supported by current noncanonical v1.2 and frozen v1.1 schemas. The final asset registry, SVGs and procedural appearances remain Checkpoint 4 work; the current viewer uses temporary geometric markers. Do not modify canonical JSON or create artwork on the basis of this document alone.
 
 ## 1. Separation of content and presentation
 
 - `entityType`, `objectType`, stable ID, position, system affiliation, and `connections.json` define **what an object is and does**. Styling never changes its physical position, historical record, or gate reachability.
-- `visualVariant` (proposed) selects a default visual subclass, such as `rocky` or `shipyard`.
-- `icon` (proposed nullable override) points to a creator-supplied **public asset**, when present. `null` means use the default. Older existing icon identifiers must be migrated or mapped, not discarded.
-- The renderer consults one central **visual registry** so the default paths do not need to be copied into every object's JSON.
+- Optional `visualVariant` selects a supported visual subclass: planets use `rocky`, `gas`, `water`, `unknown`; stations use `regular`, `shipyard`, `unknown`. Missing subtype must remain visually neutral. These are data conventions, not inferred lore.
+- The required `icon` key accepts null, a validated registry identifier, or a safe `custom/...` relative SVG/PNG/WebP path. Null requests default rendering; it does not mean an unknown identity. Schema acceptance does not mean the current prototype loads custom artwork.
+- The future renderer registry will centralize default paths instead of duplicating them in every object's JSON. Preserve existing registry identifiers when implementing it.
 - For the MVP, **no object is required to have a custom texture, sprite or 3D model**.
 
 ## 2. Approved defaults by object kind
@@ -107,20 +107,27 @@ const visuals = {
 
 These are **public-base-relative registry keys** for the renderer to resolve, **not** required fields in every world record. `visualVariant` is optional for 3D geometry; the renderer's neutral fallback remains mandatory.
 
-## 5. Controlled JSON Schema migration required
+## 5. Current schema support and remaining renderer work
 
-The actual current **JSON Schema v1.0.0** requires `icon` to be a nonempty string and has not approved `visualVariant`. Therefore objects with `icon: null` or `visualVariant` **do not yet validate**. Do **not** put those proposed fields into `public/data` or the v1.0.0 demonstration fixtures before an agreed, versioned update and validator test.
+The approved v1.1 migration already added nullable icons and visual variants;
+v1.2 retains them. `schemas/atlas.schema.json` and its wrappers validate current
+demo records; the frozen v1.1 schema independently preserves regression cases.
+The `icon` property remains required on local objects. Relative custom paths must
+match `custom/` plus safe path segments and an allowed extension; traversal,
+absolute paths and arbitrary remote URLs are not schema-valid.
 
-When implementing the viewer, Codex should propose one coordinated additive schema migration, preserving compatibility and historical behavior:
+The current `createMarker` uses structural object kind with neutral temporary
+geometry and does not yet implement custom icon loading or variant materials.
+After separate Checkpoint 4 approval, the registry must preserve those identities,
+use `objectType` to distinguish gate types, and implement the fallback order above.
+Add asset-load/base-path, null/default, missing/invalid asset and neutral-unknown
+tests then. Schema/path validation is not an SVG-content sanitization guarantee;
+any accepted SVG assets still need source/disclosure review.
 
-1. Define optional `visualVariant` enum values for relevant celestial/station subtypes, including `unknown` as neutral.
-2. Make `icon` either a validated optional custom override or `null`; preserve/translate the current icon identifiers (`planet_rocky`, etc.) using a compatibility adapter or deliberate fixture migration.
-3. Disambiguate gate visual type from schema's actual short-range/interstellar designation; do not infer it only from prefix.
-4. Update `schemas/` definitions, affected `examples/`, scripts, tests, `docs/DATA_MODEL.md`, and the declared schema version **together**. Do not rename stable entity IDs.
-5. Include absent, null, invalid override path, unknown variant, and missing SVG tests. Validate allowed relative paths; reject traversal (`..`), absolute paths, unapproved remote URLs and scriptable SVG payloads if accepting creator-provided arbitrary SVG.
-6. Require no change to the Milestone 3 camera, timeline, connection rules, publication filtering or Cantum-overlay physics.
-
-If the user chooses to keep the existing string `icon` field longer, implement a non-breaking registry adapter first and postpone nullable icon changes. Either path is acceptable if explicitly documented. The first viewer prototype should not be blocked on elaborate final SVG artwork.
+No additional schema migration or canonical change is needed for the already
+supported null/variant fields. Any future stored-shape extension requires its
+own coordinated schema, validator, fixture and data-model update. Keep the
+Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 
 ## 6. Scope, accessibility, and performance
 
@@ -131,8 +138,4 @@ If the user chooses to keep the existing string `icon` field longer, implement a
 - Do not create unbounded GPU textures/sprites for each record; reuse geometry and materials where practical.
 - Fallbacks must be visually neutral, non-disruptive and transparent about unknown visual subtypes.
 
-**Authority:** This document governs appearance and fallback. `docs/DATA_MODEL.md` and `schemas/` govern the currently valid stored JSON, until an approved migration changes them.
-
-## Schema v1.1 status
-
-Nullable icon and visualVariant are now structurally valid in the v1.1 noncanonical demo; fallback handling remains a renderer requirement. Canonical public v0.1 records are unchanged until separately approved migration.
+**Authority:** This document governs appearance/fallback policy; [DATA_MODEL.md](DATA_MODEL.md) and schemas govern valid JSON. [Viewer behavior](VIEWER_SPECIFICATION.md) governs the Checkpoint 3.6 square chart and overlays. Canonical public v0.1 records remain unchanged pending separately approved migration.

@@ -4,8 +4,9 @@ The creator-approved [navigation specification](SCHEMA_V1_2_NAVIGATION.md)
 supersedes the v1.1 short-range branching rule. System object declarations are
 the **authoring source of truth**. `connections.json` is the **generated,
 Git-tracked runtime index**. The read-only viewer uses the same graph shape and
-ordinary stored XYZ; its history, cartography, cameras, rendering and InfoCards
-are unchanged. This task does not implement Checkpoint 4 or migrate canon.
+ordinary stored XYZ. Historical semantics remain compatible with the pure modern
+resolver; the current viewer layout follows Checkpoint 3.6. This guide authorizes
+neither Checkpoint 4 work nor canonical migration.
 
 ```text
 Edit system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
@@ -118,7 +119,13 @@ recovery journal. They cannot guarantee behavior under power loss, filesystem
 corruption or hostile concurrent edits. Backups are on the same filesystem;
 they are a recovery aid, not independent disaster-recovery storage.
 
-## Demonstration migration
+## Historical demonstration migration
+
+This section records the original `4ff0ecb` migration, not a current live-data
+inventory. The fixed `tests/fixtures/v1_2/` preserves its nine-link scenarios;
+the live demo is author-editable and currently has an additional local link.
+Read actual declarations and run the read-only checker/ID Finder for today's
+records. Do not overwrite live edits using this historical table.
 
 Checkpoint 3 was secured in `32f43d6` before editing. The six accepted v1.1 links
 are preserved in frozen public-safe `tests/fixtures/v1_1/` files. Tests verify
@@ -151,12 +158,16 @@ hazard, existing non-short-range positions and all original histories remain.
 The old schema's `$id` is preserved in `atlas-v1_1.schema.json`; the v1.2 schema
 has a distinct `$id`. Main wrappers reference the current v1.2 definitions.
 Frozen v1.1 tests retain their original branching and historical regression
-expectations. New navigation tests run against the actual v1.2 demo. Canonical
+expectations. Navigation safety/migration regressions use the fixed v1.2 snapshot;
+strict release/freshness and viewer/browser checks also exercise the live demo. Canonical
 v0.1 history and its resolver remain unchanged. The historical resolver ignores
 authoring declarations and needs no adapter or new history interpretation.
 
-The dev MCP suite `tests/browser-checkpoint3.mjs` keeps fallback, narrow-layout
-and error-path coverage with updated fixture counts. `tests/browser-navigation-v1_2.mjs`
-also runs against production preview at `/Velara_Atlas/`, using only the DOM and
-ordinary public navigation controls. Detailed final test/browser results and the
-changed-file inventory are recorded in `NAVIGATION_V1_2_RESULTS.md`.
+The current MCP suites `tests/browser-checkpoint3.mjs` and
+`tests/browser-navigation-v1_2.mjs` require the dev server because they inspect or
+intercept its public demo modules. `tests/browser-layout3_6.mjs` and
+`tests/browser-touch3_6.mjs` support dev or production preview under
+`/Velara_Atlas/`. They are MCP entry points, not automatically discovered Node
+tests. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
+The [original implementation report](NAVIGATION_V1_2_RESULTS.md) remains historical
+evidence for generation, migration and recovery; its counts/layout are not current.

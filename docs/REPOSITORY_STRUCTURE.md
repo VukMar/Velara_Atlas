@@ -1,74 +1,131 @@
-# Velara Atlas — Repository structure and file ownership
+# Velara Atlas — Repository structure and ownership
 
-**Status:** Proposed structure approved for organizing the foundation; create future folders only when needed. This document reflects the currently observed local repository plus planned additions.
+**Status:** Actual local structure through Checkpoint 3.6 and Schema v1.2.
+The [audit inventory](REPOSITORY_AUDIT_3_6.md) classifies every tracked file.
+Future folders below are reserved concepts, not empty scaffolding to create.
 
-## Current files — do not casually move or delete
+## Current tree
 
 ```text
 Velara_Atlas/
-├── docs/
-│   ├── DATA_RULES.md                 # Existing v0.1 historical data rules
-│   └── DATA_MODEL_DRAFT.md           # Adopted v0.2 InfoCard examples; migration pending
-├── examples/                         # v0.1 fixtures + v0.2 example entities
-├── public/
-│   └── data/
-│       ├── political.json            # Working timeline/political records
-│       ├── sector.json               # Sector index; contains an editorial note to review
-│       └── systems/                  # Approved released detail files only
-├── src/
-│   └── timeline/resolve.mjs          # Working v0.1 timeline helper
-├── tests/
-│   ├── check.mjs
-│   └── demo.mjs
-├── .gitignore
-├── package.json
-└── README.md
+  AGENTS.md                     Coding-agent constraints and read-first references
+  README.md                     Public introduction, status and commands
+  package.json / package-lock.json
+  vite.config.mjs               Demo root/base, input allowlist and build checks
+  .gitignore                    Dependencies, output, private/cache/recovery paths
+  docs/                         Design contracts, guides, safeguards and reports
+  schemas/
+    atlas.schema.json           Current v1.2 master definitions
+    atlas-v1_1.schema.json       Frozen v1.1 regression definitions
+    sector.schema.json
+    cantums.schema.json
+    connections.schema.json
+    presentation.schema.json
+    system-detail.schema.json   Release XYZ required
+    system-authoring.schema.json Limited derived-gate pre-generation null
+  scripts/
+    atlas-validation.mjs        Strict offline Ajv
+    check-relations.mjs         Cross-record integrity
+    demo-files.mjs              Explicit demo allowlist and safe reads
+    navigation.mjs              Pure graph/coordinate compiler
+    connections.mjs             Manual generator / read-only freshness
+    validate-demo.mjs           Release + relationships + freshness
+    idfind.mjs                  Read-only ID Finder
+    audit-demo-build.mjs        Production output audit
+  src/
+    timeline/resolve.mjs        Preserved legacy v0.1 resolver
+    core/
+      history.mjs              Modern pure historical selectors
+      cartography.mjs          Pure catalogue/routes/territory/zone calculations
+    viewer/
+      index.html / style.css   Floating interface and square map stage
+      main.mjs                 Historical/navigation/selection UI state
+      demo-data.mjs            Explicit public-safe demo imports
+      map-scene.mjs            Three.js cameras, picking and scene
+      chart-layout.mjs         Square fit/clamping and system grid
+      cartographic-layers.mjs  Influence, zones and routes
+  examples/
+    demo_atlas/
+      sector.json              Authored v1.2 index in ly
+      cantums.json             Authored demonstration histories
+      presentation.json        Noncanonical colors/field settings
+      connections.json         Generated Git-tracked runtime index
+      systems/sys_0001.json    Authored records + derived local gate positions
+      systems/sys_0002.json
+      systems/sys_0003.json
+    noncanon_sector_system.json / noncanon_system_detail.json
+                               Active v0.1 regression inputs
+    [other standalone JSON]    Historical v0.2 proposals; not v1.2 templates
+  tests/
+    check.mjs / demo.mjs        Legacy assertions / console chronology
+    *.test.mjs                 Versioned schemas/history, generator, cartography,
+                               viewer, ID Finder and layout
+    browser-*.mjs              Playwright MCP entry points, not Node test files
+    fixtures/v1_1/             Frozen accepted two-system branching regression
+    fixtures/v1_2/             Frozen original three-system navigation regression
+  public/data/
+    political.json             Legacy canonical v0.1 history
+    sector.json                Legacy canonical v0.1 index
+    systems/.gitkeep           Reserved empty canonical detail directory
 ```
 
-This documentation package adds `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/REPOSITORY_STRUCTURE.md`, `docs/DEVELOPMENT_ROADMAP.md`, and `docs/CONTENT_WORKFLOW.md`; it replaces the original development-only README with a public-facing README. It deliberately does **not** overwrite existing `DATA_RULES.md`, `DATA_MODEL_DRAFT.md`, resolver code, JSON, or tests.
+## Authoring and generated ownership
 
-## Planned additions (create as milestones require)
+`examples/demo_atlas/systems/` owns v1.2 object declarations, permanent IDs,
+history and authored absolute CNU coordinates. Each dedicated connected
+short-range gate opts into `positionMode: "boundary_derived"`. The manual
+generator writes only those position values plus the complete central
+`connections.json`, preserving unrelated system-file bytes. The index is a
+runtime dependency, not a second authoring source. Both outputs remain tracked.
 
-```text
-schemas/                       # JSON Schema and shared schema definitions
-scripts/                       # Validation, local import and publishing
-src/core/                      # Pure engine-independent model/utilities
-src/viewer/                    # Public Three.js map and interaction UI
-src/editor/                    # Local-only editor code (exclude from viewer build)
-src/ui/                        # NEXUS visual components and theme
-public/assets/icons/          # Approved public original icon assets
-public/assets/textures/       # Approved public original texture assets
-.github/workflows/            # Static site build/deployment (when ready)
-```
+The six current wrapper schemas reference the v1.2 master's exact `$id` and
+definitions. The v1.1 master keeps its original distinct identifier for offline
+regressions. There is no standalone frozen v1.0 master; the historically named
+`schema-v1.test.mjs` now exercises the frozen v1.1 relationship contract.
+The authoring wrapper is not the release validator.
 
-Do not create empty scaffolding merely to match this tree. `src/timeline/` remains the real path for the current resolver; relocation requires import/test updates and a separate task.
+The live demo is editable, while frozen test copies preserve earlier
+accepted rejection/date/position scenarios. Identical permanent IDs across
+these separate datasets do not constitute duplicates within one dataset.
+Never deduplicate fixtures or renumber IDs as organization cleanup.
 
-## Ownership and publishing policy
+## Publication surfaces
 
-| Path | Source of truth / role | Publish to GitHub? | Served by public website? |
+| Path | Role | Public Git | Current browser build |
 | --- | --- | --- | --- |
-| `docs/` | Technical public explanations and decisions | Yes, once reviewed | Not necessarily; but *publicly readable in Git* |
-| `examples/` | Noncanonical demonstrations; no unpublished lore | Yes | Ideally excluded from deployed assets |
-| `public/data/` | Approved public records | Yes | Yes |
-| `public/assets/` | Approved original/licensed media | Yes | Yes |
-| `src/`, `scripts/`, `schemas/`, `tests/` | Code, tooling and fixtures | Yes, if no spoilers/secrets | Build-dependent; audit output |
-| `.local-references/`, `private/`, `secrets/` | Local private extractions, unpublished drafts | **Never** | **Never** |
-| Private sibling directory/repository containing RTF lore | Creator's original authority | **Never in public repository** | **Never** |
+| `docs/` | Contracts, workflow, historical references | Public-safe | Excluded |
+| `examples/demo_atlas/` | Noncanonical demonstration | Tracked | Seven exact allowlisted JSON inputs |
+| Other `examples/` | Legacy regression and historical templates | Retained | Excluded |
+| `public/data/` | Canonical legacy v0.1 records | Protected | Excluded (`publicDir: false`) |
+| `src/viewer/`, modern core | Runtime implementation | Tracked | Included as bundled modules |
+| `scripts/`, `schemas/`, `tests/` | Offline tools/validation/regression | Tracked | Excluded from runtime |
+| `dist/` | Generated static demo build | Ignored | Output under `/Velara_Atlas/` |
+| `node_modules/`, `.playwright-mcp/` | Dependencies, local browser artifacts | Ignored | Dependencies bundled as required; screenshots excluded |
+| Private lore/caches/secrets | External or ignored local material | Never | Never |
 
-**Important:** committing a file to a public GitHub repository publishes its contents even if the file is outside `public/` or not included in GitHub Pages. The website and the repository are two distinct disclosure surfaces.
+Committing outside `public/` still discloses content in public Git.
+An ignored folder is not a security control for already tracked history.
+Do not inspect private sibling folders without an explicit task.
 
-## Source lore and local caches
+## Retention and review rules
 
-Keep original RTF worldbuilding files in a **sibling private folder** or separately permissioned private repository. An agent may read them when explicitly allowed; it must not modify them without permission. Generated plain-text/Markdown extracts belong in an ignored local cache (`.local-references/`) or outside the public repo. Ensure `.gitignore` contains ignore entries for the cache and private folders, but remember that already-tracked files and Git history require separate remediation.
+Keep both original `noncanon_*.json` files: `tests/check.mjs` reads them.
+Other standalone examples preserve superseded proposal shapes and are not
+current authoring templates. See [pending candidates](REPOSITORY_AUDIT_3_6.md)
+before proposing movement/deletion; nothing uncertain was moved in this audit.
 
-## Example data retention
+Keep historical reports clearly labeled at their existing paths so existing
+links and provenance remain valid. `SCHEMA_INSTALL.md` is obsolete setup history,
+not an instruction to install old files over today's checkout.
+`DATA_MODEL.md`, current schemas and `NAVIGATION_AUTHORING.md` govern new demo data.
 
-The two original v0.1 fixtures (`examples/noncanon_sector_system.json` and `examples/noncanon_system_detail.json`) are referenced by tests. Keep them where they are until their test references are updated. The additional v0.2 examples are accepted **reference templates**, not complete canon. Do not de-duplicate or rename them as an unrequested cleanup. When schema v1.0 is signed off, decide whether to archive v0.1 fixtures or migrate tests to v1.0 fixtures.
+## Reserved future paths
 
-## Development/checkpoint conventions
+A local editor, final public icon/texture/NEXUS assets and a deployment workflow
+are deferred. `src/editor/`, `public/assets/` and `.github/workflows/` are
+possible future locations; they are not current components. The publication
+design must explicitly exclude editor/private inputs and enable only reviewed
+assets. Do not enable automatic copying from `public/` as a cleanup shortcut.
 
-- Keep the current `npm test` baseline green before and after organization changes.
-- Use versioned documentation/schema migrations rather than silently altering existing records.
-- For major changes, commit a checkpoint with a descriptive message; never include local reference caches or unreleased lore.
-- Mark unresolved decisions as **open**, not as confirmed canon.
-- GitHub Pages configuration, licensing, and project website URL remain pending decisions; don't invent them.
+No canonical migration, file move, commit, push or deployment follows from
+this document. Review changes, run checks and obtain the relevant authorization.

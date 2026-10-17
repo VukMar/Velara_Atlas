@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Visual behavior and asset *policy* approved; exact theme token values remain tuneable during visual QA. This document is a design contract, **not evidence of a completed viewer or updated JSON Schema**.
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained prototype surfaces. Final SVGs, celestial materials, targeting-ring art and curator imagery remain Checkpoint 4 work. Current data support is defined by the v1.2 schema; verification is recorded in [the audit](REPOSITORY_AUDIT_3_6.md).
 
 ## 1. Purpose and source references
 
@@ -19,7 +19,7 @@ Do not use unlicensed screenshots, Freelancer/Discovery game assets, or an exter
 ## 2. Non-negotiable visual principles
 
 1. **Preserve the 3D geography.** Default map: top-down orthographic on X/Z; optional camera-tiltable 3D. NEXUS's circular motifs are *hover/selection overlays*, never a replacement for planets, stations, gate markers, or spatial geometry.
-2. **Black first.** Map space is almost black, with a discreet navigational grid. Sidebars use slightly lighter blue-black surfaces to maintain readability. Bright colors carry meaning; do not fill the screen with bright cyan lines.
+2. **Black first.** Map space is almost black, with a discreet navigational grid. Floating panels and the centered InfoCard use slightly lighter translucent blue-black surfaces. Bright colors carry meaning; do not fill the screen with bright cyan lines.
 3. **Information first.** Objects, connections, labels and timeline remain legible at a glance. Decorative holographic elements cannot block pointer interactions or obstruct InfoCard content.
 4. **Curator, not wallpaper.** NEXUS appears contextually in selected InfoCards, direct archival communications, introductory states, and fallback screens. Her form is not a permanent full-height mascot over the map.
 5. **Institutional geometry plus delicate wireframe.** Radial technical forms and 1px-like outlines reference the MCR insignia; restrained triangular mesh details reference NEXUS's visual form.
@@ -94,7 +94,12 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 > floating panels and vertical History around a square chart. The approved palette,
 > readability, geography and deferred artwork requirements continue to apply.
 
-The approved right-hand InfoCard remains persistent and collapsible; the left-hand catalogue and bottom timeline remain as specified in Milestone 3.
+Selection opens a centered dismissible InfoCard; no card appears before selection.
+Its top-right close control and Escape clear selection, return focus appropriately
+and preserve the camera. Catalogue, controls, layers and vertical History are
+compact floating panels. The header retains location/year. Panels never reserve
+columns or move/resize the square chart. This replaces the original right-hand
+card and bottom timeline layout while preserving all historical content/actions.
 
 ### Ordinary InfoCard
 
@@ -119,14 +124,14 @@ The approved right-hand InfoCard remains persistent and collapsible; the left-ha
 
 ## 8. Default visual asset set and fallback behavior
 
-See `docs/VISUAL_ASSET_POLICY.md` for the authoritative initial category matrix, public asset paths, visual registry contract, null/unknown handling, and staged schema changes. Core rules:
+See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, proposed asset paths, future visual registry and current schema support. Nullable icons and optional variants are already schema-valid; final asset rendering is deferred. Core rules:
 
 - **Star / planet / moon / planetoid / asteroid:** top-down navigational icons; perspective procedural celestial geometry. Planet variants: rocky, gas, water; add a neutral *unknown* default that does not fabricate canon.
 - **Stations:** `regular`, `shipyard` defaults. Top-down icon, perspective billboard initially.
-- **Short-range gate:** one default icon/marker; may have multiple local links.
+- **Short-range gate:** one default icon/marker; at most one fixed lifetime link in v1.2. An anchor can have multiple links through separate physical gate pairs.
 - **Interstellar Jump Gate:** one default; each physical gate pairs with exactly **one** corresponding interstellar gate.
-- **Jump Hole:** one default; follows the paired endpoint rule in the current v1.0 transport network.
-- An `icon` that is `null` or absent should resolve from object kind + declared visual variant. A missing custom file must fall back to safe default asset, then to an internal generic symbol; never produce a broken-image placeholder.
+- **Jump Hole:** one default; follows v1.2 exclusive lifetime pairing.
+- A schema-valid `icon: null` requests object-kind/variant fallback. Current object schemas require the `icon` key; defensive missing-value handling is not permission to omit required fields. Future custom-file rendering must fall back safely on load failure; the current prototype uses temporary geometric markers.
 - Icon customization must not grant additional navigational behavior. The relationship/connection JSON remains authoritative.
 
 ## 9. Interaction feedback and accessible operation
@@ -139,8 +144,9 @@ See `docs/VISUAL_ASSET_POLICY.md` for the authoritative initial category matrix,
 
 ## 10. Responsive layout
 
-**Desktop:** top bar, collapsible left catalogue, dominant center map, collapsible right InfoCard, always-accessible bottom historical timeline.  
-**Narrow/mobile:** map stays primary; side panels become drawers; InfoCard portrait becomes smaller or disappears; timeline remains operable via compact slider/year input and may expand as a controlled drawer/strip. Don't permanently shrink the navigable map to accommodate both sidebars.
+**Desktop:** compact header and centered square chart; floating Catalogue, Map controls, Map layers and vertical History. The selected year stays visible when History is closed. Record selection opens a centered dismissible InfoCard. The system chart has restrained A–H/1–8 world-space labels and an H8 CNU cell-width annotation.
+
+**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible and reduce/hide any future portrait before reducing text readability. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
 
 ## 11. Implementation order and acceptance criteria
 
@@ -160,7 +166,7 @@ See `docs/VISUAL_ASSET_POLICY.md` for the authoritative initial category matrix,
 - `icon: null` falls back predictably; missing custom asset causes no broken-image element.
 - Hover reticle tracks selected marker during camera pan, zoom and tilt; its size remains readable in CSS pixels.
 - An unclassified planet uses a neutral rendering, not an invented rocky/water/gas subtype.
-- Jump Gate/Jump Hole icon type does not alter the one-partner relationship constraint; short-range branching works.
+- Styling does not alter v1.2 lifetime exclusivity for any gate/hole. Multiple local relationships use distinct physical gate pairs; frozen v1.1 branching tests are separate historical coverage.
 - MCR insignia and supplied NEXUS portrait render without deformation or illegible cropping; no assumed side portrait.
 - On a narrow screen, text remains readable and the portrait cannot obscure InfoCard contents.
 - Fallback screen differs from fetch/data errors; historical names and years remain correct.

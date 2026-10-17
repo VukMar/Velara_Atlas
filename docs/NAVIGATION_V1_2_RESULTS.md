@@ -1,5 +1,12 @@
 # v1.2 navigation implementation results
 
+> **Historical implementation report.** Counts, camera framing, browser-suite
+> behavior and test totals below describe the original `4ff0ecb` implementation,
+> not today's author-editable demo or Checkpoint 3.6 layout. Retained for migration,
+> generation/recovery and disclosure evidence. Use
+> [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for current procedure and
+> [REPOSITORY_AUDIT_3_6.md](REPOSITORY_AUDIT_3_6.md) for current verification.
+
 The accepted Checkpoint 3 baseline was commit `32f43d6`. Before edits, the only
 untracked file was the supplied approved specification. No commits, pushes,
 merges or deployments were performed. All new fictional data is NONCANONICAL.

@@ -1,5 +1,14 @@
 # Schema v1.0 installation into Velara_Atlas
 
+> **Historical procedure — superseded.** Retained at its original path pending
+> creator review; do not execute these package-install/overwrite instructions on
+> the current checkout. Current setup is [README.md](../README.md), structure is
+> [DATA_MODEL.md](DATA_MODEL.md), and v1.2 authoring is
+> [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md). Ajv, wrappers and modern tests
+> are already installed/integrated. The original instructions below record the
+> v1.0 integration stage only. Proposed archival movement is listed in
+> [the audit](REPOSITORY_AUDIT_3_6.md).
+
 **Do not extract the package over `public/data/`, `src/timeline/resolve.mjs`, `package.json`, `README.md`, or `AGENTS.md`.** The package was deliberately created without replacements for those files.
 
 ## Add these directories/files to the existing repository

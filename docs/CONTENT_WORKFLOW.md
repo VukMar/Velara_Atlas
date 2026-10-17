@@ -1,6 +1,6 @@
 # Velara Atlas — Source lore, JSON and public release workflow
 
-**Status:** Proposed safe content pipeline. No automated publisher has been implemented yet.
+**Status:** Manual canonical extraction/release safeguards; no automated canonical publisher exists. Demo-only v1.2 generation/validation and the local read-only viewer are implemented. This workflow does not authorize reading private lore or migrating canonical records without a specific task.
 
 ## Principle: three states, two timelines
 
@@ -26,7 +26,11 @@ Every record may involve (1) **in-universe historical timing** and (2) **real-wo
 7. **Generate/review public JSON**, validate it, run tests, inspect rendered results, and review the Git diff before commit/push.
 8. **Publish:** only the reviewed data and assets are committed to the public repository and built/deployed as a static site.
 
-At the foundation stage, steps 5–8 can be manual. A publishing tool is planned later; **do not imply it exists today**.
+Canonical steps 5–8 remain manual and separately approved. For already public-safe
+noncanonical demo JSON, use [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md): edit
+system declarations, manually generate connections, check freshness, test/build and
+review. That offline generator is not a private-lore publisher and must not be
+redirected to canonical data as part of this workflow.
 
 ## Extraction standards
 
@@ -43,12 +47,12 @@ At the foundation stage, steps 5–8 can be manual. A publishing tool is planned
 - [ ] New entries use permanent IDs and valid foreign-key references.
 - [ ] Selected year changes only historically appropriate values; null/unknown discovery dates are handled explicitly.
 - [ ] All included content is approved for public release (including examples, docs, code comments, test fixtures, build assets).
-- [ ] JSON is valid; schema/relationship validation runs when implemented.
+- [ ] JSON syntax, current versioned schema and relationships validate; demo `npm run validate` includes read-only connection/gate-position freshness. Canonical legacy data keeps its separate tests until approved migration.
 - [ ] `npm test` passes and significant output has been reviewed.
 - [ ] NEXUS fallback works for indexed systems with no published details.
 - [ ] Previewed pages contain no concealed plot spoilers in visible UI, source JSON, HTML, browser bundles, or network requests.
 - [ ] `git status` and `git diff --staged` show only intentional changes; no private source files or local reference caches.
-- [ ] Build `dist/` (when available) has been inspected for inadvertent confidential files and assets.
+- [ ] Demo `npm run build` and its input/output audit pass; inspect `dist/` for disclosure and URL errors. Future canonical publication needs its own reviewed release allowlist.
 
 ## If private lore was accidentally committed
 

@@ -1,5 +1,11 @@
 # Checkpoint 3.6 — Implementation and verification
 
+> **Retained implementation report for `7d9231c`.** The additional documentation
+> synchronization audit starts from that accepted layout commit. Its inventory,
+> recommendations and freshly rerun checks are in
+> [REPOSITORY_AUDIT_3_6.md](REPOSITORY_AUDIT_3_6.md). Original evidence below is
+> retained rather than rewritten as current results.
+
 Implemented in the current local checkout, starting from clean commit `f6cad21`.
 No commit, push, merge or deployment was performed. The [layout revision](LAYOUT_REVISION_3_6.md)
 explicitly supersedes the older permanent sidebar/bottom timeline requirements.

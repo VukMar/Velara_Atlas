@@ -4,21 +4,26 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The target is a **public, read-only GitHub Pages viewer**. Checkpoint 3 is committed; the local Three.js demo and v1.2 navigation authoring are noncanonical. Checkpoint 3.6 authorizes layout and interaction refinement; Checkpoint 4 visual polish, deployment, canonical migration and the deferred editor are not authorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements Checkpoints 1–3, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The target host is GitHub Pages; no deployment is implemented. The current extension authorizes a controlled repository audit and documentation synchronization. Checkpoint 4 artwork/polish, canonical migration and the deferred editor remain unauthorized.
 
 ## Read first
 
 1. `README.md` — public project status and run commands.
-2. `docs/ARCHITECTURE.md` — planned runtime components and security boundary.
+2. `docs/ARCHITECTURE.md` — implemented module responsibilities, future components and security boundary.
 3. `docs/REPOSITORY_STRUCTURE.md` — file ownership and publication rules.
 4. `docs/DATA_RULES.md` — existing chronology, identity, and disclosure rules.
 5. `docs/DATA_MODEL.md`, `docs/SCHEMA_V1_2_NAVIGATION.md`, `docs/NAVIGATION_AUTHORING.md` and `schemas/atlas.schema.json` — v1.2 noncanonical contract and authoring workflow. Frozen v1.1 regression fixtures/schema remain separate.
 6. `docs/DEVELOPMENT_ROADMAP.md` and `docs/CONTENT_WORKFLOW.md` — milestones and safe extraction/release process.
-7. `docs/VIEWER_SPECIFICATION.md` — Approved Milestone 3 requirements for the public atlas viewer, including navigation, historical timeline, rendering, search, overlays, and NEXUS archival behavior.
+7. `docs/VIEWER_SPECIFICATION.md` — viewer behavior, incorporating Checkpoint 3.6 square framing, floating panels, vertical History, centered dismissible InfoCards and hover-driven routes; `docs/LAYOUT_REVISION_3_6.md` explains this revision.
 8. `docs/CANTUM_TERRITORY_RENDERING.md` — Approved rules for procedurally generated Cantum influence overlays, historical filtering, metaball blending, visual layering and rendering performance.
 9. `docs/NEXUS_VISUAL_IDENTITY.md` — Approved Milestone 5: visual design, palette, targeting and NEXUS presentation.
 10. `docs/VISUAL_ASSET_POLICY.md` — Approved visual asset fallback rules.
 11. `docs/LEGACY_MIGRATION_PLAN.md` — Required approval before migrating public canonical records.
+
+Use `docs/NAVIGATION_AUTHORING.md` for manual generation/recovery and README for
+commands. `docs/HISTORICAL_RESOLVER.md` documents the pure API. Implementation
+reports record evidence at a checkpoint; they do not override current contracts.
+See `docs/REPOSITORY_AUDIT_3_6.md` for retained historical files and review candidates.
 
 If a file is absent in the actual checkout, report that and work with available material instead of inventing its contents.
 
@@ -50,13 +55,13 @@ If a file is absent in the actual checkout, report that and work with available 
 
 The founding civilization is Drevnasel; the Visshum name, Drevnasel as the founding/capital Cantum, and unified name The Continuance emerge around the draft 360 A.E. display boundary. Cantums were initially **administrative divisions of a centralized republic, not federal sovereign states**. The 1200 A.E. atlas snapshot shows six sovereign Cantums, with Rekdolin a historic region within Okeanberg. Existing `datePrecision` notes qualify these boundaries; **never claim they are precise legal event dates**. Consult `public/data/political.json` and `docs/DATA_RULES.md` for specifics and known uncertainties.
 
-The public-facing NEXUS aesthetic and narrative are part of the project identity; detailed visuals **have been approved** but not implemented. Never use proprietary Freelancer/Discovery artwork as atlas assets without appropriate permission.
+The NEXUS visual identity is approved; the prototype uses restrained surfaces and temporary markers. Final icons, materials, targeting rings and curator imagery remain Checkpoint 4 work. Never use proprietary Freelancer/Discovery artwork without appropriate permission.
 
 ## Current scope correction
 
-Checkpoint 3.6 authorizes layout and interaction refinement of the noncanonical
-viewer. Follow `docs/LAYOUT_REVISION_3_6.md` where it supersedes earlier permanent
-sidebars, bottom timeline and selection-driven route highlighting. Stop for review
-after this task; Checkpoint 4 remains unauthorized.
+Checkpoint 3.6's implemented layout supersedes permanent sidebars, bottom timeline
+and selection-driven route highlighting. Its approved audit extension permits
+documentation cleanup, but uncertain file deletions/moves remain proposals for
+creator review. Preserve schemas, fixtures, generators, IDs and historical behavior.
 
 Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 3.6; do not start Checkpoint 4 without explicit approval.

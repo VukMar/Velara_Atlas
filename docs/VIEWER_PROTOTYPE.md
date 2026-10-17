@@ -1,15 +1,16 @@
-# Milestone 6 — Checkpoint 3 historical viewer
+# Milestone 6 — Viewer implementation through Checkpoint 3.6
 
 The local app is a **read-only, noncanonical demonstration** using only
-`examples/demo_atlas/`. Checkpoint 3 is secured in commit `32f43d6`; v1.2 adds
-only navigation authoring, generation and the third-system fixture. No canonical migration,
+`examples/demo_atlas/`. Checkpoint 3 is secured in `32f43d6`, navigation v1.2 in
+`4ff0ecb`, and the Checkpoint 3.6 layout in `7d9231c`. No canonical migration,
 publication, editor, final icon library, portrait or polished NEXUS art is implied.
 
 > **Current layout: Checkpoint 3.6.** [The explicit layout revision](LAYOUT_REVISION_3_6.md)
-> supersedes the sidebars/bottom timeline and selection-driven route highlighting
-> described in the accepted Checkpoint 3 baseline below. Full-map square framing,
+> supersedes the original sidebars/bottom timeline and selection-driven route highlighting.
+> The implementation notes below have been synchronized. Full-map square framing,
 > floating overlays and centered InfoCards are now implemented; [current evidence](CHECKPOINT_3_6_RESULTS.md)
-> records checks and limitations. Historical resolution, cartography and data remain unchanged.
+> records its original checks and limitations. [The repository audit](REPOSITORY_AUDIT_3_6.md)
+> records the current rerun. Historical resolution, cartography and data remain unchanged.
 
 ## Run and verify
 
@@ -18,6 +19,7 @@ npm ci
 npm run dev
 npm test
 npm run validate
+npm run connections:check
 npm run demo
 npm run build
 npm run preview
@@ -52,9 +54,13 @@ No dependency was added in Checkpoint 3.
   `confirmed_by` and other qualifications never become invented exact events.
   The continuous slider still resolves every supported year, including changes
   omitted from record jumps.
-- The left catalogue and right record panel collapse on desktop and act as
-  overlays/drawers on narrow screens. The timeline remains available at the
-  bottom. The Selection menu remains a compact keyboard alternative to markers.
+- Catalogue, controls, layers and vertical History are closed-by-default floating
+  panels. The header retains the selected year. Selection opens a centered
+  dismissible InfoCard; closing it clears selection and returns focus without
+  resetting the camera. The Selection menu is a keyboard alternative to markers.
+- The chart is centered and square in both modes. Top-down Reset fits the complete
+  X/Z extent; pan/cursor zoom/focus remain bounded and zoom cannot go below that
+  full-map fit. System grids are world-space 8×8 A–H/1–8 with cell width in H8.
 
 ## Phase B — Routes and perspective
 
@@ -70,7 +76,9 @@ local strokes use gate XYZ positions in **CNU**. Gate links are solid, Jump Hole
 dashed. Multiple links for the same system pair use separate offset curves and
 selection anchors, preserving their exact authored endpoints. One-way links get
 directional arrows. Missing sector placement yields no fabricated stroke.
-Selecting a local gate highlights its active link and paired gate.
+Hover/focus a gate or stroke to temporarily highlight eligible routes; exit/blur
+restores styling. Selecting a record retains independent object targeting and
+opens the InfoCard, without persistent route/partner highlighting.
 
 Archival endpoint references permitted by public validation are retained with
 their explicit unverified-detail flag. No unpublished endpoint object is created
@@ -97,7 +105,7 @@ year remains 160 A.E. Synthetic tests retain coverage for sector-level zones.
 Polygon footprints use local X/Z vertices and min/max Y bounds. Subdued particles
 use a deterministic ID-derived seed, rejection-sampled inside those bounds; they
 never define or enlarge geography. Focus selection makes the tiny local demo
-zones inspectable. Zones follow discovery/known-by dates; v1.1 has no zone-expiry
+zones inspectable. Zones follow discovery/known-by dates; v1.1/v1.2 has no zone-expiry
 field, so no expiry is invented.
 
 Sector political influence follows historically eligible, positioned systems'
@@ -147,16 +155,22 @@ unplaced/fallback/partial/empty states, route timing/direction/expiry, separate
 strokes, Cantum membership transfer, unknown placement, exact-record filtering,
 influence merging/islands/caps, cached fields, seeded zone bounds and nonmutation.
 
-The reusable **Playwright MCP** suite is `tests/browser-checkpoint3.mjs`. With
-the dev server running, invoke `browser_run_code_unsafe` with that file's absolute
-path as `filename`; it takes the connected page and needs no extra npm package.
-It covers chronological search, historical record updates, invalid selection,
-exclusive local pairing and explicit destination navigation, 2D/3D controls, zone focus, layer
-toggles and narrow layouts. Synthetic network responses exercise fallback,
-unplaced, partial and failed-load states without changing fixtures. Expected
-errors from the deliberately aborted request are followed by a clean reload.
+The reusable **Playwright MCP** files take the connected page as their entry
+point: pass an absolute `filename` to `browser_run_code_unsafe`; no extra npm
+package is needed. `tests/browser-checkpoint3.mjs` covers chronology and synthetic
+unplaced/fallback/partial/error+retry/invalid-square states on dev.
+`tests/browser-navigation-v1_2.mjs` checks live-demo objects and destinations on
+dev. `tests/browser-layout3_6.mjs` verifies overlays, grid, bounds, focus and narrow
+2D/3D behavior on dev or preview; `tests/browser-touch3_6.mjs` separately reports
+emulated-touch results, including its failed post-gesture tap. Deliberate error
+tests return to a clean page. See [current results](REPOSITORY_AUDIT_3_6.md).
 
-A 20-step local browser scrub measured roughly **65–79 ms** per automation
+`tests/browser-documentation3_6.mjs` checks the documented panel/record review
+workflow across all three systems and observes same-origin GET-only requests,
+with no canonical/private-source fetch. It supports dev and production preview;
+this targeted observation complements rather than replaces the build audit.
+
+A historical Checkpoint 3 20-step browser scrub measured roughly **65–79 ms** per automation
 round trip, with bounded label counts. This is a small-demo observation, not a
 large-dataset frame-rate guarantee. Normal fresh-page navigation has zero console
 errors/warnings. The production build remains compatible with `/Velara_Atlas/`;
@@ -166,10 +180,15 @@ Actual touch/pinch hardware, comprehensive accessibility/contrast audits,
 cross-browser coverage and large-dataset GPU/CPU budgets remain unverified.
 Narrowing a desktop viewport preserves its camera scale; Reset view recovers
 framing if needed. Final materials/icons, targeting rings, NEXUS portraits and
-visual polish are Checkpoint 4 work. Only the approved demonstration nebula's
-placement changed in fixture JSON. No canonical JSON, schema, legacy
-resolver, private source or deployment configuration was changed.
+visual polish are Checkpoint 4 work. Checkpoint 3.6 layout and documentation work
+does not change authored demo data, canonical JSON, schemas, generators, either
+historical resolver, Cantum calculations or nebula placement.
 
 ## v1.2 compatibility update
 
-The loader adds `sys_0003`; graph generation/validation remains offline. No rendering, history, cartography, InfoCard or camera code changed. `npm run connections:check` guards validation/dev/build, including direct Vite builds. The two Cantum colors and three-system navigation use existing rendering. See [workflow and compatibility details](NAVIGATION_AUTHORING.md) and [current verification results](NAVIGATION_V1_2_RESULTS.md). Earlier Checkpoint 3 evidence above describes its accepted two-system baseline.
+The v1.2 implementation added `sys_0003` and offline graph/position generation;
+it reused the existing historical/cartographic behavior. Checkpoint 3.6 later
+refined camera/layout/interaction. `npm run connections:check` guards validation,
+dev and build, including direct Vite builds. See [authoring details](NAVIGATION_AUTHORING.md),
+the [historical navigation report](NAVIGATION_V1_2_RESULTS.md) and
+[current repository audit](REPOSITORY_AUDIT_3_6.md).

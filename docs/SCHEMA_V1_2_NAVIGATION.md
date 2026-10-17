@@ -1,9 +1,19 @@
 # Velara Atlas — Schema v1.2 Navigation Authoring & Generation Specification
 
-**Status:** CREATOR-APPROVED DESIGN SPECIFICATION — implementation pending; no canonical migration authorized.  
+**Status:** CREATOR-APPROVED DESIGN SPECIFICATION — implemented for the noncanonical demonstration; no canonical migration authorized.
 **Scope:** Object-authored connections, exclusive gate pairing, navigational-boundary placement written back into approved system JSON, standalone offline registry generation, and a second noncanonical demonstration Cantum.  
 **Basis:** Existing Velara Atlas v1.1 data contract, Checkpoint 3 historical viewer and connector audit, and creator-approved direction in the October 2026 design discussion.  
 **Implementation boundary:** This design approval is not a blanket authorization to modify the repository. Obtain a focused Codex implementation handoff. Do not change canonical `public/data/`, the legacy resolver, or private lore. Confirm the local workspace has an accepted, committed Checkpoint 3 baseline before implementation.
+
+**Current implementation note:** The focused handoff was completed in `4ff0ecb`.
+The exact names `navigation`, `localLinks`, `interstellarConnection` and
+`positionMode` are implemented by current v1.2 definitions and offline tools.
+Use [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for commands, six-decimal
+rounding, allowlists and recovery; [the original results](NAVIGATION_V1_2_RESULTS.md)
+retain acceptance evidence. Design examples and the original implementation
+sequence below are preserved as approved history, not a pending migration task
+or a current live-demo inventory. [The current audit](REPOSITORY_AUDIT_3_6.md)
+records subsequent layout/tests. No Checkpoint 4 or canonical authorization follows.
 
 ## 1. Purpose
 

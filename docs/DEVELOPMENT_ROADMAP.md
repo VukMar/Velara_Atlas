@@ -1,29 +1,60 @@
-# Velara Atlas — Approved milestone roadmap
+# Velara Atlas — Development roadmap
 
-Status: updated October 2026. Approved specifications are not implemented runtime features.
+**Status:** Checkpoints 1–3, v1.2 navigation and Checkpoint 3.6 layout are
+implemented in the local noncanonical demo. The current extension synchronizes
+documentation and audits retention. Implementation and browser limits are
+recorded in [the repository audit](REPOSITORY_AUDIT_3_6.md).
 
-## Completed planning and foundations
+## Approved foundations and design
 
-1. Repository foundation: documented security boundaries and legacy timeline tests.
-2. JSON contract: v1.0, updated to v1.1 for nullable icons, visual variants, zones, known-by dates and separate visual settings. Demo data is noncanonical.
-3. Viewer design: 2D top-down and optional true 3D, chronological navigation, gate routes, Cantum influence metaballs, InfoCards and fallback.
-4. Local visual editor: DEFERRED; use validated JSON and possible read-only debug mode.
-5. NEXUS visual identity: approved hybrid visuals, default asset policy, contextual targeting rings, selective portraits.
+Milestones 1–5 established repository/disclosure rules, the structural data model,
+the viewer specification, Cantum rendering, NEXUS identity and asset policy.
+Schema v1.0 evolved through v1.1 to the current **v1.2 noncanonical contract**.
+The local visual editor was deferred. Design approval does not authorize all
+future implementation or canonical content migration.
 
-## Current pre-implementation consolidation
+## Milestone 6 implementation progression
 
-Synchronize docs, validators, tests and v1.1 noncanonical fixtures; preserve public v0.1 canonical records until an approved identity/history migration.
+| Stage | Implemented outcome / present status |
+| --- | --- |
+| Checkpoint 1 | Pure modern historical resolver and regression tests, separate from legacy v0.1 |
+| Checkpoint 2 | Local Vite/Three.js read-only sector/system prototype, selection and navigation |
+| Checkpoint 3 | Continuous chronology, catalogue/search, historical InfoCards/fallbacks, local/interstellar routes, real XYZ perspective, three zone geometries and Cantum influence |
+| Pre-Checkpoint-4 navigation v1.2 | Object-authored links, exclusive lifetime gate pairs, boundary-derived local gate positions, manual offline generator, read-only freshness, three systems/two Cantums and safety tests |
+| Checkpoint 3.6 | Centered square charts, full-map bounded 2D framing, A–H/1–8 system grid and H8 measurement, vertical History, floating panels, centered dismissible InfoCards and hover-driven routes |
+| Checkpoint 3.6 audit extension | Repository inventory, documentation authority/status synchronization and retention proposals; no uncertain deletion/move |
+| Checkpoint 4 | **Not started / requires explicit approval:** visual implementation described below |
+| Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
-## Next: Milestone 6, Codex implementation handoff
+Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
+`4ff0ecb`. The current audit is uncommitted work for review. Passing checks does
+not settle the documented post-gesture touch issue, physical-device testing,
+full accessibility/cross-browser QA or large-dataset performance.
 
-With the creator's approval, implement in reviewable checkpoints: historical resolver/migration; Vite and Three.js viewer; timeline/routes/zones/territory overlays; NEXUS styling/assets; audited GitHub Pages publication.
+## Upcoming Checkpoint 4 — visual implementation
 
-Never invent canon, copy noncanonical fixtures into public data, publish private RTF lore or start the deferred editor without explicit approval.
+After a new instruction, implement original default SVG registry/fallbacks,
+procedural celestial materials and approved size hierarchy, camera-facing
+navigation markers, contextual targeting rings, accessible NEXUS styling and
+responsive polish. Preserve square framing and overlay/InfoCard behavior.
+Use supplied approved curator assets only when available; the intended
+side-profile portrait is still absent. Do not invent or substitute it.
 
-## Milestone 6 implementation status
+This roadmap is not authorization to create assets now. Follow
+[NEXUS identity](NEXUS_VISUAL_IDENTITY.md) and [asset policy](VISUAL_ASSET_POLICY.md).
 
-Checkpoints 1–2 are creator-approved. Checkpoint 3 implements historical navigation/search, dated routes, true XYZ perspective, spatial zones and Cantum influence, with automated and browser checks; it awaits creator review. Checkpoint 4 visual polish and Checkpoint 5 publication are not started. Canonical migration remains a separately approved workstream. See VIEWER_PROTOTYPE.md for current commands, contracts and limitations.
+## Subsequent publication and separate workstreams
 
-## Pre-Checkpoint-4 v1.2 navigation
+Checkpoint 5 covers static build/deployment review, repository-subpath URLs,
+runtime/fallback behavior, disclosure audit, accessibility and performance.
+GitHub Pages is a target host, not an active deployment.
 
-The secured Checkpoint 3 baseline is extended by the approved noncanonical navigation task. System-object declarations are the authoring source of truth; manually generated, Git-tracked `connections.json` is the runtime index. `npm run connections` also updates only explicitly boundary-derived short-range gate positions; `connections:check` makes stale artifacts fail validation/build without repair. Frozen v1.1 regressions preserve older behavior. The demo has three systems and two Cantums. See [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md). No canonical migration, editor, deployment or Checkpoint 4 visual work is included.
+Canonical v0.1 → v1.2 migration remains a **separate creator-approved workstream**
+requiring an explicit permanent-ID crosswalk and historical review. Never promote
+demo systems, coordinates, routes or statistics to canon. See
+[migration safeguards](LEGACY_MIGRATION_PLAN.md).
+
+A general publication pipeline, larger dataset loader, moon-relative coordinates,
+orbital simulation, exact legal boundaries and the local editor remain outside
+the current task. Preserve the existing authoring/recovery workflow and ID Finder.
+Stop after Checkpoint 3.6 synchronization; no automatic commit/push/merge/deploy.

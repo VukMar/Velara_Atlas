@@ -1,5 +1,12 @@
 # Velara Atlas — InfoCard & entity data model (proposal v0.2)
 
+> **Historical proposal — superseded for structure.** Retained for the origin of
+> InfoCard/null/identity decisions and the standalone `examples/` reference files.
+> Use [DATA_MODEL.md](DATA_MODEL.md), current schemas and
+> [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for new v1.2 records. Draft IDs,
+> fields and setup advice below are not current authoring instructions and do not
+> authorize canonical migration. No file was moved or deleted in this audit.
+
 **Status: REVIEW DRAFT — not an approved canon or drop-in replacement for the v0.1 engine.** Everything named `demo_` and any station statistics or locations in the examples are **noncanon**. The two Cantum examples reproduce the existing v0.1 chronology; 320/360/900/1200 boundaries retain their existing approximate/snapshot qualifications.
 
 ## 1. Entities and ownership

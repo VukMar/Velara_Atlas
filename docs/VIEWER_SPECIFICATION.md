@@ -1,14 +1,14 @@
 # Velara Atlas — Viewer Specification
 
 **Document status:** Approved Milestone 3 functional specification  
-**Version:** 1.1 (viewer requirements; **not** JSON Schema v1.0)  
+**Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2 and Checkpoint 3.6 layout (separate from the JSON Schema version)
 **Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  
 **Audience:** Project owner, Codex, and future contributors  
-**Implementation status:** Specification only. The Three.js viewer is **not implemented** by this document.
+**Implementation status:** Local noncanonical viewer implemented through Checkpoint 3.6. Final visual assets, deployment and canonical migration remain separate. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
 
 > **Checkpoint 3.6 layout revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
-> supersedes the persistent bottom timeline, permanent side columns/right InfoCard,
-> and selection-driven route highlighting below. The prototype uses a centered
+> supersedes the former persistent bottom timeline, permanent side columns/right InfoCard,
+> and selection-driven route highlighting. The sections below now use a centered
 > square chart, floating panels, vertical History and a dismissible centered
 > InfoCard. Schema v1.2 separately supersedes old local-gate branching examples.
 
@@ -33,16 +33,16 @@ The viewer must remain **data-driven**: adding another supported object, system,
 
 Use the repository's existing source of truth, in this priority for matters of scope:
 
-1. `docs/DATA_MODEL.md` and `schemas/` — approved **JSON Schema v1.0.0** structure and types.
+1. `docs/DATA_MODEL.md` and `schemas/atlas.schema.json` — current **v1.2.0** noncanonical structure; `docs/SCHEMA_V1_2_NAVIGATION.md` owns approved navigation design and `docs/NAVIGATION_AUTHORING.md` its operational workflow.
 2. `docs/DATA_RULES.md` — existing Continuance chronology and date caveats.
 3. `docs/ARCHITECTURE.md` and `docs/CONTENT_WORKFLOW.md` — viewer/publication boundaries.
 4. `examples/demo_atlas/` — **noncanonical** test fixture (not official sector geography).
 5. `AGENTS.md` — agent workflow and canon guardrails.
 6. `docs/CANTUM_TERRITORY_RENDERING.md` — approved algorithm and render-order rules for the generated Cantum overlay (companion to this viewer specification).
 
-The v0.1 `src/timeline/resolve.mjs` and old `public/data/*.json` are **not yet migrated** to the v1.0.0 schema. Implementing this specification requires planned adapter/migration work and regression tests; do not silently overwrite legacy canon or treat passing old tests as proof of new-feature support.
+The v0.1 `src/timeline/resolve.mjs` and `public/data/*.json` are **not migrated**. The viewer reuses the separate `src/core/history.mjs` for v1.1/v1.2 records; it does not adapt or overwrite canonical legacy data. Frozen regressions preserve older contracts.
 
-**Planned schema additions are called out in §14.** They are approved *viewer behavior* but not yet encoded by JSON Schema v1.0.0. Implement those as a versioned schema update, not as undocumented ad hoc JSON properties.
+**Implemented compatibility and remaining work are distinguished in §14.** Do not introduce undocumented JSON properties or change historical semantics as a presentation adjustment.
 
 ## 3. Spatial conventions and map hierarchy
 
@@ -68,10 +68,10 @@ A null `positionLY` in the sector registry denotes an unplaced system: include i
 ### Default camera — approved
 
 - On both map levels, open in **orthographic top-down X/Z navigation** (camera viewing along the Y axis).
-- Default framing fits the **positioned, historically eligible, publicly released** content, respecting declared map bounds and sensible padding. When no markers are eligible, fit the declared map bounds and show an informative empty view.
-- **Wheel / trackpad:** zoom about the pointer when practical; clamp to useful limits. **Left drag on empty map:** pan. A click should not be mistaken for a pan.
+- Both camera modes use a centered **square viewport** independent of panel visibility. In 2D, fit the **complete declared square X/Z chart**, with identical horizontal/vertical world scale, even when no markers are eligible. Report invalid unequal X/Z extents instead of silently rescaling authored data.
+- **Wheel / trackpad:** zoom about the pointer. Minimum 2D zoom is the full-map fitted state; prevent further zoom-out. Clamp pan, focus and zoom-to-cursor so the visible chart stays within declared boundaries. **Left drag on empty map:** pan; distinguish a click from a drag.
 - **Top / 3D toggle:** switch to an orbitable, tilted **perspective** view showing actual Y elevation. Preserve the current map, selected object, date, and data. Switching back restores a comprehensible orthographic chart.
-- **Reset View:** frame the current map again; **Focus Selection** may center on a selected positioned object. Camera state changes never write to JSON.
+- **Reset View:** restore full-map framing; **Focus Selection** may center/zoom on a positioned object within 2D bounds and closes the InfoCard for inspection. Preserve perspective controls and per-map camera state, including the preceding top-down view. Camera changes never write to JSON.
 - 3D orbit/tilt is available only in perspective mode. Provide usable mouse and touch controls, clear affordances, and camera limits that avoid getting lost inside the scene.
 - Map bounds come from JSON. The viewer should not falsely clamp data by assuming every authoring map is exactly the same size; emit validation errors for positions genuinely outside declared bounds.
 - 2D labels/selection targets remain legible; handle markers with identical X/Z but different Y without losing access to the underlying entities (e.g., selection list or disambiguation when projected icons overlap).
@@ -84,12 +84,25 @@ A null `positionLY` in the sector registry denotes an unplaced system: include i
 | Both | Single-click / tap object | Select it and update the NEXUS InfoCard |
 | **Sector** | Double-click star system, or use **Enter System** | Open its public system detail, or the NEXUS archival fallback if known but unreleased |
 | **System** | Double-click positioned object, or **Focus** | Center/zoom toward that object; does not change system |
-| System | Select short-range gate | Highlight its eligible local links and linked gate markers |
+| System | Hover/focus short-range gate or connection stroke | Temporarily highlight eligible corresponding links; restore normal styling on exit/blur |
 | System | Select Jump Gate / Jump Hole | Display paired destination system and **View Destination System** action when available |
 | Both | Click empty space / Escape | Deselect or dismiss the current noncritical overlay |
 | Both | Return to Sector / breadcrumb | Change navigation level **without resetting the selected A.E. year** |
 
 Following an interstellar destination must be an **explicit user action**, not an automatic teleport on selecting the gate.
+
+Selection opens a centered dismissible InfoCard and retains selected-object
+targeting independently of route hover. A selected record alone must not keep
+routes or partner markers highlighted. Keyboard focus supplies equivalent route
+feedback; touch selection exposes the same record/actions without requiring hover.
+
+### System chart grid
+
+Use eight equal columns **A–H** left to right (−X to +X) and eight equal rows
+**1–8** top to bottom (−Z to +Z). Borders, grid lines and projected annotations
+are anchored in world space. H8 displays one cell's navigational width,
+`map.size.x / 8`; a 100,000-CNU map shows **12.5K CNU**. This is not a physical
+body dimension. Sector View does not inherit system-grid labels.
 
 ## 5. Object rendering: icons and optional 3D
 
@@ -98,11 +111,11 @@ The approved approach is **hybrid**:
 | Data-driven object | Top-down (primary) | Optional 3D representation |
 |---|---|---|
 | Star | Distinct star icon | Simple glowing sphere |
-| Planet | Planet icon | Simple sphere; optional authored texture later |
+| Planet | Planet icon | Procedural sphere by approved variant; neutral unknown when unspecified |
 | Moon / planetoid / asteroid | Differentiated celestial icon | Simplified small geometry |
-| Station | Class-specific symbol | Marker or simple structure; model later |
-| Short-range gate | Local gate icon | Simple gate structure |
-| Interstellar Jump Gate | Distinct jump icon | Recognizable spatial gate structure |
+| Station | Class-specific symbol | Camera-facing navigational marker initially; detailed models optional later |
+| Short-range gate | Local gate icon | Camera-facing marker at authored/derived XYZ initially |
+| Interstellar Jump Gate | Distinct jump icon | Camera-facing marker at authored XYZ initially |
 | Jump Hole | Anomaly icon | Stylized spatial anomaly |
 | Spatial zone | Projected translucent shape | Procedural or simplified translucent volume |
 
@@ -112,7 +125,7 @@ Phase-one assets may be procedural placeholder geometry and simple original SVG 
 
 ### Spatial zones — approved viewer extension
 
-Add `zon_XXXX` **spatial-zone** support through a versioned schema expansion. Supported geometry kinds:
+`zon_XXXX` **spatial-zone** support is implemented by the v1.1/v1.2 contract and renderer. Supported geometry kinds:
 
 - **Ellipsoid:** XYZ center and 3D radii.
 - **Box:** XYZ center and XYZ extents, with a documented rotation convention if orientation is added.
@@ -122,11 +135,11 @@ Zone types can include nebulae, asteroid fields, radiation clouds, and dust clou
 
 ## 6. Gate networks and route visualization
 
-**All navigational connections come from one authoritative `connections.json`**. The viewer never creates a connection solely because two gates appear close together.
+**All runtime navigational connections come from generated `connections.json`**. System-object declarations are the v1.2 authoring source of truth; the manual offline generator compiles them. The viewer never generates links or infers them from proximity.
 
 | Route kind | Endpoint rule | Cardinality |
 |---|---|---|
-| Short-range (`short_range_gate`) | Two `gat_XXXX` short-range gates in **the same** system | A gate may have multiple eligible links |
+| Short-range (`short_range_gate`) | Two dedicated `gat_XXXX` short-range gates in **the same** system | At most one fixed lifetime link per gate; multiple relationships require separate physical gates |
 | Interstellar Jump Gate (`jump_gate`) | Two `gat_XXXX` Jump Gates in **different** systems | Each physical gate endpoint belongs to **at most one** interstellar link in the whole dataset |
 | Jump Hole (`jump_hole`) | Two `jhl_XXXX` Jump Hole endpoints in **different** systems | One-to-one paired endpoints, at most one link per endpoint |
 
@@ -142,19 +155,19 @@ A system connecting to systems B and C through Jump Gates requires **two separat
 **On a system map:**
 
 - Draw eligible **short-range links** using the gates' local CNU positions.
-- Selecting a local gate highlights **all** its relevant links (branching is supported).
+- Hovering or keyboard-focusing a local gate/stroke highlights its eligible route temporarily. Selection opens metadata/actions and maintains only selected-object targeting. v1.2 does not permit short-range endpoint reuse.
 - Show interstellar gates/holes at local coordinates, with paired destination metadata; **do not draw a world-spanning line in local CNU space**.
 - The **View Destination System** action opens the destination detail or its archival fallback as appropriate.
 
-Filter routes by their dated availability, their endpoint historical visibility/existence, and public disclosure. A Jump Hole may exist physically long before it becomes known or traversable. The existing v1.0.0 schema deliberately **does not allow repointing** a single interstellar gate to another destination over time; do not invent that behavior.
+Filter routes by dated availability, endpoint historical visibility/existence and public disclosure. A Jump Hole may predate discovery or traversability. Current v1.2 forbids lifetime repointing for every gate/hole type; frozen v1.1 branching tests are historical compatibility coverage, not permission to author branching now.
 
-## 7. Historical timeline — continuous, persistent
+## 7. Historical navigation — continuous year, vertical panel
 
-A **persistent historical timeline** appears along the bottom in both sector and system views.
+The compact side **History** control opens a vertical timeline panel on both map levels. The currently selected year remains visible in the header when the panel is closed. No permanent bottom strip is required; opening History must not resize or shift the chart.
 
-- Default to **1200 A.E.** for the initial demo and current approved display design; actual supported minimum and latest published year come from dataset configuration, not unbounded hardcoding.
+- Default to **1200 A.E.** for the demo. The implemented range uses `timeline.startAE` through `defaultAE` (0–1200 in the current demo); a distinct latest-published-year field is not defined yet. Do not add an undocumented key.
 - Slider allows selection of **any whole supported year** (1-year steps).
-- Provide a **direct numeric year input**, previous/next **recorded event** controls, and optional historically grounded event markers/tooltips. The next/previous controls step to events actually present in public records, **not invented milestone dates**.
+- Provide direct numeric input, previous/next **exact recorded-year** controls and Reset to Latest. The implemented record jumps use exact scalar discovery dates and interval boundaries explicitly marked `datePrecision: exact`; they omit known-by, construction/settlement without precision metadata, and qualified/unspecified boundaries. Optional richer event markers remain future work.
 - Provide **Reset to Latest** using the latest published year, not the user's current real-world calendar year.
 - Changing year updates names, political affiliations, state/ownership where supported, populations, crew, armament, descriptions, existence, discovery, navigational links, overlays, and Cantum statuses as permitted by published records.
 - Preserve current map, zoom, panel visibility, and camera position wherever possible. If the current map or selected object becomes historically unavailable, clear the invalid selection and show an appropriate unobtrusive notice or return to the eligible parent map. Do not display future facts.
@@ -162,35 +175,33 @@ A **persistent historical timeline** appears along the bottom in both sector and
 
 ### Historical uncertainty and partial chronological knowledge
 
-For a record with `discoveredAE: null`, **do not guess its discovery year**. The model may later add a separate **confirmed-known-by** datum (`knownByAE` or an equivalent documented construct); this is **not part of the current v1.0.0 schema**. Until a versioned rule exists, the renderer should not infer visibility at arbitrary earlier years simply because an undated record exists. Confirmed public knowledge at a date and exact discovery are distinct.
+For `discoveredAE: null`, **do not guess discovery**. Current v1.1/v1.2 permits a separate `knownByAE` only when exact discovery is unknown. Visibility may begin conservatively from that confirmed year, while keeping discovery null and describing the date as known-by. Without either date, do not assume visibility since zero. Confirmed knowledge and exact discovery remain distinct.
 
 Timeline content comes from **publicly released** events only. Event markers, search, previews, tooltips, and URLs must not expose private/unreleased history.
 
 ## 8. Layout, panels, and responsive behavior
 
-### Desktop shell — approved
+### Map-first shell — Checkpoint 3.6
 
 ```text
-+--------------------------------------------------------------------+
-| NEXUS / VELARA ATLAS     Sector > Cantum > System     Top / 3D     |
-+---------------+----------------------------------+-----------------+
-| CATALOGUE     |                                  | NEXUS INFOCARD  |
-| search/filter |          MAP VIEWPORT            | selected entity |
-| system tree   |          and overlays            | dated fields    |
-|               |                                  | connections     |
-+---------------+----------------------------------+-----------------+
-| HISTORICAL TIMELINE     [--event--slider--event--]   [1200 A.E.]   |
-+--------------------------------------------------------------------+
++--------------------------------------------------------------+
+| VELARA ATLAS   Sector / current location       selected A.E.  |
++--------------------------------------------------------------+
+| Catalogue                                      History      |
+|              centered square chart                          |
+|              same size with panels open                      |
+|              [InfoCard popup only on selection]              |
+| Map controls                                   Map layers   |
++--------------------------------------------------------------+
 ```
 
-- **Top bar:** NEXUS / Atlas identity, current location, breadcrumbs, 2D/3D toggle, layer/settings access, reset/focus controls.
-- **Left catalogue:** persistent, **collapsible**, searchable list of currently eligible Cantums, systems, or objects.
-- **Center:** the primary interactive map; expands when side panels are collapsed.
-- **Right InfoCard:** persistent, **collapsible**; updates on selection. Collapsing does not discard selected entity.
-- **Bottom timeline:** persistent and accessible on both map levels.
-- **Breadcrumbs:** sector → appropriate Cantum context (where applicable) → system. Cantum status/ownership is time-dependent; don't treat a system as permanently physically nested inside a Cantum.
+- **Header:** compact Atlas identity, noncanonical label, Sector/current location and selected year.
+- **Square chart:** centered and fitted in the available area on desktop, narrow and mobile screens; independent of panels and record selection.
+- **Floating panels:** searchable catalogue, map controls, layers and vertical History; compact toggles, closed initially, restrained translucent blue-black surfaces and bounded scrolling. They reserve no permanent layout columns.
+- **InfoCard:** centered, dismissible popup opened by object, route or catalogue selection. No initial card. A visible top-right close control and Escape clear selection, return focus and preserve the camera. Keep all current record fields, fallbacks, destination actions and technical errors.
+- **Navigation:** sector → system with explicit return/destination actions. Cantum administration is historical metadata, not a permanent physical nesting hierarchy.
 
-Use responsive panels/drawers on narrow screens, preserving the interactive map as the main surface. Touch support requires tap selection, pinch zoom, pan, and an accessible mechanism to switch modes/open panels. Final component dimensions, colors, fonts, and imagery belong to **Milestone 5 NEXUS visual identity**, not hardcoded into this behavioral document.
+Panels and the InfoCard must fit narrow screens without clipping or shifting the chart. Preserve keyboard/touch access to years, catalogue, selection, navigation and camera controls. The current post-gesture touch-check limitation is recorded separately in verification reports; it is not a waiver of usable touch behavior. Colors, fonts and future imagery follow **Milestone 5 NEXUS visual identity**.
 
 ### InfoCard content
 
@@ -207,7 +218,7 @@ A `null` field means **no published value**, **not** zero or negative evidence. 
 - **Sector view:** search and list publicly available, historically eligible **Cantums and star systems**. A system lacking sector coordinates may still appear as a searchable record but must not trigger camera movement to an invented marker.
 - **System view:** search/list objects **within the current system**, including available spatial zones once supported.
 - Search against **the name valid at the selected year**. Earlier/later unpublished names must not leak. Searching historical aliases across eras may be added later, but only with chronology-safe behavior.
-- Selecting a result highlights/focuses it when positioned, or opens the available InfoCard/fallback when unplaced or without details.
+- Selecting a result opens its centered InfoCard and selected-object targeting. Focus Selection is a separate camera action; unplaced/fallback records never get invented marker coordinates.
 - Filters by category/type are presentation filters; they do not alter data or the historical state.
 - Public indexing is generated from **released records**, not private RTF manuscripts or unpublished JSON.
 - Show a clear empty result state and avoid ambiguous duplicate-name selection by displaying classification/system context.
@@ -227,6 +238,14 @@ All layers are **view filters**, not modifications to source data. Maintain **se
 | Political affiliation colors | Object labels |
 | Historical event indicators | Elevation indicators |
 
+The current prototype groups labels with their object layer and combines route
+transports under one Connections toggle; it does not yet expose separate label,
+transport, political marker-color, event-indicator or elevation-guide switches.
+Those table entries describe approved possible overlays, not tested controls.
+Grid, influence, zones and entity/route groups already have floating layer controls.
+Final icon/material representations in §5 remain Checkpoint 4 work; temporary
+geometric markers are the current implementation.
+
 ### Generated Cantum regions — approved revision (supersedes manual territories as default)
 
 The sector political overlay uses **soft, semi-transparent, blurred-edge Cantum influence regions** computed from **historically eligible, positioned, publicly released** star systems belonging to each Cantum at the selected A.E. year. Each system contributes an X/Z-centered influence bubble; **same-Cantum bubbles merge by a continuous metaball-like scalar field**. Different Cantums never merge into one political entity. These are **suggestive cartographic regions**, **not legally precise borders**, and do not establish 3D sovereignty. This region layer is below every system marker, interstellar route, label and selection target.
@@ -239,7 +258,7 @@ The sector political overlay uses **soft, semi-transparent, blurred-edge Cantum 
 - Exclude all unpublished data from calculations. A political layer toggle hides/shows the drawing only; no lore data is deleted or inferred.
 - No manually authored region polygon is required for version 1. Manual *precise* boundary overlays may be added later as a separately approved feature, not as the default renderer and not as a prerequisite for deployment.
 
-**Implementation contract and numeric defaults:** Follow `docs/CANTUM_TERRITORY_RENDERING.md`, including the exact influence field, configurable blending and opacity, compositing order, 3D presentation, performance bounds, and test cases. The approved geometry is **generated X/Z region shading**; the existing JSON Schema v1.0.0 is not claimed to already specify its presentation configuration.
+**Implementation contract and numeric defaults:** Follow `docs/CANTUM_TERRITORY_RENDERING.md`, including the exact field, opacity caps, compositing, 3D presentation and performance rules. The current v1.2 schema validates the separate `presentation.json`; this is style data, not a legal boundary or canonical migration.
 
 ### Elevation
 
@@ -279,13 +298,12 @@ Fallback should show any **already public** system name, selected year, and arch
 
 The **only required initial content** is the noncanonical `examples/demo_atlas` dataset, including:
 
-- One minimal test Cantum.
-- Two systems (`sys_0001`, `sys_0002`) with sector positions and independent CNU maps.
-- Two separate **interstellar routes** between those systems: one exclusive Jump Gate pair, one exclusive Jump Hole pair.
-- Branching short-range gate links inside each system.
+- Two noncanonical Cantums and three systems (`sys_0001`–`sys_0003`) with sector positions and independent CNU maps.
+- Separate A/B **interstellar routes**: one exclusive Jump Gate pair and one exclusive Jump Hole pair; an additional dedicated A/C Jump Gate pair.
+- Dedicated, exclusive local short-range pairs authored on eligible anchor objects, including transfer to a Jump Gate navigation boundary.
 - Stars, planets, a moon, stations, and dated InfoCard changes.
 
-The demo is authoritative **for testing data shape only**. **Do not promote demo names, values, dates, or identifiers into official MCR canon.** The known 43 canonical systems and seven named Cantums are intentionally **out of scope for viewer prototyping**.
+The live demo is author-editable; fixed regression snapshots preserve earlier acceptance scenarios under `tests/fixtures/v1_1/` and `v1_2/`. Its names, counts, positions and dates are **test data only**. **Do not promote them into official MCR canon.** Canonical systems/Cantums remain outside viewer prototyping.
 
 Create additional **noncanonical fixture variants** as necessary to test an undeveloped system (`publicDetailPath: null`), unplaced coordinates, partial detail, a future discovery, and an intentional fetch/validation failure. Do not change real worldbuilding files just to demonstrate edge cases.
 
@@ -293,16 +311,16 @@ Create additional **noncanonical fixture variants** as necessary to test an unde
 
 The first Milestone 3 implementation is complete when all of the following can be demonstrated **without hardcoded lore-specific branches**:
 
-1. The public viewer loads the two-system demo from JSON, in top-down sector mode at 1200 A.E.
-2. Both positioned systems appear, with independent selectable **Jump Gate and Jump Hole lines** between them; the two lines are visually distinguishable even though endpoints belong to the same system pair.
+1. Load the current three-system noncanonical demo in top-down sector mode at 1200 A.E., with the entire square chart fitted and no initial InfoCard.
+2. Positioned systems and independent selectable **Jump Gate and Jump Hole strokes** appear without conflating A/B transports or the additional A/C pairing.
 3. Click a system for its historical InfoCard; double-click/Enter opens its system map; breadcrumbs and Return to Sector work.
 4. A system map renders the correct CNU-positioned star, planets, moon, station, short-range gates, Jump Gate and Jump Hole from JSON.
-5. Selecting a branching short-range gate highlights **both** local links. Selecting an interstellar endpoint identifies its one partner and requires explicit navigation to the destination.
+5. Hover/focus a dedicated gate or route stroke to brighten only eligible links; leaving restores styling even while an object remains selected. Gate records identify the one lifetime partner and require explicit destination navigation.
 6. Switching top-down ↔ perspective changes only the camera/rendering representation; positive/negative Y values become visibly distinct in 3D.
-7. Continuous timeline, typed year, event markers and previous/next recorded-event navigation update names, existence, InfoCards, routes, and available maps correctly.
-8. Collapse/expand both sidebars, search/filter historically eligible entries, and toggle map overlays without mutating data.
+7. Vertical continuous History, typed year, exact recorded-year jumps and reset update names, existence, InfoCards, routes and map eligibility; the closed panel leaves the year visible. Rich event markers remain optional future work.
+8. Open/close floating catalogue, controls, layers and History without moving/resizing the chart. Search/filter records, dismiss centered InfoCards with focus return, and retain camera state. Verify A–H/1–8, H8 cell width, minimum 2D zoom, bounds and Reset in narrow and desktop layouts.
 9. Noncanonical fallback, partial-detail, unplaced-system and historically unknown records display the correct distinct states; actual load errors show retry feedback.
-10. The **test Cantum bubble overlay** is rendered from the two-system demo using current-year `cantumHistory`: no membership before 210 A.E.; one bubble starting 210 A.E.; two merged bubbles by 330 A.E. with an appropriately configured fixed radius. The overlay stays below system markers/routes/labels, is optional, and does not change when the camera merely zooms. Once the approved zone-schema extension is introduced, noncanonical ellipsoid, box, and polygon-volume fixtures render correctly in 2D/3D.
+10. Cantum influence follows current-year `cantumHistory`, fixed ly radii and the approved opacity caps. Frozen fixtures retain A/B one-to-two contributors at 210/330 and a separate System C field; current authored data may change those fixture values. Pan/zoom never changes the field. All three zone geometries remain supported, with the demo nebula in System A, not Sector View.
 11. Editing a **supported** object position, name record, or quantity in demo JSON and reloading changes the viewer without code edits.
 12. The page runs as a static, read-only site under a GitHub Pages–style repository subpath; private files and editor code are **not included** in its release artifact.
 13. Historical resolver, schema validation, route exclusivity, and essential navigation behaviors have automated regression tests; the existing v0.1 test behavior remains intact unless an explicitly approved migration changes it.
@@ -315,39 +333,29 @@ The first Milestone 3 implementation is complete when all of the following can b
 - Simulated orbital mechanics, physically accurate distance conversion, pathfinding, ship travel simulation, or real-time celestial motion.
 - Exact/legal political boundary inference, manual polygon authoring, or full volumetric political borders. **Generated decorative Cantum influence regions are in scope** and must not be misrepresented as exact sovereign borders.
 
-## 14. Required compatibility and schema follow-ups
+## 14. Implemented compatibility and remaining follow-ups
 
-These are **pending technical changes**, not claims about features currently supported by `schemas/atlas.schema.json` v1.0.0:
+Current status is based on the merged schema, implementation and tests:
 
-| Proposed versioned addition | Why needed | Current status |
+| Responsibility | Purpose | Current status |
 |---|---|---|
-| `zon_XXXX` spatial-zone entities and ellipsoid/box/polygon-volume definitions | Approved zone overlays and 3D shapes | **Not in schema v1.0.0** |
-| Public-safe visual settings for procedural Cantum influence bubbles (color and fixed radius in `ly`, plus global style parameters) | Approved sector overlay; **no manual boundary polygons required** | **Presentation config format to define and validate before implementation; not part of canon schema v1.0.0** |
-| Explicit `knownByAE` or equivalent confidence-aware visibility rule | Historically known by a snapshot date but exact discovery year unknown | **Proposal; naming/behavior must be approved** |
-| Historical event-marker sources and event date precision | Continuous slider with next/previous real events | **Specify public event registry or derive safely from dated records** |
-| Theme/icon metadata as reusable presentation mapping | Original NEXUS visuals, replaceable assets | **Implementation convention; don't embed hardcoded lore** |
-| Historical resolver integration for `infoCard` and v1.0.0 paths | Time-sensitive cards, objects, and connections | **Existing v0.1 resolver does not fully support this** |
+| Zones: ellipsoid, box, polygon volume | Environmental maps | Implemented since v1.1; retained in v1.2 |
+| Separate validated `presentation.json` | Cantum colors, ly radii, thresholds and opacity | Implemented; renderer obeys caps and uses world-space caching |
+| `knownByAE` | Conservative knowledge with unknown exact discovery | Implemented since v1.1; not an exact event date |
+| Dated InfoCards and modern route/object resolution | Historical viewer records | Implemented by `src/core/history.mjs`, independently of legacy v0.1 |
+| Object declarations, dedicated gate pairs and generated graph | v1.2 navigation authoring | Implemented offline; build uses read-only freshness |
+| Nullable icons and optional visual variants | Data-driven appearance | Schema support implemented; final asset registry/materials remain Checkpoint 4 |
+| Continuous year and exact recorded-year jumps | Historical navigation | Implemented; richer public event registry/markers remain deferred |
+| Canonical v0.1 data migration | Real public lore | Separate creator approval and ID crosswalk required |
 
-**Versioning requirement:** When a change modifies stored JSON shape, update the JSON Schema version, tests, sample records, validator, and `docs/DATA_MODEL.md` together. Do **not** relabel the present v1.0.0 schema as though it already supports these additions. Coordinate with the owner before selecting the exact format of newly introduced records.
+**Versioning requirement:** Future stored-shape changes must update schema version, tests, records, validation and `docs/DATA_MODEL.md` together after approval. Current layout constraints require no schema or historical-data changes.
 
 ## 15. Handoff constraints for Codex
 
-Before implementation, Codex must inspect the repository, existing tests, schemas, and documentation. Report discrepancies or file conflicts. Do not reinterpret this approved viewer behavior as permission to implement the local editor or invent canon. Work in small milestones with test results and changed-file summaries; a reasonable order is:
-
-1. Establish Vite/Three.js viewer shell and public-demo data source selection.
-2. Add a schema-compatible loader and isolated historical resolver adapter with tests.
-3. Render top-down sector scene, two systems, historical interstellar links, and selection.
-4. Add system scene, object rendering, local routes, 3D camera toggle, and interstellar navigation.
-5. Add catalogue, InfoCard, search, overlays, timeline, and NEXUS fallback/error states.
-6. Implement the procedural Cantum territory overlay using the companion rendering contract; define/validate public presentation settings. Add the independently approved zone entity schema extension and render simple volumes. Do not create or require political boundary polygons.
-7. Test responsive behavior, build safety, GitHub Pages deployment, and acceptance cases.
+Before changes, inspect the current workspace, tests, schemas and documentation. Preserve accepted implementation and report discrepancies. Follow the authorized checkpoint in [the roadmap](DEVELOPMENT_ROADMAP.md); this behavior contract is not blanket authorization to implement future assets, a local editor, canonical migration or deployment. Run meaningful regression/browser checks and report limits without claiming untested features.
 
 **Stop at authorized scope and ask before breaking the approved JSON contract or rewriting canonical records.**
 
 ---
 
-**Approval note:** This file consolidates the user's Milestone 3 decisions: top-down default with optional 3D, **generated soft metaball Cantum influence overlays (replacing manual territory polygons as default)**, hybrid markers/geometry, three zone shapes, continuous A.E. history, collapsible sidebars and persistent timeline, date-aware search and overlays, and the NEXUS archival fallback. It is the **behavioral specification**, while the repository's JSON Schema and data-model documentation govern exact file structures.
-
-## v1.1 implementation status correction
-
-The data contract defines optional spatial zones, knownByAE, nullable icons and a validated presentation file for noncanonical fixtures. The older pending-extension table predates this versioned schema change. Milestone 6 Checkpoints 2–3 implement the noncanonical viewer's navigation and historical cartography; final visual assets/polish, publication and canonical v0.1 migration remain outstanding. See VIEWER_PROTOTYPE.md for implemented behavior and verification limits.
+**Approval lineage:** Milestone 3 approved real XYZ navigation, soft Cantum influence, hybrid representation, zones, continuous history, search and archival fallback. Schema v1.2 superseded local-gate branching. Checkpoint 3.6 explicitly superseded permanent side columns/bottom timeline and selection-driven route highlighting. This document owns behavior; schemas and `DATA_MODEL.md` own stored structure, and [verification reports](REPOSITORY_AUDIT_3_6.md) record what has actually been tested.

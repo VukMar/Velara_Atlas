@@ -4,13 +4,13 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Milestone 6, Checkpoint 3:** The local, read-only **noncanonical three-system demonstration** supports historical navigation, searchable records, routes, top-down/perspective cameras, spatial zones and approximate Cantum influence shading. Final visual polish, canonical migration, publication and the deferred local editor are not implemented.
+> **Project status — Milestone 6, Checkpoint 3.6:** The local, read-only **noncanonical three-system demonstration** implements historical navigation/search, routes, top-down/perspective cameras, spatial zones, Cantum influence and Schema v1.2 navigation authoring. Final visual assets, canonical migration, deployment and the deferred editor are not implemented.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)
 and [verification results](docs/CHECKPOINT_3_6_RESULTS.md).
 
-## The planned atlas
+## Atlas behavior
 
 - **Sector view:** select a historical year (A.E.) and inspect discovered systems, changing regional/political context, and interstellar connections as the published records become available.
 - **System view:** explore a navigational X/Z map with real Y elevation for stars, planets, stations, gates, and other mapped objects.
@@ -18,7 +18,7 @@ and [verification results](docs/CHECKPOINT_3_6_RESULTS.md).
 - **Living archive:** systems can be known in-universe without yet having a finished public detail map. More information appears as MCR stories and canon are released.
 - **Historical accuracy within the fiction:** names, discovery dates, affiliations, and political conditions are resolved for the selected year rather than displaying every object as though it always existed.
 
-The intended public viewer will be **read-only and statically hosted**, initially on GitHub Pages. Atlas editing and private worldbuilding remain local. This separation is a planned architecture, not a claim that public deployment is active today.
+The viewer is read-only. Local Node tools support manual JSON authoring; private worldbuilding stays outside the public repository. GitHub Pages is the intended static host, with no deployment configured yet.
 
 ## Repository at a glance
 
@@ -32,8 +32,11 @@ The intended public viewer will be **read-only and statically hosted**, initiall
 | `src/viewer/` | Local demo-only Vite/Three.js prototype |
 | `tests/` | Automated checks and a console timeline demonstration |
 | `docs/DATA_RULES.md` | Historical conventions and known outstanding decisions |
-| `docs/DATA_MODEL_DRAFT.md` | InfoCard and entity model examples; integration is not yet complete |
-| `docs/ARCHITECTURE.md` | Design boundaries and proposed software components |
+| `docs/DATA_MODEL.md` | Current v1.2 structural model; schemas are the exact validation contract |
+| `docs/NAVIGATION_AUTHORING.md` | Manual connection generation, validation and recovery |
+| `schemas/` | Current v1.2 definitions/wrappers and frozen v1.1 regression schema |
+| `scripts/` | Offline generation, validation, ID Finder and build audit |
+| `docs/ARCHITECTURE.md` | Implemented modules, future work and disclosure boundaries |
 | `docs/REPOSITORY_STRUCTURE.md` | Repository and private-data organization |
 | `docs/DEVELOPMENT_ROADMAP.md` | Planned milestones and acceptance criteria |
 | `docs/CONTENT_WORKFLOW.md` | How source lore is reviewed, approved, and released |
@@ -76,7 +79,31 @@ npm run preview
 
 `npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run demo` remains the legacy **console** political-history demonstration; it is separate from the browser app. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
-The prototype uses Vite 6 (compatible with the installed Node 20.5.1) and Three.js. Use a supported Node LTS for ongoing development. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured.
+Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. See the [current audit](docs/REPOSITORY_AUDIT_3_6.md) for checks and known limitations, including incomplete touch verification.
+
+## Schema v1.2 navigation authoring
+
+Edit only the noncanonical demonstration under `examples/demo_atlas/` for this
+workflow. System-object `navigation.localLinks` and `interstellarConnection`
+declarations are the authoring source; `connections.json` is a generated,
+Git-tracked runtime index. Each physical gate/hole has at most one lifetime
+partner. The viewer never generates links or gate positions.
+
+```text
+Edit system JSON
+npm run connections
+npm run connections:check
+npm test
+npm run build
+git diff
+```
+
+The manual offline generator may rewrite only the complete connection index
+and `position` of explicitly boundary-derived short-range gates in allowlisted
+demo system files. Checks/dev/build fail on stale output and never repair it.
+Review both system files and graph before any separately authorized commit/push.
+See [practical authoring and recovery](docs/NAVIGATION_AUTHORING.md) and the
+[approved design contract](docs/SCHEMA_V1_2_NAVIGATION.md).
 
 ## ID Finder (read-only authoring utility)
 
@@ -120,18 +147,13 @@ Velara, the Continuance setting, NEXUS, and associated MCR worldbuilding content
 
 This is a fictional setting and a work in progress; the atlas does not claim to chart real astronomical positions.
 
-## October 2026 update
+## Documentation authority
 
-Milestone 3 viewer design and Milestone 5 NEXUS visuals are approved. The local editor is deferred. The v1.2 schema applies to the noncanonical demo, with frozen v1.1 regressions retained; original public canonical v0.1 political records are intentionally unchanged. Install dependencies with npm ci, then use npm test to run historical and versioned data checks. See docs/LEGACY_MIGRATION_PLAN.md.
-
-Milestone 6 Checkpoint 1 adds an engine-independent historical resolver for the noncanonical v1.1 demo in `src/core/history.mjs`. See [the API and usage notes](docs/HISTORICAL_RESOLVER.md). Checkpoints 2–3 add the local demonstration viewer and historical cartography. The legacy resolver and public canonical records remain unchanged. Checkpoint 4 needs separate creator approval.
-
-## v1.2 navigation authoring (pre-Checkpoint-4)
-
-The three-system NONCANONICAL demo now has two distinct Cantum presentation colors. System object declarations author navigation; `connections.json` is the generated, Git-tracked runtime index. Connected short-range gates are dedicated lifetime pairs with explicitly boundary-derived CNU positions. The original A/B Jump Gate and Jump Hole pairings remain; a separate new Jump Gate pair connects A/C. The viewer is read-only and does no generation.
-
-```text
-Edit system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
-```
-
-Generation is a standalone offline manual command, restricted to the vetted demo allowlist. It writes only the complete graph and eligible short-range gates' `position` values in system JSON. Tests/dev/build run a read-only freshness check and fail on stale output. See [authoring, rounding, migration and recovery](docs/NAVIGATION_AUTHORING.md) and [verification results](docs/NAVIGATION_V1_2_RESULTS.md). Canonical data, the historical resolvers and renderer are unchanged; Checkpoint 4 needs separate approval.
+Use the [roadmap](docs/DEVELOPMENT_ROADMAP.md) for checkpoint status,
+[data model](docs/DATA_MODEL.md) and schemas for structure,
+[viewer specification](docs/VIEWER_SPECIFICATION.md) for behavior,
+[NEXUS identity](docs/NEXUS_VISUAL_IDENTITY.md) and [asset policy](docs/VISUAL_ASSET_POLICY.md)
+for presentation, and [resolver API](docs/HISTORICAL_RESOLVER.md) for historical
+selectors. [Canonical migration safeguards](docs/LEGACY_MIGRATION_PLAN.md) remain
+a separate approval boundary. Older proposals and implementation reports are
+retained as historical references, not current setup instructions.

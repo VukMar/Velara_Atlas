@@ -1,6 +1,7 @@
 # Checkpoint 3.6 — Layout and interaction revision
 
-This creator-requested revision supersedes the permanent left/right columns,
+This creator-requested revision records the rationale and implementation details
+behind the current [viewer behavior contract](VIEWER_SPECIFICATION.md). It supersedes the permanent left/right columns,
 bottom timeline and persistent right InfoCard in Viewer Specification §§7/8
 and NEXUS Visual Identity §§7/10. It also supersedes selection-driven route
 highlighting. Other historical, spatial, disclosure and visual contracts remain
@@ -87,7 +88,11 @@ Reusable Playwright MCP entry points (pass an absolute `filename` to
   after the raw multi-touch sequence remain unverified: the injected sequence
   produced pointer events without a following click. No physical-touch or
   cross-browser pass is claimed.
+- `tests/browser-documentation3_6.mjs`: dev or production; the README review
+  workflow across all systems, Focus/Reset actions and observed read-only,
+  same-origin traffic without canonical/private-source requests.
 
-See [the recorded results and limitations](CHECKPOINT_3_6_RESULTS.md). No authored
+See [the original results](CHECKPOINT_3_6_RESULTS.md) and
+[the current synchronization audit](REPOSITORY_AUDIT_3_6.md). No authored
 coordinates, histories, schemas, IDs, navigation declarations, generated graph,
 Cantum calculations, zone geometry or publication configuration are changed.

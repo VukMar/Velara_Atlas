@@ -1,89 +1,109 @@
-# Velara Atlas — Architecture
+# Velara Atlas — Implemented architecture
 
-**Status:** Proposed system architecture for review; foundation phase. **Not a claim of implemented features.**
+**Status:** Local noncanonical viewer through Checkpoint 3.6; navigation authoring
+uses Schema v1.2. Canonical migration, final artwork, deployment and the local
+editor remain separate future work.
 
-## Purpose
+## Runtime responsibilities
 
-The Velara Atlas is an independent JSON-driven, historical navigational atlas of the fictional Velara Sector. NEXUS presents a chronological public view. The complete authoring canon may contain more than the publicly released atlas. Design for long-lived IDs, testable history, selective publication, and replaceable presentation technology.
+| Module | Responsibility |
+| --- | --- |
+| `src/core/history.mjs` | Pure v1.1/v1.2 historical selectors: names, knowledge/existence, InfoCards, systems, zones and eligible connections; no I/O or renderer dependency |
+| `src/core/cartography.mjs` | Pure map/catalogue composition, search, exact recorded-year boundaries, scoped route points/destinations, Cantum field calculations and seeded zone sampling |
+| `src/viewer/demo-data.mjs` | Explicit imports of four demo registries plus three allowlisted detail loaders; preloads released details for endpoint eligibility |
+| `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
+| `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
+| `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom, world-space 8×8 system grid and CNU cell measurement |
+| `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
+| `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |
+| `src/timeline/resolve.mjs` | Separate legacy v0.1 resolver, used by legacy tests and console demo; not imported into the viewer |
 
-## Four responsibilities
+The app is vanilla JavaScript ES modules, Three.js and Vite. The public viewer
+has no write endpoint, authentication, live AI lore generation or backend.
 
-| Responsibility | Input | Output | Location |
-| --- | --- | --- | --- |
-| Private source / authoring | RTF lore, private notes and approved decisions | Creator-reviewed candidate records | External private folder (not in public Git) |
-| Historical resolver | Structured records and selected A.E. year | State valid for that year | `src/timeline/`, independently testable |
-| Publication pipeline (planned) | Approved canonical data plus release allowlist | Public-safe JSON and assets | Local tools/scripts; output in `public/data/` |
-| NEXUS viewer (planned) | Public JSON, date, selected map and viewport | Interactive read-only map and InfoCards | Three.js + browser interface; static Pages build |
+## Data flow and historical semantics
 
-The local visual editor (planned) modifies approved data while running on the creator's computer. It must not require an Internet-facing write endpoint. It should reuse core coordinate, selection and rendering rules; publishing changes remains an explicit separate step.
+1. The demo loader reads only released, explicitly allowlisted noncanonical JSON.
+2. Historical selectors resolve the chosen nonnegative integer A.E. year.
+3. Cartography derives eligible records, route strokes and influence contributors.
+4. The scene renders XYZ; the interface displays the same resolved records.
+5. Year changes reconstruct derived state without mutating authored JSON.
 
-## Data relationships
+Intervals remain `fromAE <= yearAE < untilAE`, with null endings ongoing.
+Exact discovery, confirmed-known-by, construction, decommissioning and colonization
+remain separate. InfoCard affiliation never substitutes for administrative
+Cantum membership or sovereign control. Missing, unknown and zero are distinct.
+See [the resolver API](HISTORICAL_RESOLVER.md) and [data model](DATA_MODEL.md).
 
-- **Sector** is a geographical context and system index, **not** a government. It uses its own XYZ space (`positionLY`, light-years) and an era label resolved from political records.
-- **Political history** tracks the unified state, historical era titles, and Cantums. A Cantum can exist as an administrative region long before being sovereign.
-- **Star system** is a persistent identity in sector space. It contains discovery, naming and regional history and may point to a public details file.
-- **System detail** is a local coordinate context (`position`, declared units) containing natural bodies and constructed objects, independently positioned above/below the X/Z navigation plane.
-- **InfoCard** is a shared view model: `affiliation`, `class`, `crew`, `population`, `armament`, `description`, with historically dated records where populated. It is *not* the source of entity identity, political borders or object coordinates.
-- **Connections and area volumes** (jump routes, jump holes, trade lanes, nebulae, asteroid fields, zone definitions) are planned schema expansions; exact data contracts are pending. Avoid inventing these in application code before approval.
+A known system may be unplaced (catalogue only), archival (`publicDetailPath:
+null`) or released with partial detail. Partial records remain partial. Missing
+unreleased endpoint details stay explicitly unverified; fetch/parse failures are
+technical errors with retry. There is no security in sending a secret record
+and hiding it in the UI.
 
-`id` is permanent and independent of all names. Foreign keys refer to IDs. A rename is a dated name record, not a new entity. A system's Cantum administrative history, operating affiliation, and sovereign control should remain distinguishable rather than inferred from one field.
+## Offline authoring and validation
 
-## Historical resolution
+| Module | Responsibility |
+| --- | --- |
+| `scripts/demo-files.mjs` | Fixed demo file allowlist, safe reads, position-value-span rewrites preserving unrelated bytes |
+| `scripts/navigation.mjs` | Nonmutating v1.2 declaration-to-graph/XYZ compiler; lifetime exclusivity and navigation-boundary checks |
+| `scripts/connections.mjs` | Manual generator or read-only freshness check; staged validated writes, backups and recovery journal |
+| `scripts/atlas-validation.mjs` | Offline strict Ajv Draft 2020-12 validation for v1.1 and v1.2; separate authoring/release validators |
+| `scripts/check-relations.mjs` | Cross-file identity, intervals, references, bounds, endpoint types/cardinality and presentation constraints |
+| `scripts/validate-demo.mjs` | Current demo release schema + relations + read-only generated-artifact freshness |
+| `scripts/idfind.mjs` | Read-only dataset-scoped ID inventory and next-ID suggestions |
+| `scripts/audit-demo-build.mjs` | Production output extension, base-path, disclosure-marker and forbidden-reference checks |
 
-1. Input: a selected integer `yearAE` at/after the epoch start.
-2. Filter discoveries/existence: a system or object appears only at the applicable knowledge/existence dates in the released data.
-3. Choose interval records: `fromAE <= yearAE < untilAE`; open-ended `untilAE: null` remains active.
-4. Resolve naming/status/InfoCard histories independently.
-5. Return an immutable or safely derived state for the viewer. Do **not** mutate source JSON in response to slider movement.
-6. Surface known uncertainty. An approximate map-display boundary is not a precisely attested legal or historical event.
+System-object declarations are the authoring source of truth; generated,
+Git-tracked `connections.json` is the runtime index. Only the manual
+`npm run connections` writer changes the graph and eligible short-range gate
+positions. Normal tests/dev/build check freshness and fail instead of repairing.
+Multi-file replacement is not atomic; [authoring/recovery instructions](NAVIGATION_AUTHORING.md)
+are authoritative for operating that tool.
 
-The current `src/timeline/resolve.mjs` implements the basic v0.1 resolver. It does **not yet** support full v0.2 InfoCard resolution. Null discovery dates and validation behavior need explicit attention during migration; JS comparisons may accidentally treat `null` as zero.
+## Coordinates, layout and rendering
 
-### Disclosure and availability (distinct from chronology)
+Sector XYZ is in light-years; local system XYZ is in CNU with no defined
+kilometer conversion. Positions are static and absolute in their own map.
+`orbitingId` is relationship metadata, not a position calculation.
 
-A system can have three user-visible outcomes for a selected year:
+Checkpoint 3.6 fits the complete square X/Z chart, clamps orthographic pan/zoom
+and leaves genuine Y available in perspective and records. Both camera modes
+use a square viewport. Panels float without shifting it; History is vertical
+and the header retains the year. Selection opens a centered dismissible
+InfoCard; only hover/focus temporarily brightens routes. The
+[viewer specification](VIEWER_SPECIFICATION.md) owns these behaviors.
 
-1. **Not chronologically known** — omitted from the sector view for that date.
-2. **Known, details not published** — appears in sector overview if coordinates and public index allow it; selecting it shows NEXUS archival fallback (`publicDetailPath: null`).
-3. **Known, partial/full published detail** — loads a public detail JSON containing only the objects and fields approved for release, filtered to the selected historical year.
+Cantum influence follows the approved historical membership filter,
+Gaussian/smoothstep formula, fixed ly radii and 0.16/0.22 opacity caps.
+Zones remain independent ellipsoid/box/polygon-volume geometry. Final icons,
+celestial materials and targeting-ring art remain Checkpoint 4 work.
 
-**Critical:** history must not be used to reveal unreleased canon. A public website cannot securely hide JSON sent to its browser. Never put secret objects or plot spoilers into any served, bundled, or publicly committed file with `hidden: true`.
+## Build and disclosure boundary
 
-## Coordinates and rendering
+Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
+disables `publicDir` and source maps, and writes `dist/`. Development binds
+to loopback with filesystem restrictions. The input audit allows viewer code,
+the two modern core modules, seven exact demo JSON files and dependencies.
+The output audit checks the resulting HTML/JS/CSS and base-relative assets.
 
-- Sector: `{x, y, z}` in light-years, using X/Z for the top-down projected plane and Y as elevation.
-- Individual system: independent XYZ coordinates, with local scale specified in each detail file. Do not assume interstellar distances and local distances share units.
-- Default camera (planned): top-down orthographic over X/Z; switchable perspective tilt/rotation for depth inspection.
-- Null position: unresolved canon placement; don't render a fake point at the origin.
-- Planetary positions in v1 are static navigation-chart coordinates. Orbital motion/simulation is outside the initial scope and requires a separate proposal.
-- Display icons/themes are presentation identifiers, not object identity or source data.
+Thus `public/data/`, private lore, docs, unrelated examples, Node authoring
+tools and frozen fixtures are not browser inputs. Git itself is a second
+publication surface: everything committed here must be public-safe regardless
+of whether it is bundled. The current allowlist is deliberately small, not a
+general canonical publication pipeline.
 
-## Runtime and deployment (planned)
+## Future work and remaining limits
 
-- **Viewer:** vanilla JS ES modules + Three.js; Vite for local development and static production build.
-- **Host:** GitHub Pages with repository-relative `base` configured at build time. Browser reads static JSON/assets only; no public mutations, authentication, or server database.
-- **Editor:** local tool, potentially served via Vite plus Node file-writing endpoint *bound to localhost only*, or JSON export/import. Editing capability must be absent/inaccessible in the public deployment; merely hiding buttons is insufficient.
-- **Publication:** generate or review explicit public-safe JSON, validate it, test the build output, then commit/push. Build/deploy must never traverse private sibling folders or local caches.
-- **Progressive loading:** sector overview first, individual system details on demand; cache already loaded public JSON for navigation.
+GitHub Pages deployment, a general released-data loader/runtime validation
+strategy, a canonical release pipeline and any local editor need separate
+authorization. Canonical v0.1 IDs/history require the
+[migration safeguards](LEGACY_MIGRATION_PLAN.md). Private RTF remains external;
+no private source extraction or publication tool is implemented.
 
-## Risks to resolve before implementation
-
-1. Existing v0.1 data shape vs adopted v0.2 InfoCard examples; define compatible migration and tests.
-2. Canonical coordinates, local map units, and visual scale conventions remain undefined beyond the XYZ orientation.
-3. Precise ownership/control versus administrative Cantum affiliation; do not infer one from another.
-4. Public `sector.json` currently has an `editorialNotes` field. Remove/review editorial/private commentary before live deployment.
-5. Lack of formal JSON Schema, cross-record integrity checks, explicit publication allowlist, and release validation.
-6. Historical date uncertainties (see `DATA_RULES.md`); no automatic conversion of `circa`/`confirmed_by` into exact event dates.
-7. License for software and lore has not been chosen; don't assume reuse rights.
-
-See `REPOSITORY_STRUCTURE.md`, `CONTENT_WORKFLOW.md`, and `DEVELOPMENT_ROADMAP.md` for actionable ownership and implementation order.
-
-## Current approved design state
-
-Local visual editor deferred; the approved Milestone 3/5 specifications supersede references to pending visual decisions. Routes exist in v1.0+ schema, zones and optional display settings in v1.1; none of these constitutes a completed browser renderer. Canonical public v0.1 records await explicit creator-approved migration (docs/LEGACY_MIGRATION_PLAN.md).
-
-Milestone 6 Checkpoints 2–3 now provide a local noncanonical viewer under src/viewer/, reusing src/core/history.mjs and pure cartography helpers. This supersedes the earlier foundation-only implementation status; it does not claim completion of final NEXUS visuals, deployment or canonical migration. See VIEWER_PROTOTYPE.md.
-
-## Pre-Checkpoint-4 v1.2 navigation
-
-The secured Checkpoint 3 baseline is extended by the approved noncanonical navigation task. System-object declarations are the authoring source of truth; manually generated, Git-tracked `connections.json` is the runtime index. `npm run connections` also updates only explicitly boundary-derived short-range gate positions; `connections:check` makes stale artifacts fail validation/build without repair. Frozen v1.1 regressions preserve older behavior. The demo has three systems and two Cantums. See [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md). No canonical migration, editor, deployment or Checkpoint 4 visual work is included.
+The data contract has no latest-published-year field: this demo uses
+`timeline.startAE` through `defaultAE`. Exact event markers beyond conservative
+record jumps, final assets, full accessibility, cross-browser/touch-hardware QA
+and large-atlas performance remain future work. See
+[current audit evidence](REPOSITORY_AUDIT_3_6.md), including the unresolved
+post-gesture emulated tap and existing bundle-size advisory.

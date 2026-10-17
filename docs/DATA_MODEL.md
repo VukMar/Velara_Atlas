@@ -4,7 +4,7 @@
 
 ## Identity and naming
 
-All entities have stable, globally unique IDs. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link. At least four digits; never reuse or rename an issued ID. Counters run across the whole atlas, not within each system.
+All entities have stable, globally unique IDs within a dataset. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link; `zon_0001` spatial zone. At least four digits; never reuse or rename an issued ID. Counters span the dataset, not each system. Frozen test snapshots are independent datasets, not duplicate production definitions. `npm run idfind -- all` provides read-only demo suggestions; it never reserves IDs.
 
 `nameHistory` holds dated names. A survey name can appear before a colonization name. A system's current name and its permanent ID are separate. The `cantumHistory` field represents regional administration; `controlHistory` is reserved for political control. Neither should be inferred from another.
 
@@ -19,6 +19,10 @@ All entities have stable, globally unique IDs. The prefix is a type discriminato
 
 Each current noncanonical demo file's schemaVersion is 1.2.0. Frozen v1.1 regression fixtures live under `tests/fixtures/v1_1/`, with `schemas/atlas-v1_1.schema.json`; historical semantics are unchanged. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
 
+The original accepted v1.2 scenarios are also frozen in `tests/fixtures/v1_2/`;
+the current `examples/demo_atlas/` remains author-editable. Earlier standalone
+examples use legacy/proposal shapes and are not current v1.2 authoring templates.
+
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
 ## Coordinates and distance units
@@ -26,6 +30,10 @@ The sector file's system list is the **catalogue index**. `publicDetailPath: nul
 Sector X/Y/Z uses **light-years (`ly`)**. Individual system X/Y/Z uses **Continuance Navigation Units (`CNU`)**, the established standardized interplanetary navigational distance used by the Continuance. The exact CNU-to-kilometer ratio remains undecided; do not guess one.
 
 `map.origin` is `(0,0,0)`; `map.size` is **full width, full height and full depth**, not half-size. With X size 100000, valid X positions lie between -50000 and +50000. X/Z is the top-down plane, Y is elevation. All coordinates are static, author-assigned chart positions; orbital mechanics and animated movements are out of scope. Optional `orbitingId` provides relationship metadata but does not compute position or enforce orbit distances.
+
+The Checkpoint 3.6 viewer additionally requires square X/Z extents and validates
+that constraint at startup/build without changing this general schema or JSON.
+Its 8×8 system grid measures navigational cell width, not physical body size.
 
 `positionLY: null` is valid for a system that has not yet been spatially placed. Such a system can be listed in the catalogue (if its visibility is otherwise known), but **must not** be assigned `(0,0,0)` automatically or plotted on the spatial map. A null discovery date is **unknown**, not year 0. The UI must avoid claiming the system was known at an earlier date based on `null`.
 
@@ -60,9 +68,9 @@ There are three navigational object types:
 - `gat_XXXX`, `objectType: jump_gate`: interstellar device, **one fixed corresponding gate on the other side**; zero links permitted while undeveloped/unconnected, **never two**. To connect System A to B and C requires **two** interstellar gates in System A.
 - `jhl_XXXX`, `objectType: jump_hole`: natural interstellar passage, modeled as one-to-one paired Jump Hole endpoints for this schema; subject to the same exclusivity rule. Its discovery date is distinct from when its passage becomes usable.
 
-Connections are authored once in system objects and compiled into `connections.json`: `lnk_XXXX`, `linkType`, `transportType`, two endpoints (each `systemId` and `objectId`), `direction`, `fromAE`, `untilAE`. `transportType` is `short_range_gate`, `jump_gate` or `jump_hole`. `direction` may be `bidirectional`, `a_to_b`, or `b_to_a`. The two endpoints must agree with the transport type and be in the same system for short-range links or **different** systems for interstellar links. **No gate-to-hole mixed connections. If a destination system is a published **fallback** with no released detail file, the public validator permits a reference to its endpoint ID without pretending to validate the unpublished object itself; the private canonical validator must verify that endpoint before release.**
+Connections are authored once in system objects and compiled into `connections.json`: `lnk_XXXX`, `linkType`, `transportType`, two endpoints (each `systemId` and `objectId`), `direction`, `fromAE`, `untilAE`. `transportType` is `short_range_gate`, `jump_gate` or `jump_hole`. `direction` may be `bidirectional`, `a_to_b`, or `b_to_a`. Endpoints must match the transport type and occupy the same system for short-range links or **different** systems for interstellar links. **No gate-to-hole mixing.** A published fallback system may expose an expressly authorized endpoint ID without released detail; public validation leaves that object unverified. A future canonical release process must verify approved endpoint facts without publishing private details; no private canonical validator is claimed to exist today.
 
-A Jump Gate or Jump Hole endpoint may appear in **at most one interstellar connection across the entire released dataset**, not merely one at a time. Reconfiguration of a gate to point to a different destination is deliberately out of scope for v1.0. Historical activation uses `fromAE` on the connection. The sector renderer draws interstellar connections between system positions; the system renderer draws local gate lines between local positions. Do not mix CNU and ly coordinates in a single line.
+A Jump Gate or Jump Hole endpoint may appear in **at most one interstellar connection across the entire released dataset**, not merely one at a time. Reconfiguration to another destination is deliberately unsupported in v1.2; local short-range endpoints are also lifetime-exclusive. Historical activation uses `fromAE` on the connection. Sector strokes join system positions in ly; local strokes join gate positions in CNU. Never mix those coordinate contexts.
 
 ## Validation scope and limitations
 
@@ -74,7 +82,7 @@ The demonstration data in `examples/demo_atlas` is **not canon**. Its system nam
 
 ## v1.1 extension note
 
-New demo schema accepts nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates distinct from exact discovery, zon_XXXX ellipsoid/box/polygon-volume records, and a separate presentation.json file for Cantum colors, radius and transparency. Gate and Jump Hole pairing rules are unchanged. The published v0.1 canonical chronology is NOT migrated by this change; permanent-ID conversion requires creator approval. See LEGACY_MIGRATION_PLAN.md.
+The v1.1 extension added nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates, three zone geometries and separate validated presentation settings. v1.2 retains these fields and supersedes only the older short-range branching/navigation-authoring rules. Final icon/variant rendering remains Checkpoint 4 work. Published v0.1 canonical chronology is not migrated; permanent-ID conversion requires approval. See [migration safeguards](LEGACY_MIGRATION_PLAN.md).
 
 ## v1.2 navigation authoring
 
