@@ -5,6 +5,12 @@ The local app is a **read-only, noncanonical demonstration** using only
 only navigation authoring, generation and the third-system fixture. No canonical migration,
 publication, editor, final icon library, portrait or polished NEXUS art is implied.
 
+> **Current layout: Checkpoint 3.6.** [The explicit layout revision](LAYOUT_REVISION_3_6.md)
+> supersedes the sidebars/bottom timeline and selection-driven route highlighting
+> described in the accepted Checkpoint 3 baseline below. Full-map square framing,
+> floating overlays and centered InfoCards are now implemented; [current evidence](CHECKPOINT_3_6_RESULTS.md)
+> records checks and limitations. Historical resolution, cartography and data remain unchanged.
+
 ## Run and verify
 
 ```text

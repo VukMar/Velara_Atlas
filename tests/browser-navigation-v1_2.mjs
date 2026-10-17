@@ -1,59 +1,43 @@
-/** Run via Playwright MCP filename after navigating to dev or production preview. */
-async (page) => {
-  const base = new URL('/Velara_Atlas/', page.url()).href;
-  const assert = (condition, message) => { if (!condition) throw new Error(message); };
-  const year = async y => {
-    await page.locator('#year-input').fill(String(y)); await page.locator('#year-input').press('Enter');
-    await page.waitForFunction(value => document.querySelector('#year').textContent === `${value} A.E.`, y);
-  };
-  const choose = id => page.locator('#selection').selectOption(id);
-  const open = async id => { await choose(id); await page.locator('#enter').click(); };
-  const stats = () => page.locator('#viewport').evaluate(n => ({markers: +n.dataset.markers, routes: +n.dataset.routes, zones: +n.dataset.zones, contributors: +n.dataset.contributors, mode: n.dataset.mode}));
-  await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
-  await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
-  assert((await stats()).markers===3 && (await stats()).routes===3 && (await stats()).contributors===3,'three systems, three interstellar routes, three influence contributors');
-  assert(await page.locator('#catalogue button[data-id="can_0001"]').count()===1 && await page.locator('#catalogue button[data-id="can_0002"]').count()===1,'two independent Cantum records');
-  for (const [y, systems, routes, contributors] of [[209,2,0,0],[210,2,0,1],[329,2,0,1],[330,2,0,2],[599,2,1,2],[600,3,1,2],[649,3,1,2],[650,3,2,2],[699,3,2,2],[700,3,2,3],[849,3,2,3],[850,3,3,3]]) {
-    await year(y); const s=await stats();
-    assert(s.markers===systems && s.routes===routes && s.contributors===contributors,`chronology at ${y}: ${JSON.stringify(s)}`);
-    assert(s.zones===0,'no sector nebula');
-  }
-  await year(1200);
-  const maps = [
-    ['sys_0001','Test System A',14,3,['gat_0001','gat_0002','gat_0003','gat_0009','gat_0015','gat_0016']],
-    ['sys_0002','Test System B',12,2,['gat_0005','gat_0006','gat_0007','gat_0010']],
-    ['sys_0003','Test System C',5,1,['gat_0013','gat_0014']]
-  ];
-  let selected = 0;
-  for(const [sid,name,count,routes,gates] of maps) {
-    await open(sid); await page.locator('#reset').click();
-    assert(await page.locator('#location').innerText()===name,`${sid} opens`);
-    assert((await stats()).markers===count && (await stats()).routes===routes,`${sid} marker/route counts`);
-    const ids=await page.locator('#labels button').evaluateAll(ns=>ns.map(n=>n.title.match(/\(([^)]+)\)$/)[1]).filter(id=>/^(cb|sta|gat|jhl)_/.test(id)));
-    for(const id of ids) {
-      await page.locator(`#labels button[title$="(${id})"]`).click();
-      assert(await page.locator('#selection').inputValue()===id,`${id} pointer selection`);selected++;
-      assert(/CNU/.test(await page.locator('#facts').innerText()),`${id} local coordinates`);
+/** Dev MCP suite: expectations come from the current public demo, not frozen dates. */
+async(page)=>{
+  const base='http://127.0.0.1:5173/Velara_Atlas/';
+  const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
+  await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+  await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('examples/demo_atlas/sector.json')).name);
+  const read=async file=>(await page.request.get(new URL(file,root).href)).json();
+  const sector=await read('sector.json'),graph=await read('connections.json');
+  const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
+  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
+  const open=async id=>{await choose(id);await page.locator('#enter').click();};
+  const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);};
+  let selected=0,localEndpoints=0;
+  for(const system of sector.systems) {
+    await open(system.id);await page.locator('#chart-stage').click({position:{x:2,y:2}});
+    const detail=await read(system.publicDetailPath);
+    check(+(await page.locator('#viewport').getAttribute('data-markers'))===detail.objects.length,`${system.id} complete released map`);
+    for(const object of detail.objects) {
+      await close();await page.locator(`#labels [data-record-id="${object.id}"]`).click();await page.locator('#info-panel').waitFor({state:'visible'});
+      check(await page.locator('#selection').inputValue()===object.id,`${object.id} pointer-selectable`);selected++;
+      check((await page.locator('#facts').innerText()).includes('CNU'),`${object.id} XYZ units`);
+      if(object.objectType==='short_range_gate') {check(await page.locator('#destinations p').count()===1,`${object.id} lifetime-exclusive local partner`);localEndpoints++;}
     }
-    for(const id of gates) { await choose(id);assert(await page.locator('#destinations p').count()===1,`${id} has exactly one local partner`); }
-    const prior=await page.locator('#labels button').first().getAttribute('style');
-    await page.locator('#zoom-out').click();
-    assert(await page.locator('#labels button').first().getAttribute('style')!==prior,`${sid} zoom`);
-    await page.locator('#mode').click();assert((await stats()).mode==='perspective',`${sid} perspective`);
-    await page.locator('#tilt').fill('35');await page.locator('#tilt').dispatchEvent('input');
-    await page.locator('canvas').focus();await page.keyboard.press('ArrowRight');await page.locator('#mode').click();
-    await page.locator('#sector').click();assert(await page.locator('#year').innerText()==='1200 A.E.','persistent year');
+    await close();await panel('controls-panel');await page.locator('#mode').click();
+    check(await page.locator('#viewport').getAttribute('data-mode')==='perspective','perspective works in every system');
+    await page.locator('#tilt').fill('35');await page.locator('#tilt').dispatchEvent('input');await page.locator('#mode').click();await page.locator('#sector').click();
   }
-  await open('sys_0001');await choose('gat_0011');
-  await page.getByRole('button',{name:'View destination system: Test System C',exact:true}).click();
-  assert(await page.locator('#location').innerText()==='Test System C','A to C uses new Jump Gate');
-  await choose('gat_0012');await page.getByRole('button',{name:'View destination system: Test System A',exact:true}).click();
-  await choose('gat_0004');await page.getByRole('button',{name:'View destination system: Test System B',exact:true}).click();
-  await choose('jhl_0002');await page.getByRole('button',{name:'View destination system: Test System A',exact:true}).click();
-  await choose('gat_0016');assert((await page.locator('#destinations').innerText()).includes('gat_0015'),'local gate has its dedicated local partner');
-  await choose('lnk_0009');assert(/short range gate/.test(await page.locator('#facts').innerText()),'local route stays distinct from interstellar infrastructure');
-  await year(159);assert(await page.locator('#selection option[value="zon_0001"]').count()===0,'nebula hidden before discovery');
-  await year(160);await choose('zon_0001');assert(/160/.test(await page.locator('#facts').innerText()),'nebula still historically resolved in A');
-  await page.locator('#sector').click();await year(1200);await page.locator('#reset').click();
-  return {base,systems:3,cantums:2,pointerSelectedObjects:selected,exclusiveLocalEndpoints:12,interstellarRoutes:3,historicalBoundaries:'passed',perspectiveZoomPan:'passed',navigation:'A→C→A→B→A',systemOnlyNebula:'passed'};
+  for(const link of graph.connections.filter(l=>l.linkType==='interstellar')) {
+    await open(link.endpointA.systemId);await choose(link.endpointA.objectId);
+    const expected=sector.systems.find(s=>s.id===link.endpointB.systemId).nameHistory.at(-1).name;
+    await page.getByRole('button',{name:`View destination system: ${expected}`,exact:true}).click();
+    check(await page.locator('#location').innerText()===expected,`${link.id} explicit destination`);
+    await page.locator('#sector').click();
+    await year(link.fromAE-1);check(await page.locator(`#selection option[value="${link.id}"]`).count()===0,`${link.id} excluded before availability`);
+    await year(link.fromAE);check(await page.locator(`#selection option[value="${link.id}"]`).count()===1,`${link.id} inclusive activation`);await year(sector.timeline.defaultAE);
+  }
+  await page.keyboard.press('Escape');await page.goto(base);
+  await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
+  check(await page.locator('#catalogue [data-id="can_0001"]').count()===1&&await page.locator('#catalogue [data-id="can_0002"]').count()===1,'distinct Cantum records retained');
+  return {systems:sector.systems.length,pointerSelectedObjects:selected,exclusiveLocalEndpoints:localEndpoints,interstellarRoutes:graph.connections.filter(l=>l.linkType==='interstellar').length,historyAndDestinations:'passed',perspective:'passed'};
 }

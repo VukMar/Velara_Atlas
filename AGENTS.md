@@ -4,7 +4,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The target is a **public, read-only GitHub Pages viewer**. Checkpoint 3 is committed; the local Three.js demo is noncanonical. The focused pre-Checkpoint-4 v1.2 navigation task is authorized; visual polish, deployment, canonical migration and the deferred editor are not.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The target is a **public, read-only GitHub Pages viewer**. Checkpoint 3 is committed; the local Three.js demo and v1.2 navigation authoring are noncanonical. Checkpoint 3.6 authorizes layout and interaction refinement; Checkpoint 4 visual polish, deployment, canonical migration and the deferred editor are not authorized.
 
 ## Read first
 
@@ -54,4 +54,9 @@ The public-facing NEXUS aesthetic and narrative are part of the project identity
 
 ## Current scope correction
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the v1.2 navigation task; do not start Checkpoint 4 without explicit approval.
+Checkpoint 3.6 authorizes layout and interaction refinement of the noncanonical
+viewer. Follow `docs/LAYOUT_REVISION_3_6.md` where it supersedes earlier permanent
+sidebars, bottom timeline and selection-driven route highlighting. Stop for review
+after this task; Checkpoint 4 remains unauthorized.
+
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 3.6; do not start Checkpoint 4 without explicit approval.

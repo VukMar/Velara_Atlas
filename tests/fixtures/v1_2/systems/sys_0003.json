@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.2.0",
+  "id": "sys_0003",
+  "entityType": "system_detail",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 100000,
+      "y": 20000,
+      "z": 100000
+    },
+    "unit": "CNU",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "objects": [
+    {
+      "id": "cb_0010",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "orbitingId": null,
+      "colonizedAE": null,
+      "discoveredAE": 600,
+      "nameHistory": [
+        {
+          "fromAE": 600,
+          "untilAE": null,
+          "name": "TEST C Primary",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "navigation": {
+        "boundaryRadiusCNU": 2200,
+        "localLinks": [
+          {
+            "id": "lnk_0007",
+            "targetObjectId": "cb_0011",
+            "sourceGateId": "gat_0013",
+            "targetGateId": "gat_0014",
+            "direction": "bidirectional",
+            "fromAE": 720,
+            "untilAE": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "cb_0011",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "orbitingId": null,
+      "colonizedAE": null,
+      "discoveredAE": 610,
+      "nameHistory": [
+        {
+          "fromAE": 610,
+          "untilAE": null,
+          "name": "TEST C World",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 18000,
+        "y": 2600,
+        "z": 8000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "navigation": {
+        "boundaryRadiusCNU": 2300
+      }
+    },
+    {
+      "id": "gat_0012",
+      "entityType": "gate",
+      "objectType": "jump_gate",
+      "constructedAE": 820,
+      "decommissionedAE": null,
+      "discoveredAE": 820,
+      "nameHistory": [
+        {
+          "fromAE": 820,
+          "untilAE": null,
+          "name": "TEST C Jump Gate to A",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": -18000,
+        "y": -800,
+        "z": 19000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "gat_0013",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 700,
+      "decommissionedAE": null,
+      "discoveredAE": 700,
+      "nameHistory": [
+        {
+          "fromAE": 700,
+          "untilAE": null,
+          "name": "TEST C Primary Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 1993.097828,
+        "y": 287.891908,
+        "z": 885.821257
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    },
+    {
+      "id": "gat_0014",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 710,
+      "decommissionedAE": null,
+      "discoveredAE": 710,
+      "nameHistory": [
+        {
+          "fromAE": 710,
+          "untilAE": null,
+          "name": "TEST C World Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 15916.306817,
+        "y": 2299.022096,
+        "z": 7073.914141
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    }
+  ],
+  "zones": []
+}

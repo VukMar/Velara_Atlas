@@ -1,6 +1,8 @@
 import {fileURLToPath} from 'node:url';
 import {defineConfig, normalizePath} from 'vite';
 import {runConnections} from './scripts/connections.mjs';
+import {readDemoSource} from './scripts/demo-files.mjs';
+import {assertSquareMap} from './src/viewer/chart-layout.mjs';
 
 const local = relative => fileURLToPath(new URL(relative, import.meta.url));
 const demoJSON = new Set([
@@ -18,7 +20,11 @@ const demoJSON = new Set([
 export function demoInputAudit() {
   return {
     name: 'explicit-demo-inputs',
-    buildStart() { runConnections({check: true}); },
+    buildStart() {
+      runConnections({check: true});
+      const {dataset} = readDemoSource();
+      for(const container of [dataset.sector,...dataset.detailFiles.values()]) assertSquareMap(container.map);
+    },
     generateBundle(_options, bundle) {
       for (const output of Object.values(bundle)) {
         if (output.type !== 'chunk') continue;

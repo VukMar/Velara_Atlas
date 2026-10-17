@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {createInfluence, createZone, createRoute, disposeTree, layerOrder} from './cartographic-layers.mjs';
+import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './chart-layout.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -40,29 +41,9 @@ export function createMarker(entity, positionKey) {
   return mesh;
 }
 
-/** Fit eligible points, with declared bounds as the empty-map fallback. */
-export function fitCamera(camera, map, entities, positionKey, aspect) {
-  const positions = entities.map(entity => entity[positionKey]).filter(position => position !== null);
-  const x = positions.map(p => p.x), z = positions.map(p => p.z);
-  const centerX = x.length ? (Math.min(...x) + Math.max(...x)) / 2 : map.origin.x;
-  const centerZ = z.length ? (Math.min(...z) + Math.max(...z)) / 2 : map.origin.z;
-  const width = x.length ? Math.max(Math.max(...x) - Math.min(...x), map.size.x * .15) : map.size.x;
-  const depth = z.length ? Math.max(Math.max(...z) - Math.min(...z), map.size.z * .15) : map.size.z;
-  const height = Math.max(depth, width / aspect) * 1.3;
-  camera.left = -height * aspect / 2;
-  camera.right = height * aspect / 2;
-  camera.top = height / 2;
-  camera.bottom = -height / 2;
-  camera.near = .01;
-  camera.far = Math.max(map.size.x, map.size.y, map.size.z) * 5;
-  camera.up.set(0, 0, -1);
-  camera.position.set(centerX, map.origin.y + camera.far / 2, centerZ);
-  camera.zoom = 1;
-  const target = new THREE.Vector3(centerX, map.origin.y, centerZ);
-  camera.lookAt(target);
-  camera.updateProjectionMatrix();
-  camera.updateMatrixWorld();
-  return target;
+/** Checkpoint 3.6 fits the complete declared square, independently of markers. */
+export function fitCamera(camera, map) {
+  return fitSquare(camera, map);
 }
 
 export class AtlasMap {
@@ -86,7 +67,7 @@ export class AtlasMap {
     this.controls.enableRotate = false;
     this.controls.screenSpacePanning = true;
     this.controls.zoomToCursor = true;
-    this.controls.minZoom = .25;
+    this.controls.minZoom = 1;
     this.controls.maxZoom = 2048;
     this.controls.mouseButtons = {LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN};
     this.controls.touches = {ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_PAN};
@@ -95,24 +76,37 @@ export class AtlasMap {
     this.routeLines = [];
     this.anchors = [];
     this.layerPreferences = {};
+    this.selectedId = null;
+    this.hoverSources = {pointer:null,focus:null,touch:null};
+    this.gridLabels = document.createElement('div');
+    this.gridLabels.id = 'grid-labels';
+    this.gridLabels.setAttribute('aria-label','Chart grid annotations');
+    container.append(this.gridLabels);
+    this.gridAnchors = [];
     this.labelsById = new Map();
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.drag = null;
     const canvas = this.renderer.domElement;
     canvas.addEventListener('pointerdown', event => {
+      this.setHovered(null,'focus');
+      if(event.pointerType === 'touch') this.setHovered(this.pick(event)?.id,'touch');
       if (!event.isPrimary) this.drag = null;
       else if (event.button === 0) this.drag = {x: event.clientX, y: event.clientY, id: event.pointerId, moved: false};
     });
     canvas.addEventListener('pointermove', event => {
       if (this.drag && Math.hypot(event.clientX - this.drag.x, event.clientY - this.drag.y) > 5) this.drag.moved = true;
+      if(event.pointerType !== 'touch') this.setHovered(this.drag?.moved ? null : this.pick(event)?.id,'pointer');
     });
-    canvas.addEventListener('pointercancel', () => { this.drag = null; });
+    canvas.addEventListener('pointerleave', () => this.setHovered(null,'pointer'));
+    canvas.addEventListener('pointercancel', () => { this.drag = null; this.setHovered(null,'touch'); });
     canvas.addEventListener('pointerup', event => {
-      if (this.drag?.id === event.pointerId && !this.drag.moved) this.onSelect(this.pick(event));
+      if (this.drag?.id === event.pointerId && !this.drag.moved) this.selectFromPointer(this.pick(event),event);
       this.drag = null;
+      this.setHovered(null,'touch');
     });
     canvas.addEventListener('dblclick', event => {
+      clearTimeout(this.selectTimer);
       const entity = this.pick(event);
       if (entity?.entityType === 'star_system') this.onOpen(entity.id);
       else if (entity) this.focus(entity);
@@ -142,15 +136,23 @@ export class AtlasMap {
     this.entities = entities;
     this.positionKey = positionKey;
     if (!map) { this.render(); return; }
-    const grid = new THREE.GridHelper(1, 16, 0x234052, 0x102733);
-    grid.scale.set(map.size.x, 1, map.size.z);
-    grid.position.set(map.origin.x, map.origin.y - map.size.y / 2, map.origin.z);
-    grid.material.transparent = true;
-    grid.material.depthTest = false;
-    grid.material.depthWrite = false;
+    assertSquareMap(map);
+    const layout = chartGrid(map);
+    const geometry = new THREE.BufferGeometry()
+      .setAttribute('position',new THREE.Float32BufferAttribute(layout.positions,3))
+      .setAttribute('color',new THREE.Float32BufferAttribute(layout.colors,3));
+    const grid = new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.8,depthTest:false,depthWrite:false}));
     grid.renderOrder = layerOrder.grid;
     grid.userData.layer = 'grid';
     this.scene.add(grid);
+    this.container.dataset.gridDivisions = String(layout.divisions);
+    this.gridAnchors = layout.annotations.map(annotation => {
+      const element = document.createElement('span'); element.className = 'grid-label';
+      element.textContent = annotation.text; element.dataset.kind = annotation.kind;
+      if(annotation.cell) { element.dataset.cell=annotation.cell; element.title='Width of one grid sector; navigational CNU, not a physical object dimension'; }
+      this.gridLabels.append(element);
+      return {...annotation,element,position:point(annotation.position)};
+    });
     const influence = createInfluence(extras.groups ?? [], map, extras.presentation);
     if (influence) this.scene.add(influence);
     for (const zone of extras.zones ?? []) {
@@ -180,6 +182,7 @@ export class AtlasMap {
   addLabel(entity, position, layer) {
       const button = document.createElement('button');
       button.className = 'map-label';
+      button.dataset.recordId = entity.id;
       button.type = 'button';
       button.setAttribute('aria-label', `${entity.name ?? entity.id} — ${entity.objectType ?? entity.entityType.replaceAll('_', ' ')}`);
       button.setAttribute('aria-pressed', 'false');
@@ -188,8 +191,15 @@ export class AtlasMap {
       const text = document.createElement('span');
       text.textContent = entity.name ?? entity.id;
       button.append(text);
-      button.addEventListener('click', () => this.onSelect(entity));
+      button.addEventListener('pointerenter', e => { if(e.pointerType !== 'touch') this.setHovered(entity.id,'pointer'); });
+      button.addEventListener('pointerleave', () => this.setHovered(null,'pointer'));
+      button.addEventListener('pointerdown', e => { this.setHovered(null,'focus'); if(e.pointerType === 'touch') this.setHovered(entity.id,'touch'); });
+      for(const type of ['pointerup','pointercancel']) button.addEventListener(type, () => this.setHovered(null,'touch'));
+      button.addEventListener('focus', () => { if(button.matches(':focus-visible')) this.setHovered(entity.id,'focus'); });
+      button.addEventListener('blur', () => this.setHovered(null,'focus'));
+      button.addEventListener('click', event => { this.setHovered(null,'pointer'); this.selectFromPointer(entity,event); });
       button.addEventListener('dblclick', () => {
+        clearTimeout(this.selectTimer);
         if (entity.entityType === 'star_system') this.onOpen(entity.id);
         else this.focus(entity);
       });
@@ -199,6 +209,7 @@ export class AtlasMap {
   }
 
   clearMap() {
+    clearTimeout(this.selectTimer);
     for (const item of [...this.scene.children]) {
       this.scene.remove(item);
       disposeTree(item);
@@ -208,12 +219,16 @@ export class AtlasMap {
     this.anchors = [];
     this.labelsById.clear();
     this.labels.replaceChildren();
+    this.gridLabels.replaceChildren(); this.gridAnchors = [];
+    this.hoverSources = {pointer:null,focus:null,touch:null};
+    this.container.dataset.highlightedRoutes = '';
   }
 
   reset() {
     if (!this.map) return;
     this.resize();
     this.controls.target.copy(fitCamera(this.orthographic, this.map, this.entities, this.positionKey, this.width / this.height));
+    this.savedTop = null;
     if (this.mode === 'perspective') this.positionPerspective();
     this.controls.update();
     this.render();
@@ -221,7 +236,8 @@ export class AtlasMap {
 
   getView() {
     return {mode: this.mode, position: this.camera.position.toArray(), target: this.controls.target.toArray(), zoom: this.camera.zoom,
-      span: this.orthographic.top * 2};
+      span: this.orthographic.top * 2,
+      top: this.savedTop ? {position:this.savedTop.position.toArray(),zoom:this.savedTop.zoom,target:this.savedTop.target.toArray()} : null};
   }
 
   viewSpan() {
@@ -231,13 +247,16 @@ export class AtlasMap {
 
   restoreView(view) {
     if ((view.mode ?? 'top') !== this.mode) this.setMode(view.mode ?? 'top');
-    if (view.span) {
+    if (view.span && this.mode !== 'top') {
       this.orthographic.top = view.span / 2; this.orthographic.bottom = -view.span / 2;
     }
     this.camera.position.fromArray(view.position);
     this.controls.target.fromArray(view.target);
     this.camera.zoom = view.zoom;
     this.camera.lookAt(this.controls.target);
+    if(this.mode === 'perspective' && view.top) this.savedTop = {
+      position:new THREE.Vector3().fromArray(view.top.position),zoom:view.top.zoom,target:new THREE.Vector3().fromArray(view.top.target)
+    };
     this.resize();
     this.controls.update();
     this.render();
@@ -277,7 +296,7 @@ export class AtlasMap {
     this.controls.enableRotate = mode === 'perspective';
     this.controls.screenSpacePanning = true;
     this.controls.zoomToCursor = true;
-    this.controls.minZoom = .25;
+    this.controls.minZoom = mode === 'top' ? 1 : .25;
     this.controls.maxZoom = 2048;
     this.controls.minDistance = Math.max(this.map.size.x, this.map.size.z) * .001;
     this.controls.maxDistance = Math.max(this.map.size.x, this.map.size.z) * 8;
@@ -304,11 +323,12 @@ export class AtlasMap {
     const delta = anchor.position.clone().sub(this.controls.target);
     this.camera.position.add(delta);
     this.controls.target.copy(anchor.position);
+    if(this.mode === 'top') this.camera.zoom = Math.max(this.camera.zoom,4);
     if (entity.geometry) {
       const g = entity.geometry;
       const extent = g.radii ? Math.max(...Object.values(g.radii)) * 2 : g.size ? Math.max(...Object.values(g.size)) :
         Math.max(...g.footprint.flatMap(p => [Math.abs(p.x) * 2, Math.abs(p.z) * 2]), g.maxY - g.minY);
-      if (this.mode === 'top') this.camera.zoom = THREE.MathUtils.clamp((this.camera.top - this.camera.bottom) / (extent * 2), .25, 2048);
+      if (this.mode === 'top') this.camera.zoom = THREE.MathUtils.clamp((this.camera.top - this.camera.bottom) / (extent * 2), 1, 2048);
       else this.camera.position.copy(anchor.position).add(new THREE.Vector3(0, extent * 1.8, extent * 1.8));
     }
     this.camera.updateProjectionMatrix(); this.controls.update(); this.render();
@@ -320,19 +340,39 @@ export class AtlasMap {
       const layer = child.userData.layer ?? child.userData.entity?.entityType;
       child.visible = preferences[layer] !== false;
     }
+    for(const source of ['pointer','focus','touch']) this.setHovered(null,source);
     this.render();
   }
 
   setSelected(id) {
-    const linked = this.routeLines.filter(line => line.userData.entity.id === id ||
-      [line.userData.entity.endpointA, line.userData.entity.endpointB].some(e => e.objectId === id || e.systemId === id));
-    const neighbors = new Set(linked.flatMap(l => [l.userData.entity.endpointA, l.userData.entity.endpointB]).flatMap(e => [e.objectId, e.systemId]));
+    this.selectedId = id;
     for (const mesh of this.meshes) {
       const selected = mesh.userData.entity.id === id;
-      mesh.material.color.setHex(selected ? 0xffbf62 : neighbors.has(mesh.userData.entity.id) ? 0x00d6ff : mesh.userData.baseColor);
+      mesh.material.color.setHex(selected ? 0xffbf62 : mesh.userData.baseColor);
     }
-    for (const line of this.routeLines) line.material.color.setHex(linked.includes(line) ? 0xffbf62 : line.userData.baseColor);
     for (const a of this.anchors) a.button.setAttribute('aria-pressed', String(a.entity.id === id));
+    this.render();
+  }
+
+  selectFromPointer(entity,event) {
+    clearTimeout(this.selectTimer);
+    if(event.pointerType === 'touch' || (event.type === 'click' && event.detail === 0)) this.onSelect(entity);
+    else this.selectTimer=setTimeout(()=>this.onSelect(entity),230);
+  }
+
+  setHovered(id, source = 'pointer') {
+    id = id ?? null;
+    if(this.hoverSources[source] === id) return;
+    this.hoverSources[source] = id;
+    const active = this.hoverSources.focus ?? this.hoverSources.pointer ?? this.hoverSources.touch;
+    const ids = new Set(hoverRoutes(this.routeLines.filter(l=>l.visible).map(l=>l.userData.entity),active));
+    for(const line of this.routeLines) {
+      const highlight=ids.has(line.userData.entity.id), color=highlight ? 0x00d6ff : line.userData.baseColor;
+      line.material.color.setHex(color); line.material.opacity=highlight ? 1 : .7;
+      for(const child of line.children) if(child instanceof THREE.ArrowHelper) child.setColor(color);
+    }
+    for(const a of this.anchors) if(a.entity.entityType === 'connection') a.button.dataset.highlighted=String(ids.has(a.entity.id));
+    this.container.dataset.highlightedRoutes=[...ids].join(' ');
     this.render();
   }
 
@@ -346,9 +386,10 @@ export class AtlasMap {
     this.width = Math.max(1, this.container.clientWidth);
     this.height = Math.max(1, this.container.clientHeight);
     this.renderer.setSize(this.width, this.height, false);
-    const halfHeight = this.orthographic.top;
-    this.orthographic.left = -halfHeight * this.width / this.height;
-    this.orthographic.right = halfHeight * this.width / this.height;
+    const halfHeight = this.map ? this.map.size.x / 2 : this.orthographic.top;
+    this.orthographic.top=halfHeight; this.orthographic.bottom=-halfHeight;
+    this.orthographic.left = -halfHeight;
+    this.orthographic.right = halfHeight;
     this.orthographic.updateProjectionMatrix();
     this.perspective.aspect = this.width / this.height;
     this.perspective.updateProjectionMatrix();
@@ -365,7 +406,18 @@ export class AtlasMap {
 
   render() {
     if (!this.width || !this.height) return;
+    if(this.mode === 'top' && this.map) {
+      const bounds=clampChart(this.camera,this.controls.target,this.map);
+      for(const [key,value] of Object.entries(bounds)) this.container.dataset[key]=String(value);
+    }
+    this.container.dataset.zoom=String(this.camera.zoom);
     this.camera.updateMatrixWorld();
+    for(const annotation of this.gridAnchors) {
+      const p=annotation.position.clone().project(this.camera), e=annotation.element;
+      e.hidden=this.layerPreferences.grid === false || Math.abs(p.x)>1 || Math.abs(p.y)>1 || Math.abs(p.z)>1;
+      e.style.left=`${(p.x+1)/2*this.width}px`; e.style.top=`${(1-p.y)/2*this.height}px`;
+      if(annotation.kind === 'scale') e.style.width=`${Math.max(30,Math.min(160,this.width*this.camera.zoom/8*.9))}px`;
+    }
     const projections = this.anchors.map(a => a.position.clone().project(this.camera));
     const anchors = projections.map(p => ({x: (p.x + 1) / 2 * this.width, y: (1 - p.y) / 2 * this.height}));
     for (const mesh of this.meshes) {
@@ -400,6 +452,7 @@ export class AtlasMap {
     this.resizeObserver.disconnect();
     this.controls.dispose();
     this.clearMap();
+    this.gridLabels.remove();
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

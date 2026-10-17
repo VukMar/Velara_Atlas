@@ -6,6 +6,10 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — Milestone 6, Checkpoint 3:** The local, read-only **noncanonical three-system demonstration** supports historical navigation, searchable records, routes, top-down/perspective cameras, spatial zones and approximate Cantum influence shading. Final visual polish, canonical migration, publication and the deferred local editor are not implemented.
 
+The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
+vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)
+and [verification results](docs/CHECKPOINT_3_6_RESULTS.md).
+
 ## The planned atlas
 
 - **Sector view:** select a historical year (A.E.) and inspect discovered systems, changing regional/political context, and interstellar connections as the published records become available.
@@ -48,7 +52,19 @@ npm run dev
 
 Open **http://127.0.0.1:5173/Velara_Atlas/** (or the local URL printed by Vite). Select a system marker, then **Enter system**, or double-click the marker. Use **Sector View** to return. Drag empty map space to pan, scroll/pinch to zoom, or use the zoom/reset buttons. The Selection control provides keyboard access to the current map's entities; focused map canvas also accepts arrow keys and +/−.
 
-The initial year is 1200 A.E.; the timeline and numeric input cover the demo range 0–1200. Search uses names valid at the selected year. Switch to 3D and right-drag to orbit, or use Camera elevation. Select a gate to inspect its active links; View destination system is an explicit action. Map layers are optional, and the political influence shading is not a legal border. Shapes remain temporary category markers, not physical dimensions or final artwork. See [implementation, verification and limitations](docs/VIEWER_PROTOTYPE.md).
+Open **Map controls** for Selection, zoom/reset and camera mode. Open **History**
+for the vertical slider and numeric year (0–1200, initially 1200 A.E.); the header
+always shows the selected year. **Catalogue** searches only names valid then.
+**Map layers** controls optional overlays. These panels never move the chart.
+Close the centered InfoCard with its top-right button or Escape to clear selection
+without resetting the camera. Hover a gate/route, or focus it with the keyboard,
+to highlight active links; selecting it opens its record and destination actions.
+System charts have A–H / 1–8 cells; H8 shows the navigation-sector width in CNU.
+Reset fits the complete chart, and top-down pan/zoom stays within its bounds.
+
+Switch to 3D and right-drag to orbit, or use Camera elevation. Political influence
+shading is not a legal border. Shapes remain temporary category markers, not
+physical dimensions or final artwork. See [implementation and limitations](docs/VIEWER_PROTOTYPE.md).
 
 ```bash
 npm test

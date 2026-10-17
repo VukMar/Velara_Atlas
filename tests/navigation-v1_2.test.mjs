@@ -12,14 +12,15 @@ import {runConnections, RECOVERY_FILE} from '../scripts/connections.mjs';
 import {readDataset, validateRelationships} from '../scripts/check-relations.mjs';
 import {resolveAtlas, territoryGroups, sampleInfluence, endpointDestinations} from '../src/core/cartography.mjs';
 
-const load = () => readDemoSource().dataset;
+const fixtureRoot = fileURLToPath(new URL('./fixtures/v1_2/',import.meta.url));
+const load = () => readDemoSource(fixtureRoot).dataset;
 const obj = (d, id) => [...d.detailFiles.values()].flatMap(s => s.objects).find(o => o.id === id);
 const declaration = (d, id) => [...d.detailFiles.values()].flatMap(s => s.objects.flatMap(o => [...(o.navigation?.localLinks ?? []), ...(o.interstellarConnection ? [o.interstellarConnection] : [])])).find(l => l.id === id);
 const blankPosition = o => ({...o, position: 'UNCHANGED-EXCEPT-POSITION'});
 function temporary(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'velara-nav-'));
   fs.mkdirSync(path.join(root, 'systems'));
-  const source = readDemoSource();
+  const source = readDemoSource(fixtureRoot);
   for (const [name, text] of source.texts) fs.writeFileSync(path.join(root, name), text);
   t.after(() => {
     assert.equal(path.dirname(root), fs.realpathSync(os.tmpdir()));

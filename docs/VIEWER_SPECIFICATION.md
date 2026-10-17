@@ -6,6 +6,12 @@
 **Audience:** Project owner, Codex, and future contributors  
 **Implementation status:** Specification only. The Three.js viewer is **not implemented** by this document.
 
+> **Checkpoint 3.6 layout revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
+> supersedes the persistent bottom timeline, permanent side columns/right InfoCard,
+> and selection-driven route highlighting below. The prototype uses a centered
+> square chart, floating panels, vertical History and a dismissible centered
+> InfoCard. Schema v1.2 separately supersedes old local-gate branching examples.
+
 ## 1. Purpose and governing principles
 
 The Velara Atlas is a **read-only, JSON-driven, historical navigational atlas**, curated in-universe by **NEXUS** for Maric Cosmic Records / *The New World*. It represents authored three-dimensional space through a clear, mostly top-down navigation interface in the spirit of classic space-game charts, with an optional perspective view. All artwork, copy, and application assets must be original or appropriately licensed; **do not copy Freelancer or Discovery assets**.

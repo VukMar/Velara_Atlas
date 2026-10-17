@@ -88,6 +88,12 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 
 ## 7. NEXUS presence and InfoCards
 
+> **Checkpoint 3.6 revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
+> supersedes the persistent right InfoCard, side columns and bottom timeline here
+> and in the responsive layout below. Use a centered dismissible InfoCard,
+> floating panels and vertical History around a square chart. The approved palette,
+> readability, geography and deferred artwork requirements continue to apply.
+
 The approved right-hand InfoCard remains persistent and collapsible; the left-hand catalogue and bottom timeline remain as specified in Milestone 3.
 
 ### Ordinary InfoCard

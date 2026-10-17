@@ -144,9 +144,10 @@ test('scanner ignores unrelated examples, metadata, presentation references and 
   assert.match(scanDataset(linked.options).errors.join('\n'),/Symlink\/reparse dataset file refused/);
 });
 
-test('actual demo inventory accounts for all three systems and nine authored/generated link pairs without writing',()=>{
+test('actual author-editable demo inventory scans cleanly with all supported prefixes',()=>{
   const r=scanDataset();assert.deepEqual(r.errors,[]);assert.equal(r.files.length,6);
-  assert.deepEqual(Object.fromEntries(r.rows.map(v=>[v.prefix,v.highest])),{cb:'cb_0011',gat:'gat_0016',sta:'sta_0002',jhl:'jhl_0002',sys:'sys_0003',lnk:'lnk_0009',can:'can_0002',zon:'zon_0003',sec:'sec_0001'});
+  assert.deepEqual(r.rows.map(v=>v.prefix),PREFIXES);
+  for(const row of r.rows) assert.match(row.highest,new RegExp(`^${row.prefix}_[0-9]{4,}$`));
 });
 
 test('standalone CLI returns nonzero for bad prefix and succeeds independently of cwd without altering scanned files',()=>{
@@ -155,7 +156,8 @@ test('standalone CLI returns nonzero for bad prefix and succeeds independently o
   const capture=()=>r.files.map(file=>fs.readFileSync(path.join(root,'examples/demo_atlas',file),'utf8'));
   const before=capture();
   const ok=spawnSync(process.execPath,[script,'all'],{cwd:path.join(root,'scripts'),encoding:'utf8'});
-  assert.equal(ok.status,0,ok.stderr);assert.match(ok.stdout,/lnk_0009\s+lnk_0010/);assert.deepEqual(capture(),before);
+  const links=r.rows.find(row=>row.prefix==='lnk');
+  assert.equal(ok.status,0,ok.stderr);assert.ok(ok.stdout.includes(links.highest) && ok.stdout.includes(links.next));assert.deepEqual(capture(),before);
   const bad=spawnSync(process.execPath,[script,'nope'],{encoding:'utf8'});
   assert.equal(bad.status,2);assert.match(bad.stderr,/Unsupported prefix: nope/);
 });

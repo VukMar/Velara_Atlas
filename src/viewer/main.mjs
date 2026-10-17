@@ -2,11 +2,13 @@ import './style.css';
 import {loadDemoDataset} from './demo-data.mjs';
 import {resolveAtlas, searchRecords, recordedYears, endpointDestinations, territoryGroups} from '../core/cartography.mjs';
 import {AtlasMap} from './map-scene.mjs';
+import {assertSquareMap} from './chart-layout.mjs';
 
 const $ = id => document.getElementById(id);
 let dataset, atlas, view, yearAE, systemId = null, selectedId = null, events = [];
 const cameras = new Map(), preferences = new Map();
 let search = '', category = 'all';
+let returnFocus = null, returnId = null;
 const scope = () => systemId ?? 'sector';
 const layerDefaults = {grid: true, territory: true, zones: true, routes: true, star_system: true, celestial_body: true, station: true, gate: true, jump_hole: true};
 const labels = {grid: 'Coordinate grid', territory: 'Cantum influence / approximate chart overlay', zones: 'Spatial zones', routes: 'Connections',
@@ -17,7 +19,7 @@ function notice(text) { $('notice').textContent = text; }
 function recordName(record) { return record.name ?? record.id; }
 function saveCamera() { if (view?.map) cameras.set(scope(), atlas.getView()); }
 
-function choose(record) {
+function choose(record, {present = true} = {}) {
   selectedId = record?.id ?? null;
   $('selection').value = selectedId ?? '';
   atlas.setSelected(selectedId);
@@ -28,8 +30,7 @@ function choose(record) {
   $('enter').hidden = record?.entityType !== 'star_system';
   $('focus').disabled = !record || !atlas.anchors.some(a => a.entity.id === record.id);
   for (const button of $('catalogue').querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.id === selectedId));
-  if (!record) return;
-  if (innerWidth <= 760) $('info-panel').open = true;
+  if (!record) { if($('info-panel').open) $('info-panel').close(); return; }
   fact('Permanent ID', record.id); fact('Historical snapshot', `${yearAE} A.E.`);
   const p = record.positionLY ?? record.position;
   if (p) fact('Authored coordinates', `X ${p.x} / Y ${p.y} / Z ${p.z} ${view.map?.unit ?? (systemId ? 'CNU' : 'ly')}`);
@@ -71,6 +72,22 @@ function choose(record) {
       }
     }
   }
+  if(present) {
+    const active=document.activeElement;
+    if(!$('info-panel').contains(active)) { returnFocus=active; returnId=active?.dataset.recordId ?? active?.dataset.id ?? null; }
+    for(const source of ['pointer','focus','touch']) atlas.setHovered(null,source);
+    if(!$('info-panel').open) $('info-panel').show();
+    $('close-info').focus({preventScroll:true});
+  }
+}
+
+function dismissInfo() {
+  choose(null);
+  let target=returnFocus?.isConnected ? returnFocus : returnId ? document.querySelector(`[data-record-id="${CSS.escape(returnId)}"], #catalogue [data-id="${CSS.escape(returnId)}"]`) : null;
+  const closed=target?.closest('details:not([open])');
+  if(closed) target=closed.querySelector('summary');
+  if(!target || target.hidden) target=atlas.renderer.domElement;
+  target.focus({preventScroll:true});
 }
 
 function fact(label, value) {
@@ -87,6 +104,11 @@ function renderCatalogue() {
     button.setAttribute('aria-pressed', String(record.id === selectedId));
     button.textContent = `${recordName(record)} · ${(record.objectType ?? record.entityType).replaceAll('_', ' ')}`;
     button.addEventListener('click', () => { choose(record); if (innerWidth <= 760) $('catalogue-panel').open = false; });
+    button.addEventListener('pointerenter', e => { if(e.pointerType !== 'touch') atlas.setHovered(record.id,'pointer'); });
+    button.addEventListener('pointerleave', () => atlas.setHovered(null,'pointer'));
+    button.addEventListener('pointerdown', () => atlas.setHovered(null,'focus'));
+    button.addEventListener('focus', () => { if(button.matches(':focus-visible')) atlas.setHovered(record.id,'focus'); });
+    button.addEventListener('blur', () => atlas.setHovered(null,'focus'));
     button.addEventListener('dblclick', () => { if (record.entityType === 'star_system') navigate(record.id); else atlas.focus(record); });
     item.append(button); $('catalogue').append(item);
   }
@@ -123,7 +145,7 @@ function refresh(preserve = true) {
   for (const record of view.records) $('selection').add(new Option(`${recordName(record)} · ${record.objectType ?? record.entityType}`, record.id));
   renderCatalogue(); renderLayers();
   const selected = view.records.find(record => record.id === selectedId);
-  if (selectedId && !selected) notice('The selected record is not available at this year. Selection cleared.'); choose(selected ?? null);
+  if (selectedId && !selected) notice('The selected record is not available at this year. Selection cleared.'); choose(selected ?? null,{present:false});
   $('mode').disabled = !view.map; $('reset').disabled = !view.map;
   $('mode').textContent = atlas.mode === 'top' ? 'Switch to 3D' : 'Switch to top-down'; $('tilt-control').hidden = atlas.mode !== 'perspective';
   $('previous').disabled = !events.some(y => y < yearAE); $('next').disabled = !events.some(y => y > yearAE);
@@ -133,6 +155,7 @@ function refresh(preserve = true) {
 
 function navigate(id) {
   saveCamera(); systemId = id; selectedId = null; search = ''; category = 'all'; $('search').value = ''; $('category').value = 'all'; notice(''); refresh(false);
+  atlas.renderer.domElement.focus({preventScroll:true});
 }
 
 function changeYear(value) {
@@ -146,6 +169,7 @@ async function start() {
   $('retry').hidden = true; message('Loading public demonstration records…');
   try {
     dataset = await loadDemoDataset(); yearAE = dataset.sector.timeline.defaultAE; events = recordedYears(dataset);
+    for(const container of [dataset.sector,...dataset.detailFiles.values()]) assertSquareMap(container.map);
     atlas = new AtlasMap($('viewport'), $('labels'), choose, navigate);
     for (const input of [$('timeline'), $('year-input')]) { input.min = dataset.sector.timeline.startAE; input.max = dataset.sector.timeline.defaultAE; }
     $('range-label').textContent = `Demo range ${dataset.sector.timeline.startAE}–${dataset.sector.timeline.defaultAE} A.E.`;
@@ -154,8 +178,8 @@ async function start() {
     $('category').addEventListener('change', event => { category = event.target.value; renderCatalogue(); });
     $('selection').addEventListener('change', () => choose(view.records.find(r => r.id === $('selection').value) ?? null));
     $('enter').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r?.entityType === 'star_system') navigate(r.id); });
-    $('focus').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r) atlas.focus(r); });
-    $('sector').addEventListener('click', () => { const parent = systemId; navigate(null); choose(view.systems.find(s => s.id === parent) ?? null); });
+    $('focus').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r) atlas.focus(r); dismissInfo(); atlas.renderer.domElement.focus({preventScroll:true}); });
+    $('sector').addEventListener('click', () => navigate(null));
     $('reset').addEventListener('click', () => atlas.reset()); $('zoom-in').addEventListener('click', () => atlas.zoom(1.4)); $('zoom-out').addEventListener('click', () => atlas.zoom(1 / 1.4));
     $('mode').addEventListener('click', () => { atlas.setMode(atlas.mode === 'top' ? 'perspective' : 'top');
       $('mode').textContent = atlas.mode === 'top' ? 'Switch to 3D' : 'Switch to top-down'; $('tilt-control').hidden = atlas.mode !== 'perspective';
@@ -165,15 +189,36 @@ async function start() {
     $('year-input').addEventListener('change', () => changeYear($('year-input').valueAsNumber));
     $('previous').addEventListener('click', () => changeYear(events.filter(y => y < yearAE).at(-1)));
     $('next').addEventListener('click', () => changeYear(events.find(y => y > yearAE))); $('latest').addEventListener('click', () => changeYear(dataset.sector.timeline.defaultAE));
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') choose(null); });
+    $('close-info').addEventListener('click', dismissInfo);
+    document.addEventListener('keydown', event => {
+      if(event.key !== 'Escape') return;
+      if($('info-panel').open) { event.preventDefault(); dismissInfo(); }
+      else for(const panel of document.querySelectorAll('.floating[open]')) { panel.open=false; panel.querySelector('summary').focus({preventScroll:true}); }
+    });
     atlas.renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); message('Graphics context lost. Reload to restore the map.'); });
-    if (innerWidth <= 760) { $('catalogue-panel').open = false; $('info-panel').open = false; }
     if (import.meta.hot) import.meta.hot.dispose(() => atlas.dispose());
   } catch (error) {
-    atlas?.dispose(); atlas = null; message('Technical error loading the demo or starting WebGL. Retry, or inspect the browser console.');
+    atlas?.dispose(); atlas = null; message(`Technical error loading the demo or starting WebGL. ${error.message} Retry, or inspect the browser console.`);
     $('retry').hidden = false; console.error('Atlas initialization failed:', error);
   }
 }
 // A failed ES-module fetch can be cached for the document's lifetime. Reload
 // explicitly so Retry also recovers that state instead of reusing the rejection.
 $('retry').addEventListener('click', () => location.reload()); start();
+
+// Overlays never participate in chart sizing. Header wrapping and rotation are
+// handled by observing the remaining stage, not hardcoding device dimensions.
+const sizeChart = () => {
+  const stage=$('chart-stage');
+  $('viewport').style.setProperty('--chart-size',`${Math.max(1,Math.min(stage.clientWidth,stage.clientHeight)-16)}px`);
+};
+const stageObserver=new ResizeObserver(sizeChart); stageObserver.observe($('chart-stage')); sizeChart();
+for(const panel of document.querySelectorAll('.floating')) {
+  panel.addEventListener('toggle', () => {
+    if(panel.open) for(const other of document.querySelectorAll('.floating')) if(other !== panel) other.open=false;
+  });
+}
+for(const button of document.querySelectorAll('[data-close-panel]')) button.addEventListener('click', () => {
+  const panel=$(button.dataset.closePanel);panel.open=false;panel.querySelector('summary').focus({preventScroll:true});
+});
+if(import.meta.hot) import.meta.hot.dispose(() => stageObserver.disconnect());
