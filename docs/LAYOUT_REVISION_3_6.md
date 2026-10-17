@@ -84,10 +84,13 @@ Reusable Playwright MCP entry points (pass an absolute `filename` to
 - `tests/browser-checkpoint3.mjs`: dev; chronology, layers, synthetic unplaced,
   fallback, partial and failed-load states, and invalid square-map input.
 - `tests/browser-touch3_6.mjs`: dev or production; Chromium touch emulation,
-  selection, timeline, navigation, injected pinch and bounded pan. Follow-up taps
-  after the raw multi-touch sequence remain unverified: the injected sequence
-  produced pointer events without a following click. No physical-touch or
-  cross-browser pass is claimed.
+  selection, timeline, navigation, injected pinch and bounded pan. Input is now
+  frame-paced and the post-gesture UI tap must pass; the original near-zero-duration
+  sequence's missing-click result is retained in the earlier historical reports.
+- `tests/browser-touch-camera.mjs`: dev-only real-scene observation; native 2D/3D
+  touch mappings, pan/orbit/pinch, one→two→one transitions with either finger lifted,
+  release followed by UI/object taps, and preservation of selection/year/camera limits.
+  No physical-touch or cross-browser pass is claimed.
 - `tests/browser-documentation3_6.mjs`: dev or production; the README review
   workflow across all systems, Focus/Reset actions and observed read-only,
   same-origin traffic without canonical/private-source requests.
@@ -96,3 +99,26 @@ See [the original results](CHECKPOINT_3_6_RESULTS.md) and
 [the current synchronization audit](REPOSITORY_AUDIT_3_6.md). No authored
 coordinates, histories, schemas, IDs, navigation declarations, generated graph,
 Cantum calculations, zone geometry or publication configuration are changed.
+
+## Touchscreen camera follow-up
+
+The focused touch refinement uses native Three.js OrbitControls: one finger is
+`THREE.TOUCH.PAN` in both modes. Two fingers use `DOLLY_PAN` in top-down (rotation
+disabled) and `DOLLY_ROTATE` in perspective, combining centroid-motion orbit with
+pinch zoom. No custom gesture recognizer or UI-activation workaround is added;
+existing camera limits, square framing, selected record and history are preserved.
+
+The earlier post-gesture tap failure was reproduced before this change. With
+35 ms between injected touch events, both the existing basic test and the new
+camera test pass in Chromium emulation; that timing is test input, not a delay
+in the application. Historical audit reports describe their original runs.
+Real Android/iOS devices still need checks for gesture feel, finger transitions,
+tap-after-gesture behavior and browser/OS interactions.
+
+Follow-up checks passed: `npm test` (122/122), `npm run validate`,
+`npm run connections:check`, `npm run build` with its disclosure audit, and
+`git diff --check`. Native 3D gesture assertions ran against the real dev scene;
+production preview passed basic touch/post-gesture taps, square-layout/camera
+regressions and the documented navigation workflow. All three systems and 33
+objects remained selectable in the dev navigation suite. Fresh preview console
+had no errors/warnings; the existing Vite bundle-size advisory remains.

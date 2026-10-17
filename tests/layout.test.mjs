@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {OrthographicCamera,Vector3} from 'three';
+import {OrthographicCamera,PerspectiveCamera,Vector3,TOUCH} from 'three';
 import {assertSquareMap,fitSquare,clampChart,chartGrid,cellWidthLabel} from '../src/viewer/chart-layout.mjs';
 import {AtlasMap,createMarker} from '../src/viewer/map-scene.mjs';
 import {createRoute,disposeTree} from '../src/viewer/cartographic-layers.mjs';
@@ -67,6 +67,26 @@ test('camera snapshots retain the top-down state while scrubbing or navigating i
   assert.deepEqual(m.savedTop.position.toArray(),[50,400000,60]);
   assert.deepEqual(m.savedTop.target.toArray(),[50,0,60]);assert.equal(m.savedTop.zoom,4);
   m.savedTop.target.x=99;assert.equal(saved.top.target[0],50,'snapshot arrays are independent');
+});
+
+test('native touch mappings pan with one finger and orbit/pinch only in perspective across repeated mode changes',()=>{
+  const m=Object.create(AtlasMap.prototype),document=new EventTarget(),canvas=new EventTarget();
+  Object.assign(canvas,{ownerDocument:document,getRootNode:()=>document,style:{},clientWidth:400,clientHeight:400});
+  m.map=map();m.mode='top';m.orthographic=new OrthographicCamera();m.perspective=new PerspectiveCamera(45,1,.01,1000000);
+  const target=fitSquare(m.orthographic,m.map);m.camera=m.orthographic;
+  m.controls={target,dispose(){}};m.resize=m.render=()=>{};
+  m.renderer={domElement:canvas};m.orthographic.zoom=3;
+  try {
+    for(const mode of ['perspective','top','perspective','top']) {
+      m.setMode(mode);
+      assert.equal(m.controls.touches.ONE,TOUCH.PAN);
+      assert.equal(m.controls.touches.TWO,mode==='perspective'?TOUCH.DOLLY_ROTATE:TOUCH.DOLLY_PAN);
+      assert.equal(m.controls.enableRotate,mode==='perspective');
+      assert.equal(m.controls.minZoom,mode==='perspective' ? .25 : 1);assert.equal(m.controls.maxZoom,2048);
+      assert.equal(m.controls.minPolarAngle,.1);assert.equal(m.controls.maxPolarAngle,Math.PI/2-.04);
+      if(mode==='top')assert.equal(m.camera.zoom,3,'top-down view survives the gesture-mode switch');
+    }
+  } finally {m.controls.dispose();}
 });
 
 test('route styling follows hover/focus/touch only; selection remains independent and transport strokes persist',()=>{

@@ -303,7 +303,7 @@ export class AtlasMap {
     this.controls.minPolarAngle = .1;
     this.controls.maxPolarAngle = Math.PI / 2 - .04;
     this.controls.mouseButtons = {LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: mode === 'perspective' ? THREE.MOUSE.ROTATE : THREE.MOUSE.PAN};
-    this.controls.touches = {ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_PAN};
+    this.controls.touches = {ONE: THREE.TOUCH.PAN, TWO: mode === 'perspective' ? THREE.TOUCH.DOLLY_ROTATE : THREE.TOUCH.DOLLY_PAN};
     this.controls.addEventListener('change', () => this.render());
     this.controls.update(); this.resize();
   }
