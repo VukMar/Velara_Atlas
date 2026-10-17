@@ -30,7 +30,9 @@ silently. This is a viewer constraint; the general schema remains unchanged.
 Local CNU charts use nine lines per axis to create **8×8** equal cells. A–H run
 left to right (−X to +X), 1–8 top to bottom (−Z to +Z). Geometry and annotations
 are anchored in world space, on the existing chart floor. H8 displays the cell
-width: `map.size.x / 8`, so a 100,000-CNU chart shows **12.5K CNU**. This measures
+width: `map.size.x / 8`, so a 100,000-CNU chart shows **12.5K CNU**, with a restrained
+two-headed measurement arrow beneath it spanning that cell's projected X edges.
+The text and arrow remain anchored during pan/zoom. This measures
 a navigation sector, not a body diameter. Sector View retains an unlabeled grid.
 
 ## Overlays and records

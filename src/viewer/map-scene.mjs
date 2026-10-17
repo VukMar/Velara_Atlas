@@ -150,8 +150,15 @@ export class AtlasMap {
       const element = document.createElement('span'); element.className = 'grid-label';
       element.textContent = annotation.text; element.dataset.kind = annotation.kind;
       if(annotation.cell) { element.dataset.cell=annotation.cell; element.title='Width of one grid sector; navigational CNU, not a physical object dimension'; }
+      let arrow;
+      if(annotation.widthEndpoints) {
+        arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        arrow.classList.add('sector-width-arrow');arrow.setAttribute('height','6');arrow.setAttribute('aria-hidden','true');
+        arrow.append(document.createElementNS('http://www.w3.org/2000/svg','path'));element.append(arrow);
+        element.setAttribute('role','img');element.setAttribute('aria-label',`Width of one H8 grid sector: ${annotation.text}`);
+      }
       this.gridLabels.append(element);
-      return {...annotation,element,position:point(annotation.position)};
+      return {...annotation,element,position:point(annotation.position),widthEndpoints:annotation.widthEndpoints?.map(point),arrow};
     });
     const influence = createInfluence(extras.groups ?? [], map, extras.presentation);
     if (influence) this.scene.add(influence);
@@ -414,9 +421,19 @@ export class AtlasMap {
     this.camera.updateMatrixWorld();
     for(const annotation of this.gridAnchors) {
       const p=annotation.position.clone().project(this.camera), e=annotation.element;
+      if(annotation.widthEndpoints) {
+        const [a,b]=annotation.widthEndpoints.map(v=>v.clone().project(this.camera));
+        const dx=(b.x-a.x)*this.width/2,dy=(a.y-b.y)*this.height/2,width=Math.hypot(dx,dy),head=Math.min(3,width/4);
+        // Match actual cell edges, including foreshortening in perspective.
+        p.copy(a).add(b).multiplyScalar(.5);
+        if(![a.z,b.z,width].every(Number.isFinite)||Math.abs(a.z)>1||Math.abs(b.z)>1) {e.hidden=true;continue;}
+        annotation.arrow.setAttribute('width',String(width));
+        annotation.arrow.style.transform=`translateX(-50%) rotate(${Math.atan2(dy,dx)}rad)`;
+        annotation.arrow.firstChild.setAttribute('d',`M0 3 H${width} M${head} ${3-head} L0 3 L${head} ${3+head} M${width-head} ${3-head} L${width} 3 L${width-head} ${3+head}`);
+        e.style.width=`${Math.max(30,Math.min(160,width*.9))}px`;
+      }
       e.hidden=this.layerPreferences.grid === false || Math.abs(p.x)>1 || Math.abs(p.y)>1 || Math.abs(p.z)>1;
       e.style.left=`${(p.x+1)/2*this.width}px`; e.style.top=`${(1-p.y)/2*this.height}px`;
-      if(annotation.kind === 'scale') e.style.width=`${Math.max(30,Math.min(160,this.width*this.camera.zoom/8*.9))}px`;
     }
     const projections = this.anchors.map(a => a.position.clone().project(this.camera));
     const anchors = projections.map(p => ({x: (p.x + 1) / 2 * this.width, y: (1 - p.y) / 2 * this.height}));

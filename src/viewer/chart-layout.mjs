@@ -56,7 +56,9 @@ export function chartGrid(map) {
       annotations.push({text:String.fromCharCode(65+i),kind:'column',position:{x:x-side/2+(i+.5)*step,y:floor,z:z-side/2+step*.17}});
       annotations.push({text:String(i+1),kind:'row',position:{x:x-side/2+step*.17,y:floor,z:z-side/2+(i+.5)*step}});
     }
-    annotations.push({text:cellWidthLabel(map),kind:'scale',cell:'H8',position:{x:x+side/2-step*.5,y:floor,z:z+side/2-step*.5}});
+    const scaleZ=z+side/2-step*.5;
+    annotations.push({text:cellWidthLabel(map),kind:'scale',cell:'H8',position:{x:x+side/2-step*.5,y:floor,z:scaleZ},
+      widthEndpoints:[{x:x+side/2-step,y:floor,z:scaleZ},{x:x+side/2,y:floor,z:scaleZ}]});
   }
   return {positions,colors,annotations,divisions,step};
 }

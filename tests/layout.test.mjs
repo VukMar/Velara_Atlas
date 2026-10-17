@@ -48,6 +48,8 @@ test('8×8 system grid has nine world-space lines on each axis and correctly ori
   assert.ok(columns[0].position.x<columns[7].position.x);assert.ok(rows[0].position.z<rows[7].position.z);
   const scale=g.annotations.find(a=>a.kind==='scale');
   assert.equal(scale.cell,'H8');assert.deepEqual(scale.position,{x:43750,y:-10000,z:43750});
+  assert.deepEqual(scale.widthEndpoints,[{x:37500,y:-10000,z:43750},{x:50000,y:-10000,z:43750}]);
+  assert.equal(scale.widthEndpoints[1].x-scale.widthEndpoints[0].x,g.step,'measurement spans exactly one grid cell');
   assert.equal(scale.text,'12.5K CNU');assert.deepEqual(m,before);
   assert.deepEqual(chartGrid({...m,unit:'ly'}).annotations,[],'sector is not assigned system grid labels');
 });

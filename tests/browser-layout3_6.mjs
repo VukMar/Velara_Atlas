@@ -14,6 +14,21 @@ async(page) => {
     await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');
     await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);
   };
+  const measurement=async()=>{
+    const m=await page.locator('#grid-labels [data-cell="H8"]').evaluate(n=>{
+      const arrow=n.querySelector('.sector-width-arrow'),canvas=document.querySelector('canvas'),v=document.querySelector('#viewport');
+      const text=document.createRange();text.selectNode(n.firstChild);
+      return {arrow:arrow.getBoundingClientRect().toJSON(),text:text.getBoundingClientRect().toJSON(),
+        canvas:canvas.getBoundingClientRect().toJSON(),width:canvas.clientWidth,zoom:+v.dataset.zoom,minX:+v.dataset.minX,maxX:+v.dataset.maxX,
+        hidden:n.hidden,pointerEvents:getComputedStyle(arrow).pointerEvents};
+    });
+    check(!m.hidden,'H8 measurement is visible');
+    check(Math.abs(m.arrow.width-m.width*m.zoom/8)<1,'arrow spans exactly one projected cell');
+    const x=value=>m.canvas.x+(value-m.minX)/(m.maxX-m.minX)*m.width;
+    check(Math.abs(m.arrow.x-x(37500))<1&&Math.abs(m.arrow.x+m.arrow.width-x(50000))<1,'measurement tips stay on H8 column boundaries');
+    check(m.arrow.y>=m.text.y+m.text.height-.5,'arrow sits beneath the numeric label');
+    check(m.pointerEvents==='none','measurement does not intercept map selection');
+  };
   const square=async()=>{
     await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     const v=await page.locator('#viewport').boundingBox(),s=await page.locator('#chart-stage').boundingBox(),vp=page.viewportSize();
@@ -26,6 +41,7 @@ async(page) => {
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   check(!await page.locator('#info-panel').evaluate(n=>n.open),'no initial InfoCard');
+  check(await page.locator('.sector-width-arrow').count()===0,'Sector View has no system-cell measurement');
   const initial=await square();
   for(const id of ['catalogue-panel','timeline-panel','controls-panel','layers-panel']) {
     await panel(id);const now=await square();check(JSON.stringify(now)===JSON.stringify(initial),`${id} does not shift/resize chart`);
@@ -62,6 +78,12 @@ async(page) => {
   check(await page.locator('#grid-labels [data-kind="column"]').allTextContents().then(v=>v.join('')==='ABCDEFGH'),'columns A-H');
   check(await page.locator('#grid-labels [data-kind="row"]').allTextContents().then(v=>v.join('')==='12345678'),'rows 1-8');
   check(await page.locator('#grid-labels [data-cell="H8"]').innerText()==='12.5K CNU','H8 sector measurement');
+  await measurement();
+  await panel('controls-panel');await page.locator('#zoom-in').click();await page.locator('[data-close-panel="controls-panel"]').click();
+  await page.locator('canvas').focus();
+  for(const key of ['ArrowRight','ArrowRight','ArrowRight','ArrowDown','ArrowDown','ArrowDown'])await page.keyboard.press(key);
+  await measurement();await page.keyboard.press('ArrowLeft');await measurement();
+  await panel('controls-panel');await page.locator('#reset').click();await page.locator('[data-close-panel="controls-panel"]').click();
   await panel('controls-panel');
   await page.locator('#zoom-out').click();check((await state()).zoom==='1','cannot zoom out beyond full map');
   await page.locator('#zoom-in').click();await page.locator('[data-close-panel="controls-panel"]').click();
@@ -113,7 +135,7 @@ async(page) => {
     await page.setViewportSize(size);await square();
     const before=await page.locator('#viewport').boundingBox();await panel('timeline-panel');await square();
     check(JSON.stringify(await page.locator('#viewport').boundingBox())===JSON.stringify(before),'narrow overlay does not move map');
-    await page.keyboard.press('Escape');await open('sys_0002');await square();
+    await page.keyboard.press('Escape');await open('sys_0002');await square();await measurement();
     await choose('cb_0006');const box=await page.locator('#info-panel').boundingBox();
     check(box.x>=0&&box.y>=0&&box.x+box.width<=size.width+1&&box.y+box.height<=size.height+1,'popup fits narrow screen');
     await page.locator('#close-info').click();await panel('controls-panel');await page.locator('#mode').click();await square();
