@@ -35,6 +35,21 @@ The Checkpoint 3.6 viewer additionally requires square X/Z extents and validates
 that constraint at startup/build without changing this general schema or JSON.
 Its 8×8 system grid measures navigational cell width, not physical body size.
 
+**Checkpoint 3.8 exception — v1.2 system spatial zones only:** A zone's `position`
+is its authored geometric reference origin, not an ordinary object position. Its
+origin and dimensions may extend outside the system map if the volume has a
+strictly positive 3D intersection with the chart's XYZ box. Face/edge/corner
+contact alone is rejected. Ellipsoids use true normalized distance to the box;
+polygon volumes require positive Y overlap and positive clipped footprint area,
+including concave polygons and edge crossings. Invalid/self-intersecting or
+degenerate polygons are rejected. The visible intersection is derived without
+altering stored geometry. All local footprint vertices/heights remain relative
+to the authored zone origin. Stars, planets, stations, gates and navigation
+boundaries retain strict chart bounds. Frozen v1.1 and sector zones retain full
+containment. This changes scoped relational validation, with no new JSON field
+or schema version. See [approved scope](ZONE_GEOMETRY_INTERACTION_SPEC.md) and
+[implementation evidence](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
+
 `positionLY: null` is valid for a system that has not yet been spatially placed. Such a system can be listed in the catalogue (if its visibility is otherwise known), but **must not** be assigned `(0,0,0)` automatically or plotted on the spatial map. A null discovery date is **unknown**, not year 0. The UI must avoid claiming the system was known at an earlier date based on `null`.
 
 ## History and InfoCard
@@ -82,7 +97,7 @@ The demonstration data in `examples/demo_atlas` is **not canon**. Its system nam
 
 ## v1.1 extension note
 
-The v1.1 extension added nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates, three zone geometries and separate validated presentation settings. v1.2 retains these fields and supersedes only the older short-range branching/navigation-authoring rules. Final icon/variant rendering remains Checkpoint 4 work. Published v0.1 canonical chronology is not migrated; permanent-ID conversion requires approval. See [migration safeguards](LEGACY_MIGRATION_PLAN.md).
+The v1.1 extension added nullable icon overrides, optional planet/station visualVariant, confirmed-known-by dates, three zone geometries and separate validated presentation settings. v1.2 retains these fields and supersedes the older short-range branching/navigation-authoring rules; Checkpoint 3.8 additionally replaces full containment with positive-volume intersection for v1.2 system zones only. Final icon/variant rendering remains Checkpoint 4 work. Published v0.1 canonical chronology is not migrated; permanent-ID conversion requires approval. See [migration safeguards](LEGACY_MIGRATION_PLAN.md).
 
 ## v1.2 navigation authoring
 

@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 
 export function readDataset(root) {
   const read = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
@@ -37,9 +38,15 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
       if(entity.discoveredAE!==null)fail(loc,'knownByAE is only for unknown exact discoveredAE');
     }
   };
-  const checkZones=(zones,map,loc)=>{
+  const checkZones=(zones,map,loc,intersectionOnly=false)=>{
     for(const z of zones??[]){
-      addId(z.id,loc+'.zone');checkHistory(z,z.id);checkKnowledge(z,z.id);bounds(z.position,map,z.id);
+      addId(z.id,loc+'.zone');checkHistory(z,z.id);checkKnowledge(z,z.id);
+      if(intersectionOnly){
+        try{if(!zoneIntersection(z,map))fail(z.id,'non-intersecting zone: positive-volume chart overlap required');}
+        catch(error){fail(z.id,error.message);}
+        continue;
+      }
+      bounds(z.position,map,z.id);
       const g=z.geometry; if(!g)continue;
       const box=g.kind==='box'?Object.fromEntries(['x','y','z'].map(k=>[k,g.size[k]/2])):g.kind==='ellipsoid'?g.radii:null;
       if(box)for(const axis of ['x','y','z'])if(Math.abs(z.position[axis]-map.origin[axis])+box[axis]>map.size[axis]/2)fail(z.id,'zone geometry outside map bounds');
@@ -67,7 +74,7 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
   }
   for(const [sid,detail] of detailFiles){
     if(!systemIds.has(sid)||detail.id!==sid)fail(sid,'missing or mismatching detail system');
-    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');checkZones(detail.zones,detail.map,sid);
+    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');checkZones(detail.zones,detail.map,sid,v12&&detail.schemaVersion==='1.2.0');
     for(const obj of detail.objects){
       addId(obj.id,'object');objects.set(obj.id,{obj,sid});checkHistory(obj,obj.id);checkKnowledge(obj,obj.id);bounds(obj.position,detail.map,obj.id);
       if(obj.visualVariant!=null&&obj.entityType==='celestial_body'&&obj.objectType!=='planet')fail(obj.id,'visualVariant only supported for planets');

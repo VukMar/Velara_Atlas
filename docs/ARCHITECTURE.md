@@ -1,6 +1,6 @@
 # Velara Atlas — Implemented architecture
 
-**Status:** Local noncanonical viewer through Checkpoint 3.6; navigation authoring
+**Status:** Local noncanonical viewer through Checkpoint 3.8 zone interaction, with cartographic labeling and the Checkpoint 3.6 layout; navigation authoring
 uses Schema v1.2. Canonical migration, final artwork, deployment and the local
 editor remain separate future work.
 
@@ -10,6 +10,8 @@ editor remain separate future work.
 | --- | --- |
 | `src/core/history.mjs` | Pure v1.1/v1.2 historical selectors: names, knowledge/existence, InfoCards, systems, zones and eligible connections; no I/O or renderer dependency |
 | `src/core/cartography.mjs` | Pure map/catalogue composition, search, exact recorded-year boundaries, scoped route points/destinations, Cantum field calculations and seeded zone sampling |
+| `src/core/zone-geometry.mjs` | Pure zone validation/intersection, concave footprint clipping, projected membership, clipped ray intervals, witnesses, overlap ordering and bounded particles; shared by validator and viewer |
+| `src/viewer/zone-layers.mjs` | Clipped system-zone footprints, bounded approximate 3D cloud slices/particles, mode switching and subtle hover/selection emphasis |
 | `src/viewer/demo-data.mjs` | Explicit imports of four demo registries plus three allowlisted detail loaders; preloads released details for endpoint eligibility |
 | `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
 | `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |

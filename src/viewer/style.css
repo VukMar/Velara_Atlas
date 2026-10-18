@@ -23,6 +23,7 @@ canvas { display:block; width:100%; height:100%; touch-action:none; }
 #labels,#grid-labels { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 #grid-labels { z-index:1; }
 #labels { z-index:2; }
+#zone-tooltip { position:absolute; z-index:3; pointer-events:none; font-size:.8rem; line-height:1.35; padding:.35rem .5rem; color:#d5e7ef; background:#081722ed; border:1px solid #31566a; border-radius:3px; overflow-wrap:anywhere; }
 .grid-label { position:absolute; transform:translate(-50%,-50%); font:12px ui-monospace,Consolas,monospace; color:#729bad; text-align:center; pointer-events:none; }
 .grid-label[data-kind="scale"] { font-size:11px; line-height:1; overflow-wrap:normal; }
 .sector-width-arrow { display:block; position:relative; left:50%; margin-top:2px; fill:none; stroke:currentColor; stroke-width:1; stroke-linecap:round; stroke-linejoin:round; opacity:.85; overflow:visible; transform-origin:center; pointer-events:none; }

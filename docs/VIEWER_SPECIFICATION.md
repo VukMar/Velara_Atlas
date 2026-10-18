@@ -1,10 +1,10 @@
 # Velara Atlas — Viewer Specification
 
 **Document status:** Approved Milestone 3 functional specification  
-**Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2 and Checkpoint 3.6 layout (separate from the JSON Schema version)
+**Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2, Checkpoint 3.6 layout, cartographic labeling and Checkpoint 3.8 zones (separate from the JSON Schema version)
 **Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  
 **Audience:** Project owner, Codex, and future contributors  
-**Implementation status:** Local noncanonical viewer implemented through Checkpoint 3.6 with the authorized [cartographic labeling refinement](CARTOGRAPHIC_LABELING_RESULTS.md). Final visual assets, deployment and canonical migration remain separate. See [repository baseline and limits](REPOSITORY_AUDIT_3_6.md).
+**Implementation status:** Local noncanonical viewer through Checkpoint 3.8 [zone geometry/interaction](ZONE_GEOMETRY_INTERACTION_RESULTS.md), preserving the [cartographic labeling refinement](CARTOGRAPHIC_LABELING_RESULTS.md) and Checkpoint 3.6 layout. Final visual assets, deployment and canonical migration remain separate. See [repository baseline and limits](REPOSITORY_AUDIT_3_6.md).
 
 > **Checkpoint 3.6 layout revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
 > supersedes the former persistent bottom timeline, permanent side columns/right InfoCard,
@@ -73,7 +73,7 @@ A null `positionLY` in the sector registry denotes an unplaced system: include i
 - **Top / 3D toggle:** switch to an orbitable, tilted **perspective** view showing actual Y elevation. Preserve the current map, selected object, date, and data. Switching back restores a comprehensible orthographic chart.
 - **Reset View:** restore full-map framing; **Focus Selection** may center/zoom on a positioned object within 2D bounds and closes the InfoCard for inspection. Preserve perspective controls and per-map camera state, including the preceding top-down view. Camera changes never write to JSON.
 - 3D orbit/tilt is available only in perspective mode. Provide usable mouse and touch controls, clear affordances, and camera limits that avoid getting lost inside the scene.
-- Map bounds come from JSON. The viewer should not falsely clamp data by assuming every authoring map is exactly the same size; emit validation errors for positions genuinely outside declared bounds.
+- Map bounds come from JSON. The viewer should not falsely clamp data by assuming every authoring map is exactly the same size; emit validation errors for ordinary object positions outside declared bounds. The Checkpoint 3.8 zone-origin exception below applies only to v1.2 system zones.
 - 2D labels/selection targets remain legible; handle markers with identical X/Z but different Y without losing access to the underlying entities (e.g., selection list or disambiguation when projected icons overlap).
 
 ### Selection rules
@@ -132,6 +132,44 @@ Phase-one assets may be procedural placeholder geometry and simple original SVG 
 - **Polygon volume:** authored X/Z polygon plus vertical Y bounds; display its footprint in top-down view and extrusion/volume in 3D.
 
 Zone types can include nebulae, asteroid fields, radiation clouds, and dust clouds. A zone has a stable ID and the universal historical InfoCard where appropriate. A named individual asteroid or planetoid remains a `cb_XXXX` celestial body; decorative particles/rocks should be procedurally rendered, **not stored individually**. Author-defined boundaries govern actual region geometry; deterministic seeds govern visual variation only. Procedural effects must never change boundaries, ownership, or route logic.
+
+**Checkpoint 3.8 — implemented system-zone geometry and interaction:**
+[The zone specification](ZONE_GEOMETRY_INTERACTION_SPEC.md) replaces full
+containment with strictly positive volume intersection for v1.2 system zones.
+Their reference origins and dimensions may extend beyond the map, while only
+the intersection with its true XYZ box is rendered and interactive. Ordinary
+objects/gates, sector zones and frozen v1.1 containment remain unchanged.
+
+Top-down view projects the intersected volume through the map's Y interval.
+An ellipsoid centered above/below that interval therefore has a reduced visible
+footprint. Box footprints are clipped rectangles; simple concave polygon volumes
+are triangulated and clipped piece by piece, retaining gaps/disconnected pieces.
+Perspective uses twelve bounded horizontal cloud slices with authored ellipsoid
+membership masks, plus deterministic particles sampled in clipped bounds. This
+is a restrained environmental approximation, not a solid boundary mesh or physical
+simulation. It remains visible when a giant zone surrounds the chart. Particles,
+slice geometry and accepted fragments stay within chart XYZ; timeline/map cleanup
+disposes resources. Overlap alpha is attenuated by the visible zone count.
+
+Pointer priority is **objects/marker controls → connections → zones → empty**.
+Zone picking uses the true clipped volume/footprint, independently of its origin
+or visual slices. Top-down tests projected membership; perspective intersects
+finite ray intervals with the chart-clipped volume, including inside cameras.
+Overlaps favor smaller visible footprint area in 2D or clipped volume in 3D, then
+stable ID. Ellipsoid overlap sizes use bounded deterministic quadrature; prism
+sizes are exact. Catalogue/Selection exposes other overlapping records.
+
+Hover subtly brightens the region and shows a plain-text historical name/category
+near the pointer, clamped to the viewport and never receiving events. This is
+separate from object-caption decluttering and remains available with Object Names
+off. System zones have no permanent origin caption/button. Clicking/tapping a
+visible zone opens the existing centered InfoCard, including its true geometry
+reference origin, category and authored dimensions. Focus uses a deterministic
+visible witness point and clipped extent, respecting camera zoom/clamp limits.
+The Spatial zones toggle controls rendering and picking together. Discovery/
+known-by filtering is unchanged; v1.2 has no zone-expiry field. Do not invent one.
+
+See [verification and limits](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 ## 6. Gate networks and route visualization
 
@@ -216,7 +254,7 @@ A `null` field means **no published value**, **not** zero or negative evidence. 
 ## 9. Catalogue and search — approved
 
 - **Sector view:** search and list publicly available, historically eligible **Cantums and star systems**. A system lacking sector coordinates may still appear as a searchable record but must not trigger camera movement to an invented marker.
-- **System view:** search/list objects **within the current system**, including available spatial zones once supported.
+- **System view:** search/list objects **within the current system**, including historically available spatial zones.
 - Search against **the name valid at the selected year**. Earlier/later unpublished names must not leak. Searching historical aliases across eras may be added later, but only with chronology-safe behavior.
 - Selecting a result opens its centered InfoCard and selected-object targeting. Focus Selection is a separate camera action; unplaced/fallback records never get invented marker coordinates.
 - Filters by category/type are presentation filters; they do not alter data or the historical state.

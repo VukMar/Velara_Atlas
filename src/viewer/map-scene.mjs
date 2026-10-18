@@ -4,6 +4,8 @@ import {createInfluence, createZone, createRoute, createTerritorialLettering, di
 import {territorialOpacity} from './territorial-labels.mjs';
 import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './chart-layout.mjs';
 import {layoutCaptions} from './caption-layout.mjs';
+import {pickZone} from '../core/zone-geometry.mjs';
+import {setZoneMode,setZoneEmphasis} from './zone-layers.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -77,6 +79,7 @@ export class AtlasMap {
     this.meshes = [];
     this.routeLines = [];
     this.anchors = [];
+    this.zoneGroups = [];
     this.layerPreferences = {};
     this.selectedId = null;
     this.hoverSources = {pointer:null,focus:null,touch:null};
@@ -97,17 +100,23 @@ export class AtlasMap {
     for (const panel of document.querySelectorAll('.floating, #info-panel')) this.panelObserver.observe(panel);
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
+    this.zoneTooltip=document.createElement('div');
+    this.zoneTooltip.id='zone-tooltip';this.zoneTooltip.hidden=true;this.zoneTooltip.setAttribute('aria-hidden','true');
+    container.append(this.zoneTooltip);
     this.drag = null;
     const canvas = this.renderer.domElement;
     canvas.addEventListener('pointerdown', event => {
+      this.rememberPointer(event);
       this.setHovered(null,'focus');
       if(event.pointerType === 'touch') this.setHovered(this.pick(event)?.id,'touch');
       if (!event.isPrimary) this.drag = null;
       else if (event.button === 0) this.drag = {x: event.clientX, y: event.clientY, id: event.pointerId, moved: false};
     });
     canvas.addEventListener('pointermove', event => {
+      this.rememberPointer(event);
       if (this.drag && Math.hypot(event.clientX - this.drag.x, event.clientY - this.drag.y) > 5) this.drag.moved = true;
       if(event.pointerType !== 'touch') this.setHovered(this.drag?.moved ? null : this.pick(event)?.id,'pointer');
+      this.updateZoneTooltip();
     });
     canvas.addEventListener('pointerleave', () => this.setHovered(null,'pointer'));
     canvas.addEventListener('pointercancel', () => { this.drag = null; this.setHovered(null,'touch'); });
@@ -176,8 +185,11 @@ export class AtlasMap {
     this.territorialLettering = createTerritorialLettering(extras.groups ?? [], extras.cantums ?? [], map, extras.presentation);
     for (const mesh of this.territorialLettering) this.scene.add(mesh);
     for (const zone of extras.zones ?? []) {
-      this.scene.add(createZone(zone));
-      this.addLabel(zone, point(zone.position), 'zones');
+      const group=createZone(zone,positionKey==='position'?map:null);
+      if(!group)continue;
+      this.scene.add(group);
+      if(group.userData.intersection)this.zoneGroups.push(group);
+      else this.addLabel(zone, point(zone.position), 'zones');
     }
     for (const route of extras.routes ?? []) {
       const line = createRoute(route, extras.routes, map);
@@ -236,6 +248,8 @@ export class AtlasMap {
     }
     this.meshes = [];
     this.routeLines = [];
+    this.zoneGroups = [];
+    this.zoneTooltip.hidden=true;
     this.territorialLettering = [];
     this.anchors = [];
     this.captionEligibility.clear();
@@ -340,6 +354,18 @@ export class AtlasMap {
   }
 
   focus(entity) {
+    const zone=this.zoneGroups?.find(g=>g.userData.entity.id===entity.id);
+    if(zone) {
+      const i=zone.userData.intersection,target=point(i.witness),delta=target.clone().sub(this.controls.target);
+      const extent=Math.max(i.max.x-i.min.x,i.max.y-i.min.y,i.max.z-i.min.z);
+      this.camera.position.add(delta);this.controls.target.copy(target);
+      if(this.mode==='top') {
+        const clearance=Math.min(target.x-i.chart.min.x,i.chart.max.x-target.x,target.z-i.chart.min.z,i.chart.max.z-target.z);
+        this.camera.zoom=THREE.MathUtils.clamp(Math.max(this.map.size.x/(extent*1.5),this.map.size.x/(2*clearance)),1,2048);
+      }
+      else this.camera.position.copy(target).add(new THREE.Vector3(0,extent*1.5,extent*1.5));
+      this.camera.updateProjectionMatrix();this.controls.update();this.render();return;
+    }
     const anchor = this.anchors.find(a => a.entity.id === entity.id);
     if (!anchor) return;
     const delta = anchor.position.clone().sub(this.controls.target);
@@ -398,6 +424,28 @@ export class AtlasMap {
     this.render();
   }
 
+  canFocus(entity) {
+    return this.anchors.some(a=>a.entity.id===entity.id)||this.zoneGroups.some(g=>g.userData.entity.id===entity.id);
+  }
+
+  rememberPointer(event) {
+    const r=this.container.getBoundingClientRect();
+    this.pointerPosition={x:event.clientX-r.left,y:event.clientY-r.top};
+    this.lastPointerClient={clientX:event.clientX,clientY:event.clientY};
+  }
+
+  updateZoneTooltip() {
+    const group=this.zoneGroups.find(g=>g.visible&&g.userData.entity.id===this.hoverSources.pointer);
+    const p=this.pointerPosition,e=this.zoneTooltip;
+    e.hidden=!group||!p;
+    if(e.hidden)return;
+    const entity=group.userData.entity;
+    e.textContent=`${entity.name ?? entity.id} · ${entity.category.replaceAll('_',' ')}`;
+    e.style.maxWidth=`${Math.max(1,this.width-16)}px`;
+    e.style.left=`${Math.max(8,Math.min(p.x+14,this.width-e.offsetWidth-8))}px`;
+    e.style.top=`${Math.max(8,Math.min(p.y+14,this.height-e.offsetHeight-8))}px`;
+  }
+
   zoom(factor) {
     this.camera.zoom = THREE.MathUtils.clamp(this.camera.zoom * factor, this.controls.minZoom, this.controls.maxZoom);
     this.camera.updateProjectionMatrix();
@@ -424,7 +472,19 @@ export class AtlasMap {
     this.pointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
     this.raycaster.params.Line.threshold = this.viewSpan() / this.height * 5;
-    return this.raycaster.intersectObjects([...this.meshes, ...this.routeLines].filter(o => o.visible), false)[0]?.object.userData.entity ?? null;
+    // Semantic priority is independent of ray distance to transparent backgrounds.
+    for(const objects of [this.meshes,this.routeLines]) {
+      const hit=this.raycaster.intersectObjects(objects.filter(o=>o.visible),false)[0];
+      if(hit)return hit.object.userData.entity;
+    }
+    const intersections=this.zoneGroups.filter(g=>g.visible).map(g=>g.userData.intersection);
+    if(!intersections.length)return null;
+    const ray=this.raycaster.ray;
+    if(this.mode==='top') {
+      const p=ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-this.map.origin.y),new THREE.Vector3());
+      return p?pickZone(intersections,{point:p}):null;
+    }
+    return pickZone(intersections,{origin:ray.origin,direction:ray.direction});
   }
 
   render() {
@@ -435,6 +495,15 @@ export class AtlasMap {
     }
     this.container.dataset.zoom=String(this.camera.zoom);
     this.camera.updateMatrixWorld();
+    // A stationary pointer must not leave a zone highlighted after camera movement.
+    if(this.lastPointerClient&&this.zoneGroups.some(g=>g.userData.entity.id===this.hoverSources.pointer)&&
+      this.pick(this.lastPointerClient)?.id!==this.hoverSources.pointer)this.hoverSources.pointer=null;
+    const active=this.hoverSources.focus??this.hoverSources.pointer??this.hoverSources.touch;
+    const visibleZoneCount=this.zoneGroups.filter(g=>g.visible).length;
+    for(const zone of this.zoneGroups) {
+      setZoneMode(zone,this.mode);setZoneEmphasis(zone,zone.userData.entity.id===active,zone.userData.entity.id===this.selectedId,visibleZoneCount);
+    }
+    this.updateZoneTooltip();
     const elevation = Math.abs(this.camera.position.y-this.controls.target.y)/this.camera.position.distanceTo(this.controls.target);
     for (const mesh of this.territorialLettering ?? []) {
       const center=mesh.position.clone().project(this.camera);
@@ -523,6 +592,7 @@ export class AtlasMap {
     this.controls.dispose();
     this.clearMap();
     this.gridLabels.remove();
+    this.zoneTooltip.remove();
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }

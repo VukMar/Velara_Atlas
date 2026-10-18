@@ -28,12 +28,12 @@ function choose(record, {present = true} = {}) {
   $('selected-kind').textContent = record ? (record.objectType ?? record.entityType).replaceAll('_', ' ') : 'Read-only noncanonical chart';
   $('description').textContent = record?.infoCard?.description?.text ?? (record ? 'Description not recorded.' : 'Choose a marker, route or catalogue entry.');
   $('enter').hidden = record?.entityType !== 'star_system';
-  $('focus').disabled = !record || !atlas.anchors.some(a => a.entity.id === record.id);
+  $('focus').disabled = !record || !atlas.canFocus(record);
   for (const button of $('catalogue').querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.id === selectedId));
   if (!record) { if($('info-panel').open) $('info-panel').close(); return; }
   fact('Permanent ID', record.id); fact('Historical snapshot', `${yearAE} A.E.`);
   const p = record.positionLY ?? record.position;
-  if (p) fact('Authored coordinates', `X ${p.x} / Y ${p.y} / Z ${p.z} ${view.map?.unit ?? (systemId ? 'CNU' : 'ly')}`);
+  if (p) fact(record.geometry?'Geometry reference origin (may be outside chart)':'Authored coordinates', `X ${p.x} / Y ${p.y} / Z ${p.z} ${view.map?.unit ?? (systemId ? 'CNU' : 'ly')}`);
   else if (record.entityType === 'star_system') fact('Placement', 'Unplaced — catalogue record only');
   if (record.knowledge) fact('Historical knowledge', record.knowledge.basis === 'known_by' ?
     `Confirmed known by ${record.knowledge.knownByAE} A.E.; exact discovery not recorded` : `Discovery recorded: ${record.knowledge.discoveredAE} A.E.`);
@@ -54,6 +54,13 @@ function choose(record, {present = true} = {}) {
     if (card.armament) fact('Recorded armament', card.armament.summary);
   }
   if (record.geometry) fact('Zone geometry', `${record.geometry.kind.replaceAll('_', ' ')} · authored bounds in ${view.map.unit}`);
+  if (record.geometry) {
+    const g=record.geometry;
+    fact('Zone category',record.category.replaceAll('_',' '));
+    if(g.radii)fact('Authored radii',`X ${g.radii.x} / Y ${g.radii.y} / Z ${g.radii.z} ${view.map.unit}`);
+    else if(g.size)fact('Authored full dimensions',`X ${g.size.x} / Y ${g.size.y} / Z ${g.size.z} ${view.map.unit}`);
+    else {fact('Authored local height',`${g.minY} to ${g.maxY} ${view.map.unit}`);fact('Authored local footprint',g.footprint.map(p=>`X ${p.x} / Z ${p.z}`).join('; '));}
+  }
   if (record.entityType === 'connection') {
     fact('Transport', record.transportType.replaceAll('_', ' ')); fact('Direction', record.direction.replaceAll('_', ' '));
     fact('Endpoint A', `${record.endpointNames.a} / ${record.endpointA.objectId}`);

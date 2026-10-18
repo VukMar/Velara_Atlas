@@ -32,7 +32,7 @@ export function demoInputAudit() {
           const id = normalizePath(raw.split('?')[0]);
           if (id.startsWith('\0') || id.startsWith(normalizePath(local('node_modules/'))) ||
               id.startsWith(normalizePath(local('src/viewer/'))) ||
-              ['src/core/history.mjs', 'src/core/cartography.mjs'].some(file => id === normalizePath(local(file))) || demoJSON.has(id)) continue;
+              ['src/core/history.mjs', 'src/core/cartography.mjs', 'src/core/zone-geometry.mjs'].some(file => id === normalizePath(local(file))) || demoJSON.has(id)) continue;
           this.error(`Unexpected input in demo build: ${id}`);
         }
       }

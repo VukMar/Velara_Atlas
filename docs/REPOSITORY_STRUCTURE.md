@@ -37,6 +37,7 @@ Velara_Atlas/
     core/
       history.mjs              Modern pure historical selectors
       cartography.mjs          Pure catalogue/routes/territory/zone calculations
+      zone-geometry.mjs        Shared pure clipped zone geometry and hit testing
     viewer/
       index.html / style.css   Floating interface and square map stage
       main.mjs                 Historical/navigation/selection UI state
@@ -44,6 +45,7 @@ Velara_Atlas/
       map-scene.mjs            Three.js cameras, picking and scene
       chart-layout.mjs         Square fit/clamping and system grid
       cartographic-layers.mjs  Influence, zones and routes
+      zone-layers.mjs          Clipped footprints and approximate 3D system clouds
   examples/
     demo_atlas/
       sector.json              Authored v1.2 index in ly

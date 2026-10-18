@@ -4,11 +4,16 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Milestone 6, Checkpoint 3.6:** The local, read-only **noncanonical three-system demonstration** implements historical navigation/search, routes, top-down/perspective cameras, spatial zones, Cantum influence and Schema v1.2 navigation authoring. Final visual assets, canonical migration, deployment and the deferred editor are not implemented.
+> **Project status — Milestone 6, Checkpoint 3.8:** The local, read-only **noncanonical three-system demonstration** implements historical navigation/search, routes, top-down/perspective cameras, interactive clipped spatial zones, cartographic labeling, Cantum influence and Schema v1.2 navigation authoring. Final visual assets, canonical migration, deployment and the deferred editor are not implemented.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)
 and [verification results](docs/CHECKPOINT_3_6_RESULTS.md).
+
+Checkpoint 3.8 allows v1.2 system zones to extend beyond their chart. Only the
+visible intersection is drawn and selectable; objects and routes win picking.
+Hover a region for its name, select it for the existing InfoCard, or use Catalogue
+and Focus to inspect an off-map-origin zone. See [zone rules and verification](docs/ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 ## Atlas behavior
 

@@ -96,17 +96,29 @@ catalogue; nearby hit areas shrink without changing geometry.
 
 ## Phase C — Zones and Cantum influence
 
-`src/viewer/cartographic-layers.mjs` renders ellipsoid, box and polygon-volume
-geometry at authored XYZ positions. The demo nebula `zon_0001` is local to System A,
-alongside its asteroid field; System B retains its polygon hazard. The nebula's
-center `(-11000, 1200, -6000)` and radii `(6500, 1800, 3800)` are independently
-authored noncanonical CNU values, with no ly-to-CNU conversion. Its discovery
-year remains 160 A.E. Synthetic tests retain coverage for sector-level zones.
-Polygon footprints use local X/Z vertices and min/max Y bounds. Subdued particles
-use a deterministic ID-derived seed, rejection-sampled inside those bounds; they
-never define or enlarge geography. Focus selection makes the tiny local demo
-zones inspectable. Zones follow discovery/known-by dates; v1.1/v1.2 has no zone-expiry
-field, so no expiry is invented.
+`src/viewer/cartographic-layers.mjs` retains the earlier ellipsoid, box and
+polygon-volume renderer for sector/frozen consumers. Checkpoint 3.8 system zones
+use `zone-layers.mjs` and the shared pure `src/core/zone-geometry.mjs`. Their
+authored origins and dimensions may extend outside the system, but validation,
+visible geometry and hit testing require positive intersection with chart XYZ.
+Ordinary object/gate bounds, v1.1 and sector containment remain unchanged.
+
+The nebula `zon_0001` remains local to System A alongside its asteroid field;
+System B retains its polygon hazard. Read current JSON for authored CNU origins
+and dimensions; old reports contain historical fixture values, not authoring
+defaults. No ly-to-CNU conversion is performed. Polygon vertices/heights remain
+relative to the zone origin. Top-down footprints account for chart Y clipping;
+3D uses twelve bounded, membership-masked cloud slices plus deterministic
+clipped-intersection particles. This is an environmental approximation, not a
+solid-volume surface mesh. Particle work is capped independently of source size.
+
+Objects and routes win picking before background zones. Visible regions have
+plain-text pointer tooltips and the existing InfoCard; system zones have no
+origin-anchored caption/button. Focus uses a visible witness and clipped extent.
+Spatial zones controls geometry and picking together. Zones follow discovery/
+known-by dates; v1.1/v1.2 has no zone-expiry field, so no expiry is invented.
+See [specification](ZONE_GEOMETRY_INTERACTION_SPEC.md) and
+[Checkpoint 3.8 verification](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 Sector political influence follows historically eligible, positioned systems'
 effective `cantumHistory`, with an eligible Cantum status record. Affiliation,
@@ -124,7 +136,8 @@ Different Cantums remain separate inputs; distant same-Cantum holdings need no
 forced bridge. No manual political boundary is introduced.
 
 Explicit render order is grid → influence → zones → routes → markers → DOM
-labels/UI. Background layers do not write depth or participate in picking.
+labels/UI. Background layers do not write depth. Grid/influence are decorative;
+system zones use pure clipped-volume picking after object and route checks.
 Geometry, materials and textures are disposed on map reconstruction. Rendering
 is event-driven with a capped device-pixel ratio. Layer preferences are separate
 for each map and do not modify data or catalogue eligibility.
