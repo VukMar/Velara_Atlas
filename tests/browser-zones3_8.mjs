@@ -17,7 +17,8 @@ async page => {
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await hide();};
   const state=()=>page.evaluate(()=>{
     const m=window.__zoneMap;return {target:m.controls.target.toArray(),zoom:m.camera.zoom,mode:m.mode,groups:m.zoneGroups.map(g=>({id:g.userData.entity.id,visible:g.visible,
-      origin:g.userData.entity.position,witness:g.userData.intersection.witness,flat:g.userData.flat.visible,volume:g.userData.volume.visible})),tooltip:m.zoneTooltip.textContent,hidden:m.zoneTooltip.hidden};
+      origin:g.userData.entity.position,witness:g.userData.intersection.witness,flat:g.userData.flat.visible,volume:g.userData.volume.visible})),tooltip:m.zoneTooltip.textContent,hidden:m.zoneTooltip.hidden,
+      outline:{hidden:m.zoneOutline.svg.hasAttribute('hidden'),id:m.zoneOutline.svg.dataset.recordId}};
   });
   let detail;
   try {
@@ -44,10 +45,17 @@ async page => {
     check(await page.locator('#labels [data-record-id^="zon_"]').count()===0,'no origin-anchored zone hit buttons/captions');
     const empty={x:12000,z:-12000};await move(empty);
     check((await state()).tooltip.includes('TEST LATE CLOUD')&&!(await state()).hidden,'giant zone hovered away from authored origin');
+    check(!(await state()).outline.hidden&&(await state()).outline.id==='zon_9901','giant enclosing zone has a clipped-edge outline');
+    check(await page.locator('.zone-outline-clip').evaluate(n=>getComputedStyle(n).strokeDasharray!=='none'),'chart clipping is dashed');
+    check(await page.locator('.zone-outline-boundary').evaluate(n=>getComputedStyle(n).strokeDasharray==='none'),'true boundary is solid');
+    check(await page.locator('#zone-tooltip').evaluate(n=>getComputedStyle(n,'::after').content.includes('chart limit')),'tooltip explains edge styles');
     check(await page.locator('#zone-tooltip').evaluate(n=>getComputedStyle(n).pointerEvents)==='none','tooltip never captures input');
     await toggle('Object Names',false);await move(empty);check(!(await state()).hidden,'Object Names does not disable zone hover');await toggle('Object Names',true);
     for(const [p,id] of [[{x:47000,z:-45000},'zon_9902'],[{x:-48000,z:35000},'zon_9903'],[{x:10000,z:32000},'zon_9904']]){
-      check(await pick(p)===id,'smallest visible overlap wins: '+id);const q=await move(p);await page.mouse.click(q.x,q.y);
+      check(await pick(p)===id,'smallest visible overlap wins: '+id);const q=await move(p);
+      check((await state()).outline.id===id,'only deterministic overlap winner outlined: '+id);
+      check(await page.locator('.zone-outline-boundary').count()===1,'one source boundary, no polygon triangulation seams');
+      await page.mouse.click(q.x,q.y);
       await page.locator('#info-panel').waitFor({state:'visible'});check(await page.locator('#selection').inputValue()===id,'visible zone opens existing InfoCard');await close();
     }
     await choose('zon_9902');check((await page.locator('#facts').innerText()).includes('60000'),'InfoCard preserves off-map geometry origin');
@@ -56,13 +64,36 @@ async page => {
     const focused=await state();check(focused.target[0]>=-50000&&focused.target[0]<=50000&&focused.target[2]>=-50000&&focused.target[2]<=50000,'Focus stays inside chart');
     check(focused.target[0]!==60000,'Focus never uses off-map origin');
     await panel('controls-panel');await page.locator('#reset').click();await hide();
+    await panel('catalogue-panel');await page.keyboard.press('Tab');await page.locator('#catalogue [data-id="zon_9902"]').focus();
+    check((await state()).outline.id==='zon_9902','keyboard zone focus has equivalent outline');
+    const strokes=[];
+    for(const zoom of [1,4,16]) {
+      await page.evaluate(zoom=>{
+        const m=window.__zoneMap;m.zoom(zoom/m.camera.zoom);
+        const ellipse=m.zoneOutline.svg.querySelector('.zone-outline-boundary');
+        const target=m.controls.target.clone().set(+ellipse.getAttribute('cx')- +ellipse.getAttribute('rx'),m.map.origin.y,+ellipse.getAttribute('cy'));
+        m.camera.position.add(target.clone().sub(m.controls.target));m.controls.target.copy(target);m.render();
+      },zoom);
+      strokes.push(await page.locator('.zone-outline-boundary').evaluate(n=>({width:getComputedStyle(n).strokeWidth,effect:getComputedStyle(n).vectorEffect,geometry:n.outerHTML})));
+      check(!(await state()).outline.hidden,'keyboard identification retained at '+zoom+'x zoom');
+      check(await page.locator('.zone-outline-boundary').evaluate(n=>{
+        const point=n.getPointAtLength(n.getTotalLength()/2).matrixTransform(n.getScreenCTM()),r=n.ownerSVGElement.getBoundingClientRect();
+        return point.x>=r.left&&point.x<=r.right&&point.y>=r.top&&point.y<=r.bottom;
+      }),'actual curved boundary remains onscreen at '+zoom+'x zoom');
+    }
+    check(strokes.every(s=>s.width==='3.5px'&&s.effect==='non-scaling-stroke'&&s.geometry===strokes[0].geometry),'inward-clipped 1.75px stroke and world ellipse unchanged at fit/mid/close zoom');
+    check(await page.locator('.zone-hover-outline').evaluate(n=>getComputedStyle(n).pointerEvents)==='none','outline never captures gestures');
+    await hide();await panel('controls-panel');await page.locator('#reset').click();await hide();
+    check((await state()).outline.hidden,'pointer exit/focus blur immediately removes outline');
     const object=detail.objects.find(o=>o.objectType==='star');
     check(await pick(object.position)===object.id,'object geometry wins over enclosing zone');
     const marker=page.locator(`#labels [data-record-id="${object.id}"]`);await marker.hover();check((await state()).hidden,'object hover clears zone tooltip');
+    check((await state()).outline.hidden,'object hover immediately clears zone outline');
     await marker.click();await page.locator('#info-panel').waitFor({state:'visible'});check(await page.locator('#selection').inputValue()===object.id,'marker DOM target wins');await close();
     const route=page.locator('#labels [data-record-id="lnk_0001"]');const r=await route.boundingBox();
     await route.evaluate(n=>n.style.pointerEvents='none');await page.mouse.move(r.x+r.width/2,r.y+r.height/2);
     check((await state()).hidden,'route stroke suppresses zone tooltip');await page.mouse.click(r.x+r.width/2,r.y+r.height/2);
+    check((await state()).outline.hidden,'route priority removes zone outline');
     await page.locator('#info-panel').waitFor({state:'visible'});check(await page.locator('#selection').inputValue()==='lnk_0001','route stroke wins before zone');
     await close();await route.evaluate(n=>n.style.removeProperty('pointer-events'));
     await toggle('Spatial zones',false);await move(empty);check((await state()).hidden&&!(await state()).groups.some(g=>g.visible),'zone toggle hides geometry and tooltip');
@@ -74,6 +105,7 @@ async page => {
     check(await page.evaluate(()=>window.__zoneMap.renderer.info.memory.geometries)<=memory.geometries,'timeline disposes old zone geometries');
     await panel('controls-panel');await page.locator('#mode').click();await hide();
     check((await state()).groups.every(g=>g.volume&&!g.flat),'3D uses bounded volume representation');
+    check((await state()).outline.hidden,'new outline is absent from 3D');
     const inside=await page.evaluate(()=>{
       const m=window.__zoneMap;m.camera.position.set(12000,0,-12000);m.controls.target.set(12000,0,-13000);m.camera.lookAt(m.controls.target);m.render();
       const r=m.renderer.domElement.getBoundingClientRect();return m.pick({clientX:r.x+r.width/2,clientY:r.y+r.height/2})?.id;
@@ -82,7 +114,7 @@ async page => {
     for(const size of [{width:390,height:844},{width:844,height:390}]){
       await page.setViewportSize(size);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));await move({x:47000,z:-45000});
       const t=await page.locator('#zone-tooltip').boundingBox(),v=await page.locator('#viewport').boundingBox();
-      check(t&&t.x>=v.x&&t.y>=v.y&&t.x+t.width<=v.x+v.width+1&&t.y+t.height<=v.y+v.height+1,'tooltip clamped on narrow chart');
+      check(t&&t.x>=v.x&&t.y>=v.y&&t.x+t.width<=v.x+v.width+1&&t.y+t.height<=v.y+v.height+1,'tooltip clamped on narrow chart: '+JSON.stringify({t,v,state:await state()}));
       check(await page.locator('.sector-width-arrow').count()===1,'H8 retained');
     }
     const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
@@ -108,6 +140,6 @@ async page => {
       await tapControl('#controls-panel > summary');check(await p.locator('#controls-panel').evaluate(n=>n.open),'UI works after zone gestures');
     } finally {await context.close();}
     check(errors.length===0,errors.join('\n'));
-    return {zones:4,offMapAndGiant:'passed',objectRoutePriority:'passed',overlapAndLayers:'passed',historyFocusAndTooltip:'passed',inside3D:'passed',mobileLayouts:2,touchTapDragPinchOrbit:'passed',consoleErrors:errors};
+    return {zones:4,offMapAndGiant:'passed',objectRoutePriority:'passed',overlapAndLayers:'passed',historyFocusAndTooltip:'passed',inside3D:'passed',outline2D:'solid/dashed clipping, keyboard, priority, 1/4/16x constant stroke passed',mobileLayouts:2,touchTapDragPinchOrbit:'passed',consoleErrors:errors};
   } finally {await page.unroute(pattern);page.off('console',error);await page.goto(base);}
 }

@@ -171,6 +171,17 @@ known-by filtering is unchanged; v1.2 has no zone-expiry field. Do not invent on
 
 See [verification and limits](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
+**2D hover-outline follow-up:** Hover or keyboard focus also outlines the active
+system-zone footprint in cyan, at approximately 1.75 CSS pixels through zoom.
+Solid contours show authored projected boundaries; dashed contours show chart
+clipping, with a tooltip legend. A giant enclosing zone therefore shows a dashed
+chart frame, without inventing a physical boundary at that frame. Native SVG
+ellipse/rectangle/polygon contours use the existing XYZ intersection and are
+clipped to both the footprint and chart. Polygon triangulation seams are never
+outlined. The overlay is pointer-transparent, clears on exit/higher-priority
+interaction, and is absent in 3D and Sector View. Picking and 3D visualization
+remain the approved Checkpoint 3.8 implementation.
+
 ## 6. Gate networks and route visualization
 
 **All runtime navigational connections come from generated `connections.json`**. System-object declarations are the v1.2 authoring source of truth; the manual offline generator compiles them. The viewer never generates links or infers them from proximity.

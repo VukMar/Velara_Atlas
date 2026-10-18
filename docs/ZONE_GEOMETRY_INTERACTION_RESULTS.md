@@ -100,3 +100,32 @@ resolver, generator, connection outputs, Cantum field/caption helpers or H8 arro
 implementation was changed. Existing labeling behavior passed regression checks.
 No artwork, editor, deployment, commit or push is included. Ready for creator
 review.
+
+## Follow-up — 2D hover/focus outline (2026-10-18)
+
+Added `src/viewer/zone-outline.mjs`, a decorative SVG overlay driven by the
+existing active zone and intersection. It uses native ellipses (including reduced
+projection from Y clipping), rectangles and authored polygon contours without
+triangulation seams. Solid NEXUS cyan denotes true projected boundaries; dashed,
+quieter cyan denotes chart clipping. The pointer tooltip explains both styles.
+Giant enclosing zones show only the dashed chart frame within the viewport.
+
+The non-scaling 3.5px centered stroke is clipped to the footprint and chart,
+leaving an approximately 1.75px inward stroke. Camera changes update only its
+affine projection. Hover exit, object/route priority, layer hiding, map changes
+and 3D mode hide it immediately. Keyboard catalogue focus receives the same
+outline. The 2D tooltip uses bounded intrinsic width to keep its legend readable
+on narrow layouts. No new textures, shaders, JSON presentation fields or hit tests were
+introduced; the existing fill and 3D renderer were not changed.
+
+Verification: `npm test` passed 136 tests; `npm run validate`,
+`npm run connections:check` and `npm run build` passed. The extended zone browser
+suite passed ellipsoid/box/polygon, off-map, giant, overlap, hover/focus priority,
+history/layer and 1×/4×/16× zoom checks, plus mobile tooltips and touch gestures.
+Labeling, layout/H8 and native touchscreen-camera browser regressions passed on
+dev. Visual inspection confirmed thin curved solid contours and dashed chart
+cuts. Existing browser/float antialiasing may vary edge coverage slightly;
+physical mobile hardware and other browser engines remain untested. The retained
+Vite chunk-size advisory remains non-fatal. No schema, source geometry, clipping
+helper, canonical/demo JSON, IDs, historical behavior, commit or push was changed
+or performed in this follow-up.

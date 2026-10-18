@@ -6,6 +6,7 @@ import {zoneIntersection,worldZoneContains,projectedZoneContains,rayZoneIntersec
 import {Box3} from 'three';
 import {createZone,disposeTree} from '../src/viewer/cartographic-layers.mjs';
 import {setZoneMode,setZoneEmphasis} from '../src/viewer/zone-layers.mjs';
+import {outlineFootprint} from '../src/viewer/zone-outline.mjs';
 const map={origin:{x:0,y:0,z:0},size:{x:20,y:20,z:20},unit:'CNU'};
 const zone=(geometry,position={x:0,y:0,z:0},id='zon_test')=>({id,position,geometry});
 const box=(size=10,p)=>zone({kind:'box',size:{x:size,y:size,z:size}},p);
@@ -27,6 +28,18 @@ test('projected ellipsoid accounts for chart Y and nonzero map origin',()=>{
   assert.ok(i);assert.equal(projectedZoneContains(i,{x:5,z:0}),true);assert.equal(projectedZoneContains(i,{x:7,z:0}),false);
   const shifted={...map,origin:{x:100,y:40,z:-60}},j=zoneIntersection(sphere(10,{x:100,y:58,z:-60}),shifted);
   assert.equal(projectedZoneContains(j,{x:105,z:-60}),true);assert.equal(projectedZoneContains(j,{x:111,z:-60}),false);
+});
+test('outline descriptors use authored boundaries and exact Y-aware ellipse projection without clipping seams',()=>{
+  const z=sphere(10,{x:0,y:18,z:0}),before=structuredClone(z),i=zoneIntersection(z,map);
+  const shape=outlineFootprint(i);assert.equal(shape.tag,'ellipse');assert.ok(Math.abs(shape.attributes.rx-6)<1e-12);assert.ok(Math.abs(shape.attributes.ry-6)<1e-12);
+  assert.deepEqual(z,before);
+  const b=outlineFootprint(zoneIntersection(box(14,{x:15,y:0,z:0}),map));
+  assert.equal(b.attributes.x,8);assert.equal(b.attributes.width,14); // x=10 is chart clipping, not a new source edge.
+  const p=polygon([[-20,-2],[20,-2],[20,2],[2,2],[2,6],[-20,6]]),line=outlineFootprint(zoneIntersection(p,map));
+  assert.equal(line.tag,'path');assert.equal(line.attributes.d.split('L').length,p.geometry.footprint.length);
+  assert.equal(line.attributes.d.split('M').length,2);assert.ok(line.attributes.d.endsWith(' Z'));
+  const giant=outlineFootprint(zoneIntersection(sphere(1e12,{x:1e11,y:0,z:0}),map));
+  assert.equal(giant.attributes.rx,1e12); // The chart rectangle is drawn separately as a dashed clipping edge.
 });
 test('concave polygon clipping preserves disconnected pieces, edge crossings and translated heights',()=>{
   const strip=polygon([[-50,-2],[50,-2],[50,2],[-50,2]]);

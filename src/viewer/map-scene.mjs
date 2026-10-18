@@ -6,6 +6,7 @@ import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './
 import {layoutCaptions} from './caption-layout.mjs';
 import {pickZone} from '../core/zone-geometry.mjs';
 import {setZoneMode,setZoneEmphasis} from './zone-layers.mjs';
+import {ZoneHoverOutline} from './zone-outline.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -103,6 +104,7 @@ export class AtlasMap {
     this.zoneTooltip=document.createElement('div');
     this.zoneTooltip.id='zone-tooltip';this.zoneTooltip.hidden=true;this.zoneTooltip.setAttribute('aria-hidden','true');
     container.append(this.zoneTooltip);
+    this.zoneOutline=new ZoneHoverOutline(container);
     this.drag = null;
     const canvas = this.renderer.domElement;
     canvas.addEventListener('pointerdown', event => {
@@ -250,6 +252,7 @@ export class AtlasMap {
     this.routeLines = [];
     this.zoneGroups = [];
     this.zoneTooltip.hidden=true;
+    this.zoneOutline.clear();
     this.territorialLettering = [];
     this.anchors = [];
     this.captionEligibility.clear();
@@ -441,6 +444,7 @@ export class AtlasMap {
     if(e.hidden)return;
     const entity=group.userData.entity;
     e.textContent=`${entity.name ?? entity.id} · ${entity.category.replaceAll('_',' ')}`;
+    e.classList.toggle('zone-tooltip-2d',this.mode==='top');
     e.style.maxWidth=`${Math.max(1,this.width-16)}px`;
     e.style.left=`${Math.max(8,Math.min(p.x+14,this.width-e.offsetWidth-8))}px`;
     e.style.top=`${Math.max(8,Math.min(p.y+14,this.height-e.offsetHeight-8))}px`;
@@ -500,6 +504,7 @@ export class AtlasMap {
       this.pick(this.lastPointerClient)?.id!==this.hoverSources.pointer)this.hoverSources.pointer=null;
     const active=this.hoverSources.focus??this.hoverSources.pointer??this.hoverSources.touch;
     const visibleZoneCount=this.zoneGroups.filter(g=>g.visible).length;
+    this.zoneOutline.update(this.mode==='top'?this.zoneGroups.find(g=>g.visible&&g.userData.entity.id===active):null,this.camera,this.width,this.height);
     for(const zone of this.zoneGroups) {
       setZoneMode(zone,this.mode);setZoneEmphasis(zone,zone.userData.entity.id===active,zone.userData.entity.id===this.selectedId,visibleZoneCount);
     }
@@ -593,6 +598,7 @@ export class AtlasMap {
     this.clearMap();
     this.gridLabels.remove();
     this.zoneTooltip.remove();
+    this.zoneOutline.dispose();
     this.renderer.dispose();
     this.renderer.domElement.remove();
   }
