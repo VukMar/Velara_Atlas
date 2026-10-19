@@ -91,8 +91,10 @@ No type implies a physical size or multiplier. Gas giant remains a planet's
 
 This is an additive current v1.2 schema extension shared by release and authoring
 validation; no version bump, required-field change or existing-record migration.
-Frozen schemas/fixtures and canonical v0.1 remain unchanged. Phase 1 adds no
-measurements to demo records and no runtime consumption. The planned physical
+Frozen schemas/fixtures and canonical v0.1 remain unchanged. Phase 1 added no
+measurements or runtime consumption. Phase 2 now populates representative
+noncanonical demo measurements; temporary markers still do not consume them.
+The planned physical
 projection, neutral unknown fallback and separate apparent minima are specified
 in [the celestial scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
 

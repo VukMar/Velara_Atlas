@@ -22,6 +22,7 @@
       "id": "cb_0001",
       "entityType": "celestial_body",
       "objectType": "star",
+      "physicalDiameterKm": 1080000,
       "discoveredAE": 100,
       "nameHistory": [
         {
@@ -59,6 +60,7 @@
       "id": "cb_0002",
       "entityType": "celestial_body",
       "objectType": "planet",
+      "physicalDiameterKm": 12400,
       "discoveredAE": 100,
       "nameHistory": [
         {
@@ -122,7 +124,7 @@
       },
       "orbitingId": null,
       "colonizedAE": 210,
-      "visualVariant": "unknown",
+      "visualVariant": "rocky",
       "navigation": {
         "boundaryRadiusCNU": 1800,
         "localLinks": [
@@ -142,6 +144,7 @@
       "id": "cb_0003",
       "entityType": "celestial_body",
       "objectType": "planet",
+      "physicalDiameterKm": 18600,
       "discoveredAE": 105,
       "nameHistory": [
         {
@@ -174,7 +177,7 @@
       },
       "orbitingId": null,
       "colonizedAE": null,
-      "visualVariant": "unknown",
+      "visualVariant": "water",
       "navigation": {
         "boundaryRadiusCNU": 2100,
         "localLinks":[
@@ -194,6 +197,7 @@
       "id": "cb_0004",
       "entityType": "celestial_body",
       "objectType": "moon",
+      "physicalDiameterKm": 3200,
       "discoveredAE": 115,
       "nameHistory": [
         {

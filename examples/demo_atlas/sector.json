@@ -190,6 +190,21 @@
         "armament": null,
         "description": null
       }
+    },
+    {
+      "id": "sys_0004",
+      "entityType": "star_system",
+      "discoveredAE": 900,
+      "colonizedAE": null,
+      "positionLY": {"x": 55, "y": -6, "z": 45},
+      "nameHistory": [
+        {"fromAE": 900, "untilAE": null, "name": "TEST D Unreleased Survey", "kind": "noncanonical_demo", "datePrecision": "exact"}
+      ],
+      "cantumHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null, "class": null, "crew": null, "population": null, "armament": null, "description": null
+      }
     }
   ],
   "nexusPresentation": {

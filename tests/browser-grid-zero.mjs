@@ -46,7 +46,8 @@ async page=>{
     check((await snapshot()).gridY.every(y=>y===sector.map.origin.y-sector.map.size.y/2),'sector floor unchanged');
     await toggle(false);
     let above=0,below=0;
-    for(const system of sector.systems){
+    const released=sector.systems.filter(s=>s.publicDetailPath!==null);
+    for(const system of released){
       const detail=await (await page.request.get(new URL(system.publicDetailPath,root).href)).json();
       await open(system.id);
       let s=await systemGrid(detail);check(s.visible,'new system starts with its own grid preference');
@@ -67,6 +68,6 @@ async page=>{
     }
     check(above>0&&below>0,'real authored objects are present above and below zero');
     check(errors.length===0,errors.join('\n'));
-    return {systems:sector.systems.length,objectsAbove:above,objectsBelow:below,zeroPlaneAndH8:'passed',bothCameraModesAndPreferences:'passed',sectorFloor:'passed',consoleErrors:errors};
+    return {releasedSystems:released.length,objectsAbove:above,objectsBelow:below,zeroPlaneAndH8:'passed',bothCameraModesAndPreferences:'passed',sectorFloor:'passed',consoleErrors:errors};
   }finally{page.off('console',onError);await page.goto(base);}
 }

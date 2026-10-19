@@ -19,12 +19,15 @@ async(page)=>{
     check(await page.locator('#year-input').getAttribute('min')==='0'&&await page.locator('#year-input').getAttribute('max')==='1200','documented demo range');
     await page.getByRole('button',{name:'Reset to latest',exact:true}).click();
     await page.locator('[data-close-panel="timeline-panel"]').click();
-    const systems=await page.locator('#selection option').evaluateAll(nodes=>nodes.map(n=>n.value).filter(id=>/^sys_/.test(id)));
-    for(const id of systems) {
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('examples/demo_atlas/sector.json')).name);
+    const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
+    const systems=sector.systems.filter(s=>s.publicDetailPath!==null);
+    for(const system of systems) {
+      const id=system.id,detail=await (await page.request.get(new URL(system.publicDetailPath,root).href)).json();
       await page.locator('#controls-panel > summary').click();await page.locator('#selection').selectOption(id);
       await page.getByRole('button',{name:'Enter system',exact:true}).click();
-      // C's existing 120K chart has 15K cells; A/B retain 100K charts.
-      const expectedScale=id==='sys_0003'?'15K CNU':'12.5K CNU';
+      const cellWidth=detail.map.size.x/8;
+      const expectedScale=`${cellWidth>=1000?`${cellWidth/1000}K`:cellWidth} CNU`;
       check(await page.locator('#grid-labels [data-cell="H8"]').innerText()===expectedScale,'current demo chart measurement');
       const celestial=await page.locator('#selection option').evaluateAll(nodes=>nodes.map(n=>n.value).find(id=>/^cb_/.test(id)));
       await page.locator('#selection').selectOption(celestial);

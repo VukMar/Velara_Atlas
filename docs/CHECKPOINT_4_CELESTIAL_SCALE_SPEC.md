@@ -1,8 +1,9 @@
 # Checkpoint 4.1 — Celestial dimensions and scale contract
 
-**Status:** Creator-approved design; Phase 1 establishes documentation, additive
-Schema v1.2 support and validation tests only. It does not implement rendering or
-author measurements into the demo. Creator review is required between phases.
+**Status:** Creator-approved design and reviewed Phase 1 schema/docs/tests.
+Phase 2 is explicitly authorized for noncanonical demo expansion, existing
+archival fallback coverage, tests and documentation only. Physical rendering and
+Phase 3/4 remain unauthorized. Creator review is required between phases.
 
 ## Units and authored geography
 
@@ -109,9 +110,9 @@ Dyson-sphere-scale constructs, require a separate approved extension.
 
 ## Phased delivery and review gates
 
-1. **Phase 1 — this delivery:** scale specification, authoritative documentation,
+1. **Phase 1 — reviewed and approved:** scale specification, authoritative documentation,
    optional celestial schema field and focused schema tests. Stop for review.
-2. **Phase 2 — future noncanonical demo expansion:** preserve existing IDs,
+2. **Phase 2 — currently authorized noncanonical demo expansion:** preserve existing IDs,
    histories, navigation links, zones and system identities. Keep `sys_0001`'s
    established geography and 100,000-CNU chart; make `sys_0002` a compact developed
    system with a smaller chart, offset star and varied diameters; make `sys_0003`
@@ -141,8 +142,10 @@ Dyson-sphere-scale constructs, require a separate approved extension.
    transitions, close inspection, apparent minima, mobile controls, zero-plane
    grid toggling and archival fallback. Stop for review.
 
-No demo JSON, renderer, SVG generation, textures, artwork, canonical migration,
-deployment, commit or push is authorized by the Phase 1 delivery.
+Phase 1 did not change demo JSON. Phase 2 authors demo measurements and geography
+only, with [implementation evidence](CHECKPOINT_4_PHASE2_RESULTS.md). Renderer,
+SVG generation, textures, artwork, canonical migration, deployment, commit and
+push remain outside the current authorization.
 
 ## Verification contract
 

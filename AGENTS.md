@@ -4,7 +4,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phase 1 authorizes only the celestial scale specification, documentation, optional schema field and tests. Demo expansion, renderer/assets, canonical migration, deployment and the deferred editor remain outside this phase.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phase 1 is creator-approved. Phase 2 now authorizes noncanonical demo expansion, the existing archival fallback demonstration, tests and documentation only. Phase 3 renderer/assets, Phase 4 visual refinement, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -19,7 +19,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 9. `docs/NEXUS_VISUAL_IDENTITY.md` — Approved Milestone 5: visual design, palette, targeting and NEXUS presentation.
 10. `docs/VISUAL_ASSET_POLICY.md` — Approved visual asset fallback rules.
 11. `docs/LEGACY_MIGRATION_PLAN.md` — Required approval before migrating public canonical records.
-12. `docs/CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md` — Approved scale contract and Phase 1 boundary; later phases require creator review/approval.
+12. `docs/CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md` — Approved scale contract and Phase 2 data boundary; later phases require creator review/approval.
 
 Use `docs/NAVIGATION_AUTHORING.md` for manual generation/recovery and README for
 commands. `docs/HISTORICAL_RESOLVER.md` documents the pure API. Implementation
@@ -64,6 +64,9 @@ Checkpoint 3.6's implemented layout supersedes permanent sidebars, bottom timeli
 and selection-driven route highlighting. Its approved audit extension permits
 documentation cleanup, but uncertain file deletions/moves remain proposals for
 creator review. Preserve frozen schemas/fixtures, generators, IDs and historical
-behavior; the current v1.2 schema may receive the approved optional diameter field.
+behavior. Phase 2 uses the existing optional v1.2 diameter field without schema
+changes. Preserve connected anchors, gate positions and all existing zone geometry;
+only the verified unconnected B/C stars may move under this handoff. The fallback
+system has no detail JSON or extra loader. Keep the explicit input allowlists.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 4.1 Phase 1 for creator review. Do not execute Phase 2 demo changes, Phase 3 renderer/icons or Phase 4 browser refinement without the next approval; do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 4.1 Phase 2 for creator review. Do not execute Phase 3 renderer/icons or Phase 4 visual refinement without the next approval; do not commit, push or deploy automatically.

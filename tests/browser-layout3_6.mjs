@@ -25,7 +25,8 @@ async(page) => {
     check(!m.hidden,'H8 measurement is visible');
     check(Math.abs(m.arrow.width-m.width*m.zoom/8)<1,'arrow spans exactly one projected cell');
     const x=value=>m.canvas.x+(value-m.minX)/(m.maxX-m.minX)*m.width;
-    check(Math.abs(m.arrow.x-x(37500))<1&&Math.abs(m.arrow.x+m.arrow.width-x(50000))<1,'measurement tips stay on H8 column boundaries');
+    const side=(m.maxX-m.minX)*m.zoom;
+    check(Math.abs(m.arrow.x-x(side*3/8))<1&&Math.abs(m.arrow.x+m.arrow.width-x(side/2))<1,'measurement tips stay on H8 column boundaries');
     check(m.arrow.y>=m.text.y+m.text.height-.5,'arrow sits beneath the numeric label');
     check(m.pointerEvents==='none','measurement does not intercept map selection');
   };

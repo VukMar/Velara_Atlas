@@ -13,7 +13,8 @@ async(page)=>{
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);};
   let selected=0,localEndpoints=0;
-  for(const system of sector.systems) {
+  const released=sector.systems.filter(s=>s.publicDetailPath!==null),archival=sector.systems.filter(s=>s.publicDetailPath===null);
+  for(const system of released) {
     await open(system.id);await page.locator('#chart-stage').click({position:{x:2,y:2}});
     const detail=await read(system.publicDetailPath);
     check(+(await page.locator('#viewport').getAttribute('data-markers'))===detail.objects.length,`${system.id} complete released map`);
@@ -27,6 +28,25 @@ async(page)=>{
     check(await page.locator('#viewport').getAttribute('data-mode')==='perspective','perspective works in every system');
     await page.locator('#tilt').fill('35');await page.locator('#tilt').dispatchEvent('input');await page.locator('#mode').click();await page.locator('#sector').click();
   }
+  for(const system of archival) {
+    await open(system.id);
+    const message=await page.locator('#map-message').innerText();
+    check(message.includes(sector.nexusPresentation.fallbackTitle)&&message.includes(sector.nexusPresentation.fallbackText),`${system.id} existing NEXUS archival notice`);
+    check(+(await page.locator('#viewport').getAttribute('data-markers'))===0,`${system.id} no invented detailed markers`);
+    check(await page.locator('#labels [data-record-id]').count()===0,`${system.id} no detailed object controls`);
+    check(await page.locator('#retry').isHidden(),`${system.id} archival notice is not a technical error`);
+    await page.locator('#sector').click();
+    check(await page.locator(`#selection option[value="${system.id}"]`).count()===1,`${system.id} return to Sector View`);
+    await year(system.discoveredAE-1);
+    check(await page.locator(`#selection option[value="${system.id}"]`).count()===0,`${system.id} hidden before discovery`);
+    check(await page.locator(`#labels [data-record-id="${system.id}"]`).count()===0,`${system.id} no premature sector marker`);
+    await panel('catalogue-panel');await page.locator('#search').fill(system.nameHistory.at(-1).name);
+    check(await page.locator('#catalogue button').count()===0,`${system.id} no premature searchable name`);
+    await page.locator('#search').fill('');
+    await year(system.discoveredAE);
+    check(await page.locator(`#selection option[value="${system.id}"]`).count()===1,`${system.id} inclusive discovery`);
+    await year(sector.timeline.defaultAE);
+  }
   for(const link of graph.connections.filter(l=>l.linkType==='interstellar')) {
     await open(link.endpointA.systemId);await choose(link.endpointA.objectId);
     const expected=sector.systems.find(s=>s.id===link.endpointB.systemId).nameHistory.at(-1).name;
@@ -39,5 +59,5 @@ async(page)=>{
   await page.keyboard.press('Escape');await page.goto(base);
   await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
   check(await page.locator('#catalogue [data-id="can_0001"]').count()===1&&await page.locator('#catalogue [data-id="can_0002"]').count()===1,'distinct Cantum records retained');
-  return {systems:sector.systems.length,pointerSelectedObjects:selected,exclusiveLocalEndpoints:localEndpoints,interstellarRoutes:graph.connections.filter(l=>l.linkType==='interstellar').length,historyAndDestinations:'passed',perspective:'passed'};
+  return {systems:sector.systems.length,releasedSystems:released.length,archivalSystems:archival.length,pointerSelectedObjects:selected,exclusiveLocalEndpoints:localEndpoints,interstellarRoutes:graph.connections.filter(l=>l.linkType==='interstellar').length,historyAndDestinations:'passed',archivalFallback:'passed',perspective:'passed'};
 }

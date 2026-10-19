@@ -2,9 +2,11 @@
 
 **Status:** The local noncanonical demo implements through Checkpoint 3.8 zones,
 cartographic labeling, v1.2 navigation and the Checkpoint 3.6 layout. The system
-grid now uses Y = 0 CNU. Checkpoint 4.1 Phase 1 establishes the celestial scale
-contract and optional schema support only; demo expansion and visual implementation
-await subsequent creator approval. Earlier evidence remains in
+grid now uses Y = 0 CNU. Checkpoint 4.1 Phase 1 is approved; Phase 2 explicitly
+authorizes demo expansion, archival fallback coverage, tests and documentation.
+The demo now has three released systems and one positioned archival system;
+physical diameter rendering, Phase 3/4, canonical migration and deployment remain
+unauthorized. Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
 
 ## Approved foundations and design
@@ -27,7 +29,8 @@ future implementation or canonical content migration.
 | Checkpoint 3.6 audit extension | Repository inventory, documentation authority/status synchronization and retention proposals; no uncertain deletion/move |
 | Checkpoint 3.8 and follow-ups | Clipped interactive system zones, 2D hover contours distinguishing physical/chart edges, and the absolute Y = 0 system grid |
 | Checkpoint 4.1 Phase 1 | Approved celestial scale specification, additive v1.2 diameter field and tests; no demo/renderer/assets changes |
-| Checkpoint 4.1 Phases 2–4 | Planned demo expansion, renderer/icons and browser refinement; creator review required between phases |
+| Checkpoint 4.1 Phase 2 | Authorized noncanonical demo expansion: 100K/80K/160K CNU charts, offset/peripheral stars, physical measurements, small bodies and one archival-only system; see [results](CHECKPOINT_4_PHASE2_RESULTS.md) |
+| Checkpoint 4.1 Phases 3–4 | Renderer/icons and visual refinement remain unauthorized; creator review required between phases |
 | Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
@@ -41,10 +44,12 @@ Follow [the celestial scale specification](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md)
 Phase 1 records the universal 1 CNU = 10,000 km conversion, optional positive
 celestial `physicalDiameterKm`, flexible system dimensions and the future
 physical/proxy/apparent-minimum contract. It changes no authored demo measurements
-or renderer behavior and stops for creator review.
+or renderer behavior; that phase has been reviewed and approved.
 
-After separate approval, Phase 2 expands the three existing noncanonical demo
-systems and adds a fallback-only sector entry with no detail file. Phase 3
+Phase 2 is now explicitly approved and expands the three existing noncanonical
+demo systems and adds a fallback-only sector entry with no detail file. Temporary
+marker sizes still do not represent physical diameters. Stop after its verification
+for creator review. After further approval, Phase 3
 implements correctly scaled celestial models, continuous SVG-proxy transitions,
 fixed apparent structure markers and neutral unknown fallbacks. Phase 4 verifies
 systems, close/far transitions, mobile interaction, Y = 0 grid and existing

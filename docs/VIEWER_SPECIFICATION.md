@@ -412,10 +412,10 @@ Fallback should show any **already public** system name, selected year, and arch
 
 The **only required initial content** is the noncanonical `examples/demo_atlas` dataset, including:
 
-- Two noncanonical Cantums and three systems (`sys_0001`–`sys_0003`) with sector positions and independent CNU maps.
+- Two noncanonical Cantums, three released systems (`sys_0001`–`sys_0003`) with independent 100K/80K/160K CNU charts, and one additional positioned archival-only system (`sys_0004`, known from 900 A.E., no Cantum assignment or detail JSON).
 - Separate A/B **interstellar routes**: one exclusive Jump Gate pair and one exclusive Jump Hole pair; an additional dedicated A/C Jump Gate pair.
 - Dedicated, exclusive local short-range pairs authored on eligible anchor objects, including transfer to a Jump Gate navigation boundary.
-- Stars, planets, a moon, stations, and dated InfoCard changes.
+- Stars, rocky/gas/water/unknown planets, moons, a planetoid, an individual asteroid, stations and dated InfoCard changes. Phase 2 authors physical diameters with one omitted unknown; temporary markers do not yet render physical size. Central/offset/peripheral star placement tests independent chart framing. See [Phase 2 results](CHECKPOINT_4_PHASE2_RESULTS.md).
 
 The live demo is author-editable; fixed regression snapshots preserve earlier acceptance scenarios under `tests/fixtures/v1_1/` and `v1_2/`. Its names, counts, positions and dates are **test data only**. **Do not promote them into official MCR canon.** Canonical systems/Cantums remain outside viewer prototyping.
 
@@ -425,7 +425,7 @@ Create additional **noncanonical fixture variants** as necessary to test an unde
 
 The first Milestone 3 implementation is complete when all of the following can be demonstrated **without hardcoded lore-specific branches**:
 
-1. Load the current three-system noncanonical demo in top-down sector mode at 1200 A.E., with the entire square chart fitted and no initial InfoCard.
+1. Load the current noncanonical demo (three released charts plus one archival-only system) in top-down sector mode at 1200 A.E., with the entire square chart fitted and no initial InfoCard.
 2. Positioned systems and independent selectable **Jump Gate and Jump Hole strokes** appear without conflating A/B transports or the additional A/C pairing.
 3. Click a system for its historical InfoCard; double-click/Enter opens its system map; breadcrumbs and Return to Sector work.
 4. A system map renders the correct CNU-positioned star, planets, moon, station, short-range gates, Jump Gate and Jump Hole from JSON.

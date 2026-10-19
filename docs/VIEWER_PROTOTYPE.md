@@ -1,4 +1,4 @@
-# Milestone 6 — Viewer implementation through Checkpoint 3.6
+# Viewer implementation and current noncanonical demonstration
 
 The local app is a **read-only, noncanonical demonstration** using only
 `examples/demo_atlas/`. Checkpoint 3 is secured in `32f43d6`, navigation v1.2 in
@@ -13,6 +13,13 @@ publication, editor, final icon library, portrait or polished NEXUS art is impli
 > records the current rerun. Historical resolution, cartography and data remain unchanged.
 
 ## Run and verify
+
+Checkpoint 4.1 Phase 2 adds authored physical diameters and varied geography:
+three released charts at 100K/80K/160K CNU, with central/offset/peripheral stars,
+and a fourth positioned sector system with no released detail. `sys_0004` is
+known from 900 A.E. and opens the existing textual archival notice. No extra
+detail loader is present. The unit is 1 CNU = 10,000 km; temporary marker sizes
+do not yet represent physical diameters. See [Phase 2 results](CHECKPOINT_4_PHASE2_RESULTS.md).
 
 ```text
 npm ci

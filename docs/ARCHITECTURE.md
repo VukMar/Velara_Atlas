@@ -81,6 +81,12 @@ separate. See [the scale contract and phase boundaries](CHECKPOINT_4_CELESTIAL_S
 System chart dimensions may differ; square X/Z, independent Y extent, off-center
 stars and the absolute Y = 0 system reference grid remain compatible.
 
+Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
+the three released details. A fourth positioned sector entry has
+`publicDetailPath: null` and uses existing textual archival fallback, without a
+detail file or additional loader. The seven-file explicit JSON input allowlist and
+`publicDir: false` remain unchanged. Temporary marker sizes remain display aids.
+
 Checkpoint 3.6 fits the complete square X/Z chart, clamps orthographic pan/zoom
 and leaves genuine Y available in perspective and records. Both camera modes
 use a square viewport. Panels float without shifting it; History is vertical

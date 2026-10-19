@@ -127,7 +127,7 @@ test('numbered public datasets use their own independent maxima',()=>{
   const m=memory(f,'public'),r=runIdFinder(['cb','--public'],m.options);
   assert.equal(r.exitCode,0);assert.match(r.output,/cb_0077\s+cb_0078/);
   assert.ok(m.reads.every(p=>p.startsWith(m.base)));
-  assert.equal(row(scanDataset(),'cb').highest,'cb_0011');
+  assert.equal(row(scanDataset(),'cb').highest,'cb_0014');
 });
 
 test('scanner ignores unrelated examples, metadata, presentation references and nested folders; rejects escaping paths/symlinks',()=>{

@@ -9,9 +9,9 @@
       "z": 0
     },
     "size": {
-      "x": 100000,
+      "x": 80000,
       "y": 20000,
-      "z": 100000
+      "z": 80000
     },
     "unit": "CNU",
     "projection": "topdown_xz",
@@ -22,6 +22,7 @@
       "id": "cb_0005",
       "entityType": "celestial_body",
       "objectType": "star",
+      "physicalDiameterKm": 1310000,
       "discoveredAE": 190,
       "nameHistory": [
         {
@@ -33,9 +34,9 @@
         }
       ],
       "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+        "x": -26000,
+        "y": 1800,
+        "z": -20000
       },
       "icon": null,
       "infoCard": {
@@ -59,6 +60,7 @@
       "id": "cb_0006",
       "entityType": "celestial_body",
       "objectType": "planet",
+      "physicalDiameterKm": 9800,
       "discoveredAE": 190,
       "nameHistory": [
         {
@@ -104,7 +106,7 @@
       },
       "orbitingId": null,
       "colonizedAE": 330,
-      "visualVariant": "unknown",
+      "visualVariant": "rocky",
       "navigation": {
         "boundaryRadiusCNU": 1600,
         "localLinks": [
@@ -133,6 +135,7 @@
       "id": "cb_0007",
       "entityType": "celestial_body",
       "objectType": "planet",
+      "physicalDiameterKm": 126000,
       "discoveredAE": 210,
       "nameHistory": [
         {
@@ -165,7 +168,7 @@
       },
       "orbitingId": null,
       "colonizedAE": null,
-      "visualVariant": "unknown",
+      "visualVariant": "gas",
       "navigation": {
         "boundaryRadiusCNU": 1800
       }
@@ -212,6 +215,7 @@
       "id": "cb_0009",
       "entityType": "celestial_body",
       "objectType": "moon",
+      "physicalDiameterKm": 2600,
       "discoveredAE": 245,
       "nameHistory": [
         {

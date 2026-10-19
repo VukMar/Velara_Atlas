@@ -41,7 +41,16 @@ async(page)=>{
   await page.route(detailPattern,r=>r.abort('failed'));await page.goto(base);await page.locator('#retry').waitFor();
   check((await page.locator('#map-message').innerText()).includes('Technical error'),'failed load is technical');
   await page.unroute(detailPattern);await page.locator('#retry').click();await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
-  results.push('layers, unplaced/fallback/partial records and failed-load retry');
+  for(const [kind,response] of [
+    ['missing detail',{status:404,contentType:'text/plain',body:'Not found'}],
+    ['malformed detail',{status:200,contentType:'text/javascript',body:'export default { malformed JSON'}]
+  ]) {
+    await page.route(detailPattern,r=>r.fulfill(response));await page.goto(base);await page.locator('#retry').waitFor();
+    const message=await page.locator('#map-message').innerText();
+    check(message.includes('Technical error')&&!message.includes('ARCHIVAL'),`${kind} stays a technical error`);
+    await page.unroute(detailPattern);await page.locator('#retry').click();await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
+  }
+  results.push('layers, unplaced/fallback/partial records; failed, missing and malformed detail errors with retry');
   const nonsquare=await read('sector.json');nonsquare.map.size.z-=1;
   await page.route(sectorPattern,serve(nonsquare));await page.goto(base);await page.locator('#retry').waitFor();
   check((await page.locator('#map-message').innerText()).includes('Square chart'),'non-square authored data explicitly rejected');

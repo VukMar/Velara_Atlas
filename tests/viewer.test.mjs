@@ -13,7 +13,7 @@ const load = () => readDataset(fileURLToPath(new URL('../examples/demo_atlas/', 
 test('prototype meshes preserve every demo XYZ and permanent identity without mutating resolved data', () => {
   const d = load(), year = d.sector.timeline.defaultAE;
   const sector = resolveCatalogue(d.sector, year);
-  const maps = [[sector, 'positionLY'], ...d.sector.systems.map(s => [resolveSystem(s, year, d.detailFiles.get(s.id)).detail.objects, 'position'])];
+  const maps = [[sector, 'positionLY'], ...d.sector.systems.filter(s => s.publicDetailPath !== null).map(s => [resolveSystem(s, year, d.detailFiles.get(s.id)).detail.objects, 'position'])];
   const before = structuredClone(maps);
   const shapes = new Set();
   for (const [entities, key] of maps) for (const entity of entities) {
@@ -95,7 +95,7 @@ test('demo build permits only viewer/core, explicit demo JSON and package module
   }
 });
 
-test('actual Vite demo loader opens all three fixture systems and rejects other paths', async () => {
+test('actual Vite demo loader opens released systems, preserves archival fallback and rejects other paths', async () => {
   const server = await createServer({logLevel: 'silent', server: {middlewareMode: true, hmr: false}});
   try {
     const {demoSector, loadDemoDetail} = await server.ssrLoadModule('/demo-data.mjs');
@@ -103,6 +103,12 @@ test('actual Vite demo loader opens all three fixture systems and rejects other 
     for (const system of demoSector.systems) {
       const detail = await loadDemoDetail(system);
       const result = resolveSystem(system, demoSector.timeline.defaultAE, detail);
+      if (system.publicDetailPath === null) {
+        assert.equal(detail, null);
+        assert.equal(result.state, 'archival_fallback');
+        assert.equal(result.detail, null);
+        continue;
+      }
       assert.equal(result.detail.id, system.id);
       assert.equal(result.detail.map.unit, 'CNU');
       assert.deepEqual(result.detail.objects.map(o => o.id), detail.objects.map(o => o.id));
