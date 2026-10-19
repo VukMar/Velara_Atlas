@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M8 5h14v38h20V5h14v54H8Z" fill="#173442"/><path d="M22 15h20m-20 12h20M32 6v34" fill="none"/><path d="m28 29 4-8 4 8v9h-8Z" fill="#8cb6c7"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path id="shipyard-rails"
+    d="M22 13 H54 L59 18 V23 H22 Z M22 41 H59 V46 L54 51 H22 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA"
+    stroke-width="1.5"
+    stroke-linejoin="round"/>
+
+  <path id="shipyard-spine"
+    d="M21 19 H29 V45 H21 Z"
+    fill="#477F90"/>
+
+  <path id="shipyard-core"
+    d="M12 22 H27 L33 28 V36 L27 42 H12 L6 36 V28 Z"
+    fill="#A9CED8"
+    stroke="#E0EFF2"
+    stroke-width="1.5"/>
+
+  <rect id="shipyard-center"
+    x="14" y="28"
+    width="10" height="8"
+    fill="#244E5B"/>
+</svg>

@@ -1,1 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M22 6h20v16h16v20H42v16H22V42H6V22h16Z" fill="#173442"/><circle cx="32" cy="32" r="9" fill="#608ea2"/></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64" fill="none">
+
+  <path id="station-arms"
+    d="M28 12 H36 V52 H28 Z
+       M12 28 H52 V36 H12 Z"
+    fill="#477F90"/>
+
+  <path d="M26 5 H38 L40 9 V16 H24 V9 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA" stroke-width="1.4"/>
+
+  <path d="M24 48 H40 V55 L38 59 H26 L24 55 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA" stroke-width="1.4"/>
+
+  <path d="M5 26 L9 24 H16 V40 H9 L5 38 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA" stroke-width="1.4"/>
+
+  <path d="M48 24 H55 L59 26 V38 L55 40 H48 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA" stroke-width="1.4"/>
+
+  <path id="station-core"
+    d="M26 21 H38 L43 26 V38
+       L38 43 H26 L21 38 V26 Z"
+    fill="#A9CED8"
+    stroke="#E0EFF2" stroke-width="1.5"/>
+
+  <rect id="station-center"
+    x="28" y="28" width="8" height="8"
+    fill="#244E5B"/>
+
+</svg>

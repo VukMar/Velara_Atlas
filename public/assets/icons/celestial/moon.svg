@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="28" fill="#26353f"/><path d="M32 4a28 28 0 0 0 0 56c-18-14-18-42 0-56Z" fill="#768c98"/><circle cx="42" cy="24" r="6" fill="none"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle
+    id="moon-body"
+    cx="32"
+    cy="32"
+    r="27"
+    fill="#536F7D"
+    stroke="#D1E5EA"
+    stroke-width="2"/>
+
+  <path
+    id="moon-crescent"
+    d="M32 7 A25 25 0 0 0 32 57 C25 46 25 18 32 7 Z"
+    fill="#B5D0DA"/>
+</svg>

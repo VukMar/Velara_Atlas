@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="m32 3 29 29-29 29L3 32Z" fill="#203541"/><rect x="21" y="21" width="22" height="22" fill="none" stroke-dasharray="4 4"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path id="station-hull"
+    d="M17 15 H47 L55 23 V41 L47 49 H17 L9 41 V23 Z"
+    fill="#83B8C5"
+    stroke="#C8E3EA"
+    stroke-width="1.5"
+    stroke-linejoin="round"/>
+
+  <path id="station-modules"
+    d="M2 23 H14 V41 H2 Z M50 23 H62 V41 H50 Z"
+    fill="#477F90"/>
+
+  <path id="station-core"
+    d="M25 22 H39 L46 29 V35 L39 42 H25 L18 35 V29 Z"
+    fill="#A9CED8"
+    stroke="#E0EFF2"
+    stroke-width="1.5"/>
+
+  <rect id="station-center"
+    x="27" y="28" width="10" height="8"
+    fill="#244E5B"/>
+</svg>

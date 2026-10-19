@@ -1,1 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path fill="#d8b773" d="m32 2 6 19 17-11-10 18 17 4-18 6 11 17-18-10-5 17-6-18-17 11 10-18-17-5 18-6-11-17 18 10Z"/><circle cx="32" cy="32" r="12" fill="#ffe3a3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path
+    id="star-radiance-outer"
+    d="M32 5
+       L38 18
+       L46 15
+       L46 26
+       L59 32
+       L46 38
+       L46 49
+       L38 46
+       L32 59
+       L26 46
+       L18 49
+       L18 38
+       L5 32
+       L18 26
+       L18 15
+       L26 18
+       Z"
+    fill="#24C9C6"
+    opacity="0.45"/>
+
+  <circle
+    id="star-radiance"
+    cx="32"
+    cy="32"
+    r="14"
+    fill="#24C9C6"/>
+
+  <circle
+    id="star-core"
+    cx="32"
+    cy="32"
+    r="11"
+    fill="#F5FBFF"/>
+</svg>

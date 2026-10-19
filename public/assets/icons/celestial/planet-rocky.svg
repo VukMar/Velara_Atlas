@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#aac4cd" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="32" r="28" fill="#393b3a"/><path d="m13 24 13-9 12 5 9 14-8 13-18-3-9-10M26 15l-4 19 17 13M22 34l25 0" fill="none"/></svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle id="planet-body" cx="32" cy="32" r="27"
+          fill="#9EB9C2" stroke="#D1E5EA" stroke-width="2"/>
+  <path id="planet-relief"
+        d="M20 14 C22 23 32 25 34 32 C36 39 38 42 45 48"
+        stroke="#345864" stroke-width="4.5"
+        stroke-linecap="round"/>
+  <path id="planet-detail"
+        d="M34 32 L41 28 L46 30"
+        stroke="#345864" stroke-width="3.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  
