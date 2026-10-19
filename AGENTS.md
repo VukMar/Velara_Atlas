@@ -4,7 +4,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements Checkpoints 1–3, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The target host is GitHub Pages; no deployment is implemented. The current extension authorizes a controlled repository audit and documentation synchronization. Checkpoint 4 artwork/polish, canonical migration and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phase 1 authorizes only the celestial scale specification, documentation, optional schema field and tests. Demo expansion, renderer/assets, canonical migration, deployment and the deferred editor remain outside this phase.
 
 ## Read first
 
@@ -19,6 +19,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 9. `docs/NEXUS_VISUAL_IDENTITY.md` — Approved Milestone 5: visual design, palette, targeting and NEXUS presentation.
 10. `docs/VISUAL_ASSET_POLICY.md` — Approved visual asset fallback rules.
 11. `docs/LEGACY_MIGRATION_PLAN.md` — Required approval before migrating public canonical records.
+12. `docs/CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md` — Approved scale contract and Phase 1 boundary; later phases require creator review/approval.
 
 Use `docs/NAVIGATION_AUTHORING.md` for manual generation/recovery and README for
 commands. `docs/HISTORICAL_RESOLVER.md` documents the pure API. Implementation
@@ -36,7 +37,7 @@ If a file is absent in the actual checkout, report that and work with available 
 - **Private lore never goes in Git.** RTF source documents remain in a separate private folder; generated local text caches must be excluded from Git and the website build. `.gitignore` alone is not a confidentiality guarantee.
 - **Preserve current behavior.** `src/timeline/resolve.mjs` and legacy tests preserve v0.1 canon. The modern historical resolver is reused unchanged. Keep v1.1 regression coverage; v1.2 supersedes only its local-gate branching rule and navigation authoring contract.
 - **Navigation source of truth:** v1.2 system objects author `navigation.localLinks` and `interstellarConnection`. `connections.json` is the generated, Git-tracked runtime index. Every connected short-range gate has one lifetime link and explicit `positionMode: "boundary_derived"`. All gate/hole types have at most one lifetime partner; no repointing. Run `npm run connections` manually, then `npm run connections:check`, tests/build, and review the diff. Only this offline command writes the graph and eligible short-range gate `position` fields; no sidecar, browser generation or build-time repair. Do not discard pending recovery journals/backups.
-- **Coordinates:** sector space uses XYZ in light-years; individual system space uses separate local XYZ and declared units. X/Z is the default map plane; Y is elevation. A coordinate of `null` means no canonical placement, not `(0,0,0)`.
+- **Coordinates:** sector space uses XYZ in light-years; individual system space uses local XYZ in CNU, universally 1 CNU = 10,000 kilometers. X/Z is the default map plane; Y is elevation. A coordinate of `null` means no canonical placement, not `(0,0,0)`. Optional celestial `physicalDiameterKm` is positive finite, omitted when unknown, independent of navigation boundaries and never inferred from type. Do not rescale existing coordinates or geometry.
 - **Technology:** prefer vanilla JavaScript, ES modules, Three.js, Vite, and small focused Node tools. No backend is required for the GitHub Pages viewer. Do not add frameworks/dependencies or server-side authentication without approval.
 - **Local editor:** never publish private content, credentials, or a publicly writable endpoint. Editor code may live in the source repository if the release build excludes it; local-only access is enforced by deployment/build design, not by hiding a button.
 
@@ -62,6 +63,7 @@ The NEXUS visual identity is approved; the prototype uses restrained surfaces an
 Checkpoint 3.6's implemented layout supersedes permanent sidebars, bottom timeline
 and selection-driven route highlighting. Its approved audit extension permits
 documentation cleanup, but uncertain file deletions/moves remain proposals for
-creator review. Preserve schemas, fixtures, generators, IDs and historical behavior.
+creator review. Preserve frozen schemas/fixtures, generators, IDs and historical
+behavior; the current v1.2 schema may receive the approved optional diameter field.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 3.6; do not start Checkpoint 4 without explicit approval.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 4.1 Phase 1 for creator review. Do not execute Phase 2 demo changes, Phase 3 renderer/icons or Phase 4 browser refinement without the next approval; do not commit, push or deploy automatically.

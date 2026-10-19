@@ -95,6 +95,18 @@ verification; final assets/reticles remain separate work.
 **3D:** stars and planets use simplified procedural spheres; stations and built gates use camera-facing billboards at real XYZ positions initially; Jump Holes can use a restrained anomalous geometry/effect. A billboard is a navigational sign, not a claim that the station physically has the shape of its icon. Elaborate 3D station/gate models are deliberately outside the first viewer scope.  
 **Zones:** ellipsoid, box and polygon-volume spatial zones remain true 3D geographic volumes; in top-down view use projected shapes. Their atmospheric particles are separate from their authoritative geographic bounds.
 
+**Checkpoint 4.1 sizing contract (renderer deferred):**
+[Celestial scale](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) fixes 1 CNU = 10,000 km.
+2D/3D share authored XYZ and optional physical diameters; projected physical size
+and centralized apparent minima remain separate. Presentation-default priority:
+star → gas giant → regular planet → moon → asteroid/planetoid → station/Jump Gate
+→ short-range gate. This guides navigational legibility, never physical size
+restrictions or type multipliers. Gas giant remains a planet visual variant.
+Camera-facing distant SVG proxies transition continuously to correctly scaled
+models without duplicate disks or selection changes. Unknown diameters use neutral
+proxies, structures use fixed apparent icons, and stellar glow/hit targets do not
+define physical diameter. Phase 1 supports schema/docs/tests only.
+
 ## 6. MCR/NEXUS segmented targeting motif
 
 - **Idle:** no targeting rings by default. Do not convert the entire sector into a flat node diagram.

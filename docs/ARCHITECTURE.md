@@ -68,9 +68,18 @@ are authoritative for operating that tool.
 
 ## Coordinates, layout and rendering
 
-Sector XYZ is in light-years; local system XYZ is in CNU with no defined
-kilometer conversion. Positions are static and absolute in their own map.
+Sector XYZ is in light-years; local system XYZ is in CNU, universally defined as
+10,000 kilometers per CNU. Positions are static and absolute in their own map.
 `orbitingId` is relationship metadata, not a position calculation.
+
+Checkpoint 4.1 Phase 1 adds optional positive finite `physicalDiameterKm` only
+to current v1.2 celestial schemas, with omission for unknown values and no version
+migration. No runtime conversion or renderer/resolver changes are implemented.
+Later integration must forward the released measurement through resolved records
+and keep physical geometry, apparent-size minima and interaction hit areas
+separate. See [the scale contract and phase boundaries](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
+System chart dimensions may differ; square X/Z, independent Y extent, off-center
+stars and the absolute Y = 0 system reference grid remain compatible.
 
 Checkpoint 3.6 fits the complete square X/Z chart, clamps orthographic pan/zoom
 and leaves genuine Y available in perspective and records. Both camera modes

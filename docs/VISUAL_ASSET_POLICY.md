@@ -11,6 +11,17 @@
 - The future renderer registry will centralize default paths instead of duplicating them in every object's JSON. Preserve existing registry identifiers when implementing it.
 - For the MVP, **no object is required to have a custom texture, sprite or 3D model**.
 
+**Checkpoint 4.1 scale policy:** [The scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md)
+defines 1 CNU = 10,000 km and optional positive celestial `physicalDiameterKm`.
+Physical size is authored independently of icon/category/variant and zoom; no
+type multiplier is permitted. Future camera-projected physical models and distant
+SVG proxies share exact XYZ and transition continuously. Category apparent minima
+are centralized renderer settings, never enlarged physical geometry or per-record
+fields. Unknown measurements use a neutral navigational fallback. Stations and
+all gate/hole categories initially have fixed apparent icons; megastructure
+models require separate approval. Phase 1 adds schema/docs/tests only, no assets
+or renderer integration. Stellar glow and hit targets remain separate from size.
+
 ## 2. Approved defaults by object kind
 
 | `entityType` / `objectType` | Visual variant | 2D top-down | 3D perspective |
@@ -20,8 +31,8 @@
 | Celestial / `planet` | `gas` | Gas-giant SVG | Sphere with modest bands |
 | Celestial / `planet` | `water` | Water-planet SVG | Blue/water sphere |
 | Celestial / `planet` | unknown/unspecified | **Neutral planet SVG** | Neutral unclassified sphere |
-| Celestial / `moon` | default | Moon SVG | Smaller procedural sphere |
-| Celestial / `planetoid` or `asteroid` | default | Small-body SVG | Small simplified geometry |
+| Celestial / `moon` | default | Moon SVG | Authored physical-size sphere; neutral proxy when size unknown |
+| Celestial / `planetoid` or `asteroid` | default | Small-body SVG | Authored physical-size simplified geometry; neutral proxy when size unknown |
 | Station | `regular` | Standard station SVG | Camera-facing billboard |
 | Station | `shipyard` | Shipyard SVG | Camera-facing billboard |
 | Station | unknown/unspecified | Neutral station SVG | Neutral billboard |

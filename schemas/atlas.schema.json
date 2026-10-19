@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json",
   "title": "Velara Atlas entity contract v1.2",
-  "description": "The URL is a schema identifier only; no network access required. Test content is NONCANON.",
+  "description": "The URL is a schema identifier only; no network access required. Test content is NONCANON. System CNU uses 1 CNU = 10,000 kilometers; optional celestial physicalDiameterKm does not change authored coordinates or navigation boundaries.",
   "type": "object",
   "$defs": {
     "xyz": {
@@ -882,6 +882,11 @@
               "type": "null"
             }
           ]
+        },
+        "physicalDiameterKm": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Optional authored physical celestial diameter in kilometers: a positive finite number. Omit when unknown; null is invalid. Diameter in CNU = physicalDiameterKm / 10000. Independent of visualVariant, zoom, navigation boundaries and zone geometry; no inferred size or type multiplier."
         },
         "colonizedAE": {
           "oneOf": [

@@ -27,13 +27,16 @@ The sector file's system list is the **catalogue index**. `publicDetailPath: nul
 
 ## Coordinates and distance units
 
-Sector X/Y/Z uses **light-years (`ly`)**. Individual system X/Y/Z uses **Continuance Navigation Units (`CNU`)**, the established standardized interplanetary navigational distance used by the Continuance. The exact CNU-to-kilometer ratio remains undecided; do not guess one.
+Sector X/Y/Z uses **light-years (`ly`)**. Individual system X/Y/Z uses **Continuance Navigation Units (`CNU`)**, the standardized interplanetary navigational distance used by the Continuance. **1 CNU = 10,000 kilometers**, universally across systems. Existing coordinates, extents, zones, navigation boundaries and connections are not rescaled.
 
 `map.origin` is `(0,0,0)`; `map.size` is **full width, full height and full depth**, not half-size. With X size 100000, valid X positions lie between -50000 and +50000. X/Z is the top-down plane, Y is elevation. All coordinates are static, author-assigned chart positions; orbital mechanics and animated movements are out of scope. Optional `orbitingId` provides relationship metadata but does not compute position or enforce orbit distances.
 
 The Checkpoint 3.6 viewer additionally requires square X/Z extents and validates
 that constraint at startup/build without changing this general schema or JSON.
 Its 8×8 system grid measures navigational cell width, not physical body size.
+Each system may have different square X/Z dimensions and an independently authored
+Y extent. A star need not be at the chart center. The system grid and annotations
+remain on absolute Y = 0 CNU, independently of stellar position and vertical bounds.
 
 **Checkpoint 3.8 exception — v1.2 system spatial zones only:** A zone's `position`
 is its authored geometric reference origin, not an ordinary object position. Its
@@ -74,6 +77,24 @@ Each non-null field is a nonempty array of **dated records**. Celestial bodies m
 Celestial subtypes all have `entityType: celestial_body`, with `objectType` distinguishing `star`, `planet`, `moon`, `planetoid`, `asteroid`, `comet`, `other`. No object subtype demands its own schema file. `orbitingId` can point to a celestial body in the same system; every object's coordinates remain absolute **within the system map**, never relative to its parent.
 
 Historical existence and historical **discovery** are distinct. A station has `constructedAE` / `decommissionedAE`; a Jump Hole has `discoveredAE` but may predate discovery. Visibility logic must account for both recorded existence and discovery. Changes of historical label, occupancy or affiliation do **not** automatically shift coordinates.
+
+### Physical celestial diameter — Checkpoint 4.1 Phase 1
+
+Celestial bodies may optionally author `physicalDiameterKm`: a positive finite
+number (`type: "number"`, `exclusiveMinimum: 0`). Omission means unknown;
+explicit `null`, zero, negative and nonnumeric values are invalid. This static
+measurement applies to all celestial subtypes, never to stations, gates, Jump
+Holes or zones. `diameterCNU = physicalDiameterKm / 10000`; it is independent of
+zoom, icons, `visualVariant`, `navigation.boundaryRadiusCNU` and zone dimensions.
+No type implies a physical size or multiplier. Gas giant remains a planet's
+`gas` visual variant. Artificial structures initially use fixed apparent icons.
+
+This is an additive current v1.2 schema extension shared by release and authoring
+validation; no version bump, required-field change or existing-record migration.
+Frozen schemas/fixtures and canonical v0.1 remain unchanged. Phase 1 adds no
+measurements to demo records and no runtime consumption. The planned physical
+projection, neutral unknown fallback and separate apparent minima are specified
+in [the celestial scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
 
 ## Gate / Jump Hole route contract
 

@@ -90,9 +90,11 @@ scene elevation. Switch to 3D for a perspective camera, right-drag orbit or use
 Camera elevation. Pan, zoom, Reset view and Focus selection are available in
 both modes. Camera state is retained per map; switches never relocate objects.
 Station/gate markers face the perspective camera; natural bodies still use
-temporary neutral geometric markers. There is no orbital simulation or CNU
-conversion. Dense or coincident projected records remain available in the
-catalogue; nearby hit areas shrink without changing geometry.
+temporary neutral geometric markers. There is no orbital simulation or runtime
+physical-diameter conversion yet. The approved unit is 1 CNU = 10,000 km; see
+[the Phase 1 scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md). Dense or
+coincident projected records remain available in the catalogue; nearby hit areas
+shrink without changing geometry.
 
 ## Phase C — Zones and Cantum influence
 

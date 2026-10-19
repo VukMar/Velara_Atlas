@@ -55,7 +55,7 @@ The v0.1 `src/timeline/resolve.mjs` and `public/data/*.json` are **not migrated*
 
 All maps have their **own** independent `(0, 0, 0)` origin; `map.size.x/y/z` indicates **full** extents, not half-extents. The X/Z plane is the standard chart surface, with Y representing elevation. The sector and system contexts cannot be directly mixed: an interstellar route is drawn **between sector star-system positions** in light-years, not as a line between two endpoints in unrelated CNU spaces.
 
-CNU is approved MCR terminology: a standard in-universe navigational distance measure for interplanetary positions and routes. Its conversion to kilometers is **not defined**; do not infer one.
+CNU is approved MCR terminology: a standard in-universe navigational distance measure for interplanetary positions and routes. **1 CNU = 10,000 kilometers**, universally across systems. Existing coordinates, extents, zones and connections retain their authored CNU values. Systems may have different square X/Z chart dimensions and independently authored Y extents; star placement need not coincide with chart center.
 
 ### Static geography
 
@@ -127,7 +127,27 @@ The approved approach is **hybrid**:
 
 Use the object's **`entityType` / `objectType`** for logic, and an `icon` or style identifier for representation. Never determine behavior by comparing lore names (e.g. `if name === 'Putluk'`). Assets and theme styling must be replaceable without altering coordinates or canonical history.
 
-Phase-one assets may be procedural placeholder geometry and simple original SVG icons. Complex models, cinematic effects, animation, full orbital dynamics, and final NEXUS art direction are **not required for the first functioning viewer**.
+The existing prototype uses procedural placeholder markers. Complex models, cinematic effects, animation, full orbital dynamics, and final NEXUS art direction are **not required for the first functioning viewer**.
+
+### Checkpoint 4.1 scale contract — planned rendering
+
+[The celestial scale specification](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) defines
+the approved physical-size and apparent-size contract. Phase 1 implements only
+documentation, optional schema support and tests; the current renderer is unchanged.
+Celestial `physicalDiameterKm`, when known, converts to CNU by division by 10000.
+2D and 3D must use identical authored XYZ and physical diameters, projected through
+the active camera. Future centralized category minima use
+`displayDiameterPx = max(projectedPhysicalDiameterPx, minimumDisplayDiameterPx)`
+without inflating physical geometry or authoring per-object pixel sizes.
+
+Distant SVG proxies stay anchored at the physical position and face the camera
+in 3D. Transition continuously to correctly scaled celestial models, avoiding
+size jumps, duplicate disks and inconsistent selection. Stellar corona/glow and
+desktop/touch hit areas remain separate from physical diameter. Unknown diameters
+use a neutral navigational fallback without invented measurements. Stations,
+Jump Gates, Jump Holes and short-range gates initially use fixed apparent icons;
+megastructure representations need separate approval. Existing labels, grid,
+zones, routes, history and camera interactions remain authoritative.
 
 ### Spatial zones — approved viewer extension
 
@@ -424,7 +444,7 @@ The first Milestone 3 implementation is complete when all of the following can b
 - Canonical star-system placement or colonization data extraction from RTF.
 - Production-quality NEXUS artwork, animation or voice avatar.
 - Author-side visual drag-and-drop editing and file saving (**deferred optional milestone**); for now, edit JSON in VS Code, validate, and reload. Optional local-only coordinate-debug overlay is allowed.
-- Simulated orbital mechanics, physically accurate distance conversion, pathfinding, ship travel simulation, or real-time celestial motion.
+- Simulated orbital mechanics, pathfinding, ship travel simulation, or real-time celestial motion. Physical-diameter rendering is deferred to Checkpoint 4.1 Phase 3; its unit conversion and schema contract are approved in Phase 1.
 - Exact/legal political boundary inference, manual polygon authoring, or full volumetric political borders. **Generated decorative Cantum influence regions are in scope** and must not be misrepresented as exact sovereign borders.
 
 ## 14. Implemented compatibility and remaining follow-ups
@@ -439,10 +459,11 @@ Current status is based on the merged schema, implementation and tests:
 | Dated InfoCards and modern route/object resolution | Historical viewer records | Implemented by `src/core/history.mjs`, independently of legacy v0.1 |
 | Object declarations, dedicated gate pairs and generated graph | v1.2 navigation authoring | Implemented offline; build uses read-only freshness |
 | Nullable icons and optional visual variants | Data-driven appearance | Schema support implemented; final asset registry/materials remain Checkpoint 4 |
+| Optional celestial `physicalDiameterKm` | Authored physical diameter, 1 CNU = 10,000 km | Checkpoint 4.1 Phase 1 schema/docs/tests only; runtime consumption deferred |
 | Continuous year and exact recorded-year jumps | Historical navigation | Implemented; richer public event registry/markers remain deferred |
 | Canonical v0.1 data migration | Real public lore | Separate creator approval and ID crosswalk required |
 
-**Versioning requirement:** Future stored-shape changes must update schema version, tests, records, validation and `docs/DATA_MODEL.md` together after approval. Current layout constraints require no schema or historical-data changes.
+**Versioning requirement:** Breaking stored-shape changes require coordinated schema version, tests, records, validation and `docs/DATA_MODEL.md` updates after approval. The approved optional `physicalDiameterKm` extension preserves existing v1.2 records and the current version; it requires no migration. Current layout constraints require no schema or historical-data changes.
 
 ## 15. Handoff constraints for Codex
 
