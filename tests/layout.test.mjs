@@ -43,15 +43,38 @@ test('zoom minimum and all pan/cursor extremes clamp within the complete chart',
 test('8×8 system grid has nine world-space lines on each axis and correctly oriented A–H / 1–8',()=>{
   const m=map(),before=structuredClone(m),g=chartGrid(m);
   assert.equal(g.divisions,8);assert.equal(g.step,12500);assert.equal(g.positions.length,108);
+  assert.ok(g.positions.every((value,index)=>index%3!==1||value===0),'every system grid vertex is at absolute Y=0');
+  assert.ok(g.annotations.every(a=>a.position.y===0),'all annotations share Y=0');
   const columns=g.annotations.filter(a=>a.kind==='column'),rows=g.annotations.filter(a=>a.kind==='row');
   assert.equal(columns.map(a=>a.text).join(''),'ABCDEFGH');assert.equal(rows.map(a=>a.text).join(''),'12345678');
   assert.ok(columns[0].position.x<columns[7].position.x);assert.ok(rows[0].position.z<rows[7].position.z);
   const scale=g.annotations.find(a=>a.kind==='scale');
-  assert.equal(scale.cell,'H8');assert.deepEqual(scale.position,{x:43750,y:-10000,z:43750});
-  assert.deepEqual(scale.widthEndpoints,[{x:37500,y:-10000,z:43750},{x:50000,y:-10000,z:43750}]);
+  assert.equal(scale.cell,'H8');assert.deepEqual(scale.position,{x:43750,y:0,z:43750});
+  assert.deepEqual(scale.widthEndpoints,[{x:37500,y:0,z:43750},{x:50000,y:0,z:43750}]);
   assert.equal(scale.widthEndpoints[1].x-scale.widthEndpoints[0].x,g.step,'measurement spans exactly one grid cell');
   assert.equal(scale.text,'12.5K CNU');assert.deepEqual(m,before);
   assert.deepEqual(chartGrid({...m,unit:'ly'}).annotations,[],'sector is not assigned system grid labels');
+});
+
+test('absolute zero system reference preserves nonzero origins, sector floors and authored elevations',()=>{
+  for(const y of [0,7000,-15000,60000]) {
+    const m=map();m.origin={x:1200,y,z:-450};const before=structuredClone(m),g=chartGrid(m);
+    assert.ok(g.positions.every((value,index)=>index%3!==1||value===0));
+    assert.ok(g.annotations.every(a=>a.position.y===0));
+    const h8=g.annotations.find(a=>a.cell==='H8');
+    assert.deepEqual(h8.widthEndpoints,[{x:38700,y:0,z:43300},{x:51200,y:0,z:43300}]);
+    const sector=chartGrid({...m,unit:'ly'});
+    assert.equal(sector.divisions,16);assert.deepEqual(sector.annotations,[]);
+    assert.ok(sector.positions.every((value,index)=>index%3!==1||value===y-m.size.y/2));
+    assert.deepEqual(m,before);
+    const camera=new OrthographicCamera();assert.equal(fitSquare(camera,m).y,y,'camera target still uses authored origin');
+  }
+  for(const y of [-1700,2300]) {
+    const entity={id:'cb_test',entityType:'celestial_body',objectType:'planet',position:{x:123,y,z:-456}},before=structuredClone(entity);
+    const marker=createMarker(entity,'position');
+    try{assert.deepEqual(marker.position.toArray(),[123,y,-456]);assert.equal(Math.sign(marker.position.y),Math.sign(y));assert.deepEqual(entity,before);}
+    finally{disposeTree(marker);}
+  }
 });
 
 test('cell scale derives from authored extent and preserves fractional CNU values',()=>{

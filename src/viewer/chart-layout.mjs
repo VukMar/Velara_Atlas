@@ -41,7 +41,8 @@ export function cellWidthLabel(map) {
 export function chartGrid(map) {
   const side = assertSquareMap(map), system = map.unit === 'CNU', divisions = system ? 8 : 16;
   const positions = [], colors = [], annotations = [], step = side / divisions;
-  const {x,y,z} = map.origin, floor = y - map.size.y / 2;
+  // System navigation references absolute zero elevation; sector keeps its floor.
+  const {x,y,z} = map.origin, floor = system ? 0 : y - map.size.y / 2;
   const segment = (a,b,border) => {
     positions.push(...a,...b); const c = new THREE.Color(border ? 0x31566a : 0x17394a);
     colors.push(c.r,c.g,c.b,c.r,c.g,c.b);

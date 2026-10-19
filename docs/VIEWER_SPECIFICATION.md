@@ -100,7 +100,13 @@ feedback; touch selection exposes the same record/actions without requiring hove
 
 Use eight equal columns **A–H** left to right (−X to +X) and eight equal rows
 **1–8** top to bottom (−Z to +Z). Borders, grid lines and projected annotations
-are anchored in world space. H8 displays one cell's navigational width,
+are anchored in world space at **absolute Y = 0 CNU**, including the H8 arrow
+endpoints. This reference does not move with a nonzero map origin or vertical
+extent. Objects retain authored XYZ above/below it; map bounds and camera targets
+are unchanged. The grid remains transparent line segments below routes/markers,
+excluded from picking. Coordinate grid controls lines and annotations together
+in both camera modes, retaining existing per-map preferences. Sector grid elevation
+remains `map.origin.y - map.size.y / 2`. H8 displays one cell's navigational width,
 `map.size.x / 8`; a 100,000-CNU map shows **12.5K CNU**. This is not a physical
 body dimension. Sector View does not inherit system-grid labels.
 
