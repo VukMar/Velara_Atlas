@@ -4,7 +4,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–2 are creator-approved. Phase 3 explicitly authorizes physical celestial models, projected SVG proxies, inspection cameras, the 14 starter icons, focused build-audit extensions, tests and documentation. Preserve Phase 2 data. Phase 4 visual refinement, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Current authorization is tests/documentation maintenance only; preserve that data baseline. The next planned stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement; implementation, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -64,10 +64,12 @@ Checkpoint 3.6's implemented layout supersedes permanent sidebars, bottom timeli
 and selection-driven route highlighting. Its approved audit extension permits
 documentation cleanup, but uncertain file deletions/moves remain proposals for
 creator review. Preserve frozen schemas/fixtures, generators, IDs and historical
-behavior. Phase 3 consumes the existing optional v1.2 diameter field without schema
-or demo-data changes. Preserve all Phase 2 positions, measurements, connected
-anchors, gate positions and zone geometry. The fallback system has no detail JSON
+behavior. Phase 3 originally consumed the existing optional v1.2 diameter field
+without schema or demo-data changes. Subsequent creator testing intentionally
+changed System C navigation and discoveries; preserve the current committed
+records, including derived gate positions. See `docs/POST_PHASE3_MAINTENANCE.md`.
+The fallback system has no detail JSON
 or extra loader. Keep `publicDir: false`; only the explicit 14 SVG paths may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Checkpoint 4.1 Phase 3 for creator review. Do not execute Phase 4 visual refinement without the next approval; do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the authorized maintenance. Checkpoint 4.2 requires separate creator approval; do not commit, push or deploy automatically.

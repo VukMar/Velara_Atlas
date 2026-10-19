@@ -1,5 +1,12 @@
 # Checkpoint 4.1 Phase 2 — Implementation results
 
+> **Post-Phase-3 addendum:** Phases 1–3 are now creator-approved. This report
+> preserves the original Phase 2 implementation evidence. Phase 3 originally
+> preserved Phase 2 data; the creator subsequently made intentional System C
+> navigation and discovery-date changes during testing, committed at `16668e2`.
+> Current counts, dates and verification are in [the maintenance note](POST_PHASE3_MAINTENANCE.md).
+> Earlier baseline-preservation claims and test totals describe that phase, not the current demo.
+
 **Status:** Implemented and verified for creator review. Stop here; Phase 3
 renderer development and Phase 4 visual refinement are not authorized.
 Baseline: `3681c04a55d302bc5466e1b5a5af6631b1400c73`; the worktree was clean.

@@ -91,7 +91,13 @@ the three released details. A fourth positioned sector entry has
 `publicDetailPath: null` and uses existing textual archival fallback, without a
 detail file or additional loader. The seven-file explicit JSON input allowlist and
 `publicDir: false` remain unchanged. Sector markers remain display aids; system
-physical models now consume the known diameters without modifying Phase 2 data.
+physical models consume known diameters; their Phase 3 implementation originally
+preserved Phase 2 data. Subsequent creator testing intentionally changed System C
+navigation and discovery dates. The current committed demo has ten System C
+objects and two local transfers, within the same chart and asset/data allowlists.
+See [the maintenance baseline](POST_PHASE3_MAINTENANCE.md). The supplied
+`public/assets/nexus/nexus-side-profile.png` exists; viewer integration remains
+deferred and it remains outside the current demo build.
 
 Checkpoint 3.6 fits the complete square X/Z chart, clamps orthographic pan/zoom
 and leaves genuine Y available in perspective and records. Both camera modes

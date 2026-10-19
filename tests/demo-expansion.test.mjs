@@ -6,7 +6,7 @@ import {readDemoSource, DEMO_ROOT, SYSTEM_FILES} from '../scripts/demo-files.mjs
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {generateNavigation, navigationMismatches} from '../scripts/navigation.mjs';
-import {resolveAtlas, searchRecords} from '../src/core/cartography.mjs';
+import {resolveAtlas, searchRecords, endpointDestinations} from '../src/core/cartography.mjs';
 import {resolveSystem} from '../src/core/history.mjs';
 import {chartGrid} from '../src/viewer/chart-layout.mjs';
 
@@ -63,9 +63,9 @@ test('detailed demo charts vary in size while preserving zero-plane grids and va
 
 test('demo retains the approved navigation graph and all derived gate positions remain fresh', () => {
   const d = load();
-  // Approved 3681c04 baseline: includes every ID, endpoint, interval and direction.
+  // Creator-approved post-Phase-3 baseline at 16668e2: every ID, endpoint, interval and direction.
   assert.equal(createHash('sha256').update(JSON.stringify(d.connections)).digest('hex'),
-    'fa0b3edf97dee4d779c1329af575646a3eb7b24596239819893ae32512895452');
+    '54745da730e07c4cbb0439c7a46c9582531ab41477a24d583c56a36acc36a724');
   const {dataset, placements} = generateNavigation(d);
   assert.deepEqual(navigationMismatches(d, dataset, placements), []);
   assert.deepEqual(dataset.connections, d.connections);
@@ -103,6 +103,40 @@ test('new frontier bodies appear at authored discovery dates and retain absolute
     assert.ok(!resolveAtlas(d, object.discoveredAE-1, detail.id).markers.some(o => o.id === id));
     const resolved = resolveAtlas(d, object.discoveredAE, detail.id).markers.find(o => o.id === id);
     assert.deepEqual(resolved.position, object.position);
-    assert.equal(object.navigation, undefined);
+    assert.deepEqual(object.navigation, id === 'cb_0012' ? {boundaryRadiusCNU:1000} : undefined);
+  }
+});
+
+test('approved frontier discoveries, later descriptions and exclusive transfer activate independently', () => {
+  const d = load(), detail = d.detailFiles.get('sys_0003');
+  assert.equal(detail.objects.length, 10);
+  for (const [id, descriptionYear] of [['cb_0012',680], ['cb_0013',740]]) {
+    const authored = detail.objects.find(o => o.id === id);
+    assert.equal(authored.discoveredAE, 610);
+    assert.equal(resolveAtlas(d,609,detail.id).markers.some(o => o.id === id), false);
+    const discovered = resolveAtlas(d,610,detail.id).markers.find(o => o.id === id);
+    assert.equal(discovered.name, authored.nameHistory[0].name);
+    assert.equal(discovered.infoCard.description, null);
+    assert.equal(resolveAtlas(d,descriptionYear-1,detail.id).markers.find(o => o.id === id).infoCard.description, null);
+    assert.deepEqual(resolveAtlas(d,descriptionYear,detail.id).markers.find(o => o.id === id).infoCard.description, authored.infoCard.description[0]);
+  }
+  const before = resolveAtlas(d,612,detail.id);
+  assert.deepEqual(before.routes, []);
+  assert.ok(before.markers.every(o => !['gat_0019','gat_0020'].includes(o.id)));
+  assert.deepEqual(endpointDestinations(before.connections,detail.id,'gat_0019'), []);
+  for (const year of [613,1200]) {
+    const view = resolveAtlas(d,year,detail.id);
+    assert.deepEqual(view.routes.map(r => r.id).sort(), ['lnk_0007','lnk_0011']);
+    for (const [source, target] of [['gat_0019','gat_0020'],['gat_0020','gat_0019']]) {
+      const authored = detail.objects.find(o => o.id === source);
+      assert.equal(authored.constructedAE, 613);
+      assert.equal(authored.discoveredAE, 613);
+      assert.equal(authored.positionMode, 'boundary_derived');
+      assert.deepEqual(view.markers.find(o => o.id === source).position, authored.position);
+      assert.deepEqual(endpointDestinations(view.connections,detail.id,source), [{
+        systemId:detail.id, objectId:target, linkId:'lnk_0011', transportType:'short_range_gate',
+        direction:'bidirectional', canDepart:true, verification:'verified'
+      }]);
+    }
   }
 });

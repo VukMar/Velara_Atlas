@@ -1,5 +1,12 @@
 # Checkpoint 4.1 Phase 3 — Implementation results
 
+> **Post-Phase-3 addendum:** Phase 3 is now creator-approved. This report preserves
+> the original implementation evidence, which retained Phase 2 data. The creator
+> subsequently made intentional System C navigation and discovery-date changes
+> during testing, committed at `16668e2`. Current counts, dates and verification
+> are in [the maintenance note](POST_PHASE3_MAINTENANCE.md). Earlier preservation
+> claims and test totals describe the implementation before those testing edits.
+
 **Status:** Implemented and verified for creator review. Stop after Phase 3.
 Phase 4 artistic refinement, canonical migration and deployment are not started.
 Baseline: `94a3fba35d873cd202878d64e286a90d7da1dfda`; initial worktree clean.

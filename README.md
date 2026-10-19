@@ -15,6 +15,12 @@ normal chart navigation. Unknown sizes remain symbols. `sys_0004`, discovered at
 detail file and demonstrates the existing textual NEXUS archival notice.
 See [Phase 2 data and verification](docs/CHECKPOINT_4_PHASE2_RESULTS.md).
 See [Phase 3 rendering, evidence and inspection limits](docs/CHECKPOINT_4_PHASE3_RESULTS.md).
+Phases 1–3 are creator-approved. Subsequent creator testing added a second local
+transfer in System C (now ten objects) and advanced two discoveries to 610 A.E.;
+see [the maintenance baseline](docs/POST_PHASE3_MAINTENANCE.md). The next planned
+stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement, requiring
+separate approval. The supplied NEXUS side-profile PNG is available at
+`public/assets/nexus/nexus-side-profile.png`; viewer integration remains deferred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

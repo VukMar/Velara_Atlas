@@ -2,10 +2,12 @@
 
 **Status:** The local noncanonical demo implements through Checkpoint 3.8 zones,
 cartographic labeling, v1.2 navigation and the Checkpoint 3.6 layout. The system
-grid now uses Y = 0 CNU. Checkpoint 4.1 Phases 1–2 are approved. Phase 3 explicitly
-authorizes physical models, SVG proxies/starter icons, inspection cameras and
-verification against the unchanged three released systems and archival entry.
-Phase 4 refinement, canonical migration and deployment remain unauthorized.
+grid uses Y = 0 CNU. Checkpoint 4.1 Phases 1–3 are complete and creator-approved.
+The creator subsequently changed System C navigation and discovery dates during
+testing; [maintenance evidence](POST_PHASE3_MAINTENANCE.md) records the current
+approved baseline. The next planned stage is Checkpoint 4.2 — Visual Identity and
+SVG Icon Refinement, requiring separate approval. Canonical migration and
+deployment remain unauthorized.
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
 
@@ -30,8 +32,9 @@ future implementation or canonical content migration.
 | Checkpoint 3.8 and follow-ups | Clipped interactive system zones, 2D hover contours distinguishing physical/chart edges, and the absolute Y = 0 system grid |
 | Checkpoint 4.1 Phase 1 | Approved celestial scale specification, additive v1.2 diameter field and tests; no demo/renderer/assets changes |
 | Checkpoint 4.1 Phase 2 | Authorized noncanonical demo expansion: 100K/80K/160K CNU charts, offset/peripheral stars, physical measurements, small bodies and one archival-only system; see [results](CHECKPOINT_4_PHASE2_RESULTS.md) |
-| Checkpoint 4.1 Phase 3 | Physical radii, projected SVG proxies, 14 starter icons, bounded physical inspection and explicit asset bundling; [verification](CHECKPOINT_4_PHASE3_RESULTS.md); stop for creator review |
-| Checkpoint 4.1 Phase 4 | Artistic refinement remains unauthorized |
+| Checkpoint 4.1 Phase 3 | Physical radii, projected SVG proxies, 14 starter icons, bounded physical inspection and explicit asset bundling; [verification](CHECKPOINT_4_PHASE3_RESULTS.md); creator-approved |
+| Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
+| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Next planned development stage; not authorized by this maintenance task |
 | Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
@@ -52,10 +55,12 @@ demo systems and adds a fallback-only sector entry with no detail file. Temporar
 marker sizes in that phase did not represent physical diameters. Phase 2 has
 been reviewed and approved. Phase 3 now implements correctly scaled celestial
 models, continuous SVG-proxy transitions, fixed apparent structure markers,
-neutral unknown fallbacks and Focus Selection inspection. Stop after Phase 3
-verification for creator review. Future Phase 4 refines
-systems, close/far transitions, mobile interaction, Y = 0 grid and existing
-archival fallback. Review is required between phases. Preserve authored geography,
+neutral unknown fallbacks and Focus Selection inspection; it has been reviewed
+and approved. The original four-phase plan reserved further visual/browser
+refinement for Phase 4. The next planned development stage is now Checkpoint 4.2,
+which requires separate approval. The NEXUS side-profile PNG is supplied at
+`public/assets/nexus/nexus-side-profile.png`; its integration remains deferred.
+Preserve the current creator-approved System C geography,
 IDs/history, navigation workflow, labels/zones, asset paths and build disclosure
 boundaries. Use supplied curator assets only as authorized; do not invent them.
 

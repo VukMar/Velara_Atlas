@@ -10,7 +10,7 @@ The Velara Atlas is an interactive historical and navigational archive **curated
 Approved reference material supplied during design:
 
 - **MCR insignia** — `Hud Profile Picture.png`: large blue segmented rings, vivid cyan center emblem, technical radial geometry, extensive black negative space.
-- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference; the proposed **side-profile PNG for InfoCards has not yet been provided** and must not be substituted with an invented identity.
+- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference. The creator-supplied side-profile PNG exists at `public/assets/nexus/nexus-side-profile.png`; its viewer/InfoCard integration remains deferred. Do not substitute an invented identity.
 - **NEXUS opening-interface screenshot** — the user-provided frame from the YouTube sequence: black background, restrained blue rectangular status frame, small circular connected record nodes, cyan/blue emphasis, green `CONNECTION ESTABLISHED` status. The screenshot is a style reference, **not** a directive to turn every celestial body into a node.
 - **Viewer behavior** — `docs/VIEWER_SPECIFICATION.md` v1.1 and `docs/CANTUM_TERRITORY_RENDERING.md` (approved Milestone 3). Their navigation, layering, chronology, and territorial rules remain authoritative.
 
@@ -140,8 +140,8 @@ card and bottom timeline layout while preserving all historical content/actions.
 ### Ordinary InfoCard
 
 - Primary focus: selected entity's historical title and approved six-field InfoCard data — affiliation, class, crew, population, armament, description; show only relevant populated fields or honest “not recorded” states.
-- Include a **small NEXUS side-profile PNG overlay** as the narrator/curator visual when the asset is supplied by the creator. Suggested place: header-side or bottom/right protected margin, not underneath text. Portrait can fade into the panel with a turquoise edge accent.
-- Do not assume the front-facing `NEXUS Visual Form V2.png` is the desired side-view asset. Until the side-profile exists, show a minimal NEXUS monogram/status label or omit the portrait without changing layout.
+- Include a **small NEXUS side-profile PNG overlay** as the narrator/curator visual when its integration is separately authorized; the supplied asset is `public/assets/nexus/nexus-side-profile.png`. Suggested place: header-side or bottom/right protected margin, not underneath text. Portrait can fade into the panel with a turquoise edge accent.
+- Do not assume the front-facing `NEXUS Visual Form V2.png` is the desired side-view asset. Until the supplied side-profile is integrated, retain the existing NEXUS status label or omitted portrait without changing layout.
 - If there is insufficient width (phone layouts, text-heavy panels), reduce or hide the portrait before reducing text readability.
 
 ### Direct NEXUS archival messages

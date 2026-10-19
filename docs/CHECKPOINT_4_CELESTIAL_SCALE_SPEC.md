@@ -1,10 +1,13 @@
 # Checkpoint 4.1 — Celestial dimensions and scale contract
 
 **Status:** Creator-approved design and reviewed Phase 1 schema/docs/tests.
-Phases 1–2 are reviewed and approved. Phase 3 explicitly authorizes the physical
-renderer, starter SVG proxies/icons, inspection cameras, secure asset bundling
-and tests/docs. Phase 4 artistic refinement remains unauthorized. Creator review
-is required between phases. See [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
+Phases 1–3 are complete and creator-approved. The physical renderer, starter SVG
+proxies/icons, inspection cameras and secure asset bundling are implemented.
+Subsequent creator-approved System C testing changes do not alter this scale
+contract; see [the maintenance baseline](POST_PHASE3_MAINTENANCE.md). The next
+planned stage, Checkpoint 4.2 — Visual Identity and SVG Icon Refinement, requires
+separate approval. Canonical migration and deployment remain unauthorized.
+See [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## Units and authored geography
 
@@ -176,9 +179,13 @@ listeners are disposed on chart changes. See [measured evidence and limits](CHEC
 
 ## Phased delivery and review gates
 
+The following records the original four-phase delivery plan. Phase 3 is now
+approved; Checkpoint 4.2 is the next planned visual refinement stage, with no
+implementation authorized by this maintenance task.
+
 1. **Phase 1 — reviewed and approved:** scale specification, authoritative documentation,
    optional celestial schema field and focused schema tests. Stop for review.
-2. **Phase 2 — currently authorized noncanonical demo expansion:** preserve existing IDs,
+2. **Phase 2 — reviewed and approved noncanonical demo expansion:** preserve existing IDs,
    histories, navigation links, zones and system identities. Keep `sys_0001`'s
    established geography and 100,000-CNU chart; make `sys_0002` a compact developed
    system with a smaller chart, offset star and varied diameters; make `sys_0003`
@@ -199,7 +206,7 @@ listeners are disposed on chart changes. See [measured evidence and limits](CHEC
    in `scripts/demo-files.mjs`, `src/viewer/demo-data.mjs` and `vite.config.mjs`;
    add only necessary authorized inputs. A fallback-only entry needs no loader.
    Stop for review.
-3. **Phase 3 — currently authorized renderer and icons:** implement physical scaling, spheres,
+3. **Phase 3 — reviewed and approved renderer and icons:** implement physical scaling, spheres,
    distant SVG proxies, fixed apparent structure markers and neutral fallbacks.
    Preserve the approved `public/assets/` organization, public/private build
    boundary, resolver semantics, labels, zones, routes and camera controls.

@@ -56,6 +56,23 @@ async(page)=>{
     await year(link.fromAE-1);check(await page.locator(`#selection option[value="${link.id}"]`).count()===0,`${link.id} excluded before availability`);
     await year(link.fromAE);check(await page.locator(`#selection option[value="${link.id}"]`).count()===1,`${link.id} inclusive activation`);await year(sector.timeline.defaultAE);
   }
+  // Creator-approved System C transfer: no premature gates, route or destination.
+  await open('sys_0003');await year(609);
+  for(const id of ['cb_0012','cb_0013'])check(await page.locator(`#selection option[value="${id}"]`).count()===0,`${id} hidden before discovery`);
+  await year(610);
+  for(const id of ['cb_0012','cb_0013']) {
+    await choose(id);check(await page.locator('#description').innerText()==='Description not recorded.',`${id} later description not leaked at discovery`);
+  }
+  await year(612);
+  for(const id of ['gat_0019','gat_0020','lnk_0011'])check(await page.locator(`#selection option[value="${id}"]`).count()===0,`${id} hidden before transfer activation`);
+  await year(613);
+  for(const id of ['lnk_0007','lnk_0011'])check(await page.locator(`#selection option[value="${id}"]`).count()===1,`${id} inclusive local activation`);
+  for(const [id,partner] of [['gat_0019','gat_0020'],['gat_0020','gat_0019']]) {
+    await choose(id);check(await page.locator('#destinations p').count()===1,`${id} newly available exclusive destination`);
+    const destination=await page.locator('#destinations').innerText();
+    check(destination.includes(` / ${partner}`)&&destination.includes('bidirectional'),`${id} correct available partner and direction`);
+  }
+  await year(sector.timeline.defaultAE);await panel('controls-panel');await page.locator('#sector').click();
   await page.keyboard.press('Escape');await page.goto(base);
   await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
   check(await page.locator('#catalogue [data-id="can_0001"]').count()===1&&await page.locator('#catalogue [data-id="can_0002"]').count()===1,'distinct Cantum records retained');
