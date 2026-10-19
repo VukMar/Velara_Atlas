@@ -1,14 +1,14 @@
 # Velara Atlas — Visual Asset Policy and Fallback Contract
 
 **Version:** 1.0.0 · **Milestone 5 companion** · **2026-10-15**  
-**Status:** Rendering/fallback policy approved. Nullable icons and optional visual variants are supported by current noncanonical v1.2 and frozen v1.1 schemas. The final asset registry, SVGs and procedural appearances remain Checkpoint 4 work; the current viewer uses temporary geometric markers. Do not modify canonical JSON or create artwork on the basis of this document alone.
+**Status:** Rendering/fallback policy approved. Phase 3 implements fourteen original starter SVGs, the explicit icon registry and procedural physical models using the existing noncanonical v1.2 data. Final artistic refinement and NEXUS portrait integration remain separate work; this policy does not authorize canonical changes.
 
 ## 1. Separation of content and presentation
 
 - `entityType`, `objectType`, stable ID, position, system affiliation, and `connections.json` define **what an object is and does**. Styling never changes its physical position, historical record, or gate reachability.
 - Optional `visualVariant` selects a supported visual subclass: planets use `rocky`, `gas`, `water`, `unknown`; stations use `regular`, `shipyard`, `unknown`. Missing subtype must remain visually neutral. These are data conventions, not inferred lore.
 - The required `icon` key accepts null, a validated registry identifier, or a safe `custom/...` relative SVG/PNG/WebP path. Null requests default rendering; it does not mean an unknown identity. Schema acceptance does not mean the current prototype loads custom artwork.
-- The future renderer registry will centralize default paths instead of duplicating them in every object's JSON. Preserve existing registry identifiers when implementing it.
+- The explicit renderer registry centralizes default paths instead of duplicating them in every object's JSON. Preserve existing supported registry identifiers when extending it.
 - For the MVP, **no object is required to have a custom texture, sprite or 3D model**.
 
 **Checkpoint 4.1 scale policy:** [The scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md)
@@ -19,8 +19,9 @@ SVG proxies share exact XYZ and transition continuously. Category apparent minim
 are centralized renderer settings, never enlarged physical geometry or per-record
 fields. Unknown measurements use a neutral navigational fallback. Stations and
 all gate/hole categories initially have fixed apparent icons; megastructure
-models require separate approval. Phase 1 adds schema/docs/tests only, no assets
-or renderer integration. Stellar glow and hit targets remain separate from size.
+models require separate approval. Phase 3 implements the scale contract; its
+starter assets are functional navigation symbols, not final commissioned art.
+Stellar glow and hit targets remain separate from size.
 
 ## 2. Approved defaults by object kind
 
@@ -59,7 +60,7 @@ public/
     nexus/
       mcr-insignia.png          # owner-supplied and cleared for public distribution
       nexus-form.png            # owner-supplied front-facing reference/optional fallback use
-      nexus-side-profile.png    # PENDING: user-supplied side-profile PNG
+      nexus-side-profile.png    # supplied; integration is outside Phase 3
     icons/
       celestial/
         star.svg
@@ -82,11 +83,13 @@ public/
     textures/                  # optional; avoid large assets in first prototype
 ```
 
-This directory tree is a **target layout**. The actual icons and NEXUS side-profile image are **not included** in the Milestone 5 documentation package. Empty directories do not have to be committed. Do not fabricate an artist-approved NEXUS side profile from the front-facing image.
+The fourteen listed SVG icons now exist as the original Phase 3 starter library.
+Existing NEXUS PNG files are untouched and are not copied by this build. Textures
+remain optional/deferred. Do not fabricate an artist-approved NEXUS side profile.
 
 Use original, scalable, locally bundled SVGs for general navigation. Do not hotlink third-party assets. Resolve assets using the application's deployment base (e.g., Vite's `import.meta.env.BASE_URL` or its equivalent): GitHub Pages often serves the app under `/Velara_Atlas/`, not `/`.
 
-## 4. Registry example (conceptual; JS implementation is not yet committed)
+## 4. Registry category mapping (implemented by `src/viewer/icon-registry.mjs`)
 
 ```javascript
 const visuals = {
@@ -127,13 +130,20 @@ The `icon` property remains required on local objects. Relative custom paths mus
 match `custom/` plus safe path segments and an allowed extension; traversal,
 absolute paths and arbitrary remote URLs are not schema-valid.
 
-The current `createMarker` uses structural object kind with neutral temporary
-geometry and does not yet implement custom icon loading or variant materials.
-After separate Checkpoint 4 approval, the registry must preserve those identities,
-use `objectType` to distinguish gate types, and implement the fallback order above.
-Add asset-load/base-path, null/default, missing/invalid asset and neutral-unknown
-tests then. Schema/path validation is not an SVG-content sanitization guarantee;
-any accepted SVG assets still need source/disclosure review.
+Phase 3 uses structural kind/variant mapping for SVG proxies and procedural model
+colors. Known celestial geometry uses authored physical radius; unknown diameters
+stay proxies. Stations/gates/holes have fixed apparent symbols. The same projected
+button owns image, caption and identity, so billboards face the screen without
+moving their XYZ anchors. Supported registry overrides and defaults fall back to
+generic SVG then built-in primitive. No custom file sources are currently approved;
+unrecognized or unsafe authored paths fall back without being fetched.
+
+Only the fourteen `icon-manifest.mjs` entries are bundled through static Vite URLs.
+`publicDir: false` remains mandatory. The build validates a narrow SVG element
+profile and requires exact approved asset content/name in output; no general SVG
+sanitization or arbitrary custom loader is claimed. This preserves canonical and
+private-data scans. [Scale/transition and camera details](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md)
+and [browser/build evidence](CHECKPOINT_4_PHASE3_RESULTS.md) record implementation.
 
 No additional schema migration or canonical change is needed for the already
 supported null/variant fields. Any future stored-shape extension requires its

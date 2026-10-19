@@ -38,6 +38,7 @@ function choose(record, {present = true} = {}) {
   if (record.knowledge) fact('Historical knowledge', record.knowledge.basis === 'known_by' ?
     `Confirmed known by ${record.knowledge.knownByAE} A.E.; exact discovery not recorded` : `Discovery recorded: ${record.knowledge.discoveredAE} A.E.`);
   if (record.orbitingId != null) fact('Orbiting (metadata)', record.orbitingId);
+  if (Object.hasOwn(record,'physicalDiameterKm')) fact('Physical diameter',`${record.physicalDiameterKm} km`);
   if (record.cantumRecord) fact('Administrative Cantum', record.cantumId ?? 'Not recorded');
   if (record.controlRecord) fact('Control', record.controlId ?? 'Not recorded');
   if (record.statusRecord) fact('Status', record.status);
@@ -185,7 +186,7 @@ async function start() {
     $('category').addEventListener('change', event => { category = event.target.value; renderCatalogue(); });
     $('selection').addEventListener('change', () => choose(view.records.find(r => r.id === $('selection').value) ?? null));
     $('enter').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r?.entityType === 'star_system') navigate(r.id); });
-    $('focus').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r) atlas.focus(r); dismissInfo(); atlas.renderer.domElement.focus({preventScroll:true}); });
+    $('focus').addEventListener('click', () => { const r = view.records.find(r => r.id === selectedId); if (r) atlas.focus(r); $('info-panel').close(); atlas.renderer.domElement.focus({preventScroll:true}); });
     $('sector').addEventListener('click', () => navigate(null));
     $('reset').addEventListener('click', () => atlas.reset()); $('zoom-in').addEventListener('click', () => atlas.zoom(1.4)); $('zoom-out').addEventListener('click', () => atlas.zoom(1 / 1.4));
     $('mode').addEventListener('click', () => { atlas.setMode(atlas.mode === 'top' ? 'perspective' : 'top');

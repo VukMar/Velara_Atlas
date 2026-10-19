@@ -7,6 +7,10 @@ import {layoutCaptions} from './caption-layout.mjs';
 import {pickZone} from '../core/zone-geometry.mjs';
 import {setZoneMode,setZoneEmphasis} from './zone-layers.mjs';
 import {ZoneHoverOutline} from './zone-outline.mjs';
+import {createSystemObject} from './celestial-model.mjs';
+import {physicalRadius,projectedDiameter,representation,projectedVisible} from './celestial-scale.mjs';
+import {attachProxy} from './navigation-proxy.mjs';
+import {inspectionFor,frameInspection,constrainInspection} from './inspection-camera.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -20,6 +24,7 @@ export function markerHitSize(index, anchors) {
 
 /** Temporary shapes indicate category only; their sizes are not physical radii. */
 export function createMarker(entity, positionKey) {
+  if (positionKey === 'position') return createSystemObject(entity);
   let geometry, color;
   if (entity.entityType === 'star_system' || entity.objectType === 'star') {
     geometry = new THREE.SphereGeometry(1, 12, 8);
@@ -205,7 +210,7 @@ export class AtlasMap {
       const mesh = createMarker(entity, positionKey);
       this.meshes.push(mesh);
       this.scene.add(mesh);
-      this.addLabel(entity, mesh.position, entity.entityType);
+      this.addLabel(entity, mesh.position, entity.entityType, mesh);
     }
     this.reset();
     if (changedContext && !savedView && this.mode !== 'top') this.setMode('top');
@@ -213,7 +218,7 @@ export class AtlasMap {
     this.setLayers(this.layerPreferences);
   }
 
-  addLabel(entity, position, layer) {
+  addLabel(entity, position, layer, object = null) {
       const button = document.createElement('button');
       button.className = 'map-label';
       button.dataset.recordId = entity.id;
@@ -225,6 +230,7 @@ export class AtlasMap {
       const text = document.createElement('span');
       text.textContent = entity.name ?? entity.id;
       button.append(text);
+      const proxy = object?.userData.systemObject ? attachProxy(button,entity) : null;
       button.addEventListener('pointerenter', e => { if(e.pointerType !== 'touch') this.setHovered(entity.id,'pointer'); });
       button.addEventListener('pointerleave', () => this.setHovered(null,'pointer'));
       button.addEventListener('pointerdown', e => { this.setHovered(null,'focus'); if(e.pointerType === 'touch') this.setHovered(entity.id,'touch'); });
@@ -239,10 +245,11 @@ export class AtlasMap {
       });
       this.labels.append(button);
       this.labelsById.set(entity.id, button);
-      this.anchors.push({entity, position, button, text, layer, radius: ['routes','zones'].includes(layer) ? 4 : 13});
+      this.anchors.push({entity, position, button, text, layer, object, proxy, radius: ['routes','zones'].includes(layer) ? 4 : 13});
   }
 
   clearMap() {
+    this.inspection = null;
     clearTimeout(this.selectTimer);
     for (const item of [...this.scene.children]) {
       this.scene.remove(item);
@@ -254,6 +261,7 @@ export class AtlasMap {
     this.zoneTooltip.hidden=true;
     this.zoneOutline.clear();
     this.territorialLettering = [];
+    for (const anchor of this.anchors) anchor.proxy?.dispose();
     this.anchors = [];
     this.captionEligibility.clear();
     this.labelsById.clear();
@@ -265,6 +273,10 @@ export class AtlasMap {
 
   reset() {
     if (!this.map) return;
+    this.inspection = null;
+    this.controls.enablePan = true;
+    this.controls.minZoom = this.mode === 'top' ? 1 : .25; this.controls.maxZoom = 2048;
+    this.controls.minDistance = this.map.size.x*.001; this.controls.maxDistance = this.map.size.x*8;
     this.resize();
     this.controls.target.copy(fitCamera(this.orthographic, this.map, this.entities, this.positionKey, this.width / this.height));
     this.savedTop = null;
@@ -275,7 +287,7 @@ export class AtlasMap {
 
   getView() {
     return {mode: this.mode, position: this.camera.position.toArray(), target: this.controls.target.toArray(), zoom: this.camera.zoom,
-      span: this.orthographic.top * 2,
+      span: this.orthographic.top * 2, inspection:this.inspection ? {...this.inspection,position:{...this.inspection.position}} : null,
       top: this.savedTop ? {position:this.savedTop.position.toArray(),zoom:this.savedTop.zoom,target:this.savedTop.target.toArray()} : null};
   }
 
@@ -286,7 +298,11 @@ export class AtlasMap {
 
   restoreView(view) {
     if ((view.mode ?? 'top') !== this.mode) this.setMode(view.mode ?? 'top');
-    if (view.span && this.mode !== 'top') {
+    const inspected = view.inspection && this.entities?.find(e=>e.id === view.inspection.id);
+    if (view.inspection && !inspected) return; // Historical disappearance restores normal framing.
+    this.inspection = inspected ? inspectionFor(inspected) : null;
+    if (this.inspection) frameInspection(this.camera,this.controls,this.inspection);
+    if (view.span && this.mode !== 'top' && !this.inspection) {
       this.orthographic.top = view.span / 2; this.orthographic.bottom = -view.span / 2;
     }
     this.camera.position.fromArray(view.position);
@@ -344,6 +360,7 @@ export class AtlasMap {
     this.controls.mouseButtons = {LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: mode === 'perspective' ? THREE.MOUSE.ROTATE : THREE.MOUSE.PAN};
     this.controls.touches = {ONE: THREE.TOUCH.PAN, TWO: mode === 'perspective' ? THREE.TOUCH.DOLLY_ROTATE : THREE.TOUCH.DOLLY_PAN};
     this.controls.addEventListener('change', () => this.render());
+    if (this.inspection) frameInspection(this.camera,this.controls,this.inspection);
     this.controls.update(); this.resize();
   }
 
@@ -357,6 +374,13 @@ export class AtlasMap {
   }
 
   focus(entity) {
+    const inspection = this.positionKey === 'position' ? inspectionFor(entity) : null;
+    if (inspection) {
+      this.inspection = inspection;
+      frameInspection(this.camera,this.controls,inspection);
+      this.controls.update();this.render();return;
+    }
+    if (this.inspection) this.reset();
     const zone=this.zoneGroups?.find(g=>g.userData.entity.id===entity.id);
     if(zone) {
       const i=zone.userData.intersection,target=point(i.witness),delta=target.clone().sub(this.controls.target);
@@ -399,7 +423,7 @@ export class AtlasMap {
     this.selectedId = id;
     for (const mesh of this.meshes) {
       const selected = mesh.userData.entity.id === id;
-      mesh.material.color.setHex(selected ? 0xffbf62 : mesh.userData.baseColor);
+      if (!mesh.userData.systemObject) mesh.material.color.setHex(selected ? 0xffbf62 : mesh.userData.baseColor);
     }
     for (const a of this.anchors) a.button.setAttribute('aria-pressed', String(a.entity.id === id));
     this.render();
@@ -461,7 +485,7 @@ export class AtlasMap {
     this.width = Math.max(1, this.container.clientWidth);
     this.height = Math.max(1, this.container.clientHeight);
     this.renderer.setSize(this.width, this.height, false);
-    const halfHeight = this.map ? this.map.size.x / 2 : this.orthographic.top;
+    const halfHeight = this.inspection ? this.inspection.radius * 5 : this.map ? this.map.size.x / 2 : this.orthographic.top;
     this.orthographic.top=halfHeight; this.orthographic.bottom=-halfHeight;
     this.orthographic.left = -halfHeight;
     this.orthographic.right = halfHeight;
@@ -477,7 +501,12 @@ export class AtlasMap {
     this.raycaster.setFromCamera(this.pointer, this.camera);
     this.raycaster.params.Line.threshold = this.viewSpan() / this.height * 5;
     // Semantic priority is independent of ray distance to transparent backgrounds.
-    for(const objects of [this.meshes,this.routeLines]) {
+    // Screen-space targets share the existing buttons' bounded sizes and identity.
+    const x=event.clientX-rect.left,y=event.clientY-rect.top;
+    const target=this.anchors.filter(a=>a.object?.visible && !a.button.hidden && a.screen &&
+      Math.hypot(x-a.screen.x,y-a.screen.y)<=a.hitSize/2).sort((a,b)=>a.depth-b.depth)[0];
+    if(target)return target.entity;
+    for(const objects of [this.meshes.filter(o=>!o.userData.systemObject || o.userData.modelOpacity>0),this.routeLines]) {
       const hit=this.raycaster.intersectObjects(objects.filter(o=>o.visible),false)[0];
       if(hit)return hit.object.userData.entity;
     }
@@ -493,7 +522,8 @@ export class AtlasMap {
 
   render() {
     if (!this.width || !this.height) return;
-    if(this.mode === 'top' && this.map) {
+    if (this.inspection) constrainInspection(this.camera,this.controls,this.inspection);
+    if(this.mode === 'top' && this.map && !this.inspection) {
       const bounds=clampChart(this.camera,this.controls.target,this.map);
       for(const [key,value] of Object.entries(bounds)) this.container.dataset[key]=String(value);
     }
@@ -540,6 +570,7 @@ export class AtlasMap {
     const projections = this.anchors.map(a => a.position.clone().project(this.camera));
     const anchors = projections.map(p => ({x: (p.x + 1) / 2 * this.width, y: (1 - p.y) / 2 * this.height}));
     for (const mesh of this.meshes) {
+      if (mesh.userData.systemObject) continue; // Physical radii never follow zoom.
       const unitsPerPixel = this.mode === 'top' ? (this.camera.top - this.camera.bottom) / this.height / this.camera.zoom :
         2 * mesh.position.distanceTo(this.camera.position) * Math.tan(Math.PI / 8) / this.height / this.camera.zoom;
       mesh.scale.setScalar(unitsPerPixel * 8);
@@ -555,13 +586,29 @@ export class AtlasMap {
     for (const [index, anchor] of this.anchors.entries()) {
       const projected = projections[index];
       const button = anchor.button;
-      button.hidden = this.layerPreferences[anchor.layer] === false || Math.abs(projected.x) > 1 || Math.abs(projected.y) > 1 || Math.abs(projected.z) > 1;
+      button.hidden = !projectedVisible(projected,this.layerPreferences[anchor.layer]!==false);
+      if (anchor.proxy) {
+        const size = projectedDiameter(physicalRadius(anchor.entity),anchor.position,this.camera,this.width,this.height);
+        const state = representation(anchor.entity,size);
+        const diameter = Math.min(state.diameter,Math.max(this.width,this.height)*4);
+        button.style.setProperty('--display-diameter',`${diameter}px`);
+        button.style.setProperty('--proxy-opacity',String(state.proxyOpacity));
+        button.dataset.representation=state.kind;
+        button.dataset.physicalPixels=String(size);
+        button.dataset.displayDiameter=String(state.diameter);
+        anchor.object.userData.modelOpacity=state.modelOpacity;
+        if (anchor.object.material) {
+          anchor.object.material.opacity=state.modelOpacity;
+          anchor.object.material.depthWrite=state.modelOpacity>.99;
+        }
+        anchor.radius = diameter/2;
+      }
       button.style.left = `${anchors[index].x}px`;
       button.style.top = `${anchors[index].y}px`;
       const hitSize = markerHitSize(index, anchors);
+      anchor.screen=anchors[index];anchor.hitSize=hitSize;anchor.depth=projected.z;
       button.style.width = `${hitSize}px`;
       button.style.height = `${hitSize}px`;
-      button.style.setProperty('--caption-offset', `${anchor.radius + 4}px`);
       // Measure only after creation or a font/viewport change, never each pan frame.
       if (!anchor.metrics) {
         const style = getComputedStyle(anchor.text);
@@ -569,9 +616,21 @@ export class AtlasMap {
         anchor.metrics = {width:this.textMeasure.measureText(anchor.text.textContent).width, height:parseFloat(style.lineHeight)};
       }
       const id = anchor.entity.id;
-      candidates.push({id, entity:anchor.entity, ...anchors[index], ...anchor.metrics, radius:anchor.radius, depth:projected.z,
+      const interaction=this.hoverSources.focus === id ? 4 : [this.hoverSources.pointer,this.hoverSources.touch].includes(id) ? 3 : this.selectedId === id ? 2 : 0;
+      const captionRadius=interaction ? Math.min(anchor.radius,Math.max(0,this.height-anchors[index].y-anchor.metrics.height-8)) : anchor.radius;
+      button.style.setProperty('--caption-offset', `${captionRadius + 4}px`);
+      candidates.push({id, entity:anchor.entity, ...anchors[index], ...anchor.metrics, radius:anchor.radius, captionRadius, depth:projected.z,
         marker: !['routes','zones'].includes(anchor.layer), visible:!button.hidden,
-        interaction: this.hoverSources.focus === id ? 4 : [this.hoverSources.pointer,this.hoverSources.touch].includes(id) ? 3 : this.selectedId === id ? 2 : 0});
+        interaction});
+    }
+    // HTML billboards need the physical scene's depth test as well as clip bounds.
+    const opaqueModels=this.meshes.filter(o=>o.visible&&o.geometry&&o.userData.systemObject&&o.userData.modelOpacity>.99);
+    for (const [index,anchor] of this.anchors.entries()) {
+      if (!anchor.proxy || anchor.button.hidden || !opaqueModels.length) continue;
+      this.raycaster.setFromCamera(new THREE.Vector2(projections[index].x,projections[index].y),this.camera);
+      const hit=this.raycaster.intersectObjects(opaqueModels.filter(o=>o!==anchor.object),false)[0];
+      const distance=anchor.position.clone().sub(this.raycaster.ray.origin).dot(this.raycaster.ray.direction);
+      if (hit && hit.distance<distance) { anchor.button.hidden=true;candidates[index].visible=false; }
     }
     const origin = this.container.getBoundingClientRect(), obstacles = [];
     for (const element of [...document.querySelectorAll('.floating, #info-panel[open]'), ...this.gridAnchors.filter(a=>!a.element.hidden).map(a=>a.element)]) {

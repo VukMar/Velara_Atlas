@@ -19,7 +19,11 @@ three released charts at 100K/80K/160K CNU, with central/offset/peripheral stars
 and a fourth positioned sector system with no released detail. `sys_0004` is
 known from 900 A.E. and opens the existing textual archival notice. No extra
 detail loader is present. The unit is 1 CNU = 10,000 km; temporary marker sizes
-do not yet represent physical diameters. See [Phase 2 results](CHECKPOINT_4_PHASE2_RESULTS.md).
+in that phase did not represent physical diameters. Phase 3 now renders known-size
+celestial models with fixed physical radii and distant SVG proxies. Focus Selection
+enters centered inspection; Reset restores the chart. Unknown sizes remain neutral
+symbols. The starter icon library is explicitly bundled with `publicDir: false`.
+See [Phase 2 data](CHECKPOINT_4_PHASE2_RESULTS.md) and [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ```text
 npm ci
@@ -96,9 +100,9 @@ Top-down orthographic X/Z is the initial camera on each map; Y remains genuine
 scene elevation. Switch to 3D for a perspective camera, right-drag orbit or use
 Camera elevation. Pan, zoom, Reset view and Focus selection are available in
 both modes. Camera state is retained per map; switches never relocate objects.
-Station/gate markers face the perspective camera; natural bodies still use
-temporary neutral geometric markers. There is no orbital simulation or runtime
-physical-diameter conversion yet. The approved unit is 1 CNU = 10,000 km; see
+Station/gate SVGs face the screen at their projected XYZ; known-size natural bodies
+use physical models with distant SVG proxies. There is no orbital simulation.
+The approved unit is 1 CNU = 10,000 km; see
 [the Phase 1 scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md). Dense or
 coincident projected records remain available in the catalogue; nearby hit areas
 shrink without changing geometry.

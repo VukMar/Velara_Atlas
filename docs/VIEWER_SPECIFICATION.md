@@ -129,11 +129,12 @@ Use the object's **`entityType` / `objectType`** for logic, and an `icon` or sty
 
 The existing prototype uses procedural placeholder markers. Complex models, cinematic effects, animation, full orbital dynamics, and final NEXUS art direction are **not required for the first functioning viewer**.
 
-### Checkpoint 4.1 scale contract — planned rendering
+### Checkpoint 4.1 scale contract — Phase 3 rendering
 
 [The celestial scale specification](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) defines
 the approved physical-size and apparent-size contract. Phase 1 implements only
-documentation, optional schema support and tests; the current renderer is unchanged.
+documentation, optional schema support and tests. Reviewed Phase 2 supplied demo
+measurements; authorized Phase 3 now implements physical models and SVG proxies.
 Celestial `physicalDiameterKm`, when known, converts to CNU by division by 10000.
 2D and 3D must use identical authored XYZ and physical diameters, projected through
 the active camera. Future centralized category minima use
@@ -146,7 +147,15 @@ size jumps, duplicate disks and inconsistent selection. Stellar corona/glow and
 desktop/touch hit areas remain separate from physical diameter. Unknown diameters
 use a neutral navigational fallback without invented measurements. Stations,
 Jump Gates, Jump Holes and short-range gates initially use fixed apparent icons;
-megastructure representations need separate approval. Existing labels, grid,
+megastructure representations need separate approval. The implemented CSS minima
+are 28/24/20/16/14/12/10 pixels for star/gas planet/other planet/moon/small body/
+structure/short-range gate, with a complementary smoothstep handoff from 1.0 to
+1.35 times the minimum. Screen-projected HTML SVG billboards share each object's
+existing button and XYZ anchor. Focus Selection preserves identity and frames
+known bodies in a centered inspection regime; pan is locked there, near/far and
+distance limits follow the physical radius, and Reset restores normal chart
+navigation. Unknown sizes stay neutral proxies. See the scale specification for
+projection math, clipping limits and exact asset allowlists. Existing labels, grid,
 zones, routes, history and camera interactions remain authoritative.
 
 ### Spatial zones — approved viewer extension
@@ -323,8 +332,8 @@ using the existing per-sector/per-system session preferences.
 Route transports remain combined under one Connections toggle. Separate transport,
 political marker-color, event-indicator and elevation-guide switches are not
 implemented. Grid, influence, zones and entity/route groups have floating controls.
-Final icon/material representations in §5 remain Checkpoint 4 work; temporary
-geometric markers are the current implementation.
+Phase 3 implements starter SVG symbols and simple physical celestial materials
+as described in §5. Final artistic refinement remains separate work.
 
 ### Cartographic typography and adaptive captions — implemented refinement
 
@@ -415,7 +424,7 @@ The **only required initial content** is the noncanonical `examples/demo_atlas` 
 - Two noncanonical Cantums, three released systems (`sys_0001`–`sys_0003`) with independent 100K/80K/160K CNU charts, and one additional positioned archival-only system (`sys_0004`, known from 900 A.E., no Cantum assignment or detail JSON).
 - Separate A/B **interstellar routes**: one exclusive Jump Gate pair and one exclusive Jump Hole pair; an additional dedicated A/C Jump Gate pair.
 - Dedicated, exclusive local short-range pairs authored on eligible anchor objects, including transfer to a Jump Gate navigation boundary.
-- Stars, rocky/gas/water/unknown planets, moons, a planetoid, an individual asteroid, stations and dated InfoCard changes. Phase 2 authors physical diameters with one omitted unknown; temporary markers do not yet render physical size. Central/offset/peripheral star placement tests independent chart framing. See [Phase 2 results](CHECKPOINT_4_PHASE2_RESULTS.md).
+- Stars, rocky/gas/water/unknown planets, moons, a planetoid, an individual asteroid, stations and dated InfoCard changes. Phase 2 authors physical diameters with one omitted unknown; Phase 3 renders known sizes with distant proxies and Focus inspection. Central/offset/peripheral stars retain independent chart framing. See [Phase 2 data](CHECKPOINT_4_PHASE2_RESULTS.md) and [Phase 3 rendering](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 The live demo is author-editable; fixed regression snapshots preserve earlier acceptance scenarios under `tests/fixtures/v1_1/` and `v1_2/`. Its names, counts, positions and dates are **test data only**. **Do not promote them into official MCR canon.** Canonical systems/Cantums remain outside viewer prototyping.
 
@@ -444,7 +453,7 @@ The first Milestone 3 implementation is complete when all of the following can b
 - Canonical star-system placement or colonization data extraction from RTF.
 - Production-quality NEXUS artwork, animation or voice avatar.
 - Author-side visual drag-and-drop editing and file saving (**deferred optional milestone**); for now, edit JSON in VS Code, validate, and reload. Optional local-only coordinate-debug overlay is allowed.
-- Simulated orbital mechanics, pathfinding, ship travel simulation, or real-time celestial motion. Physical-diameter rendering is deferred to Checkpoint 4.1 Phase 3; its unit conversion and schema contract are approved in Phase 1.
+- Simulated orbital mechanics, pathfinding, ship travel simulation, or real-time celestial motion. Physical-diameter rendering is implemented by Checkpoint 4.1 Phase 3; artistic refinement remains deferred.
 - Exact/legal political boundary inference, manual polygon authoring, or full volumetric political borders. **Generated decorative Cantum influence regions are in scope** and must not be misrepresented as exact sovereign borders.
 
 ## 14. Implemented compatibility and remaining follow-ups
@@ -459,7 +468,7 @@ Current status is based on the merged schema, implementation and tests:
 | Dated InfoCards and modern route/object resolution | Historical viewer records | Implemented by `src/core/history.mjs`, independently of legacy v0.1 |
 | Object declarations, dedicated gate pairs and generated graph | v1.2 navigation authoring | Implemented offline; build uses read-only freshness |
 | Nullable icons and optional visual variants | Data-driven appearance | Schema support implemented; final asset registry/materials remain Checkpoint 4 |
-| Optional celestial `physicalDiameterKm` | Authored physical diameter, 1 CNU = 10,000 km | Checkpoint 4.1 Phase 1 schema/docs/tests only; runtime consumption deferred |
+| Optional celestial `physicalDiameterKm` | Authored physical diameter, 1 CNU = 10,000 km | Phase 3 physical models, SVG proxies, apparent minima and bounded inspection; no inference for omitted sizes |
 | Continuous year and exact recorded-year jumps | Historical navigation | Implemented; richer public event registry/markers remain deferred |
 | Canonical v0.1 data migration | Real public lore | Separate creator approval and ID crosswalk required |
 

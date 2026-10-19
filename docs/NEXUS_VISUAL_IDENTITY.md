@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained prototype surfaces. Final SVGs, celestial materials, targeting-ring art and curator imagery remain Checkpoint 4 work. Current data support is defined by the v1.2 schema; verification is recorded in [the audit](REPOSITORY_AUDIT_3_6.md).
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection; final artistic refinement, elaborate targeting-ring art and curator imagery remain deferred. Current data support is defined by the v1.2 schema; current rendering evidence is in [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## 1. Purpose and source references
 
@@ -95,7 +95,7 @@ verification; final assets/reticles remain separate work.
 **3D:** stars and planets use simplified procedural spheres; stations and built gates use camera-facing billboards at real XYZ positions initially; Jump Holes can use a restrained anomalous geometry/effect. A billboard is a navigational sign, not a claim that the station physically has the shape of its icon. Elaborate 3D station/gate models are deliberately outside the first viewer scope.  
 **Zones:** ellipsoid, box and polygon-volume spatial zones remain true 3D geographic volumes; in top-down view use projected shapes. Their atmospheric particles are separate from their authoritative geographic bounds.
 
-**Checkpoint 4.1 sizing contract (renderer deferred):**
+**Checkpoint 4.1 sizing contract (Phase 3 implemented):**
 [Celestial scale](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) fixes 1 CNU = 10,000 km.
 2D/3D share authored XYZ and optional physical diameters; projected physical size
 and centralized apparent minima remain separate. Presentation-default priority:
@@ -105,7 +105,11 @@ restrictions or type multipliers. Gas giant remains a planet visual variant.
 Camera-facing distant SVG proxies transition continuously to correctly scaled
 models without duplicate disks or selection changes. Unknown diameters use neutral
 proxies, structures use fixed apparent icons, and stellar glow/hit targets do not
-define physical diameter. Phase 1 supports schema/docs/tests only.
+define physical diameter. The initial library uses transparent geometric 64×64
+SVGs, simple symbolic material colors and a thin shared hover/focus/selection
+indicator; it is not final commissioned artwork. No portrait/fallback redesign
+or detailed surface texturing is part of this phase. See the scale contract for
+CSS minima, smoothstep handoff and physical-inspection limits.
 
 ## 6. MCR/NEXUS segmented targeting motif
 
@@ -156,7 +160,7 @@ card and bottom timeline layout while preserving all historical content/actions.
 
 ## 8. Default visual asset set and fallback behavior
 
-See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, proposed asset paths, future visual registry and current schema support. Nullable icons and optional variants are already schema-valid; final asset rendering is deferred. Core rules:
+See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, implemented starter asset paths, explicit registry and current schema support. Nullable icons and optional variants remain schema-valid; final artistic refinement is deferred. Core rules:
 
 - **Star / planet / moon / planetoid / asteroid:** top-down navigational icons; perspective procedural celestial geometry. Planet variants: rocky, gas, water; add a neutral *unknown* default that does not fabricate canon.
 - **Stations:** `regular`, `shipyard` defaults. Top-down icon, perspective billboard initially.

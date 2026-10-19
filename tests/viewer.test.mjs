@@ -21,11 +21,12 @@ test('prototype meshes preserve every demo XYZ and permanent identity without mu
     assert.deepEqual(marker.position.toArray(), [entity[key].x, entity[key].y, entity[key].z]);
     assert.equal(marker.userData.entity.id, entity.id);
     assert.equal(marker.userData.entity.orbitingId, entity.orbitingId);
-    shapes.add(marker.geometry.type);
-    marker.geometry.dispose();
-    marker.material.dispose();
+    if (marker.geometry) {
+      shapes.add(marker.geometry.type);
+      marker.geometry.dispose(); marker.material.dispose();
+    } else assert.equal(marker.userData.physicalRadius,null,'unknown/artificial records have no invented physical mesh');
   }
-  assert.ok(shapes.size >= 5, 'temporary categories remain distinguishable');
+  assert.ok(shapes.has('SphereGeometry') && shapes.has('IcosahedronGeometry'),'physical spheres and small bodies are supported; category icons are tested separately');
   assert.deepEqual(maps, before);
 });
 

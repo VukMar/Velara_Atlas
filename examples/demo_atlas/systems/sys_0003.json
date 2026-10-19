@@ -90,6 +90,15 @@
             "direction": "bidirectional",
             "fromAE": 613,
             "untilAE": null
+          },
+          {
+            "id": "lnk_0011",
+            "targetObjectId": "cb_0012",
+            "sourceGateId": "gat_0019",
+            "targetGateId": "gat_0020",
+            "direction": "bidirectional",
+            "fromAE": 613,
+            "untilAE": null
           }
         ]
       }
@@ -110,9 +119,9 @@
         }
       ],
       "position": {
-        "x": -18000,
+        "x": -20000,
         "y": -800,
-        "z": 19000
+        "z": -40000
       },
       "icon": null,
       "infoCard": {
@@ -143,9 +152,9 @@
         }
       ],
       "position": {
-        "x": 15904.55658,
-        "y": 2402.09701,
-        "z": 8640.274378
+        "x": 16636.554549,
+        "y": 2478.007512,
+        "z": 6277.753114
       },
       "icon": null,
       "infoCard": {
@@ -174,9 +183,9 @@
         }
       ],
       "position": {
-        "x": -16095.051436,
-        "y": -620.088191,
-        "z": 18417.932383
+        "x": -18760.504135,
+        "y": -689.097738,
+        "z": -38434.321013
       },
       "icon": null,
       "infoCard": {
@@ -195,9 +204,9 @@
       "objectType": "planet",
       "visualVariant": "water",
       "physicalDiameterKm": 6800,
-      "discoveredAE": 680,
+      "discoveredAE": 610,
       "nameHistory": [
-        {"fromAE": 680, "untilAE": null, "name": "TEST C Small Water World", "kind": "noncanonical_demo", "datePrecision": "exact"}
+        {"fromAE": 610, "untilAE": null, "name": "TEST C Small Water World", "kind": "noncanonical_demo", "datePrecision": "exact"}
       ],
       "position": {"x": 42000, "y": -1700, "z": -26000},
       "orbitingId": null,
@@ -206,6 +215,9 @@
       "infoCard": {
         "affiliation": null, "class": null, "crew": null, "population": null, "armament": null,
         "description": [{"fromAE": 680, "untilAE": null, "text": "Noncanonical small water-world fixture; static authored geography, not an orbital simulation."}]
+      },
+      "navigation":{
+        "boundaryRadiusCNU": 1000
       }
     },
     {
@@ -213,9 +225,9 @@
       "entityType": "celestial_body",
       "objectType": "planetoid",
       "physicalDiameterKm": 920,
-      "discoveredAE": 740,
+      "discoveredAE": 610,
       "nameHistory": [
-        {"fromAE": 740, "untilAE": null, "name": "TEST C Survey Planetoid", "kind": "noncanonical_demo", "datePrecision": "exact"}
+        {"fromAE": 610, "untilAE": null, "name": "TEST C Survey Planetoid", "kind": "noncanonical_demo", "datePrecision": "exact"}
       ],
       "position": {"x": -35000, "y": 800, "z": -42000},
       "orbitingId": null,
@@ -243,6 +255,68 @@
         "affiliation": null, "class": null, "crew": null, "population": null, "armament": null,
         "description": [{"fromAE": 820, "untilAE": null, "text": "Noncanonical individually catalogued asteroid, distinct from decorative zone particles."}]
       }
+    },
+    {
+      "id": "gat_0019",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 613,
+      "decommissionedAE": null,
+      "discoveredAE": 613,
+      "nameHistory": [
+        {
+          "fromAE": 613,
+          "untilAE": null,
+          "name": "TEST C Primary Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 19261.984746,
+        "y": 2373.8944,
+        "z": 6212.188277
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
+    },
+    {
+      "id": "gat_0020",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 613,
+      "decommissionedAE": null,
+      "discoveredAE": 613,
+      "nameHistory": [
+        {
+          "fromAE": 613,
+          "untilAE": null,
+          "name": "TEST C Primary Transfer",
+          "kind": "noncanonical_demo"
+        }
+      ],
+      "position": {
+        "x": 41426.37057,
+        "y": -1597.224727,
+        "z": -25187.358308
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      },
+      "positionMode": "boundary_derived"
     }
   ],
   "zones": []

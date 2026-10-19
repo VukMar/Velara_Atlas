@@ -127,6 +127,9 @@ export function resolveObject(entity, yearAE) {
   for (const field of ['objectType', 'category', 'position', 'geometry', 'orbitingId', 'icon', 'visualVariant']) {
     if (Object.hasOwn(entity, field)) state[field] = copy(entity[field]);
   }
+  if (entity.entityType === 'celestial_body' && Object.hasOwn(entity, 'physicalDiameterKm')) {
+    state.physicalDiameterKm = entity.physicalDiameterKm;
+  }
   return state;
 }
 

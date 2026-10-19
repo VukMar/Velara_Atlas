@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {approvedIconSources,iconFiles} from './svg-assets.mjs';
 
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
 function list(directory) {
@@ -12,17 +13,24 @@ function list(directory) {
   });
 }
 const files = list(root);
+const approvedSVG = new Set(approvedIconSources()), emittedSVG = new Set();
+const svgNames = new Map(approvedIconSources().map((source,i)=>[source,path.basename(iconFiles[i],'.svg')]));
 for (const file of files) {
   const name = path.relative(root, file).replaceAll('\\', '/');
-  if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css)$/.test(name)) {
+  if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg)$/.test(name)) {
     throw new Error(`Unexpected distributable file: ${name}`);
   }
   // Known legacy canonical IDs are never legitimate inputs to this demo.
   const text = fs.readFileSync(file, 'utf8');
+  if (name.endsWith('.svg')) {
+    if (!approvedSVG.has(text) || emittedSVG.has(text) || !name.startsWith(`assets/${svgNames.get(text)}-`)) throw new Error(`Unexpected SVG content/name or duplicate: ${name}`);
+    emittedSVG.add(text);
+  }
   for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=']) {
     if (text.includes(forbidden)) throw new Error(`Unexpected canonical/private/source-map reference in ${name}`);
   }
 }
+if (emittedSVG.size !== approvedSVG.size) throw new Error('Approved SVG inventory is incomplete');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 if (!html.includes('NONCANONICAL DEMONSTRATION')) throw new Error('Demo disclosure missing');
 for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
@@ -30,4 +38,4 @@ for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   if (!url.startsWith('/Velara_Atlas/assets/')) throw new Error(`Unexpected asset URL: ${url}`);
   if (!fs.existsSync(path.join(root, url.slice('/Velara_Atlas/'.length)))) throw new Error('Missing build asset');
 }
-console.log(`PASS demo build audit: ${files.length} files; only HTML/JS/CSS, base-relative assets, no canonical data or private/source-map references`);
+console.log(`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs, base-relative assets, no canonical data or private/source-map references`);

@@ -45,7 +45,7 @@ export function layoutCaptions(candidates, {width, height, zoom = 1, passive = t
     if (allowed) nextEligible.add(c.id);
     if (!c.visible || (!c.interaction && (!passive || !c.marker || !allowed || occupied.occludes(c)))) continue;
     const rect = {id: c.id, left: c.x - c.width / 2 - 3, right: c.x + c.width / 2 + 3,
-      top: c.y + c.radius + 4, bottom: c.y + c.radius + 4 + c.height};
+      top: c.y + (c.captionRadius ?? c.radius) + 4, bottom: c.y + (c.captionRadius ?? c.radius) + 4 + c.height};
     // Interaction feedback can cover passive obstacles, but never another higher-priority caption.
     if (captions.hits(rect) || (!c.interaction && (rect.left < 0 || rect.right > width || rect.top < 0 || rect.bottom > height || occupied.hits(rect, c.id)))) continue;
     captions.add(rect); shown.add(c.id);

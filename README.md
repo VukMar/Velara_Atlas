@@ -4,14 +4,17 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Checkpoint 4.1 Phase 2 data expansion:** The local, read-only **noncanonical demonstration has three released system charts and one additional archival-only system**. It implements historical navigation/search, routes, top-down/perspective cameras, interactive clipped spatial zones, cartographic labeling, Cantum influence and Schema v1.2 navigation authoring. Final visual assets, physical-diameter rendering, canonical migration, deployment and the deferred editor are not implemented.
+> **Project status — Checkpoint 4.1 Phase 3:** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It implements physical celestial models, distant SVG navigation proxies, Focus Selection inspection, historical navigation/search, routes, top-down/perspective cameras, interactive clipped zones, cartographic labeling and Schema v1.2 navigation authoring. Final artistic refinement, canonical migration, deployment and the deferred editor are not implemented.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
-authored in kilometers; **1 CNU = 10,000 km**, but temporary marker sizes do not
-yet depict those physical diameters. `sys_0004`, discovered at 900 A.E., has no
+authored in kilometers; **1 CNU = 10,000 km**. Known-size physical models use
+those diameters; distant SVGs use category pixel minima. Focus Selection inspects
+a body (including the 64-km asteroid), preserving selection; Reset View restores
+normal chart navigation. Unknown sizes remain symbols. `sys_0004`, discovered at 900 A.E., has no
 detail file and demonstrates the existing textual NEXUS archival notice.
 See [Phase 2 data and verification](docs/CHECKPOINT_4_PHASE2_RESULTS.md).
+See [Phase 3 rendering, evidence and inspection limits](docs/CHECKPOINT_4_PHASE3_RESULTS.md).
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)
@@ -79,11 +82,12 @@ Close the centered InfoCard with its top-right button or Escape to clear selecti
 without resetting the camera. Hover a gate/route, or focus it with the keyboard,
 to highlight active links; selecting it opens its record and destination actions.
 System charts have A–H / 1–8 cells; H8 shows the navigation-sector width in CNU.
-Reset fits the complete chart, and top-down pan/zoom stays within its bounds.
+Reset fits the complete chart, and normal top-down pan/zoom stays within its bounds.
 
 Switch to 3D and right-drag to orbit, or use Camera elevation. Political influence
-shading is not a legal border. Shapes remain temporary category markers, not
-physical dimensions or final artwork. See [implementation and limitations](docs/VIEWER_PROTOTYPE.md).
+shading is not a legal border. Sector and artificial-structure symbols are
+navigational signs; known-size system celestial models use physical dimensions.
+These starter visuals are not final artwork. See [implementation and limitations](docs/VIEWER_PROTOTYPE.md).
 
 ```bash
 npm test

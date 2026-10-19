@@ -95,3 +95,6 @@ footer { flex:none; text-align:center; padding:.3rem .5rem; color:#94b2c2; font-
   #notice { max-width:80%; bottom:55px; }
 }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; } }
+.navigation-proxy { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:var(--display-diameter); height:var(--display-diameter); opacity:var(--proxy-opacity); max-width:none; pointer-events:none; user-select:none; }
+.map-label:has(.navigation-proxy):is(:hover,:focus-visible,[aria-pressed="true"])::before { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:clamp(20px,var(--display-diameter),56px); height:clamp(20px,var(--display-diameter),56px); border:1px solid #00d6ff; border-radius:50%; pointer-events:none; }
+.map-label[data-icon-fallback="primitive"]::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) rotate(45deg); width:calc(var(--display-diameter) * .7); height:calc(var(--display-diameter) * .7); border:2px solid #94b2c2; opacity:var(--proxy-opacity); pointer-events:none; }

@@ -16,6 +16,10 @@ editor remain separate future work.
 | `src/viewer/demo-data.mjs` | Explicit imports of four demo registries plus three allowlisted detail loaders; preloads released details for endpoint eligibility |
 | `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
 | `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
+| `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
+| `src/viewer/celestial-model.mjs` | Fixed physical spheres/normalized small bodies and deterministic symbolic material colors; no geometry for unknown sizes/artificial structures |
+| `src/viewer/icon-manifest.mjs`, `icon-registry.mjs`, `navigation-proxy.mjs` | Fourteen explicitly bundled SVGs, safe category/fallback resolution and one screen-facing image per existing object button |
+| `src/viewer/inspection-camera.mjs` | Radius-based local camera framing, clipping and center/surface constraints; Reset returns to normal navigation |
 | `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
 | `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic lettering placement, fitting and fade calculations |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom, world-space 8×8 system grid and CNU cell measurement |
@@ -72,12 +76,13 @@ Sector XYZ is in light-years; local system XYZ is in CNU, universally defined as
 10,000 kilometers per CNU. Positions are static and absolute in their own map.
 `orbitingId` is relationship metadata, not a position calculation.
 
-Checkpoint 4.1 Phase 1 adds optional positive finite `physicalDiameterKm` only
+Checkpoint 4.1 Phase 1 added optional positive finite `physicalDiameterKm` only
 to current v1.2 celestial schemas, with omission for unknown values and no version
-migration. No runtime conversion or renderer/resolver changes are implemented.
-Later integration must forward the released measurement through resolved records
-and keep physical geometry, apparent-size minima and interaction hit areas
-separate. See [the scale contract and phase boundaries](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
+migration. Phase 3 forwards authored celestial measurements through resolved
+records and keeps fixed physical geometry, apparent-size minima and interaction
+hit areas separate. Projected HTML SVGs need no GPU textures or second identity.
+Focus enters local physical inspection; normal framing/pan is restored by Reset.
+See [the scale contract and phase boundaries](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
 System chart dimensions may differ; square X/Z, independent Y extent, off-center
 stars and the absolute Y = 0 system reference grid remain compatible.
 
@@ -85,7 +90,8 @@ Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
 `publicDetailPath: null` and uses existing textual archival fallback, without a
 detail file or additional loader. The seven-file explicit JSON input allowlist and
-`publicDir: false` remain unchanged. Temporary marker sizes remain display aids.
+`publicDir: false` remain unchanged. Sector markers remain display aids; system
+physical models now consume the known diameters without modifying Phase 2 data.
 
 Checkpoint 3.6 fits the complete square X/Z chart, clamps orthographic pan/zoom
 and leaves genuine Y available in perspective and records. Both camera modes
@@ -96,16 +102,20 @@ InfoCard; only hover/focus temporarily brightens routes. The
 
 Cantum influence follows the approved historical membership filter,
 Gaussian/smoothstep formula, fixed ly radii and 0.16/0.22 opacity caps.
-Zones remain independent ellipsoid/box/polygon-volume geometry. Final icons,
-celestial materials and targeting-ring art remain Checkpoint 4 work.
+Zones remain independent ellipsoid/box/polygon-volume geometry. Phase 3 provides
+starter SVGs and simple procedural physical models; final artistic refinement and
+elaborate targeting-ring art remain future work.
 
 ## Build and disclosure boundary
 
 Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
 disables `publicDir` and source maps, and writes `dist/`. Development binds
 to loopback with filesystem restrictions. The input audit allows viewer code,
-the two modern core modules, seven exact demo JSON files and dependencies.
-The output audit checks the resulting HTML/JS/CSS and base-relative assets.
+the modern core modules, seven exact demo JSON files and dependencies.
+Phase 3 adds only fourteen explicit icon paths to source/dev allowlists; existing
+NEXUS PNGs remain excluded. `scripts/svg-assets.mjs` validates their narrow SVG
+profile. The output audit checks HTML/JS/CSS plus exact approved SVG bytes/names
+with no duplicates, base-relative assets and the unchanged forbidden references.
 
 Thus `public/data/`, private lore, docs, unrelated examples, Node authoring
 tools and frozen fixtures are not browser inputs. Git itself is a second

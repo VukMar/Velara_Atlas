@@ -1,9 +1,10 @@
 # Checkpoint 4.1 — Celestial dimensions and scale contract
 
 **Status:** Creator-approved design and reviewed Phase 1 schema/docs/tests.
-Phase 2 is explicitly authorized for noncanonical demo expansion, existing
-archival fallback coverage, tests and documentation only. Physical rendering and
-Phase 3/4 remain unauthorized. Creator review is required between phases.
+Phases 1–2 are reviewed and approved. Phase 3 explicitly authorizes the physical
+renderer, starter SVG proxies/icons, inspection cameras, secure asset bundling
+and tests/docs. Phase 4 artistic refinement remains unauthorized. Creator review
+is required between phases. See [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## Units and authored geography
 
@@ -63,12 +64,11 @@ JSON cannot represent NaN or infinity; the existing strict Ajv validator also
 rejects nonfinite JavaScript values during in-memory validation. Frozen v1.1
 schema/fixtures, frozen v1.2 scenarios and canonical public v0.1 data are unchanged.
 
-Phase 1 adds no runtime conversion or new resolver behavior. The current
-historical resolver does not yet forward this field to resolved viewer objects,
-and temporary markers do not consume it. Phase 3 must pass through the released
-measurement without changing historical eligibility, names, IDs or authored XYZ.
+Phase 1 added no runtime conversion or resolver behavior. Phase 3 now forwards
+only authored celestial measurements through the modern resolver and consumes
+them in System View, without changing historical eligibility, names, IDs or XYZ.
 
-## Planned renderer contract — Phase 3 only
+## Renderer contract — Phase 3
 
 Both 2D and 3D use identical authored XYZ positions and physical diameters.
 Project physical geometry with the active camera, then apply the navigational
@@ -87,8 +87,10 @@ STATION / JUMP GATE → SHORT-RANGE GATE.**
 
 This guideline concerns legibility, not restrictions on real physical diameters.
 Water/rocky/unknown planets and other celestial categories retain their supported
-classifications; unspecified styles use a neutral fallback. Numeric pixel minima
-and transition thresholds remain to be tuned and verified in later phases.
+classifications; unspecified styles use a neutral fallback. Centralized CSS-pixel
+minima are 28 star, 24 gas giant, 20 other planet, 16 moon, 14 small body,
+12 station/Jump Gate/Jump Hole and 10 short-range gate. Physical projection
+reaches full model opacity at 1.35 times that minimum.
 
 Far-away bodies may use SVG navigational proxies. In perspective, proxies face
 the camera while remaining anchored at the exact physical position. As a body's
@@ -107,6 +109,70 @@ Stations, Jump Gates, Jump Holes and short-range gates initially use fixed
 apparent navigational icon sizes appropriate to their category. Physical diameters
 are not introduced for these structures. Detailed megastructures, including
 Dyson-sphere-scale constructs, require a separate approved extension.
+
+## Implemented Phase 3 projection, proxies and inspection
+
+- `visual-config.mjs` owns CNU conversion, CSS-pixel minima and the 1.35 handoff
+  ratio. `celestial-scale.mjs` computes radius as `physicalDiameterKm / 20000`.
+  Orthographic diameter uses the actual projection-matrix X/Y scale and CSS
+  viewport dimensions. Perspective uses camera-space sphere tangent bounds,
+  including off-axis projection and camera zoom; it does not approximate depth
+  with Euclidean camera distance. Device pixel ratio affects canvas resolution,
+  not the CSS-pixel minimum.
+- Known bodies retain fixed local-radius geometry at authored XYZ with mesh
+  scale `(1,1,1)`. Star/planet/moon spheres and normalized irregular small bodies
+  use restrained deterministic vertex colors, including symbolic gas bands.
+  No geographic surface features, atmospheric composition or radii are inferred.
+  Stars use self-lit color; no corona is implemented. Planet variants select
+  material styling only. Unknown measurements have no physical geometry.
+- The projected HTML marker button owns one SVG image, one caption and one
+  permanent identity. Its XYZ projection makes it a screen-facing billboard in
+  either camera mode. It needs no extra Three.js sprite, texture or selection
+  target. Browser URLs/images are shared through the static registry/cache.
+  Authored icon paths never become arbitrary fetches. No custom sources are
+  approved in this release; an explicit closed custom registry is the extension
+  point. Supported registry identifiers/default categories fall back to the
+  generic SVG, then a built-in CSS primitive on load failure.
+- Below the minimum, only the minimum-sized proxy is visible. From 1.0 to 1.35
+  times the minimum, its size follows natural projection and complementary
+  smoothstep opacity transfers it to the physical model. At/above 1.35, proxy
+  opacity is zero and model opacity one. Both share one anchor; there are no two
+  independently opaque disks. This is projection-driven, not a time animation,
+  so reduced-motion users receive the same deterministic handoff.
+- Stations and all gate/hole categories have no invented physical meshes and
+  retain fixed apparent SVG diameters. Sector system markers remain unchanged.
+  Existing bounded transparent buttons, physical ray picking, captions and
+  catalogue access share the same record. Objects still precede routes and zones
+  in picking. Caption offsets and collision footprints follow displayed size;
+  an opaque physical model depth-tests projected symbols behind it using the
+  existing raycaster, while hidden records remain available in the catalogue.
+  Active captions are kept within the lower viewport when an inspected disk
+  fills the screen; passive collision footprints still follow displayed size.
+  visual diameter is capped at four viewport widths for DOM layout safety when
+  an oversized disk extends far outside the view, without changing geometry.
+- Focus Selection on a known celestial body enters centered physical inspection
+  and retains selection while closing the InfoCard. Its top-down frustum spans
+  ten physical radii at zoom 1, avoiding enormous global zoom values. Perspective
+  initially sits six radii from the center. Near/far are `0.02r`/`1000r` and
+  perspective distance is constrained to `1.5r`–`200r`; inspection zoom is 1–8.
+  Orbit/pinch/zoom work; pan is disabled to keep the selected center fixed.
+  Switching modes reframes the same body. Reset restores normal full-chart
+  frusta, 2048 maximum zoom, ordinary pan and chart-derived camera limits.
+  Per-map/year snapshots preserve inspection only while its body remains eligible.
+- The 64-km asteroid is verified at its actual 0.0032-CNU radius at authored
+  coordinates, including mobile. This is not a surface-flight camera: near
+  clipping and far depth intentionally exclude distant chart content during
+  inspection, including a distant Y=0 plane. Extreme values near floating-point
+  representability limits are not a guarantee of arbitrary astronomical precision.
+- `icon-manifest.mjs`, static literal registry URLs and `scripts/svg-assets.mjs`
+  authorize exactly fourteen local SVGs. Vite emits them separately with hashed,
+  deployment-base-safe URLs, `assetsInlineLimit: 0` and `publicDir: false`.
+  The output audit permits only those exact contents/names once each, plus the
+  existing HTML/JS/CSS; canonical/private/source-map scans remain active.
+
+No new animation loop, dependencies, detailed textures, authored fields or
+Phase 2 geometry changes are introduced. Model resources and image error
+listeners are disposed on chart changes. See [measured evidence and limits](CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## Phased delivery and review gates
 
@@ -133,7 +199,7 @@ Dyson-sphere-scale constructs, require a separate approved extension.
    in `scripts/demo-files.mjs`, `src/viewer/demo-data.mjs` and `vite.config.mjs`;
    add only necessary authorized inputs. A fallback-only entry needs no loader.
    Stop for review.
-3. **Phase 3 — future renderer and icons:** implement physical scaling, spheres,
+3. **Phase 3 — currently authorized renderer and icons:** implement physical scaling, spheres,
    distant SVG proxies, fixed apparent structure markers and neutral fallbacks.
    Preserve the approved `public/assets/` organization, public/private build
    boundary, resolver semantics, labels, zones, routes and camera controls.
@@ -143,9 +209,10 @@ Dyson-sphere-scale constructs, require a separate approved extension.
    grid toggling and archival fallback. Stop for review.
 
 Phase 1 did not change demo JSON. Phase 2 authors demo measurements and geography
-only, with [implementation evidence](CHECKPOINT_4_PHASE2_RESULTS.md). Renderer,
-SVG generation, textures, artwork, canonical migration, deployment, commit and
-push remain outside the current authorization.
+only, with [implementation evidence](CHECKPOINT_4_PHASE2_RESULTS.md). Phase 3 now
+implements physical models and the starter icon library. Detailed textures,
+Phase 4 artwork/refinement, canonical migration, deployment, commit and push
+remain outside the current authorization.
 
 ## Verification contract
 

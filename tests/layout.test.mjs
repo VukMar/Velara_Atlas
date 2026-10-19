@@ -118,12 +118,14 @@ test('route styling follows hover/focus/touch only; selection remains independen
   const route=(id,type)=>({id,entityType:'connection',linkType:'short_range',transportType:type,positions:[{x:0,y:0,z:0},{x:100,y:200,z:300}],direction:'bidirectional',endpointA:{systemId:'sys_0001',objectId:'gat_0001'},endpointB:{systemId:'sys_0001',objectId:'gat_0002'}});
   const routes=[route('lnk_0001','short_range_gate'),route('lnk_0002','jump_hole')],m=Object.create(AtlasMap.prototype);
   m.routeLines=routes.map(r=>createRoute(r,routes,map()));m.meshes=[createMarker({id:'gat_0001',entityType:'gate',objectType:'short_range_gate',position:{x:0,y:0,z:0}},'position')];
-  m.anchors=[];m.container={dataset:{}};m.hoverSources={pointer:null,focus:null,touch:null};m.render=()=>{};
+  const button={setAttribute(key,value){this[key]=value;}};
+  m.anchors=[{entity:{id:'gat_0001'},button}];m.container={dataset:{}};m.hoverSources={pointer:null,focus:null,touch:null};m.render=()=>{};
   m.setSelected('gat_0001');assert.ok(m.routeLines.every(l=>l.material.color.getHex()===l.userData.baseColor));
   m.setHovered('gat_0001');assert.ok(m.routeLines.every(l=>l.material.opacity===1));
-  assert.equal(m.meshes[0].material.color.getHex(),0xffbf62);
+  assert.equal(button['aria-pressed'],'true');
+  assert.equal(m.meshes[0].geometry,undefined,'fixed apparent gate has no invented physical size');
   m.setHovered(null);assert.ok(m.routeLines.every(l=>l.material.opacity===.7));
-  assert.equal(m.meshes[0].material.color.getHex(),0xffbf62,'hover exit does not deselect the marker');
+  assert.equal(button['aria-pressed'],'true','hover exit does not deselect the shared proxy identity');
   m.setHovered('lnk_0002','focus');assert.equal(m.routeLines[1].material.isLineDashedMaterial,true);
   assert.equal(m.routeLines[0].material.opacity,.7);assert.equal(m.routeLines[1].material.opacity,1);
   m.setHovered(null,'focus');m.setHovered('lnk_0001','touch');m.setHovered(null,'touch');

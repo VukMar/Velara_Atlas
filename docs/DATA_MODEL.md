@@ -93,8 +93,9 @@ This is an additive current v1.2 schema extension shared by release and authorin
 validation; no version bump, required-field change or existing-record migration.
 Frozen schemas/fixtures and canonical v0.1 remain unchanged. Phase 1 added no
 measurements or runtime consumption. Phase 2 now populates representative
-noncanonical demo measurements; temporary markers still do not consume them.
-The planned physical
+noncanonical demo measurements. Phase 3 forwards authored values through resolved
+celestial records and uses fixed physical radii with distant SVG proxies. Omitted
+measurements still have no inferred physical geometry. The physical
 projection, neutral unknown fallback and separate apparent minima are specified
 in [the celestial scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
 
