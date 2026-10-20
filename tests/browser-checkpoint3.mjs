@@ -4,7 +4,7 @@ async(page)=>{
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
-  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('examples/demo_atlas/sector.json')).name);
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
   const read=async f=>(await page.request.get(new URL(f,root).href)).json();
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
@@ -25,7 +25,7 @@ async(page)=>{
   const toggle=page.getByRole('checkbox',{name:'Cantum influence / approximate chart overlay',exact:true});
   const before=await page.locator('#viewport').getAttribute('data-markers');await toggle.uncheck();await toggle.check();
   check(await page.locator('#viewport').getAttribute('data-markers')===before,'influence toggle preserves markers');
-  const sectorPattern=/examples\/demo_atlas\/sector\.json/,detailPattern=/examples\/demo_atlas\/systems\/sys_0001\.json/,connectionsPattern=/examples\/demo_atlas\/connections\.json/;
+  const sectorPattern=/public\/datasets\/demo\/sector\.json/,detailPattern=/public\/datasets\/demo\/systems\/sys_0001\.json/,connectionsPattern=/public\/datasets\/demo\/connections\.json/;
   const serve=d=>route=>route.fulfill({status:200,contentType:'text/javascript',body:`export default ${JSON.stringify(d)};`});
   const sector=await read('sector.json');sector.systems[1].publicDetailPath=null;sector.systems[1].positionLY=null;
   await page.route(sectorPattern,serve(sector));await page.goto(base);await page.locator('#selection option[value="sys_0002"]').waitFor({state:'attached'});

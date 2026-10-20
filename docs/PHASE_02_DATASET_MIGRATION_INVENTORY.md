@@ -1,10 +1,18 @@
 # Proposed Phase 2 — Dataset migration inventory
 
-**Analysis only; no files moved.** Verified against `main` at
-`190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20). The current task permits
-documentation only. The [architecture roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-proposes `public/datasets/demo/`; that destination and execution require creator
-approval. This is a noncanonical path migration, not canonical conversion.
+**Original Phase 1 analysis (preserved below).** Architecture Phase 2 is now
+explicitly authorized by [its task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
+The live demo has moved to `public/datasets/demo/` in Substep A. Substep B
+preserves three legacy fixtures, archives eight obsolete proposals and adds
+validated reference-only examples. See [results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+The old paths in the baseline inventory below describe pre-migration dependencies, not current
+operating paths. No canonical conversion is authorized.
+
+**Original inventory:** Verified against `main` at
+`190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20), when Phase 1 permitted
+documentation only. The destination proposed in that audit has since been
+authorized and implemented by Phase 2. The tables below retain the original
+pre-migration paths and proposed actions as planning evidence.
 
 ## Dependency inventory
 

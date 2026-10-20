@@ -4,7 +4,7 @@ async(page)=>{
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
-  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('examples/demo_atlas/sector.json')).name);
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
   const read=async file=>(await page.request.get(new URL(file,root).href)).json();
   const sector=await read('sector.json'),graph=await read('connections.json');
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};

@@ -55,7 +55,7 @@ async page=>{
   try{
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);
     await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('examples/demo_atlas/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
     await page.evaluate(async()=>{
       const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;

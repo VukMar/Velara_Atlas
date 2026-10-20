@@ -5,7 +5,7 @@ v1.2 navigation declarations are handled offline and require no resolver change.
 It has no imports,
 I/O, renderer, DOM, loading, framework or backend dependency. It does not adapt
 legacy v0.1 records or replace `src/timeline/resolve.mjs`. The fixtures in
-`examples/demo_atlas/` remain noncanonical and outside `public/data/`.
+`public/datasets/demo/` remain noncanonical and outside `public/data/`.
 
 Inputs must already pass the strict Ajv schema and cross-file relationship
 checks. These functions are historical selectors, not a second schema validator
@@ -146,7 +146,7 @@ Run from the repository root in Node (or reuse an already validated public recor
 import {readFileSync} from 'node:fs';
 import {resolveSystem} from './src/core/history.mjs';
 
-const sector = JSON.parse(readFileSync('examples/demo_atlas/sector.json', 'utf8'));
+const sector = JSON.parse(readFileSync('public/datasets/demo/sector.json', 'utf8'));
 const earlier = resolveSystem(sector.systems[0], 209);
 const later = resolveSystem(sector.systems[0], 210);
 console.log(earlier.name, earlier.cantumId); // TS-01, null

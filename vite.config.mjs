@@ -8,13 +8,13 @@ import {svgFiles,approvedSVGSources} from './scripts/svg-assets.mjs';
 const local = relative => fileURLToPath(new URL(relative, import.meta.url));
 const approvedIcons = new Set(svgFiles.map(normalizePath));
 const demoJSON = new Set([
-  'examples/demo_atlas/sector.json',
-  'examples/demo_atlas/cantums.json',
-  'examples/demo_atlas/connections.json',
-  'examples/demo_atlas/presentation.json',
-  'examples/demo_atlas/systems/sys_0001.json',
-  'examples/demo_atlas/systems/sys_0002.json',
-  'examples/demo_atlas/systems/sys_0003.json'
+  'public/datasets/demo/sector.json',
+  'public/datasets/demo/cantums.json',
+  'public/datasets/demo/connections.json',
+  'public/datasets/demo/presentation.json',
+  'public/datasets/demo/systems/sys_0001.json',
+  'public/datasets/demo/systems/sys_0002.json',
+  'public/datasets/demo/systems/sys_0003.json'
 ].map(file => normalizePath(local(file))));
 
 // Fail a build that accidentally imports other repository data/code. This is
@@ -52,7 +52,7 @@ export default defineConfig({
     host: '127.0.0.1',
     fs: {
       strict: true,
-      allow: [...['src/viewer/', 'src/core/', 'examples/demo_atlas/', 'node_modules/'].map(local), ...svgFiles],
+      allow: [...['src/viewer/', 'src/core/', 'public/datasets/demo/', 'node_modules/'].map(local), ...svgFiles],
       deny: ['**/.git/**', '**/.env*', '**/private/**', '**/secrets/**', '**/*.rtf', '**/public/data/**']
     }
   },

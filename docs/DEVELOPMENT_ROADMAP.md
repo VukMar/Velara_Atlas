@@ -9,13 +9,14 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Current authorization:** documentation and inventory only under the
+**Current authorization:** dataset organization only under the
 [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-and its [Phase 1 task](CODEX_PHASE_01_DOCUMENTATION_TASK.md). That roadmap governs
+and its [Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md). That roadmap governs
 a separate, phase-gated architecture workstream; this document retains feature
 milestones and their acceptance boundaries. Architecture phase numbers are not
 Checkpoint 4.1 phase numbers or Cantum stage numbers. Start at the
-[documentation index](INDEX.md); Phase 2 is proposed, not started.
+[documentation index](INDEX.md); Phase 2 is implemented locally for review; Phase 3 remains deferred. See
+[Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -94,7 +95,7 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by architecture Phase 1 |
+| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by architecture Phase 2 |
 | Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
@@ -118,7 +119,7 @@ models, continuous SVG-proxy transitions, fixed apparent structure markers,
 neutral unknown fallbacks and Focus Selection inspection; it has been reviewed
 and approved. The original four-phase plan reserved further visual/browser
 refinement for Phase 4. Further Checkpoint 4.2 visual refinement requires separate
-approval; the current task is architecture documentation Phase 1.
+approval; the current task is architecture Phase 2 dataset organization.
 The NEXUS side-profile PNG is supplied at
 `public/assets/nexus/nexus-side-profile.png`; its integration remains deferred.
 Preserve the current creator-approved System C geography,

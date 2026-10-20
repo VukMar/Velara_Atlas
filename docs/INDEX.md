@@ -1,15 +1,15 @@
 # Velara Atlas — Documentation index
 
-Current baseline: `main` at `190bd21` (2026-10-20), including Cantum Stage 4 and
-intermediate calibration. Current authorization is **architecture Phase 1,
-documentation and inventory only**. Reports retain their original checkpoint
+Starting checkout for Phase 2: `main` at `6ae6ee2` (2026-10-20), including
+Phase 1 documentation and Cantum Stage 4/calibration from `190bd21`. Current authorization is **architecture Phase 2,
+dataset/repository organization only**. Reports retain their original checkpoint
 circumstances; a report saying “uncommitted” does not describe today's baseline.
 
 ## Active authority — read for rules and behavior
 
 | Task | Read |
 | --- | --- |
-| Work within authorized scope | [AGENTS](../AGENTS.md), [Phase 1 task](CODEX_PHASE_01_DOCUMENTATION_TASK.md) |
+| Work within authorized scope | [AGENTS](../AGENTS.md), [Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md) |
 | Understand implemented modules and disclosure boundaries | [Architecture](ARCHITECTURE.md), [repository ownership](REPOSITORY_STRUCTURE.md) |
 | Author valid noncanonical records | [Data model](DATA_MODEL.md), [current schema](../schemas/atlas.schema.json), [navigation specification](SCHEMA_V1_2_NAVIGATION.md) |
 | Preserve canon, dates and publication separation | [Data rules](DATA_RULES.md), [content workflow](CONTENT_WORKFLOW.md), [canonical migration safeguards](LEGACY_MIGRATION_PLAN.md) |
@@ -23,7 +23,7 @@ protected v0.1 canon are separate datasets.
 ## Procedures and API reference — read to operate the checkout
 
 - [README](../README.md): install/run/check commands, read-only ID Finder and
-  separate loopback calibration workflow. Active demo: `examples/demo_atlas/`.
+  separate loopback calibration workflow. Active demo: `public/datasets/demo/`.
 - [Navigation authoring](NAVIGATION_AUTHORING.md): manual graph generation,
   read-only freshness checks, safe replacement and recovery.
 - [Historical resolver API](HISTORICAL_RESOLVER.md): pure selectors.
@@ -35,10 +35,13 @@ protected v0.1 canon are separate datasets.
 - [Development roadmap](DEVELOPMENT_ROADMAP.md): feature milestones and approval gates.
 - [Architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md):
   separate architecture phases; does not replace feature contracts.
-- [Phase 1 task](CODEX_PHASE_01_DOCUMENTATION_TASK.md): current documentation-only
-  scope, validation and completion requirements.
-- [Phase 2 migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md): proposed
-  demo relocation, consumers and rollback; **not implemented**. JSON calibration
+- [Phase 1 task](CODEX_PHASE_01_DOCUMENTATION_TASK.md): retained documentation scope.
+- [Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md): current scope, validation
+  and completion requirements.
+- [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md): performed migration,
+  original/moved hashes, regression evidence and rollback map.
+- [Phase 2 migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md): original
+  pre-migration consumers and rollback; the completed move is recorded above. JSON calibration
   scenarios are Phase 5, manifest loading is Phase 3.
 
 ## Historical checkpoint evidence — read for past verification and limits
@@ -65,5 +68,9 @@ counts and worktree statements are point-in-time evidence, not fresh test result
   do not install its old files over the current checkout.
 - [Frozen v1.1](../tests/fixtures/v1_1/README.md) and
   [frozen v1.2](../tests/fixtures/v1_2/README.md): regression provenance.
-  Standalone `examples/*.json` include legacy test inputs and old proposal
-  shapes; consult [ownership](REPOSITORY_STRUCTURE.md), not those files as v1.2 tutorials.
+- [Legacy examples](../tests/fixtures/legacy_examples/README.md): retained v0.1
+  regressions and forbidden-input fixture, separate from the frozen snapshots.
+- [Archived JSON proposals](archive/json-proposals/README.md): obsolete shapes
+  preserved byte-for-byte; historical report paths retain their original meaning.
+- [Current examples](../examples/README.md): validated, noncanonical v1.2 learning
+  references; excluded from runtime and independent of mandatory regression inputs.

@@ -36,8 +36,10 @@ and null to `can_0002`; it adds no political facts.
 Each current noncanonical demo file's schemaVersion is 1.2.0. Frozen v1.1 regression fixtures live under `tests/fixtures/v1_1/`, with `schemas/atlas-v1_1.schema.json`; historical semantics are unchanged. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
 
 The original accepted v1.2 scenarios are also frozen in `tests/fixtures/v1_2/`;
-the current `examples/demo_atlas/` remains author-editable. Earlier standalone
-examples use legacy/proposal shapes and are not current v1.2 authoring templates.
+the current `public/datasets/demo/` remains author-editable. Current learning
+references live in `examples/v1_2/`; legacy regression inputs are preserved in
+`tests/fixtures/legacy_examples/`, and obsolete proposal shapes are archived in
+`docs/archive/json-proposals/`. See [examples](../examples/README.md).
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
@@ -133,7 +135,7 @@ Structural JSON Schema Draft 2020-12 checks types, enums, required fields, ID pa
 
 This schema defines spatial-zone geometry and public presentation settings. It does **not** define exact Cantum border polygons, orbital simulation, private publication manifests or detailed polity entities. Unsupported extensions require a versioned approval; do not invent ad hoc keys.
 
-The demonstration data in `examples/demo_atlas` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. No 43 real systems are included here.
+The demonstration data in `public/datasets/demo` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. No 43 real systems are included here.
 
 ## v1.1 extension note
 

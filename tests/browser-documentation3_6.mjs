@@ -19,7 +19,7 @@ async(page)=>{
     check(await page.locator('#year-input').getAttribute('min')==='0'&&await page.locator('#year-input').getAttribute('max')==='1200','documented demo range');
     await page.getByRole('button',{name:'Reset to latest',exact:true}).click();
     await page.locator('[data-close-panel="timeline-panel"]').click();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('examples/demo_atlas/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
     const systems=sector.systems.filter(s=>s.publicDetailPath!==null);
     for(const system of systems) {

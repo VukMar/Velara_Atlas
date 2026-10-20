@@ -12,9 +12,14 @@
 
 This is an **architecture optimization workstream**, not a replacement for `docs/DEVELOPMENT_ROADMAP.md` or the approved feature specifications. Current behavior and rules continue to be defined by `docs/DATA_MODEL.md`, `schemas/`, `docs/VIEWER_SPECIFICATION.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/NAVIGATION_AUTHORING.md`, `docs/CONTENT_WORKFLOW.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, and `AGENTS.md` (subject to carefully correcting its stale status text in Phase 1). Implementation reports remain point-in-time evidence, not active instructions. Resolve contradictory current-status prose by inspection, not by silently overriding technical contracts.
 
-See [the initial Codex task](CODEX_PHASE_01_DOCUMENTATION_TASK.md) for the **only task authorized immediately**. Do not interpret this roadmap as authorization to execute subsequent phases.
+See [the Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md) for current scope;
+[the initial task](CODEX_PHASE_01_DOCUMENTATION_TASK.md) retains Phase 1 history. Do not interpret this roadmap as authorization to execute subsequent phases.
 
-## Current state: verified findings
+## Original baseline findings (190bd21)
+
+Architecture Phase 2 relocates the live demo to `public/datasets/demo/`; the
+following table retains the original Phase 1 audit context. Explicit loading,
+preloading and seven-file allowlisting remain; manifest loading is still Phase 3.
 
 The baseline has a working separation between pure historical/cartographic logic (`src/core/`), Three.js viewer (`src/viewer/`), schema validation, navigation generation, browser tests, and test fixtures. **Preserve it.** The principal bottlenecks are at the data-registration, viewer-orchestration, configuration, and development-tools boundaries.
 
@@ -97,7 +102,7 @@ PRE-FLIGHT INSIDE PHASE 1
 
 **Goal:** Give active demonstration data, examples, calibration fixtures, legacy canon and public-release output unambiguous ownership.
 
-**Proposed target (subject to Phase 1 audit and creator approval):**
+**Phase 2 target (now creator-authorized; verify Substeps A and B separately):**
 
 ```text
 public/
@@ -111,13 +116,15 @@ public/
       connections.json         # GENERATED, not manually authored
       systems/sys_XXXX.json
 examples/                        # reference/template JSON only, never live dataset
+  README.md
   v1_2/
+docs/archive/json-proposals/      # obsolete proposals preserved, not templates
 tests/
-  fixtures/                     # frozen v1.1, v1.2 and legacy regression inputs
+  fixtures/                     # frozen v1.1/v1.2 and separate legacy_examples
   calibration/                  # current preview, later named scenarios
 ```
 
-Moving the demo under `public/datasets/demo/` **does not authorize enabling Vite's `publicDir`** or copying all of `public/`. Until Phase 3, explicitly update the existing demo loader, safe path/recovery utilities, `.gitignore`, ID Finder, validators, generator, Vite source restrictions, tests and docs so the demo still functions. Move test-dependent old examples to fixtures only when all references and test semantics are preserved. Never conflate old v0.1 `public/data/` with a v1.2 publishable dataset. No automatic canonical promotion.
+The implemented move under `public/datasets/demo/` **does not authorize enabling Vite's `publicDir`** or copying all of `public/`. Until Phase 3, explicitly update the existing demo loader, safe path/recovery utilities, `.gitignore`, ID Finder, validators, generator, Vite source restrictions, tests and docs so the demo still functions. Move test-dependent old examples to fixtures only when all references and test semantics are preserved. Never conflate old v0.1 `public/data/` with a v1.2 publishable dataset. No automatic canonical promotion.
 
 **Acceptance gate:** Same demo content/IDs/history/geometry/connections and outputs, relocated; `examples/` serves reference/documentation purposes; existing behavior and audits pass; a full path-by-path diff and rollback instructions exist. Stage as small coherent commits **only with explicit approval**.
 
@@ -193,4 +200,8 @@ Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementa
 
 ## Immediate instruction to Codex
 
-**Execute Phase 1 only** using [`CODEX_PHASE_01_DOCUMENTATION_TASK.md`](CODEX_PHASE_01_DOCUMENTATION_TASK.md). Do not relocate `examples/demo_atlas/`, convert the calibration fixture to JSON, create the new-system CLI, alter viewer code, change publication allowlists, enable `publicDir`, update schemas, or start deployment. Propose Phase 2 only after completing and reporting Phase 1.
+**Execute Phase 2 only** using [the Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
+Verify the live dataset relocation before reference-example cleanup. Preserve
+bytes, generated navigation, historical behavior and build/dev restrictions.
+No Phase 3 manifest loader, new-system CLI, calibration JSON, editor, commit,
+push or deployment follows from this authorization.

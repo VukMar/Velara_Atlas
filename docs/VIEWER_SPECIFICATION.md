@@ -36,7 +36,7 @@ Use the repository's existing source of truth, in this priority for matters of s
 1. `docs/DATA_MODEL.md` and `schemas/atlas.schema.json` — current **v1.2.0** noncanonical structure; `docs/SCHEMA_V1_2_NAVIGATION.md` owns approved navigation design and `docs/NAVIGATION_AUTHORING.md` its operational workflow.
 2. `docs/DATA_RULES.md` — existing Continuance chronology and date caveats.
 3. `docs/ARCHITECTURE.md` and `docs/CONTENT_WORKFLOW.md` — viewer/publication boundaries.
-4. `examples/demo_atlas/` — **noncanonical** test fixture (not official sector geography).
+4. `public/datasets/demo/` — **noncanonical** test fixture (not official sector geography).
 5. `AGENTS.md` — agent workflow and canon guardrails.
 6. `docs/CANTUM_TERRITORY_RENDERING.md` — approved algorithm and render-order rules for the generated Cantum overlay (companion to this viewer specification).
 
@@ -506,7 +506,7 @@ Fallback should show any **already public** system name, selected year, and arch
 
 ## 12. Initial development fixtures and demo goals
 
-The **only required initial content** is the noncanonical `examples/demo_atlas` dataset, including:
+The **only required initial content** is the noncanonical `public/datasets/demo` dataset, including:
 
 - Two noncanonical Cantums, three released systems (`sys_0001`–`sys_0003`) with independent 100K/80K/160K CNU charts, and one additional positioned archival-only system (`sys_0004`, known from 900 A.E., no Cantum assignment or detail JSON).
 - Separate A/B **interstellar routes**: one exclusive Jump Gate pair and one exclusive Jump Hole pair; an additional dedicated A/C Jump Gate pair.

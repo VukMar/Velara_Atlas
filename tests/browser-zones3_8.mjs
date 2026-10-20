@@ -1,6 +1,6 @@
 /** Dev Playwright MCP suite; synthetic released records are intercepted in memory only. */
 async page => {
-  const base='http://127.0.0.1:5173/Velara_Atlas/',pattern=/examples\/demo_atlas\/systems\/sys_0001\.json/;
+  const base='http://127.0.0.1:5173/Velara_Atlas/',pattern=/public\/datasets\/demo\/systems\/sys_0001\.json/;
   const errors=[],check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',error);
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
@@ -23,7 +23,7 @@ async page => {
   let detail;
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('examples/demo_atlas/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     detail=await (await page.request.get(new URL('systems/sys_0001.json',root).href)).json();
     const source=structuredClone(detail.zones[0]);
     const zone=(id,name,geometry,position,fromAE=160)=>({...structuredClone(source),id,nameHistory:[{fromAE,untilAE:null,name,kind:'noncanonical_demo'}],discoveredAE:fromAE,position,geometry});

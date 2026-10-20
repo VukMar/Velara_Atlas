@@ -141,7 +141,7 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  const location=path.resolve(process.argv[2]??path.join(path.dirname(fileURLToPath(import.meta.url)),'../examples/demo_atlas'));
+  const location=path.resolve(process.argv[2]??path.join(path.dirname(fileURLToPath(import.meta.url)),'../public/datasets/demo'));
   const errors=validateRelationships(readDataset(location));
   if(errors.length){errors.forEach(error=>console.error('FAIL',error));process.exitCode=1;}
   else console.log('PASS relational data validation');

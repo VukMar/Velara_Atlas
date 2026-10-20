@@ -4,8 +4,8 @@ import { resolveName, resolveEra, resolveCantum, resolveSystem, visibleObjects }
 const load = file => JSON.parse(readFileSync(new URL(file, import.meta.url), 'utf8'));
 const p = load('../public/data/political.json');
 const sector = load('../public/data/sector.json');
-const sample = load('../examples/noncanon_sector_system.json');
-const detail = load('../examples/noncanon_system_detail.json');
+const sample = load('./fixtures/legacy_examples/noncanon_sector_system.json');
+const detail = load('./fixtures/legacy_examples/noncanon_system_detail.json');
 
 function assertNonOverlapping(history, descriptor) {
   if (!history) return;

@@ -11,6 +11,9 @@
 /examples/demo_atlas/.connections-recovery.json
 /examples/demo_atlas/**/*.connections-*.tmp
 /examples/demo_atlas/**/*.connections-*.bak
+/public/datasets/demo/.connections-recovery.json
+/public/datasets/demo/**/*.connections-*.tmp
+/public/datasets/demo/**/*.connections-*.bak
 
 # Extracted private worldbuilding references
 /.local-references/

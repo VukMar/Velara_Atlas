@@ -56,7 +56,7 @@ it stays unverified, without reading or inventing unreleased object details.
 only `--check`; no custom directory, URL, private folder or arbitrary data path
 is accepted by the CLI. `scripts/demo-files.mjs` allowlists sector, Cantums,
 presentation, connections and exactly `sys_0001` through `sys_0003` beneath
-`examples/demo_atlas/`. Symlink/reparse paths are refused. The IO root argument
+`public/datasets/demo/`. Symlink/reparse paths are refused. The IO root argument
 in exported functions exists for isolated failure tests, not a publishing API.
 
 The compiler uses full XYZ CNU and `u = (B-A)/|B-A|`, placing gates at `A+rA*u`
@@ -68,7 +68,7 @@ CNU, models orbits, or changes moon-relative placement.
 
 The writer may replace only:
 
-- `examples/demo_atlas/connections.json`: complete v1.2 registry, sorted by
+- `public/datasets/demo/connections.json`: complete v1.2 registry, sorted by
   permanent link ID, deterministic two-space JSON and final LF.
 - `position` value spans of explicitly derived short-range gates in the
   allowlisted system files. Other fields, unrelated positions, histories,
@@ -88,7 +88,7 @@ again. Inputs are checked for concurrent edits before replacement. Every
 replacement is verified with a fresh read and freshness validation before
 backups are cleaned up. Multi-file replacement **is not atomic**.
 
-The writer creates `examples/demo_atlas/.connections-recovery.json` exclusively
+The writer creates `public/datasets/demo/.connections-recovery.json` exclusively
 as its lock/journal, recording approved relative targets, stage/backup paths and
 SHA-256 hashes. Temporary files end in `.connections-<uuid>.tmp` and `.bak`.
 These recovery artifacts are ignored by Git and excluded by the build allowlist;
@@ -100,7 +100,7 @@ For interruption, failed rollback or cleanup:
 
 1. Stop other generator processes and retain all journal/stage/backup files.
    Inspect the journal locally; targets must be `connections.json` or one of the
-   three approved system details, all within `examples/demo_atlas/`.
+   three approved system details, all within `public/datasets/demo/`.
 2. Compare each target and backup with `previousSHA256`/`nextSHA256`. A backup
    may be absent if interruption preceded backup creation. Do not overwrite a
    concurrently edited file: compare and preserve it separately first.

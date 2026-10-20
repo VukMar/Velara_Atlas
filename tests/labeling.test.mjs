@@ -43,7 +43,7 @@ test('complete names fit conservatively inside their own component; upright orie
 });
 
 test('real historical inputs update names, discovery, membership and eligible Cantums without future leakage',()=>{
-  const d=readDataset(fileURLToPath(new URL('../examples/demo_atlas/',import.meta.url)));
+  const d=readDataset(fileURLToPath(new URL('../public/datasets/demo/',import.meta.url)));
   const before=JSON.stringify(d.sector);
   const regionAt=y=>{const v=resolveAtlas(d,y);return territorialLabels(territoryGroups(v,d.sector,d.presentation),v.cantums,d.sector.map,d.presentation);};
   assert.deepEqual(regionAt(99),[]);

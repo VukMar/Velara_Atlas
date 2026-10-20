@@ -5,6 +5,11 @@
 **Basis:** Existing Velara Atlas v1.1 data contract, Checkpoint 3 historical viewer and connector audit, and creator-approved direction in the October 2026 design discussion.  
 **Implementation boundary:** This design approval is not a blanket authorization to modify the repository. Obtain a focused Codex implementation handoff. Do not change canonical `public/data/`, the legacy resolver, or private lore. Confirm the local workspace has an accepted, committed Checkpoint 3 baseline before implementation.
 
+**Current dataset location (architecture Phase 2):** `public/datasets/demo/`.
+The old `examples/demo_atlas/` paths in the original design/delivery sections
+below retain their historical context; use [the authoring guide](NAVIGATION_AUTHORING.md)
+for current generator and recovery paths. No navigation semantics changed.
+
 **Current implementation note:** The focused handoff was completed in `4ff0ecb`.
 The exact names `navigation`, `localLinks`, `interstellarConnection` and
 `positionMode` are implemented by current v1.2 definitions and offline tools.

@@ -5,7 +5,7 @@
 `public/data/political.json`, `public/data/sector.json` and
 `src/timeline/resolve.mjs` retain the legacy v0.1 contract and permanent IDs.
 The modern pure resolver, Schema v1.2, generator and three-system viewer are
-implemented for **noncanonical `examples/demo_atlas/` only**. Frozen v1.1 and
+implemented for **noncanonical `public/datasets/demo/` only**. Frozen v1.1 and
 v1.2 test datasets preserve earlier behavior; none is a canonical release.
 
 ## Required before a future canonical migration

@@ -1,13 +1,14 @@
 # Velara Atlas — Implemented architecture
 
-**Status:** Verified against `main` at `190bd21` (2026-10-20). The local
+**Status:** Runtime baseline from `190bd21`, with Phase 2 paths updated from
+`main` at `6ae6ee2` (2026-10-20). The local
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Current work is documentation-only architecture Phase 1; canonical migration,
+Current work is architecture Phase 2 dataset organization; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
-[migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md) for proposed path work.
+[migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md) for the original dependency audit.
 
 ## Runtime responsibilities
 
@@ -43,7 +44,7 @@ has no write endpoint, authentication, live AI lore generation or backend.
 ## Data flow and historical semantics
 
 1. The demo loader reads only released, explicitly allowlisted noncanonical JSON
-   from `examples/demo_atlas/` (four registries and three detail files).
+   from `public/datasets/demo/` (four registries and three detail files).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -155,7 +156,7 @@ and 2/2.5/3-ly radius choices. It does not read demo JSON.
 it; `index.html` defines controls. The preview script serves exactly these three
 files through development-only middleware, reusing the existing viewer/core.
 No scenario JSON loader or editor exists. JSON scenario support belongs to
-proposed architecture **Phase 5**, not Phase 1 or the proposed Phase 2 move.
+proposed architecture **Phase 5**, not Phase 1 or the Phase 2 path move.
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
@@ -220,4 +221,5 @@ and large-atlas performance remain future work. See
 [Checkpoint 3.6 audit evidence](REPOSITORY_AUDIT_3_6.md) for its original limits;
 the [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) records subsequent
 emulated-touch checks and the continuing bundle-size advisory. These are
-historical results, not fresh browser verification for architecture Phase 1.
+historical results. [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) record
+the browser and boundary verification performed for this path migration.

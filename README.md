@@ -7,8 +7,9 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 > **Project status — committed baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
 Start with the [documentation index](docs/INDEX.md). The current authorized work is
-[architecture optimization Phase 1](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md),
-limited to documentation and inventory by the [Phase 1 task](docs/CODEX_PHASE_01_DOCUMENTATION_TASK.md).
+[architecture optimization Phase 2](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md),
+limited to dataset/repository organization by the [Phase 2 task](docs/CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
+The [Phase 2 results](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) record migration and verification.
 Later architecture phases require separate approval.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
@@ -54,8 +55,10 @@ The viewer is read-only. Local Node tools support manual JSON authoring; private
 | Location | Contents |
 | --- | --- |
 | `public/data/` | Protected legacy v0.1 canonical records; excluded from the demo build |
-| `examples/demo_atlas/` | Active public-safe noncanonical v1.2 runtime dataset |
-| Other `examples/` | Legacy regression inputs and historical proposal shapes |
+| `public/datasets/demo/` | Active public-safe noncanonical v1.2 runtime dataset |
+| `examples/v1_2/` | Validated noncanonical developer learning references; excluded from runtime |
+| `tests/fixtures/legacy_examples/` | Preserved legacy regression inputs |
+| `docs/archive/json-proposals/` | Preserved obsolete JSON proposal shapes |
 | `src/timeline/` | Existing historical resolver (v0.1) |
 | `src/core/history.mjs` | Independent historical resolver (v1.1/v1.2 runtime records) |
 | `src/core/cartography.mjs` | Pure historical catalogue, route and influence calculations |
@@ -131,7 +134,7 @@ No canonical radius has been chosen; see [architecture and isolation](docs/ARCHI
 
 ## Schema v1.2 navigation authoring
 
-Edit only the noncanonical demonstration under `examples/demo_atlas/` for this
+Edit only the noncanonical demonstration under `public/datasets/demo/` for this
 workflow. System-object `navigation.localLinks` and `interstellarConnection`
 declarations are the authoring source; `connections.json` is a generated,
 Git-tracked runtime index. Each physical gate/hole has at most one lifetime

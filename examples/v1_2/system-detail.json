@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.2.0",
+  "id": "sys_0001",
+  "entityType": "system_detail",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 100000,
+      "y": 20000,
+      "z": 100000
+    },
+    "unit": "CNU",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "objects": [
+    {
+      "id": "cb_0001",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "physicalDiameterKm": 1080000,
+      "discoveredAE": 100,
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "name": "A Primary",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "Main star of System A."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": null
+    }
+  ]
+}

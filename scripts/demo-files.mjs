@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-export const DEMO_ROOT = fileURLToPath(new URL('../examples/demo_atlas/', import.meta.url));
+export const DEMO_ROOT = fileURLToPath(new URL('../public/datasets/demo/', import.meta.url));
 export const SYSTEM_FILES = ['systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'];
 export const INPUT_FILES = ['sector.json', 'cantums.json', 'presentation.json', 'connections.json', ...SYSTEM_FILES];
 

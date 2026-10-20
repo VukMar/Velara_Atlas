@@ -8,7 +8,7 @@ import {resolveCatalogue, resolveSystem} from '../src/core/history.mjs';
 import {createMarker, fitCamera, markerHitSize} from '../src/viewer/map-scene.mjs';
 import config, {demoInputAudit} from '../vite.config.mjs';
 
-const load = () => readDataset(fileURLToPath(new URL('../examples/demo_atlas/', import.meta.url)));
+const load = () => readDataset(fileURLToPath(new URL('../public/datasets/demo/', import.meta.url)));
 
 test('prototype meshes preserve every demo XYZ and permanent identity without mutating resolved data', () => {
   const d = load(), year = d.sector.timeline.defaultAE;
@@ -89,9 +89,9 @@ test('demo build permits only viewer/core, explicit demo JSON and package module
   const context = {error(message) { throw new Error(message); }};
   assert.doesNotThrow(() => hook.call(context, {}, bundle([
     path('../src/viewer/main.mjs'), path('../src/core/history.mjs'), path('../src/core/cartography.mjs'), path('../src/core/zone-geometry.mjs'),
-    ...['sector.json', 'cantums.json', 'connections.json', 'presentation.json', 'systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'].map(f => path('../examples/demo_atlas/' + f))
+    ...['sector.json', 'cantums.json', 'connections.json', 'presentation.json', 'systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'].map(f => path('../public/datasets/demo/' + f))
   ])));
-  for (const file of ['../public/data/political.json', '../private/fixture.json', '../examples/cantum_b.json', '../src/timeline/resolve.mjs']) {
+  for (const file of ['../public/data/political.json', '../private/fixture.json', './fixtures/legacy_examples/cantum_b.json', '../src/timeline/resolve.mjs']) {
     assert.throws(() => hook.call(context, {}, bundle([path(file)])), /Unexpected input/);
   }
 });

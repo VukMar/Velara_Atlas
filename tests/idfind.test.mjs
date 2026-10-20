@@ -16,7 +16,7 @@ const fixture = () => ({
   'systems/sys_0001.json': system('sys_0001',[body('cb_0002'),body('gat_0003','gate')])
 });
 function memory(files, scope = 'demo') {
-  const base=path.join(repositoryRoot,scope==='demo'?'examples/demo_atlas':'public/data');
+  const base=path.join(repositoryRoot,scope==='demo'?'public/datasets/demo':'public/data');
   const data=new Map(Object.entries(files).map(([name,value])=>[path.join(base,name),typeof value==='string'?value:JSON.stringify(value)]));
   const directories=new Set([base]);
   for(const file of data.keys())for(let dir=path.dirname(file);dir.startsWith(base);dir=path.dirname(dir))directories.add(dir);
@@ -153,7 +153,7 @@ test('actual author-editable demo inventory scans cleanly with all supported pre
 test('standalone CLI returns nonzero for bad prefix and succeeds independently of cwd without altering scanned files',()=>{
   const script=fileURLToPath(new URL('../scripts/idfind.mjs',import.meta.url));
   const root=fileURLToPath(new URL('../',import.meta.url)),r=scanDataset();
-  const capture=()=>r.files.map(file=>fs.readFileSync(path.join(root,'examples/demo_atlas',file),'utf8'));
+  const capture=()=>r.files.map(file=>fs.readFileSync(path.join(root,'public/datasets/demo',file),'utf8'));
   const before=capture();
   const ok=spawnSync(process.execPath,[script,'all'],{cwd:path.join(root,'scripts'),encoding:'utf8'});
   const links=r.rows.find(row=>row.prefix==='lnk');

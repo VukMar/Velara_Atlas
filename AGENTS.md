@@ -4,26 +4,27 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Current task override:** Architecture optimization **Phase 1 only** authorizes
-documentation consolidation, current-status corrections and a proposed Phase 2
-dependency inventory. Read `docs/INDEX.md`, `docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md`
-and `docs/CODEX_PHASE_01_DOCUMENTATION_TASK.md` for authority, scope and validation.
-Stages 1–3 are creator-approved; Stage 4 and the intermediate calibration are
-committed in `190bd21`. Preserve all of that work: 8px Sector star symbols with
-usable invisible targets, the provisional `clamp(radiusLY * .30, .5, 3)` envelope
-half-height and a separate loopback-only 40-ly in-memory test preview for explicit
-2/2.5/3-ly radius comparisons.
-Preserve Gaussian fields/topology, Stage 4 fitting, authored data/schemas/assets,
-grid, navigation and all System View sizes/minima. Do not choose a canonical
-radius. Stage 5 artistic refinement remains deferred. No code, schema, data,
-asset or configuration edits, file moves, commit/push/deploy, or Phase 2 execution
-are authorized. Stop after the Phase 1 completion report for creator review.
+**Current task override:** Architecture optimization **Phase 2 only** is creator-authorized
+by `docs/CODEX_PHASE_02_DATASET_MIGRATION_TASK.md`: relocate the seven live
+noncanonical demo files byte-for-byte to `public/datasets/demo/` (Substep A),
+verify A independently, then organize legacy regressions and obsolete proposals
+outside reference-only `examples/` (Substep B). Use `docs/INDEX.md`, the architecture
+roadmap and Phase 2 dependency inventory. Preserve IDs, history, XYZ/CNU/ly units,
+generated graph/gate positions, protected canon, frozen fixtures, SVGs and all
+calibration behavior. Keep `publicDir: false`, exact production inputs/output
+audits and narrow dev permissions. No generator run for this path-only move.
+Stages 1?3 are creator-approved; Stage 4 and intermediate calibration are committed
+in `190bd21`: 8px Sector symbols, usable invisible targets, provisional
+`clamp(radiusLY * .30, .5, 3)` half-height and isolated 40-ly in-memory preview.
+Do not choose a canonical radius. Stage 5 artistic refinement remains deferred.
+No Phase 3 manifest/loader architecture, new CLI, calibration JSON, commit, push
+or deployment is authorized. Produce the Phase 2 results report and stop for review.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Current authorization is documentation-only architecture Phase 1. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Current authorization is architecture Phase 2 dataset organization only. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
-For the current documentation task, start with the Phase 1 task and architecture
+For the current migration task, start with the Phase 2 task and architecture
 optimization roadmap above; use `docs/INDEX.md` to distinguish active authority
 from historical evidence. The technical read-first references remain:
 
@@ -92,4 +93,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Stop after architecture Phase 1 documentation and inventory; Phase 2 and further visual development require separate creator approval. Do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Stop after architecture Phase 2 and its results report; Phase 3 and further visual development require separate creator approval. Do not commit, push or deploy automatically.

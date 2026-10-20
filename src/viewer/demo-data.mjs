@@ -1,14 +1,14 @@
-import sector from '../../examples/demo_atlas/sector.json';
-import cantums from '../../examples/demo_atlas/cantums.json';
-import connections from '../../examples/demo_atlas/connections.json';
-import presentation from '../../examples/demo_atlas/presentation.json';
+import sector from '../../public/datasets/demo/sector.json';
+import cantums from '../../public/datasets/demo/cantums.json';
+import connections from '../../public/datasets/demo/connections.json';
+import presentation from '../../public/datasets/demo/presentation.json';
 
 // Explicit allowlist, not a filesystem glob or arbitrary path fetch. Vite emits
 // each public demo detail as a base-aware lazy chunk; public/ is never copied.
 const detailLoaders = new Map([
-  ['systems/sys_0001.json', () => import('../../examples/demo_atlas/systems/sys_0001.json')],
-  ['systems/sys_0002.json', () => import('../../examples/demo_atlas/systems/sys_0002.json')],
-  ['systems/sys_0003.json', () => import('../../examples/demo_atlas/systems/sys_0003.json')]
+  ['systems/sys_0001.json', () => import('../../public/datasets/demo/systems/sys_0001.json')],
+  ['systems/sys_0002.json', () => import('../../public/datasets/demo/systems/sys_0002.json')],
+  ['systems/sys_0003.json', () => import('../../public/datasets/demo/systems/sys_0003.json')]
 ]);
 
 export const demoSector = sector;

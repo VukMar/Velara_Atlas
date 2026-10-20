@@ -24,7 +24,7 @@ export function parseArguments(args) {
 /** No recursion or arbitrary registry paths. io/root injection is for tests. */
 export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs} = {}) {
   if (!['demo', 'public'].includes(scope)) throw new Error(`Unsupported dataset scope: ${scope}`);
-  const base = path.resolve(repositoryRoot, scope === 'demo' ? 'examples/demo_atlas' : 'public/data');
+  const base = path.resolve(repositoryRoot, scope === 'demo' ? 'public/datasets/demo' : 'public/data');
   const files = new Map(), errors = [], notes = [], legacy = [];
   const definitions = new Map(PREFIXES.map(p => [p, new Map()]));
   function safe(name) {

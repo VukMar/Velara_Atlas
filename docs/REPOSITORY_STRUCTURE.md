@@ -1,12 +1,12 @@
 # Velara Atlas — Repository structure and ownership
 
-**Status:** Current ownership verified at `190bd21` (2026-10-20), including
+**Status:** Current ownership updated from `6ae6ee2` during architecture Phase 2 (2026-10-20), including
 Checkpoint 4.1 Phase 3, Cantum Stage 4 and intermediate calibration.
 The [Checkpoint 3.6 audit](REPOSITORY_AUDIT_3_6.md) is an earlier inventory,
 not a complete inventory of later additions. The tree below summarizes ownership;
 [architecture](ARCHITECTURE.md) lists module responsibilities and the
 [index](INDEX.md) maps documentation authority.
-Future paths are proposals, not scaffolding to create during Phase 1.
+The live demo relocation is Substep A; standalone-example cleanup is Substep B.
 
 ## Current tree
 
@@ -53,8 +53,8 @@ Velara_Atlas/
       zone-layers.mjs          Clipped footprints and approximate 3D system clouds
       [other viewer modules]   Physical models/proxies, labels/sigils/envelopes;
                                see ARCHITECTURE.md for individual owners
-  examples/
-    demo_atlas/
+  public/datasets/
+    demo/
       sector.json              Authored v1.2 index in ly
       cantums.json             Authored demonstration histories
       presentation.json        Noncanonical colors/field settings
@@ -62,9 +62,10 @@ Velara_Atlas/
       systems/sys_0001.json    Authored records + derived local gate positions
       systems/sys_0002.json
       systems/sys_0003.json
-    noncanon_sector_system.json / noncanon_system_detail.json
-                               Active v0.1 regression inputs
-    [other standalone JSON]    Historical v0.2 proposals; not v1.2 templates
+  examples/
+    README.md                  Current contract and reference-only ownership
+    v1_2/                      Validated noncanonical star/detail/presentation examples
+  docs/archive/json-proposals/ Eight unchanged obsolete standalone proposals
   tests/
     check.mjs / demo.mjs        Legacy assertions / console chronology
     *.test.mjs                 Versioned schemas/history, generator, cartography,
@@ -72,6 +73,7 @@ Velara_Atlas/
     browser-*.mjs              Playwright MCP entry points, not Node test files
     calibration/               Synthetic in-memory scenario, controller and HTML;
                                excluded from production, not a JSON dataset
+    fixtures/legacy_examples/  Three preserved legacy/forbidden regression inputs
     fixtures/v1_1/             Frozen accepted two-system branching regression
     fixtures/v1_2/             Frozen original three-system navigation regression
   public/data/
@@ -85,7 +87,7 @@ Velara_Atlas/
 
 ## Authoring and generated ownership
 
-`examples/demo_atlas/systems/` owns v1.2 object declarations, permanent IDs,
+`public/datasets/demo/systems/` owns v1.2 object declarations, permanent IDs,
 history and authored absolute CNU coordinates. Each dedicated connected
 short-range gate opts into `positionMode: "boundary_derived"`. The manual
 generator writes only those position values plus the complete central
@@ -108,8 +110,10 @@ Never deduplicate fixtures or renumber IDs as organization cleanup.
 | Path | Role | Public Git | Current browser build |
 | --- | --- | --- | --- |
 | `docs/` | Contracts, workflow, historical references | Public-safe | Excluded |
-| `examples/demo_atlas/` | Noncanonical demonstration | Tracked | Seven exact allowlisted JSON inputs |
-| Other `examples/` | Legacy regression and historical templates | Retained | Excluded |
+| `public/datasets/demo/` | Noncanonical demonstration | Tracked | Seven exact allowlisted JSON inputs |
+| `examples/v1_2/` | Current developer learning references | Public-safe | Excluded |
+| `tests/fixtures/legacy_examples/` | Legacy regression/forbidden inputs | Preserved | Excluded |
+| `docs/archive/json-proposals/` | Superseded JSON proposals | Preserved | Excluded |
 | `public/data/` | Canonical legacy v0.1 records | Protected | Excluded (`publicDir: false`) |
 | `public/assets/` | Existing art sources | Public-safe | Only fourteen navigation SVGs and one explicit demo sigil; NEXUS PNGs excluded |
 | `tests/calibration/` | Synthetic in-memory local preview | Public-safe | Excluded; explicit loopback development middleware only |
@@ -125,30 +129,31 @@ Do not inspect private sibling folders without an explicit task.
 
 ## Retention and review rules
 
-Keep both original `noncanon_*.json` files: `tests/check.mjs` reads them.
-Other standalone examples preserve superseded proposal shapes and are not
-current authoring templates. See [pending candidates](REPOSITORY_AUDIT_3_6.md)
-before proposing movement/deletion; nothing uncertain was moved in this audit.
+The two original `noncanon_*.json` regression files and the `cantum_b.json`
+forbidden-input fixture now live in `tests/fixtures/legacy_examples/`, with
+unchanged bytes and assertions. Eight obsolete proposal files are preserved in
+`docs/archive/json-proposals/`; their README records versions and provenance.
+`examples/` now contains only current v1.2 developer references and explanatory
+documentation. These references never register runtime data or reserve IDs.
 
 Keep historical reports clearly labeled at their existing paths so existing
 links and provenance remain valid. `SCHEMA_INSTALL.md` is obsolete setup history,
 not an instruction to install old files over today's checkout.
 `DATA_MODEL.md`, current schemas and `NAVIGATION_AUTHORING.md` govern new demo data.
 
-## Proposed Phase 2 layout — not implemented
+## Architecture Phase 2 organization
 
-The [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-proposes relocating only the active noncanonical demo to `public/datasets/demo/`
-after separate approval. Today it remains in `examples/demo_atlas/`.
-`public/data/` remains protected legacy canon; frozen fixtures remain unchanged.
-Standalone examples need individual review because two are live v0.1 test inputs
-and others are superseded proposal shapes, not valid v1.2 templates.
-See the [Phase 2 dependency and rollback inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md)
-before planning any move. A directory relocation alone is insufficient.
+The seven live JSON files now reside under `public/datasets/demo/`; their relative
+paths and bytes are preserved. `public/data/` remains protected legacy canon,
+and frozen fixtures remain unchanged. The original [dependency inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md)
+records the pre-migration consumer map. Explicit loader registration, preloading
+and seven-file Vite admission remain; Phase 3 loading changes are deferred.
 
-Calibration remains in-memory under `tests/calibration/`; scenario JSON is a
-Phase 5 proposal. A future `docs/reports/` reorganization would require a separate
-path/link inventory and approval; Phase 1 organizes navigation only.
+Substep B separately preserves three legacy regression files and archives eight
+obsolete proposals, leaving validated v1.2 learning references under `examples/`.
+See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for hashes and checks.
+Calibration stays in memory under `tests/calibration/`; scenario
+JSON is Phase 5. A future report-directory reorganization needs separate approval.
 
 ## Other reserved future paths
 
