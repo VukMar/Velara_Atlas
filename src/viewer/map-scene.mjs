@@ -13,6 +13,8 @@ import {createSystemObject} from './celestial-model.mjs';
 import {physicalRadius,projectedDiameter,representation,projectedVisible} from './celestial-scale.mjs';
 import {attachProxy} from './navigation-proxy.mjs';
 import {inspectionFor,frameInspection,constrainInspection} from './inspection-camera.mjs';
+import {SECTOR_SYSTEM_MARKER_RADIUS_PX} from './visual-config.mjs';
+import {sectorMarkerWorldRadius} from './sector-markers.mjs';
 
 const point = position => new THREE.Vector3(position.x, position.y, position.z);
 
@@ -257,7 +259,8 @@ export class AtlasMap {
       });
       this.labels.append(button);
       this.labelsById.set(entity.id, button);
-      this.anchors.push({entity, position, button, text, layer, object, proxy, radius: ['routes','zones'].includes(layer) ? 4 : 13});
+      this.anchors.push({entity, position, button, text, layer, object, proxy,
+        radius: this.map?.unit==='ly'&&entity.entityType==='star_system' ? SECTOR_SYSTEM_MARKER_RADIUS_PX : ['routes','zones'].includes(layer) ? 4 : 13});
   }
 
   clearMap() {
@@ -577,6 +580,10 @@ export class AtlasMap {
     const anchors = projections.map(p => ({x: (p.x + 1) / 2 * this.width, y: (1 - p.y) / 2 * this.height}));
     for (const mesh of this.meshes) {
       if (mesh.userData.systemObject) continue; // Physical radii never follow zoom.
+      if(this.map?.unit==='ly'&&mesh.userData.entity.entityType==='star_system') {
+        mesh.scale.setScalar(sectorMarkerWorldRadius(mesh.position,this.camera,this.width,this.height));
+        continue;
+      }
       const unitsPerPixel = this.mode === 'top' ? (this.camera.top - this.camera.bottom) / this.height / this.camera.zoom :
         2 * mesh.position.distanceTo(this.camera.position) * Math.tan(Math.PI / 8) / this.height / this.camera.zoom;
       mesh.scale.setScalar(unitsPerPixel * 8);

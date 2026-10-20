@@ -4,16 +4,17 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Current task override:** Stages 1–2 are approved. Implement Cantum Visual Patch
-Stage 3 only: perspective-only flattened influence envelopes from the existing
-authoritative X/Z field, bounded contributor-Y shaping, capped compositing and
-local envelope-top nameplate heights. Preserve the unchanged flat top-down field,
-historical contributor selection, 8×8 grid/ly scale, all data/schemas/assets,
-system charts/navigation and `visual-config.mjs`. Stage 4 island-label rules and
-Stage 5 artistic refinement remain unimplemented. Stop after Stage 3 without
+**Current task override:** Stages 1–3 are creator-approved; Stage 4 is implemented
+locally and uncommitted. Preserve all of that work. The authorized intermediate
+calibration adds 8px Sector star symbols with usable invisible targets, the
+provisional `clamp(radiusLY * .30, .5, 3)` envelope half-height and a separate
+loopback-only 40-ly test preview for explicit 2/2.5/3-ly radius comparisons.
+Preserve Gaussian fields/topology, Stage 4 fitting, authored data/schemas/assets,
+grid, navigation and all System View sizes/minima. Do not choose a canonical
+radius. Stage 5 artistic refinement remains deferred. Stop after calibration without
 commit/push/deploy; later stages require creator approval.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline; current implementation is limited to Cantum Visual Patch Stage 3 above. The next planned stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement; implementation, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline; current implementation is limited to the intermediate calibration above, on top of local Stage 4. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -82,4 +83,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Cantum Visual Patch Stage 3. Further visual development requires separate creator approval; do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the intermediate Cantum scale calibration; preserve uncommitted Stage 4. Further visual development requires separate creator approval; do not commit, push or deploy automatically.

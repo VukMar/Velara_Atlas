@@ -11,7 +11,7 @@ deployment remain unauthorized.
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
 
-**Current focused authorization:** following the approved SVG family at `eca903b`,
+**Completed focused authorization:** following the approved SVG family at `eca903b`,
 standardize only the sector grid to unnumbered 8×8 on `map.planeY`, with one
 bottom-right light-year cell-width arrow. System View keeps its A–H/1–8 grid,
 absolute Y=0 CNU and H8 measurement. Cantum presentation, chart dimensions and
@@ -27,19 +27,38 @@ See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 ## Approved foundations and design
 
-**Latest authorization — Cantum Visual Patch Stage 3 only:** Stages 1–2 are
+**Current focused authorization — intermediate Cantum scale calibration:** preserve
+the uncommitted local Stage 4 implementation. Reduce only Sector system spheres
+to 8 CSS pixels, retain usable targets and tighten caption offsets. Evaluate
+explicit 2/2.5/3-ly influence radii in a separate local-only 40-ly memory fixture;
+apply the provisional `.5–3` ly envelope half-height clamp. Existing demo radii,
+coordinates and all System View scales remain unchanged. No permanent canonical
+radius is selected. Stage 5 remains deferred; stop for creator review after
+[calibration verification](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+
+**Previous authorization — Cantum Visual Patch Stage 4 only:** Stages 1–3 are
+creator-approved. Preserve full-name fitting and add registered sigil-only
+identities for sufficiently resolved small islands, using the existing field
+components and DOM nameplate lifecycle. Fixed overview fitting avoids camera
+classification flicker; local envelope sampling preserves separate island heights.
+No data, SVG, schema, grid or influence-geometry changes. Stage 5 final refinement,
+canonical migration and deployment remain deferred. Stop for review after
+[Stage 4 verification](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md).
+
+**Completed authorization — Cantum Visual Patch Stage 3:** Stages 1–2 are
 creator-approved. Perspective envelopes now visualize the unchanged 2D field,
 with bounded contributor-Y shaping, local nameplate heights and restrained capped
-compositing. Top-down stays unchanged. Stage 4 detached-island label rules and
-Stage 5 final refinement remain planned and unimplemented. Stop for review after
+compositing. Top-down stays unchanged. Stage 4 was deferred at that checkpoint;
+Stage 5 final refinement remains planned. See
 [Stage 3 verification](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
-**Current authorization — Cantum Visual Patch Stage 2 only:** Stage 1 has been
+**Completed authorization — Cantum Visual Patch Stage 2:** Stage 1 has been
 reviewed and approved. Add the optional current v1.2 sigil identifier, one explicit
 noncanonical demo SVG, secure bundling and integration with existing nameplates.
 Stage 3 flattened influence envelopes and Stage 4 sigil-only detached-island
-rules remain planned, requiring separate approval. Preserve grid, influence and
-navigation behavior. Stop after [Stage 2 verification](CANTUM_SIGILS_STAGE2_RESULTS.md).
+rules were deferred at that checkpoint and subsequently authorized separately.
+Grid, influence and navigation behavior were preserved. See
+[Stage 2 verification](CANTUM_SIGILS_STAGE2_RESULTS.md).
 
 Milestones 1–5 established repository/disclosure rules, the structural data model,
 the viewer specification, Cantum rendering, NEXUS identity and asset policy.

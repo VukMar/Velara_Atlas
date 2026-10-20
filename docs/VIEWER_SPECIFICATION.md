@@ -362,8 +362,9 @@ uses the overlay's visibility threshold and four-neighbor components. Each
 sufficiently large component can receive one complete name; disconnected holdings
 never gain a forced bridge or shared spanning name. Weighted principal axes,
 interior clearance and padded rectangle fitting determine fixed X/Z positions,
-world dimensions and upright angles bounded to ±30°. Small or unnamed regions
-are omitted. This represents approximate influence geography, not legal borders
+world dimensions and upright angles bounded to ±30°. Unnamed regions are omitted;
+Stage 4 provides registered sigil-only identities for eligible smaller islands.
+This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
 
 **Cantum Visual Patch Stage 1:** projected DOM nameplates replace floor-mounted
@@ -388,7 +389,7 @@ captions/controls and grid annotations remain above it. Map/year changes replace
 its nodes; scene disposal removes the overlay. There are no text GPU resources
 or new animation loops; the topology/placement cache retains eight input sets.
 Top-down influence remains flat and unchanged. Stage 2 adds optional sigils;
-Stage 3 adds perspective envelopes. New detached-island display rules remain deferred.
+Stage 3 adds perspective envelopes. Stage 4 extends small-island identities below.
 See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 **Stage 2 optional Cantum sigils:** the closed registry recognizes only
@@ -399,13 +400,14 @@ items exist. Null, omission or an unknown ID creates no image; a failed asset
 removes the image and triggers the existing render path to recontain the text.
 Rebuild/disposal removes image error listeners. There is no generic fallback,
 new interaction target, permanent loop, new island eligibility or System View
-plate. Stage 4 sigil-only islands remain deferred.
+plate. Stage 4 additionally omits the whole plate if a sigil-only image fails.
 
 **Stage 3 perspective influence:** only perspective uses translucent flattened
 world-space envelopes derived from the same Gaussian X/Z field. Top-down retains
 the original RGBA texture, including mixing/alpha caps. The representations are
 mutually exclusive under the existing Influence toggle. Bounds-clipped upper/lower
-surfaces use `clamp(radiusLY * .30, 4, 9)` half-height and a smooth local elevation
+surfaces now use the intermediate calibration's `clamp(radiusLY * .30, .5, 3)`
+half-height (superseding Stage 3's 4–9 ly clamp) and a smooth local elevation
 interpolation through eligible contributors. A capped geometry-only accumulation
 pass keeps all front/back/overlap alpha at or below .22. It requires a renderable
 half-float color target; no volumetric raymarching or new selection identity exists.
@@ -413,6 +415,32 @@ Perspective nameplates keep X/Z and eligibility, sitting above the local upper
 surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independent
 of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
 and [Stage 3 evidence](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
+
+**Stage 4 island identities:** the original full-name fitting pass remains first
+and unchanged. An island that cannot fit its complete resolved name may display
+only its approved registered sigil; null/omitted/unknown sigils produce no marker.
+No abbreviations, generic emblems or island selection entities are introduced.
+At least 24 sampled cells and an interior square accommodating a 24px sigil on a
+fixed 768px overview, padded by one field cell on every side, are required.
+These camera-independent rules omit tiny or poorly resolved fragments. Stable
+interior candidates prefer marker clearance and field depth. Full-name and
+sigil-only plates share projection, fade, containment and Names visibility;
+perspective heights use their local envelope upper surface and existing clearance.
+Missing surfaces hide the marker. A failed outpost image removes its entire plate.
+Influence shading, geometry, colors and political history remain unchanged.
+See [the policy](CANTUM_TERRITORY_RENDERING.md#stage-4-detached-island-identities)
+and [Stage 4 evidence](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 is deferred.
+
+**Intermediate calibration:** Sector `star_system` spheres have an 8 CSS-pixel
+diameter independent of camera zoom, tilt, projection and DPR. The central 4px
+radius setting affects only these catalogue symbols. Captions use a 4px visible
+radius plus 4px gap; invisible neighbor-aware targets retain their existing
+up-to-30px size. All System View celestial minima/physical dimensions remain
+unchanged. A separate loopback-only 40-ly calibration preview compares explicit
+2/2.5/3-ly territory radii without changing demo/canonical data or Stage 4 placement.
+The existing 24/18-ly demo envelopes now have 3-ly half-heights. This is provisional
+scale evaluation, not Stage 5 or canonical radius approval. See
+[the report](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Projected HTML object captions stay centered beneath marker footprints at readable
 CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.

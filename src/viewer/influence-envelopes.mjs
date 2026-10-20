@@ -2,7 +2,7 @@ import {cantumField} from '../core/cartography.mjs';
 
 const cache=new Map(),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const ENVELOPE_RESOLUTION=128;
-export const envelopeHalfHeight=radius=>clamp(radius*.30,4,9);
+export const envelopeHalfHeight=radius=>clamp(radius*.30,.5,3);
 
 /** Pure bounded mesh data. The political field remains strictly X/Z. */
 export function influenceEnvelopes(groups, systems, map, presentation, resolution=ENVELOPE_RESOLUTION) {

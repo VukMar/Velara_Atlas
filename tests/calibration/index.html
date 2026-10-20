@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="../style.css">
+  <title>NONCANONICAL Cantum scale calibration</title>
+  <style>
+    header label { font-size:.8rem; }
+    #calibration-controls { display:flex; gap:.35rem; flex-wrap:wrap; align-items:center; padding:.4rem; }
+    #calibration-controls label { display:inline-flex; align-items:center; gap:.35rem; font-size:.8rem; white-space:nowrap; }
+    #calibration-controls select { width:auto; max-width:220px; }
+    #calibration-controls input[type=number] { width:5.5rem; }
+    #calibration-controls input[type=range] { width:5rem; }
+    #calibration-settings { flex:none; max-height:40dvh; overflow:auto; }
+    #calibration-settings > summary { padding:.4rem .7rem; cursor:pointer; }
+    #layer-controls { flex:none; display:flex; flex-wrap:wrap; gap:.8rem; padding:.35rem .7rem; font-size:.8rem; }
+    #calibration-note { margin:.3rem .7rem; font-size:.75rem; color:#94b2c2; }
+    #calibration-status { flex:none; margin:0; padding:.3rem .7rem; font:12px ui-monospace,monospace; }
+    #info-panel p { white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+  <header><strong>NONCANONICAL · LOCAL CALIBRATION</strong><span>40 ly · 8×8 grid · 8px stars</span></header>
+  <details id="calibration-settings" open><summary>Calibration controls and layers</summary>
+  <nav id="calibration-controls" aria-label="Calibration controls">
+    <label>Radius <select id="radius"><option value="2">2.0 ly</option><option value="2.5" selected>2.5 ly</option><option value="3">3.0 ly</option></select></label>
+    <label>View <select id="camera-mode"><option value="top">Top-down</option><option value="perspective">Perspective</option><option value="low">Low perspective (10°)</option></select></label>
+    <button id="zoom-in">Zoom +</button><button id="zoom-out">Zoom −</button><button id="reset">Reset View</button>
+    <label>Year <input id="calibration-year" type="number" min="100" max="1400" value="1200"></label>
+    <label>Catalogue <select id="calibration-catalogue" aria-label="Calibration catalogue"></select></label>
+    <button id="focus">Focus Selection</button>
+  </nav>
+  <div id="layer-controls" aria-label="Map Layers">
+    <label><input type="checkbox" data-layer="grid" checked>Coordinate grid</label>
+    <label><input type="checkbox" data-layer="territory" checked>Cantum Influence</label>
+    <label><input type="checkbox" data-layer="cantumNames" checked>Cantum Names</label>
+    <label><input type="checkbox" data-layer="objectNames" checked>Object Names</label>
+    <label><input type="checkbox" data-layer="star_system" checked>Star systems</label>
+  </div>
+  <p id="calibration-note">A: registered demonstration sigil; B: no sigil. The unassociated control inside A's overlay remains unassociated. Drag to pan; pinch/wheel to zoom; two-finger orbit in perspective. No data is saved.</p>
+  </details>
+  <main id="chart-stage"><div id="viewport"><div id="labels"></div></div></main>
+  <output id="calibration-status"></output>
+  <dialog id="info-panel" aria-labelledby="selected-name">
+    <button id="close-info" class="panel-close" aria-label="Close InfoCard">×</button>
+    <h2 id="selected-name"></h2><p id="calibration-facts"></p>
+  </dialog>
+  <script type="module" src="controller.mjs"></script>
+</body>
+</html>

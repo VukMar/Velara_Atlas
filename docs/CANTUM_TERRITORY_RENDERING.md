@@ -73,8 +73,8 @@ These are **tunable starting defaults**, not canon. The sample uses a **maximum 
   anchor, fade, containment and Names toggle. `test-cantum-a` is the sole approved
   noncanonical demonstration asset; null/omission/unknown/failure is text-only.
   This does not change contributors, fields, colors, radii, flat surfaces or
-  connected-component eligibility. Stage 4 sigil-only
-  small-island rules remain planned; see [Stage 2 results](CANTUM_SIGILS_STAGE2_RESULTS.md).
+  connected-component eligibility in Stage 2. Stage 4 extends identity eligibility
+  below without changing the field; see [Stage 2 results](CANTUM_SIGILS_STAGE2_RESULTS.md).
 - **Other spatial zones:** nebula, radiation and asteroid-field volumes are independent **system-map features**. Do not merge their geometry with Cantum influence shading.
 
 ## 4. Implemented public-safe presentation settings
@@ -150,8 +150,10 @@ merging or island eligibility. Orthographic mode preserves the existing flat
 hides that floor mesh and uses only the envelope composite. The Influence toggle
 controls the active representation; Names/sigils remain separately controlled.
 
-Envelope half-height is clamp(radiusLY * .30, 4, 9): 7.2 ly for the demo's 24-ly
-radius and 5.4 ly for its 18-ly radius. At each horizontal sample, the centerline
+Stage 3 originally used clamp(radiusLY * .30, 4, 9): 7.2 ly for the demo's 24-ly
+radius and 5.4 ly for its 18-ly radius. The authorized intermediate calibration
+supersedes this with clamp(radiusLY * .30, .5, 3); both wide-area demo half-heights
+are now 3 ly, without changing radii or positions. At each horizontal sample, the centerline
 is a Gaussian-distance-weighted inverse-square interpolation of the eligible
 contributors' authored Y. Exact contributor locations interpolate their own Y;
 coincident X/Z locations use their mean elevation. Remote islands therefore do
@@ -201,5 +203,89 @@ geometry. Map/year updates use the cache; private geometries, materials and
 render targets are disposed on replacement. The event-driven renderer resizes
 the target to its actual drawing buffer, including DPR changes. Target memory
 is eight bytes per drawing-buffer pixel. System zones and celestial rendering
-are independent. Stage 4 small-island labels and Stage 5 polish remain deferred.
+are independent. Stage 4 identity rules below leave these envelopes unchanged;
+Stage 5 polish remains deferred.
 See [Stage 3 results](CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
+
+## Stage 4 detached-island identities
+
+Stages 1–3 are creator-approved. Stage 4 extends the existing `territorialLabels()`
+result with `name-with-optional-sigil` or `sigil-only`. The original full-name pass,
+including its metrics, candidates and fitting thresholds, runs first unchanged.
+Every previously fitting island keeps its complete name and optional sigil.
+Only a component that fails that pass can receive a sigil-only fallback. Without
+a registered sigil, that component has no identity marker. Names are never
+abbreviated and no generic emblem is substituted. Missing/blank resolved names
+or inactive Cantums produce neither variant. Catalogue/InfoCard identity remains
+the Cantum, never a new territory-island record.
+
+`ISLAND_IDENTITY_POLICY` centralizes a fixed 768 CSS-pixel overview reference,
+24-pixel sigil diameter, minimum 24 sampled component cells and one-cell padding
+on every side. At the default 128x128 resolution on the 160-ly chart, the glyph
+represents a 5-ly square; its padded 7.5-ly square must fit entirely inside the
+same four-neighbor component. Both geographic dimensions therefore have to
+accommodate the padded square. The cell-count test rejects poorly resolved
+fragments; the padding accounts for boundary sampling tolerance. These are
+presentation thresholds, not authored political or physical measurements.
+No camera zoom, tilt, pan or mobile resize participates in classification.
+
+Candidate centers are sampled cells at or above `fieldThresholdEnd`. All cells
+covered by the padded square must belong to that component at
+`fieldThresholdStart`. Prefer candidates clear of system markers at the reference
+overview (15px marker radius plus 12px sigil radius), then interior depth and
+proximity to the component's field-weighted center. If complete separation is
+impossible, prefer maximum marker clearance among valid interior candidates.
+Cell index resolves ties. No field, topology, membership or route calculation
+changes. Sampling can omit narrow, sub-cell or clipped fragments deliberately.
+
+The existing decorative `CantumNameplates` overlay owns both variants. A sigil-only
+plate contains one image and no text/empty slot. Both share the existing 18–24px
+CSS sizing, camera-facing projection, viewport containment, zoom-only fade and
+independent Names toggle. Perspective anchors sample their own local Stage 3
+upper surface plus the existing clearance. An invalid/missing surface hides the
+plate. Top-down full-name heights stay unchanged; sigil-only provisional heights
+use only contributors in that component. An absent or invalid local anchor is
+omitted rather than relocated. Influence visibility stays independent.
+
+Unknown/null/omitted sigils cannot create a small-island plate. An image error
+removes a sigil-only plate and its cached DOM anchor completely; a full-name plate
+retains its name. Rebuild/disposal removes image listeners. The existing bounded
+eight-entry placement cache additionally keys registered-sigil availability.
+Camera movement only projects/fades existing markers; it does not resample fields
+or rebuild geometry. Synthetic cases are memory-only, with no demo JSON edits.
+See [Stage 4 results](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 remains
+deferred pending creator approval.
+
+## Intermediate realistic-scale calibration
+
+Local Stage 4 remains intact and uncommitted. This focused follow-up changes
+only Sector star-symbol size and the provisional envelope-height clamp, and adds
+an isolated memory-only 40-ly preview. It does not complete Stage 5 or select a
+permanent canonical radius. The existing demo still authors 24/18-ly radii.
+
+Sector star-system spheres keep their color/geometry and use a centralized 4 CSS
+pixel visible radius, inverted from the active camera projection. Caption radius
+is also 4px, with the existing 4px text gap. Invisible targets still use the
+existing neighbor-aware rule (up to 30px diameter). System celestial sizes/minima,
+SVGs and physical radii do not change. Stage 4's conservative 15px marker-clearance
+budget is retained, preserving identity anchors and allowing room for hit areas.
+
+Explicit 2/2.5/3-ly radii yield nominal vertical half-heights .6/.75/.9 ly under
+the new `.5–3` clamp. The Gaussian equation and .35/.65 thresholds are unchanged.
+A single 2.5-ly contributor reaches the outer threshold at about 3.077 ly; two
+equal contributors can connect at about 7.929 ly separation. These are approximate
+chart influence measures, not legal borders. Neither chart width nor star spacing
+automatically rewrites radius. Contributor-Y interpolation and the alpha caps
+are unchanged. Wide-area demo envelopes are visibly thinner; no new containment,
+mesh closure or compositing failure was found in the checks.
+
+Run `npm run preview:calibration` and open
+`http://127.0.0.1:5174/Velara_Atlas/__calibration/`. Only this explicit loopback
+server installs the preview; normal dev/build entry points and allowlists are
+unchanged. The three preview files are served from a fixed inventory. The real
+Atlas renderer, resolver, cameras, layer controls and Stage 4 nameplates show a
+named A cluster, sigil-only outpost, name-only B cluster and unassociated controls.
+At 128x128 sampling the 40-ly chart has a .3125-ly step / .442-ly diagonal tolerance.
+Sub-cell necks remain resolution-limited; larger charts with the same small radii
+need separate sampling review, not coordinate/radius rescaling.
+See [calibration evidence and viewing instructions](CANTUM_SCALE_CALIBRATION_RESULTS.md).

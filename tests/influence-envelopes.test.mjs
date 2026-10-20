@@ -28,8 +28,8 @@ function closed(data) {
 }
 
 test('approved heights, deterministic cached meshes and immutable authored XYZ',()=>{
-  assert.ok(Math.abs(envelopeHalfHeight(24)-7.2)<1e-10);assert.ok(Math.abs(envelopeHalfHeight(18)-5.4)<1e-10);
-  assert.equal(envelopeHalfHeight(1),4);assert.equal(envelopeHalfHeight(100),9);
+  assert.equal(envelopeHalfHeight(24),3);assert.equal(envelopeHalfHeight(18),3);
+  assert.equal(envelopeHalfHeight(1),.5);assert.equal(envelopeHalfHeight(100),3);
   const f=fixture([[-10,-8,0],[10,9,0]],24),before=structuredClone(f),data=build(f)[0];
   assert.strictEqual(build(f)[0],data);assert.deepEqual(data.positions,build(structuredClone(f))[0].positions);
   for(const s of f.systems){const p=s.positionLY,v=data.sample(p.x,p.z);assert.equal(v.center,p.y);assert.ok(v.lower<=p.y&&v.upper>=p.y);}

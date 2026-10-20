@@ -17,12 +17,13 @@ editor remain separate future work.
 | `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
 | `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
 | `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
+| `src/viewer/sector-markers.mjs` | Inverts active sphere projection for the central 4px CSS radius; Sector catalogue symbols only, never physical System View models |
 | `src/viewer/celestial-model.mjs` | Fixed physical spheres/normalized small bodies and deterministic symbolic material colors; no geometry for unknown sizes/artificial structures |
 | `src/viewer/icon-manifest.mjs`, `icon-registry.mjs`, `navigation-proxy.mjs` | Fourteen explicitly bundled SVGs, safe category/fallback resolution and one screen-facing image per existing object button |
 | `src/viewer/inspection-camera.mjs` | Radius-based local camera framing, clipping and center/surface constraints; Reset returns to normal navigation |
 | `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
-| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic fitting, zoom fade and isolated provisional contributor-height calculation |
-| `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative DOM nameplates; full-name fitting metrics, screen-space typography, frustum visibility and lifecycle cleanup |
+| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, preserved full-name fitting, centralized sigil-only island eligibility/interior placement, bounded cache, zoom fade and provisional heights |
+| `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative full-name/sigil-only DOM plates; secure registry availability, local heights, screen-space typography, visibility and image/listener cleanup |
 | `src/viewer/sigil-registry.mjs` | Closed static URL mapping for the single noncanonical Cantum sigil; optional image lifecycle with text-only failure behavior |
 | `src/viewer/influence-envelopes.mjs` | Pure bounded X/Z field triangulation, contributor-Y centerline, clipped rounded surfaces and eight-input mesh-data cache |
 | `src/viewer/influence-compositor.mjs` | Non-pickable envelope geometry in a private scene, half-float accumulation and one capped chart-layer composite; target/resource lifecycle |
@@ -97,7 +98,8 @@ meshes retain their separate presentation plane and explicit ordering above the
 grid. Cantum Visual Patch Stage 1 replaces text meshes with horizontally readable
 DOM nameplates, using the existing component X/Z anchors and highest eligible
 contributor Y plus modest clearance. Projection/fade updates share the event-driven
-render path; the nameplate overlay owns no GPU textures or listeners. Authored XYZ,
+render path; the nameplate overlay owns no GPU textures, and removes its image
+error listeners on rebuild/disposal. Authored XYZ,
 chart extents, camera framing, political calculations and system-grid behavior
 do not change. See [the Stage 1 report](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
@@ -105,13 +107,37 @@ Stage 3 supersedes the always-flat perspective presentation. `AtlasMap` retains
 the original flat mesh for top-down and shows only the envelope composite in
 perspective. Geometry is generated from resolved contributor groups at map/year
 updates and cached independently of camera movement. Perspective nameplates sample
-their local envelope top; top-down heights and all label eligibility remain intact.
+their local envelope top; top-down full-name heights and fitting remain intact.
 The event-driven render path rasterizes only envelope meshes into a half-float
 target, then displays one normal-blended chart layer with total alpha capped at
 .22. This bounds overlaps/front/back coverage without additive visible effects.
 Main-scene picking excludes the composite and private shell meshes. Clearing a
 map disposes private geometries/materials/target; the main scene owns the composite
 geometry/material. No data, schema, asset, dependency or grid change is involved.
+
+Stage 4 extends those same sampled components with stable identity variants,
+preserving every existing full-name fit. Only registered-sigil availability enters
+the pure placement helper; asset URLs remain the closed registry's responsibility.
+A camera-independent reference-overview square with one-cell padding and minimum
+cell count determines small-island eligibility. Interior anchors prefer marker
+clearance; perspective height sampling stays local to that anchor. Classification
+is cached on map/year inputs and never recalculated on camera movement. The DOM
+overlay removes failed sigil-only images and their entire empty anchors, while
+full-name failures retain text. No influence geometry/compositor module changes.
+See [Stage 4 policy](CANTUM_TERRITORY_RENDERING.md#stage-4-detached-island-identities).
+Stage 5 refinement remains deferred.
+
+The intermediate calibration keeps local Stage 4 sources unchanged. Sector sphere
+scale now comes from `sectorMarkerWorldRadius()` using CSS viewport dimensions and
+three projection corrections, rather than radial camera distance. Captions use
+the same visible 4px radius; existing invisible picking targets remain independent.
+The envelope half-height clamp becomes `.5–3` ly; the X/Z field, geometry technique,
+local Y centerline and compositor are unchanged. No physical size/minimum changes.
+`scripts/preview-cantum-calibration.mjs` installs an explicit three-file middleware
+only on its separate loopback dev server. Its synthetic scenario/controller live
+in `tests/calibration/`, outside normal Vite filesystem and build input allowlists.
+No production route, extra asset or public-directory copying is introduced.
+See [calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
@@ -148,7 +174,8 @@ the modern core modules, seven exact demo JSON files and dependencies.
 Phase 3 added fourteen explicit navigation icon paths; Stage 2 adds exactly one
 separate Cantum demonstration sigil path. `sigil-registry.mjs` resolves only
 `test-cantum-a` via a static Vite URL, never a path derived from authored data.
-Null/unknown/failed images leave the nameplate text intact. Rebuild/disposal
+Null/unknown/failed images leave full-name text intact; Stage 4 sigil-only
+failures remove the whole empty plate. Rebuild/disposal
 removes image error listeners; failure requests a normal render for containment.
 Existing NEXUS PNGs remain excluded. `scripts/svg-assets.mjs` validates the narrow SVG
 profile. The output audit checks HTML/JS/CSS plus exact approved SVG bytes/names

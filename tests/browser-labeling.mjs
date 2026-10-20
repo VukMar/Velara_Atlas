@@ -19,7 +19,7 @@ async page => {
   });
   const caption=()=>page.locator('#labels [data-record-id="sys_0001"] span').evaluate(n=>{
     const r=n.getBoundingClientRect(),b=n.parentElement.getBoundingClientRect();
-    return {font:getComputedStyle(n).fontSize,width:r.width,x:r.x+r.width/2,markerX:b.x+b.width/2,top:r.top,markerBottom:b.y+b.height/2+13};
+    return {font:getComputedStyle(n).fontSize,width:r.width,x:r.x+r.width/2,markerX:b.x+b.width/2,top:r.top,markerBottom:b.y+b.height/2+4};
   });
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);

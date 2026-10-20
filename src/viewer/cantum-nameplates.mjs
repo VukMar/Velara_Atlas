@@ -1,6 +1,6 @@
 import {Vector3} from 'three';
 import {territorialLabels,territorialAnchorY,territorialOpacity} from './territorial-labels.mjs';
-import {attachSigil} from './sigil-registry.mjs';
+import {attachSigil,sigilURL} from './sigil-registry.mjs';
 
 export function nameplateProjection(position, camera, width, height, zoom) {
   const p=position.clone().project(camera),opacity=territorialOpacity(zoom);
@@ -40,16 +40,28 @@ export class CantumNameplates {
         ? [...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(c.name)].map(s=>s.segment) : Array.from(c.name);
       aspects[c.id]=Math.ceil(glyphs.reduce((n,g)=>n+this.measure.measureText(g).width,0)+Math.max(0,glyphs.length-1)*6+16)/88;
     }
-    for(const label of territorialLabels(groups,cantums,map,presentation,aspects)) {
-      const y=territorialAnchorY(groups.find(g=>g.id===label.cantumId),systems,map);
+    const sigilCantums=cantums.filter(c=>sigilURL(c.sigil)).map(c=>c.id);
+    for(const label of territorialLabels(groups,cantums,map,presentation,aspects,128,sigilCantums)) {
+      const sigilOnly=label.variant==='sigil-only',group=groups.find(g=>g.id===label.cantumId);
+      const localGroup=sigilOnly ? {...group,points:group.points.filter(p=>label.contributorIds.includes(p.id))} : group;
+      const y=territorialAnchorY(localGroup,systems,map);
       if(y===null)continue;
       const element=document.createElement('span');
-      element.className='cantum-nameplate';element.textContent=label.name;
+      element.className='cantum-nameplate';element.textContent=sigilOnly ? '' : label.name;
       element.dataset.cantumId=label.cantumId;element.dataset.componentId=label.id;
+      element.dataset.variant=label.variant;
       element.style.color=label.color;
-      const sigil=attachSigil(element,cantums.find(c=>c.id===label.cantumId)?.sigil,this.changed);
+      const anchor={label,element,topY:y,position:new Vector3(label.x,y,label.z),visible:false,opacity:0};
+      anchor.sigil=attachSigil(element,cantums.find(c=>c.id===label.cantumId)?.sigil,()=>{
+        if(sigilOnly) {
+          anchor.sigil?.dispose();
+          element.remove();this.anchors=this.anchors.filter(a=>a!==anchor);
+        }
+        this.changed();
+      });
+      if(sigilOnly&&!anchor.sigil)continue;
       this.root.append(element);
-      this.anchors.push({label,element,sigil,topY:y,position:new Vector3(label.x,y,label.z),visible:false,opacity:0});
+      this.anchors.push(anchor);
     }
   }
 
@@ -59,7 +71,7 @@ export class CantumNameplates {
       a.position.y=surface ? surface.upper+this.clearance : a.topY;
       const p=nameplateProjection(a.position,camera,width,height,zoom);
       a.opacity=p.opacity;
-      a.visible=enabled&&p.visible;
+      a.visible=enabled&&p.visible&&(mode!=='perspective'||Number.isFinite(surface?.upper));
       a.element.hidden=!a.visible;
       a.element.style.opacity=String(p.opacity);a.element.style.fontSize=`${p.font}px`;
       const screen=a.visible ? containNameplate(p,width,height,a.element.offsetWidth,a.element.offsetHeight) : p;
