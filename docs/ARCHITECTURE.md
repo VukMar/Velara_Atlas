@@ -5,10 +5,11 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Current work is architecture Phase 2 dataset organization; canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; current work is Phase 2.1
+examples/documentation maintenance; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
-[migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md) for the original dependency audit.
+[migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
 
 ## Runtime responsibilities
 

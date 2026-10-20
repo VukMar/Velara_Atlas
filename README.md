@@ -6,11 +6,12 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — committed baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Start with the [documentation index](docs/INDEX.md). The current authorized work is
-[architecture optimization Phase 2](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md),
-limited to dataset/repository organization by the [Phase 2 task](docs/CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
-The [Phase 2 results](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) record migration and verification.
-Later architecture phases require separate approval.
+Start with the [documentation index](docs/INDEX.md) and
+[the v1.2 example catalogue](examples/README.md). Architecture Phase 2 dataset
+organization is committed in `6e026cb`; the [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md)
+retains its original pre-commit context. Current authorization is **Phase 2.1
+examples/documentation maintenance** under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
+Architecture Phase 3 and further visual development require separate approval.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are

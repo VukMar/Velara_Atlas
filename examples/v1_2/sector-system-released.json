@@ -1,0 +1,55 @@
+{
+  "id": "sys_0001",
+  "entityType": "star_system",
+  "discoveredAE": 100,
+  "colonizedAE": 210,
+  "positionLY": {
+    "x": -20,
+    "y": 4,
+    "z": 15
+  },
+  "nameHistory": [
+    {
+      "fromAE": 100,
+      "untilAE": 210,
+      "name": "TS-01",
+      "kind": "survey_designation",
+      "datePrecision": "exact"
+    },
+    {
+      "fromAE": 210,
+      "untilAE": null,
+      "name": "Test System A",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "cantumHistory": [
+    {
+      "fromAE": 210,
+      "untilAE": null,
+      "cantumId": "can_0001"
+    }
+  ],
+  "publicDetailPath": "systems/sys_0001.json",
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 210,
+        "untilAE": null,
+        "entityId": "can_0001"
+      }
+    ],
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 100,
+        "untilAE": null,
+        "text": "Noncanonical test system; coordinates and dates are made solely to validate the atlas."
+      }
+    ]
+  }
+}

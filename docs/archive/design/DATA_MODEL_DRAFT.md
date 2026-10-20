@@ -1,9 +1,13 @@
 # Velara Atlas — InfoCard & entity data model (proposal v0.2)
 
+> **Archived historical reference; do not execute as current instructions.**
+> Use [the documentation index](../../INDEX.md) for current specifications and
+> setup. Original proposal/installation text is retained below as provenance.
+
 > **Historical proposal — superseded for structure.** Retained for the origin of
 > InfoCard/null/identity decisions and the standalone `examples/` reference files.
-> Use [DATA_MODEL.md](DATA_MODEL.md), current schemas and
-> [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for new v1.2 records. Draft IDs,
+> Use [DATA_MODEL.md](../../DATA_MODEL.md), current schemas and
+> [NAVIGATION_AUTHORING.md](../../NAVIGATION_AUTHORING.md) for new v1.2 records. Draft IDs,
 > fields and setup advice below are not current authoring instructions and do not
 > authorize canonical migration. No file was moved or deleted in this audit.
 

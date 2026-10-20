@@ -1,0 +1,31 @@
+{
+  "id": "cb_9901",
+  "entityType": "celestial_body",
+  "objectType": "comet",
+  "orbitingId": null,
+  "colonizedAE": null,
+  "discoveredAE": 0,
+  "nameHistory": [
+    {
+      "fromAE": 0,
+      "untilAE": null,
+      "name": "SYNTHETIC COMET",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "icon": null,
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": null
+  }
+}

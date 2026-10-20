@@ -1,0 +1,14 @@
+{
+  "boundaryRadiusCNU": 1800,
+  "localLinks": [
+    {
+      "id": "lnk_0001",
+      "targetObjectId": "sta_0001",
+      "sourceGateId": "gat_0001",
+      "targetGateId": "gat_0002",
+      "direction": "bidirectional",
+      "fromAE": 350,
+      "untilAE": null
+    }
+  ]
+}

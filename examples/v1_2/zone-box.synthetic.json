@@ -1,0 +1,36 @@
+{
+  "id": "zon_9901",
+  "entityType": "spatial_zone",
+  "category": "other",
+  "discoveredAE": 0,
+  "nameHistory": [
+    {
+      "fromAE": 0,
+      "untilAE": null,
+      "name": "SYNTHETIC BOX ZONE",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "geometry": {
+    "kind": "box",
+    "size": {
+      "x": 1000,
+      "y": 1000,
+      "z": 1000
+    }
+  },
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": null
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "gat_0001",
+  "entityType": "gate",
+  "objectType": "short_range_gate",
+  "discoveredAE": 230,
+  "nameHistory": [
+    {
+      "fromAE": 230,
+      "untilAE": null,
+      "name": "Test gat_0001",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": null,
+  "icon": null,
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 230,
+        "untilAE": null,
+        "text": "Noncanonical navigation gate."
+      }
+    ]
+  },
+  "constructedAE": 230,
+  "decommissionedAE": null,
+  "positionMode": "boundary_derived"
+}

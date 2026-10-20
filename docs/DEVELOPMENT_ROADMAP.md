@@ -1,6 +1,7 @@
 # Velara Atlas — Development roadmap
 
-**Status:** Verified at `main` commit `190bd21` (2026-10-20). Checkpoint 4.1
+**Status:** Architecture Phase 2 is committed at `6e026cb` (2026-10-20),
+preserving the visual/runtime baseline from `190bd21`. Checkpoint 4.1
 Phases 1–3 are complete and creator-approved. The local noncanonical demo also
 includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration,
 retaining Checkpoint 3.8 zones, labeling, v1.2 navigation and Checkpoint 3.6 layout.
@@ -9,14 +10,13 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Current authorization:** dataset organization only under the
-[architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-and its [Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md). That roadmap governs
-a separate, phase-gated architecture workstream; this document retains feature
-milestones and their acceptance boundaries. Architecture phase numbers are not
-Checkpoint 4.1 phase numbers or Cantum stage numbers. Start at the
-[documentation index](INDEX.md); Phase 2 is implemented locally for review; Phase 3 remains deferred. See
-[Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+**Current authorization:** architecture Phase 2.1 examples/documentation maintenance
+only. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+and [documentation index](INDEX.md). That roadmap is a separate architecture
+workstream; this document retains feature milestones and their approval gates.
+Architecture phases, Checkpoint 4.1 phases and Cantum stages are distinct.
+Phase 2 is complete and committed; [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
+preserves point-in-time evidence. Phase 3 is not started or authorized.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -95,7 +95,7 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by architecture Phase 2 |
+| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by architecture Phase 2.1 |
 | Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
@@ -119,7 +119,7 @@ models, continuous SVG-proxy transitions, fixed apparent structure markers,
 neutral unknown fallbacks and Focus Selection inspection; it has been reviewed
 and approved. The original four-phase plan reserved further visual/browser
 refinement for Phase 4. Further Checkpoint 4.2 visual refinement requires separate
-approval; the current task is architecture Phase 2 dataset organization.
+approval; the current task is Phase 2.1 examples/documentation maintenance.
 The NEXUS side-profile PNG is supplied at
 `public/assets/nexus/nexus-side-profile.png`; its integration remains deferred.
 Preserve the current creator-approved System C geography,

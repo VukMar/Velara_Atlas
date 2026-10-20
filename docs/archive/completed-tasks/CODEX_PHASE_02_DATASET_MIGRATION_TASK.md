@@ -1,7 +1,12 @@
 # Codex Task — Phase 2: Dataset and Repository Organization
 
+> **Completed historical task/inventory, archived during Phase 2.1.** Phase 1/2
+> are committed in `6e026cb`. The original scope and instructions below preserve
+> provenance and confer no current authorization. Use [the documentation index](../../INDEX.md)
+> and [AGENTS](../../../AGENTS.md) for current maintenance scope.
+
 **Project:** `VukMar/Velara_Atlas`  
-**Workstream:** [Atlas Architecture Optimization Roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)  
+**Workstream:** [Atlas Architecture Optimization Roadmap](../../ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 **Phase:** **2 — Dataset and repository organization**, authorized by the creator for this task only  
 **Reference baseline:** `main` at `6ae6ee2160f36e2ff2ac76319d1399be2b0e2247` (2026-10-20; Phase 1 documentation commit). Recheck the actual checkout before making any change.  
 **Input inventory:** [Phase 2 Dataset Migration Inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md)  

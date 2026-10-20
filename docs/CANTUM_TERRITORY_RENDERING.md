@@ -258,9 +258,10 @@ deferred pending creator approval.
 
 ## Intermediate realistic-scale calibration
 
-Local Stage 4 remains intact and uncommitted. This focused follow-up changes
-only Sector star-symbol size and the provisional envelope-height clamp, and adds
-an isolated memory-only 40-ly preview. It does not complete Stage 5 or select a
+Stage 4 and the intermediate calibration are committed in `190bd21` and preserved
+through architecture Phase 2 at `6e026cb`. The calibration changed only Sector
+star-symbol size and the provisional envelope-height clamp, adding an isolated
+memory-only 40-ly preview. It does not complete Stage 5 or select a
 permanent canonical radius. The existing demo still authors 24/18-ly radii.
 
 Sector star-system spheres keep their color/geometry and use a centralized 4 CSS

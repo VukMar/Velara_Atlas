@@ -1,10 +1,15 @@
 # Proposed Phase 2 — Dataset migration inventory
 
+> **Completed historical task/inventory, archived during Phase 2.1.** Phase 1/2
+> are committed in `6e026cb`. The original scope and instructions below preserve
+> provenance and confer no current authorization. Use [the documentation index](../../INDEX.md)
+> and [AGENTS](../../../AGENTS.md) for current maintenance scope.
+
 **Original Phase 1 analysis (preserved below).** Architecture Phase 2 is now
 explicitly authorized by [its task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
 The live demo has moved to `public/datasets/demo/` in Substep A. Substep B
 preserves three legacy fixtures, archives eight obsolete proposals and adds
-validated reference-only examples. See [results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+validated reference-only examples. See [results](../../PHASE_02_DATASET_MIGRATION_RESULTS.md).
 The old paths in the baseline inventory below describe pre-migration dependencies, not current
 operating paths. No canonical conversion is authorized.
 
@@ -89,7 +94,7 @@ promise that future consumers cannot be added.
 4. If validation fails, reverse only the reviewed migration path/consumer edits
    using the recorded original bytes and mappings, preserving later user edits.
    Inspect concurrent changes before any overwrite. Generator journals/backups
-   require the [manual recovery procedure](NAVIGATION_AUTHORING.md), never a
+   require the [manual recovery procedure](../../NAVIGATION_AUTHORING.md), never a
    blanket reset/clean. Restore a consistent root/import/audit/test set and rerun
    checks; leave protected canon and frozen fixtures untouched.
 5. Return the path-by-path diff and exact results for review. No commit, push,

@@ -1,6 +1,6 @@
 # Velara Atlas — JSON Data Contract v1.2.0
 
-**Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in `DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
+**Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
 ## Identity and naming
 
@@ -39,7 +39,8 @@ The original accepted v1.2 scenarios are also frozen in `tests/fixtures/v1_2/`;
 the current `public/datasets/demo/` remains author-editable. Current learning
 references live in `examples/v1_2/`; legacy regression inputs are preserved in
 `tests/fixtures/legacy_examples/`, and obsolete proposal shapes are archived in
-`docs/archive/json-proposals/`. See [examples](../examples/README.md).
+`docs/archive/json-proposals/`. See [the complete v1.2 example catalogue](../examples/README.md), including
+file wrappers, snippets, authoring-null gates and generated output.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 

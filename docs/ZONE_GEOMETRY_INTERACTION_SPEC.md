@@ -1,6 +1,8 @@
 # Velara Atlas — Checkpoint 3.8: Spatial Zone Geometry & Interaction
 
-**Status:** Creator-approved development direction; implementation pending.  
+**Status:** Implemented Checkpoint 3.8 behavior contract. See
+[historical verification](ZONE_GEOMETRY_INTERACTION_RESULTS.md); future changes
+require a separate scoped authorization.
 **Date:** 2026-10-17  
 **Repository baseline audited:** `VukMar/Velara_Atlas`, `main` commit `77906c5e6449` (2026-10-17); Codex must inspect its actual local checkout and preserve newer or uncommitted work.  
 **Scope:** Allow v1.2 **system** zones to extend beyond system chart boundaries; clip what is rendered and hit-testable; make visible zone area hoverable/selectable in 2D and 3D with object-first priorities. Protect accepted cartographic typography, touch controls, H8 arrow, history, navigation and canon.  
@@ -64,7 +66,10 @@ Preserve the completed `Cantum Names` world-space lettering and `Object Names` a
 
 Only historically eligible zones appear and respond at the selected A.E. year; unknown discovery dates remain unknown, never year zero. Respect read-only and noncanonical boundaries. Current scope is noncanonical v1.2 **system** zones; no canonical data migration, local editor, schema-wide redesign, Cantum-region geometry changes or release/asset artwork.
 
-## 6. Reviewable implementation phases
+## 6. Original implementation phases (completed)
+
+The following delivery sequence is retained as design provenance, not a pending
+assignment. The current implementation and original evidence are linked above.
 
 **Phase A: Pure geometry and validation.** Add robust intersection and point/ray/footprint helpers; update v1.2 system-zone validation only; test all three kinds, off-map origin, giant containing zone, tiny sliver, edge-only contact, disjoint Z/Y volume, translated polygon and polygon edge crossing; preserve v1.1/sector behavior and all other object bounds.
 
@@ -81,11 +86,16 @@ Only historically eligible zones appear and respond at the selected A.E. year; u
 * Full-map 2D: a giant nebula whose center is offscreen, but whose volume covers a chart corner, renders only the intersecting area, highlights on hover, displays the correct name, opens InfoCard, and Focus stays inside the chart.
 * A planet/station/gate or route inside the nebula wins hover/click; the nebula tooltip must not block it. Leaving both clears highlighting.
 * A zone fully covering the chart can be hovered/clicked anywhere that is not an object/route, including when camera is inside it in 3D. 3D orbit never leaks zone mesh/particles outside true XYZ chart box.
-* Test ellipsoid, box and polygon volume; overlap priority, layer hiding, historical expiry, focus and keyboard catalogue access, tap versus pinch/drag, changes from 2D to 3D, narrow layouts, Y offsets, nonzero map origins and geometry touching only a boundary.
+* Test ellipsoid, box and polygon volume; overlap priority, layer hiding, discovery/known-by filtering (no zone-expiry field), focus and keyboard catalogue access, tap versus pinch/drag, changes from 2D to 3D, narrow layouts, Y offsets, nonzero map origins and geometry touching only a boundary.
 * Validate that the new logic performs bounded work for a source volume orders of magnitude larger than the chart; include a small stress test.
 * Keep the build's protected-data exclusion and static-read-only constraints intact; no external dependencies unless requested.
 * Explicitly document whether 3D behavior is full geometric accuracy or restrained approximate rendering. Do not claim physical-device testing from browser emulation alone.
 
-## 8. Implementation authority and stopping rule
+## 8. Maintenance authority
 
-Codex may implement this focused task after reading the specification and the local workspace. Do **not** start Checkpoint 4 final icon pack, new NEXUS portrait, production deployment, orbital mechanics, or general JSON editor. Review staged diffs, summarize tests and any unresolved 3D limitations. **Do not commit or push without creator authorization.**
+This zone behavior is implemented. The original implementation authorization is
+completed; this document confers no new task. Follow the current creator request
+and [AGENTS](../AGENTS.md) before future changes. Preserve the version-scoped
+contracts above and use the historical report for its actual verification limits.
+No final art, portrait, deployment, orbital mechanics, general editor, commit or
+push is authorized by reading this specification.

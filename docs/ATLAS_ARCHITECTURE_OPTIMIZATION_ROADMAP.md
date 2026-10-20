@@ -2,7 +2,9 @@
 
 **Status:** Proposed architecture workstream; implementation is phase-gated and requires the creator's approval for each phase.  
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
-**Next authorized work:** **Phase 1 — documentation consolidation and baseline inventory only.**  
+**Current phase:** Phase 2 is complete and committed in `6e026cb` (2026-10-20).
+**Authorized maintenance:** Phase 2.1 current examples and documentation only.
+**Next implementation gate:** Phase 3 is proposed, not started or authorized.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -10,14 +12,17 @@
 
 ## Relationship to existing documents
 
-This is an **architecture optimization workstream**, not a replacement for `docs/DEVELOPMENT_ROADMAP.md` or the approved feature specifications. Current behavior and rules continue to be defined by `docs/DATA_MODEL.md`, `schemas/`, `docs/VIEWER_SPECIFICATION.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/NAVIGATION_AUTHORING.md`, `docs/CONTENT_WORKFLOW.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, and `AGENTS.md` (subject to carefully correcting its stale status text in Phase 1). Implementation reports remain point-in-time evidence, not active instructions. Resolve contradictory current-status prose by inspection, not by silently overriding technical contracts.
+This is an **architecture optimization workstream**, not a replacement for `docs/DEVELOPMENT_ROADMAP.md` or the approved feature specifications. Current behavior and rules continue to be defined by `docs/DATA_MODEL.md`, `schemas/`, `docs/VIEWER_SPECIFICATION.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/NAVIGATION_AUTHORING.md`, `docs/CONTENT_WORKFLOW.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, and `AGENTS.md`. Implementation reports remain point-in-time evidence, not active instructions. Resolve contradictory current-status prose by inspection, not by silently overriding technical contracts.
 
-See [the Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md) for current scope;
-[the initial task](CODEX_PHASE_01_DOCUMENTATION_TASK.md) retains Phase 1 history. Do not interpret this roadmap as authorization to execute subsequent phases.
+Phase 2.1 expands schema-valid developer examples and consolidates current
+status/navigation. Results are reported directly to the creator; no additional
+Codex task/results document is required. Completed task records are retained only
+in [the historical archive](INDEX.md#archived-completed-or-superseded-material).
+The committed Phase 2 evidence remains in [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md).
 
 ## Original baseline findings (190bd21)
 
-Architecture Phase 2 relocates the live demo to `public/datasets/demo/`; the
+Completed architecture Phase 2 relocated the live demo to `public/datasets/demo/`; the
 following table retains the original Phase 1 audit context. Explicit loading,
 preloading and seven-file allowlisting remain; manifest loading is still Phase 3.
 
@@ -84,6 +89,8 @@ PRE-FLIGHT INSIDE PHASE 1
 
 ### Phase 1 — Documentation consolidation and baseline inventory
 
+**Completed:** committed in `6ae6ee2`. Original scope below is retained as history.
+
 **Goal:** Establish one navigable, internally consistent documentation hierarchy before touching source data, viewer code, directories, tests or deployment configuration.
 
 **Work:**
@@ -100,9 +107,12 @@ PRE-FLIGHT INSIDE PHASE 1
 
 ### Phase 2 — Dataset and repository organization
 
+**Completed:** committed in `6e026cb`; see [results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+Original delivery plan below is retained for reference.
+
 **Goal:** Give active demonstration data, examples, calibration fixtures, legacy canon and public-release output unambiguous ownership.
 
-**Phase 2 target (now creator-authorized; verify Substeps A and B separately):**
+**Implemented Phase 2 target (original Substep A/B organization):**
 
 ```text
 public/
@@ -129,6 +139,10 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 **Acceptance gate:** Same demo content/IDs/history/geometry/connections and outputs, relocated; `examples/` serves reference/documentation purposes; existing behavior and audits pass; a full path-by-path diff and rollback instructions exist. Stage as small coherent commits **only with explicit approval**.
 
 ### Phase 3 — Data-driven loading and creation workflow
+
+**Proposed design review:** preserve existing per-Cantum `radiusLY` during Phase 2.1.
+Any replacement/global-radius design needs separate approval; the current schema,
+24/18-ly demo values, fallback, thresholds and calculations remain unchanged.
 
 **Goal:** Adding a new supported demonstration system or supported entity should no longer require source edits in viewer/loader/build configuration.
 
@@ -198,10 +212,9 @@ Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementa
 | Release a system to readers | Explicitly approve the public data; generate, inspect and validate the release manifest |
 | Render a known but unpublished system | NEXUS archival notice, never a hidden spoiler payload |
 
-## Immediate instruction to Codex
+## Current maintenance boundary
 
-**Execute Phase 2 only** using [the Phase 2 task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
-Verify the live dataset relocation before reference-example cleanup. Preserve
-bytes, generated navigation, historical behavior and build/dev restrictions.
-No Phase 3 manifest loader, new-system CLI, calibration JSON, editor, commit,
-push or deployment follows from this authorization.
+Phase 2.1 permits schema-valid reference examples and documentation consolidation
+only. Active code, demo/canonical data, schemas, navigation output, calibration and
+build/dev restrictions remain unchanged. Completed archived task text cannot
+restart a phase. No automatic Phase 3, commit, push or deployment follows.

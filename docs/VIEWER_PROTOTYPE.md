@@ -1,16 +1,17 @@
 # Viewer implementation and current noncanonical demonstration
 
-The local app is a **read-only, noncanonical demonstration** using only
-`examples/demo_atlas/`. Checkpoint 3 is secured in `32f43d6`, navigation v1.2 in
-`4ff0ecb`, and the Checkpoint 3.6 layout in `7d9231c`. No canonical migration,
-publication, editor, final icon library, portrait or polished NEXUS art is implied.
+**Classification:** Historical implementation reference with later compatibility
+notes. The current architecture is [ARCHITECTURE.md](ARCHITECTURE.md), operating
+commands are in [README](../README.md), and the exact behavior contracts are in
+[the documentation index](INDEX.md). These notes are not new implementation orders.
 
-> **Current layout: Checkpoint 3.6.** [The explicit layout revision](LAYOUT_REVISION_3_6.md)
-> supersedes the original sidebars/bottom timeline and selection-driven route highlighting.
-> The implementation notes below have been synchronized. Full-map square framing,
-> floating overlays and centered InfoCards are now implemented; [current evidence](CHECKPOINT_3_6_RESULTS.md)
-> records its original checks and limitations. [The repository audit](REPOSITORY_AUDIT_3_6.md)
-> records the current rerun. Historical resolution, cartography and data remain unchanged.
+The read-only noncanonical viewer now reads `public/datasets/demo/`. Architecture
+Phase 2 is committed in `6e026cb`; [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
+records migration verification. Checkpoint 3 (`32f43d6`), navigation v1.2 (`4ff0ecb`)
+and layout 3.6 (`7d9231c`) are earlier evidence. Their reports retain original
+claims and limits. Starter SVGs/physical models, Cantum Stages 1-4 and calibration
+are implemented; final artistic refinement, canonical migration, deployment and
+editor remain deferred. Current maintenance is Phase 2.1 documentation/examples only.
 
 ## Run and verify
 
@@ -143,7 +144,8 @@ blocking navigation. This is approximate chart shading, not legal sovereignty.
 The implementation uses the approved Gaussian sum, smoothstep thresholds,
 per-Cantum alpha at most **0.16**, and one deterministic alpha-weighted composite
 capped at **0.22**. A 256×256 RGBA texture is clipped to declared sector bounds
-and displayed on a chart floor in perspective. Up to eight fields are cached by
+for top-down mode. Stage 3 supersedes the old floor presentation in perspective
+with flattened influence envelopes under [the current contract](CANTUM_TERRITORY_RENDERING.md). Up to eight fields are cached by
 world inputs, not camera state; pan/zoom never recalculates membership or radius.
 Different Cantums remain separate inputs; distant same-Cantum holdings need no
 forced bridge. No manual political boundary is introduced.
@@ -167,8 +169,8 @@ the existing strict Ajv and relationship validation first.
 
 Vite's root remains `src/viewer/`, `publicDir` is disabled, and the dev server
 binds to loopback with filesystem restrictions. The production input plugin
-allows only viewer code, the two modern core modules, seven exact demo JSON paths
-and installed dependencies. The output audit still permits HTML/CSS/JS only and
+allows only viewer code, the three explicitly admitted modern core modules, seven exact demo JSON paths
+and installed dependencies. The output audit permits HTML/CSS/JS and exactly fifteen approved SVGs, and
 checks base paths and forbidden references. Canonical `public/data/`, private
 lore, source maps, editor code and unrelated examples are not build inputs.
 This targeted audit does not replace the later full publication/security review.
@@ -189,24 +191,25 @@ unplaced/fallback/partial/error+retry/invalid-square states on dev.
 dev. `tests/browser-layout3_6.mjs` verifies overlays, grid, bounds, focus and narrow
 2D/3D behavior on dev or preview; `tests/browser-touch3_6.mjs` separately reports
 emulated-touch results, including its failed post-gesture tap. Deliberate error
-tests return to a clean page. See [current results](REPOSITORY_AUDIT_3_6.md).
+tests return to a clean page. See [original audit evidence](REPOSITORY_AUDIT_3_6.md) and
+[subsequent migration checks](PHASE_02_DATASET_MIGRATION_RESULTS.md).
 
 `tests/browser-documentation3_6.mjs` checks the documented panel/record review
 workflow across all three systems and observes same-origin GET-only requests,
-with no canonical/private-source fetch. It supports dev and production preview;
+with no canonical/private-source fetch. It requires dev module URLs and does not run against bundled production preview;
 this targeted observation complements rather than replaces the build audit.
 
 A historical Checkpoint 3 20-step browser scrub measured roughly **65–79 ms** per automation
 round trip, with bounded label counts. This is a small-demo observation, not a
-large-dataset frame-rate guarantee. Normal fresh-page navigation has zero console
-errors/warnings. The production build remains compatible with `/Velara_Atlas/`;
+large-dataset frame-rate guarantee. The historical reports observed no unexpected console errors in their checked
+normal navigation workflows; that is not a new Phase 2.1 browser result. The production build remains compatible with `/Velara_Atlas/`;
 the existing advisory about a Three.js chunk exceeding 500 kB remains visible.
 
 Actual touch/pinch hardware, comprehensive accessibility/contrast audits,
 cross-browser coverage and large-dataset GPU/CPU budgets remain unverified.
 Narrowing a desktop viewport preserves its camera scale; Reset view recovers
-framing if needed. Final materials/icons, targeting rings, NEXUS portraits and
-visual polish are Checkpoint 4 work. Checkpoint 3.6 layout and documentation work
+framing if needed. Starter icons and procedural materials are implemented; final artistic
+materials, targeting rings, NEXUS portraits and polish remain separately gated. Checkpoint 3.6 layout and documentation work
 does not change authored demo data, canonical JSON, schemas, generators, either
 historical resolver, Cantum calculations or nebula placement.
 
@@ -217,4 +220,4 @@ it reused the existing historical/cartographic behavior. Checkpoint 3.6 later
 refined camera/layout/interaction. `npm run connections:check` guards validation,
 dev and build, including direct Vite builds. See [authoring details](NAVIGATION_AUTHORING.md),
 the [historical navigation report](NAVIGATION_V1_2_RESULTS.md) and
-[current repository audit](REPOSITORY_AUDIT_3_6.md).
+[historical repository audit](REPOSITORY_AUDIT_3_6.md).

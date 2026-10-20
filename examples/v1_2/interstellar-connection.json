@@ -1,0 +1,8 @@
+{
+  "id": "lnk_0005",
+  "targetSystemId": "sys_0002",
+  "targetObjectId": "gat_0008",
+  "direction": "bidirectional",
+  "fromAE": 500,
+  "untilAE": null
+}

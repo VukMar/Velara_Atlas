@@ -1,12 +1,12 @@
 # Velara Atlas — Repository structure and ownership
 
-**Status:** Current ownership updated from `6ae6ee2` during architecture Phase 2 (2026-10-20), including
+**Status:** Architecture Phase 2 is committed in `6e026cb` (2026-10-20), including
 Checkpoint 4.1 Phase 3, Cantum Stage 4 and intermediate calibration.
 The [Checkpoint 3.6 audit](REPOSITORY_AUDIT_3_6.md) is an earlier inventory,
 not a complete inventory of later additions. The tree below summarizes ownership;
 [architecture](ARCHITECTURE.md) lists module responsibilities and the
 [index](INDEX.md) maps documentation authority.
-The live demo relocation is Substep A; standalone-example cleanup is Substep B.
+Phase 2.1 expands examples and consolidates documentation only; Phase 3 is deferred.
 
 ## Current tree
 
@@ -64,8 +64,12 @@ Velara_Atlas/
       systems/sys_0003.json
   examples/
     README.md                  Current contract and reference-only ownership
-    v1_2/                      Validated noncanonical star/detail/presentation examples
-  docs/archive/json-proposals/ Eight unchanged obsolete standalone proposals
+    v1_2/                      Complete reference snapshot, entity snippets and authoring examples
+  docs/archive/
+    json-proposals/            Eight unchanged obsolete standalone proposals
+    completed-tasks/           Completed Phase 1/2 tasks and migration inventory
+    design/                    Superseded v0.2 data-model proposal
+    installation/              Obsolete schema package-install procedure
   tests/
     check.mjs / demo.mjs        Legacy assertions / console chronology
     *.test.mjs                 Versioned schemas/history, generator, cartography,
@@ -137,7 +141,7 @@ unchanged bytes and assertions. Eight obsolete proposal files are preserved in
 documentation. These references never register runtime data or reserve IDs.
 
 Keep historical reports clearly labeled at their existing paths so existing
-links and provenance remain valid. `SCHEMA_INSTALL.md` is obsolete setup history,
+links and provenance remain valid. `archive/installation/SCHEMA_INSTALL.md` is obsolete setup history,
 not an instruction to install old files over today's checkout.
 `DATA_MODEL.md`, current schemas and `NAVIGATION_AUTHORING.md` govern new demo data.
 
@@ -145,13 +149,15 @@ not an instruction to install old files over today's checkout.
 
 The seven live JSON files now reside under `public/datasets/demo/`; their relative
 paths and bytes are preserved. `public/data/` remains protected legacy canon,
-and frozen fixtures remain unchanged. The original [dependency inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md)
+and frozen fixtures remain unchanged. The original [dependency inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md)
 records the pre-migration consumer map. Explicit loader registration, preloading
 and seven-file Vite admission remain; Phase 3 loading changes are deferred.
 
 Substep B separately preserves three legacy regression files and archives eight
 obsolete proposals, leaving validated v1.2 learning references under `examples/`.
-See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for hashes and checks.
+See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for historical checks;
+that report's uncommitted-work circumstances predate `6e026cb`. Current reference
+coverage and validation targets are in [the example catalogue](../examples/README.md).
 Calibration stays in memory under `tests/calibration/`; scenario
 JSON is Phase 5. A future report-directory reorganization needs separate approval.
 

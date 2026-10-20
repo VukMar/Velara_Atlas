@@ -1,7 +1,10 @@
 # Velara Atlas — Cartographic Typography and Adaptive Labels
 
-**Status:** CREATOR-APPROVED DESIGN DIRECTION — implementation not yet authorized by this document alone.  
-**Target:** Focused post-Checkpoint-3.6 refinement, before the final NEXUS asset/icon implementation.  
+**Status:** Implemented labeling contract with later Cantum Stage 1-4 amendments.
+See [original evidence](CARTOGRAPHIC_LABELING_RESULTS.md); this specification
+does not authorize further visual changes.
+**Original target:** post-Checkpoint-3.6 labeling. Starter icons/physical models and
+Cantum Stages 1-4 are now implemented; final artistic refinement remains deferred.
 **Scope:** World-space Cantum region lettering in Sector View; adaptive screen-space navigational captions in both map levels; independent layer controls.  
 **Baseline:** Existing square chart and 8×8 system grid, floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.  
 **Design authorities:** `docs/VIEWER_SPECIFICATION.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/DATA_MODEL.md`, and `AGENTS.md`. This specification adds only the labeling behavior approved in the conversation; it does not supersede unrelated requirements.
@@ -15,7 +18,7 @@ force. See [the current viewer contract](VIEWER_SPECIFICATION.md#cartographic-ty
 and [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md). The original geometric
 metrics below now select eligible components and stable X/Z anchors only.
 
-The Sector View should convey political/geographic identity at wide zoom without turning into a crowded set of interface overlays. The System View should make the names of stars, planets, moons, stations, short-range gates, Jump Gates and Jump Holes easier to associate with their markers. Implement two coordinated, but technically independent, layers:
+The Sector View should convey political/geographic identity at wide zoom without turning into a crowded set of interface overlays. The System View should make the names of stars, planets, moons, stations, short-range gates, Jump Gates and Jump Holes easier to associate with their markers. The implementation has two coordinated, technically independent layers:
 
 - **Cantum names** use stable geographic X/Z anchors in Sector View, displayed as horizontal camera-facing DOM nameplates at bounded readable CSS sizes. They have no hit targets or new selection identities.
 - **Object captions** are projected **screen-space typography** beneath each object's visible marker/sprite; font sizes remain approximately constant in CSS pixels while the caption follows the object's actual XYZ position. Use in Sector and System views with adaptive decluttering.
@@ -43,7 +46,8 @@ Both layers use names resolved for the current A.E. year. Do not modify underlyi
 - At mid zoom, gently reduce their opacity; at close zoom, fade to zero so system marker captions take precedence. Use continuous transitions and a small hysteresis/deadband for any discrete thresholds to prevent flicker.
 - Preserve fixed X/Z placement while projecting its provisional elevated anchor each render. Nameplates use 14–24 CSS pixels based on viewport width; zoom moves the anchor and controls the existing gradual fade, without stretching glyphs.
 - Keep text horizontal in 3D, with no foreshortening or camera-tilt cutoff. Hide anchors outside the camera frustum/behind the camera. Never place territorial text in System View.
-- The isolated provisional Y helper uses highest eligible contributor elevation plus modest chart-relative clearance. Keep shading on its unchanged flat presentation surface. The decorative DOM overlay sits below object captions/targeting and grid annotations; it never intercepts clicks, taps, drags or route picking.
+- The isolated provisional Y helper uses highest eligible contributor elevation plus modest chart-relative clearance. Top-down shading keeps its flat surface; perspective uses Stage 3 envelopes and
+local surface heights under [the current Cantum contract](CANTUM_TERRITORY_RENDERING.md). The decorative DOM overlay sits below object captions/targeting and grid annotations; it never intercepts clicks, taps, drags or route picking.
 
 ## 3. Adaptive object labels
 
@@ -61,7 +65,7 @@ Reuse and improve the existing HTML projected marker-label architecture in `src/
 
 ### Label controls
 
-Add independent Map Layers toggles (default on):
+Implemented independent Map Layers toggles (default on):
 
 - **Cantum Names** — offered on Sector View only; independent from Cantum influence fill visibility. Turning off the colored influence overlay does not automatically suppress regional names.
 - **Object Names** — offered for Sector and System View; governs adaptive passive captions without concealing markers or essential interactive identification.
@@ -85,16 +89,20 @@ Add pure Node tests and browser tests in the existing suites as appropriate; pre
 
 **Region/chronology:** Two systems in the same continuous influence component produce one regional name; multiple disconnected sufficiently large components produce one each; a tiny disconnected island produces none. Distinct Cantums never merge region names because their fills overlap. A missing/unknown Cantum name or a noneligible historical Cantum produces no label. Changing the historical year updates the text from resolved nameHistory and revises component membership at exact boundaries; no future-name leakage. The actual demo's second Cantum starts no earlier than its effective historical year; a tiny one-system region may have no displayed name if it cannot fit.
 
-**World anchoring:** A world-space name enlarges/repositions on zoom while staying tied to the same region X/Z coordinates; it is not a fixed HUD overlay. 3D switching does not add names to System View; steep perspective hides unreadable typography. System markers and routes render above regional text and can still receive pointer events.
+**World anchoring:** Field fitting fixes each component's X/Z anchor. Current
+camera-facing DOM plates use bounded CSS typography and gradual zoom fade;
+perspective plates use local envelope heights. Low-angle projection keeps labels
+horizontal, with no camera-tilt cutoff. No Cantum identities appear in System View.
+See the Stage 1-4 amendments in the linked current viewer/Cantum contracts.
 
 **Caption behavior:** At wide zoom show the important labels; as zoom increases more lower-priority labels become eligible without overlapping. Caption text stays approximately the same CSS-pixel size at different zoom levels and remains centered **beneath** its marker. Collision winners are stable. Hover/focus/selection overrides passive declutter. Unplaced or historically unreleased objects never leak names; hiding marker layers hides their captions. Numeric and non-Latin name characters are handled safely.
 
 **Controls and regression:** Independent toggles work in both camera modes and appropriate map levels. Catalogue selection, Escape/InfoCard close, route-hover behavior, one-finger touch pan, pinch, two-finger rotation where implemented, timeline scrubbing, 2D bounded zoom, square chart/grid and the H8 measurement annotation still work. Test at normal desktop, narrow portrait and mobile landscape widths. `npm test`, `npm run validate`, `npm run connections:check`, `npm run build` and relevant browser tests pass. Record any real-device checks separately from emulator-only checks.
 
-## 6. Explicit exclusions and workflow
+## 6. Explicit exclusions and maintenance workflow
 
 - No canonical `public/data/` migration, changes to `src/timeline/resolve.mjs`, navigation schema, ID Finder, generated gate placements/registry, sector coordinates or political facts.
 - No final icon pack, MCR logo, NEXUS portrait, new worldbuilding names, curved political lettering, local editor, deploy, or wholesale UI redesign.
-- The already requested H8 sector-width double-headed arrow is an **independent small refinement**; preserve it if implemented locally. Do not overwrite or silently duplicate that work.
+- The H8 width arrow is already implemented; preserve it and do not repeat the original refinement task.
 - Inspect `git status` and the current local checkout before edits. Never assume that GitHub `main` includes uncommitted work. Create a short implementation plan, work in reviewable stages, and stop for creator review. Do **not** commit/push/deploy without permission.
-- Update `docs/VIEWER_SPECIFICATION.md` and `docs/NEXUS_VISUAL_IDENTITY.md` to describe the finished behavior; add a short implementation/results note. Do not weaken other approved contracts.
+- The original implementation handoff is complete. Future changes need a current creator request; historical delivery instructions do not authorize new files or visual work. Preserve the viewer/NEXUS/Cantum contracts.

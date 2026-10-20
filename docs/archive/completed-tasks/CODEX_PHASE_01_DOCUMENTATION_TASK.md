@@ -1,7 +1,12 @@
 # Codex Task — Phase 1: Documentation Consolidation and Architecture Baseline
 
-**Task status:** Ready for explicit execution in the Velara Atlas repository.  
-**Authorized scope:** Phase **1** of [the architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md), **documentation and inventory only**.  
+> **Completed historical task/inventory, archived during Phase 2.1.** Phase 1/2
+> are committed in `6e026cb`. The original scope and instructions below preserve
+> provenance and confer no current authorization. Use [the documentation index](../../INDEX.md)
+> and [AGENTS](../../../AGENTS.md) for current maintenance scope.
+
+**Task status:** Completed; retained original task for historical reference only.
+**Authorized scope:** Phase **1** of [the architecture optimization roadmap](../../ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md), **documentation and inventory only**.
 **Known reference baseline:** `main` commit `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20). Verify the actual local checkout before applying edits.  
 **Stop condition:** Return a phase-completion report and proposed Phase 2 dependency/migration plan; **do not implement Phase 2**.
 
