@@ -42,7 +42,9 @@ async(page) => {
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   check(!await page.locator('#info-panel').evaluate(n=>n.open),'no initial InfoCard');
-  check(await page.locator('.sector-width-arrow').count()===0,'Sector View has no system-cell measurement');
+  check(await page.locator('#grid-labels [data-cell="H8"]').count()===0,'Sector View has no system-cell designation');
+  check(await page.locator('#grid-labels [data-cell="sector-bottom-right"]').innerText()==='20 ly','Sector View has its own light-year cell measurement');
+  check(await page.locator('#grid-labels [data-kind="column"], #grid-labels [data-kind="row"]').count()===0,'sector grid remains unnumbered');
   const initial=await square();
   for(const id of ['catalogue-panel','timeline-panel','controls-panel','layers-panel']) {
     await panel(id);const now=await square();check(JSON.stringify(now)===JSON.stringify(initial),`${id} does not shift/resize chart`);
@@ -134,6 +136,9 @@ async(page) => {
 
   for(const size of [{width:390,height:844},{width:320,height:568},{width:844,height:390}]) {
     await page.setViewportSize(size);await square();
+    const scale=page.locator('#grid-labels [data-cell="sector-bottom-right"]');
+    check(await scale.isVisible()&&await scale.innerText()==='20 ly','sector measurement visible on mobile');
+    check(await scale.evaluate(n=>{const r=n.getBoundingClientRect(),c=document.querySelector('canvas').getBoundingClientRect();return r.left>=c.left&&r.right<=c.right&&r.top>=c.top&&r.bottom<=c.bottom;}),'sector scale text stays within mobile chart');
     const before=await page.locator('#viewport').boundingBox();await panel('timeline-panel');await square();
     check(JSON.stringify(await page.locator('#viewport').boundingBox())===JSON.stringify(before),'narrow overlay does not move map');
     await page.keyboard.press('Escape');await open('sys_0002');await square();await measurement();

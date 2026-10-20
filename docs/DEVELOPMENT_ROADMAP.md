@@ -11,6 +11,20 @@ deployment remain unauthorized.
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
 
+**Current focused authorization:** following the approved SVG family at `eca903b`,
+standardize only the sector grid to unnumbered 8×8 on `map.planeY`, with one
+bottom-right light-year cell-width arrow. System View keeps its A–H/1–8 grid,
+absolute Y=0 CNU and H8 measurement. Cantum presentation, chart dimensions and
+authored positions are unchanged. Icon-minimum adjustments in `visual-config.mjs`
+are reserved for the creator; further visual development is outside this task.
+
+**Subsequent focused authorization — Cantum Visual Patch Stage 1:** replace only
+floor-mounted names with camera-facing DOM nameplates, retaining component X/Z
+placement and contributor-based provisional height. Preserve the pending sector
+grid work, existing flat influence fields, icons, data and navigation. Stage 1
+does not authorize sigils, 3D influence envelopes or new detached-island rules.
+See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+
 ## Approved foundations and design
 
 Milestones 1–5 established repository/disclosure rules, the structural data model,

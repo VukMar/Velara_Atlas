@@ -39,28 +39,28 @@ export function cellWidthLabel(map) {
 }
 
 export function chartGrid(map) {
-  const side = assertSquareMap(map), system = map.unit === 'CNU', divisions = system ? 8 : 16;
+  const side = assertSquareMap(map), system = map.unit === 'CNU', divisions = 8;
   const positions = [], colors = [], annotations = [], step = side / divisions;
-  // System navigation references absolute zero elevation; sector keeps its floor.
-  const {x,y,z} = map.origin, floor = system ? 0 : y - map.size.y / 2;
+  // Separate contracts: absolute system zero, or the sector's declared reference plane.
+  const {x,z} = map.origin, plane = system ? 0 : map.planeY;
   const segment = (a,b,border) => {
     positions.push(...a,...b); const c = new THREE.Color(border ? 0x31566a : 0x17394a);
     colors.push(c.r,c.g,c.b,c.r,c.g,c.b);
   };
   for(let i=0;i<=divisions;i++) {
     const offset = -side / 2 + i * step, border = i === 0 || i === divisions;
-    segment([x+offset,floor,z-side/2],[x+offset,floor,z+side/2],border);
-    segment([x-side/2,floor,z+offset],[x+side/2,floor,z+offset],border);
+    segment([x+offset,plane,z-side/2],[x+offset,plane,z+side/2],border);
+    segment([x-side/2,plane,z+offset],[x+side/2,plane,z+offset],border);
   }
   if(system) {
     for(let i=0;i<8;i++) {
-      annotations.push({text:String.fromCharCode(65+i),kind:'column',position:{x:x-side/2+(i+.5)*step,y:floor,z:z-side/2+step*.17}});
-      annotations.push({text:String(i+1),kind:'row',position:{x:x-side/2+step*.17,y:floor,z:z-side/2+(i+.5)*step}});
+      annotations.push({text:String.fromCharCode(65+i),kind:'column',position:{x:x-side/2+(i+.5)*step,y:plane,z:z-side/2+step*.17}});
+      annotations.push({text:String(i+1),kind:'row',position:{x:x-side/2+step*.17,y:plane,z:z-side/2+(i+.5)*step}});
     }
-    const scaleZ=z+side/2-step*.5;
-    annotations.push({text:cellWidthLabel(map),kind:'scale',cell:'H8',position:{x:x+side/2-step*.5,y:floor,z:scaleZ},
-      widthEndpoints:[{x:x+side/2-step,y:floor,z:scaleZ},{x:x+side/2,y:floor,z:scaleZ}]});
   }
+  const scaleZ=z+side/2-step*.5;
+  annotations.push({text:cellWidthLabel(map),kind:'scale',cell:system ? 'H8' : 'sector-bottom-right',position:{x:x+side/2-step*.5,y:plane,z:scaleZ},
+    widthEndpoints:[{x:x+side/2-step,y:plane,z:scaleZ},{x:x+side/2,y:plane,z:scaleZ}]});
   return {positions,colors,annotations,divisions,step};
 }
 

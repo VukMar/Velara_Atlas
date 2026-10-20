@@ -21,8 +21,9 @@ editor remain separate future work.
 | `src/viewer/icon-manifest.mjs`, `icon-registry.mjs`, `navigation-proxy.mjs` | Fourteen explicitly bundled SVGs, safe category/fallback resolution and one screen-facing image per existing object button |
 | `src/viewer/inspection-camera.mjs` | Radius-based local camera framing, clipping and center/surface constraints; Reset returns to normal navigation |
 | `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
-| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic lettering placement, fitting and fade calculations |
-| `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom, world-space 8×8 system grid and CNU cell measurement |
+| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic fitting, zoom fade and isolated provisional contributor-height calculation |
+| `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative DOM nameplates; full-name fitting metrics, screen-space typography, frustum visibility and lifecycle cleanup |
+| `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom; 8×8 sector grid on `map.planeY` with an unnumbered ly scale, and absolute-zero system grid with A–H/1–8 and H8 CNU scale |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
 | `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |
 | `src/timeline/resolve.mjs` | Separate legacy v0.1 resolver, used by legacy tests and console demo; not imported into the viewer |
@@ -85,6 +86,17 @@ Focus enters local physical inspection; normal framing/pan is restored by Reset.
 See [the scale contract and phase boundaries](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md).
 System chart dimensions may differ; square X/Z, independent Y extent, off-center
 stars and the absolute Y = 0 system reference grid remain compatible.
+
+Sector grid standardization places its transparent lines and single bottom-right
+light-year scale on `map.planeY`, with nine lines per axis. The existing projected
+measurement arrow and per-map grid toggle are shared with System View. Influence
+meshes retain their separate presentation plane and explicit ordering above the
+grid. Cantum Visual Patch Stage 1 replaces text meshes with horizontally readable
+DOM nameplates, using the existing component X/Z anchors and highest eligible
+contributor Y plus modest clearance. Projection/fade updates share the event-driven
+render path; the nameplate overlay owns no GPU textures or listeners. Authored XYZ,
+chart extents, camera framing, political calculations and system-grid behavior
+do not change. See [the Stage 1 report](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has

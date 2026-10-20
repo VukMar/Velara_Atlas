@@ -94,7 +94,16 @@ export function territorialLabels(groups, cantums, map, presentation, aspects = 
   return result;
 }
 
-export function territorialOpacity(zoom, elevation = 1) {
-  const fade=clamp((zoom-1)/4,0,1), tilt=clamp((elevation-.2)/.35,0,1);
-  return .46*(1-fade*fade*(3-2*fade))*tilt;
+/** Provisional Stage 1 height; later envelopes can replace this helper alone. */
+export function territorialAnchorY(group, systems, map) {
+  const ids=new Set(group.points.map(p=>p.id));
+  const elevations=systems.filter(s=>ids.has(s.id)&&s.cantumId===group.id&&Number.isFinite(s.positionLY?.y)).map(s=>s.positionLY.y);
+  if(!elevations.length)return null;
+  const clearance=Math.min(map.size.y*.05,map.size.x*.02);
+  return Math.max(...elevations)+clearance;
+}
+
+export function territorialOpacity(zoom) {
+  const fade=clamp((zoom-1)/4,0,1);
+  return .46*(1-fade*fade*(3-2*fade));
 }

@@ -53,19 +53,16 @@ test('8×8 system grid has nine world-space lines on each axis and correctly ori
   assert.deepEqual(scale.widthEndpoints,[{x:37500,y:0,z:43750},{x:50000,y:0,z:43750}]);
   assert.equal(scale.widthEndpoints[1].x-scale.widthEndpoints[0].x,g.step,'measurement spans exactly one grid cell');
   assert.equal(scale.text,'12.5K CNU');assert.deepEqual(m,before);
-  assert.deepEqual(chartGrid({...m,unit:'ly'}).annotations,[],'sector is not assigned system grid labels');
+  assert.deepEqual(chartGrid({...m,unit:'ly',planeY:0}).annotations.map(a=>a.kind),['scale'],'sector has no system row/column labels');
 });
 
-test('absolute zero system reference preserves nonzero origins, sector floors and authored elevations',()=>{
+test('absolute zero system reference preserves nonzero origins and authored elevations',()=>{
   for(const y of [0,7000,-15000,60000]) {
     const m=map();m.origin={x:1200,y,z:-450};const before=structuredClone(m),g=chartGrid(m);
     assert.ok(g.positions.every((value,index)=>index%3!==1||value===0));
     assert.ok(g.annotations.every(a=>a.position.y===0));
     const h8=g.annotations.find(a=>a.cell==='H8');
     assert.deepEqual(h8.widthEndpoints,[{x:38700,y:0,z:43300},{x:51200,y:0,z:43300}]);
-    const sector=chartGrid({...m,unit:'ly'});
-    assert.equal(sector.divisions,16);assert.deepEqual(sector.annotations,[]);
-    assert.ok(sector.positions.every((value,index)=>index%3!==1||value===y-m.size.y/2));
     assert.deepEqual(m,before);
     const camera=new OrthographicCamera();assert.equal(fitSquare(camera,m).y,y,'camera target still uses authored origin');
   }
@@ -74,6 +71,28 @@ test('absolute zero system reference preserves nonzero origins, sector floors an
     const marker=createMarker(entity,'position');
     try{assert.deepEqual(marker.position.toArray(),[123,y,-456]);assert.equal(Math.sign(marker.position.y),Math.sign(y));assert.deepEqual(entity,before);}
     finally{disposeTree(marker);}
+  }
+});
+
+test('sector 8×8 reference grid spans authored bounds with one unnumbered light-year measurement',()=>{
+  for(const [side,label] of [[160,'20 ly'],[240,'30 ly'],[150,'18.75 ly']])for(const y of [0,23,-40]) {
+    const m={origin:{x:12,y,z:-7},size:{x:side,y:60,z:side},unit:'ly',planeY:0};
+    const before=structuredClone(m),g=chartGrid(m),half=side/2,step=side/8;
+    assert.equal(g.divisions,8);assert.equal(g.step,step);assert.equal(g.positions.length,18*6);
+    for(let i=0;i<=8;i++) {
+      const offset=-half+i*step;
+      assert.deepEqual(g.positions.slice(i*12,i*12+12),[
+        12+offset,0,-7-half,12+offset,0,-7+half,
+        12-half,0,-7+offset,12+half,0,-7+offset
+      ],'nine complete lines in each direction on the declared plane');
+    }
+    assert.equal(g.annotations.length,1);
+    const scale=g.annotations[0];
+    assert.equal(scale.kind,'scale');assert.equal(scale.cell,'sector-bottom-right');assert.equal(scale.text,label);
+    assert.deepEqual(scale.position,{x:12+half-step/2,y:0,z:-7+half-step/2});
+    assert.deepEqual(scale.widthEndpoints,[{x:12+half-step,y:0,z:scale.position.z},{x:12+half,y:0,z:scale.position.z}]);
+    assert.equal(scale.widthEndpoints[1].x-scale.widthEndpoints[0].x,step);
+    assert.deepEqual(m,before);
   }
 });
 

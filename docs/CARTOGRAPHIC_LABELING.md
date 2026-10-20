@@ -8,9 +8,16 @@
 
 ## 1. Why two different label systems
 
+**Stage 1 amendment:** camera-facing nameplates now supersede this document's
+original floor-mounted glyph rendering, world-space glyph sizing and tilt fades.
+The geographic field/component fitting and all object-caption rules remain in
+force. See [the current viewer contract](VIEWER_SPECIFICATION.md#cartographic-typography-and-adaptive-captions--implemented-refinement)
+and [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md). The original geometric
+metrics below now select eligible components and stable X/Z anchors only.
+
 The Sector View should convey political/geographic identity at wide zoom without turning into a crowded set of interface overlays. The System View should make the names of stars, planets, moons, stations, short-range gates, Jump Gates and Jump Holes easier to associate with their markers. Implement two coordinated, but technically independent, layers:
 
-- **Cantum names** are cartographic typography in **world X/Z coordinates**, behind markers and routes; their apparent pixel size *changes with chart zoom*. Render only in Sector View.
+- **Cantum names** use stable geographic X/Z anchors in Sector View, displayed as horizontal camera-facing DOM nameplates at bounded readable CSS sizes. They have no hit targets or new selection identities.
 - **Object captions** are projected **screen-space typography** beneath each object's visible marker/sprite; font sizes remain approximately constant in CSS pixels while the caption follows the object's actual XYZ position. Use in Sector and System views with adaptive decluttering.
 
 Both layers use names resolved for the current A.E. year. Do not modify underlying data, invent names/dates, change system coordinates, or expose unreleased objects. Support UTF-8 text and the browser's available fonts.
@@ -34,9 +41,9 @@ Both layers use names resolved for the current A.E. year. Do not modify underlyi
 
 - At the overview scale (fit zoom), regional letters should be readable enough to identify a sizable region, **without demanding prominence in tiny regions**.
 - At mid zoom, gently reduce their opacity; at close zoom, fade to zero so system marker captions take precedence. Use continuous transitions and a small hysteresis/deadband for any discrete thresholds to prevent flicker.
-- World-space placement and glyph size must not be rebuilt/rescaled to a fixed CSS size on every zoom: **the words should zoom as part of the geography**. Per-frame opacity/projection updates are fine.
-- Maintain the same world-space location in 3D Sector View where sensible; fade/hide when foreshortening or projection makes the lettering unreadable. Never place territorial text in System View.
-- Place the text slightly above the chart's territory/grid plane to avoid z-fighting but visually behind routes, systems, hovering/selected markers and screen-space captions. It must not intercept clicks, taps, drags, or route picking.
+- Preserve fixed X/Z placement while projecting its provisional elevated anchor each render. Nameplates use 14–24 CSS pixels based on viewport width; zoom moves the anchor and controls the existing gradual fade, without stretching glyphs.
+- Keep text horizontal in 3D, with no foreshortening or camera-tilt cutoff. Hide anchors outside the camera frustum/behind the camera. Never place territorial text in System View.
+- The isolated provisional Y helper uses highest eligible contributor elevation plus modest chart-relative clearance. Keep shading on its unchanged flat presentation surface. The decorative DOM overlay sits below object captions/targeting and grid annotations; it never intercepts clicks, taps, drags or route picking.
 
 ## 3. Adaptive object labels
 

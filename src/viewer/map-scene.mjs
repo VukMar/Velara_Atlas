@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {createInfluence, createZone, createRoute, createTerritorialLettering, disposeTree, layerOrder} from './cartographic-layers.mjs';
-import {territorialOpacity} from './territorial-labels.mjs';
+import {createInfluence, createZone, createRoute, disposeTree, layerOrder} from './cartographic-layers.mjs';
+import {CantumNameplates} from './cantum-nameplates.mjs';
 import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './chart-layout.mjs';
 import {layoutCaptions} from './caption-layout.mjs';
 import {pickZone} from '../core/zone-geometry.mjs';
@@ -97,6 +97,7 @@ export class AtlasMap {
     this.labelsById = new Map();
     this.captionEligibility = new Set();
     this.textMeasure = document.createElement('canvas').getContext('2d');
+    this.cantumNameplates = new CantumNameplates(container,this.textMeasure);
     this.overlayChanged = () => this.render();
     document.addEventListener('toggle', this.overlayChanged, true);
     this.overlayObserver = new MutationObserver(this.overlayChanged);
@@ -176,21 +177,24 @@ export class AtlasMap {
     this.gridAnchors = layout.annotations.map(annotation => {
       const element = document.createElement('span'); element.className = 'grid-label';
       element.textContent = annotation.text; element.dataset.kind = annotation.kind;
-      if(annotation.cell) { element.dataset.cell=annotation.cell; element.title='Width of one grid sector; navigational CNU, not a physical object dimension'; }
+      const sectorScale = annotation.cell === 'sector-bottom-right';
+      if(annotation.cell) {
+        element.dataset.cell=annotation.cell;
+        element.title=sectorScale ? 'Sector View grid-cell width in light-years' : 'Width of one grid sector; navigational CNU, not a physical object dimension';
+      }
       let arrow;
       if(annotation.widthEndpoints) {
         arrow=document.createElementNS('http://www.w3.org/2000/svg','svg');
         arrow.classList.add('sector-width-arrow');arrow.setAttribute('height','6');arrow.setAttribute('aria-hidden','true');
         arrow.append(document.createElementNS('http://www.w3.org/2000/svg','path'));element.append(arrow);
-        element.setAttribute('role','img');element.setAttribute('aria-label',`Width of one H8 grid sector: ${annotation.text}`);
+        element.setAttribute('role','img');element.setAttribute('aria-label',`${sectorScale ? 'Sector View grid-cell width' : 'Width of one H8 grid sector'}: ${annotation.text}`);
       }
       this.gridLabels.append(element);
       return {...annotation,element,position:point(annotation.position),widthEndpoints:annotation.widthEndpoints?.map(point),arrow};
     });
     const influence = createInfluence(extras.groups ?? [], map, extras.presentation);
     if (influence) this.scene.add(influence);
-    this.territorialLettering = createTerritorialLettering(extras.groups ?? [], extras.cantums ?? [], map, extras.presentation);
-    for (const mesh of this.territorialLettering) this.scene.add(mesh);
+    this.cantumNameplates.setMap(map,extras.groups ?? [],extras.cantums ?? [],entities,extras.presentation);
     for (const zone of extras.zones ?? []) {
       const group=createZone(zone,positionKey==='position'?map:null);
       if(!group)continue;
@@ -260,7 +264,7 @@ export class AtlasMap {
     this.zoneGroups = [];
     this.zoneTooltip.hidden=true;
     this.zoneOutline.clear();
-    this.territorialLettering = [];
+    this.cantumNameplates.clear();
     for (const anchor of this.anchors) anchor.proxy?.dispose();
     this.anchors = [];
     this.captionEligibility.clear();
@@ -539,18 +543,8 @@ export class AtlasMap {
       setZoneMode(zone,this.mode);setZoneEmphasis(zone,zone.userData.entity.id===active,zone.userData.entity.id===this.selectedId,visibleZoneCount);
     }
     this.updateZoneTooltip();
-    const elevation = Math.abs(this.camera.position.y-this.controls.target.y)/this.camera.position.distanceTo(this.controls.target);
-    for (const mesh of this.territorialLettering ?? []) {
-      const center=mesh.position.clone().project(this.camera);
-      const edge=mesh.localToWorld(new THREE.Vector3(0,mesh.geometry.parameters.height/2,0)).project(this.camera);
-      const pixels=Math.hypot((edge.x-center.x)*this.width,(edge.y-center.y)*this.height);
-      const baseline=mesh.localToWorld(new THREE.Vector3(mesh.geometry.parameters.width/2,0,0)).project(this.camera).sub(center);
-      const upright=baseline.x/Math.hypot(baseline.x,baseline.y);
-      mesh.material.opacity=territorialOpacity(this.map.size.x/this.viewSpan(),this.mode==='top'?1:elevation)
-        * THREE.MathUtils.clamp((pixels-8)/4,0,1) * THREE.MathUtils.clamp((upright-.2)/.4,0,1);
-      mesh.visible=this.layerPreferences.cantumNames!==false && mesh.material.opacity>0;
-    }
-    this.container.dataset.cantumLabels=String((this.territorialLettering ?? []).filter(m=>m.visible).length);
+    this.container.dataset.cantumLabels=String(this.cantumNameplates.update(this.camera,this.width,this.height,
+      this.map ? this.map.size.x/this.viewSpan() : 1,this.layerPreferences.cantumNames!==false));
     for(const annotation of this.gridAnchors) {
       const p=annotation.position.clone().project(this.camera), e=annotation.element;
       if(annotation.widthEndpoints) {
@@ -656,6 +650,7 @@ export class AtlasMap {
     this.controls.dispose();
     this.clearMap();
     this.gridLabels.remove();
+    this.cantumNameplates.dispose();
     this.zoneTooltip.remove();
     this.zoneOutline.dispose();
     this.renderer.dispose();

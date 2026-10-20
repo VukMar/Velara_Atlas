@@ -66,7 +66,8 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 1. Near-black map / restrained starfield and background.
 2. Coordinate grid and reference guides.
 3. Metaball-like Cantum influence regions (sector only), soft and nearly transparent.
-   World-space Cantum lettering follows the fill, before any route or marker.
+   Stage 1 Cantum names use a decorative projected DOM overlay; marker captions,
+   targeting and grid annotations remain above it, with no opaque nameplate panel.
 4. Nav routes (short-range in systems; Jump Gate and Jump Hole routes in sector view).
 5. Spatial objects (2D icons in top-down; appropriate physical/simple 3D rendering in perspective).
 6. Historical names, spatial labels and visible coordinate readouts.
@@ -75,9 +76,12 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 **Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
 adds restrained, spaced system-font Cantum names per sufficiently large connected
 influence component. Historical names and memberships remain authoritative. Text
-is straight, at most ±30°, fitted completely inside sampled geography; small or
-unnamed regions have none. World-space lettering zooms with the chart, fades at
-close zoom or unreadable perspective, and never receives pointer events. Its
+uses the existing fitted geography for X/Z anchors; small or unnamed regions have
+none. Stage 1 displays horizontal camera-facing nameplates at bounded 14–24 CSS
+pixels, with Cantum-specific tint, weight 600 and restrained shadow. The provisional
+height is highest eligible contributor Y plus modest clearance, independently of
+the unchanged flat influence surface. Names fade at close zoom, remain readable
+at low camera tilt and never receive pointer events. Their
 Cantum-linked tint is independent of NEXUS interface colors and influence opacity
 caps. The **Cantum Names** control is sector-only and independent of shading.
 

@@ -96,6 +96,25 @@ targeting independently of route hover. A selected record alone must not keep
 routes or partner markers highlighted. Keyboard focus supplies equivalent route
 feedback; touch selection exposes the same record/actions without requiring hover.
 
+### Sector chart grid
+
+Sector View uses an **8×8 unnumbered grid** spanning the complete square X/Z
+extent. Each cell is `map.size.x / 8` wide and `map.size.z / 8` deep in ly.
+All grid vertices and scale endpoints use **`map.planeY`** (currently zero by
+schema), independently of map origin Y or vertical extent. Only the bottom-right
+cell has a scale: the actual cell width in light-years, with the existing
+double-headed width arrow and text above it. The 160-ly demo shows **20 ly**.
+There are no column letters, row numbers or H8 designation; its internal marker
+is `sector-bottom-right`, with Sector View grid-cell accessibility text.
+
+The same world-to-screen projection handles both cameras. Coordinate grid hides
+lines, text and arrow together, retaining independent sector/system preferences.
+These transparent visual-only elements never intercept selection. The grid draws
+before Cantum influence; its existing separate presentation elevation, geometry,
+opacity and historical behavior are preserved. Stage 1 Cantum nameplates use
+their own provisional elevated anchors, independently of grid placement.
+Chart bounds, camera framing and authored system XYZ do not change.
+
 ### System chart grid
 
 Use eight equal columns **A–H** left to right (−X to +X) and eight equal rows
@@ -105,10 +124,9 @@ endpoints. This reference does not move with a nonzero map origin or vertical
 extent. Objects retain authored XYZ above/below it; map bounds and camera targets
 are unchanged. The grid remains transparent line segments below routes/markers,
 excluded from picking. Coordinate grid controls lines and annotations together
-in both camera modes, retaining existing per-map preferences. Sector grid elevation
-remains `map.origin.y - map.size.y / 2`. H8 displays one cell's navigational width,
+in both camera modes, retaining existing per-map preferences. H8 displays one cell's navigational width,
 `map.size.x / 8`; a 100,000-CNU map shows **12.5K CNU**. This is not a physical
-body dimension. Sector View does not inherit system-grid labels.
+body dimension. Sector View uses its own unnumbered light-year scale described above.
 
 ## 5. Object rendering: icons and optional 3D
 
@@ -348,12 +366,28 @@ world dimensions and upright angles bounded to ±30°. Small or unnamed regions
 are omitted. This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
 
-Locally rendered system-font CanvasTextures sit above shading and below routes
-and markers, with no picking targets or separate accessibility nodes. Their
-physical chart dimensions remain fixed during camera movement. Opacity decreases
-continuously from overview to zero at 5× fit zoom; tiny, steeply foreshortened or
-backward-facing projections fade away. Map/year rebuilds dispose GPU resources;
-topology/placement caches retain only eight resolved input sets.
+**Cantum Visual Patch Stage 1:** projected DOM nameplates replace floor-mounted
+CanvasTexture meshes. The accepted component fitting still determines eligibility
+and stable X/Z anchors; its angle/world dimensions no longer orient or stretch
+the displayed text. Names remain horizontal in both cameras at 14–24 CSS pixels
+(`clamp(viewport width × .027, 14, 24)`), with weight 600, Cantum tint and a subtle
+shadow. A provisional height helper uses the highest currently eligible system Y
+for that Cantum plus `min(map.size.y × .05, map.size.x × .02)` ly clearance.
+Only systems referenced by the resolved contributor group participate. No
+chart-ceiling placement, new measurement or authored coordinate is introduced.
+Stage 3 can replace this helper with the actual influence-envelope top later.
+Text near viewport edges is contained with a four-pixel margin; this adjusts only
+its screen presentation, preserving the projected/world anchor and complete name.
+
+Opacity retains the continuous overview-to-zero fade at 5× fit zoom (peak .46),
+without any camera-elevation, orientation or foreshortening cutoff. Anchors outside
+the camera frustum or behind the camera are hidden. The decorative `aria-hidden`
+overlay has no hit targets, listeners or catalogue identities; existing object
+captions/controls and grid annotations remain above it. Map/year changes replace
+its nodes; scene disposal removes the overlay. There are no text GPU resources
+or new animation loops; the topology/placement cache retains eight input sets.
+The influence surface remains flat and unchanged. Sigils, 3D envelopes and new
+detached-island display rules are deferred. See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 Projected HTML object captions stay centered beneath marker footprints at readable
 CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.

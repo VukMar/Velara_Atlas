@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {readDataset} from '../scripts/check-relations.mjs';
 import {resolveAtlas,territoryGroups,cantumField} from '../src/core/cartography.mjs';
-import {territorialLabels,fieldComponents,territorialOpacity} from '../src/viewer/territorial-labels.mjs';
+import {territorialLabels,fieldComponents,territorialOpacity,territorialAnchorY} from '../src/viewer/territorial-labels.mjs';
+import {nameplateProjection,containNameplate} from '../src/viewer/cantum-nameplates.mjs';
+import {OrthographicCamera,PerspectiveCamera,Vector3} from 'three';
 import {layoutCaptions,captionRank} from '../src/viewer/caption-layout.mjs';
 
 const map={origin:{x:0,y:0,z:0},size:{x:200,y:40,z:200},unit:'ly'};
@@ -88,5 +90,43 @@ test('minor captions reveal with zoom and hysteresis; fixed pixel rectangles nee
   assert.equal(layout([moon],{zoom:threshold*.98,eligible:entered.eligible}).shown.size,1);
   assert.equal(layout([moon],{zoom:threshold*.9,eligible:entered.eligible}).shown.size,0);
   const planet=candidate('planet');assert.deepEqual([...layout([planet],{zoom:1}).shown],[...layout([planet],{zoom:20}).shown]);
-  assert.ok(territorialOpacity(1)>territorialOpacity(3));assert.equal(territorialOpacity(5),0);assert.equal(territorialOpacity(1,.1),0);
+  assert.ok(territorialOpacity(1)>territorialOpacity(3));assert.equal(territorialOpacity(5),0);
+});
+
+test('provisional nameplate height uses only eligible contributor elevations and modest clearance',()=>{
+  const g={...group([[-65,0],[65,0]]),points:[{id:'a',x:-65,z:0},{id:'b',x:65,z:0}]};
+  const systems=[{id:'a',cantumId:'test',positionLY:{x:-65,y:-7,z:0}},
+    {id:'b',cantumId:'test',positionLY:{x:65,y:6,z:0}},
+    {id:'future',cantumId:'test',positionLY:{y:900}},
+    {id:'a',cantumId:'other',positionLY:{y:1000}}];
+  const m={...map,origin:{x:0,y:15,z:0}},before=structuredClone([g,systems,m]);
+  assert.equal(territorialAnchorY(g,systems,m),8);
+  assert.equal(territorialAnchorY(g,systems.slice(0,1),m),-5);
+  assert.equal(territorialAnchorY(g,[],m),null);
+  assert.deepEqual([g,systems,m],before);
+  assert.equal(territorialLabels([g],cantums,m,null).length,2,'existing detached components remain independently eligible');
+});
+
+test('nameplates project exact anchors with screen-space size, zoom fade and no camera-tilt fade',()=>{
+  const p=new Vector3(20,8,30),before=p.clone();
+  const top=new OrthographicCamera(-100,100,100,-100,.1,1000);
+  top.position.set(0,200,0);top.up.set(0,0,-1);top.lookAt(0,0,0);top.updateMatrixWorld();
+  const a=nameplateProjection(p,top,400,400,1);
+  assert.ok(Math.abs(a.x-240)<1e-8&&Math.abs(a.y-260)<1e-8);assert.ok(a.visible);
+  top.zoom=2;top.updateProjectionMatrix();
+  const close=nameplateProjection(p,top,400,400,2);
+  assert.ok(Math.abs(close.x-280)<1e-8);assert.equal(close.font,a.font);assert.ok(close.opacity<a.opacity);
+  const perspective=new PerspectiveCamera(45,1,.1,1000);
+  for(const [x,y,z] of [[0,120,200],[0,5,200],[150,5,140]]) {
+    perspective.position.set(x,y,z);perspective.lookAt(0,0,0);perspective.updateMatrixWorld();
+    const projected=nameplateProjection(p,perspective,400,400,1);
+    assert.ok(projected.visible);assert.equal(projected.font,a.font);assert.equal(projected.opacity,a.opacity);
+  }
+  assert.equal(nameplateProjection(new Vector3(0,0,500),perspective,400,400,1).visible,false);
+  assert.equal(nameplateProjection(p,perspective,400,400,5).visible,false);
+  for(let zoom=1;zoom<5;zoom+=.01)assert.ok(territorialOpacity(zoom)>=territorialOpacity(zoom+.01));
+  assert.deepEqual(p,before);
+  const edge={x:10,y:20};
+  assert.deepEqual(containNameplate(edge,320,320,150,24),{x:79,y:20});
+  assert.deepEqual(edge,{x:10,y:20},'edge containment leaves the projected anchor unchanged');
 });

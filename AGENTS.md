@@ -4,7 +4,15 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Current authorization is tests/documentation maintenance only; preserve that data baseline. The next planned stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement; implementation, canonical migration, deployment and the deferred editor remain unauthorized.
+**Current task override:** Cantum Visual Patch Stage 1 only: camera-facing DOM
+nameplates at existing component X/Z anchors, provisional contributor-based Y,
+zoom-only fading and focused tests/docs. Preserve the pending unnumbered 8×8
+sector grid on `map.planeY` and bottom-right ly scale; System View keeps absolute
+Y=0 CNU, A–H/1–8 and H8. Preserve influence fields/surfaces, data, cameras/icons
+and `src/viewer/visual-config.mjs`. No sigils, 3D envelopes or new detached-island
+rules. Stop after Stage 1 without commit/push; later stages need approval.
+
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline; current implementation is limited to Cantum Visual Patch Stage 1 above. The next planned stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement; implementation, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -72,4 +80,4 @@ The fallback system has no detail JSON
 or extra loader. Keep `publicDir: false`; only the explicit 14 SVG paths may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the authorized maintenance. Checkpoint 4.2 requires separate creator approval; do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after Cantum Visual Patch Stage 1. Further visual development requires separate creator approval; do not commit, push or deploy automatically.
