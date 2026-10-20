@@ -30,6 +30,7 @@ export class CantumNameplates {
   setMap(map, groups, cantums, systems, presentation) {
     this.clear();
     if(map?.unit!=='ly'||!groups.length)return;
+    this.clearance=Math.min(map.size.y*.03,map.size.x*.01);
     // Retain the accepted full-name fitting metrics, without creating GPU text.
     const aspects={};
     this.measure.font='500 64px system-ui, sans-serif';
@@ -48,12 +49,14 @@ export class CantumNameplates {
       element.style.color=label.color;
       const sigil=attachSigil(element,cantums.find(c=>c.id===label.cantumId)?.sigil,this.changed);
       this.root.append(element);
-      this.anchors.push({label,element,sigil,position:new Vector3(label.x,y,label.z),visible:false,opacity:0});
+      this.anchors.push({label,element,sigil,topY:y,position:new Vector3(label.x,y,label.z),visible:false,opacity:0});
     }
   }
 
-  update(camera, width, height, zoom, enabled) {
+  update(camera, width, height, zoom, enabled, mode='top', envelopes=[]) {
     for(const a of this.anchors) {
+      const surface=mode==='perspective' ? envelopes?.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z) : null;
+      a.position.y=surface ? surface.upper+this.clearance : a.topY;
       const p=nameplateProjection(a.position,camera,width,height,zoom);
       a.opacity=p.opacity;
       a.visible=enabled&&p.visible;

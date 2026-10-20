@@ -375,7 +375,8 @@ shadow. A provisional height helper uses the highest currently eligible system Y
 for that Cantum plus `min(map.size.y × .05, map.size.x × .02)` ly clearance.
 Only systems referenced by the resolved contributor group participate. No
 chart-ceiling placement, new measurement or authored coordinate is introduced.
-Stage 3 can replace this helper with the actual influence-envelope top later.
+Stage 3 now uses the local envelope upper surface in perspective, as described below;
+this provisional contributor height remains the top-down anchor.
 Text near viewport edges is contained with a four-pixel margin; this adjusts only
 its screen presentation, preserving the projected/world anchor and complete name.
 
@@ -386,8 +387,8 @@ overlay has no hit targets or catalogue identities; existing object
 captions/controls and grid annotations remain above it. Map/year changes replace
 its nodes; scene disposal removes the overlay. There are no text GPU resources
 or new animation loops; the topology/placement cache retains eight input sets.
-The influence surface remains flat and unchanged. Stage 2 adds optional sigils;
-3D envelopes and new detached-island display rules remain deferred.
+Top-down influence remains flat and unchanged. Stage 2 adds optional sigils;
+Stage 3 adds perspective envelopes. New detached-island display rules remain deferred.
 See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 **Stage 2 optional Cantum sigils:** the closed registry recognizes only
@@ -398,7 +399,20 @@ items exist. Null, omission or an unknown ID creates no image; a failed asset
 removes the image and triggers the existing render path to recontain the text.
 Rebuild/disposal removes image error listeners. There is no generic fallback,
 new interaction target, permanent loop, new island eligibility or System View
-plate. Stage 3 flattened envelopes and Stage 4 sigil-only islands remain deferred.
+plate. Stage 4 sigil-only islands remain deferred.
+
+**Stage 3 perspective influence:** only perspective uses translucent flattened
+world-space envelopes derived from the same Gaussian X/Z field. Top-down retains
+the original RGBA texture, including mixing/alpha caps. The representations are
+mutually exclusive under the existing Influence toggle. Bounds-clipped upper/lower
+surfaces use `clamp(radiusLY * .30, 4, 9)` half-height and a smooth local elevation
+interpolation through eligible contributors. A capped geometry-only accumulation
+pass keeps all front/back/overlap alpha at or below .22. It requires a renderable
+half-float color target; no volumetric raymarching or new selection identity exists.
+Perspective nameplates keep X/Z and eligibility, sitting above the local upper
+surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independent
+of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
+and [Stage 3 evidence](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
 Projected HTML object captions stay centered beneath marker footprints at readable
 CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.

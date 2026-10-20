@@ -66,14 +66,14 @@ These are **tunable starting defaults**, not canon. The sample uses a **maximum 
 - **Optional blur:** a subtle final antialias/softening pass (for example 2–4 CSS pixels) is permissible, but the field `smoothstep` is the primary soft boundary. Do not use arbitrary large blur that obscures territory shapes.
 - **Shape scale:** changing camera zoom/pan **does not change world-space bubble radius or topology**. No pop-in, seam jumps or color flicker when the camera moves. Render smooth projected boundaries at sufficient precision; adjust pixel resolution or use GPU shading as needed.
 - **Hard layer order, back → front:** `(1)` background/starfield; `(2)` coordinate grid; `(3)` Cantum influence shading; `(4)` interstellar route strokes; `(5)` star/system markers; `(6)` names and labels; `(7)` hover/selection and direct UI. Every marker remains crisp, fully clickable, and readable above the territory. Territory never intercepts pointer/raycast events or adds an InfoCard selection target.
-- **Sector perspective mode:** maintain the same X/Z historical footprint as an unobtrusive chart/reference-plane projection underneath system markers, **not a true three-dimensional sovereignty volume**. It may lie on a visual chart floor below the marker layer; preserve explicit render ordering and prevent depth-test artifacts from drawing the territory on top of stars. Toggling perspective cannot recompute membership or shift circles. The sector's unnumbered 8×8 grid and bottom-right ly scale use `map.planeY`; influence meshes retain their separate presentation plane. Stage 1 Cantum names now use camera-facing DOM nameplates at existing component X/Z anchors, provisionally above the Cantum's highest eligible system elevation by `min(map.size.y × .05, map.size.x × .02)` ly. This height does not move shading or systems. Nameplates fade with zoom, independently of tilt and influence visibility. Optional sigils are integrated in Stage 2; 3D influence envelopes and new island-display rules remain deferred; see [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+- **Sector perspective mode (Stage 3 supersedes the always-floor-mounted, nonvolumetric presentation):** use flattened world-space envelopes derived from the same authoritative X/Z Gaussian field. They are a chart visualization, not newly authored sovereignty volumes. Top-down still uses the original flat RGBA shading. Grid remains on `map.planeY`; perspective nameplates sit above their local envelope surface. See the Stage 3 contract below.
 - **Toggle:** “Cantum influence regions” (or similar), OFF hides only the overlay; it does **not** recolor system markers, remove connections, change Cantum affiliations, or affect searching.
 - **Stage 2 sigils:** Stage 1 nameplates are approved. Each already eligible
   nameplate may now include its Cantum's optional registered sigil, sharing the
   anchor, fade, containment and Names toggle. `test-cantum-a` is the sole approved
   noncanonical demonstration asset; null/omission/unknown/failure is text-only.
   This does not change contributors, fields, colors, radii, flat surfaces or
-  connected-component eligibility. Stage 3 envelopes and Stage 4 sigil-only
+  connected-component eligibility. Stage 4 sigil-only
   small-island rules remain planned; see [Stage 2 results](CANTUM_SIGILS_STAGE2_RESULTS.md).
 - **Other spatial zones:** nebula, radiation and asteroid-field volumes are independent **system-map features**. Do not merge their geometry with Cantum influence shading.
 
@@ -140,3 +140,66 @@ Style tuning requires its own authorized visual work and must preserve membershi
 fixed ly radii, opacity caps, disclosure and layer order. See
 [implementation notes](VIEWER_PROTOTYPE.md) and [current audit](REPOSITORY_AUDIT_3_6.md).
 No territory calculations or settings were changed in the documentation audit.
+
+## Stage 3 dual presentation and bounded envelope geometry
+
+The Gaussian sum, resolved membership/contributor selection, configured radii,
+thresholds and colors remain authoritative in X/Z. Y never determines affiliation,
+merging or island eligibility. Orthographic mode preserves the existing flat
+256x256 RGBA texture and its 0.16 per-Cantum / 0.22 total caps exactly. Perspective
+hides that floor mesh and uses only the envelope composite. The Influence toggle
+controls the active representation; Names/sigils remain separately controlled.
+
+Envelope half-height is clamp(radiusLY * .30, 4, 9): 7.2 ly for the demo's 24-ly
+radius and 5.4 ly for its 18-ly radius. At each horizontal sample, the centerline
+is a Gaussian-distance-weighted inverse-square interpolation of the eligible
+contributors' authored Y. Exact contributor locations interpolate their own Y;
+coincident X/Z locations use their mean elevation. Remote islands therefore do
+not inherit one another's maximum Y. Computation uses relative exponents for
+numeric stability. Positions are never moved. If coincident elevations exceed
+the available height budget, current eligible IDs are recorded in the envelope's
+limitations array; the viewer does not invent a bigger boundary or move stars.
+
+Geometry samples a bounded 128x128 chart grid, splits each cell into four
+center-to-corner triangles and clips each triangle against fieldThresholdStart.
+Shared edges use canonical cached roots with 24 bisections. Upper/lower surfaces
+taper with sqrt(t * (2 - t)), where t is the clamped field interval between start
+and end thresholds. Surface opacity uses the original smoothstep interval.
+Contour vertices meet at the centerline. All XYZ coordinates are clipped to map
+bounds; chart-edge cuts receive closing side faces. Zero-area triangles after
+Float32 conversion are omitted, with consistent outward winding.
+
+For the 160-ly chart, the grid step is 1.25 ly and the conservative horizontal
+sampling tolerance is one cell diagonal, about 1.77 ly, plus Float32 rounding.
+Contour vertices use the true field; straight segments interpolate between them.
+Sub-cell features/narrow necks remain limited by sampling, rather than acquiring
+new political meaning. Geometry can taper inward vertically; authored Y does not
+join detached X/Z regions or split their existing horizontal footprint. Chart
+clipping can produce a planar cut face at an authored bound.
+
+Perspective shading uses a private geometry-only raster pass into a half-float
+RGBA target: premultiplied weighted colors and alpha accumulate without depth
+writes/testing. One screen-space chart-layer pass normalizes the accumulated
+color and clamps final alpha to the configured cap, never above .22. Each face
+starts at half the configured per-Cantum maximum (at most .08). Thus front/back
+surfaces and overlapping different Cantums stay subdued, order-independent up to
+floating-point rounding, without bright additive output or opaque stacking.
+The required renderable half-float color-buffer capability is verified in the
+Chromium browser checks. No full-scene raymarching or external rendering system
+is introduced. Stars/routes draw afterward; neither shells nor composite can be
+picked. Grid elevation, name/sigil identities and their layer preferences stay
+unchanged. Depth testing is disabled for chart layers to prevent z-fighting.
+
+Perspective nameplates retain accepted X/Z/component eligibility and use the
+local sampled upper surface plus min(map.size.y * .03, map.size.x * .01) ly
+clearance (1.6 ly in the demo). Top-down retains the Stage 1 provisional Y.
+Detached islands use their local surface, not the highest distant island.
+
+Mesh data are cached for eight resolved input sets, keyed by eligible IDs, XYZ,
+colors/radius, thresholds, bounds and resolution. Panning/orbit/zoom never rebuild
+geometry. Map/year updates use the cache; private geometries, materials and
+render targets are disposed on replacement. The event-driven renderer resizes
+the target to its actual drawing buffer, including DPR changes. Target memory
+is eight bytes per drawing-buffer pixel. System zones and celestial rendering
+are independent. Stage 4 small-island labels and Stage 5 polish remain deferred.
+See [Stage 3 results](CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.

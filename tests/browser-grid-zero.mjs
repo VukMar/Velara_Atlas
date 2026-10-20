@@ -22,7 +22,8 @@ async page=>{
     const territory=m.scene.children.find(n=>n.userData.layer==='territory');
     return {mode:m.mode,map:m.map,gridY:[...new Set(ys)],vertices:ys.length,divisions:m.container.dataset.gridDivisions,visible:grid.visible,annotations:m.gridAnchors.map(a=>({kind:a.kind,y:a.position.y,hidden:a.element.hidden})),
       territory:territory&&{position:territory.position.toArray(),order:territory.renderOrder,visible:territory.visible,opacity:territory.material.opacity,texture:territory.material.map.image.data.reduce((hash,byte)=>Math.imul(hash^byte,16777619)>>>0,2166136261)},
-      names:m.cantumNameplates.anchors.map(n=>({position:n.position.toArray(),label:n.label,visible:n.visible,opacity:n.opacity})),
+      names:m.cantumNameplates.anchors.map(n=>({position:n.position.toArray(),label:n.label,visible:n.visible,opacity:n.opacity,surface:m.influenceEnvelopes?.data.find(d=>d.id===n.label.cantumId)?.sample(n.label.x,n.label.z)?.upper})),
+      envelopes:m.influenceEnvelopes?.display.visible??false,
       material:{lines:grid.isLineSegments,transparent:grid.material.transparent,opacity:grid.material.opacity,depthWrite:grid.material.depthWrite,order:grid.renderOrder},
       view:m.getView(),measurement,objects:m.meshes.map(mesh=>({id:mesh.userData.entity.id,xyz:mesh.position.toArray()}))};
   });
@@ -45,8 +46,8 @@ async page=>{
     check(h.ys.every(y=>y===map.planeY)&&h.xs[0]===map.origin.x+map.size.x/2-step&&h.xs[1]===map.origin.x+map.size.x/2,'sector arrow spans bottom-right cell boundaries on reference plane');
     check(h.z===map.origin.z+map.size.z/2-step/2&&Math.abs(h.width-h.expected)<.01,'sector scale projects exact cell width in '+s.mode);
     check(h.pointer==='none'&&h.arrowPointer==='none','sector measurement cannot intercept selection');
-    check(s.territory&&s.territory.visible&&s.territory.position[1]===map.origin.y-map.size.y/2+.001,'influence remains on its separate presentation plane');
-    check(s.names.some(n=>n.visible)&&s.names.every(n=>n.position[1]===Math.max(...sector.systems.filter(o=>o.cantumHistory?.some(h=>h.cantumId===n.label.cantumId&&h.fromAE<=sector.timeline.defaultAE&&(h.untilAE===null||h.untilAE>sector.timeline.defaultAE))).map(o=>o.positionLY.y))+Math.min(map.size.y*.05,map.size.x*.02)),'nameplates float above eligible Cantum contributors');
+    check(s.territory&&s.territory.visible===(s.mode==='top')&&s.envelopes===(s.mode==='perspective')&&s.territory.position[1]===map.origin.y-map.size.y/2+.001,'flat plane preserved, with exclusive mode-specific envelope display');
+    check(s.names.some(n=>n.visible)&&s.names.every(n=>Math.abs(n.position[1]-(s.mode==='perspective'?n.surface+Math.min(map.size.y*.03,map.size.x*.01):Math.max(...sector.systems.filter(o=>o.cantumHistory?.some(h=>h.cantumId===n.label.cantumId&&h.fromAE<=sector.timeline.defaultAE&&(h.untilAE===null||h.untilAE>sector.timeline.defaultAE))).map(o=>o.positionLY.y))+Math.min(map.size.y*.05,map.size.x*.02)))<1e-8),'nameplates preserve top-down anchors and use local envelope tops in perspective');
     check(s.material.order<s.territory.order&&s.territory.order<3,'grid remains below unchanged influence and routes');
     for(const o of s.objects){const source=sector.systems.find(e=>e.id===o.id);check(JSON.stringify(o.xyz)===JSON.stringify([source.positionLY.x,source.positionLY.y,source.positionLY.z]),o.id+' retains sector XYZ');}
     return s;

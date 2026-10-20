@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {createInfluence, createZone, createRoute, disposeTree, layerOrder} from './cartographic-layers.mjs';
 import {CantumNameplates} from './cantum-nameplates.mjs';
+import {influenceEnvelopes} from './influence-envelopes.mjs';
+import {InfluenceCompositor} from './influence-compositor.mjs';
 import {assertSquareMap, fitSquare, clampChart, chartGrid, hoverRoutes} from './chart-layout.mjs';
 import {layoutCaptions} from './caption-layout.mjs';
 import {pickZone} from '../core/zone-geometry.mjs';
@@ -194,6 +196,12 @@ export class AtlasMap {
     });
     const influence = createInfluence(extras.groups ?? [], map, extras.presentation);
     if (influence) this.scene.add(influence);
+    this.flatInfluence=influence;
+    const envelopes=influenceEnvelopes(extras.groups ?? [],entities,map,extras.presentation);
+    if(envelopes.length) {
+      this.influenceEnvelopes=new InfluenceCompositor(envelopes,extras.presentation);
+      this.scene.add(this.influenceEnvelopes.display);
+    }
     this.cantumNameplates.setMap(map,extras.groups ?? [],extras.cantums ?? [],entities,extras.presentation);
     for (const zone of extras.zones ?? []) {
       const group=createZone(zone,positionKey==='position'?map:null);
@@ -253,6 +261,7 @@ export class AtlasMap {
   }
 
   clearMap() {
+    this.influenceEnvelopes?.dispose();this.influenceEnvelopes=null;this.flatInfluence=null;
     this.inspection = null;
     clearTimeout(this.selectTimer);
     for (const item of [...this.scene.children]) {
@@ -543,8 +552,11 @@ export class AtlasMap {
       setZoneMode(zone,this.mode);setZoneEmphasis(zone,zone.userData.entity.id===active,zone.userData.entity.id===this.selectedId,visibleZoneCount);
     }
     this.updateZoneTooltip();
+    const territoryEnabled=this.layerPreferences.territory!==false;
+    if(this.flatInfluence)this.flatInfluence.visible=this.mode==='top'&&territoryEnabled;
+    if(this.influenceEnvelopes)this.influenceEnvelopes.display.visible=this.mode==='perspective'&&territoryEnabled;
     this.container.dataset.cantumLabels=String(this.cantumNameplates.update(this.camera,this.width,this.height,
-      this.map ? this.map.size.x/this.viewSpan() : 1,this.layerPreferences.cantumNames!==false));
+      this.map ? this.map.size.x/this.viewSpan() : 1,this.layerPreferences.cantumNames!==false,this.mode,this.influenceEnvelopes?.data));
     for(const annotation of this.gridAnchors) {
       const p=annotation.position.clone().project(this.camera), e=annotation.element;
       if(annotation.widthEndpoints) {
@@ -636,6 +648,7 @@ export class AtlasMap {
       obstacles, eligible:this.captionEligibility});
     this.captionEligibility = layout.eligible;
     for (const a of this.anchors) a.button.dataset.caption = String(layout.shown.has(a.entity.id));
+    this.influenceEnvelopes?.render(this.renderer,this.camera);
     this.renderer.render(this.scene, this.camera);
     this.container.dataset.mode = this.mode;
     this.container.dataset.markers = String(this.meshes.length);

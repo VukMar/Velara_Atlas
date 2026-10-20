@@ -27,6 +27,13 @@ See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 ## Approved foundations and design
 
+**Latest authorization — Cantum Visual Patch Stage 3 only:** Stages 1–2 are
+creator-approved. Perspective envelopes now visualize the unchanged 2D field,
+with bounded contributor-Y shaping, local nameplate heights and restrained capped
+compositing. Top-down stays unchanged. Stage 4 detached-island label rules and
+Stage 5 final refinement remain planned and unimplemented. Stop for review after
+[Stage 3 verification](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
+
 **Current authorization — Cantum Visual Patch Stage 2 only:** Stage 1 has been
 reviewed and approved. Add the optional current v1.2 sigil identifier, one explicit
 noncanonical demo SVG, secure bundling and integration with existing nameplates.

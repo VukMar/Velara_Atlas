@@ -24,6 +24,8 @@ editor remain separate future work.
 | `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic fitting, zoom fade and isolated provisional contributor-height calculation |
 | `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative DOM nameplates; full-name fitting metrics, screen-space typography, frustum visibility and lifecycle cleanup |
 | `src/viewer/sigil-registry.mjs` | Closed static URL mapping for the single noncanonical Cantum sigil; optional image lifecycle with text-only failure behavior |
+| `src/viewer/influence-envelopes.mjs` | Pure bounded X/Z field triangulation, contributor-Y centerline, clipped rounded surfaces and eight-input mesh-data cache |
+| `src/viewer/influence-compositor.mjs` | Non-pickable envelope geometry in a private scene, half-float accumulation and one capped chart-layer composite; target/resource lifecycle |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom; 8×8 sector grid on `map.planeY` with an unnumbered ly scale, and absolute-zero system grid with A–H/1–8 and H8 CNU scale |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
 | `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |
@@ -98,6 +100,18 @@ contributor Y plus modest clearance. Projection/fade updates share the event-dri
 render path; the nameplate overlay owns no GPU textures or listeners. Authored XYZ,
 chart extents, camera framing, political calculations and system-grid behavior
 do not change. See [the Stage 1 report](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+
+Stage 3 supersedes the always-flat perspective presentation. `AtlasMap` retains
+the original flat mesh for top-down and shows only the envelope composite in
+perspective. Geometry is generated from resolved contributor groups at map/year
+updates and cached independently of camera movement. Perspective nameplates sample
+their local envelope top; top-down heights and all label eligibility remain intact.
+The event-driven render path rasterizes only envelope meshes into a half-float
+target, then displays one normal-blended chart layer with total alpha capped at
+.22. This bounds overlaps/front/back coverage without additive visible effects.
+Main-scene picking excludes the composite and private shell meshes. Clearing a
+map disposes private geometries/materials/target; the main scene owns the composite
+geometry/material. No data, schema, asset, dependency or grid change is involved.
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
