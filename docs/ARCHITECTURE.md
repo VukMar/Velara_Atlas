@@ -1,8 +1,13 @@
 # Velara Atlas — Implemented architecture
 
-**Status:** Local noncanonical viewer through Checkpoint 3.8 zone interaction, with cartographic labeling and the Checkpoint 3.6 layout; navigation authoring
-uses Schema v1.2. Canonical migration, final artwork, deployment and the local
-editor remain separate future work.
+**Status:** Verified against `main` at `190bd21` (2026-10-20). The local
+noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
+Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
+cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
+Current work is documentation-only architecture Phase 1; canonical migration,
+final artwork, deployment and the local editor remain separately gated.
+Use the [index](INDEX.md) for authority and the
+[migration inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md) for proposed path work.
 
 ## Runtime responsibilities
 
@@ -37,7 +42,8 @@ has no write endpoint, authentication, live AI lore generation or backend.
 
 ## Data flow and historical semantics
 
-1. The demo loader reads only released, explicitly allowlisted noncanonical JSON.
+1. The demo loader reads only released, explicitly allowlisted noncanonical JSON
+   from `examples/demo_atlas/` (four registries and three detail files).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -127,7 +133,8 @@ full-name failures retain text. No influence geometry/compositor module changes.
 See [Stage 4 policy](CANTUM_TERRITORY_RENDERING.md#stage-4-detached-island-identities).
 Stage 5 refinement remains deferred.
 
-The intermediate calibration keeps local Stage 4 sources unchanged. Sector sphere
+The intermediate calibration preserved Stage 4 behavior; both are committed in
+`190bd21`. Their reports retain their original working-copy circumstances. Sector sphere
 scale now comes from `sectorMarkerWorldRadius()` using CSS viewport dimensions and
 three projection corrections, rather than radial camera distance. Captions use
 the same visible 4px radius; existing invisible picking targets remain independent.
@@ -138,6 +145,17 @@ only on its separate loopback dev server. Its synthetic scenario/controller live
 in `tests/calibration/`, outside normal Vite filesystem and build input allowlists.
 No production route, extra asset or public-directory copying is introduced.
 See [calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+
+The current workflow is `npm run preview:calibration` at
+`http://127.0.0.1:5174/Velara_Atlas/__calibration/`.
+`tests/calibration/scenario.mjs` hardcodes a **synthetic in-memory** dataset:
+15 test stars, two test Cantums, 40 × 40 ly X/Z, independent 12-ly Y extent,
+and 2/2.5/3-ly radius choices. It does not read demo JSON.
+`controller.mjs` resolves it through the existing cartography API and displays
+it; `index.html` defines controls. The preview script serves exactly these three
+files through development-only middleware, reusing the existing viewer/core.
+No scenario JSON loader or editor exists. JSON scenario support belongs to
+proposed architecture **Phase 5**, not Phase 1 or the proposed Phase 2 move.
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
@@ -199,5 +217,7 @@ The data contract has no latest-published-year field: this demo uses
 `timeline.startAE` through `defaultAE`. Exact event markers beyond conservative
 record jumps, final assets, full accessibility, cross-browser/touch-hardware QA
 and large-atlas performance remain future work. See
-[current audit evidence](REPOSITORY_AUDIT_3_6.md), including the unresolved
-post-gesture emulated tap and existing bundle-size advisory.
+[Checkpoint 3.6 audit evidence](REPOSITORY_AUDIT_3_6.md) for its original limits;
+the [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) records subsequent
+emulated-touch checks and the continuing bundle-size advisory. These are
+historical results, not fresh browser verification for architecture Phase 1.

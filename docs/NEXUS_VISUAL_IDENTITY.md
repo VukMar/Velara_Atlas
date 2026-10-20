@@ -93,7 +93,10 @@ noncanonical. It is 24 CSS pixels at desktop overview, bounded responsively to
 of the SVG palette. Null/omission, unknown identifiers or asset failure leave only
 the name, with no unknown icon or reserved slot. The whole group shares fading,
 projection and edge containment; grid annotations and marker controls stay above
-it. No sigils for tiny unlabeled islands or 3D influence surfaces are implemented.
+it. Stage 2 did not implement sigil-only islands or 3D influence surfaces.
+Subsequent Stages 3–4 and calibration are committed in `190bd21`; see
+[the current Cantum contract](CANTUM_TERRITORY_RENDERING.md) for envelopes and
+small-island eligibility. This does not authorize Stage 5 refinement.
 
 Object captions use the existing projected HTML layer, centered beneath markers,
 with controlled screen-space font sizes, subtle shadow and no opaque pills.
@@ -181,7 +184,7 @@ See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, im
 - **Short-range gate:** one default icon/marker; at most one fixed lifetime link in v1.2. An anchor can have multiple links through separate physical gate pairs.
 - **Interstellar Jump Gate:** one default; each physical gate pairs with exactly **one** corresponding interstellar gate.
 - **Jump Hole:** one default; follows v1.2 exclusive lifetime pairing.
-- A schema-valid `icon: null` requests object-kind/variant fallback. Current object schemas require the `icon` key; defensive missing-value handling is not permission to omit required fields. Future custom-file rendering must fall back safely on load failure; the current prototype uses temporary geometric markers.
+- A schema-valid `icon: null` requests object-kind/variant fallback. Current object schemas require the `icon` key; defensive missing-value handling is not permission to omit required fields. Future custom-file rendering must fall back safely on load failure; the current viewer uses the Phase 3 starter SVG registry and procedural physical models.
 - Icon customization must not grant additional navigational behavior. The relationship/connection JSON remains authoritative.
 
 ## 9. Interaction feedback and accessible operation

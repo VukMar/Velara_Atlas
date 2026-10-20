@@ -1,13 +1,22 @@
 # Velara Atlas — Development roadmap
 
-**Status:** The local noncanonical demo implements through Checkpoint 3.8 zones,
-cartographic labeling, v1.2 navigation and the Checkpoint 3.6 layout. The system
-grid uses Y = 0 CNU. Checkpoint 4.1 Phases 1–3 are complete and creator-approved.
-The creator subsequently changed System C navigation and discovery dates during
-testing; [maintenance evidence](POST_PHASE3_MAINTENANCE.md) records the current
-approved baseline. The next planned stage is Checkpoint 4.2 — Visual Identity and
-SVG Icon Refinement, requiring separate approval. Canonical migration and
-deployment remain unauthorized.
+**Status:** Verified at `main` commit `190bd21` (2026-10-20). Checkpoint 4.1
+Phases 1–3 are complete and creator-approved. The local noncanonical demo also
+includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration,
+retaining Checkpoint 3.8 zones, labeling, v1.2 navigation and Checkpoint 3.6 layout.
+The system grid uses Y = 0 CNU. [Maintenance evidence](POST_PHASE3_MAINTENANCE.md)
+records the earlier creator-approved System C navigation/discovery baseline.
+Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
+deployment remain separately gated.
+
+**Current authorization:** documentation and inventory only under the
+[architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+and its [Phase 1 task](CODEX_PHASE_01_DOCUMENTATION_TASK.md). That roadmap governs
+a separate, phase-gated architecture workstream; this document retains feature
+milestones and their acceptance boundaries. Architecture phase numbers are not
+Checkpoint 4.1 phase numbers or Cantum stage numbers. Start at the
+[documentation index](INDEX.md); Phase 2 is proposed, not started.
+
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
 
@@ -18,32 +27,34 @@ absolute Y=0 CNU and H8 measurement. Cantum presentation, chart dimensions and
 authored positions are unchanged. Icon-minimum adjustments in `visual-config.mjs`
 are reserved for the creator; further visual development is outside this task.
 
-**Subsequent focused authorization — Cantum Visual Patch Stage 1:** replace only
-floor-mounted names with camera-facing DOM nameplates, retaining component X/Z
-placement and contributor-based provisional height. Preserve the pending sector
-grid work, existing flat influence fields, icons, data and navigation. Stage 1
-does not authorize sigils, 3D influence envelopes or new detached-island rules.
+**Completed authorization — Cantum Visual Patch Stage 1:** floor-mounted names
+were replaced with camera-facing DOM nameplates, retaining
+component X/Z placement and contributor-based provisional height. That stage
+preserved the then-pending sector grid work, flat fields, icons, data and
+navigation. Sigils, envelopes and detached-island rules followed in Stages 2–4.
 See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 ## Approved foundations and design
 
-**Current focused authorization — intermediate Cantum scale calibration:** preserve
-the uncommitted local Stage 4 implementation. Reduce only Sector system spheres
-to 8 CSS pixels, retain usable targets and tighten caption offsets. Evaluate
-explicit 2/2.5/3-ly influence radii in a separate local-only 40-ly memory fixture;
-apply the provisional `.5–3` ly envelope half-height clamp. Existing demo radii,
-coordinates and all System View scales remain unchanged. No permanent canonical
-radius is selected. Stage 5 remains deferred; stop for creator review after
-[calibration verification](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+**Implemented and committed — intermediate Cantum scale calibration:** `190bd21`
+contains Stage 4 and calibration. Sector spheres use 8 CSS pixels with usable
+invisible targets and tightened caption offsets; the provisional envelope
+half-height is `clamp(radiusLY * .30, .5, 3)`. The separate loopback preview
+compares 2/2.5/3-ly radii in a synthetic 40-ly in-memory scenario, not demo JSON.
+Existing demo radii, coordinates and all System View scales remain unchanged.
+No permanent canonical radius is selected. Stage 5 remains deferred.
+The [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) preserves its
+original uncommitted-work context and historical verification claims.
 
-**Previous authorization — Cantum Visual Patch Stage 4 only:** Stages 1–3 are
-creator-approved. Preserve full-name fitting and add registered sigil-only
+**Implemented and committed — Cantum Visual Patch Stage 4:** Stages 1–3 are
+creator-approved. Stage 4 preserves full-name fitting and adds registered sigil-only
 identities for sufficiently resolved small islands, using the existing field
 components and DOM nameplate lifecycle. Fixed overview fitting avoids camera
 classification flicker; local envelope sampling preserves separate island heights.
 No data, SVG, schema, grid or influence-geometry changes. Stage 5 final refinement,
-canonical migration and deployment remain deferred. Stop for review after
-[Stage 4 verification](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md).
+canonical migration and deployment remain deferred.
+[Stage 4 verification](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md) is historical
+evidence from before the combined `190bd21` commit, not today's worktree status.
 
 **Completed authorization — Cantum Visual Patch Stage 3:** Stages 1–2 are
 creator-approved. Perspective envelopes now visualize the unchanged 2D field,
@@ -81,7 +92,9 @@ future implementation or canonical content migration.
 | Checkpoint 4.1 Phase 2 | Authorized noncanonical demo expansion: 100K/80K/160K CNU charts, offset/peripheral stars, physical measurements, small bodies and one archival-only system; see [results](CHECKPOINT_4_PHASE2_RESULTS.md) |
 | Checkpoint 4.1 Phase 3 | Physical radii, projected SVG proxies, 14 starter icons, bounded physical inspection and explicit asset bundling; [verification](CHECKPOINT_4_PHASE3_RESULTS.md); creator-approved |
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
-| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Next planned development stage; not authorized by this maintenance task |
+| Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
+| Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
+| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by architecture Phase 1 |
 | Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
@@ -104,8 +117,9 @@ been reviewed and approved. Phase 3 now implements correctly scaled celestial
 models, continuous SVG-proxy transitions, fixed apparent structure markers,
 neutral unknown fallbacks and Focus Selection inspection; it has been reviewed
 and approved. The original four-phase plan reserved further visual/browser
-refinement for Phase 4. The next planned development stage is now Checkpoint 4.2,
-which requires separate approval. The NEXUS side-profile PNG is supplied at
+refinement for Phase 4. Further Checkpoint 4.2 visual refinement requires separate
+approval; the current task is architecture documentation Phase 1.
+The NEXUS side-profile PNG is supplied at
 `public/assets/nexus/nexus-side-profile.png`; its integration remains deferred.
 Preserve the current creator-approved System C geography,
 IDs/history, navigation workflow, labels/zones, asset paths and build disclosure

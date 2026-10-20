@@ -4,7 +4,12 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — Checkpoint 4.1 Phase 3:** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It implements physical celestial models, distant SVG navigation proxies, Focus Selection inspection, historical navigation/search, routes, top-down/perspective cameras, interactive clipped zones, cartographic labeling and Schema v1.2 navigation authoring. Final artistic refinement, canonical migration, deployment and the deferred editor are not implemented.
+> **Project status — committed baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
+
+Start with the [documentation index](docs/INDEX.md). The current authorized work is
+[architecture optimization Phase 1](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md),
+limited to documentation and inventory by the [Phase 1 task](docs/CODEX_PHASE_01_DOCUMENTATION_TASK.md).
+Later architecture phases require separate approval.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
@@ -17,9 +22,12 @@ See [Phase 2 data and verification](docs/CHECKPOINT_4_PHASE2_RESULTS.md).
 See [Phase 3 rendering, evidence and inspection limits](docs/CHECKPOINT_4_PHASE3_RESULTS.md).
 Phases 1–3 are creator-approved. Subsequent creator testing added a second local
 transfer in System C (now ten objects) and advanced two discoveries to 610 A.E.;
-see [the maintenance baseline](docs/POST_PHASE3_MAINTENANCE.md). The next planned
-stage is Checkpoint 4.2 — Visual Identity and SVG Icon Refinement, requiring
-separate approval. The supplied NEXUS side-profile PNG is available at
+see [the maintenance baseline](docs/POST_PHASE3_MAINTENANCE.md). Subsequent
+[Stage 4](docs/CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md) and
+[calibration](docs/CANTUM_SCALE_CALIBRATION_RESULTS.md) work is committed in
+`190bd21`; those reports retain their original pre-commit circumstances.
+Checkpoint 4.2 visual refinement and Cantum Stage 5 remain separately gated.
+The supplied NEXUS side-profile PNG is available at
 `public/assets/nexus/nexus-side-profile.png`; viewer integration remains deferred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
@@ -45,8 +53,9 @@ The viewer is read-only. Local Node tools support manual JSON authoring; private
 
 | Location | Contents |
 | --- | --- |
-| `public/data/` | Approved publicly distributable atlas records (currently a preliminary foundation) |
-| `examples/` | Illustrative/noncanonical JSON data shapes and fixtures |
+| `public/data/` | Protected legacy v0.1 canonical records; excluded from the demo build |
+| `examples/demo_atlas/` | Active public-safe noncanonical v1.2 runtime dataset |
+| Other `examples/` | Legacy regression inputs and historical proposal shapes |
 | `src/timeline/` | Existing historical resolver (v0.1) |
 | `src/core/history.mjs` | Independent historical resolver (v1.1/v1.2 runtime records) |
 | `src/core/cartography.mjs` | Pure historical catalogue, route and influence calculations |
@@ -105,7 +114,20 @@ npm run preview
 
 `npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run demo` remains the legacy **console** political-history demonstration; it is separate from the browser app. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
-Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. See the [current audit](docs/REPOSITORY_AUDIT_3_6.md) for checks and known limitations, including incomplete touch verification.
+Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. The [Checkpoint 3.6 audit](docs/REPOSITORY_AUDIT_3_6.md) records earlier checks and limits; the [index](docs/INDEX.md) links subsequent evidence. Physical touch-device verification remains outstanding.
+
+### Separate local calibration preview
+
+Run `npm run preview:calibration`, then open
+**http://127.0.0.1:5174/Velara_Atlas/__calibration/**.
+This loopback-only tool generates 15 synthetic test stars **in JavaScript memory**
+in `tests/calibration/scenario.mjs`: a 40 × 40 ly chart with independent 12-ly Y
+extent and selectable 2/2.5/3-ly radii. It does not read demo JSON or save data.
+`controller.mjs` resolves/displays the scenario, `index.html` defines its controls,
+and `scripts/preview-cantum-calibration.mjs` serves those three explicit files.
+The preview is excluded from production and is separate from normal `npm run dev`.
+JSON scenario support is proposed for architecture **Phase 5**, not implemented.
+No canonical radius has been chosen; see [architecture and isolation](docs/ARCHITECTURE.md).
 
 ## Schema v1.2 navigation authoring
 

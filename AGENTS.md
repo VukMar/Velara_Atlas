@@ -4,19 +4,28 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Current task override:** Stages 1–3 are creator-approved; Stage 4 is implemented
-locally and uncommitted. Preserve all of that work. The authorized intermediate
-calibration adds 8px Sector star symbols with usable invisible targets, the
-provisional `clamp(radiusLY * .30, .5, 3)` envelope half-height and a separate
-loopback-only 40-ly test preview for explicit 2/2.5/3-ly radius comparisons.
+**Current task override:** Architecture optimization **Phase 1 only** authorizes
+documentation consolidation, current-status corrections and a proposed Phase 2
+dependency inventory. Read `docs/INDEX.md`, `docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md`
+and `docs/CODEX_PHASE_01_DOCUMENTATION_TASK.md` for authority, scope and validation.
+Stages 1–3 are creator-approved; Stage 4 and the intermediate calibration are
+committed in `190bd21`. Preserve all of that work: 8px Sector star symbols with
+usable invisible targets, the provisional `clamp(radiusLY * .30, .5, 3)` envelope
+half-height and a separate loopback-only 40-ly in-memory test preview for explicit
+2/2.5/3-ly radius comparisons.
 Preserve Gaussian fields/topology, Stage 4 fitting, authored data/schemas/assets,
 grid, navigation and all System View sizes/minima. Do not choose a canonical
-radius. Stage 5 artistic refinement remains deferred. Stop after calibration without
-commit/push/deploy; later stages require creator approval.
+radius. Stage 5 artistic refinement remains deferred. No code, schema, data,
+asset or configuration edits, file moves, commit/push/deploy, or Phase 2 execution
+are authorized. Stop after the Phase 1 completion report for creator review.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer implements through Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline; current implementation is limited to the intermediate calibration above, on top of local Stage 4. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Current authorization is documentation-only architecture Phase 1. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
+
+For the current documentation task, start with the Phase 1 task and architecture
+optimization roadmap above; use `docs/INDEX.md` to distinguish active authority
+from historical evidence. The technical read-first references remain:
 
 1. `README.md` — public project status and run commands.
 2. `docs/ARCHITECTURE.md` — implemented module responsibilities, future components and security boundary.
@@ -83,4 +92,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Stop after the intermediate Cantum scale calibration; preserve uncommitted Stage 4. Further visual development requires separate creator approval; do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies only to the noncanonical demo. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Stop after architecture Phase 1 documentation and inventory; Phase 2 and further visual development require separate creator approval. Do not commit, push or deploy automatically.

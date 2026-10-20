@@ -4,7 +4,7 @@
 **Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2, Checkpoint 3.6 layout, cartographic labeling and Checkpoint 3.8 zones (separate from the JSON Schema version)
 **Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  
 **Audience:** Project owner, Codex, and future contributors  
-**Implementation status:** Local noncanonical viewer through Checkpoint 3.8 [zone geometry/interaction](ZONE_GEOMETRY_INTERACTION_RESULTS.md), preserving the [cartographic labeling refinement](CARTOGRAPHIC_LABELING_RESULTS.md) and Checkpoint 3.6 layout. Final visual assets, deployment and canonical migration remain separate. See [repository baseline and limits](REPOSITORY_AUDIT_3_6.md).
+**Implementation status:** At `190bd21`, the local noncanonical viewer includes Checkpoint 4.1 Phase 3 models/proxies, the sector grid, Cantum Stages 1–4 and intermediate calibration, preserving Checkpoint 3.8 zones, labeling and Checkpoint 3.6 layout. Final artistic refinement, deployment and canonical migration remain separate. The [documentation index](INDEX.md) distinguishes current status from historical verification reports.
 
 > **Checkpoint 3.6 layout revision:** [Layout and interaction revision](LAYOUT_REVISION_3_6.md)
 > supersedes the former persistent bottom timeline, permanent side columns/right InfoCard,
@@ -145,7 +145,7 @@ The approved approach is **hybrid**:
 
 Use the object's **`entityType` / `objectType`** for logic, and an `icon` or style identifier for representation. Never determine behavior by comparing lore names (e.g. `if name === 'Putluk'`). Assets and theme styling must be replaceable without altering coordinates or canonical history.
 
-The existing prototype uses procedural placeholder markers. Complex models, cinematic effects, animation, full orbital dynamics, and final NEXUS art direction are **not required for the first functioning viewer**.
+The current viewer uses restrained procedural physical models and starter SVG proxies as specified below. Complex models, cinematic effects, animation, full orbital dynamics, and final NEXUS art direction remain deferred.
 
 ### Checkpoint 4.1 scale contract — Phase 3 rendering
 
@@ -155,7 +155,7 @@ documentation, optional schema support and tests. Reviewed Phase 2 supplied demo
 measurements; authorized Phase 3 now implements physical models and SVG proxies.
 Celestial `physicalDiameterKm`, when known, converts to CNU by division by 10000.
 2D and 3D must use identical authored XYZ and physical diameters, projected through
-the active camera. Future centralized category minima use
+the active camera. Implemented centralized category minima use
 `displayDiameterPx = max(projectedPhysicalDiameterPx, minimumDisplayDiameterPx)`
 without inflating physical geometry or authoring per-object pixel sizes.
 
@@ -554,7 +554,7 @@ Current status is based on the merged schema, implementation and tests:
 | `knownByAE` | Conservative knowledge with unknown exact discovery | Implemented since v1.1; not an exact event date |
 | Dated InfoCards and modern route/object resolution | Historical viewer records | Implemented by `src/core/history.mjs`, independently of legacy v0.1 |
 | Object declarations, dedicated gate pairs and generated graph | v1.2 navigation authoring | Implemented offline; build uses read-only freshness |
-| Nullable icons and optional visual variants | Data-driven appearance | Schema support implemented; final asset registry/materials remain Checkpoint 4 |
+| Nullable icons and optional visual variants | Data-driven appearance | Starter registry/proxies and procedural materials implemented in Checkpoint 4.1 Phase 3; final artistic refinement deferred |
 | Optional celestial `physicalDiameterKm` | Authored physical diameter, 1 CNU = 10,000 km | Phase 3 physical models, SVG proxies, apparent minima and bounded inspection; no inference for omitted sizes |
 | Continuous year and exact recorded-year jumps | Historical navigation | Implemented; richer public event registry/markers remain deferred |
 | Canonical v0.1 data migration | Real public lore | Separate creator approval and ID crosswalk required |

@@ -1,8 +1,12 @@
 # Velara Atlas — Repository structure and ownership
 
-**Status:** Actual local structure through Checkpoint 3.6 and Schema v1.2.
-The [audit inventory](REPOSITORY_AUDIT_3_6.md) classifies every tracked file.
-Future folders below are reserved concepts, not empty scaffolding to create.
+**Status:** Current ownership verified at `190bd21` (2026-10-20), including
+Checkpoint 4.1 Phase 3, Cantum Stage 4 and intermediate calibration.
+The [Checkpoint 3.6 audit](REPOSITORY_AUDIT_3_6.md) is an earlier inventory,
+not a complete inventory of later additions. The tree below summarizes ownership;
+[architecture](ARCHITECTURE.md) lists module responsibilities and the
+[index](INDEX.md) maps documentation authority.
+Future paths are proposals, not scaffolding to create during Phase 1.
 
 ## Current tree
 
@@ -32,6 +36,7 @@ Velara_Atlas/
     validate-demo.mjs           Release + relationships + freshness
     idfind.mjs                  Read-only ID Finder
     audit-demo-build.mjs        Production output audit
+    preview-cantum-calibration.mjs Explicit loopback-only preview server
   src/
     timeline/resolve.mjs        Preserved legacy v0.1 resolver
     core/
@@ -43,9 +48,11 @@ Velara_Atlas/
       main.mjs                 Historical/navigation/selection UI state
       demo-data.mjs            Explicit public-safe demo imports
       map-scene.mjs            Three.js cameras, picking and scene
-      chart-layout.mjs         Square fit/clamping and system grid
+      chart-layout.mjs         Square fit/clamping and sector/system grids
       cartographic-layers.mjs  Influence, zones and routes
       zone-layers.mjs          Clipped footprints and approximate 3D system clouds
+      [other viewer modules]   Physical models/proxies, labels/sigils/envelopes;
+                               see ARCHITECTURE.md for individual owners
   examples/
     demo_atlas/
       sector.json              Authored v1.2 index in ly
@@ -63,12 +70,17 @@ Velara_Atlas/
     *.test.mjs                 Versioned schemas/history, generator, cartography,
                                viewer, ID Finder and layout
     browser-*.mjs              Playwright MCP entry points, not Node test files
+    calibration/               Synthetic in-memory scenario, controller and HTML;
+                               excluded from production, not a JSON dataset
     fixtures/v1_1/             Frozen accepted two-system branching regression
     fixtures/v1_2/             Frozen original three-system navigation regression
   public/data/
     political.json             Legacy canonical v0.1 history
     sector.json                Legacy canonical v0.1 index
     systems/.gitkeep           Reserved empty canonical detail directory
+  public/assets/               Existing assets; only explicit approved SVGs bundled
+    icons/                     Fourteen navigation SVGs and one Cantum demo sigil
+    nexus/                     Supplied PNGs; viewer integration remains deferred
 ```
 
 ## Authoring and generated ownership
@@ -99,6 +111,8 @@ Never deduplicate fixtures or renumber IDs as organization cleanup.
 | `examples/demo_atlas/` | Noncanonical demonstration | Tracked | Seven exact allowlisted JSON inputs |
 | Other `examples/` | Legacy regression and historical templates | Retained | Excluded |
 | `public/data/` | Canonical legacy v0.1 records | Protected | Excluded (`publicDir: false`) |
+| `public/assets/` | Existing art sources | Public-safe | Only fourteen navigation SVGs and one explicit demo sigil; NEXUS PNGs excluded |
+| `tests/calibration/` | Synthetic in-memory local preview | Public-safe | Excluded; explicit loopback development middleware only |
 | `src/viewer/`, modern core | Runtime implementation | Tracked | Included as bundled modules |
 | `scripts/`, `schemas/`, `tests/` | Offline tools/validation/regression | Tracked | Excluded from runtime |
 | `dist/` | Generated static demo build | Ignored | Output under `/Velara_Atlas/` |
@@ -121,13 +135,28 @@ links and provenance remain valid. `SCHEMA_INSTALL.md` is obsolete setup history
 not an instruction to install old files over today's checkout.
 `DATA_MODEL.md`, current schemas and `NAVIGATION_AUTHORING.md` govern new demo data.
 
-## Reserved future paths
+## Proposed Phase 2 layout — not implemented
 
-A local editor, final public icon/texture/NEXUS assets and a deployment workflow
-are deferred. `src/editor/`, `public/assets/` and `.github/workflows/` are
-possible future locations; they are not current components. The publication
-design must explicitly exclude editor/private inputs and enable only reviewed
-assets. Do not enable automatic copying from `public/` as a cleanup shortcut.
+The [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+proposes relocating only the active noncanonical demo to `public/datasets/demo/`
+after separate approval. Today it remains in `examples/demo_atlas/`.
+`public/data/` remains protected legacy canon; frozen fixtures remain unchanged.
+Standalone examples need individual review because two are live v0.1 test inputs
+and others are superseded proposal shapes, not valid v1.2 templates.
+See the [Phase 2 dependency and rollback inventory](PHASE_02_DATASET_MIGRATION_INVENTORY.md)
+before planning any move. A directory relocation alone is insufficient.
+
+Calibration remains in-memory under `tests/calibration/`; scenario JSON is a
+Phase 5 proposal. A future `docs/reports/` reorganization would require a separate
+path/link inventory and approval; Phase 1 organizes navigation only.
+
+## Other reserved future paths
+
+A local editor and deployment workflow remain deferred. `src/editor/` and
+`.github/workflows/` are possible future locations, not current components.
+`public/assets/` already exists; final art and NEXUS integration remain deferred.
+Publication must explicitly exclude editor/private inputs and enable only reviewed
+assets. Keep `publicDir: false`; do not copy all of `public/`.
 
 No canonical migration, file move, commit, push or deployment follows from
 this document. Review changes, run checks and obtain the relevant authorization.
