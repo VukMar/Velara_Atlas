@@ -113,7 +113,8 @@ function historicalFields(entity, yearAE) {
 export function resolveCantum(cantum, yearAE) {
   const state = historicalFields(cantum, yearAE);
   if (state.nameRecord === null && state.statusRecord === null) return null;
-  return {...state, letter: cantum.letter};
+  return {...state, letter: cantum.letter,
+    ...(Object.hasOwn(cantum,'sigil') ? {sigil:cantum.sigil} : {})};
 }
 
 /** Resolve one local object or spatial zone; do not return future history arrays. */

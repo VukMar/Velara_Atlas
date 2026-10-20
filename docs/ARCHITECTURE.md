@@ -23,6 +23,7 @@ editor remain separate future work.
 | `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
 | `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, cached geographic fitting, zoom fade and isolated provisional contributor-height calculation |
 | `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative DOM nameplates; full-name fitting metrics, screen-space typography, frustum visibility and lifecycle cleanup |
+| `src/viewer/sigil-registry.mjs` | Closed static URL mapping for the single noncanonical Cantum sigil; optional image lifecycle with text-only failure behavior |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom; 8×8 sector grid on `map.planeY` with an unnumbered ly scale, and absolute-zero system grid with A–H/1–8 and H8 CNU scale |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
 | `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |
@@ -130,8 +131,12 @@ Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
 disables `publicDir` and source maps, and writes `dist/`. Development binds
 to loopback with filesystem restrictions. The input audit allows viewer code,
 the modern core modules, seven exact demo JSON files and dependencies.
-Phase 3 adds only fourteen explicit icon paths to source/dev allowlists; existing
-NEXUS PNGs remain excluded. `scripts/svg-assets.mjs` validates their narrow SVG
+Phase 3 added fourteen explicit navigation icon paths; Stage 2 adds exactly one
+separate Cantum demonstration sigil path. `sigil-registry.mjs` resolves only
+`test-cantum-a` via a static Vite URL, never a path derived from authored data.
+Null/unknown/failed images leave the nameplate text intact. Rebuild/disposal
+removes image error listeners; failure requests a normal render for containment.
+Existing NEXUS PNGs remain excluded. `scripts/svg-assets.mjs` validates the narrow SVG
 profile. The output audit checks HTML/JS/CSS plus exact approved SVG bytes/names
 with no duplicates, base-relative assets and the unchanged forbidden references.
 

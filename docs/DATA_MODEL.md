@@ -8,6 +8,22 @@ All entities have stable, globally unique IDs within a dataset. The prefix is a 
 
 `nameHistory` holds dated names. A survey name can appear before a colonization name. A system's current name and its permanent ID are separate. The `cantumHistory` field represents regional administration; `controlHistory` is reserved for political control. Neither should be inferred from another.
 
+## Optional Cantum visual identity — Stage 2
+
+Current v1.2 Cantum records may author `sigil` as null or a registry identifier:
+1–64 characters, matching `^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$`. Omission and explicit
+null both mean no sigil, with no generic unknown-icon fallback. Well-formed but
+unregistered IDs also render name-only. Paths, URLs, extensions and scripts are
+not identifiers. This field belongs only to Cantums and never determines system
+membership, political status or territory geometry.
+
+The modern resolver forwards authored string/null values only after existing
+Cantum eligibility succeeds; omission stays omitted. This is static metadata,
+not a dated sigil history. The additive extension keeps `schemaVersion: "1.2.0"`;
+old records remain valid. Frozen v1.1 schemas/fixtures and canonical records are
+unchanged. The explicitly noncanonical demo assigns `test-cantum-a` to `can_0001`
+and null to `can_0002`; it adds no political facts.
+
 ## Required objects and files
 
 | File / entry | Purpose |

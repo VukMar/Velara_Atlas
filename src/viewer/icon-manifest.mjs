@@ -5,3 +5,6 @@ export const ICON_PATHS = Object.freeze([
   'stations/regular.svg','stations/shipyard.svg','stations/unknown.svg',
   'navigation/short-range-gate.svg','navigation/jump-gate.svg','navigation/jump-hole.svg','generic/unknown.svg'
 ]);
+
+/** Separate from navigation symbols: null/unknown sigils have no fallback icon. */
+export const SIGIL_PATHS = Object.freeze(['cantums/test-cantum-a.svg']);

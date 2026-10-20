@@ -85,6 +85,16 @@ at low camera tilt and never receive pointer events. Their
 Cantum-linked tint is independent of NEXUS interface colors and influence opacity
 caps. The **Cantum Names** control is sector-only and independent of shading.
 
+**Cantum Visual Patch Stage 2:** an optional sigil may sit beside a complete
+name inside the existing decorative nameplate. The approved demonstration SVG
+`cantums/test-cantum-a.svg` uses original cyan/blue geometry and is explicitly
+noncanonical. It is 24 CSS pixels at desktop overview, bounded responsively to
+18–24 px, upright in both cameras. Text tint stays Cantum-specific and independent
+of the SVG palette. Null/omission, unknown identifiers or asset failure leave only
+the name, with no unknown icon or reserved slot. The whole group shares fading,
+projection and edge containment; grid annotations and marker controls stay above
+it. No sigils for tiny unlabeled islands or 3D influence surfaces are implemented.
+
 Object captions use the existing projected HTML layer, centered beneath markers,
 with controlled screen-space font sizes, subtle shadow and no opaque pills.
 Deterministic priorities/collision suppression favor systems, stars and planets;

@@ -1,5 +1,6 @@
 import {Vector3} from 'three';
 import {territorialLabels,territorialAnchorY,territorialOpacity} from './territorial-labels.mjs';
+import {attachSigil} from './sigil-registry.mjs';
 
 export function nameplateProjection(position, camera, width, height, zoom) {
   const p=position.clone().project(camera),opacity=territorialOpacity(zoom);
@@ -14,14 +15,15 @@ export function containNameplate(projected, width, height, textWidth, textHeight
   return {x:Math.max(marginX,Math.min(width-marginX,projected.x)),y:Math.max(marginY,Math.min(height-marginY,projected.y))};
 }
 
-/** Decorative DOM only: no entity identity, hit target, textures or listeners. */
+/** Decorative DOM only: no entity identity, hit target or Three.js textures. */
 export class CantumNameplates {
-  constructor(container, measure) {
+  constructor(container, measure, changed=()=>{}) {
     this.root=document.createElement('div');
     this.root.className='cantum-nameplates';
     this.root.setAttribute('aria-hidden','true');
     container.append(this.root);
     this.measure=measure;
+    this.changed=changed;
     this.anchors=[];
   }
 
@@ -44,8 +46,9 @@ export class CantumNameplates {
       element.className='cantum-nameplate';element.textContent=label.name;
       element.dataset.cantumId=label.cantumId;element.dataset.componentId=label.id;
       element.style.color=label.color;
+      const sigil=attachSigil(element,cantums.find(c=>c.id===label.cantumId)?.sigil,this.changed);
       this.root.append(element);
-      this.anchors.push({label,element,position:new Vector3(label.x,y,label.z),visible:false,opacity:0});
+      this.anchors.push({label,element,sigil,position:new Vector3(label.x,y,label.z),visible:false,opacity:0});
     }
   }
 
@@ -64,6 +67,6 @@ export class CantumNameplates {
     return this.anchors.filter(a=>a.visible).length;
   }
 
-  clear() {this.root.replaceChildren();this.anchors=[];}
+  clear() {for(const a of this.anchors)a.sigil?.dispose();this.root.replaceChildren();this.anchors=[];}
   dispose() {this.clear();this.root.remove();}
 }

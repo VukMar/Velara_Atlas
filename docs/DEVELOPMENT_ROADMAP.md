@@ -27,6 +27,13 @@ See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 ## Approved foundations and design
 
+**Current authorization — Cantum Visual Patch Stage 2 only:** Stage 1 has been
+reviewed and approved. Add the optional current v1.2 sigil identifier, one explicit
+noncanonical demo SVG, secure bundling and integration with existing nameplates.
+Stage 3 flattened influence envelopes and Stage 4 sigil-only detached-island
+rules remain planned, requiring separate approval. Preserve grid, influence and
+navigation behavior. Stop after [Stage 2 verification](CANTUM_SIGILS_STAGE2_RESULTS.md).
+
 Milestones 1–5 established repository/disclosure rules, the structural data model,
 the viewer specification, Cantum rendering, NEXUS identity and asset policy.
 Schema v1.0 evolved through v1.1 to the current **v1.2 noncanonical contract**.

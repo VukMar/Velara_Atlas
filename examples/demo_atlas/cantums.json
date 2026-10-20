@@ -5,6 +5,7 @@
       "id": "can_0001",
       "entityType": "cantum",
       "letter": "T",
+      "sigil": "test-cantum-a",
       "nameHistory": [
         {
           "fromAE": 0,
@@ -40,6 +41,7 @@
       "id": "can_0002",
       "entityType": "cantum",
       "letter": "U",
+      "sigil": null,
       "nameHistory": [
         {
           "fromAE": 700,

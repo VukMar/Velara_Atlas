@@ -138,7 +138,15 @@ moving their XYZ anchors. Supported registry overrides and defaults fall back to
 generic SVG then built-in primitive. No custom file sources are currently approved;
 unrecognized or unsafe authored paths fall back without being fetched.
 
-Only the fourteen `icon-manifest.mjs` entries are bundled through static Vite URLs.
+The fourteen navigation `ICON_PATHS` entries remain unchanged. Stage 2 adds only
+`SIGIL_PATHS = ['cantums/test-cantum-a.svg']`, through a separate closed
+`sigil-registry.mjs` mapping and static Vite URL. The asset is an original,
+noncanonical development fixture, not an MCR political emblem. Cantum `sigil`
+null/omission/unknown ID means no image; loading failure removes the image and
+retains the name without any generic fallback or empty slot. IDs never construct
+paths or network URLs. The existing navigation-icon fallback chain is unchanged.
+
+The build permits exactly these fifteen SVGs through the combined explicit inventory.
 `publicDir: false` remains mandatory. The build validates a narrow SVG element
 profile and requires exact approved asset content/name in output; no general SVG
 sanitization or arbitrary custom loader is claimed. This preserves canonical and

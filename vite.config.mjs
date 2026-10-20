@@ -3,10 +3,10 @@ import {defineConfig, normalizePath} from 'vite';
 import {runConnections} from './scripts/connections.mjs';
 import {readDemoSource} from './scripts/demo-files.mjs';
 import {assertSquareMap} from './src/viewer/chart-layout.mjs';
-import {iconFiles,approvedIconSources} from './scripts/svg-assets.mjs';
+import {svgFiles,approvedSVGSources} from './scripts/svg-assets.mjs';
 
 const local = relative => fileURLToPath(new URL(relative, import.meta.url));
-const approvedIcons = new Set(iconFiles.map(normalizePath));
+const approvedIcons = new Set(svgFiles.map(normalizePath));
 const demoJSON = new Set([
   'examples/demo_atlas/sector.json',
   'examples/demo_atlas/cantums.json',
@@ -23,7 +23,7 @@ export function demoInputAudit() {
   return {
     name: 'explicit-demo-inputs',
     buildStart() {
-      approvedIconSources();
+      approvedSVGSources();
       runConnections({check: true});
       const {dataset} = readDemoSource();
       for(const container of [dataset.sector,...dataset.detailFiles.values()]) assertSquareMap(container.map);
@@ -52,7 +52,7 @@ export default defineConfig({
     host: '127.0.0.1',
     fs: {
       strict: true,
-      allow: [...['src/viewer/', 'src/core/', 'examples/demo_atlas/', 'node_modules/'].map(local), ...iconFiles],
+      allow: [...['src/viewer/', 'src/core/', 'examples/demo_atlas/', 'node_modules/'].map(local), ...svgFiles],
       deny: ['**/.git/**', '**/.env*', '**/private/**', '**/secrets/**', '**/*.rtf', '**/public/data/**']
     }
   },

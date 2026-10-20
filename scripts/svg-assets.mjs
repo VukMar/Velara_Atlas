@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
-import {ICON_PATHS} from '../src/viewer/icon-manifest.mjs';
+import {ICON_PATHS,SIGIL_PATHS} from '../src/viewer/icon-manifest.mjs';
 
 export const iconFiles = ICON_PATHS.map(name => fileURLToPath(new URL('../public/assets/icons/'+name,import.meta.url)));
+export const sigilFiles = SIGIL_PATHS.map(name => fileURLToPath(new URL('../public/assets/icons/'+name,import.meta.url)));
+export const svgFiles = [...iconFiles,...sigilFiles];
 /** Narrow starter-icon profile, not a general SVG sanitizer or arbitrary loader. */
 export function validateIconSource(text) {
   if (!text.includes('viewBox="0 0 64 64"') || !text.includes('xmlns="http://www.w3.org/2000/svg"') ||
@@ -13,4 +15,7 @@ export function validateIconSource(text) {
 }
 export function approvedIconSources() {
   return iconFiles.map(file => {const source=fs.readFileSync(file,'utf8');validateIconSource(source);return source;});
+}
+export function approvedSVGSources() {
+  return svgFiles.map(file => {const source=fs.readFileSync(file,'utf8');validateIconSource(source);return source;});
 }

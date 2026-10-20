@@ -382,12 +382,23 @@ its screen presentation, preserving the projected/world anchor and complete name
 Opacity retains the continuous overview-to-zero fade at 5× fit zoom (peak .46),
 without any camera-elevation, orientation or foreshortening cutoff. Anchors outside
 the camera frustum or behind the camera are hidden. The decorative `aria-hidden`
-overlay has no hit targets, listeners or catalogue identities; existing object
+overlay has no hit targets or catalogue identities; existing object
 captions/controls and grid annotations remain above it. Map/year changes replace
 its nodes; scene disposal removes the overlay. There are no text GPU resources
 or new animation loops; the topology/placement cache retains eight input sets.
-The influence surface remains flat and unchanged. Sigils, 3D envelopes and new
-detached-island display rules are deferred. See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+The influence surface remains flat and unchanged. Stage 2 adds optional sigils;
+3D envelopes and new detached-island display rules remain deferred.
+See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+
+**Stage 2 optional Cantum sigils:** the closed registry recognizes only
+`test-cantum-a` for the noncanonical demo. A valid image is prepended inside the
+same nameplate; it shares the existing XYZ anchor, zoom-only opacity and viewport
+containment. CSS sizing is `clamp(18px, 1em, 24px)` with a .35em gap when both
+items exist. Null, omission or an unknown ID creates no image; a failed asset
+removes the image and triggers the existing render path to recontain the text.
+Rebuild/disposal removes image error listeners. There is no generic fallback,
+new interaction target, permanent loop, new island eligibility or System View
+plate. Stage 3 flattened envelopes and Stage 4 sigil-only islands remain deferred.
 
 Projected HTML object captions stay centered beneath marker footprints at readable
 CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.
