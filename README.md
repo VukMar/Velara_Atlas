@@ -6,19 +6,21 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A and 3B are complete**. **Phase 3B is
-creator-approved**, with its inventory/loading implementation and completion
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B and 3C are complete**. **Phase 3C is
+creator-approved**, with its isolated entity/governance implementation and completion
 documentation committed together. Overall Phase 3 is not complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Phase 3C is next, proposed and awaiting separate creator authorization**, under
+verification context. **Phase 3D is the next proposed checkpoint and requires separate creator authorization**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phases 3C-3F and 4-6 remain planned and separately gated. Governance and universal Cantum-radius changes remain
-separately gated proposals; current per-Cantum `radiusLY` behavior is unchanged.
+Phases 3D-3F and 4-6 remain planned and separately gated. Phase 3C is limited to
+the isolated entity/reference/governance model; governing territory and universal
+Cantum-radius changes remain Phase 3D proposals. Current per-Cantum `radiusLY`
+behavior is unchanged.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
@@ -123,7 +125,7 @@ npm run build
 npm run preview
 ```
 
-`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
+`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks, isolated proposed v1.3 entity tests and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
 Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. The [Checkpoint 3.6 audit](docs/REPOSITORY_AUDIT_3_6.md) records earlier checks and limits; the [index](docs/INDEX.md) links subsequent evidence. Physical touch-device verification remains outstanding.
 
@@ -220,7 +222,11 @@ Internal alternate-root injection exists only for isolated automated tests.
 `node --test tests/dataset-inventory.test.mjs` exercises rejection cases and a
 temporary fourth system through the real loader, navigation writer and full build.
 It does not add speculative records to the active Demo. Phase 3B is complete
-and creator-approved; Phase 3C/v1.3 features are not implemented or authorized.
+and creator-approved. [Completed, creator-approved Phase 3C](docs/DATA_MODEL_V1_3_PROPOSAL.md) adds
+an isolated proposed v1.3 entity model; the live Demo remains v1.2. No faction
+fixtures, governance resolver or InfoCard UI activation enters its production build.
+Phase 3D migration, navigation activation, shared radius and territory merging
+remain unauthorized.
 
 ## Schema v1.2 navigation authoring
 
@@ -254,13 +260,17 @@ npm run idfind -- all --demo
 npm run idfind -- sys --public
 ```
 
-Supported prefixes: `cb`, `gat`, `sta`, `jhl`, `sys`, `lnk`, `can`, `zon`, `sec`,
+Supported prefixes: `cb`, `gat`, `sta`, `jhl`, `sys`, `lnk`, `can`, `zon`, `sec`, `fac`,
 or `all` for a table. The default scope is `--demo`. The scanner reads only the
 chosen dataset's sector/Cantum/connection registries and direct `systems/*.json`
 files, including systems not yet indexed. References and presentation settings
 do not count as definitions. Catalogue/detail system IDs and authored/generated
 link pairs count once; generated-only link IDs remain used. It does not run the
 navigation generator or check graph freshness (`connections:check` does that).
+The active v1.2 Demo has no factions. Only an explicitly loaded v1.3 context
+enables bounded faction registry/file diagnostics; unregistered faction files
+remain collision diagnostics, never viewer/build inputs. No CLI root selector
+is added. See [the isolated fixture and checks](tests/fixtures/v1_3/README.md).
 
 The highest numeric suffix is dataset-wide; suggestions use at least four digits
 and never fill historical gaps, reserve IDs or change files. Public v0.1 legacy

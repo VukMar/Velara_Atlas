@@ -189,3 +189,11 @@ intercept its public demo modules. `tests/browser-layout3_6.mjs` and
 tests. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
 The [original implementation report](NAVIGATION_V1_2_RESULTS.md) remains historical
 evidence for generation, migration and recovery; its counts/layout are not current.
+
+## Proposed v1.3 activation boundary
+
+Phase 3C's isolated [entity fixture](../tests/fixtures/v1_3/README.md) uses a
+separate schema and empty graph for political/reference tests. The existing
+navigation compiler and commands remain v1.2-only and reject v1.3. No version
+masking, generator bypass or implicit repair is introduced. Coordinated v1.3
+navigation/Demo activation belongs to a separately authorized Phase 3D task.

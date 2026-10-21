@@ -9,8 +9,9 @@ not a complete inventory of later additions. The tree below summarizes ownership
 Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
 creator-approved. Its ten-file entity-family reference library is in
 `examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
-Architecture Phases 3A and 3B are complete and creator-approved. Phase 3C is
-next and awaits separate creator authorization; Phases 3C-3F and 4-6 remain
+Architecture Phases 3A, 3B and 3C are complete and creator-approved. Phase 3C
+entity/governance support remains isolated from the live v1.2 Demo. Phase 3D
+is the next proposed checkpoint and requires separate authorization. Phases 3D-3F and 4-6 remain
 planned and separately gated. Overall Phase 3 is not complete.
 The universal Cantum-radius redesign remains a proposed Phase 3 design-review
 item, not an implemented feature; existing per-Cantum `radiusLY` is preserved.
@@ -28,6 +29,7 @@ Velara_Atlas/
   schemas/
     atlas.schema.json           Current v1.2 master definitions
     atlas-v1_1.schema.json       Frozen v1.1 regression definitions
+    atlas-v1_3.schema.json       Isolated provisional Phase 3C entity definitions
     sector.schema.json
     cantums.schema.json
     connections.schema.json
@@ -88,6 +90,7 @@ Velara_Atlas/
     fixtures/legacy_examples/  Three preserved legacy/forbidden regression inputs
     fixtures/v1_1/             Frozen accepted two-system branching regression
     fixtures/v1_2/             Frozen original three-system navigation regression
+    fixtures/v1_3/             Isolated TEST factions, Cantum hierarchy and station
   public/data/
     political.json             Legacy canonical v0.1 history
     sector.json                Legacy canonical v0.1 index
@@ -170,6 +173,12 @@ that report's uncommitted-work circumstances predate `6e026cb`. Current referenc
 coverage and validation targets are in [the family guide](../examples/v1_2/README.md).
 Calibration facts now live in the fixed `tests/calibration/scenarios/cantum-scale-baseline.json`;
 `scenario.mjs` adapts cloned records in memory. Richer preview tooling remains Phase 5. A future report-directory reorganization needs separate approval.
+
+The [provisional v1.3 guide](DATA_MODEL_V1_3_PROPOSAL.md) owns the new test-only
+entity contract. `src/core/infocard-resolver.mjs` and the v1.3 fixture remain
+excluded from production admission. `scripts/entity-relations.mjs` is offline
+validation, not a second navigation compiler. Internal v1.3 root/version opt-in
+and ID Finder fixture injection do not create public dataset selection.
 
 ## Other reserved future paths
 

@@ -159,3 +159,12 @@ tests use frozen v1.1 fixtures and synthetic variants; navigation regressions us
 the fixed v1.2 snapshot, while viewer/browser validation exercises live data.
 No fixture is promoted to public lore. [The audit](REPOSITORY_AUDIT_3_6.md)
 records current checks and outstanding browser limitations.
+
+## Isolated proposed v1.3 entity presentation
+
+`src/core/infocard-resolver.mjs` is a separate opt-in consumer of `atYear()` and
+`resolveInfoCard()`. It resolves registered Cantum/faction references and dated
+governance for the test-only v1.3 context, preserving name gaps and explicit
+independence versus unrecorded relationships. The functions documented above,
+the v1.2 viewer and frozen fixture meanings are unchanged. See
+[provisional APIs, validation and activation limits](DATA_MODEL_V1_3_PROPOSAL.md).

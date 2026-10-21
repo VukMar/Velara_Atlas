@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {validateEntityRelationships} from './entity-relations.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 
 export function readDataset(root) {
@@ -13,11 +14,13 @@ export function readDataset(root) {
   };
 }
 
-export function validateRelationships({sector,cantums,connections,detailFiles,presentation=null}) {
-  const v12=sector.schemaVersion==='1.2.0';
+export function validateRelationships(dataset) {
+  const {sector,cantums,connections,detailFiles,presentation=null,factionFiles=new Map()}=dataset;
+  const v13=sector.schemaVersion==='1.3.0',v12=sector.schemaVersion==='1.2.0'||v13;
   const errors=[], fail=(loc,msg)=>errors.push(`${loc}: ${msg}`), ids=new Set();
   const addId=(id,loc)=>{if(ids.has(id))fail(loc,`duplicate ID ${id}`);ids.add(id);};
-  const period=(p,loc)=>{if(!Number.isInteger(p.fromAE)||p.fromAE<0)fail(loc,'invalid fromAE');if(p.untilAE!==null&&(!Number.isInteger(p.untilAE)||p.untilAE<=p.fromAE))fail(loc,'untilAE must be null or greater than fromAE');};
+  const validYear=v13?Number.isSafeInteger:Number.isInteger;
+  const period=(p,loc)=>{if(!validYear(p.fromAE)||p.fromAE<0)fail(loc,'invalid fromAE');if(p.untilAE!==null&&(!validYear(p.untilAE)||p.untilAE<=p.fromAE))fail(loc,'untilAE must be null or greater than fromAE');};
   const history=(arr,loc)=>{
     if(!Array.isArray(arr))return;
     const sorted=[...arr].sort((a,b)=>a.fromAE-b.fromAE);
@@ -65,6 +68,7 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
   if(sector.timeline.defaultAE<sector.timeline.startAE)fail('sector.timeline','defaultAE before startAE');
   const cantumIds=new Set(cantums.cantums.map(c=>c.id));
   for(const c of cantums.cantums){addId(c.id,'cantum');checkHistory(c,c.id);}
+  if(v13)for(const faction of factionFiles.values()){addId(faction.id,'faction');checkHistory(faction,faction.id);history(faction.legalStatusHistory,faction.id+'.legalStatusHistory');}
   const systemIds=new Set(sector.systems.map(s=>s.id)),objects=new Map();
   for(const s of sector.systems){
     addId(s.id,'system');checkHistory(s,s.id);checkKnowledge(s,s.id);bounds(s.positionLY,sector.map,s.id);
@@ -74,7 +78,7 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
   }
   for(const [sid,detail] of detailFiles){
     if(!systemIds.has(sid)||detail.id!==sid)fail(sid,'missing or mismatching detail system');
-    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');checkZones(detail.zones,detail.map,sid,v12&&detail.schemaVersion==='1.2.0');
+    if(detail.map.unit!=='CNU')fail(sid,'system map must use CNU');checkZones(detail.zones,detail.map,sid,v12&&(detail.schemaVersion==='1.2.0'||detail.schemaVersion==='1.3.0'));
     for(const obj of detail.objects){
       addId(obj.id,'object');objects.set(obj.id,{obj,sid});checkHistory(obj,obj.id);checkKnowledge(obj,obj.id);bounds(obj.position,detail.map,obj.id);
       if(obj.visualVariant!=null&&obj.entityType==='celestial_body'&&obj.objectType!=='planet')fail(obj.id,'visualVariant only supported for planets');
@@ -137,6 +141,7 @@ export function validateRelationships({sector,cantums,connections,detailFiles,pr
       for(const id of Object.keys(t.cantums??{}))if(!cantumIds.has(id))fail('presentation','unknown Cantum palette ID '+id);
     }
   }
+  if(v13)errors.push(...validateEntityRelationships(dataset));
   return errors;
 }
 

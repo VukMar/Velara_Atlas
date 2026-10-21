@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {safeDatasetPath} from './dataset-inventory.mjs';
 
-export const PREFIXES = ['cb', 'gat', 'sta', 'jhl', 'sys', 'lnk', 'can', 'zon', 'sec'];
+export const PREFIXES = ['cb', 'gat', 'sta', 'jhl', 'sys', 'lnk', 'can', 'zon', 'sec', 'fac'];
 const repo = fileURLToPath(new URL('../', import.meta.url));
 const objectPrefixes = {celestial_body: 'cb', gate: 'gat', station: 'sta', jump_hole: 'jhl', spatial_zone: 'zon'};
 
@@ -23,12 +23,13 @@ export function parseArguments(args) {
 }
 
 /** No recursion or arbitrary registry paths. io/root injection is for tests. */
-export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs} = {}) {
+export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs, datasetRoot} = {}) {
   if (!['demo', 'public'].includes(scope)) throw new Error(`Unsupported dataset scope: ${scope}`);
-  const base = path.resolve(repositoryRoot, scope === 'demo' ? 'public/datasets/demo' : 'public/data');
+  const base = datasetRoot ? path.resolve(datasetRoot) : path.resolve(repositoryRoot, scope === 'demo' ? 'public/datasets/demo' : 'public/data');
   const files = new Map(), errors = [], notes = [], legacy = [];
   const definitions = new Map(PREFIXES.map(p => [p, new Map()]));
-  const safe=name=>safeDatasetPath(base,name,io,{diagnostic:true});
+  let version='1.2.0';
+  const safe=name=>safeDatasetPath(base,name,io,{diagnostic:true,version});
   function read(name, required = true) {
     if (files.has(name)) return files.get(name);
     try {
@@ -50,6 +51,7 @@ export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs} = {
     errors.push(`${location}: expected an array`); return [];
   }
   const sector = read('sector.json');
+  if(sector?.schemaVersion==='1.3.0')version='1.3.0';
   const legacyMode = scope === 'public' && sector?.schemaVersion === '0.1.0';
   const isLegacy = (prefix, id) => legacyMode && typeof id === 'string' &&
     ({sec: /^[a-z][a-z0-9_]*_sector$/, sys: /^sys_[a-z][a-z0-9_]*$/, can: /^cantum_[a-z]+$/}[prefix]?.test(id) ?? false);
@@ -116,7 +118,35 @@ export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs} = {
   }
   const graph = read('connections.json', !legacyMode);
   if (graph) array(graph.connections, 'connections.json/connections').forEach((link, i) => add(link, 'lnk', `connections.json/connections/${i}`, 'generated-link'));
-  const mirrors = new Map([['sys', ['system-index', 'system-detail']], ['lnk', ['authored-link', 'generated-link']]]);
+  if(version==='1.3.0') {
+    const registered=new Set(),records=new Map();
+    if(sector.factionsPath!=='factions.json')errors.push('sector.json/factionsPath: expected factions.json');
+    else {
+      const registry=read('factions.json');
+      if(registry)array(registry.factions,'factions.json/factions').forEach((entry,i)=>{
+        add(entry,'fac',`factions.json/factions/${i}`,'faction-index');
+        if(typeof entry?.id!=='string'||!/^fac_[0-9]{4,}$/.test(entry.id)||entry.path!==`factions/${entry.id}.json`)errors.push(`factions.json/factions/${i}: faction path/ID mismatch`);
+        else {
+          registered.add(entry.path);const record=read(entry.path);records.set(entry.path,record);
+          if(record&&record.id!==entry.id)errors.push(`${entry.path}: faction file ID does not match registry ${entry.id}`);
+        }
+      });
+    }
+    try {
+      const directory=path.join(base,'factions');
+      if(io.lstatSync(directory).isSymbolicLink()||io.realpathSync(directory)!==directory)throw new Error('Symlink/reparse factions directory refused');
+      for(const entry of io.readdirSync(directory,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0)) {
+        if(!entry.name.endsWith('.json')||entry.isDirectory())continue;
+        const name=`factions/${entry.name}`;
+        if(!registered.has(name)){records.set(name,read(name));notes.push(`Unregistered faction file scanned for collisions only: ${name}`);}
+      }
+    } catch(e){if(e.code!=='ENOENT')errors.push(e.message);}
+    for(const [file,record] of records)if(record){
+      if(record.entityType!=='faction')errors.push(`${file}: expected faction entityType`);
+      add(record,'fac',file,'faction-record');
+    }
+  }
+  const mirrors = new Map([['sys', ['system-index', 'system-detail']], ['lnk', ['authored-link', 'generated-link']], ['fac',['faction-index','faction-record']]]);
   const rows = PREFIXES.map(prefix => {
     let highest = null, maximum = 0n;
     for (const [id, occurrences] of definitions.get(prefix)) {

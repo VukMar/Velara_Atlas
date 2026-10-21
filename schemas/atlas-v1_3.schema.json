@@ -1,0 +1,1704 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcr.example.invalid/schemas/atlas-v1_3.schema.json",
+  "title": "Velara Atlas provisional v1.3 entity contract (isolated Phase 3C)",
+  "description": "Not the active Demo schema. Reuses frozen v1.2 spatial definitions by offline reference; adds factions and explicit dated governance. Radius/navigation/viewer activation is deferred to Phase 3D. No network resolution is required.",
+  "$defs": {
+    "xyz": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/xyz"
+    },
+    "origin": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/origin"
+    },
+    "size": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/size"
+    },
+    "map": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/map"
+    },
+    "datePrecision": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/datePrecision"
+    },
+    "namePeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "name",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/namePeriod/properties/datePrecision"
+        },
+        "name": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/namePeriod/properties/name"
+        },
+        "kind": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/namePeriod/properties/kind"
+        }
+      }
+    },
+    "cantumPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "cantumId"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantumPeriod/properties/datePrecision"
+        },
+        "cantumId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantumPeriod/properties/cantumId"
+        }
+      }
+    },
+    "statusPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "status"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/statusPeriod/properties/datePrecision"
+        },
+        "status": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/statusPeriod/properties/status"
+        }
+      }
+    },
+    "affiliationPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "entityId"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/affiliationPeriod/properties/datePrecision"
+        },
+        "entityId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(?:can|fac)_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "classPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "code",
+        "label"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/classPeriod/properties/datePrecision"
+        },
+        "code": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/classPeriod/properties/code"
+        },
+        "label": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/classPeriod/properties/label"
+        }
+      }
+    },
+    "countPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "count",
+        "note"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/countPeriod/properties/datePrecision"
+        },
+        "count": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/countPeriod/properties/count"
+        },
+        "note": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/countPeriod/properties/note"
+        }
+      }
+    },
+    "weaponSystem": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/weaponSystem"
+    },
+    "armamentPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "summary",
+        "systems"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/armamentPeriod/properties/datePrecision"
+        },
+        "summary": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/armamentPeriod/properties/summary"
+        },
+        "systems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sectorSystem"
+          }
+        }
+      }
+    },
+    "descriptionPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "text"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/descriptionPeriod/properties/datePrecision"
+        },
+        "text": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/descriptionPeriod/properties/text"
+        }
+      }
+    },
+    "infoCard": {
+      "type": "object",
+      "properties": {
+        "affiliation": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/affiliationPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "class": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/classPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "crew": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "population": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "armament": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/armamentPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/descriptionPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "affiliation",
+        "class",
+        "crew",
+        "population",
+        "armament",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "sectorSystem": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "discoveredAE",
+        "colonizedAE",
+        "positionLY",
+        "nameHistory",
+        "cantumHistory",
+        "publicDetailPath",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sectorSystem/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sectorSystem/properties/entityType"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "colonizedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "positionLY": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sectorSystem/properties/positionLY"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cantumHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/cantumPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "controlHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/controlPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publicDetailPath": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sectorSystem/properties/publicDetailPath"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        }
+      }
+    },
+    "sector": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "title",
+        "map",
+        "timeline",
+        "infoCard",
+        "cantumsPath",
+        "connectionsPath",
+        "systems",
+        "nexusPresentation",
+        "factionsPath"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/entityType"
+        },
+        "title": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/title"
+        },
+        "map": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/map"
+        },
+        "timeline": {
+          "type": "object",
+          "properties": {
+            "epoch": {
+              "const": "A.E."
+            },
+            "startAE": {
+              "$ref": "#/$defs/year"
+            },
+            "defaultAE": {
+              "$ref": "#/$defs/year"
+            }
+          },
+          "required": [
+            "epoch",
+            "startAE",
+            "defaultAE"
+          ],
+          "additionalProperties": false
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "cantumsPath": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/cantumsPath"
+        },
+        "connectionsPath": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/connectionsPath"
+        },
+        "systems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sectorSystem"
+          }
+        },
+        "nexusPresentation": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/nexusPresentation"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        },
+        "presentationPath": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/presentationPath"
+        },
+        "factionsPath": {
+          "const": "factions.json"
+        }
+      }
+    },
+    "cantum": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "letter",
+        "nameHistory",
+        "statusHistory",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantum/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantum/properties/entityType"
+        },
+        "letter": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantum/properties/letter"
+        },
+        "sigil": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/cantum/properties/sigil"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "statusHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/statusPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/cantumInfoCard"
+        }
+      }
+    },
+    "cantumsFile": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "cantums"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "cantums": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cantum"
+          }
+        }
+      }
+    },
+    "celestial": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "orbitingId",
+        "colonizedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "planet"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "else": {
+            "properties": {
+              "visualVariant": false
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/entityType"
+        },
+        "objectType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/objectType"
+        },
+        "orbitingId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/orbitingId"
+        },
+        "physicalDiameterKm": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/physicalDiameterKm"
+        },
+        "colonizedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/position"
+        },
+        "icon": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/icon"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "visualVariant": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/celestial/properties/visualVariant"
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        }
+      }
+    },
+    "station": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "orbitingId",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/entityType"
+        },
+        "objectType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/objectType"
+        },
+        "constructedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "decommissionedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "orbitingId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/orbitingId"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/position"
+        },
+        "icon": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/icon"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "visualVariant": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/station/properties/visualVariant"
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "navigation": false,
+              "interstellarConnection": false
+            }
+          },
+          "else": {
+            "properties": {
+              "positionMode": false
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/entityType"
+        },
+        "objectType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/objectType"
+        },
+        "constructedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "decommissionedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/position"
+        },
+        "icon": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/icon"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
+        },
+        "positionMode": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gate/properties/positionMode"
+        }
+      }
+    },
+    "jumpHole": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/jumpHole/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/jumpHole/properties/entityType"
+        },
+        "objectType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/jumpHole/properties/objectType"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/jumpHole/properties/position"
+        },
+        "icon": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/jumpHole/properties/icon"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
+        }
+      }
+    },
+    "systemDetail": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "map",
+        "objects"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemDetail/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemDetail/properties/entityType"
+        },
+        "map": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemDetail/properties/map"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/celestial"
+              },
+              {
+                "$ref": "#/$defs/station"
+              },
+              {
+                "$ref": "#/$defs/gate"
+              },
+              {
+                "$ref": "#/$defs/jumpHole"
+              }
+            ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        }
+      }
+    },
+    "endpoint": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/endpoint"
+    },
+    "connection": {
+      "type": "object",
+      "required": [
+        "id",
+        "linkType",
+        "transportType",
+        "endpointA",
+        "endpointB",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "transportType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "transportType"
+            ],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "linkType": {
+                "const": "short_range"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "transportType": {
+                "enum": [
+                  "jump_gate",
+                  "jump_hole"
+                ]
+              }
+            },
+            "required": [
+              "transportType"
+            ],
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "linkType": {
+                "const": "interstellar"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/id"
+        },
+        "linkType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/linkType"
+        },
+        "transportType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/transportType"
+        },
+        "endpointA": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/endpointA"
+        },
+        "endpointB": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/endpointB"
+        },
+        "direction": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/direction"
+        },
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/connection/properties/datePrecision"
+        }
+      }
+    },
+    "connectionsFile": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "connections"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/connection"
+          }
+        }
+      }
+    },
+    "controlPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "entityId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/controlPeriod/properties/datePrecision"
+        },
+        "entityId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(?:can|fac)_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "positiveXYZ": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/positiveXYZ"
+    },
+    "zoneVertex": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zoneVertex"
+    },
+    "zoneGeometry": {
+      "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zoneGeometry"
+    },
+    "zone": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "category",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "geometry",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zone/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zone/properties/entityType"
+        },
+        "category": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zone/properties/category"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zone/properties/position"
+        },
+        "geometry": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/zone/properties/geometry"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        }
+      }
+    },
+    "presentationFile": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "territoryOverlay"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "territoryOverlay": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/presentationFile/properties/territoryOverlay"
+        }
+      }
+    },
+    "localLink": {
+      "type": "object",
+      "required": [
+        "id",
+        "targetObjectId",
+        "sourceGateId",
+        "targetGateId",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/id"
+        },
+        "direction": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/direction"
+        },
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/datePrecision"
+        },
+        "targetObjectId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/targetObjectId"
+        },
+        "sourceGateId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/sourceGateId"
+        },
+        "targetGateId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/localLink/properties/targetGateId"
+        }
+      }
+    },
+    "interstellarDeclaration": {
+      "type": "object",
+      "required": [
+        "id",
+        "targetSystemId",
+        "targetObjectId",
+        "direction",
+        "fromAE",
+        "untilAE"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/interstellarDeclaration/properties/id"
+        },
+        "direction": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/interstellarDeclaration/properties/direction"
+        },
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/interstellarDeclaration/properties/datePrecision"
+        },
+        "targetSystemId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/interstellarDeclaration/properties/targetSystemId"
+        },
+        "targetObjectId": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/interstellarDeclaration/properties/targetObjectId"
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "boundaryRadiusCNU": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/navigation/properties/boundaryRadiusCNU"
+        },
+        "localLinks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/localLink"
+          }
+        }
+      }
+    },
+    "gateAuthoring": {
+      "type": "object",
+      "required": [
+        "id",
+        "entityType",
+        "objectType",
+        "constructedAE",
+        "decommissionedAE",
+        "discoveredAE",
+        "nameHistory",
+        "position",
+        "icon",
+        "infoCard"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              }
+            },
+            "required": [
+              "objectType"
+            ]
+          },
+          "then": {
+            "properties": {
+              "navigation": false,
+              "interstellarConnection": false
+            }
+          },
+          "else": {
+            "properties": {
+              "positionMode": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "position": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "position"
+            ]
+          },
+          "then": {
+            "properties": {
+              "objectType": {
+                "const": "short_range_gate"
+              },
+              "positionMode": {
+                "const": "boundary_derived"
+              }
+            },
+            "required": [
+              "positionMode"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/entityType"
+        },
+        "objectType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/objectType"
+        },
+        "constructedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "decommissionedAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "discoveredAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/position"
+        },
+        "icon": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/icon"
+        },
+        "infoCard": {
+          "$ref": "#/$defs/infoCard"
+        },
+        "knownByAE": {
+          "$ref": "#/$defs/year"
+        },
+        "navigation": {
+          "$ref": "#/$defs/navigation"
+        },
+        "interstellarConnection": {
+          "$ref": "#/$defs/interstellarDeclaration"
+        },
+        "positionMode": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/gateAuthoring/properties/positionMode"
+        }
+      }
+    },
+    "systemAuthoring": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "map",
+        "objects"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "id": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemAuthoring/properties/id"
+        },
+        "entityType": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemAuthoring/properties/entityType"
+        },
+        "map": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/systemAuthoring/properties/map"
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/celestial"
+              },
+              {
+                "$ref": "#/$defs/station"
+              },
+              {
+                "$ref": "#/$defs/gateAuthoring"
+              },
+              {
+                "$ref": "#/$defs/jumpHole"
+              }
+            ]
+          }
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/zone"
+          }
+        }
+      }
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "nullableYear": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/year"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "cantumAffiliationPeriod": {
+      "type": "object",
+      "required": [
+        "fromAE",
+        "untilAE",
+        "entityId"
+      ],
+      "additionalProperties": false,
+      "description": "fromAE inclusive, untilAE exclusive; no overlaps in a single field (cross-item validator).",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/affiliationPeriod/properties/datePrecision"
+        },
+        "entityId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^can_[0-9]{4,}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "cantumInfoCard": {
+      "type": "object",
+      "properties": {
+        "affiliation": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/cantumAffiliationPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "class": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/classPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "crew": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "population": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/countPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "armament": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/armamentPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/descriptionPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "affiliation",
+        "class",
+        "crew",
+        "population",
+        "armament",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "legalStatusPeriod": {
+      "type": "object",
+      "properties": {
+        "fromAE": {
+          "$ref": "#/$defs/year"
+        },
+        "untilAE": {
+          "$ref": "#/$defs/nullableYear"
+        },
+        "datePrecision": {
+          "$ref": "#/$defs/datePrecision"
+        },
+        "status": {
+          "enum": [
+            "lawful",
+            "unlawful"
+          ]
+        }
+      },
+      "required": [
+        "fromAE",
+        "untilAE",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "faction": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^fac_[0-9]{4,}$"
+        },
+        "entityType": {
+          "const": "faction"
+        },
+        "factionType": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$"
+        },
+        "nameHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/namePeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "legalStatusHistory": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/legalStatusPeriod"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infoCard": {
+          "$ref": "#/$defs/cantumInfoCard"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "id",
+        "entityType",
+        "factionType",
+        "nameHistory",
+        "legalStatusHistory",
+        "infoCard"
+      ],
+      "additionalProperties": false
+    },
+    "factionEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^fac_[0-9]{4,}$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^factions/fac_[0-9]{4,}\\.json$"
+        }
+      },
+      "required": [
+        "id",
+        "path"
+      ],
+      "additionalProperties": false
+    },
+    "factionsFile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.3.0"
+        },
+        "factions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/factionEntry"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "factions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

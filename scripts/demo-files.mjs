@@ -4,14 +4,17 @@ import {datasetInventory,safeDatasetPath,parseDatasetJSON} from './dataset-inven
 import {recordErrors} from './atlas-validation.mjs';
 export {DEMO_ROOT,safePath,datasetInventory} from './dataset-inventory.mjs';
 
-export function readDemoSource(root, io = fs) {
-  const inventory=datasetInventory(root,io), texts=new Map([['sector.json',inventory.sectorText]]);
+export function readDemoSource(root,io=fs) {return readDatasetSource(root,io);}
+
+/** Explicit version opt-in is internal test support; Demo/writer remain v1.2 only. */
+export function readDatasetSource(root, io = fs, options = {}) {
+  const inventory=datasetInventory(root,io,options), texts=new Map([['sector.json',inventory.sectorText]]);
   const read=(name,kind,optional=false)=>{
-    const file=safeDatasetPath(inventory.root,name,io);
+    const file=safeDatasetPath(inventory.root,name,io,{version:inventory.sector.schemaVersion});
     if(optional&&!io.existsSync(file))return null;
     const text=io.readFileSync(file,'utf8');texts.set(name,text);
     const value=parseDatasetJSON(text,name);
-    if(kind){const errors=recordErrors(kind,value);if(errors.length)throw new Error(`${name}: ${errors.join('\n')}`);}
+    if(kind){const errors=recordErrors(kind,value,inventory.sector.schemaVersion);if(errors.length)throw new Error(`${name}: ${errors.join('\n')}`);}
     return value;
   };
   const sector=inventory.sector,detailFiles=new Map();
@@ -24,7 +27,16 @@ export function readDemoSource(root, io = fs) {
     if(detail.id!==id)throw new Error(`${name}: detail ID does not match registered ${id}`);
     detailFiles.set(id,detail);
   }
-  return {root:inventory.root,inventory,texts,dataset:{sector,cantums,presentation,connections,detailFiles}};
+  const dataset={sector,cantums,presentation,connections,detailFiles};
+  if(sector.schemaVersion==='1.3.0') {
+    dataset.factions=read(sector.factionsPath,'factionsFile');dataset.factionFiles=new Map();
+    for(const entry of inventory.factions) {
+      const record=read(entry.path,'faction');
+      if(record.id!==entry.id)throw new Error(`${entry.path}: faction file ID does not match registry ${entry.id}`);
+      dataset.factionFiles.set(entry.id,record);
+    }
+  }
+  return {root:inventory.root,inventory,texts,dataset};
 }
 
 /** Replace only JSON value spans of changed gate positions; retain all other bytes. */

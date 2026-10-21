@@ -1,16 +1,16 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1, 2.2, 3A and 3B are complete. Phase 3B is creator-approved; its implementation and completion documentation are committed together. Phase 3 as a whole is not complete.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2, 3A, 3B and 3C are complete. Phase 3C is creator-approved; its implementation and completion documentation are committed together. Phase 3 as a whole is not complete.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current closeout authorization:** final verification, documentation synchronization
-and one normal commit/push of the reviewed Phase 3B implementation to `origin/main`.
-No additional feature development, merge, history rewrite or deployment.
-**Next implementation gate:** Phase 3C remains proposed and unauthorized.
-Phases 3C-3F and 4-6 remain planned and require separate creator approval.
+**Current authorization:** verify, synchronize documentation and commit/push the
+creator-approved Phase 3C implementation together, then stop after remote verification.
+No new implementation, merge or deployment is authorized.
+**Next implementation gate:** Phase 3D remains proposed and unauthorized.
+Phases 3D-3F and 4-6 remain planned and require separate creator approval.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -143,7 +143,7 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: 3A and 3B complete and creator-approved; 3C-3F proposed and unauthorized.**
+**Status: 3A, 3B and 3C complete and creator-approved; 3D is next; 3D-3F proposed and unauthorized.**
 The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. The current runtime/data contract stays v1.2.
@@ -290,8 +290,8 @@ fixtures do not enter the graphical Demo build.
 #### 3B — Unified safe inventory and full-dataset loader
 
 **Implementation status: complete and creator-approved.** Implementation and
-completion documentation are committed together; Phase 3C is next and awaits
-separate creator authorization.
+completion documentation are committed together. Phase 3C is also complete and
+creator-approved; Phase 3D is the next separately gated checkpoint.
 
 `scripts/dataset-inventory.mjs` derives deterministic paths from the trusted
 `public/datasets/demo/sector.json` catalogue and its registry references. Demo is
@@ -349,6 +349,32 @@ without viewer or Vite source changes. Invalid/unsafe
 inputs are rejected; existing Demo behavior survives.
 
 #### 3C — Faction registry, InfoCards and Cantum hierarchy
+
+**Implementation status: complete and creator-approved.** The implementation and
+completion documentation are committed together. Overall Phase 3 is not complete;
+Phase 3D is the next proposed checkpoint and requires separate authorization.
+
+The separate [provisional v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md) and schema
+provide isolated Draft 2020-12 validation, a compact `factions.json` registry and
+authoritative `fac_` records. Factions have historical names, descriptive types,
+lawful/unlawful status and dated Cantum affiliation. Cantum `infoCard.affiliation`
+records dated direct governance without changing system administrative membership.
+Pure entity, InfoCard and governing-Cantum resolvers preserve uncertainty and
+explicit independence. Temporal validation checks reference integrity, lawful
+coverage, unlawful independence, self-parenting and cycles at every change boundary.
+The existing ID Finder supports registered factions and unregistered diagnostics.
+
+Verification: 215 automated tests, including 19 focused v1.3 schema, registry,
+reference, legal-status and temporal-governance tests; 12 ID Finder regressions;
+46 navigation tests; 12 calibration tests. Strict Demo validation, read-only
+navigation checks, audited build and legacy historical demonstration pass.
+Fourteen existing Chromium suites pass, including nine calibration radius/camera
+comparisons. Protected baseline files and the 21-file Demo output remain unchanged.
+These counts record the closeout execution, not future test-suite requirements.
+
+The active Demo, navigation compiler and rendering remain v1.2. No v1.3 fixtures
+or new resolver enter the production build. UI activation, governing fields and
+universal radius remain deferred to Phase 3D. Original objectives follow.
 
 **Work:** Add proposed `factions.json` as a compact
 index and authoritative `factions/fac_XXXX.json`
@@ -553,10 +579,11 @@ Phase 3 or the read-only public Atlas.
 
 ## Current implementation boundary
 
-Phases 1, 2, 2.1, 2.2, 3A and 3B are complete. Phase 3B is creator-approved;
+Phases 1, 2, 2.1, 2.2, 3A, 3B and 3C are complete. Phase 3C is creator-approved;
 its reviewed implementation and completion documentation enter Git history together.
-The current closeout permits final verification and one normal completion
-commit/push only, then stop. Phase 3C is next and unauthorized. Phases 3C-3F
+The current closeout authorizes only verification, documentation synchronization
+and committing/pushing that approved work. Stop after remote verification.
+Phase 3D is next and unauthorized. Phases 3D-3F
 and 4-6 remain planned and separately gated; do not treat Phase 3 as complete.
 Protected v0.1 Canon, live v1.2 Demo, frozen fixtures/schemas, renderer/history,
 generated navigation and publication safeguards remain unchanged. No later-phase feature,

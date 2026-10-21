@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "sys_9901",
+  "entityType": "system_detail",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 100000,
+      "y": 20000,
+      "z": 100000
+    },
+    "unit": "CNU",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "objects": [
+    {
+      "id": "cb_9901",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "physicalDiameterKm": 1080000,
+      "discoveredAE": 100,
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "name": "TEST v1.3 Star",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "Main star of System A."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": null
+    },
+    {
+      "id": "sta_9901",
+      "entityType": "station",
+      "objectType": "orbital_station",
+      "constructedAE": 0,
+      "decommissionedAE": null,
+      "orbitingId": "cb_9901",
+      "discoveredAE": 0,
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": null,
+          "name": "TEST v1.3 Station",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "visualVariant": "shipyard",
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "entityId": "fac_9901",
+            "datePrecision": "exact"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST fixture; no MCR history."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -2,12 +2,13 @@
 import fs from 'node:fs';
 import Ajv2020 from 'ajv/dist/2020.js';
 
-const schemas = new Map(['1.1.0', '1.2.0'].map(version => {
-  const file = version === '1.1.0' ? 'atlas-v1_1.schema.json' : 'atlas.schema.json';
+const schemas = new Map(['1.1.0', '1.2.0', '1.3.0'].map(version => {
+  const file = version === '1.1.0' ? 'atlas-v1_1.schema.json' : version === '1.3.0' ? 'atlas-v1_3.schema.json' : 'atlas.schema.json';
   const schema = JSON.parse(fs.readFileSync(new URL('../schemas/' + file, import.meta.url), 'utf8'));
   const ajv = new Ajv2020({allErrors: true, strict: true});
+  if (version === '1.3.0') ajv.addSchema(JSON.parse(fs.readFileSync(new URL('../schemas/atlas.schema.json', import.meta.url), 'utf8')));
   ajv.addSchema(schema);
-  const defs = ['sector', 'cantumsFile', 'connectionsFile', 'presentationFile', 'systemDetail', ...(version === '1.2.0' ? ['systemAuthoring'] : [])];
+  const defs = ['sector', 'cantumsFile', 'connectionsFile', 'presentationFile', 'systemDetail', ...(version !== '1.1.0' ? ['systemAuthoring'] : []), ...(version === '1.3.0' ? ['factionsFile', 'faction'] : [])];
   return [version, Object.fromEntries(defs.map(def => [def, ajv.compile({$ref: `${schema.$id}#/$defs/${def}`})]))];
 }));
 
@@ -25,6 +26,7 @@ export function structuralErrors(dataset, {authoring = false, includeGraph = tru
     ...(dataset.presentation ? [['presentationFile', dataset.presentation]] : []),
     ...(includeGraph ? [['connectionsFile', dataset.connections]] : []),
     ...[...dataset.detailFiles.values()].map(d => [authoring && validators.systemAuthoring ? 'systemAuthoring' : 'systemDetail', d])];
+  if (dataset.sector?.schemaVersion === '1.3.0') records.push(['factionsFile', dataset.factions], ...[...(dataset.factionFiles ?? new Map()).values()].map(f => ['faction', f]));
   return records.flatMap(([kind, record]) => validators[kind](record) ? [] : validators[kind].errors.map(e =>
     `${record?.id ?? kind}${e.instancePath || '/'}: ${e.message}`));
 }

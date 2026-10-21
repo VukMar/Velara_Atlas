@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "sec_9901",
+  "entityType": "sector",
+  "title": "NONCANONICAL TEST v1.3",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 160,
+      "y": 60,
+      "z": 160
+    },
+    "unit": "ly",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "timeline": {
+    "epoch": "A.E.",
+    "startAE": 0,
+    "defaultAE": 1200
+  },
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 0,
+        "untilAE": null,
+        "text": "NONCANONICAL TEST fixture; no MCR history."
+      }
+    ]
+  },
+  "cantumsPath": "cantums.json",
+  "connectionsPath": "connections.json",
+  "systems": [
+    {
+      "id": "sys_9901",
+      "entityType": "star_system",
+      "discoveredAE": 100,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 20,
+        "y": 1,
+        "z": 5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "name": "TEST System 9901",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "cantumId": "can_9902",
+          "datePrecision": "exact"
+        }
+      ],
+      "publicDetailPath": "systems/sys_9901.json",
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST fixture; no MCR history."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sys_9902",
+      "entityType": "star_system",
+      "discoveredAE": 100,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 30,
+        "y": 1,
+        "z": 5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "name": "TEST System 9902",
+          "kind": "noncanon_example",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 100,
+          "untilAE": null,
+          "cantumId": "can_9903",
+          "datePrecision": "exact"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 100,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST fixture; no MCR history."
+          }
+        ]
+      }
+    }
+  ],
+  "nexusPresentation": {
+    "fallbackTitle": "NEXUS // ARCHIVAL SURVEY UNAVAILABLE",
+    "fallbackText": "A record of this system exists, but its detailed survey is not part of this archive edition."
+  },
+  "presentationPath": null,
+  "factionsPath": "factions.json",
+  "zones": []
+}

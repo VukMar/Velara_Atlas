@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.3.0",
+  "factions": [
+    {
+      "id": "fac_9901",
+      "path": "factions/fac_9901.json"
+    },
+    {
+      "id": "fac_9902",
+      "path": "factions/fac_9902.json"
+    }
+  ]
+}

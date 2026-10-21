@@ -147,7 +147,8 @@ test('scanner ignores unrelated examples, metadata, presentation references and 
 test('actual author-editable demo inventory scans cleanly with all supported prefixes',()=>{
   const r=scanDataset();assert.deepEqual(r.errors,[]);assert.equal(r.files.length,6);
   assert.deepEqual(r.rows.map(v=>v.prefix),PREFIXES);
-  for(const row of r.rows) assert.match(row.highest,new RegExp(`^${row.prefix}_[0-9]{4,}$`));
+  for(const row of r.rows.filter(row=>row.prefix!=='fac')) assert.match(row.highest,new RegExp(`^${row.prefix}_[0-9]{4,}$`));
+  assert.deepEqual(row(r,'fac'),{prefix:'fac',highest:null,next:'fac_0001'});
 });
 
 test('standalone CLI returns nonzero for bad prefix and succeeds independently of cwd without altering scanned files',()=>{

@@ -1,8 +1,8 @@
 # Velara Atlas documentation index
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A and 3B are complete**. **Phase 3B is
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B and 3C are complete**. **Phase 3C is
 creator-approved**, with its implementation and completion documentation committed together.
-**Phase 3C is next, proposed and awaiting separate creator authorization.** Phases 3C-3F and later architecture
+**Phase 3D is the next proposed checkpoint and awaits separate creator authorization.** Phases 3D-3F and later architecture
 Phases 4-6 remain planned, unstarted and separately gated. Phase 3 is not complete.
 The simplified v1.2 reference library remains current; Phase 2.1 is in `711a410`.
 This index is the current navigation/status reference, not an implementation task.
@@ -45,12 +45,15 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2, 3A and 3B complete; 3C next and unauthorized; 3C-3F and 4-6 planned and unstarted. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3C complete; 3D next and unauthorized; 3D-3F and 4-6 planned. |
 
 The sector-derived validated inventory and eager loader are described in
 [README](../README.md#registered-demo-systems-and-loading) and
 [architecture](ARCHITECTURE.md#validated-dataset-inventory). Phase 3B is complete;
-Phase 3C implementation remains unauthorized.
+Completed, creator-approved Phase 3C remains isolated from the live v1.2 Demo.
+[DATA_MODEL_V1_3_PROPOSAL](DATA_MODEL_V1_3_PROPOSAL.md) describes faction records,
+pure reference/governance APIs, validation and the TEST fixture. It is a provisional
+contract, not the active Demo model; Phase 3D remains unauthorized.
 
 The live graphical Demo remains `public/datasets/demo/`, served by `npm run demo`
 on 5173. `npm run dev` (alias `preview:calibration`) serves local calibration on
@@ -58,7 +61,8 @@ on 5173. `npm run dev` (alias `preview:calibration`) serves local calibration on
 cloning adapter. `history:demo` is the terminal chronology. Canon remains future,
 with no launcher. See [commands, scenario format and tests](../README.md#local-development-and-future-canon).
 Keep current per-Cantum `radiusLY` until a separately approved Phase 3D redesign;
-no governance/faction registry or universal-radius work is implemented by 3A/3B.
+Phase 3C supplies test-only faction/governance support, without runtime activation
+or a universal radius.
 
 ## Historical implementation reports and verification evidence
 

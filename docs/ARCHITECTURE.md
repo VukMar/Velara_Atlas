@@ -5,8 +5,9 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A and 3B
-are complete and creator-approved. Phase 3C is next and requires separate authorization; canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B and 3C
+are complete and creator-approved. Phase 3C entity support remains isolated;
+Phase 3D is next and remains unauthorized; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -119,6 +120,24 @@ admission. See [authoring steps](../README.md#registered-demo-systems-and-loadin
 `tests/dataset-inventory.test.mjs` covers unsafe declarations, a temporary extra
 system through the real loader/full build, and new-file navigation generation.
 The active Demo, fixtures, schema and historical resolver are unchanged.
+
+## Proposed v1.3 entities (isolated Phase 3C)
+
+`src/core/infocard-resolver.mjs` reuses the existing pure history selectors for
+registered `can_`/`fac_` names, structured InfoCard affiliation and dated Cantum
+hierarchy traversal. It preserves missing/independent/unresolved states and
+returns copied effective records. `scripts/entity-relations.mjs` adds versioned
+registry, reference, legality and all-boundary governance checks to the existing
+relationship validator, reusing spatial/orbit/graph checks.
+
+The separate schema and `tests/fixtures/v1_3/` use explicit internal version
+opt-in through `readDatasetSource()`. Default Demo loading, Vite admission and
+the v1.2 navigation compiler reject v1.3. No new module or fixture is admitted to
+the production viewer; the InfoCard presenter is demonstrated in isolated tests.
+See [the provisional contract and review workflow](DATA_MODEL_V1_3_PROPOSAL.md).
+Live migration, navigation activation, UI activation, shared radius and political
+field merging remain Phase 3D work requiring separate approval. Phase 3C is complete
+and creator-approved; implementation and status synchronization are committed together.
 
 ## Coordinates, layout and rendering
 

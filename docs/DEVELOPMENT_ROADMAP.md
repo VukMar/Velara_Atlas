@@ -10,7 +10,7 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A and 3B are complete**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B and 3C are complete**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
@@ -18,15 +18,18 @@ NONCANONICAL Demo remains in `public/datasets/demo/`. Earlier stages are committ
 Phase 2 in `6e026cb`, Phase 2.1 in `711a410` and Phase 2.2 in `8d88ef2`.
 **Phase 3B is complete and creator-approved**: sector-derived validated inventory,
 eager detail preload and shared offline/Vite admission, with implementation and
-completion documentation committed together. **Phase 3C is next, proposed and
-awaiting separate creator authorization.** Phases 3C-3F and
+completion documentation committed together. **Phase 3C is complete and creator-approved**, with implementation and
+completion documentation committed together. Its separate
+[proposed v1.3 entity contract](DATA_MODEL_V1_3_PROPOSAL.md) remains isolated. **Phase 3D is next
+and unauthorized.** Phases 3D-3F and
 4-6 remain planned and separately gated; Phase 3 as a whole is not complete.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
 and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
 preserves its original verification context. Governing-Cantum influence and a
 shared radius remain Phase 3D proposals; per-Cantum `radiusLY` is unchanged.
-Faction/InfoCard resolution and dated Cantum governance remain Phase 3C proposals.
+Faction/InfoCard resolution and dated Cantum governance are isolated Phase 3C
+implemented support, not activated in the v1.2 Demo or its territory renderer.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -154,5 +157,6 @@ demo systems, coordinates, routes or statistics to canon. See
 A general publication pipeline, arbitrary dataset selection, moon-relative coordinates,
 orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
-The approved Phase 3B closeout permits its completion commit/push only; stop
-after remote verification. Future work, merge or deployment needs separate approval.
+The approved Phase 3C closeout permits its completion commit/push only; stop
+after remote verification. No new implementation, merge or deployment. Phase 3D
+and later work need separate creator approval.

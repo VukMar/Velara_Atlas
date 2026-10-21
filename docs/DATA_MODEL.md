@@ -2,6 +2,10 @@
 
 **Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
+The isolated [proposed v1.3 faction/governance contract](DATA_MODEL_V1_3_PROPOSAL.md)
+is implemented, tested Phase 3C support, complete and creator-approved. It does not change this
+active v1.2 schema, its legacy `org_` references, null behavior or Demo records.
+
 ## Identity and naming
 
 All entities have stable, globally unique IDs within a dataset. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link; `zon_0001` spatial zone. At least four digits; never reuse or rename an issued ID. Counters span the dataset, not each system. Frozen test snapshots are independent datasets, not duplicate production definitions. `npm run idfind -- all` provides read-only demo suggestions; it never reserves IDs.
@@ -51,7 +55,7 @@ escaping or symlinked declarations fail validation. A valid file left unregister
 does not enter the viewer/build. All released details preload eagerly. Adding an
 approved system is a JSON operation; restart Demo after registration changes and
 run the generation/check/validation workflow in [README](../README.md#registered-demo-systems-and-loading).
-This implements the existing v1.2 contract, not proposed Phase 3C/v1.3 relationships.
+This implements the existing v1.2 contract, not the isolated Phase 3C/v1.3 relationships.
 
 ## Coordinates and distance units
 
