@@ -5,8 +5,8 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phase 3A is complete and creator-approved; Phase 3B remains
-proposed and requires separate authorization; canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A and 3B
+are complete and creator-approved. Phase 3C is next and requires separate authorization; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -20,7 +20,7 @@ Use the [index](INDEX.md) for authority and the
 | `src/core/zone-geometry.mjs` | Pure zone validation/intersection, concave footprint clipping, projected membership, clipped ray intervals, witnesses, overlap ordering and bounded particles; shared by validator and viewer |
 | `src/viewer/zone-layers.mjs` | Clipped system-zone footprints, bounded approximate 3D cloud slices/particles, mode switching and subtle hover/selection emphasis |
 | `src/viewer/zone-outline.mjs` | Pointer-transparent 2D SVG hover/focus contours, constant CSS stroke, solid authored boundaries and dashed chart-clipping edges; no hit testing |
-| `src/viewer/demo-data.mjs` | Explicit imports of four demo registries plus three allowlisted detail loaders; preloads released details for endpoint eligibility |
+| `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
 | `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
 | `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
 | `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
@@ -44,8 +44,8 @@ has no write endpoint, authentication, live AI lore generation or backend.
 
 ## Data flow and historical semantics
 
-1. The demo loader reads only released, explicitly allowlisted noncanonical JSON
-   from `public/datasets/demo/` (four registries and three detail files).
+1. The Demo loader reads the validated sector-derived noncanonical inventory
+   from `public/datasets/demo/` (currently four registries and three detail files).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -67,7 +67,8 @@ and hiding it in the UI.
 
 | Module | Responsibility |
 | --- | --- |
-| `scripts/demo-files.mjs` | Fixed demo file allowlist, safe reads, position-value-span rewrites preserving unrelated bytes |
+| `scripts/dataset-inventory.mjs` | Validated sector-derived registration paths, deterministic ordering and shared filesystem guard |
+| `scripts/demo-files.mjs` | Registered raw authoring reads, stable system/file association and position-value-span rewrites preserving unrelated bytes |
 | `scripts/navigation.mjs` | Nonmutating v1.2 declaration-to-graph/XYZ compiler; lifetime exclusivity and navigation-boundary checks |
 | `scripts/connections.mjs` | Manual generator or read-only freshness check; staged validated writes, backups and recovery journal |
 | `scripts/atlas-validation.mjs` | Offline strict Ajv Draft 2020-12 validation for v1.1 and v1.2; separate authoring/release validators |
@@ -82,6 +83,42 @@ Git-tracked `connections.json` is the runtime index. Only the manual
 positions. Normal tests/Demo/build check freshness and fail instead of repairing.
 Multi-file replacement is not atomic; [authoring/recovery instructions](NAVIGATION_AUTHORING.md)
 are authoritative for operating that tool.
+
+## Validated dataset inventory
+
+`scripts/dataset-inventory.mjs` owns the selected trusted Demo root. It validates
+`sector.systems[]` before consuming detail declarations: IDs are unique, each
+released path is exactly `systems/<matching-id>.json`, and null entries are
+intentionally archival. Sector references select Cantums, connections and optional
+presentation. Technical file order is deterministic; catalogue order is preserved.
+Filesystem guards reject traversal, absolute paths, alternate separators,
+unsupported names/directories and symlink/reparse redirection of roots or files.
+Missing details fail. Root/IO injection is internal test support, with no arbitrary
+root/URL CLI or runtime selection. Only Demo is configured for the viewer.
+
+`readDemoSource()` retains exact original text and validates records with the
+existing Ajv definitions. It accepts authoring-stage null derived positions and a
+missing generated graph solely so the explicit writer can generate release data.
+Release validation and Vite reuse `checkConnections()` for strict structure,
+relationships and freshness; a missing/stale graph, bad references or recovery
+journal blocks startup/build. No implicit generation or repair occurs.
+
+Vite's narrow `virtual:velara-demo-dataset` module generates imports solely from
+the validated inventory. `demo-data.mjs` still eagerly calls every callback at
+initialization and retains the complete detail Map; there is no lazy fetch/cache
+architecture. Vite transforms the exact JSON text that passed validation. The
+same snapshot supplies the filesystem and build module allowlists; changed
+registrations require a Demo restart, while other JSON edits revalidate. Only
+the named virtual module and two specific Vite helpers get virtual-ID admission.
+
+The navigation writer's raw text, file association, concurrency/transaction and
+recovery interfaces remain intact. ID Finder shares the filesystem guard but
+retains its separate read-only diagnostic scan of direct unregistered system
+files and legacy `--public` scope. Diagnostic visibility confers no publication
+admission. See [authoring steps](../README.md#registered-demo-systems-and-loading).
+`tests/dataset-inventory.test.mjs` covers unsafe declarations, a temporary extra
+system through the real loader/full build, and new-file navigation generation.
+The active Demo, fixtures, schema and historical resolver are unchanged.
 
 ## Coordinates, layout and rendering
 
@@ -162,15 +199,15 @@ format and tests](../README.md#local-development-and-future-canon).
 
 No filesystem allowlist is widened. Calibration JSON, controller and adapter stay
 outside Demo imports and the production input audit; the JSON is available only
-through its explicit local route. No editor, writer, manifest or generic loader
-is introduced. The published build remains the noncanonical Demo only.
+through its explicit local route. No calibration editor/writer or arbitrary-root
+loader is introduced. The published build remains the noncanonical Demo only.
 See [historical calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
 `publicDetailPath: null` and uses existing textual archival fallback, without a
-detail file or additional loader. The seven-file explicit JSON input allowlist and
-`publicDir: false` remain unchanged. Sector markers remain display aids; system
+detail file or additional loader. The JSON input allowlist is sector-derived
+(currently seven files); `publicDir: false` remains unchanged. Sector markers remain display aids; system
 physical models consume known diameters; their Phase 3 implementation originally
 preserved Phase 2 data. Subsequent creator testing intentionally changed System C
 navigation and discovery dates. The current committed demo has ten System C
@@ -197,7 +234,8 @@ elaborate targeting-ring art remain future work.
 Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
 disables `publicDir` and source maps, and writes `dist/`. Development binds
 to loopback with filesystem restrictions. The input audit allows viewer code,
-the modern core modules, seven exact demo JSON files and dependencies.
+the modern core modules, exact inventory-derived Demo JSON, dependencies and
+the narrowly named virtual mapping/Vite helpers.
 Phase 3 added fourteen explicit navigation icon paths; Stage 2 adds exactly one
 separate Cantum demonstration sigil path. `sigil-registry.mjs` resolves only
 `test-cantum-a` via a static Vite URL, never a path derived from authored data.
@@ -216,8 +254,8 @@ general canonical publication pipeline.
 
 ## Future work and remaining limits
 
-GitHub Pages deployment, a general released-data loader/runtime validation
-strategy, a canonical release pipeline and any local editor need separate
+GitHub Pages deployment, arbitrary dataset selection/runtime validation,
+a canonical release pipeline and any local editor need separate
 authorization. Canonical v0.1 IDs/history require the
 [migration safeguards](LEGACY_MIGRATION_PLAN.md). Private RTF remains external;
 no private source extraction or publication tool is implemented.

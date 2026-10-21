@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {safeDatasetPath} from './dataset-inventory.mjs';
 
 export const PREFIXES = ['cb', 'gat', 'sta', 'jhl', 'sys', 'lnk', 'can', 'zon', 'sec'];
 const repo = fileURLToPath(new URL('../', import.meta.url));
@@ -27,15 +28,7 @@ export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs} = {
   const base = path.resolve(repositoryRoot, scope === 'demo' ? 'public/datasets/demo' : 'public/data');
   const files = new Map(), errors = [], notes = [], legacy = [];
   const definitions = new Map(PREFIXES.map(p => [p, new Map()]));
-  function safe(name) {
-    if (!/^(?:sector|cantums|political|connections)\.json$/.test(name) && !/^systems\/[A-Za-z0-9_-]+\.json$/.test(name)) throw new Error(`Unsupported dataset path: ${name}`);
-    const target = path.join(base, name);
-    for (const directory of [base, ...(name.startsWith('systems/') ? [path.join(base, 'systems')] : [])]) {
-      if (io.lstatSync(directory).isSymbolicLink() || io.realpathSync(directory) !== directory) throw new Error(`Symlink/reparse dataset directory refused: ${directory}`);
-    }
-    if (io.lstatSync(target).isSymbolicLink() || io.realpathSync(target) !== target) throw new Error(`Symlink/reparse dataset file refused: ${name}`);
-    return target;
-  }
+  const safe=name=>safeDatasetPath(base,name,io,{diagnostic:true});
   function read(name, required = true) {
     if (files.has(name)) return files.get(name);
     try {

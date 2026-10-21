@@ -6,15 +6,15 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2 and 3A are complete**. **Phase 3A is
-creator-approved**, with implementation and status synchronization included
-together in its closeout commit. The v1.2 examples now use ten focused entity-family references
+Architecture Phases **1, 2, 2.1, 2.2, 3A and 3B are complete**. **Phase 3B is
+creator-approved**, with its inventory/loading implementation and completion
+documentation committed together. Overall Phase 3 is not complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Phase 3B is next, not started or authorized**, under
+verification context. **Phase 3C is next, proposed and awaiting separate creator authorization**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
 Phases 3C-3F and 4-6 remain planned and separately gated. Governance and universal Cantum-radius changes remain
@@ -123,7 +123,7 @@ npm run build
 npm run preview
 ```
 
-`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
+`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
 Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. The [Checkpoint 3.6 audit](docs/REPOSITORY_AUDIT_3_6.md) records earlier checks and limits; the [index](docs/INDEX.md) links subsequent evidence. Physical touch-device verification remains outstanding.
 
@@ -167,7 +167,7 @@ adds exactly four read-only routes: HTML, controller, adapter and this named JSO
 Other calibration files/methods and direct filesystem access remain blocked; no
 editor, saving endpoint or arbitrary dataset root is provided. The existing
 renderer, resolver, controls and sigil registry are reused. Development JSON and
-its adapter are excluded from the Demo's unchanged input audit and `dist/` output.
+its adapter are excluded from the Demo's inventory-based input audit and `dist/` output.
 No canonical radius is chosen; richer preview tooling remains proposed Phase 5.
 
 ### Automated and browser verification
@@ -187,6 +187,40 @@ run them with the Demo page selected (for example navigation, celestial, layout,
 labeling, zones and touch suites). They are Playwright callback files, not Node
 CLI tests; no Playwright dependency is added to the project. Historical reports
 retain their original command names and results.
+
+## Registered Demo systems and loading
+
+`sector.systems[]` is the only system registration list. To release an approved
+noncanonical system, author `systems/sys_XXXX.json` and register the same permanent
+ID with `publicDetailPath: "systems/sys_XXXX.json"` in
+[`public/datasets/demo/sector.json`](public/datasets/demo/sector.json).
+No viewer, script list or Vite edit is needed. Keep `publicDetailPath: null` for
+an intentional catalogue-only record; it retains the NEXUS archival fallback.
+A missing non-null detail is an error, never a fallback.
+
+`scripts/dataset-inventory.mjs` derives a sorted inventory from the trusted Demo
+root, including the sector-declared registries. It validates the catalogue and
+strict identity/path agreement before reading details; authoring/release Ajv,
+relationship and navigation checks remain authoritative. Only registered paths
+can become Vite imports. A narrow virtual module generates those imports, and
+`loadDemoDataset()` eagerly preloads every released detail before initialization.
+There is no runtime JSON fetch, folder discovery or second handwritten manifest.
+
+Restart `npm run demo` after adding/removing registrations or changing registry
+paths. Then run `npm run connections` if authored navigation requires generation,
+`npm run connections:check`, `npm run validate`, `npm test` and `npm run build`;
+review the JSON and generated diff. Startup/build only verify, never generate.
+Unsafe paths, symlinks/reparse redirects, malformed/version-invalid records,
+relationship failures and stale navigation block publication. Unregistered files
+remain excluded even if ID Finder scans them for collisions. The build and Demo
+filesystem allowlists derive from the same inventory; `publicDir: false`, asset
+restrictions and output audits remain in force. Canon and calibration are excluded.
+Internal alternate-root injection exists only for isolated automated tests.
+
+`node --test tests/dataset-inventory.test.mjs` exercises rejection cases and a
+temporary fourth system through the real loader, navigation writer and full build.
+It does not add speculative records to the active Demo. Phase 3B is complete
+and creator-approved; Phase 3C/v1.3 features are not implemented or authorized.
 
 ## Schema v1.2 navigation authoring
 

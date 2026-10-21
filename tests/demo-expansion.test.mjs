@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {readDemoSource, DEMO_ROOT, SYSTEM_FILES} from '../scripts/demo-files.mjs';
+import {readDemoSource, DEMO_ROOT, datasetInventory} from '../scripts/demo-files.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {generateNavigation, navigationMismatches} from '../scripts/navigation.mjs';
@@ -80,7 +80,7 @@ test('real fallback-only system is historically eligible without any published d
   assert.equal(system.cantumHistory, null);
   assert.equal(d.detailFiles.has(system.id), false);
   assert.equal(fs.existsSync(`${DEMO_ROOT}/systems/${system.id}.json`), false);
-  assert.deepEqual([...d.detailFiles.keys()].map(id => `systems/${id}.json`), SYSTEM_FILES);
+  assert.deepEqual([...d.detailFiles.keys()].map(id => `systems/${id}.json`), datasetInventory().systemFiles);
   const before = resolveAtlas(d, system.discoveredAE - 1);
   assert.ok(!before.systems.some(s => s.id === system.id));
   assert.deepEqual(searchRecords(before.records, system.nameHistory[0].name), []);

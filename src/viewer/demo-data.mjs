@@ -1,16 +1,6 @@
-import sector from '../../public/datasets/demo/sector.json';
-import cantums from '../../public/datasets/demo/cantums.json';
-import connections from '../../public/datasets/demo/connections.json';
-import presentation from '../../public/datasets/demo/presentation.json';
+import {sector,cantums,connections,presentation,detailLoaders} from 'virtual:velara-demo-dataset';
 
-// Explicit allowlist, not a filesystem glob or arbitrary path fetch. Vite emits
-// each public demo detail as a base-aware lazy chunk; public/ is never copied.
-const detailLoaders = new Map([
-  ['systems/sys_0001.json', () => import('../../public/datasets/demo/systems/sys_0001.json')],
-  ['systems/sys_0002.json', () => import('../../public/datasets/demo/systems/sys_0002.json')],
-  ['systems/sys_0003.json', () => import('../../public/datasets/demo/systems/sys_0003.json')]
-]);
-
+// The generated mapping contains only validated sector registrations.
 export const demoSector = sector;
 
 export async function loadDemoDataset() {

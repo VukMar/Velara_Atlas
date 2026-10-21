@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
-import {readDemoSource, INPUT_FILES, safePath, rewritePositions} from '../scripts/demo-files.mjs';
+import {readDemoSource, datasetInventory, safePath, rewritePositions} from '../scripts/demo-files.mjs';
 import {generateNavigation, navigationMismatches, boundaryPositions} from '../scripts/navigation.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {runConnections, RECOVERY_FILE} from '../scripts/connections.mjs';
@@ -29,7 +29,7 @@ function temporary(t) {
   });
   return root;
 }
-const bytes = root => INPUT_FILES.map(name => [name, fs.existsSync(path.join(root, name)) ? fs.readFileSync(path.join(root, name), 'utf8') : null]);
+const bytes = root => datasetInventory(root).files.map(name => [name, fs.existsSync(path.join(root, name)) ? fs.readFileSync(path.join(root, name), 'utf8') : null]);
 function change(root, file, fn) {
   const full = path.join(root, file), value = JSON.parse(fs.readFileSync(full, 'utf8'));
   fn(value); fs.writeFileSync(full, JSON.stringify(value, null, 2) + '\n');
@@ -229,8 +229,8 @@ test('manual command is byte-idempotent and check is read-only even when graph/r
   const root=temporary(t);
   const readOnly={...fs}; for (const key of ['openSync','writeFileSync','renameSync','copyFileSync','unlinkSync','mkdirSync']) readOnly[key]=()=>{throw new Error('UNEXPECTED WRITE');};
   assert.doesNotThrow(()=>runConnections({root,check:true,io:readOnly}));
-  runConnections({root}); const first=bytes(root),mtime=INPUT_FILES.map(f=>fs.statSync(path.join(root,f)).mtimeMs);
-  runConnections({root}); assert.deepEqual(bytes(root),first); assert.deepEqual(INPUT_FILES.map(f=>fs.statSync(path.join(root,f)).mtimeMs),mtime);
+  runConnections({root}); const first=bytes(root),mtime=datasetInventory(root).files.map(f=>fs.statSync(path.join(root,f)).mtimeMs);
+  runConnections({root}); assert.deepEqual(bytes(root),first); assert.deepEqual(datasetInventory(root).files.map(f=>fs.statSync(path.join(root,f)).mtimeMs),mtime);
   const mutations=[
     ['connections.json', d=>{d.connections[0].direction='b_to_a';},/lnk_0001/],
     ['systems/sys_0001.json', s=>{s.objects.find(o=>o.id==='cb_0002').navigation.boundaryRadiusCNU+=1;},/lnk_0001\/gat_0001/],

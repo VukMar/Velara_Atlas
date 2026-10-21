@@ -11,6 +11,13 @@ const schemas = new Map(['1.1.0', '1.2.0'].map(version => {
   return [version, Object.fromEntries(defs.map(def => [def, ajv.compile({$ref: `${schema.$id}#/$defs/${def}`})]))];
 }));
 
+/** Reuse the same compiled contracts before consuming registered file paths. */
+export function recordErrors(kind, record, version = '1.2.0') {
+  const validate = schemas.get(version)?.[kind];
+  if (!validate) return ['Unsupported dataset schemaVersion or record contract'];
+  return validate(record) ? [] : validate.errors.map(e => `${record?.id ?? kind}${e.instancePath || '/'}: ${e.message}`);
+}
+
 export function structuralErrors(dataset, {authoring = false, includeGraph = true} = {}) {
   const validators = schemas.get(dataset.sector?.schemaVersion);
   if (!validators) return ['Unsupported dataset schemaVersion'];

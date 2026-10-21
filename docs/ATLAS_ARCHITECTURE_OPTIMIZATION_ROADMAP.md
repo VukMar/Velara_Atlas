@@ -1,14 +1,15 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A are complete. Phase 3A is creator-approved; its implementation and status synchronization are included together in this closeout commit. Phase 3 as a whole is not complete.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2, 3A and 3B are complete. Phase 3B is creator-approved; its implementation and completion documentation are committed together. Phase 3 as a whole is not complete.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current authorization:** final verification, documentation closeout and
-commit/push of the reviewed Phase 3A work only; no new implementation.
-**Next implementation gate:** Phase 3B is proposed, not started or authorized.
+**Current closeout authorization:** final verification, documentation synchronization
+and one normal commit/push of the reviewed Phase 3B implementation to `origin/main`.
+No additional feature development, merge, history rewrite or deployment.
+**Next implementation gate:** Phase 3C remains proposed and unauthorized.
 Phases 3C-3F and 4-6 remain planned and require separate creator approval.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
@@ -30,8 +31,9 @@ The committed Phase 2 evidence remains in [its report](PHASE_02_DATASET_MIGRATIO
 ## Original baseline findings (190bd21)
 
 Completed architecture Phase 2 relocated the live demo to `public/datasets/demo/`; the
-following table retains the original Phase 1 audit context. Explicit loading,
-preloading and seven-file allowlisting remain; manifest loading is still Phase 3.
+following table retains the original Phase 1 audit context, including the old
+manual file lists. Current Phase 3B operating behavior is described in
+[architecture](ARCHITECTURE.md#validated-dataset-inventory); eager preload remains.
 
 The baseline has a working separation between pure historical/cartographic logic (`src/core/`), Three.js viewer (`src/viewer/`), schema validation, navigation generation, browser tests, and test fixtures. **Preserve it.** The principal bottlenecks are at the data-registration, viewer-orchestration, configuration, and development-tools boundaries.
 
@@ -141,7 +143,7 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: 3A complete and creator-approved; 3B-3F proposed, not implemented.**
+**Status: 3A and 3B complete and creator-approved; 3C-3F proposed and unauthorized.**
 The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. The current runtime/data contract stays v1.2.
@@ -287,8 +289,45 @@ fixtures do not enter the graphical Demo build.
 
 #### 3B — Unified safe inventory and full-dataset loader
 
-**Status: next proposed implementation checkpoint; not started or authorized.**
-A separate creator-approved task is required.
+**Implementation status: complete and creator-approved.** Implementation and
+completion documentation are committed together; Phase 3C is next and awaits
+separate creator authorization.
+
+`scripts/dataset-inventory.mjs` derives deterministic paths from the trusted
+`public/datasets/demo/sector.json` catalogue and its registry references. Demo is
+the only configured modern viewer dataset; alternate root/IO injection supports
+isolated tests, not public CLI/URL selection or Canon loading. Paths must match
+`systems/<registered-system-id>.json`; catalogue-only null paths remain archival.
+Strict path/identity/uniqueness and filesystem checks precede detail reads,
+including rejection of traversal, absolute paths and symlink/reparse redirects.
+Existing Ajv authoring/release, relationship and navigation validators remain
+authoritative; stale output and recovery journals block startup/build.
+
+`scripts/demo-files.mjs` preserves raw text and stable system/file association for
+the unchanged navigation writer. Vite derives exact JSON admission and a narrow
+virtual import mapping from the same inventory. The browser eagerly preloads all
+released details, preserving timeline/navigation eligibility and archival fallback.
+No folder glob, on-demand fetch, parallel handwritten manifest or automatic
+navigation generation is introduced. Registration changes require a Demo restart.
+ID Finder retains read-only unregistered-file diagnostics without publication
+admission. `publicDir: false`, approved assets and output audits remain intact;
+Development calibration and protected Canon stay excluded.
+
+**Verification evidence:** 196 automated tests passed, including nine focused
+inventory tests covering unsafe/invalid inputs, missing/mismatched records,
+symlink/reparse rejection, stale navigation, restart behavior and unregistered-file
+exclusion. An isolated fourth-system fixture passes schema/relationships,
+eager browser-loader resolution, HTTP admission, navigation generation with
+byte-preserving writes and a full audited build without source-list changes.
+Strict Demo validation, read-only navigation freshness, terminal history and the
+21-file/15-approved-SVG production build pass. Chromium checks cover graphical
+history, catalogue, archival fallback, navigation, rendering and calibration's
+nine radius/camera combinations. Protected data and calibration facts remain
+byte-identical. The existing bundle-size advisory and physical-device/cross-browser
+verification limits remain. See [operating architecture](ARCHITECTURE.md#validated-dataset-inventory)
+and [authoring/testing steps](../README.md#registered-demo-systems-and-loading).
+
+**Retained original Phase 3B objectives and acceptance criteria:**
 
 **Work:** Replace separately maintained explicit
 system arrays in `src/viewer/demo-data.mjs`,
@@ -514,11 +553,11 @@ Phase 3 or the read-only public Atlas.
 
 ## Current implementation boundary
 
-Phases 1, 2, 2.1, 2.2 and 3A are complete. Phase 3A is creator-approved;
-its reviewed implementation and status synchronization enter Git history together.
-This closeout authorizes only verification, necessary documentation and one normal
-commit/push to `main`. Phase 3B is next, not started or authorized. Phases 3C-3F
+Phases 1, 2, 2.1, 2.2, 3A and 3B are complete. Phase 3B is creator-approved;
+its reviewed implementation and completion documentation enter Git history together.
+The current closeout permits final verification and one normal completion
+commit/push only, then stop. Phase 3C is next and unauthorized. Phases 3C-3F
 and 4-6 remain planned and separately gated; do not treat Phase 3 as complete.
 Protected v0.1 Canon, live v1.2 Demo, frozen fixtures/schemas, renderer/history,
-generated navigation and publication safeguards remain unchanged. No new feature,
+generated navigation and publication safeguards remain unchanged. No later-phase feature,
 merge, history rewrite, canonical migration, editor or deployment is authorized.

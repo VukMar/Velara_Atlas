@@ -70,9 +70,11 @@ it stays unverified, without reading or inventing unreleased object details.
 `scripts/navigation.mjs` is a nonmutating graph/coordinate compiler.
 `scripts/connections.mjs` is the manual offline writer/check command. It accepts
 only `--check`; no custom directory, URL, private folder or arbitrary data path
-is accepted by the CLI. `scripts/demo-files.mjs` allowlists sector, Cantums,
-presentation, connections and exactly `sys_0001` through `sys_0003` beneath
-`public/datasets/demo/`. Symlink/reparse paths are refused. The IO root argument
+is accepted by the CLI. `scripts/dataset-inventory.mjs` derives registered paths
+from the validated sector beneath `public/datasets/demo/`; `demo-files.mjs`
+retains exact raw text and system-to-file associations for the writer. Only
+`systems/<matching-system-id>.json` declarations are admitted; null is archival.
+Unregistered files are not writer targets. Symlink/reparse paths are refused. The IO root argument
 in exported functions exists for isolated failure tests, not a publishing API.
 
 The compiler uses full XYZ CNU and `u = (B-A)/|B-A|`, placing gates at `A+rA*u`
@@ -116,7 +118,7 @@ For interruption, failed rollback or cleanup:
 
 1. Stop other generator processes and retain all journal/stage/backup files.
    Inspect the journal locally; targets must be `connections.json` or one of the
-   three approved system details, all within `public/datasets/demo/`.
+   registered system details declared by the sector, all within `public/datasets/demo/`.
 2. Compare each target and backup with `previousSHA256`/`nextSHA256`. A backup
    may be absent if interruption preceded backup creation. Do not overwrite a
    concurrently edited file: compare and preserve it separately first.
@@ -180,9 +182,9 @@ v0.1 history and its resolver remain unchanged. The historical resolver ignores
 authoring declarations and needs no adapter or new history interpretation.
 
 The current MCP suites `tests/browser-checkpoint3.mjs` and
-`tests/browser-navigation-v1_2.mjs` require the dev server because they inspect or
+`tests/browser-navigation-v1_2.mjs` require the graphical Demo server (`npm run demo`, port 5173) because they inspect or
 intercept its public demo modules. `tests/browser-layout3_6.mjs` and
-`tests/browser-touch3_6.mjs` support dev or production preview under
+`tests/browser-touch3_6.mjs` support the graphical Demo or production preview under
 `/Velara_Atlas/`. They are MCP entry points, not automatically discovered Node
 tests. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
 The [original implementation report](NAVIGATION_V1_2_RESULTS.md) remains historical

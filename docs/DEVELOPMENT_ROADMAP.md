@@ -10,13 +10,16 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2 and 3A are complete**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A and 3B are complete**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
 NONCANONICAL Demo remains in `public/datasets/demo/`. Earlier stages are committed:
 Phase 2 in `6e026cb`, Phase 2.1 in `711a410` and Phase 2.2 in `8d88ef2`.
-**Phase 3B is next, proposed and not started or authorized.** Phases 3C-3F and
+**Phase 3B is complete and creator-approved**: sector-derived validated inventory,
+eager detail preload and shared offline/Vite admission, with implementation and
+completion documentation committed together. **Phase 3C is next, proposed and
+awaiting separate creator authorization.** Phases 3C-3F and
 4-6 remain planned and separately gated; Phase 3 as a whole is not complete.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
@@ -148,7 +151,8 @@ requiring an explicit permanent-ID crosswalk and historical review. Never promot
 demo systems, coordinates, routes or statistics to canon. See
 [migration safeguards](LEGACY_MIGRATION_PLAN.md).
 
-A general publication pipeline, larger dataset loader, moon-relative coordinates,
+A general publication pipeline, arbitrary dataset selection, moon-relative coordinates,
 orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
-Stop after the currently approved phase; no automatic commit/push/merge/deploy.
+The approved Phase 3B closeout permits its completion commit/push only; stop
+after remote verification. Future work, merge or deployment needs separate approval.

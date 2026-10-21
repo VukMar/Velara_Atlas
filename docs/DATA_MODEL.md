@@ -44,6 +44,15 @@ compact file envelopes, snippets and the authoring-versus-generated distinction.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
+The current Demo inventory derives from this catalogue and the sector's registry
+paths, not from scanning the directory or maintaining a second system list.
+Released paths must be `systems/<matching-system-id>.json`; malformed, missing,
+escaping or symlinked declarations fail validation. A valid file left unregistered
+does not enter the viewer/build. All released details preload eagerly. Adding an
+approved system is a JSON operation; restart Demo after registration changes and
+run the generation/check/validation workflow in [README](../README.md#registered-demo-systems-and-loading).
+This implements the existing v1.2 contract, not proposed Phase 3C/v1.3 relationships.
+
 ## Coordinates and distance units
 
 Sector X/Y/Z uses **light-years (`ly`)**. Individual system X/Y/Z uses **Continuance Navigation Units (`CNU`)**, the standardized interplanetary navigational distance used by the Continuance. **1 CNU = 10,000 kilometers**, universally across systems. Existing coordinates, extents, zones, navigation boundaries and connections are not rescaled.

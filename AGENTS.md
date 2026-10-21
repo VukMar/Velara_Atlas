@@ -4,19 +4,20 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Architecture status:** Phases 1, 2, 2.1, 2.2 and 3A are complete.
-Phase 3A is creator-approved; its implementation and status synchronization are
-included together in this closeout commit. The simplified v1.2 reference library
+**Architecture status:** Phases 1, 2, 2.1, 2.2, 3A and 3B are complete.
+Phase 3B is creator-approved; its implementation and completion documentation
+are committed together. Overall Phase 3 is not complete. The simplified v1.2 reference library
 remains in `examples/v1_2/`, and the active noncanonical Demo remains in
 `public/datasets/demo/`. Development uses the JSON-backed local calibration.
 Canon is future approved MCR data, with no launcher or noncanonical fallback.
 
-**Current authorization:** finalize documentation, verify, and commit/push only
-the reviewed Phase 3A implementation and necessary closeout documentation to
-`main`. No new feature development is authorized. Phase 3B is the next proposed
-checkpoint, not started or authorized. Phases 3C-3F and 4-6 remain planned and
-separately gated. Future work requires explicit creator approval; stop after
-this closeout. No merge, history rewrite, canonical migration or deployment.
+**Current closeout authorization:** verify, synchronize documentation, stage,
+commit and normally push only the reviewed Phase 3B inventory/loading work to
+`origin/main`. No new feature development, merge, history rewrite or deployment.
+Stop after the closeout commit, push and remote verification. Phase 3C is the
+next proposed checkpoint and requires separate creator authorization.
+Phases 3C-3F and 4-6 remain planned and separately gated; no faction, hierarchy,
+universal-radius, v1.3, editor or canonical migration work is authorized.
 Every newly created short-range gate starts with `position: null` and
 `positionMode: "boundary_derived"`; the author creates gate records/anchor
 relationships, and the offline generator later writes XYZ and the graph.
@@ -28,11 +29,12 @@ redesign remains a proposed Phase 3 design-review item, not an implemented featu
 symbols, usable invisible targets, provisional `clamp(radiusLY * .30, .5, 3)`
 half-height and the isolated 40-ly local preview (now backed by calibration JSON). Do not select a canonical
 radius. Completed Phase 3A contains only command separation, the local calibration
-JSON adapter, focused tests and operating documentation. No manifest, generic
-loader, calibration editor, schema/governance/radius redesign or Stage 5
-refinement is authorized. Stop after the approved closeout commit/push.
+JSON adapter, focused tests and operating documentation. Completed Phase 3B
+adds the sector-derived validated inventory and eager Demo loader/build mapping.
+Only Demo is configured; no arbitrary roots or runtime JSON fetching. Calibration
+editors, schema/governance/radius redesign and Stage 5 refinement remain unauthorized.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved; this task authorizes its documentation closeout and commit/push only. Architecture Phase 3B remains proposed and requires separate authorization. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; Phase 2.2 example simplification is complete and creator-approved. Architecture Phases 3A and 3B are complete and creator-approved; current authorization covers only the reviewed Phase 3B closeout commit/push. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -105,4 +107,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Stop after its expressly authorized commit/push. Phase 3B-3F, later implementation, further visual development and deployment require separate creator approval; this authorization does not extend to future commits or work.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Stop after its authorized closeout commit/push and remote verification. Phase 3C and later implementation, future commits/pushes, further visual development and deployment require separate creator approval.

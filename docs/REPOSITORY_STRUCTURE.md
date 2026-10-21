@@ -9,8 +9,9 @@ not a complete inventory of later additions. The tree below summarizes ownership
 Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
 creator-approved. Its ten-file entity-family reference library is in
 `examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
-Architecture Phase 3A is complete and creator-approved. Phase 3B is next,
-not started or authorized; Phases 3C-3F and 4-6 remain planned and separately gated.
+Architecture Phases 3A and 3B are complete and creator-approved. Phase 3C is
+next and awaits separate creator authorization; Phases 3C-3F and 4-6 remain
+planned and separately gated. Overall Phase 3 is not complete.
 The universal Cantum-radius redesign remains a proposed Phase 3 design-review
 item, not an implemented feature; existing per-Cantum `radiusLY` is preserved.
 
@@ -36,7 +37,8 @@ Velara_Atlas/
   scripts/
     atlas-validation.mjs        Strict offline Ajv
     check-relations.mjs         Cross-record integrity
-    demo-files.mjs              Explicit demo allowlist and safe reads
+    dataset-inventory.mjs       Sector-derived paths, identities and filesystem guard
+    demo-files.mjs              Registered raw reads and byte-preserving rewrites
     navigation.mjs              Pure graph/coordinate compiler
     connections.mjs             Manual generator / read-only freshness
     validate-demo.mjs           Release + relationships + freshness
@@ -52,7 +54,7 @@ Velara_Atlas/
     viewer/
       index.html / style.css   Floating interface and square map stage
       main.mjs                 Historical/navigation/selection UI state
-      demo-data.mjs            Explicit public-safe demo imports
+      demo-data.mjs            Eager imports from the validated virtual mapping
       map-scene.mjs            Three.js cameras, picking and scene
       chart-layout.mjs         Square fit/clamping and sector/system grids
       cartographic-layers.mjs  Influence, zones and routes
@@ -120,7 +122,7 @@ Never deduplicate fixtures or renumber IDs as organization cleanup.
 | Path | Role | Public Git | Current browser build |
 | --- | --- | --- | --- |
 | `docs/` | Contracts, workflow, historical references | Public-safe | Excluded |
-| `public/datasets/demo/` | Noncanonical demonstration | Tracked | Seven exact allowlisted JSON inputs |
+| `public/datasets/demo/` | Noncanonical demonstration | Tracked | Sector-derived exact JSON allowlist; seven current files |
 | `examples/v1_2/` | Current developer learning references | Public-safe | Excluded |
 | `tests/fixtures/legacy_examples/` | Legacy regression/forbidden inputs | Preserved | Excluded |
 | `docs/archive/json-proposals/` | Superseded JSON proposals | Preserved | Excluded |
@@ -156,8 +158,10 @@ not an instruction to install old files over today's checkout.
 The seven live JSON files now reside under `public/datasets/demo/`; their relative
 paths and bytes are preserved. `public/data/` remains protected legacy canon,
 and frozen fixtures remain unchanged. The original [dependency inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md)
-records the pre-migration consumer map. Explicit loader registration, preloading
-and seven-file Vite admission remain; Phase 3 loading changes are deferred.
+records the pre-migration consumer map. Completed Phase 3B replaces manual
+registration with `scripts/dataset-inventory.mjs`: sector-declared paths drive
+offline reads, the browser virtual module and exact Vite admission. Full preload
+remains. See [loading workflow](../README.md#registered-demo-systems-and-loading).
 
 Substep B separately preserves three legacy regression files and archives eight
 obsolete proposals, leaving validated v1.2 learning references under `examples/`.

@@ -1,39 +1,30 @@
-/** The CLI has no path argument: only these vetted, public-safe demo inputs. */
+/** Raw registered authoring inputs; CLI selection remains fixed to Demo. */
 import fs from 'node:fs';
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {datasetInventory,safeDatasetPath,parseDatasetJSON} from './dataset-inventory.mjs';
+import {recordErrors} from './atlas-validation.mjs';
+export {DEMO_ROOT,safePath,datasetInventory} from './dataset-inventory.mjs';
 
-export const DEMO_ROOT = fileURLToPath(new URL('../public/datasets/demo/', import.meta.url));
-export const SYSTEM_FILES = ['systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'];
-export const INPUT_FILES = ['sector.json', 'cantums.json', 'presentation.json', 'connections.json', ...SYSTEM_FILES];
-
-export function safePath(root, name, io = fs) {
-  if (!INPUT_FILES.includes(name)) throw new Error(`Outside explicit demo allowlist: ${name}`);
-  const base = io.realpathSync(root);
-  if (base !== path.resolve(root)) throw new Error('Symlink/reparse demo root refused');
-  const file = path.join(base, name), parent = path.dirname(file);
-  if (io.realpathSync(parent) !== parent) throw new Error(`Symlink/reparse directory refused: ${name}`);
-  if (io.existsSync(file) && (io.lstatSync(file).isSymbolicLink() || io.realpathSync(file) !== file)) throw new Error(`Symlink/reparse file refused: ${name}`);
-  return file;
-}
-
-export function readDemoSource(root = DEMO_ROOT, io = fs) {
-  const texts = new Map();
-  const read = (name, optional = false) => {
-    const file = safePath(root, name, io);
-    if (optional && !io.existsSync(file)) return null;
-    const text = io.readFileSync(file, 'utf8'); texts.set(name, text);
-    try { return JSON.parse(text); } catch (e) { throw new Error(`${name}: malformed JSON: ${e.message}`); }
+export function readDemoSource(root, io = fs) {
+  const inventory=datasetInventory(root,io), texts=new Map([['sector.json',inventory.sectorText]]);
+  const read=(name,kind,optional=false)=>{
+    const file=safeDatasetPath(inventory.root,name,io);
+    if(optional&&!io.existsSync(file))return null;
+    const text=io.readFileSync(file,'utf8');texts.set(name,text);
+    const value=parseDatasetJSON(text,name);
+    if(kind){const errors=recordErrors(kind,value);if(errors.length)throw new Error(`${name}: ${errors.join('\n')}`);}
+    return value;
   };
-  const sector = read('sector.json');
-  if (!sector || !Array.isArray(sector.systems)) throw new Error('sector.json: a system registry array is required');
-  if (sector.cantumsPath !== 'cantums.json' || sector.connectionsPath !== 'connections.json' || sector.presentationPath !== 'presentation.json') throw new Error('Demo registry paths must match the explicit allowlist');
-  const detailFiles = new Map();
-  for (const system of sector.systems) if (system.publicDetailPath !== null) {
-    if (!SYSTEM_FILES.includes(system.publicDetailPath) || system.publicDetailPath !== `systems/${system.id}.json`) throw new Error(`${system.id}: detail outside explicit demo allowlist`);
-    detailFiles.set(system.id, read(system.publicDetailPath));
+  const sector=inventory.sector,detailFiles=new Map();
+  const cantums=read(sector.cantumsPath,'cantumsFile');
+  const presentation=sector.presentationPath?read(sector.presentationPath,'presentationFile'):null;
+  const connections=read(sector.connectionsPath,null,true);
+  for(const name of inventory.systemFiles) {
+    const detail=read(name,'systemAuthoring');
+    const id=inventory.systems.find(s=>s.detailPath===name).id;
+    if(detail.id!==id)throw new Error(`${name}: detail ID does not match registered ${id}`);
+    detailFiles.set(id,detail);
   }
-  return {root, texts, dataset: {sector, cantums: read('cantums.json'), presentation: read('presentation.json'), connections: read('connections.json', true), detailFiles}};
+  return {root:inventory.root,inventory,texts,dataset:{sector,cantums,presentation,connections,detailFiles}};
 }
 
 /** Replace only JSON value spans of changed gate positions; retain all other bytes. */
