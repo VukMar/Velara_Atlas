@@ -3,7 +3,7 @@
 Architecture Phases **1, 2 and 2.1 are complete**. **Phase 2.2 is complete and
 creator-approved**: the v1.2 examples use ten focused entity-family references and
 one guide. Phase 2.1's committed baseline is `711a410` (2026-10-20).
-**Architecture Phase 3 has NOT started** and requires separate creator approval.
+**Architecture Phase 3A–3F is documented but has NOT started.** Each implementation checkpoint requires creator approval; Phase 3A is next.
 This index is the current navigation/status reference, not an implementation task.
 
 For setup and commands, start with [README](../README.md). For supported JSON,
@@ -44,14 +44,12 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Architecture Phases 1/2/2.1 complete; 2.2 complete and creator-approved; 3 not started. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Completed 1–2.2; planned Phase 3A–3F (environments, inventory, factions, governing Cantums, authoring, integration) and later 4–6; no implementation authorized. |
 
 The live demo is `public/datasets/demo/`. The loopback calibration fixture is
 synthetic JavaScript memory in `tests/calibration/scenario.mjs`, not JSON or demo
 input. `npm run preview:calibration` serves its explicit three-file local route;
-scenario JSON is a deferred Phase 5 proposal. Keep the current per-Cantum
-`radiusLY` values/structure. A universal Cantum-radius redesign remains a proposed
-Phase 3 design-review item, not an implemented feature.
+scenario JSON is planned for Phase 3A; richer local preview remains Phase 5. Keep the current per-Cantum `radiusLY` values/structure until Phase 3D's separately approved versioned redesign. Phase 3C proposes the `fac_` registry, InfoCard name resolution and dated Cantum governing affiliation.
 
 ## Historical implementation reports and verification evidence
 
