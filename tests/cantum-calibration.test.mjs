@@ -1,8 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {createServer as portProbe} from 'node:net';
+import {createServer} from 'vite';
+import {startCalibrationPreview,CALIBRATION_PATH} from '../scripts/preview-cantum-calibration.mjs';
 import {OrthographicCamera,PerspectiveCamera,Vector3} from 'three';
-import {calibrationDataset,CALIBRATION_RADII} from './calibration/scenario.mjs';
+import {calibrationDataset,calibrationDatasetFromScenario,validateCalibrationScenario,CALIBRATION_RADII,DEFAULT_CALIBRATION_RADIUS,CALIBRATION_MAX_YEAR_AE} from './calibration/scenario.mjs';
 import {sectorMarkerWorldRadius} from '../src/viewer/sector-markers.mjs';
 import {SECTOR_SYSTEM_MARKER_RADIUS_PX,MINIMUM_DIAMETERS,KM_PER_CNU} from '../src/viewer/visual-config.mjs';
 import {projectedDiameter} from '../src/viewer/celestial-scale.mjs';
@@ -114,8 +119,89 @@ test('calibration identities obey discovery and transfer years, with no future n
 test('local preview fixtures remain rejected by the unchanged public input audit',()=>{
   assert.equal(config.publicDir,false);
   const context={error(message){throw new Error(message);}},hook=demoInputAudit().generateBundle;
-  for(const path of ['../tests/calibration/scenario.mjs','../tests/calibration/controller.mjs','../scripts/preview-cantum-calibration.mjs']) {
+  for(const path of ['../tests/calibration/scenario.mjs','../tests/calibration/controller.mjs','../tests/calibration/scenarios/cantum-scale-baseline.json','../scripts/preview-cantum-calibration.mjs']) {
     const file=fileURLToPath(new URL(path,import.meta.url));
     assert.throws(()=>hook.call(context,{}, {chunk:{type:'chunk',modules:{[file]:{}}}}),/Unexpected input/);
   }
+});
+
+
+const authoredScenario=()=>JSON.parse(fs.readFileSync(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url),'utf8'));
+
+test('JSON scenario reproduces every pre-3A authored fact for all three radii',()=>{
+  assert.deepEqual(CALIBRATION_RADII,[2,2.5,3]);assert.equal(DEFAULT_CALIBRATION_RADIUS,2.5);assert.equal(CALIBRATION_MAX_YEAR_AE,1400);
+  // Captured from 7c1f781 before migration; covers every record, double and field.
+  const hashes={2:'d6da0bf7af59e655e57fc8f4ccc843c2a3f20816a318789fbd250d36bc1c37c5',
+    2.5:'57f35833c8fa1c69d09860300e475642027f2d4afa49d19c9a8947641d091bb3',
+    3:'9ab3fc668dcc61369b81924ad67341749d3d73661fbcda28c818aef5eee975cb'};
+  for(const radius of CALIBRATION_RADII) {
+    const d=calibrationDataset(radius);
+    assert.deepEqual(d,calibrationDatasetFromScenario(authoredScenario(),radius));
+    assert.equal(createHash('sha256').update(JSON.stringify({...d,detailFiles:[...d.detailFiles]})).digest('hex'),hashes[radius]);
+    assert.equal(d.sector.systems.length,15);assert.deepEqual(d.cantums.cantums.map(c=>c.id),['can_9101','can_9102']);
+    assert.deepEqual(d.sector.map.size,{x:40,y:12,z:40});
+    assert.equal(d.sector.systems.filter(s=>s.cantumHistory.length===0).length,2);
+    assert.ok(Object.values(d.presentation.territoryOverlay.cantums).every(c=>c.radiusLY===radius));
+  }
+  const source=authoredScenario();source.dataset.sector.systems[0].nameHistory[0].name='TEST JSON SOURCE';
+  assert.equal(calibrationDatasetFromScenario(source).sector.systems[0].nameHistory[0].name,'TEST JSON SOURCE');
+});
+
+test('JSON adaptation and repeated loads own independent nested records, styles and detail maps',()=>{
+  const source=authoredScenario(),before=structuredClone(source),first=calibrationDatasetFromScenario(source);
+  first.sector.systems[0].positionLY.y=999;first.sector.systems[6].cantumHistory[0].cantumId='can_9999';
+  first.cantums.cantums[0].sigil=null;first.presentation.territoryOverlay.cantums.can_9101.radiusLY=99;first.detailFiles.set('sys_9999',{});
+  assert.deepEqual(source,before);assert.deepEqual(calibrationDatasetFromScenario(source),calibrationDataset());
+  const standard=calibrationDataset();standard.sector.systems.length=0;standard.cantums.cantums[0].nameHistory[0].name='MUTATED';
+  assert.equal(calibrationDataset().sector.systems.length,15);assert.equal(calibrationDataset().cantums.cantums[0].nameHistory[0].name,'TEST CALIBRATION A');
+  assert.notStrictEqual(calibrationDataset().detailFiles,calibrationDataset().detailFiles);
+});
+
+test('invalid calibration format, values, references and intervals fail without repair',()=>{
+  for(const bad of [null,[],{},'not JSON scenario data'])assert.throws(()=>validateCalibrationScenario(bad),/Invalid calibration scenario/);
+  for(const mutate of [
+    s=>s.version=2,s=>s.radiiLY.push(2),s=>s.defaultRadiusLY=4,s=>s.radiiLY[0]='2',s=>s.radiiLY[0]=Infinity,
+    s=>s.dataset.sector.systems[1].id=s.dataset.sector.systems[0].id,
+    s=>s.dataset.sector.systems[0].positionLY.y=NaN,s=>s.dataset.sector.map.size.x=0,
+    s=>s.dataset.sector.systems[0].discoveredAE=null,s=>delete s.dataset.sector.systems[0].nameHistory,
+    s=>s.dataset.sector.systems[6].cantumHistory[1].fromAE=1299,
+    s=>s.dataset.sector.systems[0].cantumHistory[0].cantumId='can_9999',
+    s=>s.dataset.presentation.territoryOverlay.fieldThresholdEnd=.1,
+    s=>s.dataset.presentation.territoryOverlay.cantums.can_9101.radiusLY=2,
+    s=>s.dataset.cantums.cantums[0].sigil='../unapproved.svg',s=>s.preview.maxYearAE=100,
+    s=>s.dataset.extra=true
+  ]){const source=authoredScenario();mutate(source);const before=structuredClone(source);assert.throws(()=>calibrationDatasetFromScenario(source),/Invalid calibration scenario/);assert.deepEqual(source,before);}
+  for(const radius of [0,1,4,'2',null,NaN,Infinity])assert.throws(()=>calibrationDataset(radius),/Choose a calibration radius/);
+});
+
+test('all radius choices preserve historical visibility and the exclusive outpost transfer',()=>{
+  for(const radius of CALIBRATION_RADII) {
+    const d=calibrationDataset(radius);
+    for(const [year,count] of [[199,0],[200,3],[299,3],[300,8],[699,8],[700,14],[799,14],[800,15],[1200,15],[1299,15],[1300,15]]) {
+      const view=resolveAtlas(d,year);assert.equal(view.markers.length,count,`${radius} ly at ${year}`);
+      const outpost=view.systems.find(s=>s.id==='sys_9110');
+      if(year>=800)assert.equal(outpost.cantumId,year<1300?'can_9101':'can_9102');
+    }
+  }
+});
+
+test('Development serves only its exact read-only calibration inventory; Demo cannot serve the JSON fixture',async()=>{
+  // Vite treats port 0 as its default port, so reserve an OS-selected test port.
+  const freePort=async()=>{const probe=portProbe();await new Promise((resolve,reject)=>probe.once('error',reject).listen(0,'127.0.0.1',resolve));const port=probe.address().port;await new Promise(resolve=>probe.close(resolve));return port;};
+  const dev=await startCalibrationPreview(await freePort());
+  let demo;
+  try {
+    const base=`http://127.0.0.1:${dev.httpServer.address().port}`;
+    assert.equal(dev.httpServer.address().address,'127.0.0.1');
+    const file=CALIBRATION_PATH+'scenarios/cantum-scale-baseline.json';
+    const response=await fetch(base+file+'?read-only=1');assert.equal(response.status,200);assert.match(response.headers.get('content-type'),/application\/json/);assert.equal(response.headers.get('cache-control'),'no-store');assert.deepEqual(await response.json(),authoredScenario());
+    const head=await fetch(base+file,{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
+    for(const path of [CALIBRATION_PATH+'not-approved.json',CALIBRATION_PATH+'scenarios/',CALIBRATION_PATH+'scenarios/../scenario.mjs/extra',CALIBRATION_PATH+'scenarios/%2e%2e%2f%2e%2e%2fpackage.json'])assert.equal((await fetch(base+path)).status,404,path);
+    for(const method of ['POST','PUT','DELETE'])assert.equal((await fetch(base+file,{method})).status,404);
+    const fsPath='/Velara_Atlas/@fs/'+fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url)).replaceAll('\\','/');
+    assert.equal((await fetch(base+fsPath)).status,403,'direct filesystem access stays outside Vite allowlist');
+    demo=await createServer({server:{host:'127.0.0.1',port:await freePort(),strictPort:true},logLevel:'silent'});await demo.listen();
+    const other=await fetch(`http://127.0.0.1:${demo.httpServer.address().port}${file}`);
+    assert.ok(!(await other.text()).includes('velara-cantum-calibration'),'Demo has no calibration JSON route');
+  } finally {await demo?.close();await dev.close();}
 });

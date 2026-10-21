@@ -5,13 +5,14 @@ import {createServer,normalizePath} from 'vite';
 const local=file=>fileURLToPath(new URL(file,import.meta.url));
 export const CALIBRATION_PATH='/Velara_Atlas/__calibration/';
 
-/** Explicit three-file loopback preview. Not installed by normal dev/build config. */
+/** Explicit local Development inventory. Never installed by the Demo/build config. */
 export function calibrationPreview() {
   return {name:'local-cantum-calibration',apply:'serve',configureServer(server){
     const files=new Map([
       [CALIBRATION_PATH,['../tests/calibration/index.html','text/html']],
       [CALIBRATION_PATH+'controller.mjs',['../tests/calibration/controller.mjs','text/javascript']],
-      [CALIBRATION_PATH+'scenario.mjs',['../tests/calibration/scenario.mjs','text/javascript']]
+      [CALIBRATION_PATH+'scenario.mjs',['../tests/calibration/scenario.mjs','text/javascript']],
+      [CALIBRATION_PATH+'scenarios/cantum-scale-baseline.json',['../tests/calibration/scenarios/cantum-scale-baseline.json','application/json']]
     ]);
     server.middlewares.use((req,res,next)=>{
       const path=req.url?.split('?')[0];

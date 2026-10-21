@@ -1,4 +1,4 @@
-/** Dev MCP historical/fallback suite, adapted to Checkpoint 3.6 overlays. */
+/** Demo MCP historical/fallback suite, adapted to Checkpoint 3.6 overlays. */
 async(page)=>{
   const base='http://127.0.0.1:5173/Velara_Atlas/',results=[];
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};

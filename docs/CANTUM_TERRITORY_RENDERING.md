@@ -280,13 +280,19 @@ automatically rewrites radius. Contributor-Y interpolation and the alpha caps
 are unchanged. Wide-area demo envelopes are visibly thinner; no new containment,
 mesh closure or compositing failure was found in the checks.
 
-Run `npm run preview:calibration` and open
+Run `npm run dev` (compatibility alias `npm run preview:calibration`) and open
 `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. Only this explicit loopback
-server installs the preview; normal dev/build entry points and allowlists are
-unchanged. The three preview files are served from a fixed inventory. The real
+server installs the preview; graphical Demo/build allowlists remain unchanged.
+Four resources (HTML, controller, adapter and the named calibration JSON) are
+served from an exact read-only inventory. The real
 Atlas renderer, resolver, cameras, layer controls and Stage 4 nameplates show a
 named A cluster, sigil-only outpost, name-only B cluster and unassociated controls.
 At 128x128 sampling the 40-ly chart has a .3125-ly step / .442-ly diagonal tolerance.
 Sub-cell necks remain resolution-limited; larger charts with the same small radii
 need separate sampling review, not coordinate/radius rescaling.
 See [calibration evidence and viewing instructions](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+
+Architecture Phase 3A operational changes are complete and creator-approved.
+Phase 3B remains proposed and requires separate authorization. The scenario JSON and
+cloning adapter preserve these calculations and all existing synthetic facts; see
+[current commands, format and tests](../README.md#local-development-and-future-canon).

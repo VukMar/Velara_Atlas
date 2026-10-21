@@ -1,4 +1,4 @@
-/** Chromium MCP entry point; dev or base-path production preview. */
+/** Chromium MCP entry point; Demo or base-path production preview. */
 async page=>{
   const base=new URL('/Velara_Atlas/',page.url()).href,errors=[];
   let expectedFailure=false;

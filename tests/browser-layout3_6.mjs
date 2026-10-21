@@ -1,4 +1,4 @@
-/** Playwright MCP filename entry point, valid on dev and production preview. */
+/** Playwright MCP filename entry point, valid on Demo and production preview. */
 async(page) => {
   const base=new URL('/Velara_Atlas/',page.url()).href;
   const check=(ok,message)=>{if(!ok)throw new Error(message);};

@@ -1,4 +1,4 @@
-/** Playwright MCP dev entry point; observes the real scene without production hooks. */
+/** Playwright MCP Demo entry point; observes the real scene without production hooks. */
 async page => {
   const base='http://127.0.0.1:5173/Velara_Atlas/', errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};

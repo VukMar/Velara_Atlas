@@ -1,4 +1,4 @@
-/** Dev MCP suite: expectations come from the current public demo, not frozen dates. */
+/** Demo MCP suite: expectations come from the current public demo, not frozen dates. */
 async(page)=>{
   const base='http://127.0.0.1:5173/Velara_Atlas/';
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};

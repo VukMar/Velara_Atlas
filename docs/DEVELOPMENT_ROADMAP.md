@@ -10,17 +10,20 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2 and 2.1 are complete**; **Phase 2.2 is
-complete and creator-approved**. Phase 2.1 is committed in `711a410`. The v1.2
-examples now use ten focused entity-family references and one guide; the active
-demonstration remains in `public/datasets/demo/`. Architecture Phase 2.2 was committed in `8d88ef2`.
-Architecture Phase 3A–3F is now planned in detail; no implementation has started, and each checkpoint requires a separate creator authorization. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-and [documentation index](INDEX.md). That roadmap is a separate architecture
-workstream; this document retains feature milestones and their approval gates.
-Architecture phases, Checkpoint 4.1 phases and Cantum stages are distinct.
-The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md) preserves point-in-time
-evidence. **Architecture Phase 3 has NOT started** and requires separate creator
-approval. The governing-Cantum influence and one shared `radiusLY` are proposed for Phase 3D, not implemented; the current per-Cantum `radiusLY` is unchanged. Faction/InfoCard resolution and dated Cantum governance are proposed for Phase 3C.
+**Architecture status:** Phases **1, 2, 2.1, 2.2 and 3A are complete**.
+Architecture Phase 3A is creator-approved; its environment/command separation,
+calibration JSON and status synchronization are included in the same closeout
+commit. The v1.2 example library remains in `examples/v1_2/`, and the active
+NONCANONICAL Demo remains in `public/datasets/demo/`. Earlier stages are committed:
+Phase 2 in `6e026cb`, Phase 2.1 in `711a410` and Phase 2.2 in `8d88ef2`.
+**Phase 3B is next, proposed and not started or authorized.** Phases 3C-3F and
+4-6 remain planned and separately gated; Phase 3 as a whole is not complete.
+See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
+and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
+preserves its original verification context. Governing-Cantum influence and a
+shared radius remain Phase 3D proposals; per-Cantum `radiusLY` is unchanged.
+Faction/InfoCard resolution and dated Cantum governance remain Phase 3C proposals.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.

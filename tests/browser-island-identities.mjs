@@ -1,4 +1,4 @@
-/** Chromium dev entry point. All detached-island data live only in page memory. */
+/** Chromium Demo entry point. All detached-island data live only in page memory. */
 async page=>{
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};

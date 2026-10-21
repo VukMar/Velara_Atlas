@@ -1,4 +1,4 @@
-/** Dev MCP entry point: real renderer, public demo, no production debug hooks. */
+/** Demo MCP entry point: real renderer, public demo, no production debug hooks. */
 async page => {
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],results=[];
   let expectedFailure=false;

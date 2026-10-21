@@ -1,0 +1,533 @@
+{
+  "format": "velara-cantum-calibration",
+  "version": 1,
+  "radiiLY": [
+    2,
+    2.5,
+    3
+  ],
+  "defaultRadiusLY": 2.5,
+  "preview": {
+    "maxYearAE": 1400
+  },
+  "dataset": {
+    "sector": {
+      "schemaVersion": "1.2.0",
+      "timeline": {
+        "startAE": 100,
+        "defaultAE": 1200
+      },
+      "map": {
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "x": 40,
+          "y": 12,
+          "z": 40
+        },
+        "unit": "ly",
+        "planeY": 0
+      },
+      "systems": [
+        {
+          "id": "sys_9101",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -12,
+            "y": 0.3,
+            "z": -3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST A1"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9102",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -9,
+            "y": 0.44999999999999996,
+            "z": -3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST A2"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9103",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -6,
+            "y": 0.6,
+            "z": -3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST A3"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9104",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -12,
+            "y": 0.3,
+            "z": 0
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST A4"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9105",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -9,
+            "y": 0.44999999999999996,
+            "z": 0
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST A5"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9106",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -6,
+            "y": 0.6,
+            "z": 0
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST A6"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "cantumId": "can_9101"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9110",
+          "entityType": "star_system",
+          "discoveredAE": 800,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 10,
+            "y": -1.4,
+            "z": -9
+          },
+          "nameHistory": [
+            {
+              "fromAE": 800,
+              "untilAE": null,
+              "name": "TEST A Outpost"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 800,
+              "untilAE": 1300,
+              "cantumId": "can_9101"
+            },
+            {
+              "fromAE": 1300,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9201",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 5,
+            "y": -0.6,
+            "z": 7
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B1"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9202",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 8,
+            "y": -0.44999999999999996,
+            "z": 7
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B2"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9203",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 11,
+            "y": -0.3,
+            "z": 7
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B3"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9204",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 5,
+            "y": -0.6,
+            "z": 10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B4"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9205",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 8,
+            "y": -0.44999999999999996,
+            "z": 10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B5"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9206",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 11,
+            "y": -0.3,
+            "z": 10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST B6"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9102"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9301",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -9,
+            "y": 1,
+            "z": 3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST Unassociated (inside overlay)"
+            }
+          ],
+          "cantumHistory": [],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9302",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 14,
+            "y": 0.4,
+            "z": 0
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST Unassociated (outside overlay)"
+            }
+          ],
+          "cantumHistory": [],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        }
+      ],
+      "zones": []
+    },
+    "cantums": {
+      "cantums": [
+        {
+          "id": "can_9101",
+          "entityType": "cantum",
+          "sigil": "test-cantum-a",
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST CALIBRATION A"
+            }
+          ],
+          "statusHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "status": "demonstration"
+            }
+          ],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "can_9102",
+          "entityType": "cantum",
+          "sigil": null,
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST CALIBRATION B"
+            }
+          ],
+          "statusHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "status": "demonstration"
+            }
+          ],
+          "controlHistory": [],
+          "infoCard": {}
+        }
+      ]
+    },
+    "connections": {
+      "connections": []
+    },
+    "presentation": {
+      "territoryOverlay": {
+        "enabledByDefault": true,
+        "fieldThresholdStart": 0.35,
+        "fieldThresholdEnd": 0.65,
+        "opacityMaxPerCantum": 0.16,
+        "opacityCapTotal": 0.22,
+        "cantums": {
+          "can_9101": {
+            "color": "#638FBD"
+          },
+          "can_9102": {
+            "color": "#C99160"
+          }
+        }
+      }
+    }
+  }
+}

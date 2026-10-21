@@ -9,7 +9,8 @@ not a complete inventory of later additions. The tree below summarizes ownership
 Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
 creator-approved. Its ten-file entity-family reference library is in
 `examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
-Architecture Phase 3 has NOT started and requires separate creator approval.
+Architecture Phase 3A is complete and creator-approved. Phase 3B is next,
+not started or authorized; Phases 3C-3F and 4-6 remain planned and separately gated.
 The universal Cantum-radius redesign remains a proposed Phase 3 design-review
 item, not an implemented feature; existing per-Cantum `radiusLY` is preserved.
 
@@ -80,8 +81,8 @@ Velara_Atlas/
     *.test.mjs                 Versioned schemas/history, generator, cartography,
                                viewer, ID Finder and layout
     browser-*.mjs              Playwright MCP entry points, not Node test files
-    calibration/               Synthetic in-memory scenario, controller and HTML;
-                               excluded from production, not a JSON dataset
+    calibration/               Local controller, HTML and JSON adapter; no production entry
+      scenarios/               Reduced synthetic calibration JSON, not release data
     fixtures/legacy_examples/  Three preserved legacy/forbidden regression inputs
     fixtures/v1_1/             Frozen accepted two-system branching regression
     fixtures/v1_2/             Frozen original three-system navigation regression
@@ -125,7 +126,7 @@ Never deduplicate fixtures or renumber IDs as organization cleanup.
 | `docs/archive/json-proposals/` | Superseded JSON proposals | Preserved | Excluded |
 | `public/data/` | Canonical legacy v0.1 records | Protected | Excluded (`publicDir: false`) |
 | `public/assets/` | Existing art sources | Public-safe | Only fourteen navigation SVGs and one explicit demo sigil; NEXUS PNGs excluded |
-| `tests/calibration/` | Synthetic in-memory local preview | Public-safe | Excluded; explicit loopback development middleware only |
+| `tests/calibration/` | JSON-backed synthetic Development calibration | Public-safe | Excluded; explicit loopback development middleware only |
 | `src/viewer/`, modern core | Runtime implementation | Tracked | Included as bundled modules |
 | `scripts/`, `schemas/`, `tests/` | Offline tools/validation/regression | Tracked | Excluded from runtime |
 | `dist/` | Generated static demo build | Ignored | Output under `/Velara_Atlas/` |
@@ -163,8 +164,8 @@ obsolete proposals, leaving validated v1.2 learning references under `examples/`
 See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for historical checks;
 that report's uncommitted-work circumstances predate `6e026cb`. Current reference
 coverage and validation targets are in [the family guide](../examples/v1_2/README.md).
-Calibration stays in memory under `tests/calibration/`; scenario
-JSON is Phase 5. A future report-directory reorganization needs separate approval.
+Calibration facts now live in the fixed `tests/calibration/scenarios/cantum-scale-baseline.json`;
+`scenario.mjs` adapts cloned records in memory. Richer preview tooling remains Phase 5. A future report-directory reorganization needs separate approval.
 
 ## Other reserved future paths
 

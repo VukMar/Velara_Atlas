@@ -11,7 +11,9 @@ records migration verification. Checkpoint 3 (`32f43d6`), navigation v1.2 (`4ff0
 and layout 3.6 (`7d9231c`) are earlier evidence. Their reports retain original
 claims and limits. Starter SVGs/physical models, Cantum Stages 1-4 and calibration
 are implemented; final artistic refinement, canonical migration, deployment and
-editor remain deferred. Current maintenance is Phase 2.1 documentation/examples only.
+editor remain deferred. Architecture Phase 3A command/scenario separation is complete and creator-approved;
+its operating changes preserve the graphical viewer. Phase 3B remains proposed
+and requires separate creator authorization.
 
 ## Run and verify
 
@@ -28,19 +30,22 @@ See [Phase 2 data](CHECKPOINT_4_PHASE2_RESULTS.md) and [Phase 3 results](CHECKPO
 
 ```text
 npm ci
-npm run dev
+npm run demo
 npm test
 npm run validate
 npm run connections:check
-npm run demo
+npm run history:demo
 npm run build
 npm run preview
 ```
 
-Development: `http://127.0.0.1:5173/Velara_Atlas/` (or the printed port).
-Production preview: `http://127.0.0.1:4173/Velara_Atlas/`. The console `demo`
-command remains the unchanged legacy political-history demonstration. It is
-separate from the browser app. No command commits, pushes or deploys anything.
+Graphical Demo: `http://127.0.0.1:5173/Velara_Atlas/` via `npm run demo`.
+Local Development/calibration: `http://127.0.0.1:5174/Velara_Atlas/__calibration/`
+via `npm run dev` or its compatibility alias `preview:calibration`.
+Production preview: `http://127.0.0.1:4173/Velara_Atlas/`. The console
+`history:demo` command retains legacy political-history output. Future Canon has
+no launcher. See [current commands and tests](../README.md#local-development-and-future-canon).
+No command commits, pushes or deploys anything.
 No dependency was added in Checkpoint 3.
 
 ## Phase A — Timeline and catalogue

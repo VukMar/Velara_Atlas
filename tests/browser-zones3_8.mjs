@@ -1,4 +1,4 @@
-/** Dev Playwright MCP suite; synthetic released records are intercepted in memory only. */
+/** Demo Playwright MCP suite; synthetic released records are intercepted in memory only. */
 async page => {
   const base='http://127.0.0.1:5173/Velara_Atlas/',pattern=/public\/datasets\/demo\/systems\/sys_0001\.json/;
   const errors=[],check=(ok,message)=>{if(!ok)throw new Error(message);};

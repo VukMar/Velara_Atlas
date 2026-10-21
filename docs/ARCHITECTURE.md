@@ -5,8 +5,8 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Architecture Phase 2 is committed in `6e026cb`; current work is Phase 2.1
-examples/documentation maintenance; canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phase 3A is complete and creator-approved; Phase 3B remains
+proposed and requires separate authorization; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -79,7 +79,7 @@ and hiding it in the UI.
 System-object declarations are the authoring source of truth; generated,
 Git-tracked `connections.json` is the runtime index. Only the manual
 `npm run connections` writer changes the graph and eligible short-range gate
-positions. Normal tests/dev/build check freshness and fail instead of repairing.
+positions. Normal tests/Demo/build check freshness and fail instead of repairing.
 Multi-file replacement is not atomic; [authoring/recovery instructions](NAVIGATION_AUTHORING.md)
 are authoritative for operating that tool.
 
@@ -142,22 +142,29 @@ three projection corrections, rather than radial camera distance. Captions use
 the same visible 4px radius; existing invisible picking targets remain independent.
 The envelope half-height clamp becomes `.5–3` ly; the X/Z field, geometry technique,
 local Y centerline and compositor are unchanged. No physical size/minimum changes.
-`scripts/preview-cantum-calibration.mjs` installs an explicit three-file middleware
-only on its separate loopback dev server. Its synthetic scenario/controller live
-in `tests/calibration/`, outside normal Vite filesystem and build input allowlists.
-No production route, extra asset or public-directory copying is introduced.
-See [calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+`scripts/preview-cantum-calibration.mjs` installs four exact read-only routes
+only on its loopback Development server. `npm run dev` starts calibration at
+`http://127.0.0.1:5174/Velara_Atlas/__calibration/`; `preview:calibration` aliases
+that command. `npm run demo` validates and serves the existing graphical Atlas on
+5173. `history:demo` retains the terminal historical demonstration. Canon is a
+future approved-data environment with no launcher or noncanonical fallback.
 
-The current workflow is `npm run preview:calibration` at
-`http://127.0.0.1:5174/Velara_Atlas/__calibration/`.
-`tests/calibration/scenario.mjs` hardcodes a **synthetic in-memory** dataset:
-15 test stars, two test Cantums, 40 × 40 ly X/Z, independent 12-ly Y extent,
-and 2/2.5/3-ly radius choices. It does not read demo JSON.
-`controller.mjs` resolves it through the existing cartography API and displays
-it; `index.html` defines controls. The preview script serves exactly these three
-files through development-only middleware, reusing the existing viewer/core.
-No scenario JSON loader or editor exists. JSON scenario support belongs to
-proposed architecture **Phase 5**, not Phase 1 or the Phase 2 path move.
+`tests/calibration/scenarios/cantum-scale-baseline.json` owns the reduced local
+scenario: 15 test systems, two Cantums, exact histories/XYZ, 40 x 40 x 12 ly extents,
+presentation and radius/preview choices. `scenario.mjs` reads the fixed resource,
+validates the local format, clones data and adapts the selected radius into the
+existing runtime structure with an independent empty detail Map. Node uses a file
+read; the browser fetches only the named JSON route. The empty local InfoCards and
+missing release fields are intentional, not public-schema extensions. Invalid
+inputs fail without normalization or repair. `controller.mjs` retains the existing
+renderer and interactions; `index.html` defines controls. See [operating commands,
+format and tests](../README.md#local-development-and-future-canon).
+
+No filesystem allowlist is widened. Calibration JSON, controller and adapter stay
+outside Demo imports and the production input audit; the JSON is available only
+through its explicit local route. No editor, writer, manifest or generic loader
+is introduced. The published build remains the noncanonical Demo only.
+See [historical calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has

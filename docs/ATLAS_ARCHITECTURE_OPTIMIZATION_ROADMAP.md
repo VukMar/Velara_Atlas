@@ -1,13 +1,15 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1 and 2.2 are complete. This commit records the creator-reviewed Phase 3A–3F and Phase 4–6 roadmap. It authorizes documentation changes only, not implementation.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A are complete. Phase 3A is creator-approved; its implementation and status synchronization are included together in this closeout commit. Phase 3 as a whole is not complete.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current authorization:** This roadmap/status documentation commit only. Phase 3A implementation requires renewed creator approval.
-**Next implementation gate:** Phase 3A (Development/Demo/Canon and calibration JSON), not started or authorized.
+**Current authorization:** final verification, documentation closeout and
+commit/push of the reviewed Phase 3A work only; no new implementation.
+**Next implementation gate:** Phase 3B is proposed, not started or authorized.
+Phases 3C-3F and 4-6 remain planned and require separate creator approval.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -49,7 +51,7 @@ The baseline has a working separation between pure historical/cartographic logic
 
 ### Calibration preview: exact ownership at this baseline
 
-`npm run preview:calibration` starts a loopback-only Vite server at `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. Its scenario is created **in memory** in `tests/calibration/scenario.mjs` (15 synthetic star systems, a 40 x 40 ly sector, independent 12-ly Y extent, two synthetic Cantums and selectable 2/2.5/3 ly radii). `tests/calibration/controller.mjs` resolves/displays it. `tests/calibration/index.html` owns the controls. `scripts/preview-cantum-calibration.mjs` serves an explicit three-file inventory. **It does not read `examples/demo_atlas/*.json`, and its data is not presently stored as JSON.** It is test infrastructure, not the canonical source or the main demo loader. Preserve its reproducibility and production exclusion.
+`npm run preview:calibration` starts a loopback-only Vite server at `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. At the pre-3A baseline its scenario was created **in memory** in `tests/calibration/scenario.mjs` (15 synthetic star systems, a 40 x 40 ly sector, independent 12-ly Y extent, two synthetic Cantums and selectable 2/2.5/3 ly radii). `tests/calibration/controller.mjs` resolves/displays it. `tests/calibration/index.html` owns the controls. `scripts/preview-cantum-calibration.mjs` serves an explicit three-file inventory. **That baseline read no Demo JSON and stored no scenario JSON.** The completed, creator-approved Phase 3A workflow is documented in [README](../README.md#local-development-and-future-canon); its named JSON is now the local source of truth. It is test infrastructure, not the canonical source or the main demo loader. Preserve its reproducibility and production exclusion.
 
 ### Non-negotiable design and publication boundaries
 
@@ -139,7 +141,8 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: proposed, NOT implemented.** The plan is divided into **3A–3F**;
+**Status: 3A complete and creator-approved; 3B-3F proposed, not implemented.**
+The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. The current runtime/data contract stays v1.2.
 The old Phase 3 proposal for lazy loading and per-system publication gates
@@ -234,6 +237,32 @@ of truth, the read-only viewer, and strict selected-dataset build audits.
 
 #### 3A — Development, Demo and future Canon separation
 
+**Implementation status: complete and creator-approved.** `npm run dev` serves
+loopback Development/calibration on 5174 at `/Velara_Atlas/__calibration/`;
+`npm run demo` validates and serves the graphical NONCANONICAL Atlas on 5173.
+`npm run history:demo` preserves the terminal chronology, and
+`preview:calibration` aliases the same Development entry point.
+
+`tests/calibration/scenarios/cantum-scale-baseline.json` now owns the synthetic
+facts and settings. The deterministic `scenario.mjs` adapter validates this local,
+reduced format, clones records for each call and applies the selected 2/2.5/3-ly
+radius. Pre-migration snapshots match at all three radii: fifteen systems, both
+Cantums, exact coordinates, dates, memberships, transfers and presentation remain
+unchanged. Development fixtures are not Demo inputs; future Canon has no launcher
+or fallback. Protected v0.1 records, frozen fixtures, release schemas, generated
+navigation and the `publicDir: false` input/output audits remain unchanged.
+
+**Verification evidence:** 187 automated tests passed, including JSON provenance,
+exact snapshots, independent loads, invalid-input rejection, history and local
+HTTP isolation. Strict Demo validation, read-only navigation freshness, the
+audited 21-file/15-SVG build and unchanged terminal history passed. Chromium
+calibration covered all nine radius/camera combinations plus historical transfer,
+nameplates/sigils, touch/keyboard, mobile and resource reuse. Graphical Demo suites
+verified navigation, history, rendering and interaction. Physical touch hardware
+is not verified. See [commands, format and test entry points](../README.md#local-development-and-future-canon).
+
+**Retained original design and acceptance criteria (pre-3A command names):**
+
 **Work:** `npm run dev` becomes loopback-only development
 calibration, while `npm run demo` becomes the current graphical
 noncanonical viewer. Today's `npm run demo` actually invokes
@@ -257,6 +286,9 @@ and visual calibration remain identical; development
 fixtures do not enter the graphical Demo build.
 
 #### 3B — Unified safe inventory and full-dataset loader
+
+**Status: next proposed implementation checkpoint; not started or authorized.**
+A separate creator-approved task is required.
 
 **Work:** Replace separately maintained explicit
 system arrays in `src/viewer/demo-data.mjs`,
@@ -480,19 +512,13 @@ Phase 3 or the read-only public Atlas.
 | View known catalogue-only system | NEXUS fallback, not a secret-file flag |
 | Publish Canon | Separate historical migration and release authorization |
 
-## Current maintenance boundary
+## Current implementation boundary
 
-Phases 1, 2, 2.1 and 2.2 are complete. Phase 2.2 was
-committed at `8d88ef2`. This new Phase 3A–3F and
-Phase 4–6 roadmap is **documentation only**:
-no Phase 3 implementation or Codex task has
-been authorized. The creator will review this
-roadmap commit before requesting a separate
-Phase 3A task. Existing v0.1 Canon, live
-v1.2 Demo, frozen fixtures/schemas,
-current runtime and scripts, generated
-navigation, calibration tool and build
-safeguards remain unchanged. No
-canonical migration, interactive editor
-or deployment is authorized.
-
+Phases 1, 2, 2.1, 2.2 and 3A are complete. Phase 3A is creator-approved;
+its reviewed implementation and status synchronization enter Git history together.
+This closeout authorizes only verification, necessary documentation and one normal
+commit/push to `main`. Phase 3B is next, not started or authorized. Phases 3C-3F
+and 4-6 remain planned and separately gated; do not treat Phase 3 as complete.
+Protected v0.1 Canon, live v1.2 Demo, frozen fixtures/schemas, renderer/history,
+generated navigation and publication safeguards remain unchanged. No new feature,
+merge, history rewrite, canonical migration, editor or deployment is authorized.

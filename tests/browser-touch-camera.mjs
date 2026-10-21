@@ -1,4 +1,4 @@
-/** Playwright MCP dev-server entry point; native OrbitControls, CDP touch input. */
+/** Playwright MCP Demo-server entry point; native OrbitControls, CDP touch input. */
 async(page)=>{
   const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const p=await context.newPage(),errors=[],results=[];

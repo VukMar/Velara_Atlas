@@ -1,9 +1,14 @@
 // Served only by the explicit local preview command; never a production entry.
 import {AtlasMap} from '../map-scene.mjs';
 import {resolveAtlas,territoryGroups} from '__CARTOGRAPHY_URL__';
-import {calibrationDataset} from './scenario.mjs';
+import {calibrationDataset,CALIBRATION_RADII,DEFAULT_CALIBRATION_RADIUS,CALIBRATION_MAX_YEAR_AE} from './scenario.mjs';
 
 const $=id=>document.getElementById(id);
+$('radius').replaceChildren(...CALIBRATION_RADII.map(r=>new Option(`${r.toFixed(1)} ly`,String(r),r===DEFAULT_CALIBRATION_RADIUS,r===DEFAULT_CALIBRATION_RADIUS)));
+const initial=calibrationDataset();
+$('calibration-year').min=initial.sector.timeline.startAE;
+$('calibration-year').max=CALIBRATION_MAX_YEAR_AE;
+$('calibration-year').value=initial.sector.timeline.defaultAE;
 let view,dataset,selected=null;
 const preferences={grid:true,territory:true,cantumNames:true,objectNames:true,star_system:true};
 function choose(record) {
@@ -12,7 +17,7 @@ function choose(record) {
   if(!record)return;
   $('selected-name').textContent=record.name??record.id;
   const p=record.positionLY,cantum=view.cantums.find(c=>c.id===record.cantumId);
-  $('calibration-facts').textContent=`ID: ${record.id}\nYear: ${view.yearAE} A.E.\nCantum: ${cantum?.name??'Unassociated'}${p?`\nAuthored XYZ: ${p.x}, ${p.y}, ${p.z} ly`:''}\nNONCANONICAL memory-only record. No system detail or routes authored.`;
+  $('calibration-facts').textContent=`ID: ${record.id}\nYear: ${view.yearAE} A.E.\nCantum: ${cantum?.name??'Unassociated'}${p?`\nAuthored XYZ: ${p.x}, ${p.y}, ${p.z} ly`:''}\nNONCANONICAL local calibration record. No system detail or routes authored.`;
   if(!$('info-panel').open)$('info-panel').show();
 }
 const map=new AtlasMap($('viewport'),$('labels'),choose,id=>choose(view.records.find(r=>r.id===id)));

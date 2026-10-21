@@ -6,15 +6,19 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2 and 2.1 are complete**; **Phase 2.2 is complete and
-creator-approved**. The v1.2 examples now use ten focused entity-family references
+Architecture Phases **1, 2, 2.1, 2.2 and 3A are complete**. **Phase 3A is
+creator-approved**, with implementation and status synchronization included
+together in its closeout commit. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Architecture Phase 3A–3F is now documented, but implementation has NOT started** and still requires separate creator approval for each checkpoint under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
-Planned Phase 3A separates local calibration (`npm run dev`), noncanonical graphical Demo (`npm run demo`) and future MCR Canon; these command changes are not yet implemented. Proposed Phase 3C introduces faction IDs and dated Cantum governance; Phase 3D merges governing Cantum influence and introduces one radius. Existing `npm run dev`/`npm run demo` commands and per-Cantum `radiusLY` behavior are unchanged today.
+verification context. **Phase 3B is next, not started or authorized**, under
+the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
+The commands below distinguish local Development, graphical Demo and future Canon.
+Phases 3C-3F and 4-6 remain planned and separately gated. Governance and universal Cantum-radius changes remain
+separately gated proposals; current per-Cantum `radiusLY` behavior is unchanged.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
@@ -81,13 +85,13 @@ The viewer is read-only. Local Node tools support manual JSON authoring; private
 
 See the documentation before adding or changing historical records. Files in `public/data/` may include placeholders and approximate dates awaiting refinement; do not interpret all map-display boundaries as exact historical events.
 
-## Run the local demonstration
+## Run Development, Demo and historical checks
 
 Install a current supported [Node.js](https://nodejs.org/) version and run in the repository root:
 
 ```bash
 npm ci
-npm run dev
+npm run demo
 ```
 
 Open **http://127.0.0.1:5173/Velara_Atlas/** (or the local URL printed by Vite). Select a system marker, then **Enter system**, or double-click the marker. Use **Sector View** to return. Drag empty map space to pan, scroll/pinch to zoom, or use the zoom/reset buttons. The Selection control provides keyboard access to the current map's entities; focused map canvas also accepts arrow keys and +/−.
@@ -114,27 +118,75 @@ These starter visuals are not final artwork. See [implementation and limitations
 ```bash
 npm test
 npm run validate
-npm run demo
+npm run history:demo
 npm run build
 npm run preview
 ```
 
-`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run demo` remains the legacy **console** political-history demonstration; it is separate from the browser app. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
+`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the fixtures, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
 Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. The [Checkpoint 3.6 audit](docs/REPOSITORY_AUDIT_3_6.md) records earlier checks and limits; the [index](docs/INDEX.md) links subsequent evidence. Physical touch-device verification remains outstanding.
 
-### Separate local calibration preview
+### Local Development and future Canon
 
-Run `npm run preview:calibration`, then open
-**http://127.0.0.1:5174/Velara_Atlas/__calibration/**.
-This loopback-only tool generates 15 synthetic test stars **in JavaScript memory**
-in `tests/calibration/scenario.mjs`: a 40 × 40 ly chart with independent 12-ly Y
-extent and selectable 2/2.5/3-ly radii. It does not read demo JSON or save data.
-`controller.mjs` resolves/displays the scenario, `index.html` defines its controls,
-and `scripts/preview-cantum-calibration.mjs` serves those three explicit files.
-The preview is excluded from production and is separate from normal `npm run dev`.
-JSON scenario support is proposed for architecture **Phase 5**, not implemented.
-No canonical radius has been chosen; see [architecture and isolation](docs/ARCHITECTURE.md).
+| Command | Environment and URL |
+| --- | --- |
+| `npm run dev` | Synthetic Development/calibration: `http://127.0.0.1:5174/Velara_Atlas/__calibration/` |
+| `npm run demo` | Validates then serves the graphical noncanonical Atlas: `http://127.0.0.1:5173/Velara_Atlas/` |
+| `npm run history:demo` | Legacy console chronology (`tests/demo.mjs`), no server |
+| `npm run preview:calibration` | Compatibility alias for `npm run dev`, using the same server and port |
+| `npm run build` / `npm run preview` | Audited noncanonical Demo output / preview at `http://127.0.0.1:4173/Velara_Atlas/` |
+
+Run Development and Demo in separate terminals. The compatibility command is an
+alternative name for Development, not a second server to launch on the same port.
+Both bind to loopback. Canon is a future approved-MCR environment: there is no
+Canon launch command or fallback to noncanonical data. Protected legacy
+`public/data/` remains unchanged and outside the Demo.
+
+The sole calibration source is
+[`tests/calibration/scenarios/cantum-scale-baseline.json`](tests/calibration/scenarios/cantum-scale-baseline.json).
+It contains format `velara-cantum-calibration`, version `1`, `radiiLY`,
+`defaultRadiusLY`, `preview.maxYearAE` and a reduced `dataset` with `sector`,
+`cantums`, empty `connections` and `presentation`. The original 15 systems,
+positions (including their exact floating-point values), histories and two Cantums
+are stored once. The chart remains 40 x 40 ly with a 12-ly Y extent.
+
+`tests/calibration/scenario.mjs` reads that one fixed JSON resource (Node file read
+or browser fetch), validates its local format and exports `calibrationDataset(radius)`
+and `CALIBRATION_RADII`. Each call clones all records, creates its own empty detail
+Map and applies only the selected 2/2.5/3-ly radius to both existing Cantum styles.
+The default is 2.5 ly; the controller obtains its choices and timeline bounds from
+the same source. Missing/unsupported fields, malformed data, invalid coordinates,
+intervals, references and radius choices fail explicitly; nothing is repaired.
+Reload the page after editing an authorized local scenario.
+
+This deliberately reduced fixture has empty InfoCards and no released details;
+it is **not a release-valid Atlas dataset or canonical history**. No master schema,
+normal radius calculation or demonstration JSON is changed. The preview script
+adds exactly four read-only routes: HTML, controller, adapter and this named JSON.
+Other calibration files/methods and direct filesystem access remain blocked; no
+editor, saving endpoint or arbitrary dataset root is provided. The existing
+renderer, resolver, controls and sigil registry are reused. Development JSON and
+its adapter are excluded from the Demo's unchanged input audit and `dist/` output.
+No canonical radius is chosen; richer preview tooling remains proposed Phase 5.
+
+### Automated and browser verification
+
+Run `npm test`, `npm run validate`, `npm run connections:check`,
+`npm run build` and `npm run history:demo` from the repository root.
+For focused calibration checks: `node --test tests/cantum-calibration.test.mjs`.
+Tests compare all three JSON-backed datasets with hashes captured before the
+migration and exercise histories, mutation isolation, invalid inputs and HTTP
+boundaries, alongside the existing field/nameplate/geometry assertions.
+
+With both browser servers running, use Playwright MCP's
+`browser_run_code_unsafe` with `filename: "tests/browser-cantum-calibration.mjs"`
+for all nine radius/camera combinations, history/transfer, input, mobile and
+resource checks. Graphical suites `tests/browser-*.mjs` target the Demo on 5173;
+run them with the Demo page selected (for example navigation, celestial, layout,
+labeling, zones and touch suites). They are Playwright callback files, not Node
+CLI tests; no Playwright dependency is added to the project. Historical reports
+retain their original command names and results.
 
 ## Schema v1.2 navigation authoring
 

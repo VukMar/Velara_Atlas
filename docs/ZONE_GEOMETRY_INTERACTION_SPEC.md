@@ -81,7 +81,7 @@ assignment. The current implementation and original evidence are linked above.
 
 ## 7. Verification / acceptance
 
-* Run `npm test`, `npm run validate`, `npm run connections:check`, `npm run demo`, `npm run build`, and applicable browser suites (dev plus preview where scripts support preview).
+* Run `npm test`, `npm run validate`, `npm run connections:check`, `npm run demo`, `npm run build`, and applicable browser suites (graphical Demo plus production preview where scripts support preview).
 * Assert no changes to `public/data/`, frozen `schemas/atlas-v1_1.schema.json`, frozen v1.1 fixtures, core historical meaning, object coordinates, navigation generator, existing connection IDs, completed labeling and H8 arrow.
 * Full-map 2D: a giant nebula whose center is offscreen, but whose volume covers a chart corner, renders only the intersecting area, highlights on hover, displays the correct name, opens InfoCard, and Focus stays inside the chart.
 * A planet/station/gate or route inside the nebula wins hover/click; the nebula tooltip must not block it. Leaving both clears highlighting.
