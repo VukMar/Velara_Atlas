@@ -5,8 +5,10 @@
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
-**Authorized closeout:** necessary status documentation, verification and the
-reviewed Phase 2.2 commit/push only.
+**Current planning:** Architecture Phase 3 is being discussed
+with the creator. Its scope and implementation have not yet
+been authorized. Phases 1, 2, 2.1 and 2.2 are complete;
+Phase 2.2 was committed in `8d88ef2`.
 **Next implementation gate:** Phase 3 is proposed, not started or authorized.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
@@ -220,8 +222,7 @@ Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementa
 
 ## Current maintenance boundary
 
-Phase 2.2 is complete and creator-approved. Its closeout authorizes necessary
-status documentation, verification and commit/push of the reviewed changes only.
+Phase 2.2 is complete and creator-approved.
 Active code, demo/canonical data, schemas, navigation output, calibration and
 build/dev restrictions remain unchanged. Completed archived task text cannot
 restart a phase. Architecture Phase 3 has NOT started and requires separate

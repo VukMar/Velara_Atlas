@@ -13,9 +13,9 @@ deployment remain separately gated.
 **Architecture status:** Phases **1, 2 and 2.1 are complete**; **Phase 2.2 is
 complete and creator-approved**. Phase 2.1 is committed in `711a410`. The v1.2
 examples now use ten focused entity-family references and one guide; the active
-demonstration remains in `public/datasets/demo/`. Current closeout authorization
-covers necessary status documentation, verification and the reviewed Phase 2.2
-commit/push only. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+demonstration remains in `public/datasets/demo/`. Architecture Phase 2.2 was committed in `8d88ef2`.
+Architecture Phase 3 is under planning and requires
+separate authorization before implementation. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). That roadmap is a separate architecture
 workstream; this document retains feature milestones and their approval gates.
 Architecture phases, Checkpoint 4.1 phases and Cantum stages are distinct.

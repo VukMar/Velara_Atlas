@@ -9,9 +9,11 @@ and creator-approved: `examples/v1_2/` contains ten focused entity-family JSON
 references and one main guide. The active noncanonical demonstration remains in
 `public/datasets/demo/`. Phase 2.1 is committed in `711a410`.
 
-**Current closeout authorization:** synchronize current-status documentation,
-verify, and commit/push only the reviewed Phase 2.2 examples and necessary
-closeout documentation to `main`. This does not authorize new implementation.
+**Current authorization:** Architecture Phase 2.2 was completed,
+creator-approved, and committed to `main` in `8d88ef2`.
+Architecture Phase 3 is currently under discussion only.
+No Phase 3 implementation, commit, push, or deployment is
+authorized without a new explicit creator-approved task.
 Architecture Phase 3 has NOT started and requires separate creator approval.
 Every newly created short-range gate starts with `position: null` and
 `positionMode: "boundary_derived"`; the author creates gate records/anchor
@@ -30,7 +32,7 @@ Build a maintainable historical, interactive atlas for the fictional MCR / The N
 
 ## Read first
 
-For the approved Phase 2.2 closeout, follow the current creator request and use `docs/INDEX.md` to
+For future authorized architecture work, follow the current creator request and use `docs/INDEX.md` to
 separate active authority from completed tasks and historical evidence. The
 technical read-first references remain:
 
