@@ -1,12 +1,13 @@
 # Velara Atlas documentation index
 
-Current baseline: `main` at `6e026cb` (2026-10-20). Architecture Phases 1 and 2
-are complete and committed. Current scope is **Phase 2.1 examples/documentation
-maintenance only**; Phase 3 is proposed and requires explicit creator approval.
+Architecture Phases **1, 2 and 2.1 are complete**. **Phase 2.2 is complete and
+creator-approved**: the v1.2 examples use ten focused entity-family references and
+one guide. Phase 2.1's committed baseline is `711a410` (2026-10-20).
+**Architecture Phase 3 has NOT started** and requires separate creator approval.
 This index is the current navigation/status reference, not an implementation task.
 
 For setup and commands, start with [README](../README.md). For supported JSON,
-start with [the v1.2 example catalogue](../examples/README.md) and
+start with [the v1.2 entity-family guide](../examples/v1_2/README.md) and
 [the master schema](../schemas/atlas.schema.json). For authorized work, follow
 [AGENTS](../AGENTS.md) and the current creator request. Completed archived tasks
 cannot authorize new work.
@@ -43,13 +44,14 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Architecture phases: 1/2 committed, 2.1 maintenance current, 3 proposed. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Architecture Phases 1/2/2.1 complete; 2.2 complete and creator-approved; 3 not started. |
 
 The live demo is `public/datasets/demo/`. The loopback calibration fixture is
 synthetic JavaScript memory in `tests/calibration/scenario.mjs`, not JSON or demo
 input. `npm run preview:calibration` serves its explicit three-file local route;
 scenario JSON is a deferred Phase 5 proposal. Keep the current per-Cantum
-`radiusLY` values/structure; any redesign belongs to separate Phase 3 design review.
+`radiusLY` values/structure. A universal Cantum-radius redesign remains a proposed
+Phase 3 design-review item, not an implemented feature.
 
 ## Historical implementation reports and verification evidence
 
@@ -95,6 +97,6 @@ No historical JSON proposals or reports were deleted during Phase 2.1.
 Frozen regression provenance remains in [v1.1](../tests/fixtures/v1_1/README.md)
 and [v1.2](../tests/fixtures/v1_2/README.md); separate legacy examples remain in
 [legacy_examples](../tests/fixtures/legacy_examples/README.md). Use the current
-[example catalogue](../examples/README.md) for authoring formats, not archived
+[family guide](../examples/v1_2/README.md) for authoring formats, not archived
 shapes or frozen snapshots. All of these developer/historical sources are excluded
 from the production viewer.

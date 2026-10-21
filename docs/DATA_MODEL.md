@@ -39,8 +39,8 @@ The original accepted v1.2 scenarios are also frozen in `tests/fixtures/v1_2/`;
 the current `public/datasets/demo/` remains author-editable. Current learning
 references live in `examples/v1_2/`; legacy regression inputs are preserved in
 `tests/fixtures/legacy_examples/`, and obsolete proposal shapes are archived in
-`docs/archive/json-proposals/`. See [the complete v1.2 example catalogue](../examples/README.md), including
-file wrappers, snippets, authoring-null gates and generated output.
+`docs/archive/json-proposals/`. See [the focused v1.2 family guide](../examples/v1_2/README.md), including
+compact file envelopes, snippets and the authoring-versus-generated distinction.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
@@ -144,6 +144,6 @@ The v1.1 extension added nullable icon overrides, optional planet/station visual
 
 ## v1.2 navigation authoring
 
-System objects are the authoring source of truth. Eligible anchors use `navigation.boundaryRadiusCNU` and `navigation.localLinks[]`; Jump Gates/Holes may use one `interstellarConnection`. Connected short-range gates must be `positionMode: "boundary_derived"`; their normal `position` XYZ is written by the manual generator. Only the `systemAuthoring` schema permits a temporary null position for those gates. Release `systemDetail` validation requires XYZ. All other object coordinates remain absolute and required.
+System objects are the authoring source of truth. Eligible anchors use `navigation.boundaryRadiusCNU` and `navigation.localLinks[]`; Jump Gates/Holes may use one `interstellarConnection`. Creator-confirmed workflow: every newly created short-range gate starts with `position: null` and `positionMode: "boundary_derived"`; the author never manually positions it. Create the gate records and required anchor relationships, then let the manual generator compute/write their XYZ and `connections.json`. The `gateAuthoring` definition and complete `systemAuthoring` contract accept the initial null, while release `gate` / `systemDetail` requires calculated XYZ. Existing schema-compatible legacy records do not change this creation workflow. Jump Gates and Jump Holes retain their independent positioning requirements; see the authoring guide for pairs, checks and recovery.
 
 Run `npm run connections`, then the read-only `npm run connections:check`; tests, validation and builds refuse stale output. No browser generation, positions sidecar or automatic repair exists. See [approved design](SCHEMA_V1_2_NAVIGATION.md) and [workflow, precision, migration and recovery](NAVIGATION_AUTHORING.md).

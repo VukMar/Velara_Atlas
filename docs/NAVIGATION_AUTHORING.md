@@ -19,11 +19,26 @@ validation and the read-only freshness check; they never repair stale files.
 ## Authoring and release contracts
 
 `schemas/atlas.schema.json` defines v1.2.0. All demo envelopes must use that
-version. `systemAuthoring` permits null `position` only on short-range gates
-explicitly marked `positionMode: "boundary_derived"`. `systemDetail` is the
-release contract: every local object must have finite XYZ. Authoring does not
-create infrastructure records: assign each gate its permanent ID, full required
-history, icon and InfoCard before referring to it.
+version. **Creator-confirmed creation rule:** every NEW short-range gate starts
+with `position: null` and `positionMode: "boundary_derived"`. The author never
+manually enters its XYZ. Create the gate records with permanent IDs, required
+history, icon and InfoCard, and author the matching navigation relationships on
+the relevant anchor objects. Complete dedicated pairs/declarations before generation;
+a derived gate absent from authored links is rejected.
+
+`gateAuthoring` and the complete `systemAuthoring` contract accept those initial
+null positions. `gate` / `systemDetail` is the release stage and requires finite
+XYZ. `npm run connections` computes the gate coordinates from authored navigation
+relationships, writes positions into the corresponding system JSON records and
+generates/updates `connections.json`. Follow with `npm run connections:check` to
+verify consistency without rewriting data. The generator does not create the
+physical gate records for the author. See [the focused example](../examples/v1_2/gate-short-range.json)
+and [family guide](../examples/v1_2/README.md#gates-gat_---authoring-versus-generated-release).
+
+Existing schema-valid legacy unconnected/XYZ states are retained for compatibility;
+they do not alter the new-short-range-gate creation rule. Interstellar Jump Gates
+and Jump Holes retain independently authored XYZ and their existing pairing rules.
+No schema or generator change is implied by this documentation.
 
 Celestial bodies, stations, Jump Gates and Jump Holes can declare an invisible
 positive `navigation.boundaryRadiusCNU`. A local link lives once in its source
@@ -31,8 +46,9 @@ anchor's `navigation.localLinks[]`, naming `targetObjectId`, `sourceGateId`,
 `targetGateId`, link `id`, direction and dated interval. Both anchors need
 boundaries and both gates must be dedicated derived short-range gates in the
 same system. A body may have several links using different physical gates.
-Unconnected gates keep authored XYZ and omit derived mode. A derived gate with
-no declaration is rejected. Boundaries are navigation parameters, not zones,
+Existing unconnected records may retain their compatible stored form; do not
+use that as a workflow for manually positioning new short-range gates. A derived
+gate with no declaration is rejected. Boundaries are navigation parameters, not zones,
 celestial dimensions or gravity claims.
 
 A Jump Gate/Hole may author one `interstellarConnection`: `id`,

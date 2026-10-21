@@ -1,9 +1,12 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Proposed architecture workstream; implementation is phase-gated and requires the creator's approval for each phase.  
+**Status:** Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and creator-approved. Later implementation remains phase-gated and requires separate creator approval.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
-**Current phase:** Phase 2 is complete and committed in `6e026cb` (2026-10-20).
-**Authorized maintenance:** Phase 2.1 current examples and documentation only.
+**Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
+(2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
+reference library is complete and creator-approved.
+**Authorized closeout:** necessary status documentation, verification and the
+reviewed Phase 2.2 commit/push only.
 **Next implementation gate:** Phase 3 is proposed, not started or authorized.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
@@ -14,9 +17,11 @@
 
 This is an **architecture optimization workstream**, not a replacement for `docs/DEVELOPMENT_ROADMAP.md` or the approved feature specifications. Current behavior and rules continue to be defined by `docs/DATA_MODEL.md`, `schemas/`, `docs/VIEWER_SPECIFICATION.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/NAVIGATION_AUTHORING.md`, `docs/CONTENT_WORKFLOW.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, and `AGENTS.md`. Implementation reports remain point-in-time evidence, not active instructions. Resolve contradictory current-status prose by inspection, not by silently overriding technical contracts.
 
-Phase 2.1 expands schema-valid developer examples and consolidates current
-status/navigation. Results are reported directly to the creator; no additional
-Codex task/results document is required. Completed task records are retained only
+Phase 2.1 completed examples/documentation consolidation. Completed,
+creator-approved Phase 2.2 simplifies `examples/v1_2/` into ten focused
+entity-family references and one guide with explicit gate-authoring semantics.
+The active demonstration remains in `public/datasets/demo/`. Results are reported
+directly to the creator; no additional Codex task/results document is required. Completed task records are retained only
 in [the historical archive](INDEX.md#archived-completed-or-superseded-material).
 The committed Phase 2 evidence remains in [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md).
 
@@ -140,8 +145,9 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven loading and creation workflow
 
-**Proposed design review:** preserve existing per-Cantum `radiusLY` during Phase 2.1.
-Any replacement/global-radius design needs separate approval; the current schema,
+**Proposed design review, not implemented:** the universal Cantum-radius redesign
+remains a Phase 3 design-review item requiring separate creator approval.
+Completed Phases 2.1 and 2.2 preserve per-Cantum `radiusLY`: the current schema,
 24/18-ly demo values, fallback, thresholds and calculations remain unchanged.
 
 **Goal:** Adding a new supported demonstration system or supported entity should no longer require source edits in viewer/loader/build configuration.
@@ -214,7 +220,9 @@ Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementa
 
 ## Current maintenance boundary
 
-Phase 2.1 permits schema-valid reference examples and documentation consolidation
-only. Active code, demo/canonical data, schemas, navigation output, calibration and
+Phase 2.2 is complete and creator-approved. Its closeout authorizes necessary
+status documentation, verification and commit/push of the reviewed changes only.
+Active code, demo/canonical data, schemas, navigation output, calibration and
 build/dev restrictions remain unchanged. Completed archived task text cannot
-restart a phase. No automatic Phase 3, commit, push or deployment follows.
+restart a phase. Architecture Phase 3 has NOT started and requires separate
+creator approval; no deployment or further implementation is authorized.

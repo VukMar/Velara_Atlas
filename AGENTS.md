@@ -4,27 +4,33 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Current task override:** Architecture optimization **Phase 2.1 maintenance only**
-is creator-authorized: expand schema-valid v1.2 developer references in `examples/`
-and consolidate documentation/navigation after committed Phase 2 (`6e026cb`).
-Read `docs/INDEX.md`, the architecture optimization roadmap, current data/navigation
-contracts and schemas. Completed task documents are archived provenance and confer
-no current authorization. Report results directly to the creator; create no new
-Codex task file or separate phase-results Markdown file.
+**Architecture status:** Phases 1, 2 and 2.1 are complete. Phase 2.2 is complete
+and creator-approved: `examples/v1_2/` contains ten focused entity-family JSON
+references and one main guide. The active noncanonical demonstration remains in
+`public/datasets/demo/`. Phase 2.1 is committed in `711a410`.
+
+**Current closeout authorization:** synchronize current-status documentation,
+verify, and commit/push only the reviewed Phase 2.2 examples and necessary
+closeout documentation to `main`. This does not authorize new implementation.
+Architecture Phase 3 has NOT started and requires separate creator approval.
+Every newly created short-range gate starts with `position: null` and
+`positionMode: "boundary_derived"`; the author creates gate records/anchor
+relationships, and the offline generator later writes XYZ and the graph.
+Report directly; create no new phase task or results Markdown file.
 Preserve active demo/canonical data, frozen fixtures, all schemas, runtime/tools,
 build/dev restrictions, generated navigation, IDs/history/units and calibration.
-Retain the per-Cantum `radiusLY` schema and demo values; its redesign is a Phase 3
-design-review item. Stage 4 and calibration are committed in `190bd21`: 8px Sector
+Retain the per-Cantum `radiusLY` schema and demo values. A universal Cantum-radius
+redesign remains a proposed Phase 3 design-review item, not an implemented feature. Stage 4 and calibration are committed in `190bd21`: 8px Sector
 symbols, usable invisible targets, provisional `clamp(radiusLY * .30, .5, 3)`
 half-height and the isolated 40-ly in-memory preview. Do not select a canonical
-radius. No Phase 3 loading/manifest/CLI work, calibration JSON, Stage 5 refinement,
-commit, push or deployment is authorized. Stop after Phase 2.1 for creator review.
+radius. No Phase 3 loading/manifest/CLI work, calibration JSON, Stage 5 refinement
+or deployment is authorized. Stop after the approved Phase 2.2 closeout commit/push.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; current authorization is Phase 2.1 examples/documentation maintenance only. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, Schema v1.2 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; Phase 2.2 example simplification is complete and creator-approved. Current authorization covers only its documentation closeout and commit/push. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
-For Phase 2.1, follow the current creator request and use `docs/INDEX.md` to
+For the approved Phase 2.2 closeout, follow the current creator request and use `docs/INDEX.md` to
 separate active authority from completed tasks and historical evidence. The
 technical read-first references remain:
 
@@ -93,4 +99,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Stop after Phase 2.1 examples/documentation maintenance and report directly to the creator; Phase 3 and further visual development require separate approval. Do not commit, push or deploy automatically.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Stop after its explicitly authorized closeout commit/push and report directly to the creator; architecture Phase 3 has not started and requires separate approval. This authorization does not extend to future commits, further visual development or deployment.

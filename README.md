@@ -4,14 +4,19 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — committed baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
+> **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Start with the [documentation index](docs/INDEX.md) and
-[the v1.2 example catalogue](examples/README.md). Architecture Phase 2 dataset
-organization is committed in `6e026cb`; the [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md)
-retains its original pre-commit context. Current authorization is **Phase 2.1
-examples/documentation maintenance** under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
-Architecture Phase 3 and further visual development require separate approval.
+Architecture Phases **1, 2 and 2.1 are complete**; **Phase 2.2 is complete and
+creator-approved**. The v1.2 examples now use ten focused entity-family references
+and [one main guide](examples/v1_2/README.md). The active demonstration remains in
+`public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
+[example entry point](examples/README.md). Phase 2 dataset organization is
+committed in `6e026cb`, and Phase 2.1 in `711a410`; the
+[Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
+verification context. **Architecture Phase 3 has NOT started** and requires
+separate creator approval under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
+The universal Cantum-radius redesign remains a proposed Phase 3 design-review
+item, not an implemented feature; current per-Cantum `radiusLY` behavior is unchanged.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
@@ -57,7 +62,7 @@ The viewer is read-only. Local Node tools support manual JSON authoring; private
 | --- | --- |
 | `public/data/` | Protected legacy v0.1 canonical records; excluded from the demo build |
 | `public/datasets/demo/` | Active public-safe noncanonical v1.2 runtime dataset |
-| `examples/v1_2/` | Validated noncanonical developer learning references; excluded from runtime |
+| `examples/v1_2/` | Ten focused noncanonical entity-family references and their guide; excluded from runtime |
 | `tests/fixtures/legacy_examples/` | Preserved legacy regression inputs |
 | `docs/archive/json-proposals/` | Preserved obsolete JSON proposal shapes |
 | `src/timeline/` | Existing historical resolver (v0.1) |

@@ -6,7 +6,12 @@ The [Checkpoint 3.6 audit](REPOSITORY_AUDIT_3_6.md) is an earlier inventory,
 not a complete inventory of later additions. The tree below summarizes ownership;
 [architecture](ARCHITECTURE.md) lists module responsibilities and the
 [index](INDEX.md) maps documentation authority.
-Phase 2.1 expands examples and consolidates documentation only; Phase 3 is deferred.
+Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
+creator-approved. Its ten-file entity-family reference library is in
+`examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
+Architecture Phase 3 has NOT started and requires separate creator approval.
+The universal Cantum-radius redesign remains a proposed Phase 3 design-review
+item, not an implemented feature; existing per-Cantum `radiusLY` is preserved.
 
 ## Current tree
 
@@ -64,7 +69,7 @@ Velara_Atlas/
       systems/sys_0003.json
   examples/
     README.md                  Current contract and reference-only ownership
-    v1_2/                      Complete reference snapshot, entity snippets and authoring examples
+    v1_2/                      Ten focused family snippets/files plus the v1.2 guide
   docs/archive/
     json-proposals/            Eight unchanged obsolete standalone proposals
     completed-tasks/           Completed Phase 1/2 tasks and migration inventory
@@ -157,7 +162,7 @@ Substep B separately preserves three legacy regression files and archives eight
 obsolete proposals, leaving validated v1.2 learning references under `examples/`.
 See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for historical checks;
 that report's uncommitted-work circumstances predate `6e026cb`. Current reference
-coverage and validation targets are in [the example catalogue](../examples/README.md).
+coverage and validation targets are in [the family guide](../examples/v1_2/README.md).
 Calibration stays in memory under `tests/calibration/`; scenario
 JSON is Phase 5. A future report-directory reorganization needs separate approval.
 

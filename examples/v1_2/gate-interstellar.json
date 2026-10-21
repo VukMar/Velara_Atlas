@@ -1,0 +1,48 @@
+{
+  "id": "gat_0004",
+  "entityType": "gate",
+  "objectType": "jump_gate",
+  "discoveredAE": 450,
+  "nameHistory": [
+    {
+      "fromAE": 450,
+      "untilAE": null,
+      "name": "Test gat_0004",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "position": {
+    "x": -22000,
+    "y": 700,
+    "z": 23000
+  },
+  "icon": null,
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 450,
+        "untilAE": null,
+        "text": "Noncanonical navigation gate."
+      }
+    ]
+  },
+  "constructedAE": 450,
+  "decommissionedAE": null,
+  "navigation": {
+    "boundaryRadiusCNU": 1400
+  },
+  "interstellarConnection": {
+    "id": "lnk_0005",
+    "targetSystemId": "sys_0002",
+    "targetObjectId": "gat_0008",
+    "direction": "bidirectional",
+    "fromAE": 500,
+    "untilAE": null
+  }
+}
