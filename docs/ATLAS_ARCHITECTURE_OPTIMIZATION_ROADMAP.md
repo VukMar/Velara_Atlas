@@ -1,15 +1,13 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and creator-approved. Later implementation remains phase-gated and requires separate creator approval.
+**Status:** Architecture Phases 1, 2, 2.1 and 2.2 are complete. This commit records the creator-reviewed Phase 3A–3F and Phase 4–6 roadmap. It authorizes documentation changes only, not implementation.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
-**Current planning:** Architecture Phase 3 is being discussed
-with the creator. Its scope and implementation have not yet
-been authorized. Phases 1, 2, 2.1 and 2.2 are complete;
-Phase 2.2 was committed in `8d88ef2`.
-**Next implementation gate:** Phase 3 is proposed, not started or authorized.
+**Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
+**Current authorization:** This roadmap/status documentation commit only. Phase 3A implementation requires renewed creator approval.
+**Next implementation gate:** Phase 3A (Development/Demo/Canon and calibration JSON), not started or authorized.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -39,13 +37,13 @@ The baseline has a working separation between pure historical/cartographic logic
 | --- | --- | --- |
 | Live noncanonical demo | `examples/demo_atlas/` | Move to a dedicated, public-safe demonstration dataset namespace; leave `examples/` for reference examples |
 | Demo dataset enumeration | `scripts/demo-files.mjs` (`SYSTEM_FILES` and `INPUT_FILES`) | One discoverable/validated dataset inventory rather than several hand-edited lists |
-| Browser system loading | `src/viewer/demo-data.mjs` (three explicit system import callbacks; preloads released details) | Manifest-driven, authorized paths; on-demand detail loading with caching |
+| Browser system loading | `src/viewer/demo-data.mjs` (three explicit system import callbacks; preloads released details) | Validated inventory with **eager preload preserved** |
 | Build input allowlist | `vite.config.mjs` (seven exact JSON paths) | Generate the input/output allowlist from the **approved release manifest**, never unconstrained folder scanning |
 | IDs | `scripts/idfind.mjs` (read-only suggestions) | Safe, collision-checked creation workflow; never silently renumber existing IDs |
 | Navigation | Authored system declarations; generated `connections.json` | Preserve source-of-truth, manual generator/check/recovery, and deterministic outputs |
 | Viewer coordination | `src/viewer/main.mjs` and `map-scene.mjs` | Extract cohesive UI/state/camera/picking/layer responsibilities without changing behavior |
 | Presentation controls | `visual-config.mjs`, `style.css`, `map-scene.mjs`, related modules | Single documented configuration surface for **tunable** parameters; do not externalize invariants |
-| Calibration preview | `npm run preview:calibration`, `scripts/preview-cantum-calibration.mjs`, `tests/calibration/` | Keep isolated deterministic regression fixture; later support named JSON-based local scenarios |
+| Calibration preview | `npm run preview:calibration`, `scripts/preview-cantum-calibration.mjs`, `tests/calibration/` | Phase 3A: synthetic JSON source and `npm run dev` environment |
 | Legacy canonical records | `public/data/sector.json`, `public/data/political.json`, legacy resolver/tests | **Do not migrate or overwrite** during this workstream |
 | Production | Vite `publicDir: false`, base `/Velara_Atlas/`, static output audits | Retain disclosure boundary; implement explicit release packaging and deployment only in a later approved phase |
 
@@ -55,7 +53,7 @@ The baseline has a working separation between pure historical/cartographic logic
 
 ### Non-negotiable design and publication boundaries
 
-1. **In-universe history is not publication status.** A known system may have no released detail; use the existing NEXUS archival fallback, never ship secret details with a client-side hidden flag.
+1. **In-universe chronology is distinct from data privacy.** A `publicDetailPath: null` system retains the NEXUS catalogue fallback. It is not a way to conceal files already committed to Git.
 2. **Public Git is itself a disclosure surface.** Nothing unreleased/private enters `public/`, `examples/`, `docs/`, tests, commits, bundles, or browser requests. Placing files under `public/` does not make them private; keep `publicDir: false` and copy only authorized output into `dist/`.
 3. **Preserve canon, IDs and schema semantics.** Retain legacy v0.1 and frozen v1.1/v1.2 fixtures; schema v1.2 is currently the noncanonical authoring contract. No invented dates, positions, identities, political status, counts, or meanings.
 4. **Preserve navigation source-of-truth.** v1.2 object declarations own connections; `connections.json` and selected derived boundary-gate positions are generator outputs. Validation/build must not mutate source data.
@@ -66,32 +64,26 @@ The baseline has a working separation between pure historical/cartographic logic
 ## Phase sequence and approval gates
 
 ```text
-PRE-FLIGHT INSIDE PHASE 1
-  Inspect main, git status, tracked files and existing test commands
-          |
-          v
-[1] DOCUMENTATION CONSOLIDATION
-    current truth / document authority / migration inventory
-          | creator review
-          v
-[2] DATASET & REPOSITORY ORGANIZATION
-    active demo relocated / examples as documentation only
-          | creator review
-          v
-[3] DATA-DRIVEN LOADING & AUTHORING
-    generated manifest / new-system CLI / lazy detail fetch
-          | creator review
-          v
-[4] VIEWER MODULARIZATION & CONFIGURATION
-    state/UI/scene separation / centralized tunables
-          | creator review
-          v
-[5] LOCAL PREVIEW & CALIBRATION WORKFLOW
-    JSON scenarios / reusable local tools / optional tuning UI
-          | creator review
-          v
-[6] PERFORMANCE & RELEASE PREPARATION
-    benchmarked large atlas / safe static publication / deployment
+COMPLETED: Phases 1, 2, 2.1, 2.2
+       |
+       v
+[3A] Environment separation and calibration JSON
+       | creator review
+[3B] Dataset inventory and eager loader
+       | creator review
+[3C] Factions, InfoCards, Cantum hierarchy
+       | creator review
+[3D] Governing influence, universal radius
+       | creator review
+[3E] Manual system-authoring helpers
+       | creator review
+[3F] Historical integration and disclosure tests
+       | creator approval
+[4] Viewer modularization
+[5] Expanded local previews
+[6] Performance and production readiness
+
+Separate approval: MCR Canon migration / Atlas Creator
 ```
 
 ### Phase 1 — Documentation consolidation and baseline inventory
@@ -145,61 +137,324 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 **Acceptance gate:** Same demo content/IDs/history/geometry/connections and outputs, relocated; `examples/` serves reference/documentation purposes; existing behavior and audits pass; a full path-by-path diff and rollback instructions exist. Stage as small coherent commits **only with explicit approval**.
 
-### Phase 3 — Data-driven loading and creation workflow
+### Phase 3 — Data-driven architecture and historical entities
 
-**Proposed design review, not implemented:** the universal Cantum-radius redesign
-remains a Phase 3 design-review item requiring separate creator approval.
-Completed Phases 2.1 and 2.2 preserve per-Cantum `radiusLY`: the current schema,
-24/18-ly demo values, fallback, thresholds and calculations remain unchanged.
+**Status: proposed, NOT implemented.** The plan is divided into **3A–3F**;
+each checkpoint needs its own creator-approved Codex task, review, and
+separate commit authorization. The current runtime/data contract stays v1.2.
+The old Phase 3 proposal for lazy loading and per-system publication gates
+is superseded.
 
-**Goal:** Adding a new supported demonstration system or supported entity should no longer require source edits in viewer/loader/build configuration.
+**Purpose:** Creating a supported system, object, complete link, faction
+or historical change should be a validated JSON operation, not a change
+to browser/renderer registration code. Preserve IDs, chronology, source
+of truth, the read-only viewer, and strict selected-dataset build audits.
 
-**Design:**
-- Define a versioned dataset manifest format. Generate it from explicitly designated **approved public-safe dataset roots** with safe path normalization, no traversal/symlinks, schema checks, identity uniqueness and cross-file verification. Do not trust arbitrary `publicDetailPath` values from unverified JSON.
-- Build an authorized release inventory at build time; produce exactly its permitted files and verified asset URLs. Do not use an unbounded `import.meta.glob` or `publicDir` copying as an alternative to publication review.
-- Browser load sequence: sector/index + Cantums/presentation/public connection index first; system details on demand, with a cache and a clear distinction among known-but-unreleased, missing public detail, corrupted data and network/technical failure.
-- Preserve current navigation eligibility, including links to archival endpoints: if full detail is not loaded, use validated, publishable endpoint metadata and do not invent object facts.
-- Add `atlas:new-system` CLI (command name provisional) to obtain/check IDs, generate a **schema-valid** system template, update the sector registry transactionally, and show explicit next authoring steps. Do not assign fictional dates/names/positions on behalf of the creator; require values where schema demands them or use clearly noncanonical/test defaults only by explicit option.
-- Keep connections generation an explicit authoring step and `connections:check` read-only; do not regenerate source files automatically on build.
+#### Cross-phase decisions and invariants
 
-**Acceptance gate:** A brand-new disconnected test system appears in the local viewer from authorized JSON with zero modifications to `src/viewer/` or `vite.config.mjs`; adding a supported planet or station is data-only; stale/bad links and unsafe paths fail; release builds include only explicitly approved data; regression and failure-path checks pass.
+- **Three environments.** Development is synthetic local calibration,
+  Demo is the graphical noncanonical Atlas, Canon is separately
+  creator-approved MCR history. Private unreleased content stays
+  outside Git, not behind flags in committed files. The eventual
+  Canon dataset requires a separate human-reviewed migration of
+  protected `public/data/` v0.1 records.
+- **Selected-dataset inventory and eager loading.** `sector.json`
+  is the system catalogue; generate one validated inventory from
+  its declared paths in an explicitly selected trusted dataset root.
+  Reuse it for loaders, validators, navigation writer/check, ID
+  Finder and Vite allowlists. Retain full detail preload: current
+  route eligibility, timeline event discovery and system switching
+  depend on the complete dataset. `publicDetailPath: null` denotes
+  NEXUS catalogue-only fallback, not secret data or a broken
+  referenced detail. No unlimited globs, remote paths or public
+  directory copying.
+- **Complete dated navigation.** Every new short-range gate
+  initially has `position: null` and
+  `positionMode: "boundary_derived"`. The creator supplies the
+  two constructed/known physical gates, valid anchors, complete
+  `lnk_` declaration and explicit years before publication.
+  `npm run connections` calculates XYZ and generated graph;
+  `connections:check` is read-only. Gates constructed at
+  different historical years may visibly exist before a later
+  link activation. Do not allow unfinished connections,
+  invent years, change partner lifetime constraints, or
+  weaken recovery and historical validation.
+- **Political semantics.** System `cantumHistory` remains the
+  *direct administrative* Cantum. A Cantum's dated
+  `infoCard.affiliation` will mean its direct superior Cantum
+  under the proposed next-version contract. Following that
+  chain at a selected year yields the ultimate governing
+  Cantum. No new `suzerainHistory` or
+  `institutionalAffiliationHistory` keys are needed.
+  `controlHistory` remains distinct. Validate same-year
+  parent consistency, `can_` parent ID types, no cycles,
+  self-reference or overlapping parents.
+- **Null semantics.** A dated *effective* affiliation record
+  with `entityId: null` explicitly means Independent.
+  A null history or uncovered date means Not recorded.
+  Unresolved references are errors, never Independent.
+  Old v1.2 records/fixtures are not silently reinterpreted.
+- **Faction model.** New permanent IDs use `fac_` for lawful
+  and unlawful organizations: private groups, police,
+  military/navy/intelligence, research, pirates, criminals,
+  extremists, etc. Maintain dated names, faction type,
+  lawful/unlawful classification and Cantum relationship.
+  Lawful factions can be Cantum-affiliated or independent;
+  unlawful factions must be independent in the same period.
+  Operating within a Cantum does not imply official
+  affiliation. Reserve `pol_` for a future genuinely
+  different polity entity, and do not create new `org_`
+  records; retain frozen v1.2 backwards compatibility.
+  Former Continuance institutions can be renamed in
+  explicitly dated histories without automatic inference.
+- **Historical ID resolution.** A pure proposed
+  `src/core/infocard-resolver.mjs` should translate registered
+  `can_`/`fac_` IDs into correct-year display names and
+  a resolution status, reusing `atYear`. It must preserve
+  missing/independent/unresolved distinctions and not
+  determine system administrative membership.
+- **Governing influence.** Resolve each eligible positioned
+  system's direct and ultimate Cantum at year Y, and merge
+  contributors under the ultimate governing Cantum **before**
+  calculating Gaussian influence. The governing Cantum
+  supplies color, surface and nameplate identity; the
+  subordinate retains original administration in its
+  InfoCards. Update flat fields, perspective envelopes,
+  contributor checks, detached-island labels, sigils,
+  elevation and caching together. Adopt a single positive
+  `territoryOverlay.radiusLY`, retain per-Cantum colors,
+  existing opacity/threshold/Gaussian behavior and avoid
+  pretending those fields are exact borders.
+- **Coordinated versioning.** Faction registry, Cantum
+  hierarchy interpretation, null semantics and shared
+  radius are a proposed **v1.3** data model (provisional).
+  Prepare isolated tests first, then perform one approved
+  active *noncanonical* Demo transition. Protect v0.1
+  Canon and frozen v1.1/v1.2 fixture/schema behavior.
+
+#### 3A — Development, Demo and future Canon separation
+
+**Work:** `npm run dev` becomes loopback-only development
+calibration, while `npm run demo` becomes the current graphical
+noncanonical viewer. Today's `npm run demo` actually invokes
+the legacy terminal `tests/demo.mjs`; retain it under a
+proposed `npm run history:demo`. Keep existing
+`preview:calibration` as a compatible alias during transition
+and update browser tests/docs. Move the *synthetic source*
+from `tests/calibration/scenario.mjs` into named JSON
+scenarios with a deterministic loader/adaptor, preserving
+15 synthetic systems, two Cantums, the 40-ly map, authored
+test history/geometry, radii 2/2.5/3 ly and the nine accepted
+radius/camera comparisons. The current memory-only scenario
+is not a strictly complete release-valid dataset, so do
+not simply stringify it and claim schema compliance.
+Reserve a future Canon dataset root without moving,
+converting or displaying protected v0.1 as v1.2/v1.3.
+
+**Acceptance:** Both commands open correct isolated
+experiences; terminal history survives; existing tests
+and visual calibration remain identical; development
+fixtures do not enter the graphical Demo build.
+
+#### 3B — Unified safe inventory and full-dataset loader
+
+**Work:** Replace separately maintained explicit
+system arrays in `src/viewer/demo-data.mjs`,
+`scripts/demo-files.mjs` and `vite.config.mjs` with
+one inventory derived from selected, trusted sector JSON.
+Validate filename/ID agreement, versions, uniqueness,
+safe paths, no traversal or symlinks/reparse, existing
+non-null detail files, cross-file references and generated
+navigation freshness. Reuse selected-dataset policy
+for validation, `idfind` and `connections` commands.
+Preserve bounded Vite modules/assets and
+`publicDir: false`. Continue eagerly loading all
+released details and verified links, not fetching
+on demand.
+
+**Acceptance:** Add another noncanonical disconnected
+system with a planet or station by editing JSON only,
+without viewer or Vite source changes. Invalid/unsafe
+inputs are rejected; existing Demo behavior survives.
+
+#### 3C — Faction registry, InfoCards and Cantum hierarchy
+
+**Work:** Add proposed `factions.json` as a compact
+index and authoritative `factions/fac_XXXX.json`
+records. Avoid duplicate names in the registry.
+Define dated faction names, types, lawfulness and
+Cantum affiliations, and validate their period-wise
+consistency. Introduce a pure year-aware reference
+resolver for InfoCards with explicit Independent,
+Not recorded and Unresolved states. Treat Cantum
+`infoCard.affiliation` as dated direct superior
+Cantum in the proposed contract; validate nested
+hierarchies and preserve direct administrative
+`cantumHistory`. Draft and test proposed v1.3
+without switching the active v1.2 Demo halfway.
+
+**Acceptance:** Stations display faction names
+appropriate to year; renamed organizations resolve;
+illegal lawful-status/affiliation combinations,
+unknown IDs, cycles and self-parents fail; hierarchy
+can transition from subordination to independence.
+
+#### 3D — Governing Cantum territory and universal radius
+
+**Work:** Resolve direct and ultimate Cantum
+for eligible systems, then aggregate all contributor
+systems by ultimate governor before computing
+fields. Update `territoryGroups`,
+`influence-envelopes.mjs`, detached-island
+names/sigils, elevation/label placement, 2D/3D
+surfaces and cached keys consistently. Keep direct
+membership in InfoCards. Replace per-Cantum radii
+with one globally authored positive `radiusLY`
+in proposed `presentation.territoryOverlay`,
+while colors remain Cantum-specific. Do not
+choose a canon radius here; Demo 24/18-ly
+and synthetic calibration 2/2.5/3-ly are
+test data. Specify missing-radius handling
+explicitly and preserve Gaussian, threshold
+and opacity behavior. Migrate only the approved
+active Demo to new schema with generator
+compatibility; keep frozen fixtures untouched.
+
+**Acceptance:** Before conquest A and B have
+separate colors; during B's dated subordination
+their systems form ONE governing-A field with
+coherent envelopes and labels, without double
+opacity seams; B's independence returns its color.
+Single-radius behavior and administrative identity
+are preserved throughout.
+
+#### 3E — Safe local manual authoring
+
+**Work:** Add proposed `atlas:new-system` command
+with ID suggestion/collision checks, schema-valid
+template and consistent sector registration,
+safe transactional/recoverable writes, and
+actionable validation. Require creator input
+where real dates/names/positions cannot be null;
+never invent lore or change accepted IDs.
+Extend scoped `idfind` and validation for `fac_`
+and supported dataset selection. Preserve
+authoring of two finished historical gates and
+link before offline coordinate generation.
+Keep authoring services separate from the
+read-only viewer for future Atlas Creator reuse.
+
+**Acceptance:** New system, supported entities
+and complete historical route can be added
+through JSON/local tools alone, with no
+viewer/Vite edits or partial network published.
+
+#### 3F — End-to-end integration and preservation
+
+**Scenario:** Isolated NONCANONICAL fixture
+with new system, star, planet and station;
+two gates constructed at different years
+and activated by `lnk_` later; generated
+coordinates; factions with legal-status and
+name-history changes; explicitly independent
+faction; Cantum B subordinate to A and
+later independent; direct/governing InfoCards;
+one-radius 2D/3D envelopes and detached
+nameplates. Do not add this fixture to
+live Demo or Canon without separate approval.
+
+**Acceptance:** `npm test`, strict validation,
+`connections:check`, build/output disclosure
+audits and targeted browser tests pass.
+Existing v0.1 and frozen v1.1/v1.2
+regressions continue passing. Phase 3 is
+complete only when all checkpoints and
+this integration result are creator-approved.
+
+**Out of scope for Phase 3:** Automatic
+canon migration, a complete graphical
+Atlas Creator, unbounded publication
+or arbitrary path access, lazy loading
+without measured need, unfinished routes,
+new visual artwork, broad viewer rewrite
+or production deployment.
 
 ### Phase 4 — Viewer modularization and configuration
 
-**Goal:** Decouple UI, state, camera, picking, rendering and visual parameters without changing established behavior.
+**Proposed; separately gated.** Extract
+cohesive application state, catalogue,
+InfoCard rendering, timeline, selection,
+camera, picking, scene/layers and safe
+NEXUS tunables from `main.mjs` and
+`map-scene.mjs`. Reuse the pure
+historical/reference logic from `src/core/`.
+Preserve current 2D/3D visuals, zoom,
+labels/sigils, keyboard/touch/pointer,
+physical models, zone picking and
+resource disposal. Centralize allowed
+visual settings, not schema/ID invariants.
 
-**Target ownership** (module names provisional):
+**Acceptance:** Same default look/behavior,
+clear ownership per setting, focused
+core/DOM/browser tests and no public
+writer/editor endpoint.
 
-```text
-src/viewer/
-  main.mjs                      # composition/bootstrap only
-  app/                          # state, navigation, dataset service
-  map/                          # renderer orchestration, camera, picking, layers
-  ui/                           # catalogue, InfoCard, timeline, layers
-  config/                       # NEXUS theme and supported viewer tunables
-  assets/                       # safe semantic symbol registry
-src/core/                       # retained pure historical/geometric calculations
-```
+### Phase 5 — Expanded local preview and ergonomics
 
-Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementally; avoid turning each helper into a separate file. Centralize approved NEXUS CSS design tokens, marker and label presentation values, tunable camera defaults and symbol lookups. Remove duplicate configuration when safe. Preserve click/touch, keyboard focus, all layer modes, physical-size/proxy behavior, grid rules and resource disposal. Keep explicit tests around rendering correctness and interaction behavior.
+**Proposed; separately gated.** Phase 3A
+already owns baseline calibration JSON
+migration and the dev command. Phase 5
+adds richer named local scenarios,
+reproducible camera/radius/view presets,
+safe visual tuning and diagnostic feedback,
+using the Phase 3 data model and Phase 4
+configuration surface. Prepare interfaces
+for a separate interactive Atlas Creator,
+but do not build a full editor. Keep all
+synthetic preview resources out of public
+output.
 
-**Acceptance gate:** One obvious configuration owner per supported tunable; viewer behavior unchanged at baseline settings; no hardcoded lore-specific system IDs in renderer; targeted unit and browser tests cover extracted boundaries.
+**Acceptance:** Select/replay calibration
+scenarios without editing JS facts;
+preserve prior results and build isolation.
 
-### Phase 5 — Local preview, calibration and authoring ergonomics
+### Phase 6 — Performance and production readiness
 
-**Goal:** Make experimentation possible without editing JavaScript or jeopardizing public/canonical records.
+**Proposed; separately gated.** Measure
+representative larger NONCANONICAL
+eager-loaded datasets: startup, timeline,
+routes, system switching, Gaussian
+sampling/nameplate density, GPU lifetime,
+low-power/touch/browser/accessibility.
+Profile before adding lazy loading or
+LOD. Existing 128x128 sampling can
+underresolve narrow 2–3-ly island
+features on wide maps. Add CI, strict
+dataset-selective build audits,
+failure/recovery testing, GitHub Pages
+base-path checks and publication dry runs.
+Never silently publish Canon.
 
-**Design:** Keep the existing `preview:calibration` deterministic and loopback-only, while moving its *authored scenario data* to named JSON fixtures after verifying the exact generator-dependent history/geometry behavior. Separate radius/camera test overrides from historical records; retain existing nine radius/camera comparisons, synthetic IDs and test isolation. Support selecting a named local scenario. Add a different, similarly isolated **data-driven demo preview** using the Phase 3 loader. Add visual configuration controls only after Phase 4 establishes a single safe configuration surface. Any future editor remains local, explicitly excluded from release builds, and validates before saving.
+**Acceptance:** Measured budgets,
+cross-browser/accessibility checks,
+bounded distributables and separate
+creator approval before deployment.
 
-**Acceptance gate:** Regression tests can still recreate the prior calibration scenarios; a creator can preview authorized test JSON without hand-coding scenario records; settings are reproducible/exportable; no local tooling or its fixtures enter the public output.
+### Separate future projects
 
-### Phase 6 — Performance and production preparation
+**MCR Canon migration:** Plan a
+creator-reviewed permanent-ID/history
+crosswalk from protected `public/data/`
+v0.1 into a distinct modern Canon
+dataset after Phase 3 stabilizes;
+no invented lore or Demo promotion.
 
-**Goal:** Validate large-dataset behavior and enable secure publication to the planned static host.
-
-**Work:** Build representative noncanonical load/performance fixtures; benchmark initial payload, system navigation, chart update on year change, 2D/3D rendering, nameplate density, WebGL memory/disposal, low-power/touch devices, accessibility and cross-browser behavior. Profile before optimizing. Investigate adaptive sampling/LOD for Cantum influence rather than blindly raising global resolution: the October 20 calibration report warns that 128x128 sampling on a 160-ly chart can underresolve narrow 2–3-ly territory islands. Evaluate code splitting and large-atlas routing. Add CI tests, explicit public build manifests, disclosure audits, publishing dry runs and reviewed GitHub Pages deployment. Canonical v0.1 to v1.2 migration remains a **separate approval-bound workstream**.
-
-**Acceptance gate:** Published/approved data only in generated output and Git history; documented scale/performance budgets and measured results; browser/functional QA; staging/production deployment verified. No private lore or unpublished details in any public artifact.
+**Atlas Creator:** Future separate
+local-only interactive authoring
+application reusing Phase 3 validators/
+writers and Phase 4 viewer modules.
+Not an implementation part of
+Phase 3 or the read-only public Atlas.
 
 ## Quality gates required for every later phase
 
@@ -210,20 +465,34 @@ Extract cohesive responsibilities from `main.mjs` and `map-scene.mjs` incrementa
 
 ## Creator-facing definition of success
 
-| Task | Target interaction after the relevant phase |
+| Goal | Result after corresponding phase |
 | --- | --- |
-| Add an empty supported test system | One local authoring command or later Studio action, with proper generated registration |
-| Add a supported planet, moon, gate or station | Edit validated JSON; no viewer source changes |
-| Change a system's history | Edit dates/records in JSON; viewer re-resolves the selected year |
-| Change a Cantum's *approved* appearance | Edit separate presentation data or exposed theme configuration |
-| Calibrate a synthetic scenario | Select/load scenario data and tuning values; no JS edits for the scenario |
-| Release a system to readers | Explicitly approve the public data; generate, inspect and validate the release manifest |
-| Render a known but unpublished system | NEXUS archival notice, never a hidden spoiler payload |
+| Launch calibration | `npm run dev` opens synthetic named scenarios (3A) |
+| Launch example viewer | `npm run demo` opens noncanonical graphical Atlas (3A) |
+| Preserve legacy terminal example | `history:demo` alias (3A) |
+| Add a new system | Safe dataset JSON with no viewer/Vite source edit (3B/3E) |
+| Create historical link | Two dated gates, completed `lnk_`, generated coordinates (3E) |
+| Create a faction | `fac_` registry and year-aware InfoCard names (3C) |
+| Conquer another Cantum | Dated Cantum `infoCard.affiliation` and governing field (3C/3D) |
+| Show sovereignty | Merge contributors by ultimate Cantum, shared radius (3D) |
+| Preserve direct administration | Systems keep original `cantumHistory` and InfoCards (3D) |
+| Validate full workflow | Isolated integrated and frozen regression tests (3F) |
+| View known catalogue-only system | NEXUS fallback, not a secret-file flag |
+| Publish Canon | Separate historical migration and release authorization |
 
 ## Current maintenance boundary
 
-Phase 2.2 is complete and creator-approved.
-Active code, demo/canonical data, schemas, navigation output, calibration and
-build/dev restrictions remain unchanged. Completed archived task text cannot
-restart a phase. Architecture Phase 3 has NOT started and requires separate
-creator approval; no deployment or further implementation is authorized.
+Phases 1, 2, 2.1 and 2.2 are complete. Phase 2.2 was
+committed at `8d88ef2`. This new Phase 3A–3F and
+Phase 4–6 roadmap is **documentation only**:
+no Phase 3 implementation or Codex task has
+been authorized. The creator will review this
+roadmap commit before requesting a separate
+Phase 3A task. Existing v0.1 Canon, live
+v1.2 Demo, frozen fixtures/schemas,
+current runtime and scripts, generated
+navigation, calibration tool and build
+safeguards remain unchanged. No
+canonical migration, interactive editor
+or deployment is authorized.
+

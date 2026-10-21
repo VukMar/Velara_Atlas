@@ -13,10 +13,8 @@ and [one main guide](examples/v1_2/README.md). The active demonstration remains 
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Architecture Phase 3 has NOT started** and requires
-separate creator approval under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
-The universal Cantum-radius redesign remains a proposed Phase 3 design-review
-item, not an implemented feature; current per-Cantum `radiusLY` behavior is unchanged.
+verification context. **Architecture Phase 3A–3F is now documented, but implementation has NOT started** and still requires separate creator approval for each checkpoint under the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
+Planned Phase 3A separates local calibration (`npm run dev`), noncanonical graphical Demo (`npm run demo`) and future MCR Canon; these command changes are not yet implemented. Proposed Phase 3C introduces faction IDs and dated Cantum governance; Phase 3D merges governing Cantum influence and introduces one radius. Existing `npm run dev`/`npm run demo` commands and per-Cantum `radiusLY` behavior are unchanged today.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are

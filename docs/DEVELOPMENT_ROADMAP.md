@@ -14,15 +14,13 @@ deployment remain separately gated.
 complete and creator-approved**. Phase 2.1 is committed in `711a410`. The v1.2
 examples now use ten focused entity-family references and one guide; the active
 demonstration remains in `public/datasets/demo/`. Architecture Phase 2.2 was committed in `8d88ef2`.
-Architecture Phase 3 is under planning and requires
-separate authorization before implementation. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
+Architecture Phase 3A–3F is now planned in detail; no implementation has started, and each checkpoint requires a separate creator authorization. See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). That roadmap is a separate architecture
 workstream; this document retains feature milestones and their approval gates.
 Architecture phases, Checkpoint 4.1 phases and Cantum stages are distinct.
 The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md) preserves point-in-time
 evidence. **Architecture Phase 3 has NOT started** and requires separate creator
-approval. A universal Cantum-radius redesign remains a proposed Phase 3
-design-review item, not an implemented feature; per-Cantum `radiusLY` is unchanged.
+approval. The governing-Cantum influence and one shared `radiusLY` are proposed for Phase 3D, not implemented; the current per-Cantum `radiusLY` is unchanged. Faction/InfoCard resolution and dated Cantum governance are proposed for Phase 3C.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -142,7 +140,7 @@ Checkpoint 5 covers static build/deployment review, repository-subpath URLs,
 runtime/fallback behavior, disclosure audit, accessibility and performance.
 GitHub Pages is a target host, not an active deployment.
 
-Canonical v0.1 → v1.2 migration remains a **separate creator-approved workstream**
+Canonical v0.1 → proposed modern schema migration remains a **separate creator-approved workstream**
 requiring an explicit permanent-ID crosswalk and historical review. Never promote
 demo systems, coordinates, routes or statistics to canon. See
 [migration safeguards](LEGACY_MIGRATION_PLAN.md).
