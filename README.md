@@ -6,7 +6,7 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has four released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F and 4 are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. Overall Architecture Phase 3 is complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
@@ -17,7 +17,7 @@ committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 verification context. **Phase 3F integration and the curated Demo showcase are complete and creator-approved**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phase 3E provides safe local manual system authoring; Phase 4 is the next proposed checkpoint and remains unstarted and unauthorized. Completed Phase 3D activates v1.3
+Phase 3E provides safe local manual system authoring; Architecture Phase 4 viewer modularization/configuration is complete and creator-approved, with implementation and status documentation committed together. Phase 5 is next proposed, unstarted and unauthorized. Completed Phase 3D activates v1.3
 in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
 historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
 
@@ -339,7 +339,7 @@ retained as historical references, not current setup instructions.
 ## Safe local system authoring (completed Phase 3E)
 
 Phase 3E is complete and creator-approved. Its implementation and status
-synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Phase 4 remains unauthorized.
+synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
 
 `npm run atlas:new-system -- --help` describes the fixed NONCANONICAL Demo
 workflow. No arguments validates the dataset and suggests an unused permanent ID;
@@ -369,4 +369,20 @@ Future authorized significant visible features follow implement -> automated tes
 explicit approval -> separately authorized documentation/commit/push. Nonvisual
 work needs no filler content. TEST, calibration, Demo and Canon remain separate.
 Phase 3F and overall Architecture Phase 3 are complete and creator-approved.
-Phase 4 requires separate authorization; no Canon migration or deployment is implemented.
+Architecture Phase 4 is complete and creator-approved; no Canon migration or deployment is implemented.
+
+## Viewer modules (completed Architecture Phase 4)
+
+The normal Demo and its JSON are unchanged. `main.mjs` composes a locally owned
+`AppState`, catalogue, timeline, layer panel and historical InfoCard. `AtlasMap`
+remains the scene facade; camera, picking, map layers and projected labels have
+focused owners. [Module ownership and configuration](docs/ARCHITECTURE.md#phase-4-viewer-module-ownership)
+describes their interfaces, lifecycle and deliberately bounded presentation options.
+No framework, dependency, dataset selector or public settings editor is added.
+
+Run `node --test tests/viewer-modules.test.mjs` for focused state/presentation,
+camera/picking, configuration and cleanup tests. The Chromium MCP entry point
+`tests/browser-viewer-modules.mjs` runs against `npm run demo`; existing showcase,
+keyboard/touch, zone and nine calibration comparisons remain applicable.
+Architecture Phase 4 is complete and creator-approved. Phase 5 is next proposed,
+not started and requires separate authorization. Phase 6 remains planned and gated.

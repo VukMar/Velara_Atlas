@@ -3,7 +3,9 @@
 Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. **Overall Architecture Phase 3 is complete.**
-Phase 4 is next proposed; Phases 4-6 remain unstarted and separately gated.
+**Architecture Phase 4 is complete and creator-approved**, with implementation
+and completion documentation committed together. Phase 5 is next proposed,
+unstarted and unauthorized; Phase 6 remains planned and separately gated.
 The simplified v1.2 reference library remains current; Phase 2.1 is in `711a410`.
 This index is the current navigation/status reference, not an implementation task.
 
@@ -47,7 +49,7 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3F and overall Phase 3 complete and creator-approved; Phase 4 next proposed; 4-6 unauthorized. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3F and overall Phase 3 complete and creator-approved; Phase 4 complete and creator-approved; Phase 5 next proposed, unstarted and unauthorized; Phase 6 planned. |
 
 The sector-derived validated inventory and eager loader are described in
 [README](../README.md#registered-demo-systems-and-loading) and
@@ -58,7 +60,7 @@ pure reference/governance APIs, validation and the TEST fixture. It is the accep
 current Demo contract, retaining its proposal history and migration crosswalk.
 Phase 3E provides the completed local authoring CLI and recoverable sector/detail
 writes. Completed Phase 3F verifies integration/preservation and provides the
-normal-Demo capability showcase. Overall Phase 3 is complete; Phase 4 remains unauthorized.
+normal-Demo capability showcase. Overall Phase 3 is complete; Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
 
 The live graphical Demo remains `public/datasets/demo/`, served by `npm run demo`
 on 5173. `npm run dev` (alias `preview:calibration`) serves local calibration on

@@ -1,16 +1,17 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall Architecture Phase 3 is complete. Phase 3F implementation, approved Demo showcase and completion documentation are committed together.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall Architecture Phase 3 and Architecture Phase 4 are complete and creator-approved. Phase 4 implementation and completion documentation are committed together.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current authorization:** creator-approved Phase 3F closeout, final verification,
-one completion commit and normal push only; no additional development or deployment.
+**Current authorization:** creator-approved Phase 4 closeout: final verification,
+status synchronization, one completion commit and normal push only, then stop.
+No additional feature development, merge, history rewrite or deployment.
 See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) and [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
-**Next implementation gate:** Architecture Phase 4 is proposed, unstarted and
-unauthorized. Phases 4-6 require separate creator approval.
+**Next implementation gate:** Phase 5 is proposed, unstarted and unauthorized.
+Phase 6 remains planned; later implementation requires separate creator authorization.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -68,7 +69,7 @@ The baseline has a working separation between pure historical/cartographic logic
 ## Phase sequence and approval gates
 
 ```text
-COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3
+COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3; Phase 4
        |
        v
 [3A] Environment separation and calibration JSON (complete)
@@ -82,9 +83,10 @@ COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3
 [3E] Manual system-authoring helpers (complete)
        | creator review
 [3F] Historical integration and living Demo showcase (complete, creator-approved)
+       | creator-approved Phase 4
+[4] Viewer modularization (complete, creator-approved)
        | separate future creator authorization required
-[4] Viewer modularization (next proposed; not started)
-[5] Expanded local previews
+[5] Expanded local previews (next proposed; not started; unauthorized)
 [6] Performance and production readiness
 
 Separate approval: MCR Canon migration / Atlas Creator
@@ -143,7 +145,7 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: 3A-3F and overall Architecture Phase 3 are complete and creator-approved. Phase 4 is next proposed and separately gated.**
+**Status: 3A-3F and overall Architecture Phase 3 are complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 is next proposed.**
 The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. Completed Phase 3D activates v1.3 in the noncanonical Demo; frozen v1.2 stays compatible.
@@ -291,7 +293,7 @@ fixtures do not enter the graphical Demo build.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phase 3C is also complete and
-creator-approved; Phases 3D-3F and overall Phase 3 are also complete. Phase 4 remains separately gated.
+creator-approved; Phases 3D-3F and overall Phase 3 are also complete. Architecture Phase 4 is complete and creator-approved; Phase 5 remains separately gated.
 
 `scripts/dataset-inventory.mjs` derives deterministic paths from the trusted
 `public/datasets/demo/sector.json` catalogue and its registry references. Demo is
@@ -352,7 +354,7 @@ inputs are rejected; existing Demo behavior survives.
 
 **Implementation status: complete and creator-approved.** The implementation and
 completion documentation are committed together. Phases 3D-3F and overall
-Architecture Phase 3 are also complete and creator-approved; Phase 4 is separately gated.
+Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is separately gated.
 
 The separate [provisional v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md) and schema
 provide isolated Draft 2020-12 validation, a compact `factions.json` registry and
@@ -401,7 +403,7 @@ can transition from subordination to independence.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phases 3E-3F and overall
-Architecture Phase 3 are also complete and creator-approved. Phase 4 is next proposed.
+Architecture Phase 3 are also complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
 
 At the Phase 3D checkpoint, the NONCANONICAL Demo used v1.3 throughout, including its empty faction
 registry and historical InfoCard entity-name/legality presentation. Systems keep
@@ -467,7 +469,7 @@ are preserved throughout.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phase 3F and overall
-Architecture Phase 3 are also complete and creator-approved; Phase 4 remains unauthorized.
+Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
 
 `npm run atlas:new-system` targets only the configured NONCANONICAL Demo.
 Preview and ID suggestion are read-only, with explicit `--apply` for an empty
@@ -568,7 +570,8 @@ inputs and source maps remain excluded.
 
 Known limits: influence fields remain approximations; the existing large-bundle
 advisory remains; physical touch hardware and non-Chromium browsers are unverified.
-No Phase 4, Atlas Creator, Canon migration or deployment is implemented.
+At the Phase 3F checkpoint, no Phase 4, Atlas Creator, Canon migration or
+deployment was implemented. Completed Phase 4 is recorded below.
 See [the creator walkthrough and before/after comparison](DEMO_SHOWCASE.md).
 
 **Permanent development policy:** separately authorized significant visible
@@ -609,7 +612,31 @@ or production deployment.
 
 ### Phase 4 — Viewer modularization and configuration
 
-**Proposed; separately gated.** Extract
+**Implementation status: complete and creator-approved.** Implementation and
+completion documentation are committed together. `AppState` owns historical UI
+state, filters and per-map preferences while reusing pure core resolution. Focused
+catalogue, InfoCard model/view, timeline and layer owners preserve existing text,
+ordering, focus and chronology. Main composes selection/navigation and refresh.
+AtlasMap retains its public facade; camera/controls, picking/interaction, scene
+layers and projected labels have cohesive owners using existing geometry/math.
+A scoped lifetime owns listeners, observers and teardown; camera swaps and map
+rebuilds dispose their resources. Closed visual settings retain approved defaults
+and cannot change history, physical units, navigation or publication invariants.
+Ownership is described in [architecture](ARCHITECTURE.md#phase-4-viewer-module-ownership).
+
+Verification: 257 automated tests (including twelve new focused module tests),
+18 applicable Chromium suites, all nine calibration comparisons, strict
+validation, read-only navigation freshness, legacy history, ID Finder and the
+24-file/15-approved-SVG build audit pass. Ten desktop/mobile DOM/camera snapshots
+and controlled screenshots match the unchanged pre-refactor source. Startup-error
+Retry, Vite reload, focus return, four remount/dispose cycles, listener/resource
+stability and stale-callback suppression were verified. All eleven Demo JSON
+files, Canon, schemas/fixtures, calibration, assets and build boundaries remain
+unchanged. No dependencies, UI redesign or new Demo records were introduced.
+Physical touch/non-Chromium QA and the existing large-bundle advisory remain
+limitations. Phase 5 is next proposed, not started and unauthorized.
+
+**Retained original plan and acceptance criteria:** Extract
 cohesive application state, catalogue,
 InfoCard rendering, timeline, selection,
 camera, picking, scene/layers and safe
@@ -712,9 +739,12 @@ Phase 3 or the read-only public Atlas.
 
 Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall
 Architecture Phase 3 is complete. Phase 3F implementation, the approved normal
-Demo showcase and completion documentation enter Git history together. This
-closeout authorizes one completion commit and normal push only. Phase 4 is the
-next proposed checkpoint, has not started and requires separate creator approval.
+Demo showcase and completion documentation enter Git history together. The
+Phase 3F closeout committed the approved showcase. Current authorization covers
+the approved Phase 4 closeout only: final verification, one completion commit
+and normal push, then stop. Architecture Phase 4 is complete and creator-approved.
+Phase 5 has not started and requires separate authorization; no new development,
+merge, history rewrite, Canon migration, Atlas Creator or deployment is authorized.
 Protected v0.1 Canon, frozen fixtures/schemas, history, navigation semantics and
 publication safeguards remain unchanged. Only the approved noncanonical Demo migrates to v1.3. No later-phase feature,
 merge, history rewrite, canonical migration, editor or deployment is authorized.

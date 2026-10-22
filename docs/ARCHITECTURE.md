@@ -6,7 +6,7 @@ noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
 Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D, 3E and 3F
-are complete and creator-approved. Overall Architecture Phase 3 is complete. Phase 4, canonical migration,
+are complete and creator-approved. Overall Architecture Phase 3 is complete. Architecture Phase 4 is complete and creator-approved; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -21,8 +21,8 @@ Use the [index](INDEX.md) for authority and the
 | `src/viewer/zone-layers.mjs` | Clipped system-zone footprints, bounded approximate 3D cloud slices/particles, mode switching and subtle hover/selection emphasis |
 | `src/viewer/zone-outline.mjs` | Pointer-transparent 2D SVG hover/focus contours, constant CSS stroke, solid authored boundaries and dashed chart-clipping edges; no hit testing |
 | `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
-| `src/viewer/main.mjs` | Selected year/map/record, per-map camera and layer state, catalogue, vertical History, InfoCard, archival and technical-error presentation |
-| `src/viewer/map-scene.mjs` | Three.js scene, orthographic/perspective cameras, OrbitControls, marker/route picking, projected labels and transient route hover |
+| `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
+| `src/viewer/map-scene.mjs` | Stable AtlasMap facade, renderer and ordered coordination of camera, interaction, layers and projection owners |
 | `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
 | `src/viewer/sector-markers.mjs` | Inverts active sphere projection for the central 4px CSS radius; Sector catalogue symbols only, never physical System View models |
 | `src/viewer/celestial-model.mjs` | Fixed physical spheres/normalized small bodies and deterministic symbolic material colors; no geometry for unknown sizes/artificial structures |
@@ -145,7 +145,7 @@ admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
 Phase 3D is complete and creator-approved; its implementation and completion
-documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Phase 4 remains separately gated.
+documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 remains separately gated.
 
 ## Coordinates, layout and rendering
 
@@ -324,3 +324,112 @@ Nonvisual work needs no filler data. The Demo never imports TEST scenarios or
 calibration fixtures; its own registered JSON remains authoritative. Phase 3F
 adds only curated data/integration checks, preserving runtime module boundaries.
 See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differences.
+
+## Phase 4 viewer module ownership
+
+Architecture Phase 4 is complete and creator-approved. Its implementation and
+completion documentation are committed together. Phase 5 is next proposed,
+unstarted and unauthorized; Phase 6 remains planned and separately gated. The current
+NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
+
+| Owner | Responsibility and boundary |
+| --- | --- |
+| `app-state.mjs` / `AppState` | One session's year, scope, selected ID, filters, exact events, saved camera snapshots and per-map layers. Delegates to `resolveAtlas`, `recordedYears`, `searchRecords` and `territoryGroups`; never stores a second political history. No DOM or Three.js dependency. |
+| `catalogue-view.mjs` | Resolved-record rows, filters, selected-row aria state, hover/focus and explicit select/open/focus callbacks; disposes old row listeners before rebuilding. |
+| `infocard-model.mjs` | Pure resolved-record-to-facts/destinations presentation. Retains qualified dates, zero/null, faction legality, administration/government, zones and archival endpoint uncertainty. |
+| `infocard-view.mjs` | Safe text DOM, dialog actions, destination listeners, focus capture/return and dismissal. No historical inference or data HTML. |
+| `timeline-view.mjs` | Slider/numeric input, bounds/errors, previous/next exact event and latest; requests refresh without reloading. |
+| `layer-config.mjs`, `layer-view.mjs` | One frozen definition of supported layer keys/defaults/labels; independent per-map visibility. Visibility never changes historical eligibility. |
+| `app-shell.mjs` | Square stage sizing, floating-panel mutual exclusion/closing and Escape dispatch. |
+| `camera-controller.mjs` | Camera/OrbitControls creation, framing, constraints, modes, tilt, inspection, snapshots and control disposal. Reuses chart-layout and inspection-camera math unchanged. |
+| `map-interaction.mjs` | Canvas/label inputs, drag-versus-click, delayed selection, pointer/focus/touch hover, one marker/route/zone picker and zone emphasis/tooltip. |
+| `scene-layers.mjs` | Per-map grid, influence, envelopes, zones, routes, meshes, labels/proxies, visibility and rebuild/disposal. Uses existing geometry/compositor/nameplate modules. |
+| `projected-labels.mjs` | Existing grid/caption/symbol projection, physical/proxy handoff, depth occlusion and caption layout; no new geometry or picking source. |
+| `lifetime.mjs` | Locally scoped listeners, observer guards and reverse-order, idempotent cleanup. Disposed callbacks cannot act on a replacement application. |
+
+Data flow is validated eager loader -> `AppState` -> core resolved view -> UI
+owners / `AtlasMap`. Main captures the current camera before historical refresh,
+resolves scope/selection invalidation and passes only that resolved view to the
+scene. Navigation resets search/category while retaining each map's camera and
+layer preferences. InfoCard focus-return state belongs to the dialog owner.
+
+AtlasMap retains its public methods and observable camera/scene fields. The
+controllers receive that facade as an explicit context to preserve existing test
+instrumentation; geometry/history are not copied into parallel stores. Lazy
+controller attachment preserves prototype-based non-WebGL harnesses. Camera,
+picking, scene and projection owners never import the facade: marker/hit-size
+factories are injected, avoiding circular imports.
+
+### Safe presentation configuration
+
+`createVisualConfig(overrides)` returns a frozen, closed configuration. AtlasMap's
+optional fifth argument is `{visual: overrides}`; default callers are unchanged.
+No URL/file loading or public settings editor is involved.
+
+| Setting | Existing default | Accepted range |
+| --- | --- | --- |
+| `backgroundColor` (scene only) | `0x03090f` | Integer RGB, 0 through `0xffffff` |
+| `selectionColor` (marker meshes) | `0xffbf62` | Integer RGB, 0 through `0xffffff` |
+| `hoverColor` (routes/arrows) | `0x00d6ff` | Integer RGB, 0 through `0xffffff` |
+| `routeOpacity` | `0.7` | Finite 0 through 1; highlighted route remains 1 |
+| `selectionDelayMs` | `230` | Finite 0 through 1000 |
+
+Unknown keys, invalid types/ranges, accessors and non-plain objects are rejected
+before WebGL allocation. Existing frozen `MINIMUM_DIAMETERS`,
+`MODEL_HANDOFF_RATIO` and Sector symbol constants remain centralized and unchanged.
+CSS owns typography/panel tokens. Units (`KM_PER_CNU = 10000`), IDs, schemas,
+history, coordinates, physical diameters, navigation, authored 24-ly radius,
+Gaussian thresholds and source admission are not configuration options.
+
+### Resource lifetime and verification
+
+The application owns its components and AtlasMap; each map rebuild owns its
+label listeners, proxies and scene objects. Camera mode changes remove the old
+change listener and dispose OrbitControls. Map clearing retains the existing
+geometry/material/texture/render-target, nameplate and outline cleanup. AtlasMap
+disposal also removes canvas input handlers, observers, tooltips and renderer DOM.
+Main owns component listeners per mount and shell/document listeners plus the
+stage observer at the root (including startup errors), guards
+pending startup promises and registers the same cleanup with Vite HMR. Vite's
+existing full-page-reload behavior is retained; no new HMR state architecture.
+
+Run `node --test tests/viewer-modules.test.mjs`, then `npm test`, validation,
+freshness and audited build. Run `tests/browser-viewer-modules.mjs` through the
+Chromium MCP runner with the normal `npm run demo`; it checks focus, timeline
+invalidation, four remount/dispose cycles, resource/listener stability and stale
+callbacks. Existing Demo, navigation, zones, touch, labeling and calibration
+suites remain unchanged. Reuse the [showcase walkthrough](DEMO_SHOWCASE.md) for
+creator inspection. Future separately authorized Phase 5 previews can reuse the
+closed config factory and controllers; no preview editor is implemented here.
+
+
+Phase 4 implementation and closeout verification: the pre-refactor baseline passed 245 tests; the
+extraction plus twelve focused tests passes 257. All 18 applicable Chromium
+suites pass, including lifecycle/configuration and the nine calibration views.
+Ten fixed desktop/mobile DOM and camera snapshots match; pixel comparison with
+a repeat rendering of the unchanged Phase 3F source is identical in all ten.
+Two initial card-edge raster differences also reproduced with that unchanged
+source and disappeared in the controlled comparison. Startup-error Retry remains
+usable because chart sizing belongs to the root shell, independent of loading.
+Vite full reload, repeated teardown/remount, the 24-file/15-SVG build audit and
+protected-data hashes were verified. These execution results support the separately recorded creator approval.
+Physical touch hardware/non-Chromium QA and the existing large-bundle advisory
+remain limitations.
+
+### Extending the completed viewer safely
+
+Keep historical decisions in the existing pure core and pass resolved records to
+UI/scene owners. Add event/observer cleanup to the owning lifetime and preserve
+facade methods and DOM hooks deliberately. Test state/presentation independently,
+then run the ordinary living Demo, error/retry, camera/picking and lifecycle
+regressions. Presentation injection is internal and closed; do not use it to
+change authored history, geometry, schemas or source admission. Phase 5 previews
+may reuse these interfaces only after separate creator authorization; no preview
+editor, extra calibration scenario or public settings control exists here.
+
+
+Closeout reran all 257 automated tests and 18 Chromium suites successfully.
+All ten DOM/camera states match. Nine closeout images match the preserved repeat
+baseline exactly; the remaining faction-card image matches the preserved initial
+baseline exactly, including the already reproduced 157-pixel card-edge raster
+variation. No visual baseline was replaced or test expectation relaxed.

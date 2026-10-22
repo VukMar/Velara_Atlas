@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection; final artistic refinement, elaborate targeting-ring art and curator imagery remain deferred. Current data support is defined by the v1.2 schema; current rendering evidence is in [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection; final artistic refinement, elaborate targeting-ring art and curator imagery remain deferred. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
 
 ## 1. Purpose and source references
 
@@ -233,3 +233,18 @@ Full 3D station/gate models; orbital physics; animated avatar/voice; mandatory c
 ---
 
 **Authority:** For data structure follow `docs/DATA_MODEL.md` + `schemas/`. For viewer behavior follow `docs/VIEWER_SPECIFICATION.md`. For generated Cantum overlays follow `docs/CANTUM_TERRITORY_RENDERING.md`. This document governs presentation; it may not override chronology, geography, publication controls, or transport constraints.
+
+## Completed Architecture Phase 4 configuration boundary
+
+Phase 4 modularization/configuration is complete and creator-approved, preserving
+the approved NEXUS appearance and ordinary Demo. `visual-config.mjs` retains the
+existing fixed pixel minima and handoff values and provides a closed, immutable
+`createVisualConfig` factory for scene background, marker selection, route hover,
+route opacity and selection timing. Defaults are unchanged; CSS remains the owner
+of panel/theme typography and responsive rules. See [exact settings and ownership](ARCHITECTURE.md#safe-presentation-configuration).
+
+This is not a public settings editor. Units, IDs, history, physical dimensions,
+navigation, the authored universal territory radius and release safeguards are
+not visual tunables. Extend only through the owning module and regression tests.
+Phase 5 preview work, new effects/artwork, Atlas Creator and deployment require
+separate creator authorization.

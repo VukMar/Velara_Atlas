@@ -570,3 +570,14 @@ Before changes, inspect the current workspace, tests, schemas and documentation.
 ---
 
 **Approval lineage:** Milestone 3 approved real XYZ navigation, soft Cantum influence, hybrid representation, zones, continuous history, search and archival fallback. Schema v1.2 superseded local-gate branching. Checkpoint 3.6 explicitly superseded permanent side columns/bottom timeline and selection-driven route highlighting. This document owns behavior; schemas and `DATA_MODEL.md` own stored structure, and [verification reports](REPOSITORY_AUDIT_3_6.md) record what has actually been tested.
+
+## Completed Phase 4 module compatibility
+
+The implementation separates session state, catalogue, historical InfoCard
+model/view, timeline, camera, picking, layers and projected labels. This changes
+ownership, not the appearance or behavior specified above. Existing IDs, aria
+attributes, selection/hover semantics, camera methods and read-only boundaries
+remain the contract. [Architecture ownership](ARCHITECTURE.md#phase-4-viewer-module-ownership)
+describes configuration and cleanup. Architecture Phase 4 is complete and
+creator-approved, preserving the same ordinary Demo experience. Phase 5 is next
+proposed, unstarted and unauthorized; no new Demo records or visual redesign were added.

@@ -14,7 +14,9 @@ activates v1.3 in the NONCANONICAL Demo; implementation and status are committed
 Phase 3E implementation and completion documentation are committed together.
 Phase 3F integration/showcase implementation is complete and creator-approved,
 with implementation and completion documentation committed together. Overall
-Architecture Phase 3 is complete; Phases 4-6 remain unstarted and separately gated.
+Architecture Phase 3 is complete. Architecture Phase 4 is complete and
+creator-approved, with implementation and completion documentation committed
+together. Phase 5 is next proposed, unstarted and unauthorized; Phase 6 is planned.
 The active v1.3 Demo uses a provisional shared 24-ly radius. Frozen v1.2
 per-Cantum settings and calibration radii remain unchanged.
 
@@ -57,9 +59,9 @@ Velara_Atlas/
       zone-geometry.mjs        Shared pure clipped zone geometry and hit testing
     viewer/
       index.html / style.css   Floating interface and square map stage
-      main.mjs                 Historical/navigation/selection UI state
+      main.mjs                 Loader/composition, navigation and historical refresh
       demo-data.mjs            Eager imports from the validated virtual mapping
-      map-scene.mjs            Three.js cameras, picking and scene
+      map-scene.mjs            Stable AtlasMap facade and renderer lifecycle
       chart-layout.mjs         Square fit/clamping and sector/system grids
       cartographic-layers.mjs  Influence, zones and routes
       zone-layers.mjs          Clipped footprints and approximate 3D system clouds
@@ -69,12 +71,15 @@ Velara_Atlas/
     demo/
       sector.json              Authored v1.3 Demo index in ly
       cantums.json             Authored demonstration histories
-      factions.json            Empty v1.3 registered faction index
+      factions.json            Two approved NONCANONICAL TEST faction registrations
       presentation.json        Noncanonical colors/field settings
       connections.json         Generated Git-tracked runtime index
       systems/sys_0001.json    Authored records + derived local gate positions
       systems/sys_0002.json
       systems/sys_0003.json
+      systems/sys_0005.json    Approved Phase 3F star/planet/station/gate showcase
+      factions/fac_0001.json   Historical TEST intelligence organization
+      factions/fac_0002.json   Explicitly independent TEST faction
   examples/
     README.md                  Current contract and reference-only ownership
     v1_2/                      Ten focused family snippets/files plus the v1.2 guide
@@ -218,4 +223,21 @@ records; all existing system entries/details and routes remain preserved. The
 shared radius stays 24 ly. [DEMO_SHOWCASE](DEMO_SHOWCASE.md) lists the exact differences.
 `tests/phase3f-integration.test.mjs` derives temporary copies using the Phase 3E
 service; `tests/browser-phase3f-showcase.mjs` exercises the normal Demo on 5173.
-No runtime fixture imports, new application subsystem, Canon move or Phase 4 work.
+Phase 3F itself added no runtime fixture imports, new application subsystem,
+Canon move or Phase 4 work; the completed modularization is described below.
+
+## Completed Phase 4 viewer owners
+
+- `app-state.mjs`: per-session UI state and delegation to pure historical resolution.
+- `catalogue-view.mjs`, `timeline-view.mjs`, `layer-view.mjs`: focused DOM controls.
+- `infocard-model.mjs`, `infocard-view.mjs`: historical facts/destinations, dialog and focus.
+- `app-shell.mjs`, `lifetime.mjs`: panels/chart sizing and owned listeners/observers.
+- `camera-controller.mjs`, `map-interaction.mjs`: camera/controls and picking/inputs.
+- `scene-layers.mjs`, `projected-labels.mjs`: per-map resources and existing caption projection.
+- `layer-config.mjs`, `visual-config.mjs`: closed visibility definitions and safe defaults.
+- `tests/viewer-modules.test.mjs`, `tests/browser-viewer-modules.mjs`: focused module and real-Demo lifecycle checks.
+
+All runtime owners remain under `src/viewer/`, inside the existing source boundary.
+No test-only import, arbitrary discovery, dataset mutation or new dependency is
+introduced. Main and AtlasMap are compatibility/composition facades, not alternate
+history or geometry sources. See [architecture](ARCHITECTURE.md#phase-4-viewer-module-ownership).

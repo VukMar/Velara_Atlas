@@ -2,8 +2,10 @@
 
 Phase 3F implementation and the normal graphical Demo showcase are complete and
 creator-approved. Overall Architecture Phase 3, including 3A-3F, is complete.
-Implementation and completion documentation are committed together. Phase 4 has
-not started and requires separate authorization. No deployment, Canon migration
+Implementation and completion documentation are committed together. Architecture Phase 4
+viewer modularization/configuration is complete and creator-approved; the approved
+Demo data, default appearance, interactions and walkthrough remain unchanged.
+Phase 5 is next proposed, not started and requires separate authorization. No deployment, Canon migration
 or graphical Atlas Creator is implemented.
 
 ## Open the ordinary Atlas
@@ -131,7 +133,7 @@ npm run idfind -- all
 npm run atlas:new-system -- --help
 ```
 
-Local review verification: **245 automated tests pass**, including five new
+Phase 3F closeout verification: **245 automated tests pass**, including five new
 integrated/preservation tests; all **17 applicable Chromium suites pass**, including
 this normal-Demo walkthrough and the nine calibration comparisons. Strict validation,
 freshness, the 24-file/15-approved-SVG build audit, terminal history, ID Finder and

@@ -10,7 +10,7 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and creator-approved**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F and 4 are complete and creator-approved**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
@@ -26,15 +26,16 @@ documentation committed together. **Phase 3E is complete and creator-approved**:
 sector registration, recoverable writes and manual entity/gate workflows, with
 implementation and completion documentation committed together. **Phase 3F integration and the curated Demo showcase are
 complete and creator-approved**, with implementation and completion documentation
-committed together. Overall Architecture Phase 3 is complete. Phase 4 is the next
-proposed checkpoint; Phases 4-6 remain unstarted and separately gated.
+committed together. Overall Architecture Phase 3 is complete. Architecture Phase 4 viewer modularization and safe configuration are complete
+and creator-approved, with implementation and completion documentation committed
+together. Phase 5 is next proposed, unstarted and unauthorized; Phase 6 remains gated.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
 and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
 preserves its original verification context. Completed Phase 3D introduces
 governing fields, a shared provisional 24-ly radius and historical InfoCards in
 the NONCANONICAL v1.3 Demo. Frozen v1.2/calibration remain unchanged. Phase 3F completes the integration gate and normal-Demo showcase. Overall
-Architecture Phase 3 is complete; Phase 4 requires separate creator approval.
+Architecture Phase 3 is complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is next proposed.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -164,7 +165,7 @@ orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
 Phase 3F implementation and the scoped noncanonical Demo additions are complete
 and creator-approved. Their implementation and status synchronization are committed together.
-Phase 4 and later require separate creator approval. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
+Architecture Phase 4 is complete and creator-approved; Phase 5 and later require separate creator approval. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
 
 ## Feature showcase gate
 
@@ -174,3 +175,14 @@ After corrections, explicit approval and a separate closeout authorize docs,
 commit and push. Nonvisual/internal work needs no filler entities. Preserve TEST,
 Development/calibration, Demo and Canon separation. [DEMO_SHOWCASE](DEMO_SHOWCASE.md)
 records the completed, creator-approved Phase 3F walkthrough and intentional additions.
+
+## Completed Architecture Phase 4 boundary
+
+The viewer now separates UI state, catalogue, InfoCard model/view, timeline,
+layer controls, camera, picking, scene layers and projected labels. `AtlasMap`
+and existing DOM hooks remain compatible; defaults, HTML/CSS, authored data,
+historical algorithms and publication allowlists are preserved. See
+[architecture ownership](ARCHITECTURE.md#phase-4-viewer-module-ownership).
+Architecture Phase 4 is complete and creator-approved; its implementation and
+completion documentation are committed together. No new Demo filler,
+Atlas Creator, Canon migration, deployment or Phase 5 work is authorized.
