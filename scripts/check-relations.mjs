@@ -1,13 +1,15 @@
-/** Cross-file validation; no npm dependencies. JSON Schema validates field types separately. */
+/** Cross-file validation; v1.3 reads reuse the guarded registered/schema loader. */
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateEntityRelationships} from './entity-relations.mjs';
+import {readDatasetSource} from './demo-files.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 
 export function readDataset(root) {
   const read = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
   const sector = read('sector.json');
+  if(sector.schemaVersion==='1.3.0')return readDatasetSource(root).dataset;
   return {
     sector, presentation: sector.presentationPath ? read(sector.presentationPath) : null, cantums:read(sector.cantumsPath), connections:read(sector.connectionsPath),
     detailFiles:new Map(sector.systems.filter(s=>s.publicDetailPath!==null).map(s=>[s.id,read(s.publicDetailPath)]))

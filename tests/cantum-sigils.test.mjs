@@ -13,9 +13,9 @@ import {iconFiles,sigilFiles,svgFiles,approvedSVGSources,validateIconSource} fro
 import config,{demoInputAudit} from '../vite.config.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 
-test('current v1.2 Cantum sigils are optional nullable identifiers, scoped away from other records',()=>{
+test('current v1.3 Cantum sigils are optional nullable identifiers, scoped away from other records',()=>{
   const {dataset}=readDemoSource(),a=dataset.cantums.cantums[0];
-  assert.equal(dataset.sector.schemaVersion,'1.2.0');
+  assert.equal(dataset.sector.schemaVersion,'1.3.0');
   assert.equal(a.sigil,'test-cantum-a');assert.equal(dataset.cantums.cantums[1].sigil,null);
   for(const sigil of ['test-cantum-a','future-emblem-2',null,undefined]) {
     if(sigil===undefined)delete a.sigil;else a.sigil=sigil;

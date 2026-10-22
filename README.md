@@ -4,23 +4,22 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and v1.2 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
+> **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B and 3C are complete**. **Phase 3C is
-creator-approved**, with its isolated entity/governance implementation and completion
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete**. **Phase 3D is
+creator-approved**, with its governing-territory/v1.3 implementation and completion
 documentation committed together. Overall Phase 3 is not complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Phase 3D is the next proposed checkpoint and requires separate creator authorization**, under
+verification context. **Phase 3E is the next proposed checkpoint and requires separate creator authorization**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phases 3D-3F and 4-6 remain planned and separately gated. Phase 3C is limited to
-the isolated entity/reference/governance model; governing territory and universal
-Cantum-radius changes remain Phase 3D proposals. Current per-Cantum `radiusLY`
-behavior is unchanged.
+Phase 3E and later remain separately gated. Completed Phase 3D activates v1.3
+in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
+historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
 
 The detailed charts are 100,000 CNU (A, central star), 80,000 CNU (B, offset star)
 and 160,000 CNU (C, peripheral star). Representative celestial diameters are
@@ -65,19 +64,19 @@ The viewer is read-only. Local Node tools support manual JSON authoring; private
 | Location | Contents |
 | --- | --- |
 | `public/data/` | Protected legacy v0.1 canonical records; excluded from the demo build |
-| `public/datasets/demo/` | Active public-safe noncanonical v1.2 runtime dataset |
+| `public/datasets/demo/` | Active public-safe noncanonical v1.3 runtime dataset |
 | `examples/v1_2/` | Ten focused noncanonical entity-family references and their guide; excluded from runtime |
 | `tests/fixtures/legacy_examples/` | Preserved legacy regression inputs |
 | `docs/archive/json-proposals/` | Preserved obsolete JSON proposal shapes |
 | `src/timeline/` | Existing historical resolver (v0.1) |
-| `src/core/history.mjs` | Independent historical resolver (v1.1/v1.2 runtime records) |
+| `src/core/history.mjs` | Independent historical selectors shared by v1.1/v1.2/v1.3 |
 | `src/core/cartography.mjs` | Pure historical catalogue, route and influence calculations |
 | `src/viewer/` | Local demo-only Vite/Three.js prototype |
 | `tests/` | Automated checks and a console timeline demonstration |
 | `docs/DATA_RULES.md` | Historical conventions and known outstanding decisions |
-| `docs/DATA_MODEL.md` | Current v1.2 structural model; schemas are the exact validation contract |
+| `docs/DATA_MODEL.md` | Active v1.3 model and v1.2 compatibility; schemas govern exact shape |
 | `docs/NAVIGATION_AUTHORING.md` | Manual connection generation, validation and recovery |
-| `schemas/` | Current v1.2 definitions/wrappers and frozen v1.1 regression schema |
+| `schemas/` | Active v1.3 definitions; unchanged v1.2 wrappers and frozen regressions |
 | `scripts/` | Offline generation, validation, ID Finder and build audit |
 | `docs/ARCHITECTURE.md` | Implemented modules, future work and disclosure boundaries |
 | `docs/REPOSITORY_STRUCTURE.md` | Repository and private-data organization |
@@ -125,7 +124,7 @@ npm run build
 npm run preview
 ```
 
-`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks, isolated proposed v1.3 entity tests and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
+`npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks, v1.3 entity/governance, radius and navigation tests and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
 Dependencies are pinned by `package-lock.json`; use `npm ci` and a supported Node LTS. Vite's `publicDir` is disabled: canonical `public/data/` is neither an application input nor automatically copied to `dist/`. The `/Velara_Atlas/` base prepares asset URLs for a future repository-subpath deployment; no GitHub Pages workflow is configured. The [Checkpoint 3.6 audit](docs/REPOSITORY_AUDIT_3_6.md) records earlier checks and limits; the [index](docs/INDEX.md) links subsequent evidence. Physical touch-device verification remains outstanding.
 
@@ -222,11 +221,39 @@ Internal alternate-root injection exists only for isolated automated tests.
 `node --test tests/dataset-inventory.test.mjs` exercises rejection cases and a
 temporary fourth system through the real loader, navigation writer and full build.
 It does not add speculative records to the active Demo. Phase 3B is complete
-and creator-approved. [Completed, creator-approved Phase 3C](docs/DATA_MODEL_V1_3_PROPOSAL.md) adds
-an isolated proposed v1.3 entity model; the live Demo remains v1.2. No faction
-fixtures, governance resolver or InfoCard UI activation enters its production build.
-Phase 3D migration, navigation activation, shared radius and territory merging
-remain unauthorized.
+and creator-approved. Completed [Phase 3D v1.3 activation](docs/DATA_MODEL_V1_3_PROPOSAL.md)
+now preloads the faction registry and every registered faction record alongside
+all released system details. No on-demand fetching or arbitrary-root command is added.
+The Demo registry is empty; TEST factions remain isolated in tests. The pure
+resolver is explicitly admitted to the build; test fixtures and calibration are not.
+
+## Historical governing influence (Phase 3D)
+
+Systems keep their authored administrative `cantumHistory`. The selected-year
+Cantum superior chain determines the governing political field and its name/sigil.
+All contributors of one governor enter one Gaussian sum before shading. Missing
+superior history is **Not recorded**, not Independent: those systems retain their
+administrative InfoCards but do not assert a sovereign overlay. InfoCards resolve
+Cantum/faction names for the selected year, including faction legal status and
+institutional affiliation. Exact faction/governance boundaries enter History jumps;
+approximate dates do not.
+
+The v1.3 Demo uses `territoryOverlay.radiusLY: 24` for every Cantum; per-Cantum
+entries contain colors only. This is provisional NONCANONICAL data. Cantum A
+keeps its former radius; Cantum B expands from 18 to 24 ly. Opacity, Gaussian
+thresholds, colors and envelope-height rules are unchanged. The
+[migration crosswalk](docs/DATA_MODEL_V1_3_PROPOSAL.md#phase-3d-demo-migration-crosswalk)
+records every authorized data difference. Frozen v1.2 references still use their
+original per-Cantum representation.
+
+Run `node tests/preview-governance.mjs` for the isolated, loopback-only test viewer
+at `http://127.0.0.1:5175/Velara_Atlas/`, then execute the MCP entry point
+`tests/browser-governing-influence.mjs`. It derives TEST A/B/C governance and
+factions from the existing v1.3 fixture, adds rendering-only statuses/positions,
+and removes its temporary dataset on Ctrl+C. It does not edit the live Demo or
+create a new public dataset selector. All other browser suites continue using
+Demo 5173 and calibration 5174. See the
+[contract and focused tests](docs/DATA_MODEL_V1_3_PROPOSAL.md).
 
 ## Schema v1.2 navigation authoring
 
@@ -267,7 +294,7 @@ files, including systems not yet indexed. References and presentation settings
 do not count as definitions. Catalogue/detail system IDs and authored/generated
 link pairs count once; generated-only link IDs remain used. It does not run the
 navigation generator or check graph freshness (`connections:check` does that).
-The active v1.2 Demo has no factions. Only an explicitly loaded v1.3 context
+The active v1.3 Demo has an empty faction registry. A loaded v1.3 context
 enables bounded faction registry/file diagnostics; unregistered faction files
 remain collision diagnostics, never viewer/build inputs. No CLI root selector
 is added. See [the isolated fixture and checks](tests/fixtures/v1_3/README.md).

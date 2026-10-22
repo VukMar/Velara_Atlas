@@ -5,13 +5,13 @@
 **Scope:** **Sector map only**. This defines NEXUS political **influence shading**, not exact sovereign borders and not the star-system spatial-zone renderer.
 
 **Implementation status:** Implemented by `src/core/cartography.mjs` and
-`src/viewer/cartographic-layers.mjs`. Current v1.2 validates the separate demo
-`presentation.json`; v1.1 regression support is retained. Checkpoint 3.6 changed
+`src/viewer/cartographic-layers.mjs`. Completed, creator-approved Phase 3D validates the v1.3 Demo's separate
+`presentation.json`; frozen v1.1/v1.2 and calibration behavior are retained. Checkpoint 3.6 changed
 chart framing and panels only, preserving the algorithm, contributors and caps.
 
 ## 1. Concept and source of truth
 
-For each Cantum, generate a translucent, softly bounded X/Z region from system-centered influence bubbles, then merge bubbles **within that Cantum** using a continuous metaball-style field. A single isolated system makes an island. Two or more close systems merge into an organic region. Unconnected far-away systems remain separate islands. **Never stretch artificial corridors** merely to connect separated holdings. Gate routes do not determine territory.
+For each ultimate governing Cantum (direct Cantum for legacy v1.2), generate a translucent, softly bounded X/Z region from system-centered influence bubbles, then merge bubbles **within that governing group** using a continuous metaball-style field. A single isolated system makes an island. Two or more close systems merge into an organic region. Unconnected far-away systems remain separate islands. **Never stretch artificial corridors** merely to connect separated holdings. Gate routes do not determine territory.
 
 This layer depicts the **distribution of mapped Cantum-associated systems**, not the exact extent of law, ownership of the intervening void, or volumetric boundaries. NEXUS should label it **“Cantum influence / approximate chart overlay”** or comparable language, not “exact sovereign border.” A system's membership must not be derived from the resulting color field.
 
@@ -24,13 +24,17 @@ For chosen year `Y`:
 3. Include the system only if `positionLY` has finite numeric X/Z coordinates in `ly` and the system is inside the sector's declared map bounds. Y is **not** used to calculate this 2D projected shading. Systems without plotted coordinates can still be in the catalogue, but cannot contribute bubbles.
 4. Determine the historically valid Cantum from the system's effective `cantumHistory` at `Y` (`fromAE` inclusive, `untilAE` exclusive). A null, absent, conflicting or unresolved membership contributes no bubble. `controlHistory`, `infoCard.affiliation`, labels, geographic proximity and travel links do **not** replace this source. Cantum existence/status data must also be historically eligible at `Y`; otherwise omit the contribution and flag inconsistent records in validation.
 5. Include a known public system **even if** `publicDetailPath` is null or its inner map is partially authored. The presence of a system-level detail file is irrelevant for sector territory shading.
-6. Group accepted X/Z points by their effective Cantum ID. Cantums with no eligible positioned systems have no generated region; retain their other public catalogue information.
+6. In v1.3 resolve the administrative Cantum's dated `infoCard.affiliation` chain
+   using `resolveGoverningCantum()`. Require an eligible independent root; missing
+   governance is Not recorded and produces no sovereign bubble. Group all accepted
+   X/Z points by that governing ID before computing a field. In v1.2, retain direct
+   administrative grouping. Cantums with no eligible positioned systems have no generated region; retain their other public catalogue information.
 
-**Important:** At historical years before a system joins a Cantum, its marker may be visible but it should not generate that Cantum's bubble. Even within the politically unified Continuance period, reflect the historical Cantum administration rather than assuming all systems were always independently sovereign.
+**Important:** At historical years before a system joins a Cantum, its marker may be visible but it should not generate that Cantum's bubble. Keep direct administration distinct from sovereignty. Effective null-target Cantum affiliation proves independence; absent history never does. No fictional Demo declaration asserts canonical Continuance history.
 
 ## 2. Exact field and compositing algorithm (initial recommended implementation)
 
-**Coordinates are world-space `ly` in the sector X/Z plane**, not CNU, and **bubble radii are `ly`**, never screen pixels. One bubble is centered at each eligible system `(x_i, z_i)` and uses its Cantum's fixed radius `r_c > 0`.
+**Coordinates are world-space `ly` in the sector X/Z plane**, not CNU, and **bubble radii are `ly`**, never screen pixels. One bubble is centered at each eligible system `(x_i, z_i)` and uses the shared v1.3 `radiusLY > 0` (`r_c` below). Frozen v1.2 uses its Cantum's authored radius.
 
 At a sample map-plane point `(x,z)` define squared distance and influence:
 
@@ -79,16 +83,17 @@ These are **tunable starting defaults**, not canon. The sample uses a **maximum 
 
 ## 4. Implemented public-safe presentation settings
 
-`schemas/atlas.schema.json#/$defs/presentationFile` and the presentation wrapper
-validate this separate style file. The sector's optional `presentationPath`
+`schemas/atlas-v1_3.schema.json#/$defs/presentationFile` validates the active Demo.
+The v1.2 master and wrapper remain unchanged for legacy/reference files. The sector's optional `presentationPath`
 identifies it; the current demo loader explicitly imports the allowlisted file.
-This minimal example uses current v1.2 structure and noncanonical fixture values:
+This minimal example uses current v1.3 structure and noncanonical fixture values:
 
 ```json
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "territoryOverlay": {
     "enabledByDefault": true,
+    "radiusLY": 24,
     "fallbackRadiusFraction": 0.08,
     "opacityMaxPerCantum": 0.16,
     "opacityCapTotal": 0.22,
@@ -96,7 +101,7 @@ This minimal example uses current v1.2 structure and noncanonical fixture values
     "fieldThresholdEnd": 0.65,
     "fallbackColor": "#73808C",
     "cantums": {
-      "can_0001": { "color": "#638FBD", "radiusLY": 24 }
+      "can_0001": { "color": "#638FBD" }
     }
   }
 }
@@ -107,7 +112,7 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 ## 5. Runtime and performance contract
 
 - The public viewer only **reads** JSON; no local editor or server write path is required.
-- Rebuild contributor lists/field geometry when the **selected year, published system positions, membership history, palette or configured radius** changes. **Do not** recalculate affiliation from an InfoCard, use unreleased details, or treat the changing viewport as a geopolitical event.
+- Rebuild contributor lists/field geometry when the **selected year, published system positions, membership history, palette or configured radius** changes. Use only dated Cantum superior affiliation for governance; **do not** infer it from object/faction affiliation, use unreleased details, or treat the changing viewport as a geopolitical event.
 - Pan/zoom may reproject a cached field texture or use a GPU shader in world coordinates; it must preserve deterministic region boundaries. An offscreen/low-resolution field with smooth interpolation is acceptable if edges look clean at ordinary zoom levels. Avoid naive full-resolution CPU loops over every system for every animation frame.
 - Precompute bounding rectangles or cull negligible contributions outside a safe multiple of each radius for performance. Cache reusable data; update only when necessary.
 - Missing/stale/malformed style settings must not crash or block star navigation: warn, use safe defaults, or disable the overlay while preserving all map markers. Invalid historical membership is a data-validation issue, not a reason to invent a bubble.
@@ -115,7 +120,7 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 
 ## 6. Acceptance tests and visually important cases
 
-1. **A/B regression scenario:** The frozen accepted fixtures retain `can_0001` with no contributors before 210 A.E., A at 210–329 and A+B at 330+. With `radiusLY: 24`, those fields join. The live v1.2 demo also includes a separately colored System C/Cantum 2; read current authored dates/positions rather than inferring them from this original scenario. All systems and interstellar strokes remain above influence shading.
+1. **A/B regression scenario:** The frozen accepted fixtures retain `can_0001` with no contributors before 210 A.E., A at 210–329 and A+B at 330+. With `radiusLY: 24`, those fields join. The live Demo also includes a separately colored System C/Cantum 2; read current authored dates/positions rather than inferring them from this original scenario. All systems and interstellar strokes remain above influence shading.
 2. **Zoom stability:** Zooming from wide to close does not change physical radius in `ly` or change which groups merge. Pan cannot move bubbles away from systems.
 3. **Disconnected holdings:** Two widely separated systems of the same Cantum remain two islands rather than being joined by a fabricated corridor.
 4. **Multiple Cantums (additional noncanonical test):** Different Cantums retain separate fields and IDs. At overlap, colors blend deterministically, stay subdued and do not cover system labels. No single Cantum is silently assigned the contested area.
@@ -123,7 +128,7 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 6. **Historically unknown/unplaced:** A system not yet discovered is absent from the field; a known unplaced system remains catalogued but contributes no bubble; an undeveloped positioned known system **does** contribute a bubble.
 7. **Overlay toggle:** Hide/show shading without altering navigation, route rendering, search, timeline or InfoCards.
 8. **2D/3D layering:** In both camera modes, terrain shading cannot obscure, intercept clicks on, or draw in front of the stars, labels, routes or selection markers.
-9. **Valid JSON only:** Current presentation settings are checked by strict v1.2 schema and relationship validation; tests retain frozen v1.1 coverage. Canonical political files are not migrated or used as viewer inputs.
+9. **Valid JSON only:** Current presentation settings are checked by strict v1.3 schema and relationship validation; tests retain frozen v1.1 coverage. Canonical political files are not migrated or used as viewer inputs.
 10. **Build integrity:** Production bundle contains only explicitly released JSON and safe palette values. No private region/lore notes or local editor code.
 
 ## 7. Explicit future possibilities (not required for initial viewer)
@@ -296,3 +301,17 @@ Architecture Phase 3A operational changes are complete and creator-approved.
 Phase 3B remains proposed and requires separate authorization. The scenario JSON and
 cloning adapter preserve these calculations and all existing synthetic facts; see
 [current commands, format and tests](../README.md#local-development-and-future-canon).
+
+## Completed Phase 3D governing-field activation
+
+The active Demo shares a provisional 24-ly radius. B expands from 18 to 24 ly;
+A is unchanged. No thresholds, opacities, colors or height formula changed.
+See the [data crosswalk and measurable effects](DATA_MODEL_V1_3_PROPOSAL.md#phase-3d-demo-migration-crosswalk).
+Subordinate systems enter the governor's single Gaussian field, envelope and
+island detection; a same-colored duplicate field is not a merger. Labels/sigils
+use the governor while administrative names remain in the catalogue/InfoCards.
+Envelope contributors and label elevation anchors use validated group membership
+and actual XYZ, including subordinate elevations. Cache keys retain grouped IDs,
+positions, radius, thresholds and elevation/identity where consumed. Existing
+clear/dispose paths replace WebGL/DOM resources on year changes. Unknown roots
+are omitted from political shading and explained as Not recorded in InfoCards.

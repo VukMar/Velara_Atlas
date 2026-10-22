@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.3.0",
+  "territoryOverlay": {
+    "enabledByDefault": true,
+    "radiusLY": 8,
+    "fallbackRadiusFraction": 0.08,
+    "opacityMaxPerCantum": 0.16,
+    "opacityCapTotal": 0.22,
+    "fieldThresholdStart": 0.35,
+    "fieldThresholdEnd": 0.65,
+    "fallbackColor": "#73808C",
+    "cantums": {
+      "can_9901": {
+        "color": "#638FBD"
+      },
+      "can_9902": {
+        "color": "#C99160"
+      },
+      "can_9903": {
+        "color": "#80AA70"
+      },
+      "can_9904": {
+        "color": "#9988AA"
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ export {DEMO_ROOT,safePath,datasetInventory} from './dataset-inventory.mjs';
 
 export function readDemoSource(root,io=fs) {return readDatasetSource(root,io);}
 
-/** Explicit version opt-in is internal test support; Demo/writer remain v1.2 only. */
+/** Shared version-aware raw loader; CLI dataset selection remains fixed to Demo. */
 export function readDatasetSource(root, io = fs, options = {}) {
   const inventory=datasetInventory(root,io,options), texts=new Map([['sector.json',inventory.sectorText]]);
   const read=(name,kind,optional=false)=>{

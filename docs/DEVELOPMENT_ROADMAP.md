@@ -4,13 +4,13 @@
 preserving the visual/runtime baseline from `190bd21`. Checkpoint 4.1
 Phases 1–3 are complete and creator-approved. The local noncanonical demo also
 includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration,
-retaining Checkpoint 3.8 zones, labeling, v1.2 navigation and Checkpoint 3.6 layout.
+retaining Checkpoint 3.8 zones, labeling, version-aware v1.2/v1.3 navigation and Checkpoint 3.6 layout.
 The system grid uses Y = 0 CNU. [Maintenance evidence](POST_PHASE3_MAINTENANCE.md)
 records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B and 3C are complete**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
@@ -20,16 +20,18 @@ Phase 2 in `6e026cb`, Phase 2.1 in `711a410` and Phase 2.2 in `8d88ef2`.
 eager detail preload and shared offline/Vite admission, with implementation and
 completion documentation committed together. **Phase 3C is complete and creator-approved**, with implementation and
 completion documentation committed together. Its separate
-[proposed v1.3 entity contract](DATA_MODEL_V1_3_PROPOSAL.md) remains isolated. **Phase 3D is next
-and unauthorized.** Phases 3D-3F and
+[v1.3 entity contract](DATA_MODEL_V1_3_PROPOSAL.md) is now activated in the local Demo
+by completed, creator-approved Phase 3D, with implementation and completion
+documentation committed together. **Phase 3E
+is next and unauthorized.** Phases 3E-3F and
 4-6 remain planned and separately gated; Phase 3 as a whole is not complete.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
 and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
-preserves its original verification context. Governing-Cantum influence and a
-shared radius remain Phase 3D proposals; per-Cantum `radiusLY` is unchanged.
-Faction/InfoCard resolution and dated Cantum governance are isolated Phase 3C
-implemented support, not activated in the v1.2 Demo or its territory renderer.
+preserves its original verification context. Completed Phase 3D introduces
+governing fields, a shared provisional 24-ly radius and historical InfoCards in
+the NONCANONICAL v1.3 Demo. Frozen v1.2/calibration remain unchanged. Overall Phase 3 is not complete;
+3E and 3F remain outstanding.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -87,7 +89,7 @@ Grid, influence and navigation behavior were preserved. See
 
 Milestones 1–5 established repository/disclosure rules, the structural data model,
 the viewer specification, Cantum rendering, NEXUS identity and asset policy.
-Schema v1.0 evolved through v1.1 to the current **v1.2 noncanonical contract**.
+Schema v1.0 evolved through v1.1 to the current **v1.3 noncanonical Demo contract**, retaining frozen v1.2 compatibility.
 The local visual editor was deferred. Design approval does not authorize all
 future implementation or canonical content migration.
 
@@ -157,6 +159,6 @@ demo systems, coordinates, routes or statistics to canon. See
 A general publication pipeline, arbitrary dataset selection, moon-relative coordinates,
 orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
-The approved Phase 3C closeout permits its completion commit/push only; stop
-after remote verification. No new implementation, merge or deployment. Phase 3D
-and later work need separate creator approval.
+The current authorization permits only the reviewed Phase 3D closeout commit/push;
+stop after remote verification. No new implementation, merge or deployment.
+Phase 3E and later need separate creator approval.

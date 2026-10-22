@@ -1,10 +1,13 @@
-# Velara Atlas — JSON Data Contract v1.2.0
+# Velara Atlas — JSON Data Contract: active v1.3 and v1.2 compatibility
 
 **Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
-The isolated [proposed v1.3 faction/governance contract](DATA_MODEL_V1_3_PROPOSAL.md)
-is implemented, tested Phase 3C support, complete and creator-approved. It does not change this
-active v1.2 schema, its legacy `org_` references, null behavior or Demo records.
+The [v1.3 faction/governance contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md)
+govern the active NONCANONICAL Demo under completed, creator-approved Phase 3D.
+`schemas/atlas-v1_3.schema.json` adds `fac_`, explicit dated Cantum governance and
+one required universal radius. The base spatial/history/navigation conventions
+below remain applicable. `atlas.schema.json`, its wrappers and `examples/v1_2/`
+retain v1.2 semantics, including legacy `org_` references and per-Cantum radii.
 
 ## Identity and naming
 
@@ -14,7 +17,7 @@ All entities have stable, globally unique IDs within a dataset. The prefix is a 
 
 ## Optional Cantum visual identity — Stage 2
 
-Current v1.2 Cantum records may author `sigil` as null or a registry identifier:
+v1.2 and v1.3 Cantum records may author `sigil` as null or a registry identifier:
 1–64 characters, matching `^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$`. Omission and explicit
 null both mean no sigil, with no generic unknown-icon fallback. Well-formed but
 unregistered IDs also render name-only. Paths, URLs, extensions and scripts are
@@ -55,7 +58,8 @@ escaping or symlinked declarations fail validation. A valid file left unregister
 does not enter the viewer/build. All released details preload eagerly. Adding an
 approved system is a JSON operation; restart Demo after registration changes and
 run the generation/check/validation workflow in [README](../README.md#registered-demo-systems-and-loading).
-This implements the existing v1.2 contract, not the isolated Phase 3C/v1.3 relationships.
+The same inventory now supports v1.2 and v1.3; only v1.3 admits its registered faction files.
+No unregistered files enter the viewer, and full eager preload remains.
 
 ## Coordinates and distance units
 
@@ -70,7 +74,7 @@ Each system may have different square X/Z dimensions and an independently author
 Y extent. A star need not be at the chart center. The system grid and annotations
 remain on absolute Y = 0 CNU, independently of stellar position and vertical bounds.
 
-**Checkpoint 3.8 exception — v1.2 system spatial zones only:** A zone's `position`
+**Checkpoint 3.8 exception — v1.2/v1.3 system spatial zones only:** A zone's `position`
 is its authored geometric reference origin, not an ordinary object position. Its
 origin and dimensions may extend outside the system map if the volume has a
 strictly positive 3D intersection with the chart's XYZ box. Face/edge/corner
@@ -121,7 +125,7 @@ zoom, icons, `visualVariant`, `navigation.boundaryRadiusCNU` and zone dimensions
 No type implies a physical size or multiplier. Gas giant remains a planet's
 `gas` visual variant. Artificial structures initially use fixed apparent icons.
 
-This is an additive current v1.2 schema extension shared by release and authoring
+This additive v1.2 field is retained in v1.3 shared by release and authoring
 validation; no version bump, required-field change or existing-record migration.
 Frozen schemas/fixtures and canonical v0.1 remain unchanged. Phase 1 added no
 measurements or runtime consumption. Phase 2 now populates representative

@@ -34,7 +34,7 @@ export function parseDatasetJSON(text,name) {
 
 /** Validate the catalogue BEFORE admitting detail paths. Deterministic inventory
  * preserves catalogue order in the sector, sorting only technical file entries. */
-export function datasetInventory(root=DEMO_ROOT,io=fs,{versions=['1.2.0']}={}) {
+export function datasetInventory(root=DEMO_ROOT,io=fs,{versions=['1.2.0','1.3.0']}={}) {
   const sectorText=io.readFileSync(safeDatasetPath(root,'sector.json',io),'utf8');
   const sector=parseDatasetJSON(sectorText,'sector.json');
   const version=sector?.schemaVersion;
@@ -81,7 +81,7 @@ export function datasetInventory(root=DEMO_ROOT,io=fs,{versions=['1.2.0']}={}) {
 /** Authorize a write/read against the current registered inventory, including a
  * missing graph. Does not parse partially replaced details during rollback. */
 export function safePath(root,name,io=fs) {
-  safeDatasetPath(root,name,io);
-  if(!datasetInventory(root,io).files.includes(name))throw new Error(`Outside registered dataset allowlist: ${name}`);
-  return safeDatasetPath(root,name,io);
+  const inventory=datasetInventory(root,io);
+  if(!inventory.files.includes(name))throw new Error(`Outside registered dataset allowlist: ${name}`);
+  return safeDatasetPath(root,name,io,{version:inventory.sector.schemaVersion});
 }

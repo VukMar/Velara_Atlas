@@ -30,14 +30,16 @@ function temporary(t) {
 }
 const change=(root,file,fn)=>{const target=path.join(root,file),value=JSON.parse(fs.readFileSync(target,'utf8'));fn(value);fs.writeFileSync(target,JSON.stringify(value,null,2)+'\n');};
 
-test('isolated v1.3 inventory and complete records validate; default Demo selection remains v1.2',()=>{
+test('isolated v1.3 inventory and complete records validate; active Demo supports v1.3 with isolated fixtures kept separate',()=>{
   const {dataset,inventory}=load();assert.deepEqual(allErrors(dataset),[]);
-  assert.equal(inventory.files.length,7);assert.equal(dataset.factionFiles.size,2);assert.equal(dataset.detailFiles.size,1);
+  assert.equal(inventory.files.length,8);assert.equal(dataset.factionFiles.size,2);assert.equal(dataset.detailFiles.size,1);
   assert.deepEqual(inventory.factions.map(f=>f.id),['fac_9901','fac_9902']);
   assert.equal(dataset.sector.systems[1].publicDetailPath,null);
-  assert.throws(()=>readDemoSource(ROOT),/schemaVersion/);assert.throws(()=>createDemoConfig({datasetRoot:ROOT}),/schemaVersion/);
-  assert.equal(readDemoSource().dataset.sector.schemaVersion,'1.2.0');
-  assert.throws(()=>createEntityIndex(readDemoSource().dataset),/v1.3/);
+  assert.deepEqual(allErrors(readDemoSource(ROOT).dataset),[]);assert.doesNotThrow(()=>createDemoConfig({datasetRoot:ROOT}));
+  assert.equal(readDemoSource().dataset.sector.schemaVersion,'1.3.0');
+  assert.equal(createEntityIndex(readDemoSource().dataset).size,2);
+  const legacy=structuredClone(readDemoSource().dataset);legacy.sector.schemaVersion='1.2.0';
+  assert.throws(()=>createEntityIndex(legacy),/v1.3/);
 });
 
 test('faction schema separates descriptive category, legal status and sole institutional affiliation',()=>{
@@ -175,7 +177,7 @@ test('legal status and affiliation cover every effective interval without assumi
 test('new semantics are opt-in: frozen v1.2 null affiliation selection is unchanged',()=>{
   const info={affiliation:[period(0,null,null)]};assert.deepEqual(resolveInfoCard(info,0).affiliation,period(0,null,null));
   assert.equal(resolveInfoCard({affiliation:null},0).affiliation,null);
-  assert.throws(()=>generateNavigation(source()),/v1.2|schemaVersion/);
+  assert.deepEqual(generateNavigation(source()).dataset.connections,{schemaVersion:'1.3.0',connections:[]});
 });
 
 test('registry duplicates, missing/mismatched/malformed faction files and wrong versions safely fail',t=>{
@@ -231,10 +233,11 @@ test('malformed faction identities, JSON and registry mirrors withhold ID sugges
   const root=temporary(t);fs.writeFileSync(path.join(root,'factions/fac_9901.json'),'{bad');assert(scanDataset({datasetRoot:root}).errors.some(e=>/malformed JSON/.test(e)));
 });
 
-test('repeat JSON loads are independent; proposed fixtures/modules are rejected by unchanged Demo admission',()=>{
+test('repeat JSON loads are independent; isolated fixtures stay rejected while the pure resolver is explicitly admitted',()=>{
   const d=source();faction(d).nameHistory[0].name='MUTATED';assert.equal(faction(source()).nameHistory[0].name,'TEST Intelligence Office');
   const plugin=demoInputAudit(),context={error(message){throw new Error(message);}};
-  for(const id of [path.join(ROOT,'factions.json'),path.join(ROOT,'factions/fac_9901.json'),fileURLToPath(new URL('../src/core/infocard-resolver.mjs',import.meta.url))])
+  for(const id of [path.join(ROOT,'factions.json'),path.join(ROOT,'factions/fac_9901.json') ])
     assert.throws(()=>plugin.generateBundle.call(context,{}, {chunk:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
-  assert(!datasetInventory().files.some(f=>f.includes('faction')));
+  assert(datasetInventory().files.includes('factions.json'));
+  assert.doesNotThrow(()=>plugin.generateBundle.call(context,{}, {chunk:{type:'chunk',modules:{[fileURLToPath(new URL('../src/core/infocard-resolver.mjs',import.meta.url))]:{}}}}));
 });

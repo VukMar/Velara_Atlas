@@ -1,5 +1,7 @@
 import {assertYear, resolveCatalogue, resolveSystem, resolveCantum, resolveZones, resolveConnections} from './history.mjs';
 
+import {createEntityIndex, resolveEntityReference, resolveAffiliation, resolveInfoCardPresentation, resolveGoverningCantum} from './infocard-resolver.mjs';
+
 export function recordedYears(dataset) {
   const years = new Set();
   function visit(value) {
@@ -10,7 +12,7 @@ export function recordedYears(dataset) {
     }
     Object.values(value).forEach(visit);
   }
-  for (const value of [dataset.sector, dataset.cantums, dataset.connections, ...dataset.detailFiles.values()]) visit(value);
+  for (const value of [dataset.sector, dataset.cantums, dataset.connections, ...dataset.detailFiles.values(), ...(dataset.sector.schemaVersion==='1.3.0'?(dataset.factionFiles??new Map()).values():[])]) visit(value);
   return [...years].filter(y => y >= dataset.sector.timeline.startAE && y <= dataset.sector.timeline.defaultAE).sort((a, b) => a - b);
 }
 
@@ -20,17 +22,50 @@ export function searchRecords(records, query = '', category = 'all') {
     `${record.name ?? ''} ${record.id}`.toLocaleLowerCase('en').includes(term));
 }
 
-/** Derive map/catalogue state exclusively through the v1.1 historical resolver. */
+/** Preserve historical selectors, adding only v1.3 political presentation. */
 export function resolveAtlas(dataset, yearAE, requestedSystemId = null) {
   assertYear(yearAE);
-  const systems = resolveCatalogue(dataset.sector, yearAE);
-  const cantums = dataset.cantums.cantums.map(c => resolveCantum(c, yearAE)).filter(Boolean);
+  let systems = resolveCatalogue(dataset.sector, yearAE);
+  let cantums = dataset.cantums.cantums.map(c => resolveCantum(c, yearAE)).filter(Boolean);
   const indexed = dataset.sector.systems.find(s => s.id === requestedSystemId);
   const system = indexed ? resolveSystem(indexed, yearAE, dataset.detailFiles.get(indexed.id) ?? null) : null;
-  const current = system?.catalogueEligible ? system : null;
+  let current = system?.catalogueEligible ? system : null;
   const connections = resolveConnections(dataset, yearAE);
-  const zones = current ? current.detail?.zones ?? [] : resolveZones(dataset.sector, yearAE);
-  const markers = current ? current.detail?.objects ?? [] : systems;
+  let zones = current ? current.detail?.zones ?? [] : resolveZones(dataset.sector, yearAE);
+  let markers = current ? current.detail?.objects ?? [] : systems;
+  let factions=[];
+  if(dataset.sector.schemaVersion==='1.3.0') {
+    const index=createEntityIndex(dataset);
+    const sources=new Map([dataset.sector,...dataset.sector.systems,...dataset.cantums.cantums,
+      ...(dataset.sector.zones??[]),...dataset.factionFiles.values(),
+      ...[...dataset.detailFiles.values()].flatMap(d=>[...d.objects,...(d.zones??[])])].map(r=>[r.id,r]));
+    const decorate=record=>{
+      const source=sources.get(record.id);
+      const affiliation=resolveInfoCardPresentation(source,yearAE,index).affiliation;
+      const result={...record,affiliationPresentation:affiliation,
+        ...(record.controlId?{controlPresentation:resolveEntityReference(record.controlId,yearAE,index)}:{})};
+      if(affiliation.entityType==='faction')result.institutionalAffiliationPresentation=
+        resolveAffiliation(index.get(affiliation.id).infoCard.affiliation,yearAE,index);
+      if(record.entityType==='star_system'||record.entityType==='cantum') {
+        const direct=record.entityType==='cantum'?record.id:record.cantumId;
+        result.administrativeCantumId=record.entityType==='star_system'?direct:null;
+        result.administrativeCantumPresentation=direct?resolveEntityReference(direct,yearAE,index):null;
+        result.governance=resolveGoverningCantum(direct,yearAE,index);
+        result.governingCantumId=result.governance.governingCantumId;
+        result.governingCantumPresentation=result.governingCantumId?resolveEntityReference(result.governingCantumId,yearAE,index):null;
+        result.superiorCantumPresentation=result.governance.directSuperiorId?resolveEntityReference(result.governance.directSuperiorId,yearAE,index):null;
+      }
+      return result;
+    };
+    systems=systems.map(decorate);cantums=cantums.map(decorate);zones=zones.map(decorate);
+    if(current)current={...decorate(current),detail:current.detail?{...current.detail,
+      objects:current.detail.objects.map(decorate),zones}:null};
+    markers=current?current.detail?.objects??[]:systems;
+    factions=[...dataset.factionFiles.values()].map(f=>{
+      const state=resolveEntityReference(f.id,yearAE,index);
+      return state.status==='name_not_recorded'?null:decorate({...state,entityType:'faction',nameRecord:state.nameRecord});
+    }).filter(Boolean);
+  }
   const scopeLinks = connections.filter(link => current ?
     link.linkType === 'short_range' && link.endpointA.systemId === current.id : link.linkType === 'interstellar');
   const routes = scopeLinks.map(link => {
@@ -45,7 +80,7 @@ export function resolveAtlas(dataset, yearAE, requestedSystemId = null) {
   return {yearAE, systems, cantums, system: current, connections, routes, zones, markers,
     map: current ? current.detail?.map ?? null : dataset.sector.map,
     positionKey: current ? 'position' : 'positionLY',
-    records: [...(current ? markers : [...cantums, ...systems]), ...zones, ...routes],
+    records: [...(current ? markers : [...cantums, ...systems, ...factions]), ...zones, ...routes],
     state: current?.state ?? 'sector',
     returnedToSector: requestedSystemId !== null && current === null};
 }
@@ -81,19 +116,20 @@ export function routePoints(route, routes, map) {
 }
 
 export function territoryGroups(view, sector, presentation) {
-  const t = presentation?.territoryOverlay ?? {};
+  const t = presentation?.territoryOverlay ?? {}, modern=sector.schemaVersion==='1.3.0';
+  if(modern&&(!Number.isFinite(t.radiusLY)||t.radiusLY<=0))throw new RangeError('v1.3 territory requires a finite positive universal radiusLY');
   const groups = new Map();
   const active = new Set(view.cantums.filter(c => c.statusRecord).map(c => c.id));
-  for (const s of view.systems) {
-    const p = s.positionLY;
-    if (!p || !active.has(s.cantumId) || !['x', 'y', 'z'].every(axis => Number.isFinite(p[axis]) &&
+  for (const s of [...view.systems].sort((a,b)=>a.id.localeCompare(b.id))) {
+    const p = s.positionLY, id=modern?s.governingCantumId:s.cantumId;
+    if (!p || !active.has(s.cantumId) || !active.has(id) || !['x', 'y', 'z'].every(axis => Number.isFinite(p[axis]) &&
       Math.abs(p[axis] - sector.map.origin[axis]) <= sector.map.size[axis] / 2)) continue;
-    const style = t.cantums?.[s.cantumId];
+    const style = t.cantums?.[id];
     const color = /^#[0-9a-f]{6}$/i.test(style?.color) ? style.color : /^#[0-9a-f]{6}$/i.test(t.fallbackColor) ? t.fallbackColor : '#73808C';
     const fraction = Number.isFinite(t.fallbackRadiusFraction) && t.fallbackRadiusFraction > 0 && t.fallbackRadiusFraction <= 1 ? t.fallbackRadiusFraction : .08;
-    if (!groups.has(s.cantumId)) groups.set(s.cantumId, {id: s.cantumId, color,
-      radius: Number.isFinite(style?.radiusLY) && style.radiusLY > 0 ? style.radiusLY : fraction * Math.min(sector.map.size.x, sector.map.size.z), points: []});
-    groups.get(s.cantumId).points.push({id: s.id, x: p.x, z: p.z});
+    if (!groups.has(id)) groups.set(id, {id, color,
+      radius: modern?t.radiusLY:Number.isFinite(style?.radiusLY) && style.radiusLY > 0 ? style.radiusLY : fraction * Math.min(sector.map.size.x, sector.map.size.z), points: []});
+    groups.get(id).points.push({id: s.id, x: p.x, z: p.z});
   }
   return [...groups.values()].sort((a, b) => a.id.localeCompare(b.id));
 }

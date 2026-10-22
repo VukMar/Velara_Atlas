@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "territoryOverlay": {
     "enabledByDefault": true,
     "fallbackRadiusFraction": 0.08,
@@ -10,13 +10,12 @@
     "fallbackColor": "#73808C",
     "cantums": {
       "can_0001": {
-        "color": "#638FBD",
-        "radiusLY": 24
+        "color": "#638FBD"
       },
       "can_0002": {
-        "color": "#C99160",
-        "radiusLY": 18
+        "color": "#C99160"
       }
-    }
+    },
+    "radiusLY": 24
   }
 }

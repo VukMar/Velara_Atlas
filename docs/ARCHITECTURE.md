@@ -4,10 +4,10 @@
 `main` at `6ae6ee2` (2026-10-20). The local
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
-cartographic labeling, Checkpoint 3.6 layout and Schema v1.2 authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B and 3C
-are complete and creator-approved. Phase 3C entity support remains isolated;
-Phase 3D is next and remains unauthorized; canonical migration,
+cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C and 3D
+are complete and creator-approved;
+Phase 3E and later remain unauthorized; canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -46,7 +46,7 @@ has no write endpoint, authentication, live AI lore generation or backend.
 ## Data flow and historical semantics
 
 1. The Demo loader reads the validated sector-derived noncanonical inventory
-   from `public/datasets/demo/` (currently four registries and three detail files).
+   from `public/datasets/demo/` (currently five registries and three detail files, with an empty faction registry).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -54,8 +54,9 @@ has no write endpoint, authentication, live AI lore generation or backend.
 
 Intervals remain `fromAE <= yearAE < untilAE`, with null endings ongoing.
 Exact discovery, confirmed-known-by, construction, decommissioning and colonization
-remain separate. InfoCard affiliation never substitutes for administrative
-Cantum membership or sovereign control. Missing, unknown and zero are distinct.
+remain separate. Object/faction InfoCard affiliation never substitutes for administrative
+Cantum membership or sovereignty. Only a Cantum's dated superior affiliation
+defines its governance chain. Missing, unknown and zero are distinct.
 See [the resolver API](HISTORICAL_RESOLVER.md) and [data model](DATA_MODEL.md).
 
 A known system may be unplaced (catalogue only), archival (`publicDetailPath:
@@ -70,9 +71,9 @@ and hiding it in the UI.
 | --- | --- |
 | `scripts/dataset-inventory.mjs` | Validated sector-derived registration paths, deterministic ordering and shared filesystem guard |
 | `scripts/demo-files.mjs` | Registered raw authoring reads, stable system/file association and position-value-span rewrites preserving unrelated bytes |
-| `scripts/navigation.mjs` | Nonmutating v1.2 declaration-to-graph/XYZ compiler; lifetime exclusivity and navigation-boundary checks |
+| `scripts/navigation.mjs` | Nonmutating v1.2/v1.3 declaration-to-graph/XYZ compiler; lifetime exclusivity and navigation-boundary checks |
 | `scripts/connections.mjs` | Manual generator or read-only freshness check; staged validated writes, backups and recovery journal |
-| `scripts/atlas-validation.mjs` | Offline strict Ajv Draft 2020-12 validation for v1.1 and v1.2; separate authoring/release validators |
+| `scripts/atlas-validation.mjs` | Offline strict Ajv Draft 2020-12 validation for v1.1, v1.2 and v1.3; separate authoring/release validators |
 | `scripts/check-relations.mjs` | Cross-file identity, intervals, references, bounds, endpoint types/cardinality and presentation constraints |
 | `scripts/validate-demo.mjs` | Current demo release schema + relations + read-only generated-artifact freshness |
 | `scripts/idfind.mjs` | Read-only dataset-scoped ID inventory and next-ID suggestions |
@@ -90,8 +91,9 @@ are authoritative for operating that tool.
 `scripts/dataset-inventory.mjs` owns the selected trusted Demo root. It validates
 `sector.systems[]` before consuming detail declarations: IDs are unique, each
 released path is exactly `systems/<matching-id>.json`, and null entries are
-intentionally archival. Sector references select Cantums, connections and optional
-presentation. Technical file order is deterministic; catalogue order is preserved.
+intentionally archival. Sector references select Cantums and connections;
+v1.3 also requires presentation and the faction registry (presentation remains
+optional in legacy v1.2). Registered faction paths/IDs are validated before reads. Technical file order is deterministic; catalogue order is preserved.
 Filesystem guards reject traversal, absolute paths, alternate separators,
 unsupported names/directories and symlink/reparse redirection of roots or files.
 Missing details fail. Root/IO injection is internal test support, with no arbitrary
@@ -106,8 +108,8 @@ journal blocks startup/build. No implicit generation or repair occurs.
 
 Vite's narrow `virtual:velara-demo-dataset` module generates imports solely from
 the validated inventory. `demo-data.mjs` still eagerly calls every callback at
-initialization and retains the complete detail Map; there is no lazy fetch/cache
-architecture. Vite transforms the exact JSON text that passed validation. The
+initialization and retains complete detail/faction Maps for v1.3; there is no
+lazy fetch/cache architecture. Vite transforms the exact JSON text that passed validation. The
 same snapshot supplies the filesystem and build module allowlists; changed
 registrations require a Demo restart, while other JSON edits revalidate. Only
 the named virtual module and two specific Vite helpers get virtual-ID admission.
@@ -119,25 +121,32 @@ files and legacy `--public` scope. Diagnostic visibility confers no publication
 admission. See [authoring steps](../README.md#registered-demo-systems-and-loading).
 `tests/dataset-inventory.test.mjs` covers unsafe declarations, a temporary extra
 system through the real loader/full build, and new-file navigation generation.
-The active Demo, fixtures, schema and historical resolver are unchanged.
+That Phase 3B checkpoint preserved the Demo, fixtures, schema and historical
+resolver. The completed Phase 3D migration is described below.
 
-## Proposed v1.3 entities (isolated Phase 3C)
+## v1.3 governing entities and fields (Phase 3D)
 
-`src/core/infocard-resolver.mjs` reuses the existing pure history selectors for
-registered `can_`/`fac_` names, structured InfoCard affiliation and dated Cantum
-hierarchy traversal. It preserves missing/independent/unresolved states and
-returns copied effective records. `scripts/entity-relations.mjs` adds versioned
-registry, reference, legality and all-boundary governance checks to the existing
-relationship validator, reusing spatial/orbit/graph checks.
+`src/core/infocard-resolver.mjs` remains the pure owner of historical can_/fac_
+reference presentation and direct/ultimate Cantum governance. `resolveAtlas()`
+adds copied presentation state without changing authoritative `cantumId` or the
+history selectors. `territoryGroups()` requires the shared v1.3 radius, omits
+unrecorded roots and groups every eligible contributor by ultimate governor
+before the existing Gaussian sum. Frozen v1.2/calibration retain direct grouping.
 
-The separate schema and `tests/fixtures/v1_3/` use explicit internal version
-opt-in through `readDatasetSource()`. Default Demo loading, Vite admission and
-the v1.2 navigation compiler reject v1.3. No new module or fixture is admitted to
-the production viewer; the InfoCard presenter is demonstrated in isolated tests.
-See [the provisional contract and review workflow](DATA_MODEL_V1_3_PROPOSAL.md).
-Live migration, navigation activation, UI activation, shared radius and political
-field merging remain Phase 3D work requiring separate approval. Phase 3C is complete
-and creator-approved; implementation and status synchronization are committed together.
+Envelope and label-anchor filters use derived group membership and matching
+system coordinates, retaining subordinate elevation. Labels, sigils and islands
+consume the governing group. Existing caches distinguish contributors, identity,
+position, radius, thresholds and local elevation where consumed. Rendering and
+cleanup remain in the established components; no separate same-color fields or
+new territory algorithm is introduced.
+
+The validated Vite module eagerly loads registered system and faction files;
+only the existing Demo root is configured. The pure resolver is explicitly
+admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
+excluded. Navigation generation emits the source version and preserves existing
+geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
+Phase 3D is complete and creator-approved; its implementation and completion
+documentation are committed together. Phase 3E remains separately gated.
 
 ## Coordinates, layout and rendering
 

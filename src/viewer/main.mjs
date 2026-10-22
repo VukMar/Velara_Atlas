@@ -39,15 +39,31 @@ function choose(record, {present = true} = {}) {
     `Confirmed known by ${record.knowledge.knownByAE} A.E.; exact discovery not recorded` : `Discovery recorded: ${record.knowledge.discoveredAE} A.E.`);
   if (record.orbitingId != null) fact('Orbiting (metadata)', record.orbitingId);
   if (Object.hasOwn(record,'physicalDiameterKm')) fact('Physical diameter',`${record.physicalDiameterKm} km`);
-  if (record.cantumRecord) fact('Administrative Cantum', record.cantumId ?? 'Not recorded');
-  if (record.controlRecord) fact('Control', record.controlId ?? 'Not recorded');
+  if (record.administrativeCantumPresentation) fact('Administrative Cantum', record.administrativeCantumPresentation.label);
+  else if (record.cantumRecord) fact('Administrative Cantum', record.cantumId ?? 'Not recorded');
+  if(record.governance) {
+    if(record.entityType==='cantum')fact('Direct superior Cantum',record.superiorCantumPresentation?.label ??
+      (record.governance.directAffiliationRecord?.entityId===null?'Independent':'Not recorded'));
+    fact('Governing Cantum',record.governingCantumPresentation?.label ?? 'Not recorded');
+    if(!record.governingCantumId)fact('Political influence','Governing relationship not recorded; no sovereign overlay');
+  }
+  if(record.legalStatus!==undefined)fact('Legal status',record.legalStatus??'Not recorded');
+  if(record.factionType)fact('Faction category',record.factionType.replaceAll('_',' '));
+  if (record.controlRecord) fact('Control', record.controlPresentation?.label ?? record.controlId ?? 'Not recorded');
   if (record.statusRecord) fact('Status', record.status);
-  const qualifications = new Set([record.nameRecord, record.cantumRecord, record.controlRecord, record.statusRecord, ...Object.values(record.infoCard ?? {})]
+  const qualifications = new Set([record.nameRecord, record.cantumRecord, record.controlRecord, record.statusRecord, record.affiliationPresentation?.record, record.governance?.directAffiliationRecord, record.legalStatusRecord, ...Object.values(record.infoCard ?? {})]
     .map(p => p?.datePrecision).filter(p => p && p !== 'exact'));
   for (const precision of qualifications) fact('Date qualification', precision.replaceAll('_', ' '));
   const card = record.infoCard;
   if (card) {
-    if (card.affiliation) fact('Affiliation', card.affiliation.entityId ?? 'Not recorded');
+    if(record.affiliationPresentation) {
+      const affiliation=record.affiliationPresentation;
+      fact('Affiliation',affiliation.label);
+      if(affiliation.entityType==='faction') {
+        fact('Affiliated faction legal status',affiliation.legalStatus??'Not recorded');
+        fact('Faction institutional affiliation',record.institutionalAffiliationPresentation?.label??'Not recorded');
+      }
+    } else if (card.affiliation) fact('Affiliation', card.affiliation.entityId ?? 'Not recorded');
     if (card.class) fact('Recorded class', card.class.label);
     for (const field of ['crew', 'population']) if (card[field]) fact(field === 'crew' ? 'Crew' : 'Population',
       card[field].count === null ? 'Quantity not recorded' : String(card[field].count));

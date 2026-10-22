@@ -1,4 +1,4 @@
-# Noncanonical v1.2 navigation workflow
+# Noncanonical v1.2/v1.3 navigation workflow
 
 The creator-approved [navigation specification](SCHEMA_V1_2_NAVIGATION.md)
 supersedes the v1.1 short-range branching rule. System object declarations are
@@ -18,8 +18,9 @@ validation and the read-only freshness check; they never repair stale files.
 
 ## Authoring and release contracts
 
-`schemas/atlas.schema.json` defines v1.2.0. All demo envelopes must use that
-version. **Creator-confirmed creation rule:** every NEW short-range gate starts
+`schemas/atlas-v1_3.schema.json` defines the active Demo's v1.3.0 envelopes.
+`schemas/atlas.schema.json` and its wrappers retain v1.2.0 for frozen/reference
+records. Navigation authoring and geometry are shared across these versions. **Creator-confirmed creation rule:** every NEW short-range gate starts
 with `position: null` and `positionMode: "boundary_derived"`. The author never
 manually enters its XYZ. Create the gate records with permanent IDs, required
 history, icon and InfoCard, and author the matching navigation relationships on
@@ -86,7 +87,7 @@ CNU, models orbits, or changes moon-relative placement.
 
 The writer may replace only:
 
-- `public/datasets/demo/connections.json`: complete v1.2 registry, sorted by
+- `public/datasets/demo/connections.json`: complete source-version v1.2/v1.3 registry, sorted by
   permanent link ID, deterministic two-space JSON and final LF.
 - `position` value spans of explicitly derived short-range gates in the
   allowlisted system files. Other fields, unrelated positions, histories,
@@ -190,10 +191,12 @@ tests. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
 The [original implementation report](NAVIGATION_V1_2_RESULTS.md) remains historical
 evidence for generation, migration and recovery; its counts/layout are not current.
 
-## Proposed v1.3 activation boundary
+## v1.3 activation and migration review
 
-Phase 3C's isolated [entity fixture](../tests/fixtures/v1_3/README.md) uses a
-separate schema and empty graph for political/reference tests. The existing
-navigation compiler and commands remain v1.2-only and reject v1.3. No version
-masking, generator bypass or implicit repair is introduced. Coordinated v1.3
-navigation/Demo activation belongs to a separately authorized Phase 3D task.
+The compiler validates the source version and emits that same graph version.
+Phase 3D migration changed the live graph only from `1.2.0` to `1.3.0`; every
+link property and derived XYZ remains unchanged. The explicit offline command
+updated the graph, then read-only checks and idempotence verified it. No version
+masking, writer redesign, build-time repair or new route is introduced. Frozen
+v1.2 generator/recovery tests remain, with additional v1.3 writer coverage.
+See the [exact crosswalk](DATA_MODEL_V1_3_PROPOSAL.md#phase-3d-demo-migration-crosswalk).

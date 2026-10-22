@@ -40,7 +40,9 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
           `import cantums from ${specifier(s.cantumsPath)};`,
           `import connections from ${specifier(s.connectionsPath)};`,
           s.presentationPath?`import presentation from ${specifier(s.presentationPath)};`:'const presentation=null;',
-          'export {sector,cantums,connections,presentation};',
+          s.factionsPath?`import factions from ${specifier(s.factionsPath)};`:'const factions=null;',
+          'export {sector,cantums,connections,presentation,factions};',
+          `export const factionLoaders=new Map([${(inventory.factions??[]).map(f=>`[${JSON.stringify(f.id)},()=>import(${specifier(f.path)})]`).join(',')}]);`,
           `export const detailLoaders=new Map([${inventory.systemFiles.map(name=>`[${JSON.stringify(name)},()=>import(${specifier(name)})]`).join(',')}]);`
         ].join('\n');
       }
@@ -55,7 +57,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
           const id=normalizePath(raw.split('?')[0]);
           if(id===DEMO_VIRTUAL_ID||viteHelpers.has(id)||id.startsWith(normalizePath(local('node_modules/')))||
             id.startsWith(normalizePath(local('src/viewer/')))||
-            ['src/core/history.mjs','src/core/cartography.mjs','src/core/zone-geometry.mjs'].some(file=>id===normalizePath(local(file)))||admitted.has(id)||approvedIcons.has(id))continue;
+            ['src/core/history.mjs','src/core/cartography.mjs','src/core/zone-geometry.mjs','src/core/infocard-resolver.mjs'].some(file=>id===normalizePath(local(file)))||admitted.has(id)||approvedIcons.has(id))continue;
           this.error(`Unexpected input in demo build: ${id}`);
         }
       }

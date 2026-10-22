@@ -63,8 +63,8 @@ test('detailed demo charts vary in size while preserving zero-plane grids and va
 
 test('demo retains the approved navigation graph and all derived gate positions remain fresh', () => {
   const d = load();
-  // Creator-approved post-Phase-3 baseline at 16668e2: every ID, endpoint, interval and direction.
-  assert.equal(createHash('sha256').update(JSON.stringify(d.connections)).digest('hex'),
+  // Creator-approved 16668e2 graph payload; normalize ONLY the authorized v1.3 version bump.
+  assert.equal(createHash('sha256').update(JSON.stringify({...d.connections,schemaVersion:'1.2.0'})).digest('hex'),
     '54745da730e07c4cbb0439c7a46c9582531ab41477a24d583c56a36acc36a724');
   const {dataset, placements} = generateNavigation(d);
   assert.deepEqual(navigationMismatches(d, dataset, placements), []);

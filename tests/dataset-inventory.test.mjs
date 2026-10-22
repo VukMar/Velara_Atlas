@@ -28,7 +28,7 @@ function addSystem(root,id='sys_0042',suffix='9901') {
   const sector=read(path.join(root,'sector.json')),system=structuredClone(sector.systems[0]);
   system.id=id;system.publicDetailPath=`systems/${id}.json`;
   system.nameHistory.forEach(p=>p.name='SYNTHETIC INVENTORY SYSTEM');sector.systems.push(system);
-  const detail=read(new URL('../examples/v1_2/system-detail.json',import.meta.url));detail.id=id;
+  const detail=read(new URL('../examples/v1_2/system-detail.json',import.meta.url));detail.id=id;detail.schemaVersion=sector.schemaVersion;
   detail.objects[0].id='cb_'+suffix;detail.objects[0].nameHistory[0].name='SYNTHETIC INVENTORY STAR';
   detail.objects[0].infoCard.description[0].text='SYNTHETIC_REGISTERED_INVENTORY_SENTINEL';
   const station=read(new URL('../examples/v1_2/station.json',import.meta.url));station.id='sta_'+suffix;detail.objects.push(station);

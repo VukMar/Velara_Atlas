@@ -139,7 +139,7 @@ export function territorialLabels(groups, cantums, map, presentation, aspects = 
 /** Provisional Stage 1 height; later envelopes can replace this helper alone. */
 export function territorialAnchorY(group, systems, map) {
   const ids=new Set(group.points.map(p=>p.id));
-  const elevations=systems.filter(s=>ids.has(s.id)&&s.cantumId===group.id&&Number.isFinite(s.positionLY?.y)).map(s=>s.positionLY.y);
+  const elevations=systems.filter(s=>ids.has(s.id)&&(Object.hasOwn(s,'governingCantumId')?s.governingCantumId===group.id:s.cantumId===group.id)&&group.points.some(p=>p.id===s.id&&p.x===s.positionLY?.x&&p.z===s.positionLY?.z)&&Number.isFinite(s.positionLY?.y)).map(s=>s.positionLY.y);
   if(!elevations.length)return null;
   const clearance=Math.min(map.size.y*.05,map.size.x*.02);
   return Math.max(...elevations)+clearance;

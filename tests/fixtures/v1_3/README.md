@@ -2,11 +2,13 @@
 
 These synthetic TEST records are isolated developer evidence, not MCR history,
 runtime Demo data, a production publication candidate or a frozen v1.2 migration.
-See [the provisional contract](../../../docs/DATA_MODEL_V1_3_PROPOSAL.md).
+See [the v1.3 contract](../../../docs/DATA_MODEL_V1_3_PROPOSAL.md).
 
-Seven JSON files form the fixture: sector, Cantums, an empty connections registry,
-one system detail, a compact faction registry and two authoritative faction files.
-No presentation file or new territory behavior is needed. Registry files use
+Eight JSON files form the fixture: sector, Cantums, an empty connections registry,
+one system detail, presentation, a compact faction registry and two authoritative faction files.
+Phase 3D adds a required presentation file with a shared 8-ly TEST radius;
+the render adapter supplies temporary eligible statuses/extra systems. No
+accepted hierarchy or faction history changed. Registry files use
 `schemaVersion: "1.3.0"`; faction files also carry that version explicitly.
 
 | Identity | Authored test history |
@@ -41,6 +43,8 @@ node --input-type=module -e "import fs from 'node:fs'; import {readDatasetSource
 
 Both error lists should be empty; the station uses `TEST Intelligence Office`,
 and C's verified governing root is `can_9901`. Change only the query year in the
-command to inspect transitions. Do not change the active Demo or run its writing
-generator against this fixture: v1.3 generator activation is deferred to Phase 3D.
+command to inspect transitions. The v1.3 compiler is active for the approved
+Demo; this fixture intentionally retains an empty graph for political tests.
+The writing CLI remains fixed to the Demo, so do not use it to rewrite this
+fixture. Use the isolated browser test server for graphical hierarchy review.
 Negative tests mutate temporary copies and preserve this accepted test baseline.

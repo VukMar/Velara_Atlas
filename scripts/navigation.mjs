@@ -1,4 +1,4 @@
-/** Pure v1.2 graph/XYZ compiler. No filesystem writes, network or viewer imports. */
+/** Pure v1.2/v1.3 graph/XYZ compiler. No filesystem writes, network or viewer imports. */
 import {structuralErrors} from './atlas-validation.mjs';
 import {validateRelationships} from './check-relations.mjs';
 
@@ -37,9 +37,10 @@ export function boundaryPositions(a, b, ra, rb, map) {
 
 /** Compile ONLY explicit declarations; an old v1.1 graph guards the first migration. */
 export function generateNavigation(dataset) {
-  if (dataset.sector.schemaVersion !== '1.2.0') throw new Error('Navigation generation requires schema v1.2.0');
+  const version=dataset.sector.schemaVersion;
+  if (!['1.2.0','1.3.0'].includes(version)) throw new Error('Navigation generation requires schema v1.2.0 or v1.3.0');
   requireValid(structuralErrors(dataset, {authoring: true, includeGraph: false}));
-  const emptyGraph = {schemaVersion: '1.2.0', connections: []};
+  const emptyGraph = {schemaVersion: version, connections: []};
   requireValid(validateRelationships({...dataset, connections: emptyGraph}));
   const output = structuredClone(dataset), systems = new Map(dataset.sector.systems.map(s => [s.id, s]));
   const objects = new Map(), used = new Map(), links = [], linkIds = new Set(), placements = [];
@@ -100,7 +101,7 @@ export function generateNavigation(dataset) {
     }
   }
   for (const {obj} of objects.values()) if (obj.positionMode === 'boundary_derived' && !used.has(obj.id)) error(obj.id, 'boundary_derived gate absent from authored links');
-  output.connections = {schemaVersion: '1.2.0', connections: links.sort((a, b) => a.id < b.id ? -1 : 1)};
+  output.connections = {schemaVersion: version, connections: links.sort((a, b) => a.id < b.id ? -1 : 1)};
   if (dataset.connections?.schemaVersion === '1.1.0') {
     // Transition safeguard only. Once v1.2 is generated, declarations alone
     // control intentional additions/removals; no old graph can supply a link.
@@ -126,7 +127,7 @@ export function navigationMismatches(actual, expected, placements) {
     current.delete(link.id);
   }
   for (const id of current.keys()) errors.push(`${id}: unexpected generated connection`);
-  if (actual.connections?.schemaVersion !== '1.2.0') errors.push('connections.json: missing/stale schemaVersion');
+  if (actual.connections?.schemaVersion !== expected.connections.schemaVersion) errors.push('connections.json: missing/stale schemaVersion');
   for (const p of placements) {
     const obj = actual.detailFiles.get(p.systemId)?.objects.find(o => o.id === p.gateId);
     if (!same(obj?.position, p.position)) errors.push(`${p.linkId}/${p.gateId}: stale derived position`);

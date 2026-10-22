@@ -1,15 +1,17 @@
-# Proposed v1.3 entities and historical relationships — Phase 3C
+# v1.3 entities, historical governance and influence — accepted Phase 3D contract
 
-**Status:** Architecture Phase 3C is complete and creator-approved. Its isolated
-implementation and completion documentation are committed together. This remains
-a provisional, test-only v1.3 contract; the active graphical Demo remains **v1.2**.
-Phase 3D is the next proposed checkpoint and is not authorized. These TEST records introduce no MCR canon.
+**Status:** Phase 3D is complete and creator-approved. Its implementation and
+completion documentation are committed together. The active NONCANONICAL Demo
+uses this accepted v1.3 contract. Introduced as an isolated Phase 3C proposal,
+this document retains its filename for link continuity and its design history.
+Phase 3E and later remain unauthorized. Test records and the provisional 24-ly
+Demo radius introduce no MCR canon.
 
-The exact provisional contract is [atlas-v1_3.schema.json](../schemas/atlas-v1_3.schema.json).
+The exact v1.3 contract is [atlas-v1_3.schema.json](../schemas/atlas-v1_3.schema.json).
 It uses Draft 2020-12 and offline references to established v1.2 spatial/property
 definitions, with separate v1.3 envelopes and historical reference definitions.
-It does not replace [the active v1.2 contract](DATA_MODEL.md), its wrappers or the
-frozen v1.1/v1.2 regressions. Units, geometry, permanent identity, discovery,
+It extends [the shared model](DATA_MODEL.md) without changing v1.2 definitions,
+wrappers or frozen v1.1/v1.2 regressions. Units, geometry, permanent identity, discovery,
 construction, local-gate authoring and inclusive-start/exclusive-end conventions
 are retained. v1.3 historical years must be nonnegative safe integers; null is
 unknown/open-ended only where the field permits it, never year zero.
@@ -113,8 +115,9 @@ No function fills historical gaps, repairs input or changes stored administratio
 
 ## Loading, validation and ID Finder
 
-Phase 3B's inventory defaults remain v1.2-only. Internal explicit opt-in supports
-the isolated fixture:
+The shared inventory and navigation loader now support v1.2 and v1.3. Production
+selection is still fixed to the approved Demo root. Explicit internal root injection
+supports the isolated fixture:
 
 ```js
 import fs from 'node:fs';
@@ -128,9 +131,12 @@ The import above is relative to a file in `tests/`; from root-level `node -e`, u
 `structuralErrors(dataset)` and `validateRelationships(dataset)` before using it;
 loading alone is structural, not full relational validation or publication approval.
 No public root-selection flag, URL loader, browser route or Canon source is added.
-Default `readDemoSource()`, Vite and the navigation command reject v1.3 selection.
+`readDemoSource()`, the validated Vite virtual module and navigation commands
+accept supported source versions without masking. Every registered detail and
+faction record is eagerly preloaded. Only declared paths enter build admission;
+`publicDir: false`, exact SVG admission and output audits remain in force.
 
-`atlas-validation.mjs` compiles v1.1, v1.2 and provisional v1.3 separately.
+`atlas-validation.mjs` compiles v1.1, v1.2 and v1.3 separately.
 `check-relations.mjs` reuses existing spatial/orbit/graph checks and adds
 `entity-relations.mjs` for registry identity, references, legality and governance.
 All historical `fromAE` and non-null `untilAE` boundaries are checked. Relationships
@@ -158,21 +164,70 @@ npm run connections:check
 npm run build
 ```
 
-Tests exercise the station's resolved presentation without activating v1.3 in
-the graphical viewer. The existing Demo input audit rejects both the fixtures
-and new resolver as bundle inputs. Calibration remains its separate JSON-backed
-local environment; its facts and three radius choices are unchanged.
+Tests exercise pure and graphical station presentation. The existing Demo input
+audit rejects isolated fixtures, while explicitly admitting the pure resolver.
+`tests/governing-influence.test.mjs` covers radius, temporal grouping, elevation,
+labels, InfoCards and versioned navigation/writer safety. The local browser
+fixture and MCP entry point are documented in [README](../README.md#historical-governing-influence-phase-3d).
+Calibration remains JSON-backed and v1.2-compatible; its facts and radii are unchanged.
 
-## Deferred Phase 3D integration
+## Universal radius and governing fields
 
-The live Demo stays v1.2. v1.3 navigation compilation, generation and freshness
-activation are **not implemented**: the existing compiler explicitly rejects
-v1.3. No validator disguises v1.3 data as v1.2. The fixture uses an empty graph;
-structural/relational acceptance is not a complete v1.3 navigation-release claim.
+v1.3 requires `presentationPath: "presentation.json"` and one finite positive
+`presentation.territoryOverlay.radiusLY`. Palette entries allow colors only; per-Cantum radii
+are invalid. Opacity, thresholds, enablement and fallback color retain their
+existing meanings. `fallbackRadiusFraction` is retained for compatibility but
+never supplies a replacement v1.3 radius. A missing/invalid radius fails validation
+or political grouping; it is never inferred from chart width. The 3C political fixture is extended with that presentation envelope; its
+accepted faction/hierarchy histories stay intact.
 
-A separate approved Phase 3D task must finalize pending v1.3 presentation fields,
-coordinated Demo migration and navigation compatibility, activate the InfoCard UI,
-and design/implement ultimate-governor field grouping and a universal radius.
-This proposal deliberately retains existing per-Cantum presentation references;
-it does not define or activate the future shared-radius renderer. Canon migration,
-Atlas Creator, new-system tooling, new artwork and deployment remain separate.
+`resolveAtlas()` derives `administrativeCantumId` from original `cantumHistory`
+and `governingCantumId` from `resolveGoverningCantum()`. Both the administrative
+Cantum and governing root require historically eligible status before shading.
+Missing governance contributes no sovereign overlay. All valid system points of
+one governor are sorted by system ID and combined into one Gaussian sum before
+flat pixels, perspective envelopes or islands are calculated. Colors, names and
+sigils come from that governor. Administrative identity remains in InfoCards.
+
+Envelope and anchor consumers validate the point's ID, position and derived
+governor, preserving legacy direct-Cantum checks for v1.2/calibration. Subordinate
+systems retain their own Y elevations. The existing half-height
+`clamp(radius * .30, .5, 3)`, interpolation, clipping, opacity and disposal are
+unchanged. Cache keys include grouped identity/contributors/coordinates, radii,
+thresholds and elevations where relevant; labels also include historical names
+and sigils. Conquest and independence cannot reuse a different political state.
+
+## Phase 3D Demo migration crosswalk
+
+Baseline: `bdb19fa8e84ce9dc29ad99e089a7f83b919cea94`. Only the active NONCANONICAL
+Demo was migrated. Frozen examples/fixtures and legacy canonical data stay intact.
+
+| Files/values | Authorized change |
+| --- | --- |
+| `sector.json`, `cantums.json`, `presentation.json`, all three `systems/sys_000*.json` | Envelope `schemaVersion` 1.2.0 to 1.3.0 |
+| `sector.json` | Added `factionsPath: "factions.json"` |
+| New `factions.json` | Version 1.3.0, empty `factions[]`; no invented institutions |
+| `cantums.json` / `can_0001` | Replaced null affiliation with TEST independence `[0, null)`, exact, null entity target; matches existing synthetic eligibility |
+| `cantums.json` / `can_0002` | Replaced null affiliation with TEST independence `[700, null)`, exact, null entity target; matches existing synthetic eligibility |
+| `presentation.json` | Removed palette radii 24/18; added shared `territoryOverlay.radiusLY: 24`; all other settings unchanged |
+| Generated `connections.json` | Explicit `npm run connections` changed only version 1.2.0 to 1.3.0; all links and derived XYZ unchanged |
+
+The 24-ly value is provisional, never canonical. A's field stays the same. B's
+isolated half-field radius grows 18 to 24 ly (+33.33%); its unclipped isolated
+area at a fixed threshold grows by 16/9 (+77.78%). Chart clipping and overlaps
+can affect visible area. At threshold 0.35 the isolated footprint extent grows
+from approximately 22.15 to 29.54 ly. On the actual clipped Demo chart, a 256x256 threshold-0.35 sample measures
+B at 1,539.0625 to 2,543.75 square ly (3,940 to 6,512 cells); A stays
+5,987.5 square ly (15,328 cells). These are sampled overlay footprints, not
+legal territory measurements. No opacity/threshold/intensity compensation is applied. These changes are intentionally available for creator visual review.
+
+The v1.3 armament period now correctly references the existing weapon-system
+record definition, preserving the Demo's authored weapon descriptions. This fixes
+an unused provisional-schema reference to sector-system records exposed during
+activation; it does not change weapon records or frozen schemas.
+
+## Deferred work
+
+Phase 3D is complete and creator-approved. Phase 3E is the next proposed
+checkpoint; new-system authoring tools and later work remain separately gated. Canon
+migration, Atlas Creator, new artwork and deployment are not implemented.
