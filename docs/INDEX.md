@@ -1,9 +1,9 @@
 # Velara Atlas documentation index
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and
-creator-approved**. Phase 3E implementation and completion documentation are committed together.
-**Phase 3F is next, not started and requires separate creator authorization.** Phase 3F and later architecture
-Phases 4-6 remain planned, unstarted and separately gated. Phase 3 is not complete.
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
+creator-approved**. Phase 3F implementation, approved Demo showcase and completion
+documentation are committed together. **Overall Architecture Phase 3 is complete.**
+Phase 4 is next proposed; Phases 4-6 remain unstarted and separately gated.
 The simplified v1.2 reference library remains current; Phase 2.1 is in `711a410`.
 This index is the current navigation/status reference, not an implementation task.
 
@@ -19,6 +19,7 @@ cannot authorize new work.
 | --- | --- |
 | [DATA_MODEL](DATA_MODEL.md) | Active v1.3 model, v1.2 compatibility and null conventions; exact shape is in schemas. |
 | [DATA_RULES](DATA_RULES.md) | Protected legacy chronology, uncertainty and disclosure; not a v1.2 migration. |
+| [DEMO_SHOWCASE](DEMO_SHOWCASE.md) | Normal-Demo TEST walkthrough, before/after data comparison and feature-to-review policy; completed, creator-approved Phase 3F. |
 | [MANUAL_AUTHORING](MANUAL_AUTHORING.md) | Local system creation, preview/apply, objects, gate pairs and authoring recovery; completed, creator-approved Phase 3E. |
 | [NAVIGATION_AUTHORING](NAVIGATION_AUTHORING.md) | Current manual authoring/generation, read-only checks and recovery. |
 | [SCHEMA_V1_2_NAVIGATION](SCHEMA_V1_2_NAVIGATION.md) | Navigation contract; original delivery sections retain historical examples. |
@@ -46,7 +47,7 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3E complete and creator-approved; 3F next, unstarted and unauthorized; 4-6 planned. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3F and overall Phase 3 complete and creator-approved; Phase 4 next proposed; 4-6 unauthorized. |
 
 The sector-derived validated inventory and eager loader are described in
 [README](../README.md#registered-demo-systems-and-loading) and
@@ -56,15 +57,15 @@ Completed Phase 3D activates Phase 3C's core support in the v1.3 Demo.
 pure reference/governance APIs, validation and the TEST fixture. It is the accepted
 current Demo contract, retaining its proposal history and migration crosswalk.
 Phase 3E provides the completed local authoring CLI and recoverable sector/detail
-writes. Phase 3F remains the separately authorized integration/preservation gate
-before overall Phase 3 completion; it has not started.
+writes. Completed Phase 3F verifies integration/preservation and provides the
+normal-Demo capability showcase. Overall Phase 3 is complete; Phase 4 remains unauthorized.
 
 The live graphical Demo remains `public/datasets/demo/`, served by `npm run demo`
 on 5173. `npm run dev` (alias `preview:calibration`) serves local calibration on
 5174 from the fixed JSON scenario in `tests/calibration/scenarios/`, via its
 cloning adapter. `history:demo` is the terminal chronology. Canon remains future,
 with no launcher. See [commands, scenario format and tests](../README.md#local-development-and-future-canon).
-The v1.3 Demo uses a provisional shared 24-ly radius and an empty faction registry.
+The v1.3 Demo uses a provisional shared 24-ly radius and two curated TEST factions.
 Frozen v1.2 per-Cantum radii/calibration remain compatible; Canon is not migrated.
 
 ## Historical implementation reports and verification evidence

@@ -40,7 +40,7 @@ async page=>{
     await toggle('Cantum influence / approximate chart overlay',true);await toggle('Cantum Names',false);
     check((await state()).active&&(await state()).names.every(n=>!n.visible),'Names switch independent of envelope');await toggle('Cantum Names',true);
     const histories=[];
-    for(const [y,ids] of [[99,[]],[100,[]],[210,['sys_0001']],[329,['sys_0001']],[330,['sys_0001','sys_0002']],[600,['sys_0001','sys_0002']],[699,['sys_0001','sys_0002']],[700,['sys_0001','sys_0002','sys_0003']],[1200,['sys_0001','sys_0002','sys_0003']]]) {
+    for(const [y,ids] of [[99,[]],[100,[]],[210,['sys_0001']],[299,['sys_0001']],[300,['sys_0001','sys_0005']],[329,['sys_0001','sys_0005']],[330,['sys_0001','sys_0002','sys_0005']],[600,['sys_0001','sys_0002','sys_0005']],[699,['sys_0001','sys_0002','sys_0005']],[700,['sys_0001','sys_0002','sys_0003','sys_0005']],[1200,['sys_0001','sys_0002','sys_0003','sys_0005']]]) {
       await year(y);s=await state();check(JSON.stringify(s.contributors.sort())===JSON.stringify(ids),`${y}: exact eligible historical contributors`);histories.push({year:y,contributors:s.contributors.length});
       if(y<700)check(s.names.every(n=>n.id!=='can_0002'),'no future Cantum name or sigil');
     }

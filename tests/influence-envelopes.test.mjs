@@ -68,6 +68,8 @@ test('historical groups alone supply geometry; no future, unplaced or transferre
     assert.deepEqual(data.flatMap(e=>e.contributors).sort(),groups.flatMap(g=>g.points.map(p=>p.id)).sort());
   }
   assert.equal(JSON.stringify(d.sector),before);
+  // This isolated transfer variant assumes independent Cantums; live conquest is covered by Phase 3F.
+  d.cantums.cantums[1].infoCard.affiliation=[{fromAE:700,untilAE:null,entityId:null}];
   const system=d.sector.systems[0];
   system.cantumHistory=[{fromAE:210,untilAE:900,cantumId:'can_0001'},{fromAE:900,untilAE:null,cantumId:'can_0002'}];
   const at=year=>{const v=resolveAtlas(d,year);return influenceEnvelopes(territoryGroups(v,d.sector,d.presentation),v.markers,d.sector.map,d.presentation,32);};

@@ -4,20 +4,20 @@
 
 The Velara Atlas is an independent science-fiction worldbuilding and mapping project. Its aim is to make the history and geography of a fictional interstellar civilization explorable through an interactive navigational chart, inspired by the usability of classic space-game maps but with an original presentation.
 
-> **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
+> **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has four released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and
-creator-approved**, with Phase 3E implementation and completion
-documentation committed together. Overall Phase 3 is not complete. The v1.2 examples now use ten focused entity-family references
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
+creator-approved**. Phase 3F implementation, approved Demo showcase and completion
+documentation are committed together. Overall Architecture Phase 3 is complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Phase 3F is the next proposed checkpoint and requires separate creator authorization**, under
+verification context. **Phase 3F integration and the curated Demo showcase are complete and creator-approved**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phase 3E provides safe local manual system authoring; Phase 3F has not started. Completed Phase 3D activates v1.3
+Phase 3E provides safe local manual system authoring; Phase 4 is the next proposed checkpoint and remains unstarted and unauthorized. Completed Phase 3D activates v1.3
 in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
 historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
 
@@ -219,12 +219,12 @@ restrictions and output audits remain in force. Canon and calibration are exclud
 Internal alternate-root injection exists only for isolated automated tests.
 
 `node --test tests/dataset-inventory.test.mjs` exercises rejection cases and a
-temporary fourth system through the real loader, navigation writer and full build.
+temporary additional system through the real loader, navigation writer and full build.
 It does not add speculative records to the active Demo. Phase 3B is complete
 and creator-approved. Completed [Phase 3D v1.3 activation](docs/DATA_MODEL_V1_3_PROPOSAL.md)
 now preloads the faction registry and every registered faction record alongside
 all released system details. No on-demand fetching or arbitrary-root command is added.
-The Demo registry is empty; TEST factions remain isolated in tests. The pure
+The Demo registry now contains two curated TEST factions. Exhaustive edge cases remain isolated in tests. The pure
 resolver is explicitly admitted to the build; test fixtures and calibration are not.
 
 ## Historical governing influence (Phase 3D)
@@ -294,7 +294,7 @@ files, including systems not yet indexed. References and presentation settings
 do not count as definitions. Catalogue/detail system IDs and authored/generated
 link pairs count once; generated-only link IDs remain used. It does not run the
 navigation generator or check graph freshness (`connections:check` does that).
-The active v1.3 Demo has an empty faction registry. A loaded v1.3 context
+The active v1.3 Demo registers two NONCANONICAL TEST factions. A loaded v1.3 context
 enables bounded faction registry/file diagnostics; unregistered faction files
 remain collision diagnostics, never viewer/build inputs. No CLI root selector
 is added. See [the isolated fixture and checks](tests/fixtures/v1_3/README.md).
@@ -339,7 +339,7 @@ retained as historical references, not current setup instructions.
 ## Safe local system authoring (completed Phase 3E)
 
 Phase 3E is complete and creator-approved. Its implementation and status
-synchronization are committed together; Phase 3F remains unauthorized.
+synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Phase 4 remains unauthorized.
 
 `npm run atlas:new-system -- --help` describes the fixed NONCANONICAL Demo
 workflow. No arguments validates the dataset and suggests an unused permanent ID;
@@ -354,3 +354,19 @@ short-range gate pairs. Existing inventory/import mapping needs only JSON
 registration, followed by a Demo server restart. The viewer stays read-only;
 Canon, calibration and publication boundaries are unchanged. Focused tests:
 `node --test tests/system-authoring.test.mjs`.
+
+## Living Demo showcase (completed Phase 3F)
+
+Start `npm run demo` and follow [DEMO_SHOWCASE](docs/DEMO_SHOWCASE.md) on the normal
+5173 URL. `sys_0005` adds a TEST star, planet, faction-linked station and complete
+gate pair: discovery 300, construction 350/352, activation 353 A.E. Inspect faction
+names at 499/500 and legality at 899/900; inspect Cantum B's independent/subordinate/
+independent political fields at 799/800/999/1000. `sys_0004` remains archival-only.
+The guide records the exact intentional additions and preservation boundaries.
+
+Future authorized significant visible features follow implement -> automated tests
+-> representative noncanonical Demo -> creator visual review -> corrections ->
+explicit approval -> separately authorized documentation/commit/push. Nonvisual
+work needs no filler content. TEST, calibration, Demo and Canon remain separate.
+Phase 3F and overall Architecture Phase 3 are complete and creator-approved.
+Phase 4 requires separate authorization; no Canon migration or deployment is implemented.

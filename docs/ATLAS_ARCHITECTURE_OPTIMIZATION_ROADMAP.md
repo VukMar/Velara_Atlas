@@ -1,17 +1,16 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and creator-approved. Phase 3E implementation and completion documentation are committed together. Phase 3 as a whole is not complete.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall Architecture Phase 3 is complete. Phase 3F implementation, approved Demo showcase and completion documentation are committed together.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current closeout authorization:** final verification, documentation synchronization
-and one normal commit/push of the creator-approved Phase 3E implementation to
-`origin/main`, then remote verification and stopping. No new feature development,
-merge, history rewrite or deployment. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
-**Next implementation gate:** Phase 3F is proposed, not started and unauthorized.
-Phases 3F and 4-6 remain planned and require separate creator approval.
+**Current authorization:** creator-approved Phase 3F closeout, final verification,
+one completion commit and normal push only; no additional development or deployment.
+See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) and [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
+**Next implementation gate:** Architecture Phase 4 is proposed, unstarted and
+unauthorized. Phases 4-6 require separate creator approval.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -69,7 +68,7 @@ The baseline has a working separation between pure historical/cartographic logic
 ## Phase sequence and approval gates
 
 ```text
-COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3E
+COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3
        |
        v
 [3A] Environment separation and calibration JSON (complete)
@@ -82,9 +81,9 @@ COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3E
        | creator review
 [3E] Manual system-authoring helpers (complete)
        | creator review
-[3F] Historical integration and disclosure tests (next; not authorized)
-       | creator approval
-[4] Viewer modularization
+[3F] Historical integration and living Demo showcase (complete, creator-approved)
+       | separate future creator authorization required
+[4] Viewer modularization (next proposed; not started)
 [5] Expanded local previews
 [6] Performance and production readiness
 
@@ -144,7 +143,7 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: 3A-3E complete and creator-approved; 3F is next, proposed, unstarted and unauthorized.**
+**Status: 3A-3F and overall Architecture Phase 3 are complete and creator-approved. Phase 4 is next proposed and separately gated.**
 The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. Completed Phase 3D activates v1.3 in the noncanonical Demo; frozen v1.2 stays compatible.
@@ -292,7 +291,7 @@ fixtures do not enter the graphical Demo build.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phase 3C is also complete and
-creator-approved; Phases 3D and 3E are complete; Phase 3F is the next separately gated checkpoint.
+creator-approved; Phases 3D-3F and overall Phase 3 are also complete. Phase 4 remains separately gated.
 
 `scripts/dataset-inventory.mjs` derives deterministic paths from the trusted
 `public/datasets/demo/sector.json` catalogue and its registry references. Demo is
@@ -352,8 +351,8 @@ inputs are rejected; existing Demo behavior survives.
 #### 3C — Faction registry, InfoCards and Cantum hierarchy
 
 **Implementation status: complete and creator-approved.** The implementation and
-completion documentation are committed together. Overall Phase 3 is not complete;
-Phases 3D and 3E are also complete and creator-approved; Phase 3F remains unauthorized.
+completion documentation are committed together. Phases 3D-3F and overall
+Architecture Phase 3 are also complete and creator-approved; Phase 4 is separately gated.
 
 The separate [provisional v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md) and schema
 provide isolated Draft 2020-12 validation, a compact `factions.json` registry and
@@ -401,11 +400,10 @@ can transition from subordination to independence.
 #### 3D — Governing Cantum territory and universal radius
 
 **Implementation status: complete and creator-approved.** Implementation and
-completion documentation are committed together. Overall Phase 3 is not complete;
-Phase 3E is also complete and creator-approved; Phase 3F is the next proposed
-checkpoint awaiting separate creator authorization.
+completion documentation are committed together. Phases 3E-3F and overall
+Architecture Phase 3 are also complete and creator-approved. Phase 4 is next proposed.
 
-The active NONCANONICAL Demo uses v1.3 throughout, including its empty faction
+At the Phase 3D checkpoint, the NONCANONICAL Demo used v1.3 throughout, including its empty faction
 registry and historical InfoCard entity-name/legality presentation. Systems keep
 their administrative `cantumHistory`; the pure governing resolver derives direct
 superiors and ultimate roots at the selected year. Unknown governance is Not
@@ -468,9 +466,8 @@ are preserved throughout.
 #### 3E — Safe local manual authoring
 
 **Implementation status: complete and creator-approved.** Implementation and
-completion documentation are committed together. Overall Phase 3 remains
-incomplete; Phase 3F is the next proposed checkpoint and requires separate
-creator authorization.
+completion documentation are committed together. Phase 3F and overall
+Architecture Phase 3 are also complete and creator-approved; Phase 4 remains unauthorized.
 
 `npm run atlas:new-system` targets only the configured NONCANONICAL Demo.
 Preview and ID suggestion are read-only, with explicit `--apply` for an empty
@@ -543,6 +540,44 @@ through JSON/local tools alone, with no
 viewer/Vite edits or partial network published.
 
 #### 3F — End-to-end integration and preservation
+
+**Implementation status: complete and creator-approved.** Implementation, the
+approved normal-Demo showcase and completion documentation are committed together.
+One isolated valid scenario combines safe system creation/registration, collision
+checks, star/planet/station authoring, complete gate pairs, explicit generation,
+factions and historical InfoCards, governance, fields, detached identity, eager
+preload, archival fallback and audited builds. The ordinary v1.3 Demo adds
+`sys_0005`, two TEST factions, B's 800-1000 A.E. subordination and complete
+350/352/353 gate chronology. It has four released details and one archival system.
+
+The completed Phase 3 architecture combines the sector-derived validated inventory,
+full eager preload, safe preview/explicit-apply authoring and recovery, v1.3 faction
+and historical relationship validation, governing-Cantum field aggregation, one
+provisional 24-ly radius and version-aware navigation. No manual viewer/Vite
+registration was needed for the new records.
+
+Verification: 245 automated tests, including five integrated/preservation tests,
+and 17 applicable Chromium suites pass. The normal-Demo suite exercises exact
+governance, faction and gate boundaries, InfoCards, flat/perspective display,
+keyboard/mobile access, resource reuse and archival fallback; calibration retains
+all nine radius/camera comparisons. Strict validation, read-only navigation
+freshness, legacy terminal history, ID Finder and the 24-file/15-approved-SVG
+build audit pass. Original system files and eleven links, Canon, frozen
+fixtures/schemas and calibration facts are preserved. Unregistered/test/private
+inputs and source maps remain excluded.
+
+Known limits: influence fields remain approximations; the existing large-bundle
+advisory remains; physical touch hardware and non-Chromium browsers are unverified.
+No Phase 4, Atlas Creator, Canon migration or deployment is implemented.
+See [the creator walkthrough and before/after comparison](DEMO_SHOWCASE.md).
+
+**Permanent development policy:** separately authorized significant visible
+features pass automated tests, receive representative NONCANONICAL Demo examples
+when needed, then creator visual review/corrections and explicit approval before
+separately authorized documentation/commit/push. Nonvisual work needs no filler.
+TEST edge cases, Development/calibration, curated Demo and Canon remain separate.
+
+**Retained original integration scenario and acceptance criteria:**
 
 **Scenario:** Isolated NONCANONICAL fixture
 with new system, star, planet and station;
@@ -675,12 +710,11 @@ Phase 3 or the read-only public Atlas.
 
 ## Current implementation boundary
 
-Phases 1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and creator-approved.
-Phase 3E implementation and completion documentation enter Git history together.
-The current closeout authorizes only verification, documentation synchronization
-and one normal commit/push of that approved work. Stop after remote verification.
-Phase 3F is next, not started and unauthorized. Phase 3F
-and 4-6 remain planned and separately gated; do not treat Phase 3 as complete.
+Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall
+Architecture Phase 3 is complete. Phase 3F implementation, the approved normal
+Demo showcase and completion documentation enter Git history together. This
+closeout authorizes one completion commit and normal push only. Phase 4 is the
+next proposed checkpoint, has not started and requires separate creator approval.
 Protected v0.1 Canon, frozen fixtures/schemas, history, navigation semantics and
 publication safeguards remain unchanged. Only the approved noncanonical Demo migrates to v1.3. No later-phase feature,
 merge, history rewrite, canonical migration, editor or deployment is authorized.

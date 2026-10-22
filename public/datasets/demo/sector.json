@@ -206,6 +206,41 @@
       "infoCard": {
         "affiliation": null, "class": null, "crew": null, "population": null, "armament": null, "description": null
       }
+    },
+    {
+      "id": "sys_0005",
+      "entityType": "star_system",
+      "discoveredAE": 300,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -5,
+        "y": 2,
+        "z": 0
+      },
+      "nameHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "name": "TEST System E Showcase",
+          "kind": "author_supplied"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "cantumId": "can_0001"
+        }
+      ],
+      "publicDetailPath": "systems/sys_0005.json",
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [{"fromAE": 300, "untilAE": null, "text": "NONCANONICAL TEST showcase of historical organizations and gate operation. No MCR history."}]
+      }
     }
   ],
   "nexusPresentation": {

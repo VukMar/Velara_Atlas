@@ -12,7 +12,7 @@ async page => {
     await page.setViewportSize({width: 1440, height: 1000}); await page.goto('http://127.0.0.1:5176/Velara_Atlas/');
     await page.locator('#selection option[value="sys_9901"]').waitFor({state: 'attached'});
     const data = await page.evaluate(async () => { const d = await (await import('./demo-data.mjs')).loadDemoDataset(); return {version: d.sector.schemaVersion, details: d.detailFiles.size, radius: d.presentation.territoryOverlay.radiusLY}; });
-    check(data.version === '1.3.0' && data.details === 4 && data.radius === 24, 'eager additional detail with preserved v1.3 radius');
+    check(data.version === '1.3.0' && data.details === 5 && data.radius === 24, 'eager additional detail with preserved v1.3 radius');
     await year(299); check(!await present('sys_9901'), 'hidden before explicit discovery');
     await year(300); check(await present('sys_9901'), 'inclusive TEST system discovery');
     await choose('sys_9901'); check((await page.locator('#info-panel').innerText()).includes('TEST MANUAL AUTHORING'), 'explicit name visible');

@@ -27,8 +27,8 @@ const args = ['--size-x', '100000', '--size-y', '10000', '--size-z', '100000'];
 test('suggestion/preview are deterministic, read-only, and validate actual v1.3 records', t => {
   const {root} = sandbox(t), before = snapshots(root);
   const io = {...fs, openSync() { throw new Error('Preview attempted a write'); }};
-  assert.equal(inspectAuthoring({root, io}).nextId, 'sys_0005');
-  assert.equal(inspectAuthoring({root, io}).nextId, 'sys_0005');
+  assert.equal(inspectAuthoring({root, io}).nextId, 'sys_0006');
+  assert.equal(inspectAuthoring({root, io}).nextId, 'sys_0006');
   assert.match(runNewSystem([], {root, io}), /not reserved/);
   assert.match(runNewSystem(args, {root, io}), /PREVIEW ONLY/);
   const p = planNewSystem(chart, {root, io});
@@ -90,7 +90,7 @@ test('noninteractive CLI preview/apply accepts explicit historical inputs and ke
 
 test('ID Finder includes archival, unregistered files, malformed records and BigInt identities', t => {
   const {root} = sandbox(t);
-  assert.throws(() => planNewSystem({...chart, id: 'sys_0004'}, {root}), /already owns.*sys_0005/);
+  assert.throws(() => planNewSystem({...chart, id: 'sys_0004'}, {root}), /already owns.*sys_0006/);
   const p = planNewSystem({...chart, id: 'sys_999999999999999999999999'}, {root});
   write(root, p.entry.publicDetailPath, p.detail);
   assert.equal(inspectAuthoring({root}).nextId, 'sys_1000000000000000000000000');
@@ -131,8 +131,8 @@ test('directory junctions, leaf symlinks and changed realpaths are refused', t =
   const {root: second, top: secondTop} = sandbox(t), held = path.join(secondTop, 'held');
   fs.renameSync(path.join(second, 'systems'), held); fs.symlinkSync(held, path.join(second, 'systems'), 'junction');
   assert.throws(() => planNewSystem(chart, {root: second}), /Symlink|reparse/);
-  const io = {...fs, realpathSync(file) { return String(file).endsWith('sys_0005.json') ? path.join(top, 'outside') : fs.realpathSync(file); }};
-  fs.writeFileSync(path.join(root, 'systems/sys_0005.json'), '{}');
+  const io = {...fs, realpathSync(file) { return String(file).endsWith('sys_0006.json') ? path.join(top, 'outside') : fs.realpathSync(file); }};
+  fs.writeFileSync(path.join(root, 'systems/sys_0006.json'), '{}');
   assert.throws(() => planNewSystem(chart, {root, io}), /Symlink|reparse|entityType|ID/);
 });
 
@@ -140,7 +140,7 @@ test('ordinary failures during staging, installation, replacement and verificati
   for (const phase of ['backup-open', 'sector-stage', 'detail-stage', 'write', 'link', 'rename', 'verification']) {
     const {root} = sandbox(t), before = snapshots(root), p = planNewSystem(chart, {root}); let fired = false, replaced = false;
     const io = {...fs,
-      openSync(file, ...rest) { const s = String(file); if (!fired && ((phase === 'backup-open' && s.endsWith('.bak')) || (phase === 'sector-stage' && s.includes('sector.json.atlas-') && s.endsWith('.tmp')) || (phase === 'detail-stage' && s.includes('sys_0005.json.atlas-')))) { fired = true; throw new Error('injected ' + phase); } return fs.openSync(file, ...rest); },
+      openSync(file, ...rest) { const s = String(file); if (!fired && ((phase === 'backup-open' && s.endsWith('.bak')) || (phase === 'sector-stage' && s.includes('sector.json.atlas-') && s.endsWith('.tmp')) || (phase === 'detail-stage' && s.includes('sys_0006.json.atlas-')))) { fired = true; throw new Error('injected ' + phase); } return fs.openSync(file, ...rest); },
       writeFileSync(file, bytes, ...rest) { if (phase === 'write' && !fired && typeof file === 'number') { fired = true; fs.writeFileSync(file, String(bytes).slice(0, 5)); throw new Error('injected write'); } return fs.writeFileSync(file, bytes, ...rest); },
       linkSync(...a) { if (phase === 'link') { fired = true; throw new Error('injected link'); } return fs.linkSync(...a); },
       renameSync(...a) { if (phase === 'rename' && !fired) { fired = true; throw new Error('injected rename'); } const result = fs.renameSync(...a); replaced = true; return result; },
@@ -214,7 +214,7 @@ test('a concurrently created identical destination is not mistaken for an owned 
   const {root} = sandbox(t), p = planNewSystem(chart, {root}), original = fs.readFileSync(path.join(root, 'sector.json'));
   const io = {...fs, linkSync(stage, target) { fs.copyFileSync(stage, target, fs.constants.COPYFILE_EXCL); return fs.linkSync(stage, target); }};
   assert.throws(() => applyNewSystem(p, {io}), /Recovery required.*|EEXIST/);
-  assert.equal(fs.readFileSync(path.join(root, 'systems/sys_0005.json'), 'utf8'), p.detailText);
+  assert.equal(fs.readFileSync(path.join(root, 'systems/sys_0006.json'), 'utf8'), p.detailText);
   assert.deepEqual(fs.readFileSync(path.join(root, 'sector.json')), original);
   assert.throws(() => recoverNewSystem({root, apply: true}), /ownership differs/);
 });
@@ -231,7 +231,7 @@ test('new visible system and independent gate chronology use the existing genera
   const server = await createServer({...config, configFile: false, logLevel: 'silent', optimizeDeps: {noDiscovery: true, include: []}, server: {...config.server, port: 0, hmr: false}});
   try {
     const {loadDemoDataset, loadDemoDetail} = await server.ssrLoadModule('/demo-data.mjs');
-    const data = await loadDemoDataset(); assert.equal(data.detailFiles.size, 4); assert.equal((await loadDemoDetail(system)).id, system.id);
+    const data = await loadDemoDataset(); assert.equal(data.detailFiles.size, 5); assert.equal((await loadDemoDetail(system)).id, system.id);
     assert.equal(resolveAtlas(data, 353, system.id).markers.length, detail.objects.length);
   } finally { await server.close(); }
   const outDir = path.join(top, 'dist'); await build({...config, configFile: false, logLevel: 'silent', build: {...config.build, outDir}});

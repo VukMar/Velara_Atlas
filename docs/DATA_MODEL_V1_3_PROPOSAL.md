@@ -4,7 +4,7 @@
 completion documentation are committed together. The active NONCANONICAL Demo
 uses this accepted v1.3 contract. Introduced as an isolated Phase 3C proposal,
 this document retains its filename for link continuity and its design history.
-Phase 3E safe local authoring is complete and creator-approved; Phase 3F and later remain unauthorized. Test records and the provisional 24-ly
+Phase 3E safe local authoring is complete and creator-approved; Phase 3F integration/showcase and overall Architecture Phase 3 are complete and creator-approved; Phase 4 and later remain unauthorized. Test records and the provisional 24-ly
 Demo radius introduce no MCR canon.
 
 The exact v1.3 contract is [atlas-v1_3.schema.json](../schemas/atlas-v1_3.schema.json).
@@ -228,9 +228,16 @@ activation; it does not change weapon records or frozen schemas.
 
 ## Deferred work
 
-Phases 3D and 3E are complete and creator-approved. Phase 3F is the next
-proposed integration/preservation checkpoint, unstarted and separately gated. Canon
+Phases 3A-3F and overall Architecture Phase 3 are complete and creator-approved.
+Phase 4 is next proposed and requires separate authorization. Canon
 migration, Atlas Creator, new artwork and deployment are not implemented.
 
 See [MANUAL_AUTHORING](MANUAL_AUTHORING.md) for the v1.3 empty-system helper,
 nullable history and complete object/navigation editing workflow.
+
+## Completed Phase 3F showcase
+
+The accepted contract now has a curated normal-Demo example of factions, a new
+system and B's dated subordination/independence. This adds no schema fields or
+resolver semantics. The preceding Phase 3D crosswalk remains its original migration
+evidence. See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for the subsequent additive data changes.

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "fac_0002",
+  "entityType": "faction",
+  "factionType": "criminal_syndicate",
+  "nameHistory": [
+    {
+      "fromAE": 200,
+      "untilAE": null,
+      "name": "TEST Independent Network",
+      "kind": "noncanon_example"
+    }
+  ],
+  "legalStatusHistory": [
+    {
+      "fromAE": 200,
+      "untilAE": null,
+      "status": "unlawful"
+    }
+  ],
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 200,
+        "untilAE": null,
+        "entityId": null,
+        "datePrecision": "exact"
+      }
+    ],
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 200,
+        "untilAE": null,
+        "text": "NONCANONICAL TEST Demo organization; no MCR history."
+      }
+    ]
+  }
+}

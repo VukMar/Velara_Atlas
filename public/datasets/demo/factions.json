@@ -1,4 +1,13 @@
 {
   "schemaVersion": "1.3.0",
-  "factions": []
+  "factions": [
+    {
+      "id": "fac_0001",
+      "path": "factions/fac_0001.json"
+    },
+    {
+      "id": "fac_0002",
+      "path": "factions/fac_0002.json"
+    }
+  ]
 }

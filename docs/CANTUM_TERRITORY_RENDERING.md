@@ -9,6 +9,16 @@
 `presentation.json`; frozen v1.1/v1.2 and calibration behavior are retained. Checkpoint 3.6 changed
 chart framing and panels only, preserving the algorithm, contributors and caps.
 
+## Approved normal-Demo governance example
+
+The completed, creator-approved Phase 3F v1.3 showcase has four released systems,
+one archival-only entry and two TEST factions. Cantum B is independent during
+`[700,800)`, subordinate to A during `[800,1000)`, then independent again. At
+799/800/999/1000 compare flat fields, perspective envelopes and governing labels.
+Administrative memberships and the shared 24-ly radius are unchanged.
+See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for the full walkthrough; these TEST dates
+and measurements assert no MCR canon.
+
 ## 1. Concept and source of truth
 
 For each ultimate governing Cantum (direct Cantum for legacy v1.2), generate a translucent, softly bounded X/Z region from system-centered influence bubbles, then merge bubbles **within that governing group** using a continuous metaball-style field. A single isolated system makes an island. Two or more close systems merge into an organic region. Unconnected far-away systems remain separate islands. **Never stretch artificial corridors** merely to connect separated holdings. Gate routes do not determine territory.

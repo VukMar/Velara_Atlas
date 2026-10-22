@@ -127,7 +127,7 @@ test('numbered public datasets use their own independent maxima',()=>{
   const m=memory(f,'public'),r=runIdFinder(['cb','--public'],m.options);
   assert.equal(r.exitCode,0);assert.match(r.output,/cb_0077\s+cb_0078/);
   assert.ok(m.reads.every(p=>p.startsWith(m.base)));
-  assert.equal(row(scanDataset(),'cb').highest,'cb_0014');
+  assert.equal(row(scanDataset(),'cb').highest,'cb_0016');
 });
 
 test('scanner ignores unrelated examples, metadata, presentation references and nested folders; rejects escaping paths/symlinks',()=>{
@@ -145,10 +145,10 @@ test('scanner ignores unrelated examples, metadata, presentation references and 
 });
 
 test('actual author-editable demo inventory scans cleanly with all supported prefixes',()=>{
-  const r=scanDataset();assert.deepEqual(r.errors,[]);assert.equal(r.files.length,7);
+  const r=scanDataset();assert.deepEqual(r.errors,[]);assert.equal(r.files.length,10);
   assert.deepEqual(r.rows.map(v=>v.prefix),PREFIXES);
   for(const row of r.rows.filter(row=>row.prefix!=='fac')) assert.match(row.highest,new RegExp(`^${row.prefix}_[0-9]{4,}$`));
-  assert.deepEqual(row(r,'fac'),{prefix:'fac',highest:null,next:'fac_0001'});
+  assert.deepEqual(row(r,'fac'),{prefix:'fac',highest:'fac_0002',next:'fac_0003'});
 });
 
 test('standalone CLI returns nonzero for bad prefix and succeeds independently of cwd without altering scanned files',()=>{

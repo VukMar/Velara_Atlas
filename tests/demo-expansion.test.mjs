@@ -37,12 +37,12 @@ test('expanded demo has varied authored physical diameters, planet variants and 
 });
 
 test('detailed demo charts vary in size while preserving zero-plane grids and valid clipped zones', () => {
-  const d = load(), widths = {sys_0001:100000, sys_0002:80000, sys_0003:160000};
-  const stars = {sys_0001:[0,0,0], sys_0002:[-26000,1800,-20000], sys_0003:[-62000,-1200,50000]};
+  const d = load(), widths = {sys_0001:100000, sys_0002:80000, sys_0003:160000, sys_0005:100000};
+  const stars = {sys_0001:[0,0,0], sys_0002:[-26000,1800,-20000], sys_0003:[-62000,-1200,50000], sys_0005:[0,0,15000]};
   for (const [id, detail] of d.detailFiles) {
     assert.equal(detail.map.size.x, widths[id]);
     assert.equal(detail.map.size.z, widths[id]);
-    assert.equal(detail.map.size.y, 20000);
+    assert.equal(detail.map.size.y, id === 'sys_0005' ? 10000 : 20000);
     const star = detail.objects.find(o => o.objectType === 'star');
     assert.deepEqual(['x','y','z'].map(axis => star.position[axis]), stars[id]);
     assert.equal(star.navigation, undefined, 'moved stars are not navigation anchors');
@@ -63,8 +63,8 @@ test('detailed demo charts vary in size while preserving zero-plane grids and va
 
 test('demo retains the approved navigation graph and all derived gate positions remain fresh', () => {
   const d = load();
-  // Creator-approved 16668e2 graph payload; normalize ONLY the authorized v1.3 version bump.
-  assert.equal(createHash('sha256').update(JSON.stringify({...d.connections,schemaVersion:'1.2.0'})).digest('hex'),
+  // Preserve every pre-3F link byte/value in its original order; exclude only the approved additive showcase link.
+  assert.equal(createHash('sha256').update(JSON.stringify({...d.connections,schemaVersion:'1.2.0',connections:d.connections.connections.filter(l=>l.id!=='lnk_0012')})).digest('hex'),
     '54745da730e07c4cbb0439c7a46c9582531ab41477a24d583c56a36acc36a724');
   const {dataset, placements} = generateNavigation(d);
   assert.deepEqual(navigationMismatches(d, dataset, placements), []);

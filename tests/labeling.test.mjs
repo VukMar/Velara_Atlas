@@ -54,6 +54,8 @@ test('real historical inputs update names, discovery, membership and eligible Ca
     {fromAE:800,untilAE:null,name:'SYNTHETIC LATE',kind:'test',datePrecision:'exact'}];
   assert.ok(regionAt(799).some(l=>l.name==='SYNTHETIC EARLY'));
   assert.ok(regionAt(800).some(l=>l.name==='SYNTHETIC LATE'));
+  // This isolated transfer variant assumes independent Cantums; live conquest is covered by Phase 3F.
+  d.cantums.cantums[1].infoCard.affiliation=[{fromAE:700,untilAE:null,entityId:null}];
   const s=d.sector.systems[0];s.cantumHistory=[{fromAE:210,untilAE:900,cantumId:'can_0001'},{fromAE:900,untilAE:null,cantumId:'can_0002'}];
   const contributors=y=>territoryGroups(resolveAtlas(d,y),d.sector,d.presentation);
   assert.ok(contributors(899).find(g=>g.id==='can_0001').points.some(p=>p.id===s.id));

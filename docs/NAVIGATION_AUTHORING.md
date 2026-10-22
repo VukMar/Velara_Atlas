@@ -16,6 +16,14 @@ No command commits, pushes or deploys. Track both the graph and affected system
 JSON together. Do not hand-edit the generated graph. Builds/dev startup run only
 validation and the read-only freshness check; they never repair stale files.
 
+## Approved normal-Demo chronology
+
+The completed Phase 3F showcase adds only `lnk_0012` in `sys_0005`: physical gates
+`gat_0021` / `gat_0022` are constructed at 350 / 352 A.E.; their bidirectional
+route activates at 353. Their positions were generated explicitly from authored
+boundaries. All eleven earlier links and gate coordinates remain unchanged.
+See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for the ordinary viewer walkthrough.
+
 ## Authoring and release contracts
 
 `schemas/atlas-v1_3.schema.json` defines the active Demo's v1.3.0 envelopes.

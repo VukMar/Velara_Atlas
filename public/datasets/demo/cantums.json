@@ -68,6 +68,18 @@
         "affiliation": [
           {
             "fromAE": 700,
+            "untilAE": 800,
+            "entityId": null,
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 800,
+            "untilAE": 1000,
+            "entityId": "can_0001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1000,
             "untilAE": null,
             "entityId": null,
             "datePrecision": "exact"

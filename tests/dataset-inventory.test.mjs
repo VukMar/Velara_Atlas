@@ -20,7 +20,7 @@ const write=(root,name,value)=>fs.writeFileSync(path.join(root,name),JSON.string
 function sandbox(t) {
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-inventory-'));
   const root=path.join(top,'public/datasets/demo');fs.mkdirSync(path.join(root,'systems'),{recursive:true});
-  for(const [name,text] of readDemoSource().texts)fs.writeFileSync(path.join(root,name),text);
+  for(const [name,text] of readDemoSource().texts){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.writeFileSync(path.join(root,name),text);}
   t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(path.basename(top).startsWith('velara-inventory-'));fs.rmSync(top,{recursive:true,force:true});});
   return {top,root};
 }
@@ -40,7 +40,7 @@ const publish=root=>{const plugin=demoInputAudit({root});plugin.buildStart();ret
 
 test('inventory derives deterministic registered paths and preserves archival entries',()=>{
   const a=datasetInventory(),b=datasetInventory();assert.deepEqual(a.files,b.files);
-  assert.deepEqual(a.systemFiles,['systems/sys_0001.json','systems/sys_0002.json','systems/sys_0003.json']);
+  assert.deepEqual(a.systemFiles,['systems/sys_0001.json','systems/sys_0002.json','systems/sys_0003.json','systems/sys_0005.json']);
   assert.equal(a.systems.find(s=>s.id==='sys_0004').detailPath,null);
   assert(!a.files.includes('systems/sys_0004.json'));
   const source=readDemoSource();assert.deepEqual([...source.dataset.detailFiles.keys()],a.systems.filter(s=>s.detailPath).map(s=>s.id));
@@ -98,7 +98,7 @@ test('additional registered system works through validation, navigation writer a
   const {root,top}=sandbox(t);addSystem(root);
   const orphan=read(path.join(root,'systems/sys_0042.json'));orphan.id='sys_0099';orphan.objects[0].id='cb_9999';orphan.objects[1].id='sta_9999';write(root,'systems/sys_0099.json',orphan);
   const inventory=datasetInventory(root);assert(inventory.files.includes('systems/sys_0042.json'));assert(!inventory.files.includes('systems/sys_0099.json'));
-  const source=readDemoSource(root);assert.equal(source.dataset.detailFiles.size,4);assert.deepEqual(checkConnections(source).errors,[]);
+  const source=readDemoSource(root);assert.equal(source.dataset.detailFiles.size,5);assert.deepEqual(checkConnections(source).errors,[]);
   assert.deepEqual(runConnections({root}),['PASS already current; no files written']);assert.doesNotThrow(()=>runConnections({root,check:true}));
   const ids=scanDataset({repositoryRoot:top});assert.deepEqual(ids.errors,[]);assert(ids.files.includes('systems/sys_0042.json'));assert(ids.files.includes('systems/sys_0099.json'));
   assert.throws(()=>safePath(root,'systems/sys_0099.json'),/registered.*allowlist/);
@@ -144,7 +144,7 @@ test('one validated mapping owns eager browser loading, HTTP admission and a com
       const response=await fetch(base+'@fs/'+normalizePath(name));assert.equal(response.status,status);await response.text();
     }
     const {loadDemoDataset,loadDemoDetail}=await server.ssrLoadModule('/demo-data.mjs');const data=await loadDemoDataset();
-    assert.equal(data.detailFiles.size,4);assert.equal(data.detailFiles.get(system.id).objects.length,2);
+    assert.equal(data.detailFiles.size,5);assert.equal(data.detailFiles.get(system.id).objects.length,2);
     assert.equal((await loadDemoDetail(system)).id,system.id);
     assert.equal(await loadDemoDetail(data.sector.systems.find(s=>s.publicDetailPath===null)),null);
     assert.equal(resolveAtlas(data,1200,system.id).markers.length,2);

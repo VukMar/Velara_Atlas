@@ -5,8 +5,8 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D and 3E
-are complete and creator-approved; Phase 3F, canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D, 3E and 3F
+are complete and creator-approved. Overall Architecture Phase 3 is complete. Phase 4, canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -45,7 +45,7 @@ has no write endpoint, authentication, live AI lore generation or backend.
 ## Data flow and historical semantics
 
 1. The Demo loader reads the validated sector-derived noncanonical inventory
-   from `public/datasets/demo/` (currently five registries and three detail files, with an empty faction registry).
+   from `public/datasets/demo/` (currently five registries, four detail files and two registered faction files).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -145,7 +145,7 @@ admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
 Phase 3D is complete and creator-approved; its implementation and completion
-documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F remains separately gated.
+documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Phase 4 remains separately gated.
 
 ## Coordinates, layout and rendering
 
@@ -234,7 +234,7 @@ Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
 `publicDetailPath: null` and uses existing textual archival fallback, without a
 detail file or additional loader. The JSON input allowlist is sector-derived
-(currently seven files); `publicDir: false` remains unchanged. Sector markers remain display aids; system
+(eleven registered JSON inputs for the Phase 3F showcase); `publicDir: false` remains unchanged. Sector markers remain display aids; system
 physical models consume known diameters; their Phase 3 implementation originally
 preserved Phase 2 data. Subsequent creator testing intentionally changed System C
 navigation and discovery dates. The current committed demo has ten System C
@@ -314,3 +314,13 @@ state. Navigation keeps its existing independent journal format and algorithm.
 The tools and test-only scenarios remain excluded by the unchanged build allowlist.
 There is no editor endpoint or new runtime dependency. See
 [MANUAL_AUTHORING](MANUAL_AUTHORING.md) for scope, recovery limits and tests.
+
+## Living Demo integration policy
+
+Authorized significant viewer-facing features pass automated tests, gain a curated
+noncanonical example in the normal Demo when needed, then undergo creator visual
+review/corrections and explicit approval before separately authorized closeout.
+Nonvisual work needs no filler data. The Demo never imports TEST scenarios or
+calibration fixtures; its own registered JSON remains authoritative. Phase 3F
+adds only curated data/integration checks, preserving runtime module boundaries.
+See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differences.

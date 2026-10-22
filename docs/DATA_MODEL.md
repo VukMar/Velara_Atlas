@@ -175,4 +175,4 @@ top-down X/Z and absolute Y=0 are technical chart conventions. No objects or
 political histories are invented. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md)
 for preview/apply, manual objects, historical visibility and recovery. This
 Phase 3E implementation is complete and creator-approved; it introduces no schema changes.
-Phase 3F remains proposed and unauthorized.
+Phase 3F integration/showcase and overall Architecture Phase 3 are complete and creator-approved; Phase 4 remains unauthorized.

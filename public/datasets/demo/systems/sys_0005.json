@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "sys_0005",
+  "entityType": "system_detail",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 100000,
+      "y": 10000,
+      "z": 100000
+    },
+    "unit": "CNU",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "objects": [
+    {
+      "id": "cb_0015",
+      "entityType": "celestial_body",
+      "objectType": "star",
+      "discoveredAE": 300,
+      "nameHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "name": "TEST Showcase Primary",
+          "kind": "noncanonical_demo",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 15000
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST showcase. Explicit demonstration positions and dimensions. No MCR history."
+          }
+        ]
+      },
+      "orbitingId": null,
+      "colonizedAE": null,
+      "physicalDiameterKm": 1080000
+    },
+    {
+      "id": "cb_0016",
+      "entityType": "celestial_body",
+      "objectType": "planet",
+      "discoveredAE": 300,
+      "nameHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "name": "TEST Showcase Planet",
+          "kind": "noncanonical_demo",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -10000,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST showcase. Explicit demonstration positions and dimensions. No MCR history."
+          }
+        ]
+      },
+      "orbitingId": "cb_0015",
+      "colonizedAE": null,
+      "physicalDiameterKm": 12400,
+      "visualVariant": "rocky",
+      "navigation": {
+        "boundaryRadiusCNU": 1000,
+        "localLinks": [
+          {
+            "id": "lnk_0012",
+            "targetObjectId": "sta_0003",
+            "sourceGateId": "gat_0021",
+            "targetGateId": "gat_0022",
+            "direction": "bidirectional",
+            "fromAE": 353,
+            "untilAE": null,
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sta_0003",
+      "entityType": "station",
+      "objectType": "orbital_station",
+      "constructedAE": 300,
+      "decommissionedAE": null,
+      "discoveredAE": 300,
+      "orbitingId": "cb_0016",
+      "nameHistory": [
+        {
+          "fromAE": 300,
+          "untilAE": null,
+          "name": "TEST Intelligence Station",
+          "kind": "noncanonical_demo",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 10000,
+        "y": 0,
+        "z": 0
+      },
+      "icon": null,
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 320,
+            "untilAE": null,
+            "entityId": "fac_0001",
+            "datePrecision": "exact"
+          }
+        ],
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 300,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST showcase. A station with dated organizational affiliation; affiliation is not system sovereignty. No MCR history."
+          }
+        ]
+      },
+      "navigation": {
+        "boundaryRadiusCNU": 2000
+      }
+    },
+    {
+      "id": "gat_0021",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 350,
+      "decommissionedAE": null,
+      "discoveredAE": 350,
+      "nameHistory": [
+        {
+          "fromAE": 350,
+          "untilAE": null,
+          "name": "TEST Planet Gate",
+          "kind": "noncanonical_demo",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": -9000,
+        "y": 0,
+        "z": 0
+      },
+      "positionMode": "boundary_derived",
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 350,
+            "untilAE": 353,
+            "text": "NONCANONICAL TEST physical gate. No operational route is recorded at this historical year. No MCR history."
+          },
+          {
+            "fromAE": 353,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST physical gate serving its dedicated route, active from 353 A.E. No MCR history."
+          }
+        ]
+      }
+    },
+    {
+      "id": "gat_0022",
+      "entityType": "gate",
+      "objectType": "short_range_gate",
+      "constructedAE": 352,
+      "decommissionedAE": null,
+      "discoveredAE": 352,
+      "nameHistory": [
+        {
+          "fromAE": 352,
+          "untilAE": null,
+          "name": "TEST Station Gate",
+          "kind": "noncanonical_demo",
+          "datePrecision": "exact"
+        }
+      ],
+      "position": {
+        "x": 8000,
+        "y": 0,
+        "z": 0
+      },
+      "positionMode": "boundary_derived",
+      "icon": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 352,
+            "untilAE": 353,
+            "text": "NONCANONICAL TEST physical gate. No operational route is recorded at this historical year. No MCR history."
+          },
+          {
+            "fromAE": 353,
+            "untilAE": null,
+            "text": "NONCANONICAL TEST physical gate serving its dedicated route, active from 353 A.E. No MCR history."
+          }
+        ]
+      }
+    }
+  ],
+  "zones": []
+}

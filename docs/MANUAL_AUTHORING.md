@@ -1,11 +1,10 @@
 # Safe local manual authoring (v1.3 NONCANONICAL Demo)
 
 Phase 3E is complete and creator-approved. Its implementation and completion
-documentation are committed together. Phase 3F is the next proposed integration
-checkpoint, not started and requiring separate authorization; overall Phase 3 is
-not complete. This guide grants no publication or deployment approval. The viewer
+documentation are committed together. Phase 3F integration/showcase and overall Architecture Phase 3 are complete and
+creator-approved. Phase 4 has not started and requires separate authorization. This guide grants no publication or deployment approval. The viewer
 stays read-only. Canon under `public/data/`, calibration, schemas and frozen fixtures
-are not authoring targets. Neither Phase 3F nor a graphical Atlas Creator is implemented.
+are not authoring targets. A graphical Atlas Creator is not implemented.
 
 ## Create an empty system
 

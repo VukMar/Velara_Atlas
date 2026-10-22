@@ -176,6 +176,23 @@
       "direction": "bidirectional",
       "fromAE": 613,
       "untilAE": null
+    },
+    {
+      "id": "lnk_0012",
+      "linkType": "short_range",
+      "transportType": "short_range_gate",
+      "endpointA": {
+        "systemId": "sys_0005",
+        "objectId": "gat_0021"
+      },
+      "endpointB": {
+        "systemId": "sys_0005",
+        "objectId": "gat_0022"
+      },
+      "direction": "bidirectional",
+      "fromAE": 353,
+      "untilAE": null,
+      "datePrecision": "exact"
     }
   ]
 }

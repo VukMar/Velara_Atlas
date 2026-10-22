@@ -37,7 +37,7 @@ test('isolated v1.3 inventory and complete records validate; active Demo support
   assert.equal(dataset.sector.systems[1].publicDetailPath,null);
   assert.deepEqual(allErrors(readDemoSource(ROOT).dataset),[]);assert.doesNotThrow(()=>createDemoConfig({datasetRoot:ROOT}));
   assert.equal(readDemoSource().dataset.sector.schemaVersion,'1.3.0');
-  assert.equal(createEntityIndex(readDemoSource().dataset).size,2);
+  assert.equal(createEntityIndex(readDemoSource().dataset).size,4);
   const legacy=structuredClone(readDemoSource().dataset);legacy.sector.schemaVersion='1.2.0';
   assert.throws(()=>createEntityIndex(legacy),/v1.3/);
 });

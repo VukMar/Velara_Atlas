@@ -78,6 +78,8 @@ test('overlapping different Cantums keep independent component identities and co
 test('historical discovery, transfer, absence and merging change only the resolved island identities',()=>{
   const {dataset:d}=readDemoSource(),source=structuredClone(d.sector);
   // All mutations are in memory. The existing historical API remains authoritative.
+  // This isolated transfer variant assumes independent Cantums; live conquest is covered by Phase 3F.
+  d.cantums.cantums[1].infoCard.affiliation=[{fromAE:700,untilAE:null,entityId:null}];
   const outpost=d.sector.systems[2];outpost.positionLY={x:64,y:12,z:64};
   outpost.cantumHistory=[{fromAE:600,untilAE:900,cantumId:'can_0001'},{fromAE:900,untilAE:null,cantumId:'can_0002'}];
   d.cantums.cantums[1].sigil='test-cantum-a';

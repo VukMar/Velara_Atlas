@@ -9,11 +9,12 @@ not a complete inventory of later additions. The tree below summarizes ownership
 Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
 creator-approved. Its ten-file entity-family reference library is in
 `examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
-Architecture Phases 3A, 3B, 3C, 3D and 3E are complete and creator-approved. Phase 3D
+Architecture Phases 3A, 3B, 3C, 3D, 3E and 3F are complete and creator-approved. Phase 3D
 activates v1.3 in the NONCANONICAL Demo; implementation and status are committed together.
 Phase 3E implementation and completion documentation are committed together.
-Phase 3F is next, not started and requires separate authorization. Phases 3F and 4-6 remain
-planned and separately gated. Overall Phase 3 is not complete.
+Phase 3F integration/showcase implementation is complete and creator-approved,
+with implementation and completion documentation committed together. Overall
+Architecture Phase 3 is complete; Phases 4-6 remain unstarted and separately gated.
 The active v1.3 Demo uses a provisional shared 24-ly radius. Frozen v1.2
 per-Cantum settings and calibration radii remain unchanged.
 
@@ -208,3 +209,13 @@ The new-system CLI may mutate only `sector.json` and one new matching
 lock and stages/backups are local safety evidence; preserve them while pending.
 None are publication inputs. Canonical records, live Demo facts, schemas and
 frozen fixtures are not changed by this implementation task.
+
+## Completed Phase 3F showcase
+
+The ordinary Demo registers `sys_0005`, its five-object detail, and two TEST faction
+files. Only Cantum B's superior-affiliation periods change among existing political
+records; all existing system entries/details and routes remain preserved. The
+shared radius stays 24 ly. [DEMO_SHOWCASE](DEMO_SHOWCASE.md) lists the exact differences.
+`tests/phase3f-integration.test.mjs` derives temporary copies using the Phase 3E
+service; `tests/browser-phase3f-showcase.mjs` exercises the normal Demo on 5173.
+No runtime fixture imports, new application subsystem, Canon move or Phase 4 work.

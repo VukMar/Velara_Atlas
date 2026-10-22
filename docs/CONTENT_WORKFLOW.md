@@ -1,6 +1,6 @@
 # Velara Atlas — Source lore, JSON and public release workflow
 
-**Status:** Manual canonical extraction/release safeguards; no automated canonical publisher exists. Demo-only v1.2 generation/validation and the local read-only viewer are implemented. This workflow does not authorize reading private lore or migrating canonical records without a specific task.
+**Status:** Manual canonical extraction/release safeguards; no automated canonical publisher exists. Demo-only v1.2/v1.3 generation/validation and the local read-only viewer are implemented. This workflow does not authorize reading private lore or migrating canonical records without a specific task.
 
 ## Principle: three states, two timelines
 
@@ -57,3 +57,17 @@ redirected to canonical data as part of this workflow.
 ## If private lore was accidentally committed
 
 Stop publishing. Removing a file in a new commit does not erase it from public Git history. Treat the content as disclosed, check deployed artifacts and caches, and carefully plan history cleanup/credential rotation if relevant. Never assume `.gitignore` or a new commit makes previously published secrets private again.
+
+## Representative Demo and creator review
+
+For future separately authorized significant viewer-facing features, use:
+implement -> automated tests -> representative NONCANONICAL Demo update -> creator
+visual review -> corrections -> explicit creator approval -> separately authorized
+documentation/commit/push. Add an example when existing Demo data cannot show the
+feature adequately; internal refactors, security, documentation and nonvisual
+tooling need no artificial filler. This policy never authorizes new canon.
+
+TEST invalid/edge fixtures, specialized Development/calibration, the coherent
+normal Demo and Canon remain separate datasets. Never automatically import TEST
+fixtures into Demo. A curated Demo example is deliberately authored/reviewed JSON,
+not an automated promotion of a fixture. See [DEMO_SHOWCASE](DEMO_SHOWCASE.md).

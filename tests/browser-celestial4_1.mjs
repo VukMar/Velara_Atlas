@@ -76,7 +76,7 @@ async page => {
       if(unknown){await focus(unknown.id);const o=(await state()).objects.find(o=>o.id===unknown.id);check(o.geometry===null&&o.kind==='proxy','unknown diameter remains a symbol');await reset();}
       await page.locator('#sector').click();
     }
-    results.push({releasedSystems:3,knownBodiesInspected:inspected,unknownDiameter:'neutral proxy',XYZAndPhysicalRadii:'passed'});
+    results.push({releasedSystems:sector.systems.filter(s=>s.publicDetailPath!==null).length,knownBodiesInspected:inspected,unknownDiameter:'neutral proxy',XYZAndPhysicalRadii:'passed'});
 
     await open('sys_0001');await images();
     await page.locator('#labels [data-record-id="cb_0001"]').hover();

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "fac_0001",
+  "entityType": "faction",
+  "factionType": "intelligence_service",
+  "nameHistory": [
+    {
+      "fromAE": 300,
+      "untilAE": 500,
+      "name": "TEST Intelligence Office",
+      "kind": "noncanon_example",
+      "datePrecision": "circa"
+    },
+    {
+      "fromAE": 500,
+      "untilAE": null,
+      "name": "TEST Cantum A Intelligence Office",
+      "kind": "noncanon_example",
+      "datePrecision": "exact"
+    }
+  ],
+  "legalStatusHistory": [
+    {
+      "fromAE": 300,
+      "untilAE": 900,
+      "status": "lawful",
+      "datePrecision": "exact"
+    },
+    {
+      "fromAE": 900,
+      "untilAE": 1000,
+      "status": "unlawful",
+      "datePrecision": "exact"
+    },
+    {
+      "fromAE": 1000,
+      "untilAE": null,
+      "status": "lawful",
+      "datePrecision": "exact"
+    }
+  ],
+  "infoCard": {
+    "affiliation": [
+      {
+        "fromAE": 300,
+        "untilAE": 700,
+        "entityId": "can_0001",
+        "datePrecision": "exact"
+      },
+      {
+        "fromAE": 700,
+        "untilAE": null,
+        "entityId": null,
+        "datePrecision": "exact"
+      }
+    ],
+    "class": [
+      {
+        "fromAE": 300,
+        "untilAE": 500,
+        "label": "TEST Archive Office",
+        "code": "TEST_ARCHIVE_OFFICE"
+      },
+      {
+        "fromAE": 500,
+        "untilAE": null,
+        "label": "TEST Intelligence Service",
+        "code": "TEST_INTELLIGENCE_SERVICE"
+      }
+    ],
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": [
+      {
+        "fromAE": 300,
+        "untilAE": null,
+        "text": "NONCANONICAL TEST Demo organization; no MCR history."
+      }
+    ]
+  }
+}
