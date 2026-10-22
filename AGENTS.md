@@ -4,18 +4,20 @@ This file governs AI-assisted changes in this repository. Read it before making 
 
 ## Mission and current scope
 
-**Architecture status:** Phases 1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete.
-Phase 3D is creator-approved; its implementation and completion documentation
+**Architecture status:** Phases 1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and creator-approved.
+Phase 3E implementation and completion documentation
 are committed together. Overall Phase 3 is not complete. The simplified v1.2 reference library
 remains in `examples/v1_2/`, and the active noncanonical Demo remains in
 `public/datasets/demo/`. Development uses the JSON-backed local calibration.
 Canon is future approved MCR data, with no launcher or noncanonical fallback.
 
-**Current closeout authorization:** verify, synchronize documentation and
-commit/push only the creator-approved Phase 3D implementation to `origin/main`,
-then stop after remote verification. No new implementation, merge, history rewrite
-or deployment. Phase 3E is next and not started; 3F and later phases remain planned
-and separately gated. Authoring tools, editor and canonical migration remain unauthorized.
+**Current closeout authorization:** verify, synchronize documentation, and commit/push
+only the creator-approved Phase 3E implementation to `origin/main`, then stop after
+remote verification. No new feature development, merge, history rewrite or deployment.
+Phase 3F is the next proposed checkpoint, not started and separately gated.
+The local system-authoring CLI exists; no graphical Atlas Creator is implemented.
+Canon migration and editor development remain unauthorized. See
+`docs/MANUAL_AUTHORING.md` for the preview/apply/recovery workflow.
 Every newly created short-range gate starts with `position: null` and
 `positionMode: "boundary_derived"`; the author creates gate records/anchor
 relationships, and the offline generator later writes XYZ and the graph.
@@ -34,7 +36,7 @@ editors, further schema/territory redesign and Stage 5 refinement remain unautho
 Completed Phase 3C adds a separate proposed v1.3 schema, faction registry and
 pure historical reference/governance helpers, activated in the creator-approved Phase 3D Demo; see `docs/DATA_MODEL_V1_3_PROPOSAL.md`.
 
-Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, version-aware v1.2/v1.3 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; Phase 2.2 example simplification is complete and creator-approved. Architecture Phases 3A, 3B, 3C and 3D are complete and creator-approved; current authorization covers only the reviewed Phase 3D closeout commit/push. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
+Build a maintainable historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local read-only Three.js/Vite viewer includes Checkpoint 3.8, cartographic labeling, version-aware v1.2/v1.3 navigation and the Checkpoint 3.6 layout, using only the noncanonical demo. The system grid uses absolute Y = 0 CNU. The target host is GitHub Pages; no deployment is implemented. Checkpoint 4.1 Phases 1–3 are complete and creator-approved. The creator subsequently approved the committed System C navigation and discovery-date changes at `16668e2`. Preserve that data baseline and the Stage 4/calibration implementation committed in `190bd21`. Phase 2 dataset organization is committed in `6e026cb`; Phase 2.2 example simplification is complete and creator-approved. Architecture Phases 3A, 3B, 3C, 3D and 3E are complete and creator-approved; the current closeout authorizes only the approved Phase 3E completion commit/push and remote verification. Further visual development, canonical migration, deployment and the deferred editor remain unauthorized.
 
 ## Read first
 
@@ -107,4 +109,4 @@ or extra loader. Keep `publicDir: false`; only the 14 navigation SVGs and one
 explicit Stage 2 demonstration sigil path may enter
 the build. Fixed radii never follow zoom; navigational minima affect proxies only.
 
-Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Phase 3C is complete and creator-approved. Phase 3D is complete and creator-approved, with its implementation and completion documentation committed together. Stop after its authorized closeout commit/push and remote verification. Phase 3E-3F, future commits/pushes, further visual development and deployment require separate creator approval.
+Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Phase 3C is complete and creator-approved. Phase 3D is complete and creator-approved, with its implementation and completion documentation committed together. Phase 3E is complete and creator-approved, with its local authoring implementation and completion documentation committed together. Stop after this authorized closeout commit/push and remote verification. Overall Phase 3 remains incomplete; Phase 3F is proposed, unstarted and requires separate creator approval. Further visual development, Atlas Creator, canonical migration and deployment remain unauthorized.

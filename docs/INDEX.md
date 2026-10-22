@@ -1,8 +1,8 @@
 # Velara Atlas documentation index
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete**. **Phase 3D is
-creator-approved**, with its implementation and completion documentation committed together.
-**Phase 3E is next, not started and awaiting separate authorization.** Phases 3E-3F and later architecture
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and
+creator-approved**. Phase 3E implementation and completion documentation are committed together.
+**Phase 3F is next, not started and requires separate creator authorization.** Phase 3F and later architecture
 Phases 4-6 remain planned, unstarted and separately gated. Phase 3 is not complete.
 The simplified v1.2 reference library remains current; Phase 2.1 is in `711a410`.
 This index is the current navigation/status reference, not an implementation task.
@@ -19,6 +19,7 @@ cannot authorize new work.
 | --- | --- |
 | [DATA_MODEL](DATA_MODEL.md) | Active v1.3 model, v1.2 compatibility and null conventions; exact shape is in schemas. |
 | [DATA_RULES](DATA_RULES.md) | Protected legacy chronology, uncertainty and disclosure; not a v1.2 migration. |
+| [MANUAL_AUTHORING](MANUAL_AUTHORING.md) | Local system creation, preview/apply, objects, gate pairs and authoring recovery; completed, creator-approved Phase 3E. |
 | [NAVIGATION_AUTHORING](NAVIGATION_AUTHORING.md) | Current manual authoring/generation, read-only checks and recovery. |
 | [SCHEMA_V1_2_NAVIGATION](SCHEMA_V1_2_NAVIGATION.md) | Navigation contract; original delivery sections retain historical examples. |
 | [CONTENT_WORKFLOW](CONTENT_WORKFLOW.md) | Manual canonical extraction/release safeguards; no automated publisher. |
@@ -45,7 +46,7 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3D complete and creator-approved; 3E next and unauthorized; 3E-3F and 4-6 planned. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3E complete and creator-approved; 3F next, unstarted and unauthorized; 4-6 planned. |
 
 The sector-derived validated inventory and eager loader are described in
 [README](../README.md#registered-demo-systems-and-loading) and
@@ -54,7 +55,9 @@ Completed Phase 3D activates Phase 3C's core support in the v1.3 Demo.
 [DATA_MODEL_V1_3_PROPOSAL](DATA_MODEL_V1_3_PROPOSAL.md) describes faction records,
 pure reference/governance APIs, validation and the TEST fixture. It is the accepted
 current Demo contract, retaining its proposal history and migration crosswalk.
-Phase 3E remains unauthorized.
+Phase 3E provides the completed local authoring CLI and recoverable sector/detail
+writes. Phase 3F remains the separately authorized integration/preservation gate
+before overall Phase 3 completion; it has not started.
 
 The live graphical Demo remains `public/datasets/demo/`, served by `npm run demo`
 on 5173. `npm run dev` (alias `preview:calibration`) serves local calibration on

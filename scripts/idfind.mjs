@@ -163,7 +163,7 @@ export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs, dat
   if (legacy.length) notes.push('Legacy v0.1 IDs are listed separately, without numeric ranking or translation. Suggestions apply only to the numbered namespace.');
   const generatedOnly = [...definitions.get('lnk')].filter(([, values]) => values.every(o => o.role === 'generated-link')).map(([id]) => id);
   if (generatedOnly.length) notes.push(`Generated-only link IDs included as used: ${generatedOnly.join(', ')}. Use connections:check for graph freshness.`);
-  return {scope, rows, errors, notes, legacy, files: [...files.keys()].sort()};
+  return {scope, rows, errors, notes, legacy, files: [...files.keys()].sort(), usedIds: [...definitions.values()].flatMap(ids => [...ids.keys()]).sort()};
 }
 
 export function formatReport(result, prefix) {

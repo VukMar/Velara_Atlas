@@ -164,3 +164,15 @@ The v1.1 extension added nullable icon overrides, optional planet/station visual
 System objects are the authoring source of truth. Eligible anchors use `navigation.boundaryRadiusCNU` and `navigation.localLinks[]`; Jump Gates/Holes may use one `interstellarConnection`. Creator-confirmed workflow: every newly created short-range gate starts with `position: null` and `positionMode: "boundary_derived"`; the author never manually positions it. Create the gate records and required anchor relationships, then let the manual generator compute/write their XYZ and `connections.json`. The `gateAuthoring` definition and complete `systemAuthoring` contract accept the initial null, while release `gate` / `systemDetail` requires calculated XYZ. Existing schema-compatible legacy records do not change this creation workflow. Jump Gates and Jump Holes retain their independent positioning requirements; see the authoring guide for pairs, checks and recovery.
 
 Run `npm run connections`, then the read-only `npm run connections:check`; tests, validation and builds refuse stale output. No browser generation, positions sidecar or automatic repair exists. See [approved design](SCHEMA_V1_2_NAVIGATION.md) and [workflow, precision, migration and recovery](NAVIGATION_AUTHORING.md).
+
+## Empty-system authoring helper
+
+The local `atlas:new-system` workflow validates actual v1.3 `sectorSystem` and
+`systemDetail` definitions and full dataset relationships/freshness before
+writing. Unknown discovery/colonization/position/name/membership and all six
+InfoCard histories stay null. Chart sizes must be explicit; origin zero, CNU,
+top-down X/Z and absolute Y=0 are technical chart conventions. No objects or
+political histories are invented. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md)
+for preview/apply, manual objects, historical visibility and recovery. This
+Phase 3E implementation is complete and creator-approved; it introduces no schema changes.
+Phase 3F remains proposed and unauthorized.

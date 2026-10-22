@@ -6,18 +6,18 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has three released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete**. **Phase 3D is
-creator-approved**, with its governing-territory/v1.3 implementation and completion
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and
+creator-approved**, with Phase 3E implementation and completion
 documentation committed together. Overall Phase 3 is not complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
 `public/datasets/demo/`. Start with the [documentation index](docs/INDEX.md) and
 [example entry point](examples/README.md). Phase 2 dataset organization is
 committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 [Phase 2 report](docs/PHASE_02_DATASET_MIGRATION_RESULTS.md) retains its original
-verification context. **Phase 3E is the next proposed checkpoint and requires separate creator authorization**, under
+verification context. **Phase 3F is the next proposed checkpoint and requires separate creator authorization**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phase 3E and later remain separately gated. Completed Phase 3D activates v1.3
+Phase 3E provides safe local manual system authoring; Phase 3F has not started. Completed Phase 3D activates v1.3
 in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
 historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
 
@@ -335,3 +335,22 @@ for presentation, and [resolver API](docs/HISTORICAL_RESOLVER.md) for historical
 selectors. [Canonical migration safeguards](docs/LEGACY_MIGRATION_PLAN.md) remain
 a separate approval boundary. Older proposals and implementation reports are
 retained as historical references, not current setup instructions.
+
+## Safe local system authoring (completed Phase 3E)
+
+Phase 3E is complete and creator-approved. Its implementation and status
+synchronization are committed together; Phase 3F remains unauthorized.
+
+`npm run atlas:new-system -- --help` describes the fixed NONCANONICAL Demo
+workflow. No arguments validates the dataset and suggests an unused permanent ID;
+`--size-x N --size-y N --size-z N` previews a new empty v1.3 chart and sector
+registration. X/Z must be square; dimensions are explicit CNU author decisions.
+Only `--apply` writes. Unknown history remains null and may prevent historical
+visibility. No objects, politics or navigation are invented or auto-generated.
+
+See [MANUAL_AUTHORING](docs/MANUAL_AUTHORING.md) for all inputs, exact record
+shape, ID collisions, recovery, manual celestial/station authoring and complete
+short-range gate pairs. Existing inventory/import mapping needs only JSON
+registration, followed by a Demo server restart. The viewer stays read-only;
+Canon, calibration and publication boundaries are unchanged. Focused tests:
+`node --test tests/system-authoring.test.mjs`.

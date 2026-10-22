@@ -10,7 +10,7 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C and 3D are complete**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D and 3E are complete and creator-approved**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
@@ -22,8 +22,10 @@ completion documentation committed together. **Phase 3C is complete and creator-
 completion documentation committed together. Its separate
 [v1.3 entity contract](DATA_MODEL_V1_3_PROPOSAL.md) is now activated in the local Demo
 by completed, creator-approved Phase 3D, with implementation and completion
-documentation committed together. **Phase 3E
-is next and unauthorized.** Phases 3E-3F and
+documentation committed together. **Phase 3E is complete and creator-approved**: safe local system creation,
+sector registration, recoverable writes and manual entity/gate workflows, with
+implementation and completion documentation committed together. **Phase 3F is
+next, not started and requires separate authorization.** Phase 3F and
 4-6 remain planned and separately gated; Phase 3 as a whole is not complete.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
@@ -31,7 +33,7 @@ and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_
 preserves its original verification context. Completed Phase 3D introduces
 governing fields, a shared provisional 24-ly radius and historical InfoCards in
 the NONCANONICAL v1.3 Demo. Frozen v1.2/calibration remain unchanged. Overall Phase 3 is not complete;
-3E and 3F remain outstanding.
+3F remains outstanding as the final proposed architecture Phase 3 integration gate.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
@@ -159,6 +161,7 @@ demo systems, coordinates, routes or statistics to canon. See
 A general publication pipeline, arbitrary dataset selection, moon-relative coordinates,
 orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
-The current authorization permits only the reviewed Phase 3D closeout commit/push;
-stop after remote verification. No new implementation, merge or deployment.
-Phase 3E and later need separate creator approval.
+The current closeout authorizes verification, documentation synchronization and
+one normal completion commit/push of approved Phase 3E, then remote verification
+and stopping. No new implementation, merge or deployment. Phase 3F and later
+need separate creator approval. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).

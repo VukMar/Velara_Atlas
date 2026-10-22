@@ -9,9 +9,10 @@ not a complete inventory of later additions. The tree below summarizes ownership
 Architecture Phases 1, 2 and 2.1 are complete; Phase 2.2 is complete and
 creator-approved. Its ten-file entity-family reference library is in
 `examples/v1_2/`, with the active demonstration in `public/datasets/demo/`.
-Architecture Phases 3A, 3B, 3C and 3D are complete and creator-approved. Phase 3D
+Architecture Phases 3A, 3B, 3C, 3D and 3E are complete and creator-approved. Phase 3D
 activates v1.3 in the NONCANONICAL Demo; implementation and status are committed together.
-Phase 3E is next and unauthorized. Phases 3E-3F and 4-6 remain
+Phase 3E implementation and completion documentation are committed together.
+Phase 3F is next, not started and requires separate authorization. Phases 3F and 4-6 remain
 planned and separately gated. Overall Phase 3 is not complete.
 The active v1.3 Demo uses a provisional shared 24-ly radius. Frozen v1.2
 per-Cantum settings and calibration radii remain unchanged.
@@ -191,3 +192,19 @@ assets. Keep `publicDir: false`; do not copy all of `public/`.
 
 No canonical migration, file move, commit, push or deployment follows from
 this document. Review changes, run checks and obtain the relevant authorization.
+
+## Local authoring ownership (completed Phase 3E)
+
+- `scripts/atlas-new-system.mjs`: fixed Demo CLI; preview by default, explicit apply.
+- `scripts/system-authoring.mjs`: reusable validated planning, two-file writes and rollback recovery.
+- `scripts/authoring-guard.mjs`: pending-state checks shared with navigation and Vite.
+- `tests/system-authoring.test.mjs`: temporary dataset success/security/failure/build checks.
+- `tests/authoring-scenario.mjs`: explicitly TEST star/planet/station/gate pair on a copy.
+- `tests/preview-system-authoring.mjs`, `tests/browser-system-authoring.mjs`: loopback-only temporary browser integration, no write endpoint.
+- [MANUAL_AUTHORING](MANUAL_AUTHORING.md): commands, object workflow and evidence-preserving recovery.
+
+The new-system CLI may mutate only `sector.json` and one new matching
+`systems/sys_XXXX.json` under the configured Demo. Its ignored recovery journal,
+lock and stages/backups are local safety evidence; preserve them while pending.
+None are publication inputs. Canonical records, live Demo facts, schemas and
+frozen fixtures are not changed by this implementation task.

@@ -4,7 +4,7 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs tests/celestial-scale.test.mjs tests/cantum-sigils.test.mjs tests/influence-envelopes.test.mjs tests/island-identities.test.mjs tests/cantum-calibration.test.mjs tests/celestial-rendering.test.mjs tests/demo-expansion.test.mjs tests/history-v1_1.test.mjs tests/viewer.test.mjs tests/cartography.test.mjs tests/navigation-v1_2.test.mjs tests/idfind.test.mjs tests/layout.test.mjs tests/labeling.test.mjs tests/zone-geometry.test.mjs tests/dataset-inventory.test.mjs tests/entities-v1_3.test.mjs tests/governing-influence.test.mjs && node scripts/validate-demo.mjs",
+    "test": "node tests/check.mjs && node --test tests/schema-v1.test.mjs tests/schema-v1_1.test.mjs tests/celestial-scale.test.mjs tests/cantum-sigils.test.mjs tests/influence-envelopes.test.mjs tests/island-identities.test.mjs tests/cantum-calibration.test.mjs tests/celestial-rendering.test.mjs tests/demo-expansion.test.mjs tests/history-v1_1.test.mjs tests/viewer.test.mjs tests/cartography.test.mjs tests/navigation-v1_2.test.mjs tests/idfind.test.mjs tests/layout.test.mjs tests/labeling.test.mjs tests/zone-geometry.test.mjs tests/dataset-inventory.test.mjs tests/entities-v1_3.test.mjs tests/governing-influence.test.mjs tests/system-authoring.test.mjs && node scripts/validate-demo.mjs",
     "demo": "npm run validate && vite --port 5173 --strictPort",
     "validate": "node scripts/validate-demo.mjs",
     "dev": "node scripts/preview-cantum-calibration.mjs",
@@ -14,7 +14,8 @@
     "connections:check": "node scripts/connections.mjs --check",
     "idfind": "node scripts/idfind.mjs",
     "preview:calibration": "npm run dev",
-    "history:demo": "node tests/demo.mjs"
+    "history:demo": "node tests/demo.mjs",
+    "atlas:new-system": "node scripts/atlas-new-system.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

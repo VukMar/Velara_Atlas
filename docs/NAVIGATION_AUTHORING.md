@@ -200,3 +200,17 @@ updated the graph, then read-only checks and idempotence verified it. No version
 masking, writer redesign, build-time repair or new route is introduced. Frozen
 v1.2 generator/recovery tests remain, with additional v1.3 writer coverage.
 See the [exact crosswalk](DATA_MODEL_V1_3_PROPOSAL.md#phase-3d-demo-migration-crosswalk).
+
+## Separate system-creation transaction
+
+Completed, creator-approved Phase 3E provides `atlas:new-system`. It creates an
+empty detail and registers it, but never generates
+navigation or gates. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md) for creation and
+an explicit 350/352/353 A.E. TEST gate chronology. Authoring drafts, schema-valid
+inputs and navigation-current releases are different stages.
+
+A pending `.new-system-recovery.json`, recovery lock or orphan authoring artifact
+blocks navigation commands and Demo startup/build. It is a different operation
+from this guide's `.connections-recovery.json`; neither journal format nor the
+navigation recovery procedure changed. Finish creator-reviewed authoring recovery
+before running generation. Never delete evidence merely to bypass these guards.

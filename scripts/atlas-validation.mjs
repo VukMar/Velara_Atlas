@@ -8,7 +8,7 @@ const schemas = new Map(['1.1.0', '1.2.0', '1.3.0'].map(version => {
   const ajv = new Ajv2020({allErrors: true, strict: true});
   if (version === '1.3.0') ajv.addSchema(JSON.parse(fs.readFileSync(new URL('../schemas/atlas.schema.json', import.meta.url), 'utf8')));
   ajv.addSchema(schema);
-  const defs = ['sector', 'cantumsFile', 'connectionsFile', 'presentationFile', 'systemDetail', ...(version !== '1.1.0' ? ['systemAuthoring'] : []), ...(version === '1.3.0' ? ['factionsFile', 'faction'] : [])];
+  const defs = ['sector', 'cantumsFile', 'connectionsFile', 'presentationFile', 'systemDetail', ...(version !== '1.1.0' ? ['systemAuthoring'] : []), ...(version === '1.3.0' ? ['sectorSystem', 'factionsFile', 'faction'] : [])];
   return [version, Object.fromEntries(defs.map(def => [def, ajv.compile({$ref: `${schema.$id}#/$defs/${def}`})]))];
 }));
 

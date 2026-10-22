@@ -5,9 +5,8 @@
 noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C and 3D
-are complete and creator-approved;
-Phase 3E and later remain unauthorized; canonical migration,
+Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D and 3E
+are complete and creator-approved; Phase 3F, canonical migration,
 final artwork, deployment and the local editor remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
@@ -146,7 +145,7 @@ admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
 Phase 3D is complete and creator-approved; its implementation and completion
-documentation are committed together. Phase 3E remains separately gated.
+documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F remains separately gated.
 
 ## Coordinates, layout and rendering
 
@@ -297,3 +296,21 @@ the [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) records subsequent
 emulated-touch checks and the continuing bundle-size advisory. These are
 historical results. [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) record
 the browser and boundary verification performed for this path migration.
+
+## Local manual system authoring (completed Phase 3E)
+
+The CLI `scripts/atlas-new-system.mjs` exposes only the selected Demo. Reusable
+Node-only planning, record construction, complete validation and apply/recovery
+operations live in `scripts/system-authoring.mjs`. ID allocation reuses ID Finder's
+BigInt inventory, including unregistered and archival identities. Strict v1.3
+validation precedes any write; the sector remains the sole registration source.
+
+An exclusive authoring journal, verified staging and sector backup make the
+sector append/new detail operation recoverable. New detail installation is
+exclusive; unrelated sector bytes stay intact. Input hashes and filesystem guards
+reject stale plans/concurrent changes. `scripts/authoring-guard.mjs` prevents
+navigation generation and Demo startup/build from consuming pending authoring
+state. Navigation keeps its existing independent journal format and algorithm.
+The tools and test-only scenarios remain excluded by the unchanged build allowlist.
+There is no editor endpoint or new runtime dependency. See
+[MANUAL_AUTHORING](MANUAL_AUTHORING.md) for scope, recovery limits and tests.

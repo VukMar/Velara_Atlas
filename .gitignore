@@ -20,3 +20,8 @@
 
 # Local VS Code workspace paths
 /*.code-workspace
+public/datasets/demo/.new-system-recovery.json
+public/datasets/demo/.new-system-recovery.lock
+public/datasets/demo/*.atlas-new-system-*.tmp
+public/datasets/demo/*.atlas-new-system-*.bak
+public/datasets/demo/systems/*.atlas-new-system-*.tmp

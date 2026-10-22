@@ -6,6 +6,7 @@ import {randomUUID, createHash} from 'node:crypto';
 import {DEMO_ROOT, readDemoSource, safePath, rewritePositions} from './demo-files.mjs';
 import {generateNavigation, navigationMismatches} from './navigation.mjs';
 import {structuralErrors} from './atlas-validation.mjs';
+import {assertNoAuthoring} from './authoring-guard.mjs';
 
 const serialized = value => JSON.stringify(value, null, 2) + '\n';
 const digest = value => createHash('sha256').update(value).digest('hex');
@@ -47,6 +48,7 @@ function validateStaged(source, changes) {
  * io injection supports failure tests; the CLI always uses Node fs and DEMO_ROOT.
  */
 export function writeConnections(source, plan, io = fs) {
+  assertNoAuthoring(source.root, io);
   if (!plan.changes.size) return [];
   validateStaged(source, plan.changes);
   const root = io.realpathSync(source.root), journal = path.join(root, RECOVERY_FILE), token = randomUUID();
@@ -68,6 +70,7 @@ export function writeConnections(source, plan, io = fs) {
       name: r.name, stage: path.relative(root, r.stage), backup: path.relative(root, r.backup),
       previousMissing: r.old === undefined, previousSHA256: r.old === undefined ? null : digest(r.old), nextSHA256: digest(r.next)
     }))}));
+    assertNoAuthoring(root, io);
     for (const r of records) {
       if (r.old !== undefined) exclusiveWrite(r.backup, r.old);
       exclusiveWrite(r.stage, r.next);
@@ -107,6 +110,7 @@ export function writeConnections(source, plan, io = fs) {
 }
 
 export function runConnections({check = false, root = DEMO_ROOT, io = fs} = {}) {
+  assertNoAuthoring(root, io);
   if (io.existsSync(path.join(root, RECOVERY_FILE))) throw new Error(`Pending recovery: ${RECOVERY_FILE}; inspect docs/NAVIGATION_AUTHORING.md`);
   const source = readDemoSource(root, io);
   if (check) {

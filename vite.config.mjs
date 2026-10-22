@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {defineConfig,normalizePath} from 'vite';
 import {checkConnections,RECOVERY_FILE} from './scripts/connections.mjs';
+import {assertNoAuthoring} from './scripts/authoring-guard.mjs';
 import {readDemoSource,DEMO_ROOT,datasetInventory} from './scripts/demo-files.mjs';
 import {assertSquareMap} from './src/viewer/chart-layout.mjs';
 import {svgFiles,approvedSVGSources} from './scripts/svg-assets.mjs';
@@ -19,6 +20,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
   const inventory=datasetInventory(root);
   const admitted=new Map(inventory.files.map(name=>[normalizePath(path.join(inventory.root,name)),name]));
   const verifiedSource=()=>{
+    assertNoAuthoring(inventory.root);
     if(fs.existsSync(path.join(inventory.root,RECOVERY_FILE)))throw new Error(`Pending recovery: ${RECOVERY_FILE}; inspect docs/NAVIGATION_AUTHORING.md`);
     const source=readDemoSource(inventory.root);
     if(JSON.stringify(source.inventory.files)!==JSON.stringify(inventory.files)||JSON.stringify(source.inventory.systems)!==JSON.stringify(inventory.systems))throw new Error('Dataset registrations changed; restart the Demo server to validate its new inventory');
