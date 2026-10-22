@@ -16,11 +16,18 @@ Phase 3F integration/showcase implementation is complete and creator-approved,
 with implementation and completion documentation committed together. Overall
 Architecture Phase 3 is complete. Architecture Phase 4 is complete and
 creator-approved, with implementation and completion documentation committed
-together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.
+together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 The active v1.3 Demo uses a provisional shared 24-ly radius. Frozen v1.2
 per-Cantum settings and calibration radii remain unchanged.
 
 ## Current tree
+
+Completed, creator-approved Phase 6 adds `tests/performance/` (seeded temporary workloads
+and sampling probes), `tests/preview-performance.mjs` (finite loopback preview),
+`scripts/benchmark-atlas.mjs`, `scripts/release-check.mjs` and a read-only
+`.github/workflows/verify.yml`. Machine-specific output and screenshots remain
+ignored under `.playwright-mcp/`; none are Demo imports. See
+[performance/release operations](PERFORMANCE_AND_RELEASE_READINESS.md).
 
 ```text
 Velara_Atlas/
@@ -192,8 +199,9 @@ and ID Finder fixture injection do not create public dataset selection.
 
 ## Other reserved future paths
 
-A local editor and deployment workflow remain deferred. `src/editor/` and
-`.github/workflows/` are possible future locations, not current components.
+A local editor and deployment workflow remain deferred; `src/editor/` is a
+possible future location, not a current component. `.github/workflows/verify.yml`
+now contains only read-only source/test/build verification, with no publishing.
 `public/assets/` already exists; final art and NEXUS integration remain deferred.
 Publication must explicitly exclude editor/private inputs and enable only reviewed
 assets. Keep `publicDir: false`; do not copy all of `public/`.

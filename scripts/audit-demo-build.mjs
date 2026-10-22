@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {approvedSVGSources,svgFiles} from './svg-assets.mjs';
+import {readDemoSource,DEMO_ROOT} from './demo-files.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../dist/', import.meta.url));
 function list(directory) {
@@ -12,8 +13,13 @@ function list(directory) {
     return entry.isDirectory() ? list(full) : [full];
   });
 }
-export function auditDemoBuild(root = defaultRoot) {
+export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root)===path.resolve(defaultRoot)?DEMO_ROOT:null}={}) {
   const files = list(root);
+  const selected=datasetRoot?readDemoSource(datasetRoot):null;
+  const ids=text=>[...text.matchAll(/\b(?:sec|sys|can|fac|cb|sta|gat|jhl|lnk|zon)_[0-9]{4,}\b/g)].map(m=>m[0]);
+  const allowedIds=selected?new Set(ids([...selected.texts.values()].join('\n'))):null;
+  const relative=new Map(files.map(file=>[path.relative(root,file).replaceAll('\\','/'),file]));
+  const edges=new Map();let totalBytes=0;const bytesByType={};
   const approvedSVG = new Set(approvedSVGSources()), emittedSVG = new Set();
   const svgNames = new Map(approvedSVGSources().map((source,i)=>[source,path.basename(svgFiles[i],'.svg')]));
   for (const file of files) {
@@ -23,13 +29,25 @@ export function auditDemoBuild(root = defaultRoot) {
     }
     // Known legacy canonical IDs are never legitimate inputs to this demo.
     const text = fs.readFileSync(file, 'utf8');
+    const bytes=fs.statSync(file).size,extension=path.extname(name);totalBytes+=bytes;bytesByType[extension]=(bytesByType[extension]??0)+bytes;
     if (name.endsWith('.svg')) {
       if (!approvedSVG.has(text) || emittedSVG.has(text) || !name.startsWith(`assets/${svgNames.get(text)}-`)) throw new Error(`Unexpected SVG content/name or duplicate: ${name}`);
       emittedSVG.add(text);
     }
-    for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=']) {
+    for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=', 'VELARA_PERFORMANCE_ONLY','velara-local-previews','velara-cantum-calibration','preview-manifest.json']) {
       if (text.includes(forbidden)) throw new Error(`Unexpected canonical/private/source-map reference in ${name}`);
     }
+    if(allowedIds&&ids(text).some(id=>!allowedIds.has(id)))throw new Error(`Unregistered dataset identity in ${name}`);
+    const links=[];
+    if(allowedIds) {
+      if(/(?:\bfrom\s*|\bimport\s*\(|\bfetch\s*\(|@import\s*)["']https?:\/\//.test(text))throw new Error(`Unexpected external import/request in ${name}`);
+      for(const [,ref] of text.matchAll(/["']((?:\/Velara_Atlas\/assets\/|\.\/|assets\/)[A-Za-z0-9_.\/-]+\.(?:js|css|svg))["']/g)) {
+        const target=ref.startsWith('/Velara_Atlas/')?ref.slice('/Velara_Atlas/'.length):ref.startsWith('assets/')?ref:path.posix.normalize(path.posix.join(path.posix.dirname(name),ref));
+        if(!relative.has(target))throw new Error(`Missing build resource ${target} referenced by ${name}`);
+        links.push(target);
+      }
+    }
+    edges.set(name,links);
   }
   if (emittedSVG.size !== approvedSVG.size) throw new Error('Approved SVG inventory is incomplete');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -39,7 +57,11 @@ export function auditDemoBuild(root = defaultRoot) {
     if (!url.startsWith('/Velara_Atlas/assets/')) throw new Error(`Unexpected asset URL: ${url}`);
     if (!fs.existsSync(path.join(root, url.slice('/Velara_Atlas/'.length)))) throw new Error('Missing build asset');
   }
-  return {files:files.length,svgCount:emittedSVG.size,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs, base-relative assets, no canonical data or private/source-map references`};
+  if(allowedIds) {
+    const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit('index.html');
+    for(const name of relative.keys())if(!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+  }
+  return {files:files.length,svgCount:emittedSVG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 

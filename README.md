@@ -6,7 +6,7 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has four released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4 and 5 are complete and
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4, 5 and 6 are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. Overall Architecture Phase 3 is complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
@@ -17,6 +17,10 @@ committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 verification context. **Phase 3F integration and the curated Demo showcase are complete and creator-approved**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
+Architecture Phase 6 is complete and creator-approved; the existing architecture
+optimization roadmap is complete. This does not mean the whole project is finished
+or approved for deployment, Canon migration or Atlas Creator. See [performance and local release readiness](docs/PERFORMANCE_AND_RELEASE_READINESS.md)
+for measured limits, local browser checks and the read-only CI matrix. No deployment is authorized.
 Phase 3E provides safe local manual system authoring; Architecture Phase 4 viewer modularization/configuration is complete and creator-approved, with implementation and status documentation committed together. Phase 5 is complete and creator-approved. Completed Phase 3D activates v1.3
 in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
 historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
@@ -123,6 +127,13 @@ npm run history:demo
 npm run build
 npm run preview
 ```
+
+`npm run benchmark -- all 3` measures controlled 5/100/400/1000-system workloads
+and writes ignored local JSON under `.playwright-mcp/`. Run benchmarks without
+concurrent tests for useful comparisons. `npm run release:check` validates freshness,
+builds and audits the selected NONCANONICAL Demo; it does not generate navigation,
+publish artifacts or certify Canon. Its browser/subpath dry run is documented in
+[the readiness guide](docs/PERFORMANCE_AND_RELEASE_READINESS.md).
 
 `npm test` runs legacy history, frozen v1.1 regression checks, v1.2 schema/generation/recovery checks, v1.3 entity/governance, radius and navigation tests and prototype spatial/build-boundary tests. `npm run history:demo` runs the unchanged legacy **console** political-history demonstration; it is separate from both browser environments. `npm run build` validates the registered Demo dataset, creates static `dist/` output and audits it. `npm run preview` serves that build at **http://127.0.0.1:4173/Velara_Atlas/**. These commands do not deploy anything.
 
@@ -339,7 +350,7 @@ retained as historical references, not current setup instructions.
 ## Safe local system authoring (completed Phase 3E)
 
 Phase 3E is complete and creator-approved. Its implementation and status
-synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 requires separate authorization.
+synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 `npm run atlas:new-system -- --help` describes the fixed NONCANONICAL Demo
 workflow. No arguments validates the dataset and suggests an unused permanent ID;
@@ -384,7 +395,7 @@ Run `node --test tests/viewer-modules.test.mjs` for focused state/presentation,
 camera/picking, configuration and cleanup tests. The Chromium MCP entry point
 `tests/browser-viewer-modules.mjs` runs against `npm run demo`; existing showcase,
 keyboard/touch, zone and nine calibration comparisons remain applicable.
-Architecture Phase 4 is complete and creator-approved. Phase 5 is complete and creator-approved. Phase 6 remains planned and unauthorized.
+Architecture Phase 4 is complete and creator-approved. Phase 5 is complete and creator-approved. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 ## Named local preview scenarios (completed Phase 5)
 
@@ -453,4 +464,4 @@ With Development and Demo running, execute `tests/browser-local-preview.mjs` and
 `tests/browser-cantum-calibration.mjs` through the existing Playwright MCP runner;
 these are browser entry points, not Node test scripts. Continue the ordinary
 Demo browser regressions. Future implementation and commits still require
-explicit creator authorization. No Phase 6 or Atlas Creator is included.
+explicit creator authorization. Those Phase 5 changes included no Phase 6 implementation or Atlas Creator; current Phase 6 evidence is in the readiness guide.

@@ -2,7 +2,8 @@
 
 Phase 3E is complete and creator-approved. Its implementation and completion
 documentation are committed together. Phase 3F integration/showcase and overall Architecture Phase 3 are complete and
-creator-approved. Architecture Phase 4 is complete and creator-approved. Phase 5 has not started and requires separate authorization. This guide grants no publication or deployment approval. The viewer
+creator-approved. Architecture Phases 4 and 5 are complete and creator-approved.
+Phase 6 verification and closeout are complete and creator-approved. This guide grants no publication or deployment approval. The viewer
 stays read-only. Canon under `public/data/`, calibration, schemas and frozen fixtures
 are not authoring targets. A graphical Atlas Creator is not implemented.
 

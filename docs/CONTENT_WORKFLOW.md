@@ -42,7 +42,18 @@ redirected to canonical data as part of this workflow.
 - Naming conventions: approved proper place names follow the MCR Continuance Naming Protocol; existing approved names stay unchanged. If a source requires a newly coined name, request a separate naming approval; do not improvise replacements during extraction.
 - Public descriptions must be specifically approved for the reader. Private notes, editorial remarks, future story revelations, and hidden objects must be absent **from all files committed to public Git**, not only from `public/data/`.
 
-## Release checklist (manual until scripted)
+## Release checklist and local Demo dry run
+
+Completed, creator-approved Architecture Phase 6 adds `npm run release:check`:
+fixed NONCANONICAL Demo validation, read-only navigation freshness, static build
+and disclosure/resource audits. Follow with `npm run preview -- --port 4173 --strictPort`
+at `http://127.0.0.1:4173/Velara_Atlas/` and the browser walkthrough in
+[performance and release readiness](PERFORMANCE_AND_RELEASE_READINESS.md).
+This local simulation does not deploy, generate navigation, promote fixtures or
+authorize Canon publication. The read-only Ubuntu/Windows CI workflow verifies
+supported commands without publishing or writing the repository. The current
+architecture optimization roadmap is complete; all later work is separately gated.
+The human content review below remains required.
 
 - [ ] New entries use permanent IDs and valid foreign-key references.
 - [ ] Selected year changes only historically appropriate values; null/unknown discovery dates are handled explicitly.

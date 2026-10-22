@@ -4,9 +4,13 @@ Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. **Overall Architecture Phase 3 is complete.**
 **Architecture Phase 4 is complete and creator-approved**, with implementation
-and completion documentation committed together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and separately gated.
+and completion documentation committed together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 The simplified v1.2 reference library remains current; Phase 2.1 is in `711a410`.
 This index is the current navigation/status reference, not an implementation task.
+
+Phase 6 and the current architecture optimization roadmap are complete and
+creator-approved. No subsequent development or deployment is authorized. [Performance and release readiness](PERFORMANCE_AND_RELEASE_READINESS.md)
+records benchmarks, browser coverage, local production checks and remaining gates.
 
 For setup and commands, start with [README](../README.md). For supported JSON,
 start with [the v1.2 entity-family guide](../examples/v1_2/README.md) and
@@ -48,7 +52,7 @@ separate data contexts.
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
 | [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
-| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1-2.2 and 3A-3F and overall Phase 3 complete and creator-approved; Phase 4 complete and creator-approved; Phase 5 complete and creator-approved; Phase 6 next proposed, unstarted and unauthorized. |
+| [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1–5 complete and creator-approved; Phase 6 complete and creator-approved; current optimization roadmap complete. Future work separately gated. |
 
 The sector-derived validated inventory and eager loader are described in
 [README](../README.md#registered-demo-systems-and-loading) and
@@ -124,5 +128,4 @@ validated presentation controls and read-only diagnostics. The original 15-syste
 calibration JSON and normal v1.3 Demo remain unchanged. See [scenario operations,
 presets and tests](../README.md#named-local-preview-scenarios-completed-phase-5).
 Phase 5 is complete and creator-approved. Its implementation and status
-documentation are committed together. Phase 6 is next proposed, unstarted and
-unauthorized; no editor, Canon migration or deployment is authorized.
+documentation are committed together. Phase 6 is complete and creator-approved; no editor, Canon migration or deployment is authorized.

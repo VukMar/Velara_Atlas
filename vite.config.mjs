@@ -5,6 +5,7 @@ import {defineConfig,normalizePath} from 'vite';
 import {checkConnections,RECOVERY_FILE} from './scripts/connections.mjs';
 import {assertNoAuthoring} from './scripts/authoring-guard.mjs';
 import {readDemoSource,DEMO_ROOT,datasetInventory} from './scripts/demo-files.mjs';
+import {safeDatasetPath} from './scripts/dataset-inventory.mjs';
 import {assertSquareMap} from './src/viewer/chart-layout.mjs';
 import {svgFiles,approvedSVGSources} from './scripts/svg-assets.mjs';
 
@@ -14,23 +15,49 @@ const virtualName='virtual:velara-demo-dataset';
 export const DEMO_VIRTUAL_ID='\0velara-demo-dataset';
 const viteHelpers=new Set(['\0vite/preload-helper.js','\0vite/modulepreload-polyfill.js']);
 
+/** Actual build completeness, in addition to per-module admission. */
+export function auditRegisteredModules(bundle,inventory) {
+  const seen=new Set(Object.values(bundle).filter(o=>o.type==='chunk').flatMap(o=>Object.keys(o.modules)).map(id=>normalizePath(id.split('?')[0])));
+  const missing=inventory.files.filter(name=>!seen.has(normalizePath(path.join(inventory.root,name))));
+  if(missing.length)throw new Error('Registered dataset inputs missing from build: '+missing.join(', '));
+  return inventory.files.length;
+}
+
 /** The same registered snapshot owns imports, JSON serving and build admission.
  * Root injection supports isolated integration tests, not public dataset selection. */
 export function demoInputAudit({root=DEMO_ROOT}={}) {
   const inventory=datasetInventory(root);
   const admitted=new Map(inventory.files.map(name=>[normalizePath(path.join(inventory.root,name)),name]));
-  const verifiedSource=()=>{
+  let snapshot=null,production=false,dirty=false;
+  const verifiedSource=(name=null)=>{
     assertNoAuthoring(inventory.root);
     if(fs.existsSync(path.join(inventory.root,RECOVERY_FILE)))throw new Error(`Pending recovery: ${RECOVERY_FILE}; inspect docs/NAVIGATION_AUTHORING.md`);
+    if(snapshot) {
+      // Compare actual bytes, not mtimes: restored timestamps cannot hide edits.
+      // Recheck each path too, so symlink replacement never reuses trusted data.
+      // A JSON module consumes only its own validated bytes. Check all bytes on
+      // entry, watcher invalidation and final publication; avoid quadratic reads
+      // of unrelated files for each eager import. The snapshot itself is never
+      // patched with unvalidated records.
+      const names=name&&!dirty?[name]:inventory.files;
+      // Failed reads/validation leave the snapshot dirty: every subsequent load
+      // must fail or validate the repaired dataset, not resume partial serving.
+      dirty=true;
+      const unchanged=names.every(file=>fs.readFileSync(safeDatasetPath(inventory.root,file,fs,{version:inventory.sector.schemaVersion}),'utf8')===snapshot.texts.get(file));
+      if(unchanged){dirty=false;return snapshot;}
+      if(production)throw new Error('Dataset changed during build; retry after authoring completes');
+    }
     const source=readDemoSource(inventory.root);
     if(JSON.stringify(source.inventory.files)!==JSON.stringify(inventory.files)||JSON.stringify(source.inventory.systems)!==JSON.stringify(inventory.systems))throw new Error('Dataset registrations changed; restart the Demo server to validate its new inventory');
     const {errors}=checkConnections(source);if(errors.length)throw new Error(errors.join('\n'));
     for(const container of [source.dataset.sector,...source.dataset.detailFiles.values()])assertSquareMap(container.map);
-    return source;
+    snapshot=source;dirty=false;return source;
   };
   return {
     name:'explicit-demo-inputs',
-    buildStart(){approvedSVGSources();verifiedSource();},
+    configResolved(config){production=config.command==='build';},
+    watchChange(){dirty=true;},
+    buildStart(){snapshot=null;approvedSVGSources();verifiedSource();},
     resolveId(id){if(id===virtualName)return DEMO_VIRTUAL_ID;},
     load(id){
       if(id===DEMO_VIRTUAL_ID) {
@@ -50,7 +77,10 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
       }
       const name=admitted.get(normalizePath(id.split('?')[0]));
       // JSON transformations receive the exact bytes that passed validation.
-      if(name)return verifiedSource().texts.get(name);
+      if(name)return verifiedSource(name).texts.get(name);
+    },
+    writeBundle(_options,bundle){
+      try{verifiedSource();auditRegisteredModules(bundle,inventory);}catch(error){this.error(error.message);}
     },
     generateBundle(_options,bundle){
       for(const output of Object.values(bundle)) {

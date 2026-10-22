@@ -10,7 +10,7 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4 and 5 are complete and creator-approved**.
+**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4, 5 and 6 are complete and creator-approved**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
 commit. The v1.2 example library remains in `examples/v1_2/`, and the active
@@ -28,17 +28,26 @@ implementation and completion documentation committed together. **Phase 3F integ
 complete and creator-approved**, with implementation and completion documentation
 committed together. Overall Architecture Phase 3 is complete. Architecture Phase 4 viewer modularization and safe configuration are complete
 and creator-approved, with implementation and completion documentation committed
-together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.
+together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
 and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
 and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
 preserves its original verification context. Completed Phase 3D introduces
 governing fields, a shared provisional 24-ly radius and historical InfoCards in
 the NONCANONICAL v1.3 Demo. Frozen v1.2/calibration remain unchanged. Phase 3F completes the integration gate and normal-Demo showcase. Overall
-Architecture Phase 3 is complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 remains unauthorized.
+Architecture Phase 3 is complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 Earlier evidence remains in
 [the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
+
+## Completed Architecture Phase 6
+
+Phase 6 is complete and creator-approved, including performance measurement,
+preservation, read-only CI configuration and a local publication dry run. The
+current architecture optimization roadmap is complete; this is not completion
+of the whole project or authorization for further development. [Readiness evidence](PERFORMANCE_AND_RELEASE_READINESS.md)
+distinguishes local results from unexecuted cross-browser/device/hosted-CI checks.
+No Canon migration, deployment or Atlas Creator is authorized.
 
 **Completed focused authorization:** following the approved SVG family at `eca903b`,
 standardize only the sector grid to unnumbered 8×8 on `map.planeY`, with one
@@ -165,7 +174,7 @@ orbital simulation, exact legal boundaries and the local editor remain outside
 the current task. Preserve the existing authoring/recovery workflow and ID Finder.
 Phase 3F implementation and the scoped noncanonical Demo additions are complete
 and creator-approved. Their implementation and status synchronization are committed together.
-Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 requires separate approval. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
+Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. See [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
 
 ## Feature showcase gate
 
@@ -185,7 +194,7 @@ historical algorithms and publication allowlists are preserved. See
 [architecture ownership](ARCHITECTURE.md#phase-4-viewer-module-ownership).
 Architecture Phase 4 is complete and creator-approved; its implementation and
 completion documentation are committed together. No new Demo filler,
-Atlas Creator, Canon migration or deployment is authorized. Phase 5 is complete and creator-approved. Phase 6 remains separately gated.
+Atlas Creator, Canon migration or deployment is authorized. Phase 5 is complete and creator-approved. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 ## Completed Phase 5 local previews
 
@@ -194,5 +203,4 @@ validated presentation controls and read-only diagnostics. The original 15-syste
 calibration JSON and normal v1.3 Demo remain unchanged. See [scenario operations,
 presets and tests](../README.md#named-local-preview-scenarios-completed-phase-5).
 Phase 5 is complete and creator-approved. Its implementation and status
-documentation are committed together. Phase 6 is next proposed, unstarted and
-unauthorized; no editor, Canon migration or deployment is authorized.
+documentation are committed together. Phase 6 is complete and creator-approved; no editor, Canon migration or deployment is authorized.

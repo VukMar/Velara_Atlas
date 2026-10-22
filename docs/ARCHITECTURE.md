@@ -6,8 +6,10 @@ noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
 Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
 cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
 Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D, 3E and 3F
-are complete and creator-approved. Overall Architecture Phase 3 is complete. Architecture Phase 4 is complete and creator-approved; canonical migration,
-final artwork, deployment and the local editor remain separately gated.
+are complete and creator-approved. Overall Architecture Phase 3 is complete.
+Architecture Phases 4, 5 and 6 are complete and creator-approved; the current
+optimization roadmap is complete. Canonical migration, final artwork, deployment,
+the local editor and all subsequent development remain separately gated.
 Use the [index](INDEX.md) for authority and the
 [migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
 
@@ -76,7 +78,7 @@ and hiding it in the UI.
 | `scripts/check-relations.mjs` | Cross-file identity, intervals, references, bounds, endpoint types/cardinality and presentation constraints |
 | `scripts/validate-demo.mjs` | Current demo release schema + relations + read-only generated-artifact freshness |
 | `scripts/idfind.mjs` | Read-only dataset-scoped ID inventory and next-ID suggestions |
-| `scripts/audit-demo-build.mjs` | Production output extension, base-path, disclosure-marker and forbidden-reference checks |
+| `scripts/audit-demo-build.mjs` | Selected-dataset identities, resource reachability/completeness, extensions, exact SVGs, base paths and forbidden-reference checks |
 
 System-object declarations are the authoring source of truth; generated,
 Git-tracked `connections.json` is the runtime index. Only the manual
@@ -86,6 +88,20 @@ Multi-file replacement is not atomic; [authoring/recovery instructions](NAVIGATI
 are authoritative for operating that tool.
 
 ## Validated dataset inventory
+
+Phase 6 adds a validated Vite snapshot to avoid repeating whole-dataset schema,
+relationship and graph validation for every eager JSON import. Each imported
+file still undergoes safe-path and actual-byte checks. Watcher invalidation and
+virtual-module loading check the whole snapshot; production rejects changed
+bytes during the build and checks all registered inputs again before accepting
+output. A snapshot never incorporates an unvalidated record. No lazy loading,
+new dataset selector or runtime JSON-fetch architecture is introduced.
+
+The input audit now requires every registered JSON module to be present in the
+actual bundle. The output audit verifies selected-dataset numeric identities,
+local asset-reference completeness/reachability, exact approved SVGs and forbidden
+references. These are layered checks, not a general secret-content detector.
+See [readiness evidence and limitations](PERFORMANCE_AND_RELEASE_READINESS.md).
 
 `scripts/dataset-inventory.mjs` owns the selected trusted Demo root. It validates
 `sector.systems[]` before consuming detail declarations: IDs are unique, each
@@ -145,7 +161,7 @@ admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
 Phase 3D is complete and creator-approved; its implementation and completion
-documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 remains separately gated.
+documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 ## Coordinates, layout and rendering
 
@@ -234,7 +250,7 @@ symlink/reparse redirection. Registry changes require a Development restart; no
 filesystem glob, arbitrary root, remote URL or save API is added. Demo Vite source
 admission/output audits remain unchanged and reject all preview-only resources.
 Operational steps and diagnostic meanings are in [README](../README.md#named-local-preview-scenarios-completed-phase-5).
-Architecture Phase 5 is complete and creator-approved; implementation and status documentation are committed together. Phase 6 remains unstarted and unauthorized.
+Architecture Phase 5 is complete and creator-approved; implementation and status documentation are committed together. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 See [historical calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
@@ -335,7 +351,7 @@ See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differenc
 ## Phase 4 viewer module ownership
 
 Architecture Phase 4 is complete and creator-approved. Its implementation and
-completion documentation are committed together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and separately gated. The current
+completion documentation are committed together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. The current
 NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
 
 | Owner | Responsibility and boundary |

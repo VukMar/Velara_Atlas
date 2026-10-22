@@ -5,7 +5,8 @@ creator-approved. Overall Architecture Phase 3, including 3A-3F, is complete.
 Implementation and completion documentation are committed together. Architecture Phase 4
 viewer modularization/configuration is complete and creator-approved; the approved
 Demo data, default appearance, interactions and walkthrough remain unchanged.
-Phase 5 is complete and creator-approved. Phase 6 is next proposed, unstarted and requires separate authorization. No deployment, Canon migration
+Phases 5 and 6 are complete and creator-approved. The architecture optimization
+roadmap is complete; the Demo remains unchanged by those phases. See [readiness evidence](PERFORMANCE_AND_RELEASE_READINESS.md). No deployment, Canon migration
 or graphical Atlas Creator is implemented.
 
 ## Open the ordinary Atlas
@@ -190,5 +191,5 @@ and all Demo JSON unchanged. Use `npm run dev` (or `preview:calibration`) on
 JSON-defined presets, Replay, safe visual controls and read-only diagnostics.
 See [local preview operations](../README.md#named-local-preview-scenarios-completed-phase-5).
 Automated TEST fixtures remain separate; Canon has no active viewer dataset.
-Phase 5 is complete and creator-approved. Phase 6 is next proposed, unstarted
-and unauthorized; no editor, Canon migration or deployment is implemented.
+Phases 5 and 6 are complete and creator-approved. Subsequent development requires
+separate authorization; no editor, Canon migration or deployment is implemented.

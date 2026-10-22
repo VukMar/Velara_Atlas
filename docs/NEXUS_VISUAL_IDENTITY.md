@@ -256,4 +256,4 @@ and selection delay. All values pass `createVisualConfig`; named presets and
 Replay restore validated presentation and camera state. Radius experiments remain
 local reduced-format overrides. No normal-Demo settings panel, art, physical/history
 controls, persistence or publication is added. See [local preview guide](../README.md#named-local-preview-scenarios-completed-phase-5).
-Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.
+Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.

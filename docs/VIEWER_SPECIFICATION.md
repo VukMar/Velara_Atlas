@@ -579,5 +579,14 @@ ownership, not the appearance or behavior specified above. Existing IDs, aria
 attributes, selection/hover semantics, camera methods and read-only boundaries
 remain the contract. [Architecture ownership](ARCHITECTURE.md#phase-4-viewer-module-ownership)
 describes configuration and cleanup. Architecture Phase 4 is complete and
-creator-approved, preserving the same ordinary Demo experience. Phase 5 is next
-proposed, unstarted and unauthorized; no new Demo records or visual redesign were added.
+creator-approved, preserving the same ordinary Demo experience; that refactor
+added no Demo records or visual redesign. Phases 5 and 6 are also complete and
+creator-approved. Development provides separate named local previews. The current
+Architecture Optimization Roadmap is complete; subsequent development, deployment,
+Canon migration and Atlas Creator require separate authorization.
+
+The active Demo uses the current v1.3 contract in [DATA_MODEL](DATA_MODEL.md).
+[Performance and local release readiness](PERFORMANCE_AND_RELEASE_READINESS.md)
+records the measured workloads, browser/accessibility probes and known sampling,
+device and browser limitations. Local Chromium checks do not certify all browsers,
+physical devices or assistive technologies, and a static preview is not deployment.

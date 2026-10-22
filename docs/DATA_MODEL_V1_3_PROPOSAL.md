@@ -229,8 +229,10 @@ activation; it does not change weapon records or frozen schemas.
 ## Deferred work
 
 Phases 3A-3F and overall Architecture Phase 3 are complete and creator-approved.
-Phase 5 is next proposed, not started and requires separate authorization. Canon
-migration, Atlas Creator, new artwork and deployment are not implemented.
+Architecture Phases 4, 5 and 6 are also complete and creator-approved. The current
+architecture optimization roadmap is complete; all subsequent development needs
+separate authorization. Canon migration, Atlas Creator, new artwork and deployment
+are not implemented.
 
 See [MANUAL_AUTHORING](MANUAL_AUTHORING.md) for the v1.3 empty-system helper,
 nullable history and complete object/navigation editing workflow.
