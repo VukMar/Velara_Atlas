@@ -137,7 +137,7 @@ CSS minima, smoothstep handoff and physical-inspection limits.
 - **Implementation:** CSS/SVG screen-space overlay driven by Three.js projection, or camera-facing sprite with constant pixel size; selected geometry still occupies correct XYZ coordinates. Pure screen-space overlay is often easiest for stable readability.
 - **Sizing proposal:** 40–64 CSS-pixel diameter for ordinary markers at typical zoom, adjustable for accessibility; avoid scaling reticles with huge celestial radii or zoom so far that they cover nearby objects. Targeting geometry should not mask labels; collision/offset logic may be needed.
 - **Visibility:** offscreen or genuinely hidden objects must not leave ghost reticles; overlapping top-down projections need a documented disambiguation UI. Overlay does not intercept map selection; use `pointer-events: none` for purely decorative SVG/CSS reticles.
-- **Motion:** modest fade in/out (roughly 120–180 ms), no constant spin; respect `prefers-reduced-motion` by disabling nonessential transitions. Timing is a tuneable default, not required game-like animation.
+- **Motion (original Milestone 5 proposal, superseded only where noted):** modest fade in/out (roughly 120–180 ms), no constant spin; respect `prefers-reduced-motion` by disabling nonessential transitions. The later approved 4.2C cyan hover treatment uses subtle rotation while the gold selection lock remains static; see 4.2 amendment.
 
 ## 7. NEXUS presence and InfoCards
 
@@ -257,3 +257,33 @@ Replay restore validated presentation and camera state. Radius experiments remai
 local reduced-format overrides. No normal-Demo settings panel, art, physical/history
 controls, persistence or publication is added. See [local preview guide](../README.md#named-local-preview-scenarios-completed-phase-5).
 Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
+
+## Checkpoint 4.2 approved direction / planned implementation amendment (2026-10-23)
+
+Older Milestone 5 targeting and voice deferment notes above remain historical
+design context. The final approved artwork is
+`public/assets/ui/nexus-reticle.svg`, committed at
+`6b4bc5f92e1ef7fc7fd1740da5cc3d2217b8a1f0` with a 128×128
+viewBox. It must not be redrawn, simplified or reinterpreted. Phase
+4.2C: same artwork in both views, a **cyan `#00d6ff` rotating hover/
+keyboard focus** state and **gold `#e6ba7b` nonrotating persistent
+selected lock**, slightly larger. Both can appear on separate entities;
+hover cannot replace the existing selection lock. The preliminary
+15–25% enlargement is a review target, not an approved exact measurement.
+Reticle position follows the real projected anchor and respects clipping,
+visibility, touch/keyboard and `prefers-reduced-motion`; overlay cannot
+interfere with picking or captions. Keep existing starter navigation SVGs.
+
+Creator-approved NEXUS/MCR PNG originals in `public/assets/nexus/` are
+to appear contextually in 4.2A ordinary InfoCards/header, 4.2B
+archival fallback and 4.2G opening, without losing the map-first design
+or readable history. Image assets are not yet bundled for public viewing.
+
+The original broad voice deferral was for the first viewer. The narrow
+**planned** Checkpoint 4.2H exception is just two prerecorded,
+creator-approved speeches: welcome and archival fallback; ordinary
+InfoCards are **not narrated**. 4.2G designs opening without playback;
+4.2I adds a few optional short sounds **last**. Still deferred:
+animated speaking avatar, AI dialogue, on-demand voice API, ambience,
+music and routine audio commentary. Speech text and recordings require
+separate creator approval. See the [phase roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).

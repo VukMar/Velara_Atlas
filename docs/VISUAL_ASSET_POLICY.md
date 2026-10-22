@@ -168,3 +168,44 @@ Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 - Fallbacks must be visually neutral, non-disruptive and transparent about unknown visual subtypes.
 
 **Authority:** This document governs appearance/fallback policy; [DATA_MODEL.md](DATA_MODEL.md) and schemas govern valid JSON. [Viewer behavior](VIEWER_SPECIFICATION.md) governs the Checkpoint 3.6 square chart and overlays. Canonical public v0.1 records remain unchanged pending separately approved migration.
+
+## 7. Planned Checkpoint 4.2 PNG / UI SVG / audio admission
+
+**Planning-only addition.** Existing production policy still has
+`publicDir: false`, exact approved file admission, fourteen navigation
+icons plus the separately registered Test sigil, limited SVG profile and
+the audited bundle. The approved NEXUS PNGs and new reticle SVG exist
+as sources but are not yet admitted to the release build.
+
+| Phase | Approved source or pending asset | Purpose |
+| --- | --- | --- |
+| 4.2A/B/G | `public/assets/nexus/mcr-insignia.png`, `nexus-form.png` and `nexus-side-profile.png` | Header, InfoCard, archival and short opening contexts; retain original artwork. |
+| 4.2C | `public/assets/ui/nexus-reticle.svg` | Final immutable 128×128 artwork for cyan hover and static gold selection. |
+| 4.2H | Creator-approved prerecorded welcome and fallback clips, filenames/formats TBD | Two spoken situations; never publish drafts. |
+| 4.2I | A few creator-approved short UI cue files, names/formats TBD | Playback integrated last and respecting mute. |
+
+For **each authorized phase**, verify the concrete asset and publication
+rights. Add exact trusted source imports/registry paths, never wildcard
+`public/` copying, dynamic user-controlled filenames or remote
+hotlinks; preserve GitHub Pages `/Velara_Atlas/` URL correctness.
+Admit UI SVG via an **independent restricted profile/exact-asset rule**
+instead of weakening `scripts/svg-assets.mjs` starter icon validator.
+Any recoloring must preserve exact reticle linework.
+
+Extend `vite.config.mjs` source allowlist and
+`scripts/audit-demo-build.mjs` output tests **only** for approved additions:
+audited binary extension/bytes or hashes, allowed names/URLs, size and
+completeness, resource reachability, no extra outputs, and negative
+canonical/private/external-input checks. Existing text-only audit reads
+must be adapted to correctly handle PNG/audio binary data rather than
+treating arbitrary bytes as UTF-8. Verify missing/corrupt-asset fallback,
+base-relative loading, release-check results and browser requests.
+Preserve originals when generating optimized derivative images.
+
+Every file committed to this public repository is public even if unused
+by the app. Audio files, voice scripts and any sound effects require
+creator approval before Git admission. 4.2G has **no playback**,
+4.2H implements voice/control, 4.2I implements SFX last. Exact file
+formats, audio preferences and reticle displayed sizes remain phase
+review decisions, not established implementation. See
+[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).

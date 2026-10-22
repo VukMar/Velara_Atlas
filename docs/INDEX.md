@@ -1,5 +1,14 @@
 # Velara Atlas documentation index
 
+**Current original-roadmap planning (2026-10-23):** Checkpoint 4.2A–I
+is defined in [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
+as **nine planned, not implemented** phases, followed by explicit creator
+visual acceptance and a Cantum Stage 5 decision. That document controls
+future phase order, scope, dependencies and acceptance; the subject
+specifications below remain authoritative for their respective rules.
+Planning approval does not automatically authorize code, data migration
+or deployment.
+
 Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E and 3F are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. **Overall Architecture Phase 3 is complete.**
@@ -51,7 +60,7 @@ separate data contexts.
 | [ARCHITECTURE](ARCHITECTURE.md) | Implemented module ownership, data flow and production boundary. |
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Current path ownership and publication surfaces. |
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure modern historical API; legacy v0.1 remains separate. |
-| [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Feature checkpoints and separate approval gates. |
+| [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) | Primary original feature roadmap; detailed Checkpoint 4.2A–I phase gates, cross-feature acceptance and still-deferred Cantum Stage 5. |
 | [ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) | Phases 1–5 complete and creator-approved; Phase 6 complete and creator-approved; current optimization roadmap complete. Future work separately gated. |
 
 The sector-derived validated inventory and eager loader are described in

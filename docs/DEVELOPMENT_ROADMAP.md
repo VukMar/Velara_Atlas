@@ -10,6 +10,12 @@ records the earlier creator-approved System C navigation/discovery baseline.
 Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
+**Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
+phases 4.2A–I are documented below; implementation has not begun.
+The completed Architecture Optimization work is separate. Checkpoint 4
+still requires final creator acceptance and a Cantum Stage 5 decision.
+This is roadmap approval, **not** authorization for feature work.
+
 **Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4, 5 and 6 are complete and creator-approved**.
 Architecture Phase 3A is creator-approved; its environment/command separation,
 calibration JSON and status synchronization are included in the same closeout
@@ -123,8 +129,18 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — Visual Identity and SVG Icon Refinement | Further visual refinement requires separate approval; not authorized by the completed architecture Phase 2.2 or its closeout |
-| Checkpoint 5 | **Not started / requires explicit approval:** publication and security review |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Roadmap established; implementation not started.** Nine separately gated phases 4.2A–I below. |
+| Checkpoint 4.2A — NEXUS and MCR Branding | **Planned:** integrate approved PNGs in header/InfoCards; explicit binary asset admission. |
+| Checkpoint 4.2B — Archival Fallback Redesign | **Planned:** accurate NEXUS archival interface, no speech yet; retain technical errors. |
+| Checkpoint 4.2C — Unified Targeting Reticle | **Planned:** creator's existing `nexus-reticle.svg`, cyan rotating hover/focus and static gold lock in both views. |
+| Checkpoint 4.2D — System Object Icon Sizing | **Planned:** up to 1.5× navigational minima; preserve physical geometry and Sector 8px marker. |
+| Checkpoint 4.2E — Focus Selection Animation | **Planned:** smooth cancelable camera focus; preserve exact final framing. |
+| Checkpoint 4.2F — Map Navigation Transitions | **Planned:** Sector→System, System→Sector, System→System record changes. |
+| Checkpoint 4.2G — NEXUS Atlas Opening | **Planned:** brief branded entry screen and audio/silent choices; no playback. |
+| Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Planned:** two approved prerecorded speech situations, persistent accessible toggle. |
+| Checkpoint 4.2I — UI Sound Effects | **Planned LAST:** restrained approved UI cues, throttled and muting-respectful. |
+| Checkpoint 4 — final creator acceptance | **Pending:** full visual/audiovisual/accessibility/security review and explicit Cantum Stage 5 disposition. |
+| Checkpoint 5 | **Publication review/deployment pending approval.** Architecture Phase 6 already completed local release preparation, not hosted deployment or creator publication acceptance. |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
 `4ff0ecb`. Those reports record their checkpoint's evidence, not current worktree
@@ -157,6 +173,295 @@ boundaries. Use supplied curator assets only as authorized; do not invent them.
 
 This roadmap is not authorization to create assets now. Follow
 [NEXUS identity](NEXUS_VISUAL_IDENTITY.md) and [asset policy](VISUAL_ASSET_POLICY.md).
+
+## Checkpoint 4.2 — NEXUS visual and audiovisual completion (planned)
+
+**Current planning authority, 2026-10-23.** This is the authoritative, original
+Milestone 6 feature roadmap, **not** the separate Architecture Optimization
+Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
+completed; **4.2A–I have not been implemented**. Approving/documenting the
+sequence never authorizes Codex to begin any phase. Each needs a separate
+creator request, working implementation review, and approved closeout.
+Past roadmap passages are retained as milestone history; this section
+supersedes their outdated future-work and sequence assumptions.
+
+### Design authority and fixed limits
+
+- Read this roadmap with [AGENTS](../AGENTS.md), [NEXUS identity](NEXUS_VISUAL_IDENTITY.md),
+  [asset policy](VISUAL_ASSET_POLICY.md), [viewer behavior](VIEWER_SPECIFICATION.md),
+  [architecture](ARCHITECTURE.md), [celestial scale](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md),
+  [Cantum rules](CANTUM_TERRITORY_RENDERING.md), [Demo showcase](DEMO_SHOWCASE.md),
+  and [release evidence](PERFORMANCE_AND_RELEASE_READINESS.md). The newest
+  specific approved creator decision controls when old visual suggestions differ.
+- Preserve approved MCR insignia, NEXUS image identities, the committed reticle
+  and all 14 original SVG navigation icons. The intent is a restrained,
+  dark NEXUS-operated historical archive, **not** a game HUD.
+- No changes to Canon, protected legacy `public/data/`, active noncanonical
+  Demo records, frozen fixtures, schemas, IDs, XYZ positions, chronology,
+  historical resolver, governance, navigation/gate pairings, political
+  influences, Cantum radii, scale (1 CNU = 10,000 km), physical diameters,
+  camera contracts or authored geometry. No retcon/new lore through copy.
+- Keep the square chart, floating controls, vertical History and centered
+  dismissible InfoCard, the single Three.js renderer, existing projected
+  anchors/picking, startup/error distinction, Demo-only validated loader
+  and release boundaries. Do not modify Demo JSON to make visual tasks easier,
+  enlarge hit targets as a side effect, introduce an extra framework, migrate
+  Canon, build Atlas Creator or deploy GitHub Pages.
+- `publicDir: false`, explicitly admitted build modules/asset paths, audited
+  output, canonical/private exclusions and GitHub Pages base URL
+  `/Velara_Atlas/` remain mandatory. Unreleased/private audio cannot
+  be committed to the public GitHub repository.
+
+### Implementation and acceptance workflow (every phase)
+
+**Prompt 1 — Implement only the authorized phase.** Verify live `main`, clean
+worktree and current module ownership; read controlling docs; make scoped,
+independently reversible changes. Run focused automated tests, relevant
+regressions, actual normal NONCANONICAL Demo/production-preview browser
+checks and asset/security verification. Report changed files, exact commands,
+outcomes, URLs, screenshots/manual review steps and limitations. **Stop
+without committing or pushing.** No unauthorized follow-on work.
+
+**Creator review.** The creator visually and functionally evaluates desktop,
+mobile/narrow, keyboard and pointer/touch alternatives, 2D/3D where relevant,
+rapid interruption, historical fallback and accessibility. Corrections stay
+within the same phase. An automated pass alone is not creator approval.
+
+**Prompt 2 — Close out only after explicit creator approval.** Recheck
+baseline/diff; rerun scoped verifications; synchronize docs; mark *that one
+phase* complete; create a reviewed commit; push normally to `origin/main`
+only with explicit authorization and verify the remote. Never force-push,
+bypass approval gates or start the next phase automatically.
+
+The usual relevant checks include `npm test`, `npm run validate`,
+`npm run connections:check`, `npm run build` and
+`npm run release:check` plus existing Chromium browser callbacks and
+normal-Demo historical/navigation regressions; justify and report
+non-applicable/unrun checks. Verify resource lifecycle: no stray
+ResizeObservers/listeners/timers/RAF loops, stale objects or growing WebGL
+resources. Installed Chromium tests do not certify physical devices,
+Firefox/Safari/WebKit, assistive technology or deployment; those remain
+separate review/publication gates.
+
+### Phase 4.2A — NEXUS and MCR Branding
+
+**Purpose/scope:** Apply existing approved studio imagery contextually:
+`public/assets/nexus/mcr-insignia.png` in the header and
+`nexus-side-profile.png` in ordinary InfoCards. Retain
+`nexus-form.png` for later fuller archival/opening compositions.
+Inspect each supplied image before placement. Explicitly admit only the
+approved PNGs into Vite/production auditing; optional optimized delivery
+copies cannot alter or replace originals.
+
+**Must not change:** chart layout, historical facts, dialog semantics,
+world data, SVG icon family or imagery itself.
+**Acceptance:** compact legible header; undistorted picture; long/empty
+InfoCards readable, dismissible and keyboard-focus-correct; mobile text
+takes precedence over portraits; missing image has graceful fallback;
+release audit recognizes only trusted PNG files and valid subpath URLs.
+**Visual review:** header and several long/short InfoCards, desktop/mobile,
+portrait/background/cropping. **Depends on:** existing source art and InfoCard
+architecture. **Approval gate:** creator accepts art positioning and binary audit.
+
+### Phase 4.2B — Archival Fallback Redesign
+
+**Purpose/scope:** Replace the generic map-status archival presentation
+with a NEXUS-style text/visual archival notice using approved portrait,
+resolved system name/year, publication-accurate unavailable-detailed-chart
+message and Return to Sector. Script text must receive creator approval;
+no voice yet. Use the current `sys_0004` NONCANONICAL fallback.
+
+**Must not change:** historical knowledge filters, registered detail files,
+loader, retry/error behavior or Demo data.
+**Acceptance:** pre-discovery records stay absent; known system with
+`publicDetailPath: null` yields archive notice; released partial charts
+remain valid charts; invalid/missing detail, WebGL or startup failure
+is a technical error with retry, **never** normal fallback; no future-name
+leak; accessibility/return navigation maintained.
+**Visual review:** before/after year boundary, archive card versus technical
+error, mobile, keyboard, focus return. **Depends on:** A.
+**Gate:** creator approves notice copy and composition.
+
+### Phase 4.2C — Unified Targeting Reticle
+
+**Purpose/scope:** Use the unchanged FINAL creator SVG
+`public/assets/ui/nexus-reticle.svg` from
+`6b4bc5f92e1ef7fc7fd1740da5cc3d2217b8a1f0`, with 128×128 viewBox.
+Do not redraw/reinterpret/simplify. Admit through a **separate strictly
+trusted UI SVG** strategy; preserve the narrower starter-icon SVG validator.
+Test a non-destructive recoloring technique before choosing it.
+
+**Hover or keyboard focus:** cyan preferred `#00d6ff`, subtle continuous
+rotation and slightly smaller, disappears when inactive; include Sector
+star-system markers as well as eligible System objects.
+**Selected:** same artwork gold `#e6ba7b`, static and larger, persists
+after pointer leave and when a different entity is hovered. Both may
+coexist on distinct entities; selecting a new one transfers the lock.
+A 15–25% size difference is provisional subject to visual review.
+
+**Must not change:** coordinates, physical size, picking/hit areas, scene
+geometry, route-hover rules, icon art or object history.
+**Acceptance:** projected screen anchor remains aligned during pan/zoom/tilt,
+top/perspective, year/view changes; no offscreen/hidden ghost, occluded
+selection or leaked loops; keyboard/mouse/touch selection survives;
+`prefers-reduced-motion` makes reticles nonrotating.
+**Visual review:** both map levels/camera modes, selected+other hovered,
+dense overlap and actual SVG detail. **Depends on:** existing projection;
+can run independently of A/B if creator authorizes. **Gate:** creator
+approves hover/lock fidelity and responsive sizing.
+
+### Phase 4.2D — System Object Icon Sizing
+
+**Purpose/scope:** Centralize/tune *apparent navigational minima only*,
+tested at no greater than 1.5× the current values:
+
+| Class | Current minimum | Maximum approved target |
+| --- | ---: | ---: |
+| Star | 28px | 42px |
+| Gas planet | 24px | 36px |
+| Regular planet | 20px | 30px |
+| Moon | 16px | 24px |
+| Small celestial body | 14px | 21px |
+| Station/structure | 12px | 18px |
+| Short-range gate | 10px | 15px |
+
+**Must not change:** true model size, 1 CNU scaling, handoff
+mathematics, categories, hit areas, XY/XYZ coordinates or 8px
+Sector system symbols.
+**Acceptance:** new minima stored centrally (normally
+`src/viewer/visual-config.mjs`), bounded/tested; proxy/model transition
+remains continuous; Sector marker unchanged.
+**Visual review:** side-by-side screenshots at wide/close zoom in 2D/3D,
+small bodies, dense labels and model handoff. **Depends on:** C preferred
+for reticle comparisons. **Gate:** creator accepts exact chosen sizes.
+
+### Phase 4.2E — Focus Selection Animation
+
+**Purpose/scope:** Animate existing computed Focus camera position/target
+over a tentative 400–650ms, retaining established object inspection,
+zone framing, chart bounds and camera controls.
+**Must not change:** Focus's valid final state, reset semantics,
+perspective/top-down restoration, radius/physical inspection math.
+**Acceptance:** ending state matches existing instantaneous Focus;
+new Focus, manual controls, Reset, timeline, view/mode navigation, disposal
+and context loss cancel safely; reduced motion completes immediately
+without animated movement or stale handlers.
+**Visual review:** small-body inspection, planets, stars, zones,
+rapid Focus/Reset in both camera modes. **Depends on:** D.
+**Gate:** creator accepts timing/inspection correctness.
+
+### Phase 4.2F — Map Navigation Transitions
+
+**Purpose/scope:** Brief visual record transitions, tentatively
+350–500ms: Sector→System, System→Sector and System→other System.
+Keep `main.mjs` navigation and `scene-layers.mjs` rebuilding as
+the actual source of truth; not simulated interstellar travel.
+**Must not change:** resolver, scene resources, history, camera saved
+state, routes or interaction semantics; no duplicate renderer/heavy particles.
+**Acceptance:** interrupted/repeated navigation, Reset, year change,
+error and teardown cannot retain obsolete layers, focus or overlays;
+keyboard/touch available; reduced motion direct; fallback still works.
+**Visual review:** three paths, very rapid inputs, System fallback,
+2D/3D and mobile. **Depends on:** E. **Gate:** creator approves
+appearance, timing and cancellation.
+
+### Phase 4.2G — NEXUS Atlas Opening
+
+**Purpose/scope:** Short branded welcome/entry using approved NEXUS form
+and MCR insignia, readable introduction and explicit enter-with-audio
+or silent option. **Visual opening only — no media playback in G.**
+Final copy, repeat-visit and persisted-preference behavior must receive
+creator review rather than being presumed.
+
+**Must not change:** underlying chart/history/selection merely by opening,
+error/retry visibility, public records, or start-up accessibility.
+**Acceptance:** both choices work for keyboard/touch; reload, error
+and repeated visit behavior deterministic; entering does not change
+selected A.E., camera geography or archival state.
+**Visual review:** desktop/mobile opening, focus order, silent option,
+refresh/retry. **Depends on:** A, B, F. **Gate:** creator approves
+script/UI and return policy.
+
+### Phase 4.2H — NEXUS Voice and Audio Preferences
+
+**Purpose/scope:** Only **two** prerecorded creator-approved speeches:
+a short welcome on audio-enabled entry and the archival fallback message
+whose text was approved in B. Add persistent, accessible header audio control,
+respect silent entry and browser autoplay gesture rules. Optional distinct
+voice/SFX settings may be introduced only if warranted by simple UI.
+No narrated ordinary InfoCards, ambient music, runtime AI chat or paid
+speech-generation APIs.
+
+**Must not change:** known/missing survey semantics, historical chronology,
+normal navigation, script authority; no private audio in public Git.
+**Acceptance:** audio never plays against mute/silence; triggers only on
+deliberate entry/fallback, not each timeline rerender; stops/replaces cleanly
+on navigation, mute, disposal, reload and errors; missing audio leaves
+text and navigation usable. Preference/storage-unavailable behavior tested;
+only creator-cleared recordings admitted, binary release audit passes.
+**Audio review:** both clips, interruption, refresh, denied autoplay,
+silent choice and mobile. **Depends on:** B/G and final approved
+script/recording assets. **Gate:** explicit creator audio approval.
+
+### Phase 4.2I — UI Sound Effects (implement LAST)
+
+**Purpose/scope:** Add a small creator-approved set of restrained technical
+cues for meaningful selections, panel actions, committed timeline navigation,
+system changes and archive entry (fewer is fine); no music or ambience.
+Throttle/coalesce fast repeats and continuous slider movement.
+**Must not change:** source of selection, route, history or mute decisions;
+no full sound-engine architecture.
+**Acceptance:** master mute and silent entry respected; no slider sound
+storm, excessive overlap, stale audio or broken UI when sound fails;
+SFX files individually public-release-approved and explicitly audited.
+**Audio review:** normal/rapid controls, timeline drag, concurrent
+voice/cues, mute and mobile. **Depends on:** H. **Gate:** creator approves
+final restrained sound and code/assets.
+
+### Unresolved design choices (not yet final requirements)
+
+1. **Opening:** show on every fresh load versus only first visit;
+   decide stored preference behavior and default silent/audio state.
+   Showing entry each load with first-visit silence is a recommendation,
+   **not an approved final decision** until G.
+2. **Scripts/recordings:** approve fallback text in B and welcome text in G;
+   approve exact released recordings before H. Never invent hidden lore,
+   false classified status or future information.
+3. **Reticle:** finalize display-size ratio, safe SVG treatment and exact
+   palette through 4.2C screenshot comparison; no permission to redraw.
+4. **Audio controls/files:** decide master-only versus optional voice/SFX
+   split, persistence and formats by H/I, keeping audio opt-in and
+   publications explicitly cleared.
+5. **Cantum Stage 5:** deferred final refinement remains unresolved.
+   Document explicit acceptance of existing appearance or authorize
+   a separate tightly scoped Stage 5 patch.
+
+### Final Checkpoint 4 creator visual acceptance (after 4.2I)
+
+Review the combined ordinary NONCANONICAL Demo and appropriate named
+local calibration previews: NEXUS/MCR art and InfoCards, fallback/error
+distinction and year-safe copy, two reticle states in both views, symbol
+sizing and physical model handoff, Focus and three map transitions,
+opening, voice/mute/SFX, historical routes/gates/factions and Cantum
+influence; desktop/narrow/landscape, 2D/3D, keyboard/pointer/touch,
+reduced motion, technical failure, reload and resource teardown.
+Repeat scoped automated/browser/audited production checks. Record
+real-device, Safari/Firefox and screen-reader limitations accurately.
+
+**Cantum Visual Patch Stage 5 remains open.** Review flat fields, names,
+detached islands, sigils, perspective envelopes, map legibility,
+large/small radius appearance and known wide-map/small-radius sampling
+limitations from [PERFORMANCE_AND_RELEASE_READINESS](PERFORMANCE_AND_RELEASE_READINESS.md).
+Either (a) creator **explicitly accepts** Stage 1–4 appearance and known
+limitations as final, or (b) approves a **separate focused Stage 5** patch
+with its own implementation/review/commit. Never change political
+membership, Gaussian math, radii or authored geometry for aesthetics.
+
+**Checkpoint 4 closure requires:** all nine phases individually
+creator-approved and committed, Cantum Stage 5 disposition recorded,
+final integrated creator acceptance, updated truthful docs and
+preserved build security. Completion does **not** authorize Checkpoint 5
+deployment/publication, Canon migration, or Atlas Creator.
 
 ## Subsequent publication and separate workstreams
 

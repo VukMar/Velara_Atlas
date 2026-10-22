@@ -2,6 +2,29 @@
 
 This file governs AI-assisted changes in this repository. Read it before making edits. Keep it concise; detailed decisions live in `docs/`.
 
+## Current original-roadmap planning authority (2026-10-23)
+
+[DEVELOPMENT_ROADMAP](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
+now defines nine **planned, unimplemented** Checkpoint 4.2A–I phases
+plus final Checkpoint 4 creator acceptance and the pending Cantum
+Stage 5 decision. This approved documentation foundation **does not**
+grant permission to implement or close out any phase.
+
+For a *separately creator-authorized* phase, inspect current `main`,
+read the phase and linked NEXUS/viewer/asset/architecture specifications,
+implement only the named scope, test normal NONCANONICAL Demo and
+applicable regressions/browser/release audits, and stop for creator
+visual review **without commit or push**. Only after explicit
+creator approval may a separate closeout verify, synchronize docs,
+commit one approved phase and push normally to `origin/main` if
+separately authorized. Never automatically advance; preserve history,
+Canon/Demo boundaries, safe assets and all non-negotiable rules below.
+
+The prior Architecture Phase 6 authorization mentioned below is
+a **completed historical task**, not a current implementation order.
+Checkpoint 5 publication, Canon migration and Atlas Creator remain
+separately gated.
+
 ## Mission and current scope
 
 **Architecture status:** Phases 1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4, 5 and 6 are complete and creator-approved.
@@ -12,7 +35,7 @@ remains in `examples/v1_2/`, and the active noncanonical Demo remains in
 The original calibration remains selectable and unchanged.
 Canon is future approved MCR data, with no launcher or noncanonical fallback.
 
-**Current authorization:** creator-approved Phase 6 final verification, documentation
+**Historical completed Phase 6 authorization (not current authority):** creator-approved Phase 6 final verification, documentation
 closeout, one completion commit and normal push only. Phase 6 implementation and
 status synchronization enter history together. The existing Architecture
 Optimization Roadmap is complete; no next development milestone is authorized.

@@ -495,14 +495,38 @@ Recommended NEXUS fallback copy (theme/localization editable later):
 
 Fallback should show any **already public** system name, selected year, and archival status; include a **Return to Sector** action. Do not call a system “classified” unless canon/publication metadata actually supports that claim. A failed URL/JSON parse is **not** permission to show this notice instead of error feedback.
 
-### Data loading
+### Data loading — original Milestone 3 proposal, superseded in part by Architecture Phase 3B
 
 1. Load the sector index first, then the public Cantum and connection registries needed for this map.
-2. **Lazy-load** an individual `systems/sys_XXXX.json` only when the user navigates to that system (or a documented preload action explicitly permits it).
-3. Cache successfully fetched public records for session navigation; rerun **historical resolution** when the year changes instead of refetching every object.
+2. **Historical proposal, no longer implemented:** **Lazy-load** an individual `systems/sys_XXXX.json` only when the user navigates to that system (or a documented preload action explicitly permits it). The current Demo instead eagerly preloads approved details.
+3. **Historical proposal, partly superseded:** Cache successfully fetched public records for session navigation; rerun **historical resolution** when the year changes instead of refetching every object. The current Demo re-resolves time against eagerly loaded data maps.
 4. Keep source records immutable from viewer interactions. Validate references to permitted IDs and fail gracefully on missing/invalid data.
 5. Use Vite/GitHub Pages–compatible base-relative URLs; avoid hardcoded site-root paths that break repository subpaths.
 6. No local editing or saving endpoint in the public bundle.
+
+### Current implementation and Checkpoint 4.2 planning amendment
+
+The numbered section above retains original Milestone 3 intent.
+**Actual current Demo behavior:** Architecture Phase 3B and later phases
+use a validated sector-derived inventory, eager preload of all registered
+released detail/faction modules and strict file/graph freshness checks.
+The browser does **not** dynamically fetch a system detail on entry.
+§publicDir: false§ and explicit Vite module/admitted asset inventories
+remain in effect. The historical state table in Section 11 is still
+authoritative: `publicDetailPath: null` gives NEXUS archival fallback
+when the system is historically known, while a missing/invalid registered
+detail is a technical error with retry. Source ownership is documented in
+[ARCHITECTURE](ARCHITECTURE.md#validated-dataset-inventory) and
+[README](../README.md#registered-demo-systems-and-loading).
+
+The **planned** 4.2B fallback redesign changes presentation, not this
+state logic. 4.2E smooths Focus only, 4.2F adds three short cancelable
+navigation transitions, 4.2G introduces the entry screen before any
+playback, 4.2H two approved prerecorded speeches and audio preferences,
+and 4.2I optional UI SFX last. Motion honors reduced motion and lifetime
+cleanup; no second renderer or extra world data. None of these phases is
+implemented or authorized by this amendment. See the
+[Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
 ## 12. Initial development fixtures and demo goals
 

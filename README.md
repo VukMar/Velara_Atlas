@@ -41,6 +41,16 @@ see [the maintenance baseline](docs/POST_PHASE3_MAINTENANCE.md). Subsequent
 [calibration](docs/CANTUM_SCALE_CALIBRATION_RESULTS.md) work is committed in
 `190bd21`; those reports retain their original pre-commit circumstances.
 Checkpoint 4.2 visual refinement and Cantum Stage 5 remain separately gated.
+
+**Roadmap planning update (2026-10-23):** The
+[original Milestone 6 roadmap](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
+now defines planned Checkpoint 4.2A–I for NEXUS imagery, archival fallback,
+final reticle, System symbols, camera/map transitions, opening,
+two prerecorded voice situations and optional UI sounds last. None is
+implemented by this documentation change. Final Checkpoint 4 visual
+acceptance includes the deferred Cantum Stage 5 decision. No phase,
+publication, Canon migration or Atlas Creator work is automatically
+authorized.
 The supplied NEXUS side-profile PNG is available at
 `public/assets/nexus/nexus-side-profile.png`; viewer integration remains deferred.
 
