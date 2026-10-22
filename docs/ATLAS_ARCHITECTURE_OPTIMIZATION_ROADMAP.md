@@ -1,17 +1,17 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
-**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall Architecture Phase 3 and Architecture Phase 4 are complete and creator-approved. Phase 4 implementation and completion documentation are committed together.
+**Status:** Architecture Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall Architecture Phase 3 and Architecture Phases 4 and 5 are complete and creator-approved. Phase 5 implementation and completion documentation are committed together.
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current authorization:** creator-approved Phase 4 closeout: final verification,
-status synchronization, one completion commit and normal push only, then stop.
-No additional feature development, merge, history rewrite or deployment.
-See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) and [MANUAL_AUTHORING](MANUAL_AUTHORING.md).
-**Next implementation gate:** Phase 5 is proposed, unstarted and unauthorized.
-Phase 6 remains planned; later implementation requires separate creator authorization.
+**Current authorization:** creator-approved Phase 5 closeout: final verification,
+documentation synchronization, one completion commit, normal push and remote
+verification, then stop. No new development, merge, history rewrite or deployment.
+See [local preview operations](../README.md#named-local-preview-scenarios-completed-phase-5).
+**Next implementation gate:** Phase 6 is the next proposed checkpoint, not
+started and not authorized. The overall roadmap is not complete.
 **Scope:** Developer experience, data-loading and authoring architecture, file ownership, documentation, configuration, runtime performance, and eventual static publication.  
 **Out of scope unless separately authorized:** Canonical migration, new lore, changes to established history/geometry, new visual art, public deployment, and a full graphical editor.
 
@@ -69,7 +69,7 @@ The baseline has a working separation between pure historical/cartographic logic
 ## Phase sequence and approval gates
 
 ```text
-COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3; Phase 4
+COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3; Phases 4 and 5
        |
        v
 [3A] Environment separation and calibration JSON (complete)
@@ -85,9 +85,10 @@ COMPLETED: Phases 1, 2, 2.1, 2.2, 3A-3F; overall Phase 3; Phase 4
 [3F] Historical integration and living Demo showcase (complete, creator-approved)
        | creator-approved Phase 4
 [4] Viewer modularization (complete, creator-approved)
+       | creator-approved Phase 5
+[5] Expanded local previews (complete, creator-approved)
        | separate future creator authorization required
-[5] Expanded local previews (next proposed; not started; unauthorized)
-[6] Performance and production readiness
+[6] Performance and production readiness (next proposed; not started; unauthorized)
 
 Separate approval: MCR Canon migration / Atlas Creator
 ```
@@ -145,7 +146,7 @@ The implemented move under `public/datasets/demo/` **does not authorize enabling
 
 ### Phase 3 — Data-driven architecture and historical entities
 
-**Status: 3A-3F and overall Architecture Phase 3 are complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 is next proposed.**
+**Status: 3A-3F and overall Architecture Phase 3 are complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is next proposed.**
 The plan is divided into **3A-3F**;
 each checkpoint needs its own creator-approved Codex task, review, and
 separate commit authorization. Completed Phase 3D activates v1.3 in the noncanonical Demo; frozen v1.2 stays compatible.
@@ -293,7 +294,7 @@ fixtures do not enter the graphical Demo build.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phase 3C is also complete and
-creator-approved; Phases 3D-3F and overall Phase 3 are also complete. Architecture Phase 4 is complete and creator-approved; Phase 5 remains separately gated.
+creator-approved; Phases 3D-3F and overall Phase 3 are also complete. Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 remains separately gated.
 
 `scripts/dataset-inventory.mjs` derives deterministic paths from the trusted
 `public/datasets/demo/sector.json` catalogue and its registry references. Demo is
@@ -354,7 +355,7 @@ inputs are rejected; existing Demo behavior survives.
 
 **Implementation status: complete and creator-approved.** The implementation and
 completion documentation are committed together. Phases 3D-3F and overall
-Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is separately gated.
+Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 remains separately gated.
 
 The separate [provisional v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md) and schema
 provide isolated Draft 2020-12 validation, a compact `factions.json` registry and
@@ -403,7 +404,7 @@ can transition from subordination to independence.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phases 3E-3F and overall
-Architecture Phase 3 are also complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
+Architecture Phase 3 are also complete and creator-approved. Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 requires separate authorization.
 
 At the Phase 3D checkpoint, the NONCANONICAL Demo used v1.3 throughout, including its empty faction
 registry and historical InfoCard entity-name/legality presentation. Systems keep
@@ -469,7 +470,7 @@ are preserved throughout.
 
 **Implementation status: complete and creator-approved.** Implementation and
 completion documentation are committed together. Phase 3F and overall
-Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
+Architecture Phase 3 are also complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 requires separate authorization.
 
 `npm run atlas:new-system` targets only the configured NONCANONICAL Demo.
 Preview and ID suggestion are read-only, with explicit `--apply` for an empty
@@ -634,7 +635,7 @@ stability and stale-callback suppression were verified. All eleven Demo JSON
 files, Canon, schemas/fixtures, calibration, assets and build boundaries remain
 unchanged. No dependencies, UI redesign or new Demo records were introduced.
 Physical touch/non-Chromium QA and the existing large-bundle advisory remain
-limitations. Phase 5 is next proposed, not started and unauthorized.
+limitations. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.
 
 **Retained original plan and acceptance criteria:** Extract
 cohesive application state, catalogue,
@@ -656,7 +657,40 @@ writer/editor endpoint.
 
 ### Phase 5 — Expanded local preview and ergonomics
 
-**Proposed; separately gated.** Phase 3A
+**Complete and creator-approved.** Implementation and completion documentation
+are committed together. The explicit `preview-manifest.json` registry selects
+the unchanged 15-system calibration and a separate seven-system island/elevation
+experiment. Twelve JSON-defined presets replay radius, year, top/perspective/low
+camera, layers and visual state. Replay starts clean camera/control ownership;
+ordinary adjustments use the Phase 4 camera API and independent derived data.
+Background/selection colors and selection delay pass `createVisualConfig()`.
+Read-only diagnostics derive eligible/contributing systems, field groups,
+visible/detached identities, sampling/envelopes and renderer resources.
+
+The loopback Development server retains the 5174 calibration route, finite
+GET/HEAD admission, path/encoding/case checks and symlink/reparse rejection.
+Errors clear obsolete maps and support explicit recovery, never hidden fallback.
+The normal v1.3 Demo, Canon, baseline JSON, schemas/fixtures, navigation, Phase 4
+defaults and production restrictions remain unchanged. No save API, arbitrary
+dataset root, editor, new dependency or Phase 6 implementation is introduced.
+The creator reviewed and approved these local-preview results. See
+[scenario operations and test entry points](../README.md#named-local-preview-scenarios-completed-phase-5).
+Phase 6 is next proposed, unstarted and unauthorized; the roadmap remains open.
+
+Final verification passes 270 automated tests, 25 independently run focused
+preview/calibration tests and all 19 applicable Chromium suites, including the
+original nine radius/camera comparisons. Preset replay, historical transitions,
+visual tuning, invalid-input recovery and desktop/mobile use pass. Five scenario
+cycles retain 153 listeners and stable geometry/texture counts; teardown removes
+superseded resources. Strict validation, read-only navigation freshness, legacy
+history, ID Finder and the 24-file/15-approved-SVG build audit pass. Protected
+file hashes and production filenames/content-hashed chunks remain unchanged.
+An isolated authoring browser attempt encountered Vite's shared dependency-cache
+504; restarting the unchanged fixture server resolved it and its suite passed.
+Physical touch hardware/non-Chromium QA and the existing bundle-size advisory
+remain limitations, not completed Phase 6 profiling.
+
+**Retained original proposal and acceptance criteria:** Phase 3A
 already owns baseline calibration JSON
 migration and the dev command. Phase 5
 adds richer named local scenarios,
@@ -675,7 +709,7 @@ preserve prior results and build isolation.
 
 ### Phase 6 — Performance and production readiness
 
-**Proposed; separately gated.** Measure
+**Next proposed checkpoint; not started and not authorized.** Measure
 representative larger NONCANONICAL
 eager-loaded datasets: startup, timeline,
 routes, system switching, Gaussian
@@ -737,14 +771,12 @@ Phase 3 or the read-only public Atlas.
 
 ## Current implementation boundary
 
-Phases 1, 2, 2.1, 2.2 and 3A-3F are complete and creator-approved. Overall
-Architecture Phase 3 is complete. Phase 3F implementation, the approved normal
-Demo showcase and completion documentation enter Git history together. The
-Phase 3F closeout committed the approved showcase. Current authorization covers
-the approved Phase 4 closeout only: final verification, one completion commit
-and normal push, then stop. Architecture Phase 4 is complete and creator-approved.
-Phase 5 has not started and requires separate authorization; no new development,
-merge, history rewrite, Canon migration, Atlas Creator or deployment is authorized.
-Protected v0.1 Canon, frozen fixtures/schemas, history, navigation semantics and
-publication safeguards remain unchanged. Only the approved noncanonical Demo migrates to v1.3. No later-phase feature,
-merge, history rewrite, canonical migration, editor or deployment is authorized.
+Phases 1, 2, 2.1, 2.2, 3A-3F, 4 and 5 are complete and creator-approved.
+Overall Architecture Phase 3 is complete; the overall optimization roadmap is
+not complete. Phase 5 implementation and completion documentation are committed
+together. Current authorization covers final verification, one coherent Phase 5
+completion commit, normal push and remote verification, then stop. No additional
+development, merge, history rewrite, Canon migration, Atlas Creator or deployment
+is authorized. Phase 6 is next proposed, not started and separately gated.
+Protected v0.1 Canon, frozen fixtures/schemas, IDs/history, generated navigation,
+the normal noncanonical Demo and publication safeguards remain unchanged.

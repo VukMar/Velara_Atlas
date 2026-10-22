@@ -1,0 +1,302 @@
+{
+  "format": "velara-cantum-calibration",
+  "version": 1,
+  "radiiLY": [
+    2,
+    2.5,
+    3
+  ],
+  "defaultRadiusLY": 2.5,
+  "preview": {
+    "maxYearAE": 1400
+  },
+  "dataset": {
+    "sector": {
+      "schemaVersion": "1.2.0",
+      "timeline": {
+        "startAE": 100,
+        "defaultAE": 1200
+      },
+      "map": {
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "x": 40,
+          "y": 12,
+          "z": 40
+        },
+        "unit": "ly",
+        "planeY": 0
+      },
+      "systems": [
+        {
+          "id": "sys_9201",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -8,
+            "y": 2,
+            "z": -3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST West"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "cantumId": "can_9201"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9202",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -0.2,
+            "y": -2,
+            "z": -3
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST East"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "cantumId": "can_9201"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9203",
+          "entityType": "star_system",
+          "discoveredAE": 700,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -7,
+            "y": 3,
+            "z": -1
+          },
+          "nameHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "name": "TEST Ridge"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 700,
+              "untilAE": null,
+              "cantumId": "can_9201"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9204",
+          "entityType": "star_system",
+          "discoveredAE": 800,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 12,
+            "y": -3,
+            "z": -10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 800,
+              "untilAE": null,
+              "name": "TEST Detached"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 800,
+              "untilAE": null,
+              "cantumId": "can_9201"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9205",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 3,
+            "y": 1,
+            "z": 10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST B North"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "cantumId": "can_9202"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9206",
+          "entityType": "star_system",
+          "discoveredAE": 200,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": 5,
+            "y": -1,
+            "z": 10
+          },
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST B South"
+            }
+          ],
+          "cantumHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "cantumId": "can_9202"
+            }
+          ],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "sys_9207",
+          "entityType": "star_system",
+          "discoveredAE": 300,
+          "colonizedAE": null,
+          "publicDetailPath": null,
+          "positionLY": {
+            "x": -8,
+            "y": 0.5,
+            "z": -5
+          },
+          "nameHistory": [
+            {
+              "fromAE": 300,
+              "untilAE": null,
+              "name": "TEST Unassociated"
+            }
+          ],
+          "cantumHistory": [],
+          "statusHistory": [],
+          "controlHistory": [],
+          "infoCard": {}
+        }
+      ],
+      "zones": []
+    },
+    "cantums": {
+      "cantums": [
+        {
+          "id": "can_9201",
+          "entityType": "cantum",
+          "sigil": "test-cantum-a",
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST ISLAND A"
+            }
+          ],
+          "statusHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "status": "demonstration"
+            }
+          ],
+          "controlHistory": [],
+          "infoCard": {}
+        },
+        {
+          "id": "can_9202",
+          "entityType": "cantum",
+          "sigil": null,
+          "nameHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "name": "TEST ISLAND B"
+            }
+          ],
+          "statusHistory": [
+            {
+              "fromAE": 200,
+              "untilAE": null,
+              "status": "demonstration"
+            }
+          ],
+          "controlHistory": [],
+          "infoCard": {}
+        }
+      ]
+    },
+    "connections": {
+      "connections": []
+    },
+    "presentation": {
+      "territoryOverlay": {
+        "enabledByDefault": true,
+        "fieldThresholdStart": 0.35,
+        "fieldThresholdEnd": 0.65,
+        "opacityMaxPerCantum": 0.16,
+        "opacityCapTotal": 0.22,
+        "cantums": {
+          "can_9201": {
+            "color": "#638FBD"
+          },
+          "can_9202": {
+            "color": "#C08B62"
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ The Velara Atlas is an independent science-fiction worldbuilding and mapping pro
 
 > **Project status — visual/runtime baseline `190bd21` (2026-10-20):** The local, read-only **noncanonical demonstration has four released system charts and one archival-only system**. It includes Checkpoint 4.1 Phase 3 physical models/proxies and inspection, historical navigation, routes, cameras, clipped zones and version-aware v1.2/v1.3 authoring, plus the sector grid, Cantum Stages 1–4 and intermediate scale calibration. Final artistic refinement, canonical migration, deployment and the deferred editor remain deferred.
 
-Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F and 4 are complete and
+Architecture Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4 and 5 are complete and
 creator-approved**. Phase 3F implementation, approved Demo showcase and completion
 documentation are committed together. Overall Architecture Phase 3 is complete. The v1.2 examples now use ten focused entity-family references
 and [one main guide](examples/v1_2/README.md). The active demonstration remains in
@@ -17,7 +17,7 @@ committed in `6e026cb`, and Phase 2.1 in `711a410`; the
 verification context. **Phase 3F integration and the curated Demo showcase are complete and creator-approved**, under
 the [architecture roadmap](docs/ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md).
 The commands below distinguish local Development, graphical Demo and future Canon.
-Phase 3E provides safe local manual system authoring; Architecture Phase 4 viewer modularization/configuration is complete and creator-approved, with implementation and status documentation committed together. Phase 5 is next proposed, unstarted and unauthorized. Completed Phase 3D activates v1.3
+Phase 3E provides safe local manual system authoring; Architecture Phase 4 viewer modularization/configuration is complete and creator-approved, with implementation and status documentation committed together. Phase 5 is complete and creator-approved. Completed Phase 3D activates v1.3
 in the NONCANONICAL Demo: one required provisional 24-ly influence radius,
 historical governing-Cantum groups and named InfoCard references. Frozen v1.2 examples, navigation and calibration stay compatible.
 
@@ -144,7 +144,7 @@ Both bind to loopback. Canon is a future approved-MCR environment: there is no
 Canon launch command or fallback to noncanonical data. Protected legacy
 `public/data/` remains unchanged and outside the Demo.
 
-The sole calibration source is
+The original baseline calibration source remains
 [`tests/calibration/scenarios/cantum-scale-baseline.json`](tests/calibration/scenarios/cantum-scale-baseline.json).
 It contains format `velara-cantum-calibration`, version `1`, `radiiLY`,
 `defaultRadiusLY`, `preview.maxYearAE` and a reduced `dataset` with `sector`,
@@ -156,20 +156,20 @@ are stored once. The chart remains 40 x 40 ly with a 12-ly Y extent.
 or browser fetch), validates its local format and exports `calibrationDataset(radius)`
 and `CALIBRATION_RADII`. Each call clones all records, creates its own empty detail
 Map and applies only the selected 2/2.5/3-ly radius to both existing Cantum styles.
-The default is 2.5 ly; the controller obtains its choices and timeline bounds from
-the same source. Missing/unsupported fields, malformed data, invalid coordinates,
+The default is 2.5 ly; the expanded controller obtains choices and timeline bounds
+from the selected registered source. Missing/unsupported fields, malformed data, invalid coordinates,
 intervals, references and radius choices fail explicitly; nothing is repaired.
 Reload the page after editing an authorized local scenario.
 
 This deliberately reduced fixture has empty InfoCards and no released details;
 it is **not a release-valid Atlas dataset or canonical history**. No master schema,
 normal radius calculation or demonstration JSON is changed. The preview script
-adds exactly four read-only routes: HTML, controller, adapter and this named JSON.
+adds only exact read-only module/HTML routes and finite registry-declared JSON resources.
 Other calibration files/methods and direct filesystem access remain blocked; no
 editor, saving endpoint or arbitrary dataset root is provided. The existing
 renderer, resolver, controls and sigil registry are reused. Development JSON and
 its adapter are excluded from the Demo's inventory-based input audit and `dist/` output.
-No canonical radius is chosen; richer preview tooling remains proposed Phase 5.
+No canonical radius is chosen. Completed, creator-approved named local previews are described below.
 
 ### Automated and browser verification
 
@@ -339,7 +339,7 @@ retained as historical references, not current setup instructions.
 ## Safe local system authoring (completed Phase 3E)
 
 Phase 3E is complete and creator-approved. Its implementation and status
-synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Architecture Phase 4 is complete and creator-approved; Phase 5 requires separate authorization.
+synchronization are committed together. Phase 3F and overall Architecture Phase 3 are complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 requires separate authorization.
 
 `npm run atlas:new-system -- --help` describes the fixed NONCANONICAL Demo
 workflow. No arguments validates the dataset and suggests an unused permanent ID;
@@ -384,5 +384,73 @@ Run `node --test tests/viewer-modules.test.mjs` for focused state/presentation,
 camera/picking, configuration and cleanup tests. The Chromium MCP entry point
 `tests/browser-viewer-modules.mjs` runs against `npm run demo`; existing showcase,
 keyboard/touch, zone and nine calibration comparisons remain applicable.
-Architecture Phase 4 is complete and creator-approved. Phase 5 is next proposed,
-not started and requires separate authorization. Phase 6 remains planned and gated.
+Architecture Phase 4 is complete and creator-approved. Phase 5 is complete and creator-approved. Phase 6 remains planned and unauthorized.
+
+## Named local preview scenarios (completed Phase 5)
+
+Run `npm run dev` (or its alias `npm run preview:calibration`, not both) and open
+**http://127.0.0.1:5174/Velara_Atlas/__calibration/**. Phase 5 is complete and creator-approved; implementation and completion
+documentation are committed together. The ordinary
+`npm run demo` on 5173 and its v1.3 data/24-ly radius are unchanged.
+
+**Scenario** selects authored synthetic geography/history. **Preset** selects a
+repeatable radius, year, camera, layers and visual state. Pan, zoom, selection and
+manual control changes are temporary. **Replay preset** restores the complete
+selected preset and clears selection/hover. **Reset View** only reframes the
+current experiment. Neither action saves anything.
+
+| Scenario | Useful presets / inspection |
+| --- | --- |
+| Original Cantum scale (`cantum-scale-baseline`) | Nine named 2/2.5/3-ly x top/perspective/low presets, all at 1200 A.E.; default 2.5/top. The original 15 systems, 40 x 40 x 12-ly chart, outpost transfer, sigils and 8px symbols are unchanged. Low means 10 degrees; perspective means 45 degrees. |
+| Island merging and elevation (`island-elevation`) | `separated-top`: 2 ly, 499, top; `merged-perspective`: 3 ly, 800, 45 degrees; `outpost-low`: 2.5 ly, 1200, 10 degrees. Seven TEST systems include a near-threshold pair, a ridge appearing at 700, a detached outpost appearing at 800, elevated stars and one unassociated control. The outpost preset also changes background, selection color and delay. |
+
+Creator walkthrough: choose Original and a low preset; switch to Island, inspect
+Separated, then Merged; change year/view, colors, delay and layers, pan/zoom, then
+Replay. The declared camera and controls return. Switch back to Original to
+verify its unchanged calibration. On mobile, expand **Calibration controls and
+layers**, choose controls, then collapse them to inspect the square chart.
+
+Background and selected-marker colors plus selection delay (0-1000 ms) all pass
+the closed Phase 4 `createVisualConfig()` validator. Select a star to inspect its
+highlight; delay applies to map pointer selection. Hover color/route opacity are
+not exposed here because these reduced scenarios have no routes. Presets may
+carry validated config fields; unknown keys, invalid values and physical/history
+injection are rejected. Visual changes rebuild/dispose the local map while retaining its view; Replay
+starts with clean camera/control ownership for exact preset restoration. Neither
+alters source JSON or defaults.
+
+Read-only diagnostics report the actual selected scenario/preset/year/view/radius,
+layer choices, eligible systems, positioned field contributors, field groups,
+visible political identities and detached sigil identities. Renderer geometry/
+texture counts come from Three.js; half-height/tolerance come from generated
+envelopes. Sampling is the existing 128 x 128 grid (40/128 = 0.3125 ly step here).
+Unavailable optional values show n/a. Fields remain approximations, not borders;
+these counters are not Phase 6 profiling or telemetry.
+
+`tests/calibration/scenarios/preview-manifest.json` is the version-1 finite local
+registry: unique stable IDs, display names/purposes, exact `scenarios/<id>.json`
+paths, default preset IDs and complete preset states. It admits only the reduced
+`velara-cantum-calibration` version-1 format; these memory-only v1.2-style records
+are not full release-valid v1.2/v1.3 or Canon data. No automatic format conversion
+occurs. `scenario-format.mjs` validates/adapts independent clones; `scenario.mjs`
+retains `calibrationDataset(radius)` and original exports. `preview.mjs` validates
+registration/presets and delegates historical/camera/configuration behavior.
+
+To add an authorized preview: author a separate public-safe TEST JSON file in
+that directory, register its matching ID/path and presets, run validation/tests,
+then restart Development. There is no discovery/glob or URL/root input. Registry
+edits require a server restart so browser and server admission agree. Missing or
+invalid resources show an explicit error, clear the obsolete map and permit
+scenario reselection or **Reload registry**; no fallback claims success.
+
+The loopback server serves exact admitted resources using GET/HEAD only, with
+path/encoding/case and real-path/symlink checks. There is no save endpoint. Demo
+source/build audits reject controllers, registry, scenarios and test utilities;
+`publicDir: false`, Canon/private exclusions and approved assets remain unchanged.
+
+Focused checks: `node --test tests/local-preview.test.mjs tests/cantum-calibration.test.mjs`.
+With Development and Demo running, execute `tests/browser-local-preview.mjs` and
+`tests/browser-cantum-calibration.mjs` through the existing Playwright MCP runner;
+these are browser entry points, not Node test scripts. Continue the ordinary
+Demo browser regressions. Future implementation and commits still require
+explicit creator authorization. No Phase 6 or Atlas Creator is included.

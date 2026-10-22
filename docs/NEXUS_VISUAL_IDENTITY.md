@@ -246,5 +246,14 @@ of panel/theme typography and responsive rules. See [exact settings and ownershi
 This is not a public settings editor. Units, IDs, history, physical dimensions,
 navigation, the authored universal territory radius and release safeguards are
 not visual tunables. Extend only through the owning module and regression tests.
-Phase 5 preview work, new effects/artwork, Atlas Creator and deployment require
-separate creator authorization.
+Phase 5 local preview implementation is complete and creator-approved;
+new effects/artwork, Atlas Creator and deployment require separate authorization.
+
+## Local Development tuning (completed Phase 5)
+
+Only the loopback Development preview exposes background/selected-marker colors
+and selection delay. All values pass `createVisualConfig`; named presets and
+Replay restore validated presentation and camera state. Radius experiments remain
+local reduced-format overrides. No normal-Demo settings panel, art, physical/history
+controls, persistence or publication is added. See [local preview guide](../README.md#named-local-preview-scenarios-completed-phase-5).
+Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.

@@ -16,7 +16,7 @@ Phase 3F integration/showcase implementation is complete and creator-approved,
 with implementation and completion documentation committed together. Overall
 Architecture Phase 3 is complete. Architecture Phase 4 is complete and
 creator-approved, with implementation and completion documentation committed
-together. Phase 5 is next proposed, unstarted and unauthorized; Phase 6 is planned.
+together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and unauthorized.
 The active v1.3 Demo uses a provisional shared 24-ly radius. Frozen v1.2
 per-Cantum settings and calibration radii remain unchanged.
 
@@ -94,7 +94,9 @@ Velara_Atlas/
                                viewer, ID Finder and layout
     browser-*.mjs              Playwright MCP entry points, not Node test files
     calibration/               Local controller, HTML and JSON adapter; no production entry
-      scenarios/               Reduced synthetic calibration JSON, not release data
+      scenario-format.mjs      Reduced-format validator and cloning adapter
+      preview.mjs              Registry, presets, camera delegation and diagnostics
+      scenarios/               Finite manifest, unchanged baseline and island experiment
     fixtures/legacy_examples/  Three preserved legacy/forbidden regression inputs
     fixtures/v1_1/             Frozen accepted two-system branching regression
     fixtures/v1_2/             Frozen original three-system navigation regression
@@ -133,7 +135,7 @@ Never deduplicate fixtures or renumber IDs as organization cleanup.
 | Path | Role | Public Git | Current browser build |
 | --- | --- | --- | --- |
 | `docs/` | Contracts, workflow, historical references | Public-safe | Excluded |
-| `public/datasets/demo/` | Noncanonical demonstration | Tracked | Sector-derived exact JSON allowlist; seven current files |
+| `public/datasets/demo/` | Noncanonical demonstration | Tracked | Sector-derived exact JSON allowlist; eleven current files |
 | `examples/v1_2/` | Current developer learning references | Public-safe | Excluded |
 | `tests/fixtures/legacy_examples/` | Legacy regression/forbidden inputs | Preserved | Excluded |
 | `docs/archive/json-proposals/` | Superseded JSON proposals | Preserved | Excluded |
@@ -180,7 +182,7 @@ See [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) for historical chec
 that report's uncommitted-work circumstances predate `6e026cb`. Current reference
 coverage and validation targets are in [the family guide](../examples/v1_2/README.md).
 Calibration facts now live in the fixed `tests/calibration/scenarios/cantum-scale-baseline.json`;
-`scenario.mjs` adapts cloned records in memory. Richer preview tooling remains Phase 5. A future report-directory reorganization needs separate approval.
+`scenario.mjs` retains the compatibility API via `scenario-format.mjs`. Completed, creator-approved Phase 5 adds the finite JSON registry, presets and island/elevation scenario. A future report-directory reorganization needs separate approval.
 
 The [accepted v1.3 guide](DATA_MODEL_V1_3_PROPOSAL.md) owns the current Demo
 entity/presentation contract, retaining its Phase 3C proposal history. `src/core/infocard-resolver.mjs` is now explicitly admitted to

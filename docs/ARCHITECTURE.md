@@ -145,7 +145,7 @@ admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
 Phase 3D is complete and creator-approved; its implementation and completion
-documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 remains separately gated.
+documentation are committed together. Phase 3E is complete and creator-approved; Phase 3F integration/showcase work and overall Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 remains separately gated.
 
 ## Coordinates, layout and rendering
 
@@ -206,28 +206,35 @@ three projection corrections, rather than radial camera distance. Captions use
 the same visible 4px radius; existing invisible picking targets remain independent.
 The envelope half-height clamp becomes `.5–3` ly; the X/Z field, geometry technique,
 local Y centerline and compositor are unchanged. No physical size/minimum changes.
-`scripts/preview-cantum-calibration.mjs` installs four exact read-only routes
-only on its loopback Development server. `npm run dev` starts calibration at
-`http://127.0.0.1:5174/Velara_Atlas/__calibration/`; `preview:calibration` aliases
-that command. `npm run demo` validates and serves the existing graphical Atlas on
-5173. `history:demo` retains the terminal historical demonstration. Canon is a
-future approved-data environment with no launcher or noncanonical fallback.
+`npm run dev` and its compatibility alias `preview:calibration` serve the
+loopback-only Development preview on 5174; `demo` serves the graphical showcase
+on 5173 and `history:demo` retains the terminal demonstration. Canon has no launcher.
+The finite `tests/calibration/scenarios/preview-manifest.json` maps stable IDs to
+exact local JSON resources and complete preset descriptions. The original
+`cantum-scale-baseline.json` remains unchanged. `island-elevation.json` is a separate
+seven-system TEST arrangement. Both deliberately use reduced local v1.2-style
+format version 1; neither is a release-valid dataset nor interchangeable with
+v1.3 universal-radius semantics.
 
-`tests/calibration/scenarios/cantum-scale-baseline.json` owns the reduced local
-scenario: 15 test systems, two Cantums, exact histories/XYZ, 40 x 40 x 12 ly extents,
-presentation and radius/preview choices. `scenario.mjs` reads the fixed resource,
-validates the local format, clones data and adapts the selected radius into the
-existing runtime structure with an independent empty detail Map. Node uses a file
-read; the browser fetches only the named JSON route. The empty local InfoCards and
-missing release fields are intentional, not public-schema extensions. Invalid
-inputs fail without normalization or repair. `controller.mjs` retains the existing
-renderer and interactions; `index.html` defines controls. See [operating commands,
-format and tests](../README.md#local-development-and-future-canon).
+`scenario-format.mjs` owns the extracted validator and clone/radius adapter;
+`scenario.mjs` preserves the fixed-baseline compatibility exports. `preview.mjs`
+validates the closed registry/presets, loads only registered IDs and derives data
+through `resolveAtlas()`/`territoryGroups()`. Every load/state owns its data.
+The local controller uses the Phase 4 camera API, `createVisualConfig()` and
+`Lifetime`; it never duplicates history/projection math or writes authored files.
+Map replacement removes listeners/resources and releases its local WebGL context.
+Replay starts clean camera/control ownership so stored top-view state is also
+reproducible; visual-only rebuilds restore the current view through `restoreView()`.
+Presets replay complete declared states; Reset View only reframes the current
+experiment. Loading errors remove the obsolete map and permit explicit reselection.
 
-No filesystem allowlist is widened. Calibration JSON, controller and adapter stay
-outside Demo imports and the production input audit; the JSON is available only
-through its explicit local route. No calibration editor/writer or arbitrary-root
-loader is introduced. The published build remains the noncanonical Demo only.
+The server admits only enumerated HTML/modules plus exact registry-declared JSON.
+It rejects encoded/case/separator variants, non-GET/HEAD methods and real-path or
+symlink/reparse redirection. Registry changes require a Development restart; no
+filesystem glob, arbitrary root, remote URL or save API is added. Demo Vite source
+admission/output audits remain unchanged and reject all preview-only resources.
+Operational steps and diagnostic meanings are in [README](../README.md#named-local-preview-scenarios-completed-phase-5).
+Architecture Phase 5 is complete and creator-approved; implementation and status documentation are committed together. Phase 6 remains unstarted and unauthorized.
 See [historical calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
@@ -328,8 +335,7 @@ See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differenc
 ## Phase 4 viewer module ownership
 
 Architecture Phase 4 is complete and creator-approved. Its implementation and
-completion documentation are committed together. Phase 5 is next proposed,
-unstarted and unauthorized; Phase 6 remains planned and separately gated. The current
+completion documentation are committed together. Phase 5 is complete and creator-approved; Phase 6 is next proposed, unstarted and separately gated. The current
 NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
 
 | Owner | Responsibility and boundary |
@@ -399,8 +405,8 @@ Chromium MCP runner with the normal `npm run demo`; it checks focus, timeline
 invalidation, four remount/dispose cycles, resource/listener stability and stale
 callbacks. Existing Demo, navigation, zones, touch, labeling and calibration
 suites remain unchanged. Reuse the [showcase walkthrough](DEMO_SHOWCASE.md) for
-creator inspection. Future separately authorized Phase 5 previews can reuse the
-closed config factory and controllers; no preview editor is implemented here.
+creator inspection. The authorized local Phase 5 preview reuses this closed
+config factory and camera APIs; no preview editor is implemented.
 
 
 Phase 4 implementation and closeout verification: the pre-refactor baseline passed 245 tests; the
@@ -423,9 +429,7 @@ UI/scene owners. Add event/observer cleanup to the owning lifetime and preserve
 facade methods and DOM hooks deliberately. Test state/presentation independently,
 then run the ordinary living Demo, error/retry, camera/picking and lifecycle
 regressions. Presentation injection is internal and closed; do not use it to
-change authored history, geometry, schemas or source admission. Phase 5 previews
-may reuse these interfaces only after separate creator authorization; no preview
-editor, extra calibration scenario or public settings control exists here.
+change authored history, geometry, schemas or source admission. Completed, creator-approved Phase 5 local previews reuse these interfaces. No editor or public settings control is added.
 
 
 Closeout reran all 257 automated tests and 18 Chromium suites successfully.

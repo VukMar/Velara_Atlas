@@ -1,0 +1,221 @@
+{
+  "format": "velara-local-previews",
+  "version": 1,
+  "defaultScenario": "cantum-scale-baseline",
+  "scenarios": [
+    {
+      "id": "cantum-scale-baseline",
+      "name": "Original Cantum scale",
+      "purpose": "Unchanged 15-system calibration, transfer and detached sigil.",
+      "path": "scenarios/cantum-scale-baseline.json",
+      "defaultPreset": "r2-5-top",
+      "presets": [
+        {
+          "id": "r2-top",
+          "name": "2 ly / top",
+          "description": "NONCANONICAL 1200 A.E.; 2 ly; top.",
+          "radiusLY": 2,
+          "yearAE": 1200,
+          "camera": "top",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r2-perspective",
+          "name": "2 ly / perspective",
+          "description": "NONCANONICAL 1200 A.E.; 2 ly; perspective.",
+          "radiusLY": 2,
+          "yearAE": 1200,
+          "camera": "perspective",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r2-low",
+          "name": "2 ly / low",
+          "description": "NONCANONICAL 1200 A.E.; 2 ly; low.",
+          "radiusLY": 2,
+          "yearAE": 1200,
+          "camera": "low",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r2-5-top",
+          "name": "2.5 ly / top",
+          "description": "NONCANONICAL 1200 A.E.; 2.5 ly; top.",
+          "radiusLY": 2.5,
+          "yearAE": 1200,
+          "camera": "top",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r2-5-perspective",
+          "name": "2.5 ly / perspective",
+          "description": "NONCANONICAL 1200 A.E.; 2.5 ly; perspective.",
+          "radiusLY": 2.5,
+          "yearAE": 1200,
+          "camera": "perspective",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r2-5-low",
+          "name": "2.5 ly / low",
+          "description": "NONCANONICAL 1200 A.E.; 2.5 ly; low.",
+          "radiusLY": 2.5,
+          "yearAE": 1200,
+          "camera": "low",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r3-top",
+          "name": "3 ly / top",
+          "description": "NONCANONICAL 1200 A.E.; 3 ly; top.",
+          "radiusLY": 3,
+          "yearAE": 1200,
+          "camera": "top",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r3-perspective",
+          "name": "3 ly / perspective",
+          "description": "NONCANONICAL 1200 A.E.; 3 ly; perspective.",
+          "radiusLY": 3,
+          "yearAE": 1200,
+          "camera": "perspective",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "r3-low",
+          "name": "3 ly / low",
+          "description": "NONCANONICAL 1200 A.E.; 3 ly; low.",
+          "radiusLY": 3,
+          "yearAE": 1200,
+          "camera": "low",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        }
+      ]
+    },
+    {
+      "id": "island-elevation",
+      "name": "Island merging and elevation",
+      "purpose": "Seven TEST systems: near-threshold merge, later ridge/outpost, elevations and unassociated control.",
+      "path": "scenarios/island-elevation.json",
+      "defaultPreset": "separated-top",
+      "presets": [
+        {
+          "id": "separated-top",
+          "name": "Separated / 2 ly / 499",
+          "description": "NONCANONICAL 499 A.E.; 2 ly; top.",
+          "radiusLY": 2,
+          "yearAE": 499,
+          "camera": "top",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "merged-perspective",
+          "name": "Merged / 3 ly / 800",
+          "description": "NONCANONICAL 800 A.E.; 3 ly; perspective.",
+          "radiusLY": 3,
+          "yearAE": 800,
+          "camera": "perspective",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {}
+        },
+        {
+          "id": "outpost-low",
+          "name": "Outpost / low / 1200",
+          "description": "NONCANONICAL 1200 A.E.; 2.5 ly; low.",
+          "radiusLY": 2.5,
+          "yearAE": 1200,
+          "camera": "low",
+          "layers": {
+            "grid": true,
+            "territory": true,
+            "cantumNames": true,
+            "objectNames": true,
+            "star_system": true
+          },
+          "visual": {
+            "backgroundColor": 463644,
+            "selectionColor": 5636027,
+            "selectionDelayMs": 400
+          }
+        }
+      ]
+    }
+  ]
+}
