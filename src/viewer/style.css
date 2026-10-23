@@ -44,6 +44,17 @@ canvas { display:block; width:100%; height:100%; touch-action:none; }
 .map-label[aria-pressed="true"] { outline:1px solid #e6ba7b; outline-offset:3px; }
 .map-label[aria-pressed="true"] span { color:#e6ba7b; }
 .map-label[data-highlighted="true"] span { color:#00d6ff; }
+.map-label[data-targetable][aria-pressed="true"]:not(:focus-visible) { outline:none; }
+/* Keep explicit keyboard focus outlines; only obsolete decorative targeting is retired. */
+.target-reticles { position:absolute; inset:0; z-index:3; pointer-events:none; overflow:hidden; }
+.target-reticle { position:absolute; width:60px; height:60px; transform:translate(-50%,-50%); pointer-events:none; }
+.target-reticle::before { content:""; display:block; width:100%; height:100%; background:#00d6ff; mask:var(--nexus-reticle) center / contain no-repeat; mask-mode:alpha; -webkit-mask:var(--nexus-reticle) center / contain no-repeat; pointer-events:none; }
+.target-hover::before { animation:nexus-reticle-turn 30s linear infinite; }
+.target-selected { width:72px; height:72px; }
+.target-selected::before { background:#e6ba7b; }
+#viewport[data-archival="true"] .target-reticles,#viewport:has(#retry:not([hidden])) .target-reticles { display:none; }
+@keyframes nexus-reticle-turn { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .target-hover::before { animation:none; } }
 #map-status { position:absolute; z-index:3; top:35%; left:8%; right:8%; text-align:center; pointer-events:none; }
 #map-message { white-space:pre-line; margin:0; padding:1rem; background:#081722ed; }
 #retry { pointer-events:auto; margin-top:.5rem; }
@@ -138,5 +149,4 @@ footer { flex:none; text-align:center; padding:.3rem .5rem; color:#94b2c2; font-
 @media(max-width:360px), (max-height:600px) { #nexus-portrait { display:none; } }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; } }
 .navigation-proxy { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:var(--display-diameter); height:var(--display-diameter); opacity:var(--proxy-opacity); max-width:none; pointer-events:none; user-select:none; }
-.map-label:has(.navigation-proxy):is(:hover,:focus-visible,[aria-pressed="true"])::before { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:clamp(20px,var(--display-diameter),56px); height:clamp(20px,var(--display-diameter),56px); border:1px solid #00d6ff; border-radius:50%; pointer-events:none; }
 .map-label[data-icon-fallback="primitive"]::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) rotate(45deg); width:calc(var(--display-diameter) * .7); height:calc(var(--display-diameter) * .7); border:2px solid #94b2c2; opacity:var(--proxy-opacity); pointer-events:none; }

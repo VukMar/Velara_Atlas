@@ -25,6 +25,7 @@ Use the [index](INDEX.md) for authority and the
 | `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
 | `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
 | `src/viewer/map-scene.mjs` | Stable AtlasMap facade, renderer and ordered coordination of camera, interaction, layers and projection owners |
+| `src/viewer/target-reticle.mjs` | Two decorative cyan/gold UI indicators consuming final shared anchor visibility and selected/hover state; no projection, picking, extra renderer or animation loop |
 | `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
 | `src/viewer/sector-markers.mjs` | Inverts active sphere projection for the central 4px CSS radius; Sector catalogue symbols only, never physical System View models |
 | `src/viewer/celestial-model.mjs` | Fixed physical spheres/normalized small bodies and deterministic symbolic material colors; no geometry for unknown sizes/artificial structures |
@@ -281,6 +282,14 @@ elaborate targeting-ring art remain future work.
 
 ## Build and disclosure boundary
 
+**Completed 4.2C addition (2026-10-23):** the exact original UI reticle is admitted
+independently by `scripts/ui-reticle-asset.mjs` with a pinned source hash, exact
+Vite path and output byte/name/uniqueness/reachability checks. It does not relax
+the 64×64 starter profile. Current release inventory is sixteen SVGs and three
+PNGs; existing universal fallback content and dataset/private/Canon restrictions
+remain. See [current asset policy](VISUAL_ASSET_POLICY.md#10-implemented-checkpoint-42c-ui-svg-admission).
+The older baseline asset counts/exclusions below remain historical context.
+
 Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
 disables `publicDir` and source maps, and writes `dist/`. Development binds
 to loopback with filesystem restrictions. The input audit allows viewer code,
@@ -366,7 +375,8 @@ NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
 | `camera-controller.mjs` | Camera/OrbitControls creation, framing, constraints, modes, tilt, inspection, snapshots and control disposal. Reuses chart-layout and inspection-camera math unchanged. |
 | `map-interaction.mjs` | Canvas/label inputs, drag-versus-click, delayed selection, pointer/focus/touch hover, one marker/route/zone picker and zone emphasis/tooltip. |
 | `scene-layers.mjs` | Per-map grid, influence, envelopes, zones, routes, meshes, labels/proxies, visibility and rebuild/disposal. Uses existing geometry/compositor/nameplate modules. |
-| `projected-labels.mjs` | Existing grid/caption/symbol projection, physical/proxy handoff, depth occlusion and caption layout; no new geometry or picking source. |
+| `projected-labels.mjs` | Existing grid/caption/symbol projection, physical/proxy handoff, depth occlusion and caption layout; supplies final anchors to targeting, no new geometry or picking source. |
+| `target-reticle.mjs` | Completed 4.2C: two pointer-transparent, accessibility-hidden DOM spans driven by existing selectedId/hoverSources and final anchor.screen/button.hidden/object visibility. CSS owns masks/rotation; AtlasMap owns creation/disposal, SceneLayers clears on rebuild. |
 | `lifetime.mjs` | Locally scoped listeners, observer guards and reverse-order, idempotent cleanup. Disposed callbacks cannot act on a replacement application. |
 
 Data flow is validated eager loader -> `AppState` -> core resolved view -> UI

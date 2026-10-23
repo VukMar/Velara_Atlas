@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {approvedSVGSources,svgFiles} from './svg-assets.mjs';
 import {readDemoSource,DEMO_ROOT} from './demo-files.mjs';
 import {approvedPNGSources} from './png-assets.mjs';
+import {approvedReticleSource} from './ui-reticle-asset.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../dist/', import.meta.url));
 function list(directory) {
@@ -24,6 +25,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   const approvedSVG = new Set(approvedSVGSources()), emittedSVG = new Set();
   const svgNames = new Map(approvedSVGSources().map((source,i)=>[source,path.basename(svgFiles[i],'.svg')]));
   const approvedPNG=approvedPNGSources(),emittedPNG=new Set();
+  const reticle=approvedReticleSource();let emittedReticle=false;
   for (const file of files) {
     const name = path.relative(root, file).replaceAll('\\', '/');
     if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png)$/.test(name)) {
@@ -39,8 +41,13 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
     // Scan textual outputs only; approved binary bytes are checked above.
     const text = fs.readFileSync(file, 'utf8');
     if (name.endsWith('.svg')) {
-      if (!approvedSVG.has(text) || emittedSVG.has(text) || !name.startsWith(`assets/${svgNames.get(text)}-`)) throw new Error(`Unexpected SVG content/name or duplicate: ${name}`);
-      emittedSVG.add(text);
+      if(/^assets\/nexus-reticle-[A-Za-z0-9_-]+\.svg$/.test(name)&&fs.readFileSync(file).equals(reticle)) {
+        if(emittedReticle)throw new Error(`Unexpected SVG duplicate: ${name}`);
+        emittedReticle=true;
+      } else {
+        if (!approvedSVG.has(text) || emittedSVG.has(text) || !name.startsWith(`assets/${svgNames.get(text)}-`)) throw new Error(`Unexpected SVG content/name or duplicate: ${name}`);
+        emittedSVG.add(text);
+      }
     }
     for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=', 'VELARA_PERFORMANCE_ONLY','velara-local-previews','velara-cantum-calibration','preview-manifest.json']) {
       if (text.includes(forbidden)) throw new Error(`Unexpected canonical/private/source-map reference in ${name}`);
@@ -58,6 +65,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
     edges.set(name,links);
   }
   if (emittedSVG.size !== approvedSVG.size) throw new Error('Approved SVG inventory is incomplete');
+  if (!emittedReticle) throw new Error('Approved UI reticle SVG inventory is incomplete');
   if (emittedPNG.size !== approvedPNG.size) throw new Error('Approved PNG inventory is incomplete');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   if (!html.includes('NONCANONICAL DEMONSTRATION')) throw new Error('Demo disclosure missing');
@@ -68,9 +76,10 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   }
   {
     const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit('index.html');
-    for(const name of relative.keys())if((allowedIds||name.endsWith('.png'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+    for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
   }
-  return {files:files.length,svgCount:emittedSVG.size,pngCount:emittedPNG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs and ${emittedPNG.size} exact approved PNGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
+  const svgCount=emittedSVG.size+Number(emittedReticle);
+  return {files:files.length,svgCount,pngCount:emittedPNG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 

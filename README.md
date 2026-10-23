@@ -77,8 +77,21 @@ Final checks pass 281 tests and all validation/build/release gates; focused Demo
 and production browser regressions pass. Small/short layouts scroll within the
 square; physical devices, other browsers, screen readers and actual browser zoom
 remain verification limits. See [4.2B results and approved wording](docs/DEVELOPMENT_ROADMAP.md#phase-42b--archival-fallback-redesign).
-**4.2C–I remain planned, unimplemented and unauthorized.** Final Checkpoint 4
+At the 4.2B closeout, 4.2C–I remained planned and unimplemented. Final Checkpoint 4
 acceptance and Cantum Stage 5 remain outstanding; no deployment occurred.
+
+**Checkpoint 4.2C closeout (2026-10-23): complete and creator-approved.** Both map
+levels now use the unchanged original NEXUS reticle: cyan 60px hover/keyboard focus
+rotating once per 30 seconds, and a static gold 72px selected lock. Reduced motion
+disables rotation; existing projected visibility, focus, routes/zones, picking,
+8px Sector markers and physical-size contracts remain intact. Independent pinned
+UI-SVG admission preserves the narrow starter profile: sixteen SVGs and three
+PNGs total. Final checks pass 283 tests, validation, connections, build and release
+audit; Demo/production targeting and relevant browser regressions pass. See
+[4.2C results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42c--unified-targeting-reticle).
+**4.2D–I remain planned, unimplemented and unauthorized.** Final Checkpoint 4
+acceptance and Cantum Stage 5 remain outstanding. Checkpoint 5, Canon migration,
+Atlas Creator and deployment remain separately gated; no deployment occurred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

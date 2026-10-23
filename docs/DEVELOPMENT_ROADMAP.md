@@ -12,8 +12,8 @@ deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A and 4.2B are implemented, complete and creator-approved.**
-Phases 4.2C–I remain planned, unimplemented and unauthorized.
+**Closeout update (2026-10-23): 4.2A–C are implemented, complete and creator-approved.**
+Phases 4.2D–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,10 +131,10 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A and 4.2B complete and creator-approved; 4.2C–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–C complete and creator-approved; 4.2D–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
-| Checkpoint 4.2C — Unified Targeting Reticle | **Planned:** creator's existing `nexus-reticle.svg`, cyan rotating hover/focus and static gold lock in both views. |
+| Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Planned:** up to 1.5× navigational minima; preserve physical geometry and Sector 8px marker. |
 | Checkpoint 4.2E — Focus Selection Animation | **Planned:** smooth cancelable camera focus; preserve exact final framing. |
 | Checkpoint 4.2F — Map Navigation Transitions | **Planned:** Sector→System, System→Sector, System→System record changes. |
@@ -182,7 +182,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A and 4.2B are complete and creator-approved; 4.2C–I remain planned and
+completed; **4.2A–C are complete and creator-approved; 4.2D–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -374,6 +374,11 @@ Atlas Creator remain separately gated. No deployment is part of this closeout.
 
 ### Phase 4.2C — Unified Targeting Reticle
 
+**Status: complete and creator-approved, 2026-10-23.** The creator reviewed and
+approved the original-artwork treatment, cyan rotation, gold lock, sizes,
+visibility, interactions and responsive presentation, then separately authorized
+one implementation/documentation closeout commit and normal push to `origin/main`.
+
 **Purpose/scope:** Use the unchanged FINAL creator SVG
 `public/assets/ui/nexus-reticle.svg` from
 `6b4bc5f92e1ef7fc7fd1740da5cc3d2217b8a1f0`, with 128×128 viewBox.
@@ -399,6 +404,43 @@ selection or leaked loops; keyboard/mouse/touch selection survives;
 dense overlap and actual SVG detail. **Depends on:** existing projection;
 can run independently of A/B if creator authorizes. **Gate:** creator
 approves hover/lock fidelity and responsive sizing.
+
+**Implemented result:** two decorative, pointer-transparent DOM indicators owned
+by `target-reticle.mjs`, using the existing final projected anchors and visibility
+decisions. Hover/keyboard focus is 60 CSS px, `#00d6ff`, one clockwise rotation
+per 30 seconds; selected is 72 px (20% larger), `#e6ba7b`, static. Selection wins
+on the same object; separate objects can show both. Reduced motion removes
+rotation. CSS alpha masking preserves the unchanged original geometry and opacity
+detail, replacing only display hues. No idle, unpositioned, route/zone, archival,
+hidden, occluded or offscreen targeting is invented. Scene rebuild/disposal clears
+the owner without extra listeners, timers, RAF loops, meshes or textures. The old
+generic proxy circle is retired; keyboard outlines, captions, aria states,
+specialized route/zone behavior, 8px Sector symbols and System minima remain.
+
+**Asset verification:** independent exact-source SHA-256 admission and binary
+output/name/duplicate/completeness/reachability checks add one UI SVG, leaving the
+64×64 starter validator, fifteen previous SVGs, three PNGs, universal fallback
+JSON, registered Demo and private/Canon exclusions unchanged. The 7,620-byte source
+matches definitive commit `6b4bc5f92e1ef7fc7fd1740da5cc3d2217b8a1f0`.
+
+**Verification:** final `npm test` passes 283 tests (zero failed/skipped), plus
+validation, connection freshness, build, release audit and `git diff --check`.
+Dedicated normal-Demo and production callbacks pass: both map levels, cyan/gold
+precedence, keyboard/Catalogue/dropdown/touch, proxy/model handoff, pan/zoom/tilt,
+layers/history/depth/clipping, reduced motion, four responsive viewports, 200%
+CSS text scaling and DPR 2. Twenty navigation cycles and complete remounts retain
+stable resources. Existing scale, zones, navigation, layout, viewer/lifetime,
+branding, archival and production-release callbacks also pass. Production audit:
+29 files, sixteen SVGs and three PNGs, 4,494,160 bytes; reticle request HTTP 200 at
+`/Velara_Atlas/assets/nexus-reticle-wjkQVr7N.svg`.
+
+**Accepted trade-offs/limits:** fixed rings can overlap near dense markers or sit
+inside large inspected bodies. Chromium alpha comparison differed by at most
+1/255 from source rendering; physical devices, other browsers, screen readers,
+actual browser zoom and low-power GPU performance remain unverified. The existing
+Vite chunk-size advisory remains. 4.2D–I remain planned and unimplemented; final
+Checkpoint 4 acceptance and Cantum Stage 5 remain outstanding. Checkpoint 5,
+Canon migration, Atlas Creator and deployment remain separately gated.
 
 ### Phase 4.2D — System Object Icon Sizing
 

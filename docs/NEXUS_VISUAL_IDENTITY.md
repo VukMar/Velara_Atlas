@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoint 4.2A header/ordinary InfoCard branding is complete and creator-approved (2026-10-23); broader archival/opening imagery, final artistic refinement and elaborate targeting-ring art remain deferred. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation and 4.2C unified reticles are complete and creator-approved (2026-10-23); opening and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
 
 ## 1. Purpose and source references
 
@@ -129,6 +129,9 @@ or detailed surface texturing is part of this phase. See the scale contract for
 CSS minima, smoothstep handoff and physical-inspection limits.
 
 ## 6. MCR/NEXUS segmented targeting motif
+
+The following retains the original proposal. Completed 4.2C below supersedes
+its sizing/fade/spin proposals with the creator-approved exact treatment.
 
 - **Idle:** no targeting rings by default. Do not convert the entire sector into a flat node diagram.
 - **Hover:** one soft, thin, segmented cyan circular reticle appears centered on the hovered visible object's screen-projected anchor. Optional short label/ID; avoid a full-screen information dump.
@@ -273,6 +276,26 @@ hover cannot replace the existing selection lock. The preliminary
 Reticle position follows the real projected anchor and respects clipping,
 visibility, touch/keyboard and `prefers-reduced-motion`; overlay cannot
 interfere with picking or captions. Keep existing starter navigation SVGs.
+
+**4.2C implementation and creator approval (2026-10-23):** both map levels use
+the unchanged original as a CSS alpha mask. Cyan `#00d6ff` hover/keyboard focus
+is 60 CSS px and rotates clockwise once per 30 seconds. Gold `#e6ba7b` selection
+is 72 px (20% larger), static and persistent; it suppresses cyan on the same
+entity while allowing cyan on another. Reduced motion removes rotation without
+pulsing or replacement motion. No entry/exit fade is implemented. Original
+geometry, fine opacity and transparency remain; state colors replace source hues.
+The 128×128 Chromium raster comparison differs by at most 1/255 alpha.
+
+Only the two active indicators exist, aligned to final shared projected anchors
+for visible positioned systems/bodies/stations/gates/holes. No targeting is added
+to routes, zones, unpositioned records or archival screens. Rebuilds, historical
+invalidation, clipping, layers and depth occlusion remove stale indicators.
+They are decorative, accessibility-hidden and pointer-transparent. Keyboard
+outlines and selected captions remain; the obsolete generic proxy circle is
+retired. Fixed size can overlap in dense views or sit inside large inspected
+bodies; the creator approved these proportions and responsive presentation.
+No marker/hit-area sizing, Focus animation, map transition or audio is included.
+See [exact UI SVG admission](VISUAL_ASSET_POLICY.md#10-implemented-checkpoint-42c-ui-svg-admission).
 
 **4.2A implementation and creator approval (2026-10-23):** unchanged
 `mcr-insignia.png` appears beside `VELARA ATLAS` at 32 CSS px (24 px at widths

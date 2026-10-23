@@ -7,6 +7,7 @@ import {CameraController} from './camera-controller.mjs';
 import {MapInteraction} from './map-interaction.mjs';
 import {SceneLayers} from './scene-layers.mjs';
 import {ProjectedLabels} from './projected-labels.mjs';
+import {TargetReticle} from './target-reticle.mjs';
 import {createVisualConfig} from './visual-config.mjs';
 import {Lifetime} from './lifetime.mjs';
 
@@ -103,6 +104,7 @@ export class AtlasMap {
     this.interaction=new MapInteraction(this);
     this.sceneLayers=new SceneLayers(this,createMarker);
     this.projectedLabels=new ProjectedLabels(this,markerHitSize);
+    this.targetReticle=new TargetReticle(container);
     this.resizeObserver=new ResizeObserver(this.lifetime.guard(()=>this.resize()));this.resizeObserver.observe(container);
     for(const observer of [this.overlayObserver,this.panelObserver,this.resizeObserver])this.lifetime.add(()=>observer.disconnect());
   }
@@ -137,6 +139,6 @@ export class AtlasMap {
   dispose() {
     if(this.disposed)return;this.disposed=true;
     this.lifetime.dispose();this.clearMap();this.cameraController.dispose();this.interaction.dispose();
-    this.gridLabels.remove();this.cantumNameplates.dispose();this.renderer.dispose();this.renderer.domElement.remove();
+    this.targetReticle.dispose();this.gridLabels.remove();this.cantumNameplates.dispose();this.renderer.dispose();this.renderer.domElement.remove();
   }
 }

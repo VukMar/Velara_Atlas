@@ -11,6 +11,7 @@ import {LAYER_DEFAULTS,layerKeys} from '../src/viewer/layer-config.mjs';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createArchivalView} from '../src/viewer/archival-view.mjs';
 import {validateFallbackData} from '../src/viewer/nexus-fallback-config.mjs';
+import {TargetReticle} from '../src/viewer/target-reticle.mjs';
 import {CameraController} from '../src/viewer/camera-controller.mjs';
 import {AtlasMap} from '../src/viewer/map-scene.mjs';
 import {createVisualConfig,VIEWER_DEFAULTS,KM_PER_CNU,MINIMUM_DIAMETERS,MODEL_HANDOFF_RATIO} from '../src/viewer/visual-config.mjs';
@@ -19,6 +20,39 @@ const dataset=()=>readDemoSource().dataset;
 const card=(d,y,scope,id)=>{const view=resolveAtlas(d,y,scope);return describeRecord(view.records.find(r=>r.id===id),{yearAE:y,systemId:scope,view});};
 const fact=(model,label)=>model.facts.find(f=>f[0]===label)?.[1];
 const fallbackData=validateFallbackData(JSON.parse(fs.readFileSync(new URL('../public/content/nexus/fallback-data.json',import.meta.url),'utf8')));
+
+test('two reticles consume final anchor visibility, existing hover precedence and selection without owning state',()=>{
+  const previous=globalThis.document;
+  class Element {
+    dataset={};hidden=false;children=[];attributes={};style={setProperty(key,value){this[key]=value;}};
+    setAttribute(key,value){this.attributes[key]=value;}
+    append(...children){for(const child of children){child.parent=this;this.children.push(child);}}
+    remove(){this.parent.children=this.parent.children.filter(e=>e!==this);}
+  }
+  globalThis.document={createElement:()=>new Element()};
+  try {
+    const container=new Element(),r=new TargetReticle(container);
+    const anchor=(id,type='star_system')=>({entity:{id,entityType:type},button:{hidden:false},object:{visible:true},screen:{x:25,y:70}});
+    const a=anchor('a'),b=anchor('b','gate'),route=anchor('route','connection'),zone=anchor('zone','zone');
+    const host={map:{},anchors:[a,b,route,zone],selectedId:null,hoverSources:{pointer:null,focus:null,touch:null}};
+    const update=()=>r.update(host);update();assert(r.hover.hidden&&r.selected.hidden);
+    host.hoverSources.pointer='b';host.selectedId='a';update();
+    assert.equal(r.selected.dataset.recordId,'a');assert.equal(r.hover.dataset.recordId,'b');
+    assert.equal(r.hover.style.left,'25px');assert.equal(r.hover.style.top,'70px');
+    host.hoverSources.focus='a';update();assert(r.hover.hidden);assert(!r.selected.hidden);
+    host.hoverSources.focus=null;host.hoverSources.pointer=null;host.hoverSources.touch='b';update();assert(!r.hover.hidden);
+    for(const type of ['star_system','celestial_body','station','gate','jump_hole']){b.entity.entityType=type;update();assert(!r.hover.hidden);}
+    for(const hide of [()=>b.button.hidden=true,()=>b.object.visible=false,()=>b.screen.x=NaN,()=>b.object=null]) {
+      hide();update();assert(r.hover.hidden);b.button.hidden=false;b.object={visible:true};b.screen={x:25,y:70};
+    }
+    for(const id of ['route','zone','unpositioned']){host.hoverSources.touch=id;host.selectedId=id;update();assert(r.hover.hidden&&r.selected.hidden);}
+    host.selectedId='a';host.hoverSources.touch='b';a.screen={x:111,y:222};update();assert.equal(r.selected.style.left,'111px');
+    host.map=null;update();assert(r.selected.hidden&&r.hover.hidden);assert.equal(r.selected.dataset.recordId,undefined);
+    host.map={};update();r.clear();assert(r.hover.hidden&&r.selected.hidden);assert.equal(container.children.length,1);
+    assert.equal(r.root.attributes['aria-hidden'],'true');assert.equal(r.root.children.length,2);
+    r.dispose();assert.equal(container.children.length,0);
+  } finally {if(previous===undefined)delete globalThis.document;else globalThis.document=previous;}
+});
 
 function archivalHarness(config=fallbackData) {
   class Element extends EventTarget {

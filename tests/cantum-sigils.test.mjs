@@ -10,6 +10,7 @@ import {resolveAtlas,territoryGroups} from '../src/core/cartography.mjs';
 import {CANTUM_SIGILS,sigilURL,attachSigil} from '../src/viewer/sigil-registry.mjs';
 import {ICON_PATHS,SIGIL_PATHS} from '../src/viewer/icon-manifest.mjs';
 import {iconFiles,sigilFiles,svgFiles,approvedSVGSources,validateIconSource} from '../scripts/svg-assets.mjs';
+import {approvedReticleSource} from '../scripts/ui-reticle-asset.mjs';
 import config,{demoInputAudit} from '../vite.config.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 import {approvedPNGSources} from '../scripts/png-assets.mjs';
@@ -85,7 +86,7 @@ test('sigil failures preserve text, omit unknown slots and remove listeners on c
   } finally {if(previous===undefined)delete globalThis.document;else globalThis.document=previous;}
 });
 
-test('exact output audit requires all fifteen SVGs and rejects extra, duplicate and private output',t=>{
+test('exact output audit retains fifteen starter/sigil SVGs alongside one exact UI reticle',t=>{
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'velara-sigil-audit-'));
   t.after(()=>{
     assert.equal(path.dirname(path.resolve(root)),path.resolve(os.tmpdir()));
@@ -94,11 +95,12 @@ test('exact output audit requires all fifteen SVGs and rejects extra, duplicate 
   });
   fs.mkdirSync(path.join(root,'assets'));
   const pngs=[...approvedPNGSources()];
-  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title>'+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
+  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title><img src="/Velara_Atlas/assets/nexus-reticle-fixture.svg" alt="">'+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
+  fs.writeFileSync(path.join(root,'assets','nexus-reticle-fixture.svg'),approvedReticleSource());
   for(const [stem,bytes] of pngs)fs.writeFileSync(path.join(root,'assets',`${stem}-fixture.png`),bytes);
   const sources=approvedSVGSources(),files=svgFiles.map((f,i)=>path.join(root,'assets',`${path.basename(f,'.svg')}-fixture-${i}.svg`));
   sources.forEach((s,i)=>fs.writeFileSync(files[i],s));
-  assert.equal(auditDemoBuild(root).svgCount,15);
+  assert.equal(auditDemoBuild(root).svgCount,16);
   const extra=path.join(root,'assets','unapproved.svg');
   fs.writeFileSync(extra,'<svg/>');assert.throws(()=>auditDemoBuild(root),/Unexpected SVG/);fs.unlinkSync(extra);
   fs.writeFileSync(extra,sources[0]);assert.throws(()=>auditDemoBuild(root),/Unexpected SVG|duplicate/);fs.unlinkSync(extra);

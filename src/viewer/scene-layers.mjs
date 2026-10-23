@@ -95,6 +95,7 @@ export class SceneLayers {
       button.setAttribute('aria-pressed', 'false');
       button.title = `${entity.name ?? entity.id} (${entity.id})`;
       if (entity.entityType === 'star_system') button.dataset.system = '';
+      if (object) button.dataset.targetable = '';
       const text = document.createElement('span');
       text.textContent = entity.name ?? entity.id;
       button.append(text);
@@ -107,6 +108,7 @@ export class SceneLayers {
   }
   clearMap() {
     const m=this.host;
+    m.targetReticle?.clear();
     this.labelsLifetime.dispose();this.labelsLifetime=new Lifetime();
     m.influenceEnvelopes?.dispose();m.influenceEnvelopes=null;m.flatInfluence=null;
     m.inspection = null;

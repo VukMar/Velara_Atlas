@@ -13,6 +13,8 @@ import {readDemoSource,DEMO_ROOT} from '../scripts/demo-files.mjs';
 import {checkConnections,RECOVERY_FILE} from '../scripts/connections.mjs';
 import {resolveAtlas,territoryGroups} from '../src/core/cartography.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {RETICLE_FILE,RETICLE_SHA256,verifyReticleSource,approvedReticleSource} from '../scripts/ui-reticle-asset.mjs';
+import {validateIconSource} from '../scripts/svg-assets.mjs';
 import {createDemoConfig,demoInputAudit,auditRegisteredModules} from '../vite.config.mjs';
 import {releaseCheck} from '../scripts/release-check.mjs';
 import {approvedPNGSources,pngFiles} from '../scripts/png-assets.mjs';
@@ -46,6 +48,12 @@ test('editing only universal JSON values reaches a real Vite build without chang
   for(const value of Object.values(changed))assert(js.includes(value),'changed universal JSON field reaches output');
   assert.equal(auditDemoBuild(outDir,{datasetRoot:DEMO_ROOT}).pngCount,3);
   assert.equal(readFallbackSource().text,source.text);assert.deepEqual(readDemoSource().texts,demo);
+});
+
+test('UI reticle is hash-pinned independently of the unchanged narrow starter profile',()=>{
+  const source=approvedReticleSource();assert.equal(RETICLE_SHA256,'8a2312f92187419eac9facdff32c687ebeb13427762d1a1acc0671a5157e3573');
+  assert(source.includes(Buffer.from('viewBox="0 0 128 128"')));assert.throws(()=>validateIconSource(source.toString('utf8')),/Unsafe or unsupported/);
+  for(const changed of [source.subarray(0,100),Buffer.concat([source,Buffer.from(' ')]),Buffer.from(source.toString().replace('opacity="0.62"','opacity="1"'))])assert.throws(()=>verifyReticleSource(changed),/Changed or unapproved/);
 });
 
 test('controlled seeded workloads are deterministic, independent and release-valid at every tier',()=>{
@@ -99,11 +107,22 @@ test('actual build includes every registered module and rejects output disclosur
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-release-test-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(!fs.lstatSync(top).isSymbolicLink());fs.rmSync(top,{recursive:true,force:true});});
   const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
   const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert(audit().datasetVerified);
-  assert.equal(config.publicDir,false);assert.equal(audit().pngCount,3);assert.equal(audit().svgCount,15);
+  assert.equal(config.publicDir,false);assert.equal(audit().pngCount,3);assert.equal(audit().svgCount,16);
   assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
-  assert(!config.server.fs.allow.some(file=>/reticle/.test(file)));
+  assert.deepEqual(config.server.fs.allow.filter(file=>/reticle/.test(file)),[RETICLE_FILE]);
   const outputs=fs.readdirSync(path.join(top,'assets'));
-  assert(!outputs.some(name=>/reticle|\.(?:mp3|wav|ogg|webp|jpg|json)$/.test(name)));
+  assert(!outputs.some(name=>/\.(?:mp3|wav|ogg|webp|jpg|json)$/.test(name)));
+  const reticleNames=outputs.filter(name=>/^nexus-reticle-.*\.svg$/.test(name));assert.equal(reticleNames.length,1);
+  const reticleFile=path.join(top,'assets',reticleNames[0]),reticle=approvedReticleSource();assert(fs.readFileSync(reticleFile).equals(reticle));
+  fs.unlinkSync(reticleFile);assert.throws(audit,/Missing build resource|reticle SVG inventory/);fs.writeFileSync(reticleFile,reticle);
+  fs.writeFileSync(reticleFile,Buffer.concat([reticle,Buffer.from(' ')]));assert.throws(audit,/Unexpected SVG/);fs.writeFileSync(reticleFile,reticle);
+  for(const name of ['nexus-reticle-duplicate.svg','unapproved-ui.svg','nexus-reticle.svg']) {
+    const file=path.join(top,'assets',name);fs.writeFileSync(file,reticle);assert.throws(audit,/Unexpected SVG/);fs.unlinkSync(file);
+  }
+  const reticleURL=`/Velara_Atlas/assets/${reticleNames[0]}`;
+  const referencing=outputs.find(name=>name.endsWith('.js')&&fs.readFileSync(path.join(top,'assets',name),'utf8').includes(reticleURL));assert(referencing);
+  const refFile=path.join(top,'assets',referencing),refText=fs.readFileSync(refFile,'utf8');
+  fs.writeFileSync(refFile,refText.replace(reticleURL,'unused.svg'));assert.throws(audit,/Unreferenced/);fs.writeFileSync(refFile,refText);
   const htmlFile=path.join(top,'index.html'),html=fs.readFileSync(htmlFile,'utf8');
   for(const [stem,bytes] of approvedPNGSources()) {
     const name=outputs.find(name=>name.startsWith(stem+'-')&&name.endsWith('.png'));
@@ -127,7 +146,7 @@ test('actual build includes every registered module and rejects output disclosur
     const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(extra);
   }
   const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
-  for(const name of ['nexus/unapproved.png','ui/nexus-reticle.svg']) {
+  for(const name of ['nexus/unapproved.png','ui/unapproved.svg']) {
     const id=normalizePath(path.resolve('public/assets',name));
     assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
   }

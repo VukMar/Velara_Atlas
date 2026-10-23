@@ -96,6 +96,26 @@ targeting independently of route hover. A selected record alone must not keep
 routes or partner markers highlighted. Keyboard focus supplies equivalent route
 feedback; touch selection exposes the same record/actions without requiring hover.
 
+### Unified NEXUS targeting — completed 4.2C
+
+**Creator-approved, 2026-10-23.** Sector and System View use the exact original
+`nexus-reticle.svg`: 60 CSS px cyan hover/keyboard focus with a slow 30s rotation,
+and 72px static gold selection. Selection suppresses hover on the same object;
+another object can remain cyan. Reduced motion removes rotation. Focus Selection
+retains the gold lock after closing the InfoCard; normal dismissal clears it with
+existing focus return. The decorative overlay is accessibility-hidden and cannot
+intercept pointer/touch/keyboard input; explicit keyboard outlines remain.
+
+Reticles consume the existing final projected anchors and visibility of positioned
+systems, celestial bodies, stations, gates and jump holes in both cameras and
+proxy/model representations. Historically absent, layer-hidden, occluded or
+offscreen anchors produce none. Rebuild/navigation clears stale targeting;
+archival and technical Retry presentation hide the overlay. Unpositioned records,
+routes and zones receive no new geometry; their existing semantics remain.
+The old generic proxy ring is retired. Marker dimensions, hit areas, authored XYZ,
+physical scale, camera behavior, 4.2A InfoCards/header and 4.2B archival content are
+unchanged. See [approved treatment](NEXUS_VISUAL_IDENTITY.md#checkpoint-42-approved-direction--planned-implementation-amendment-2026-10-23).
+
 ### Sector chart grid
 
 Sector View uses an **8×8 unnumbered grid** spanning the complete square X/Z

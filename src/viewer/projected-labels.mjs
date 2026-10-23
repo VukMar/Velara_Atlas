@@ -103,5 +103,7 @@ export class ProjectedLabels {
       obstacles, eligible:m.captionEligibility});
     m.captionEligibility = layout.eligible;
     for (const a of m.anchors) a.button.dataset.caption = String(layout.shown.has(a.entity.id));
+    // Consume exactly the final clipping/layer/depth decisions used by marker controls.
+    m.targetReticle?.update(m);
   }
 }

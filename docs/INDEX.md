@@ -1,10 +1,10 @@
 # Velara Atlas documentation index
 
-**Current original-roadmap status (2026-10-23):** Checkpoints 4.2A and 4.2B are
+**Current original-roadmap status (2026-10-23):** Checkpoints 4.2A–C are
 **complete and creator-approved**: compact MCR header branding, ordinary NEXUS
 InfoCard portrait, distinct archival presentation with approved front-facing
-portrait/universal JSON dialogue and strict three-PNG binary admission.
-Checkpoints 4.2C–I remain
+portrait/universal JSON dialogue, unified cyan/gold reticles and strict admission
+of sixteen SVGs and three PNGs. Checkpoints 4.2D–I remain
 **planned, unimplemented and unauthorized** in
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned),
 followed by final Checkpoint 4 creator acceptance and a Cantum Stage 5 decision.
@@ -48,8 +48,8 @@ cannot authorize new work.
 | [ZONE_GEOMETRY_INTERACTION_SPEC](ZONE_GEOMETRY_INTERACTION_SPEC.md) | Implemented zone intersection and picking contract. |
 | [CARTOGRAPHIC_LABELING](CARTOGRAPHIC_LABELING.md) | Implemented typography and caption rules with later Cantum amendments. |
 | [CANTUM_TERRITORY_RENDERING](CANTUM_TERRITORY_RENDERING.md) | Current membership, Gaussian fields, compositing, identities and calibration. |
-| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved visual direction, completed 4.2A branding and 4.2B archival composition/wording; later refinement remains deferred. |
-| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Asset categories, safe registries, fallbacks, exact three-PNG admission and universal UI-content boundary. |
+| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved visual direction, completed 4.2A branding, 4.2B archival composition/wording and 4.2C cyan/gold targeting; later refinement remains deferred. |
+| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Asset categories, safe registries, fallbacks, exact three-PNG/UI-reticle admission and universal UI-content boundary. |
 | [CHECKPOINT_4_CELESTIAL_SCALE_SPEC](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) | Approved CNU conversion, physical dimensions/proxy scale and inspection. |
 | [LEGACY_MIGRATION_PLAN](LEGACY_MIGRATION_PLAN.md) | Canonical migration safeguards; separate approval and ID crosswalk required. |
 
