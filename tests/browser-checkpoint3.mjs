@@ -30,7 +30,8 @@ async(page)=>{
   const sector=await read('sector.json');sector.systems[1].publicDetailPath=null;sector.systems[1].positionLY=null;
   await page.route(sectorPattern,serve(sector));await page.goto(base);await page.locator('#selection option[value="sys_0002"]').waitFor({state:'attached'});
   await choose('sys_0002');check((await page.locator('#facts').innerText()).includes('Unplaced'),'unplaced catalogue record');
-  await page.locator('#enter').click();check(/NEXUS.*ARCHIVAL/s.test(await page.locator('#map-message').innerText()),'archival fallback stays distinct');
+  await page.locator('#enter').click();const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
+  check((await page.locator('#archival-view').innerText()).includes(fallback.title),'archival fallback stays distinct');
   await page.locator('#sector').click();await page.unroute(sectorPattern);
   const partial=await read('systems/sys_0001.json');partial.objects=[partial.objects[0]];partial.zones=[];
   const graph=await read('connections.json');graph.connections=graph.connections.filter(l=>l.endpointA.systemId!=='sys_0001'&&l.endpointB.systemId!=='sys_0001');

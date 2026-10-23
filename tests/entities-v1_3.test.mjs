@@ -22,6 +22,19 @@ const station=d=>d.detailFiles.get('sys_9901').objects.find(o=>o.id==='sta_9901'
 const cantum=(d,id)=>d.cantums.cantums.find(c=>c.id===id);
 const period=(fromAE,untilAE,entityId)=>({fromAE,untilAE,entityId});
 const allErrors=d=>[...structuralErrors(d),...validateRelationships(d)];
+
+test('modern v1.2/v1.3 sectors can omit deprecated NEXUS copy while older authored values remain compatible',()=>{
+  const fixtures=[['1.2.0','v1_2'],['1.3.0','v1_3']];
+  for(const [version,folder] of fixtures) {
+    const sector=JSON.parse(fs.readFileSync(new URL(`./fixtures/${folder}/sector.json`,import.meta.url),'utf8'));
+    assert(sector.nexusPresentation);assert.deepEqual(recordErrors('sector',sector,version),[]);
+    delete sector.nexusPresentation;assert.deepEqual(recordErrors('sector',sector,version),[]);
+    sector.nexusPresentation={fallbackTitle:'TEST older title',fallbackText:'TEST older message'};
+    assert.deepEqual(recordErrors('sector',sector,version),[]);
+    sector.nexusPresentation={unexpected:'TEST invalid legacy property'};assert(recordErrors('sector',sector,version).length>0);
+  }
+  assert(!Object.hasOwn(readDemoSource().dataset.sector,'nexusPresentation'));
+});
 function temporary(t) {
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'velara-entities-'));
   fs.cpSync(ROOT,root,{recursive:true});

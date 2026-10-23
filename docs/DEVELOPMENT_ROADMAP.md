@@ -12,8 +12,8 @@ deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A is implemented, complete and creator-approved.**
-Phases 4.2B–I remain planned, unimplemented and unauthorized.
+**Closeout update (2026-10-23): 4.2A and 4.2B are implemented, complete and creator-approved.**
+Phases 4.2C–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,9 +131,9 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A complete and creator-approved; 4.2B–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A and 4.2B complete and creator-approved; 4.2C–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
-| Checkpoint 4.2B — Archival Fallback Redesign | **Planned:** accurate NEXUS archival interface, no speech yet; retain technical errors. |
+| Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Planned:** creator's existing `nexus-reticle.svg`, cyan rotating hover/focus and static gold lock in both views. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Planned:** up to 1.5× navigational minima; preserve physical geometry and Sector 8px marker. |
 | Checkpoint 4.2E — Focus Selection Animation | **Planned:** smooth cancelable camera focus; preserve exact final framing. |
@@ -182,7 +182,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A is complete and creator-approved; 4.2B–I remain planned and
+completed; **4.2A and 4.2B are complete and creator-approved; 4.2C–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -205,6 +205,8 @@ supersedes their outdated future-work and sequence assumptions.
   historical resolver, governance, navigation/gate pairings, political
   influences, Cantum radii, scale (1 CNU = 10,000 km), physical diameters,
   camera contracts or authored geometry. No retcon/new lore through copy.
+  The separately approved 4.2B correction only relaxes the deprecated
+  `nexusPresentation` schema requirement and removes that obsolete Demo UI-copy field.
 - Keep the square chart, floating controls, vertical History and centered
   dismissible InfoCard, the single Three.js renderer, existing projected
   anchors/picking, startup/error distinction, Demo-only validated loader
@@ -307,6 +309,13 @@ Stage 5, deployment, Canon migration and Atlas Creator remain separately gated.
 
 ### Phase 4.2B — Archival Fallback Redesign
 
+**Status: complete and creator-approved, 2026-10-23.** The creator reviewed and
+approved the archival composition, front-facing portrait, exact message, Return
+behavior and responsive presentation, then separately authorized this closeout,
+one reviewed commit and a normal push to `origin/main`. The earlier correction
+explicitly approved the unchanged `nexus-form.png` as a third PNG, superseding
+the initial two-PNG/reused-side-profile limit for this archival context only.
+
 **Purpose/scope:** Replace the generic map-status archival presentation
 with a NEXUS-style text/visual archival notice using approved portrait,
 resolved system name/year, publication-accurate unavailable-detailed-chart
@@ -314,7 +323,9 @@ message and Return to Sector. Script text must receive creator approval;
 no voice yet. Use the current `sys_0004` NONCANONICAL fallback.
 
 **Must not change:** historical knowledge filters, registered detail files,
-loader, retry/error behavior or Demo data.
+loader/recovery semantics or historical Demo data. The creator-approved correction
+only makes legacy sector `nexusPresentation` optional/deprecated and removes that
+obsolete UI-copy object from active Demo; frozen fixtures and Canon stay unchanged.
 **Acceptance:** pre-discovery records stay absent; known system with
 `publicDetailPath: null` yields archive notice; released partial charts
 remain valid charts; invalid/missing detail, WebGL or startup failure
@@ -323,6 +334,43 @@ leak; accessibility/return navigation maintained.
 **Visual review:** before/after year boundary, archive card versus technical
 error, mobile, keyboard, focus return. **Depends on:** A.
 **Gate:** creator approves notice copy and composition.
+
+**Implemented result:** a dedicated nonmodal archival section inside the existing
+square viewport, owned by `archival-view.mjs`, appears only for resolved
+`archival_fallback`. Name/year use current public history. All universal strings
+come from the exact validated `public/content/nexus/fallback-data.json` import;
+world-specific copy is ignored. The full front-facing portrait is contained
+without crop/stretch, reduced on mobile and hidden on smallest/shortest layouts.
+Image failure preserves text and navigation. Return invokes existing Sector
+navigation; entry focuses the heading, routine history refreshes retain focus,
+and exit restores map focus. Header navigation, History, Catalogue and the 4.2A
+dialog/header remain intact. Technical failures/Retry and valid empty or partial
+charts remain separate; a year before discovery returns to Sector without leakage.
+
+**Approved wording:** title `NEXUS // ARCHIVAL NOTICE`; subtitle
+`DETAILED SURVEY UNAVAILABLE`; exact message:
+
+> Ah, this one. Yes, the system is documented. Unfortunately, its detailed survey isn't included in your edition of the archive. How disappointing. For you, I mean.
+
+This is approved public UI dialogue, not new historical metadata. It may supply
+the fallback script for separately authorized 4.2H; no voice/audio is implemented.
+
+**Verification:** final `npm test` passes 281 tests (zero failed/skipped), plus
+validation, connection freshness, build, release audit and `git diff --check`.
+Focused archival browser regression passes on normal Demo and production preview:
+899/900/1200 A.E., resolved names, both returns, all released charts, partial/empty
+charts, technical failures/Retry, missing portrait/configuration, keyboard/focus,
+touch emulation, long names, four desktop/mobile/landscape viewports, 200% CSS text
+scaling and repeated entry/exit with stable resources. All three PNG URLs return
+HTTP 200 beneath `/Velara_Atlas/`. The audit verifies 28 files, fifteen exact SVGs
+and three exact PNGs, 4,484,376 bytes; canonical/private and dataset checks remain.
+
+**Remaining limitations:** small/short/enlarged-text layouts scroll vertically
+within the square to reach Return. Original PNGs total 3,737,805 bytes; the existing
+Vite large-chunk advisory remains. Chromium emulation/CSS scaling do not certify
+physical devices, other browsers, actual zoom or screen-reader output. 4.2C–I,
+final Checkpoint 4 acceptance, Cantum Stage 5, deployment, Canon migration and
+Atlas Creator remain separately gated. No deployment is part of this closeout.
 
 ### Phase 4.2C — Unified Targeting Reticle
 

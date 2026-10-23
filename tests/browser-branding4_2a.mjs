@@ -62,7 +62,8 @@ async page=>{
     await page.evaluate(()=>document.documentElement.style.fontSize='200%');
     await select('sys_0005');check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'200% text layout');await close();await page.evaluate(()=>document.documentElement.style.fontSize='');
     check(images.length>=2&&images.every(r=>r.status===200),'both PNG requests successful');
-    check(!images.some(r=>/nexus-form|reticle/.test(r.url)),'no reserved image requests');
+    check(!images.some(r=>/reticle/.test(r.url)),'no reticle requests');
+    check((await page.locator('#nexus-portrait').getAttribute('src')).includes('nexus-side-profile'),'ordinary InfoCard side-profile unchanged');
     check(!errors.length&&!failures.length,'clean resources/console '+JSON.stringify({errors,failures}));
     // Separate failure page: reject only the two images, retain all record controls.
     const fallback=await page.context().newPage();

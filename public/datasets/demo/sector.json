@@ -243,9 +243,5 @@
       }
     }
   ],
-  "nexusPresentation": {
-    "fallbackTitle": "NEXUS // ARCHIVAL SURVEY UNAVAILABLE",
-    "fallbackText": "A record of this system exists, but its detailed survey is not part of this archive edition."
-  },
   "presentationPath": "presentation.json"
 }

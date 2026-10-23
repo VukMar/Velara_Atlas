@@ -7,7 +7,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 [DEVELOPMENT_ROADMAP](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
 defines nine separately gated Checkpoint 4.2A–I phases, followed by final
 Checkpoint 4 creator acceptance and the pending Cantum Stage 5 decision.
-**4.2A is complete and creator-approved (2026-10-23); 4.2B–I remain planned,
+**4.2A and 4.2B are complete and creator-approved (2026-10-23); 4.2C–I remain planned,
 unimplemented and unauthorized**. The approved documentation foundation **does not**
 grant permission to implement or close out any phase.
 
@@ -126,7 +126,7 @@ If a file is absent in the actual checkout, report that and work with available 
 
 The founding civilization is Drevnasel; the Visshum name, Drevnasel as the founding/capital Cantum, and unified name The Continuance emerge around the draft 360 A.E. display boundary. Cantums were initially **administrative divisions of a centralized republic, not federal sovereign states**. The 1200 A.E. atlas snapshot shows six sovereign Cantums, with Rekdolin a historic region within Okeanberg. Existing `datePrecision` notes qualify these boundaries; **never claim they are precise legal event dates**. Consult `public/data/political.json` and `docs/DATA_RULES.md` for specifics and known uncertainties.
 
-The NEXUS visual identity is approved. Phase 3 uses original starter navigation SVGs and restrained procedural physical models. Completed, creator-approved 4.2A adds the unchanged MCR insignia in the header and NEXUS side-profile in ordinary InfoCards; broader archival/opening imagery, final artistic refinement and elaborate targeting rings remain deferred. Never use proprietary Freelancer/Discovery artwork without appropriate permission.
+The NEXUS visual identity is approved. Phase 3 uses original starter navigation SVGs and restrained procedural physical models. Completed, creator-approved 4.2A adds the unchanged MCR insignia in the header and NEXUS side-profile in ordinary InfoCards; completed 4.2B adds the front-facing archival portrait and universal approved text. Opening imagery, final artistic refinement and elaborate targeting rings remain deferred. Never use proprietary Freelancer/Discovery artwork without appropriate permission.
 
 ## Current scope correction
 
@@ -143,8 +143,13 @@ or extra loader. Keep `publicDir: false`; approved artwork inputs are only the
 14 navigation SVGs, one explicit Stage 2 demonstration sigil and the two 4.2A PNGs
 `public/assets/nexus/mcr-insignia.png` and `nexus-side-profile.png`. Preserve static
 imports, pinned source hashes, exact binary output/name checks and reachability.
-`nexus-form.png`, the reticle and audio remain excluded. Fixed radii never follow
-zoom; navigational minima affect proxies only.
+Completed, creator-approved 4.2B additionally admits
+the unchanged `nexus-form.png` as an exact third PNG and the single universal
+`public/content/nexus/fallback-data.json` module. Its three validated UI strings
+replace optional/deprecated sector `nexusPresentation` consumption; only that
+obsolete field was removed from active Demo. All three originals remain unchanged.
+Reticle, opening and audio remain excluded. Fixed radii never follow zoom;
+navigational minima affect proxies only.
 
 Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Phase 3C is complete and creator-approved. Phase 3D is complete and creator-approved, with its implementation and completion documentation committed together. Phase 3E is complete and creator-approved, with its local authoring implementation and completion documentation committed together. Phase 3F integration and the noncanonical Demo showcase are complete and creator-approved; implementation and completion documentation enter Git history together. Architecture Phase 4 is complete and creator-approved, with implementation and status synchronization committed together. Phase 5 is complete and creator-approved, with implementation and status synchronization committed together. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. Further visual development, Atlas Creator, canonical migration and deployment remain unauthorized.
 

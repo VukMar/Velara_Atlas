@@ -487,7 +487,8 @@ The following are **different**, and must be rendered differently:
 | **Requested detail fails to fetch, parse, or validate** | **Technical error** with retry; do not mislabel as an archival limitation |
 | **Present data but no eligible objects at selected year** | Valid empty historical map with explanatory message; no fabricated objects |
 
-Recommended NEXUS fallback copy (theme/localization editable later):
+Original proposed NEXUS fallback copy (historical design context, superseded by
+the creator-approved 4.2B universal JSON wording below):
 
 > **NEXUS // ARCHIVAL NOTICE**  
 > **DETAILED SURVEY UNAVAILABLE**  
@@ -519,13 +520,35 @@ detail is a technical error with retry. Source ownership is documented in
 [ARCHITECTURE](ARCHITECTURE.md#validated-dataset-inventory) and
 [README](../README.md#registered-demo-systems-and-loading).
 
-The **planned** 4.2B fallback redesign changes presentation, not this
-state logic. 4.2E smooths Focus only, 4.2F adds three short cancelable
+**Completed and creator-approved 4.2B (2026-10-23)** changes presentation, not this
+state logic. `archival-view.mjs` owns a dedicated nonmodal section inside the
+existing square viewport, shown only for resolved `view.state === 'archival_fallback'`.
+Name and A.E. year refresh from resolved public history; the exact universal
+`title`, `subtitle`, `message` come from validated
+`public/content/nexus/fallback-data.json`, never legacy world overrides.
+See [approved wording](NEXUS_VISUAL_IDENTITY.md#checkpoint-42-approved-direction--planned-implementation-amendment-2026-10-23).
+The approved front-facing portrait is decorative, contained without cropping,
+reduced/hidden responsively and hidden on image failure. Text and Return remain
+usable with internal scrolling on small/short/enlarged-text screens.
+
+Return uses existing Sector navigation, as does the header control. Explicit entry
+focuses the historical heading and closes source floating panels; History and
+Catalogue remain available. Routine historical refresh retains focus; leaving
+restores map focus. This does not open or replace the ordinary InfoCard dialog.
+At 899 A.E. the Demo fallback system is absent and a visitor inside it returns to
+Sector; at 900 and 1200 it shows its current resolved public identity/year.
+Released partial charts remain maps; valid charts with no eligible objects retain
+their ordinary empty-map message. Invalid/missing registered data, content-module
+failure and failed startup remain technical errors with Retry. WebGL context loss
+hides any prior archival panel and retains technical recovery feedback across
+historical refreshes; it cannot become an archival notice.
+
+The remaining **planned** 4.2E smooths Focus only, 4.2F adds three short cancelable
 navigation transitions, 4.2G introduces the entry screen before any
 playback, 4.2H two approved prerecorded speeches and audio preferences,
 and 4.2I optional UI SFX last. Motion honors reduced motion and lifetime
-cleanup; no second renderer or extra world data. None of these phases is
-implemented or authorized by this amendment. See the
+cleanup; no second renderer or extra world data. 4.2C–I remain unimplemented and
+need separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
 ## 12. Initial development fixtures and demo goals

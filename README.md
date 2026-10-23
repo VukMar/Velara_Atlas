@@ -31,7 +31,7 @@ authored in kilometers; **1 CNU = 10,000 km**. Known-size physical models use
 those diameters; distant SVGs use category pixel minima. Focus Selection inspects
 a body (including the 64-km asteroid), preserving selection; Reset View restores
 normal chart navigation. Unknown sizes remain symbols. `sys_0004`, discovered at 900 A.E., has no
-detail file and demonstrates the existing textual NEXUS archival notice.
+detail file and demonstrates the dedicated NEXUS archival presentation.
 See [Phase 2 data and verification](docs/CHECKPOINT_4_PHASE2_RESULTS.md).
 See [Phase 3 rendering, evidence and inspection limits](docs/CHECKPOINT_4_PHASE3_RESULTS.md).
 Phases 1–3 are creator-approved. Subsequent creator testing added a second local
@@ -62,8 +62,23 @@ checks admit only these two PNGs alongside the existing fifteen SVGs, with
 validation, connection freshness, build and release audit. The unchanged originals
 add 1.75 MB; physical-device, non-Chromium and assistive-technology checks remain
 limitations. See [4.2A results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42a--nexus-and-mcr-branding).
-**4.2B–I remain planned, unimplemented and unauthorized.** The front-facing
+At the 4.2A closeout, **4.2B–I remained planned and unimplemented**. The front-facing
 `nexus-form.png`, reticle and audio are not admitted by 4.2A; no deployment occurs.
+
+**Checkpoint 4.2B closeout (2026-10-23): complete and creator-approved.** Known
+systems without a published chart now show a dedicated nonmodal archival screen
+with resolved historical name/year, the approved front-facing `nexus-form.png`
+and Return to Sector. Edit only `public/content/nexus/fallback-data.json`
+(`title`, `subtitle`, `message`) to change universal dialogue; deprecated optional
+world `nexusPresentation` never overrides it. The creator-approved correction
+adds exactly this third unchanged PNG, retaining fifteen SVGs and strict binary,
+dataset and private-output audits. Technical failures/Retry remain distinct.
+Final checks pass 281 tests and all validation/build/release gates; focused Demo
+and production browser regressions pass. Small/short layouts scroll within the
+square; physical devices, other browsers, screen readers and actual browser zoom
+remain verification limits. See [4.2B results and approved wording](docs/DEVELOPMENT_ROADMAP.md#phase-42b--archival-fallback-redesign).
+**4.2C–I remain planned, unimplemented and unauthorized.** Final Checkpoint 4
+acceptance and Cantum Stage 5 remain outstanding; no deployment occurred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

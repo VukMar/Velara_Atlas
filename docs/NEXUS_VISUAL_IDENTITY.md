@@ -289,9 +289,37 @@ unchanged, and opening an InfoCard never sizes the square chart.
 
 The two PNGs are explicitly bundled and audited; see the
 [implemented binary policy](VISUAL_ASSET_POLICY.md#8-implemented-checkpoint-42a-png-admission).
-Creator approval accepts this ordinary-card/header treatment. 4.2B archival
-fallback and 4.2G opening remain planned and unimplemented; `nexus-form.png`
-is preserved but not bundled. All 4.2B–I implementation needs separate authority.
+Creator approval accepts this ordinary-card/header treatment. At the 4.2A
+closeout, archival/opening use remained deferred; the subsequent approved 4.2B
+correction below admits the front-facing image for archival use only.
+
+**4.2B complete and creator-approved (2026-10-23):** the creator
+approved the archival layout and the unchanged front-facing
+`nexus-form.png` for direct communication with the Visitor. This supersedes the
+reserved-only note above for this one context; ordinary InfoCards continue using
+the side-profile. Preserve the full 2752×1536 image's proportions/transparency and
+the accepted archival typography, spacing, controls and historical context.
+The archival title, subtitle and exact creator-authored message now come from the
+single universal `public/content/nexus/fallback-data.json`, independent of worlds.
+See [the content contract](DATA_MODEL.md#universal-nexus-ui-content--42b-correction).
+The dedicated archival section is a navigation destination, not a second modal.
+It preserves the square chart and restrained dark background, cyan/teal identity
+and status, quiet dividers and generous spacing. Desktop portrait width is
+`clamp(120px,36%,240px)`; mobile uses 96 px beside the historical identity, hiding
+the portrait at widths ≤360 px or heights ≤600 px. Small/short/enlarged-text
+presentations scroll internally so the explanation and Return remain reachable.
+Image failure hides the decorative image without losing content/actions. Entry
+focuses the historical heading; routine refresh does not repeat that focus change.
+
+Approved title: `NEXUS // ARCHIVAL NOTICE`. Approved subtitle:
+`DETAILED SURVEY UNAVAILABLE`. Approved exact message:
+
+> Ah, this one. Yes, the system is documented. Unfortunately, its detailed survey isn't included in your edition of the archive. How disappointing. For you, I mean.
+
+This public UI wording may be used for the separately authorized 4.2H fallback
+recording; it is not historical metadata. No playback, recording or audio controls
+are implemented. The closeout approves 4.2B only; 4.2C–I, final Checkpoint 4
+acceptance and Cantum Stage 5 remain outstanding.
 
 The original broad voice deferral was for the first viewer. The narrow
 **planned** Checkpoint 4.2H exception is just two prerecorded,

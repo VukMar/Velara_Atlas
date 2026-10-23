@@ -16,6 +16,37 @@ import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 import {createDemoConfig,demoInputAudit,auditRegisteredModules} from '../vite.config.mjs';
 import {releaseCheck} from '../scripts/release-check.mjs';
 import {approvedPNGSources,pngFiles} from '../scripts/png-assets.mjs';
+import {NEXUS_FALLBACK_FILE,readFallbackSource,nexusContentAudit} from '../scripts/nexus-content.mjs';
+
+test('exact universal-content admission rejects malformed, missing, redirected and unregistered inputs',()=>{
+  const original=readFallbackSource(),fake=text=>({...fs,readFileSync:()=>text});
+  assert.deepEqual(Object.keys(original.data).sort(),['message','subtitle','title']);
+  for(const text of ['{broken','{}',JSON.stringify({...original.data,extra:'TEST'})])assert.throws(()=>readFallbackSource(fake(text)),/NEXUS fallback configuration/);
+  assert.throws(()=>readFallbackSource({...fs,lstatSync(){throw Object.assign(Error('TEST missing'),{code:'ENOENT'});}}),/NEXUS fallback configuration.*ENOENT/);
+  assert.throws(()=>readFallbackSource({...fs,realpathSync:()=>path.resolve('TEST-redirect')}),/redirection/);
+  const plugin=nexusContentAudit(),context={addWatchFile(){},error(message){throw Error(message);}};
+  plugin.configResolved({command:'build'});plugin.buildStart.call(context);
+  assert.equal(plugin.load(normalizePath(NEXUS_FALLBACK_FILE)),original.text);
+  assert.equal(plugin.load(path.resolve('public/content/nexus/unapproved.json')),undefined);
+  assert.throws(()=>plugin.writeBundle.call(context,{},{}),/configuration missing from build/);
+  const reject={error(message){throw Error(message);}},audit=demoInputAudit();
+  assert.throws(()=>audit.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[normalizePath(path.resolve('public/content/nexus/unapproved.json'))]:{}}}}),/Unexpected input/);
+});
+
+test('editing only universal JSON values reaches a real Vite build without changing worlds or JavaScript',async t=>{
+  const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-nexus-config-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));fs.rmSync(top,{recursive:true,force:true});});
+  const source=readFallbackSource(),demo=readDemoSource().texts,config=createDemoConfig();
+  const changed=Object.fromEntries(Object.keys(source.data).map(key=>[key,`TEST Universal ${key} next build`]));
+  const fixture=path.join(top,'fallback-data.json');fs.writeFileSync(fixture,JSON.stringify(changed));
+  // Test-only input substitution at the exact original module ID. Exercise Vite's
+  // real JSON transform/bundling; never edit the authoritative content or worlds.
+  const input={name:'test-only-nexus-json',enforce:'pre',load(id){if(normalizePath(id.split('?')[0])===normalizePath(NEXUS_FALLBACK_FILE))return fs.readFileSync(fixture,'utf8');}};
+  const outDir=path.join(top,'dist');await build({...config,configFile:false,logLevel:'silent',plugins:[input,...config.plugins],build:{...config.build,outDir}});
+  const js=fs.readdirSync(path.join(outDir,'assets')).filter(name=>name.endsWith('.js')).map(name=>fs.readFileSync(path.join(outDir,'assets',name),'utf8')).join('\n');
+  for(const value of Object.values(changed))assert(js.includes(value),'changed universal JSON field reaches output');
+  assert.equal(auditDemoBuild(outDir,{datasetRoot:DEMO_ROOT}).pngCount,3);
+  assert.equal(readFallbackSource().text,source.text);assert.deepEqual(readDemoSource().texts,demo);
+});
 
 test('controlled seeded workloads are deterministic, independent and release-valid at every tier',()=>{
   const base=readDemoSource().texts;
@@ -68,11 +99,11 @@ test('actual build includes every registered module and rejects output disclosur
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-release-test-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(!fs.lstatSync(top).isSymbolicLink());fs.rmSync(top,{recursive:true,force:true});});
   const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
   const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert(audit().datasetVerified);
-  assert.equal(config.publicDir,false);assert.equal(audit().pngCount,2);assert.equal(audit().svgCount,15);
+  assert.equal(config.publicDir,false);assert.equal(audit().pngCount,3);assert.equal(audit().svgCount,15);
   assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
-  assert(!config.server.fs.allow.some(file=>/nexus-form|reticle/.test(file)));
+  assert(!config.server.fs.allow.some(file=>/reticle/.test(file)));
   const outputs=fs.readdirSync(path.join(top,'assets'));
-  assert(!outputs.some(name=>/nexus-form|reticle|\.(?:mp3|wav|ogg|webp|jpg)$/.test(name)));
+  assert(!outputs.some(name=>/reticle|\.(?:mp3|wav|ogg|webp|jpg|json)$/.test(name)));
   const htmlFile=path.join(top,'index.html'),html=fs.readFileSync(htmlFile,'utf8');
   for(const [stem,bytes] of approvedPNGSources()) {
     const name=outputs.find(name=>name.startsWith(stem+'-')&&name.endsWith('.png'));
@@ -83,8 +114,9 @@ test('actual build includes every registered module and rejects output disclosur
       fs.writeFileSync(file,corrupt);assert.throws(audit,/Unexpected PNG/);
     }
     fs.writeFileSync(file,bytes);
-    const mainName=outputs.find(name=>/^index-.*\.js$/.test(name)),mainFile=path.join(top,'assets',mainName),mainText=fs.readFileSync(mainFile,'utf8');
-    const url=`/Velara_Atlas/assets/${name}`;assert(mainText.includes(url));
+    const url=`/Velara_Atlas/assets/${name}`;
+    const mainName=outputs.find(name=>name.endsWith('.js')&&fs.readFileSync(path.join(top,'assets',name),'utf8').includes(url));assert(mainName);
+    const mainFile=path.join(top,'assets',mainName),mainText=fs.readFileSync(mainFile,'utf8');
     fs.writeFileSync(mainFile,mainText.replace(url,'unused.png'));assert.throws(audit,/Unreferenced distributable/);fs.writeFileSync(mainFile,mainText);
     fs.writeFileSync(htmlFile,html+`<img src="/assets/${name}">`);assert.throws(audit,/Unexpected asset URL/);fs.writeFileSync(htmlFile,html);
     for(const extraName of ['unapproved.png',`${stem}-duplicate.png`,'nexus-form-fixture.png']) {
@@ -95,7 +127,7 @@ test('actual build includes every registered module and rejects output disclosur
     const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(extra);
   }
   const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
-  for(const name of ['nexus/nexus-form.png','nexus/unapproved.png','ui/nexus-reticle.svg']) {
+  for(const name of ['nexus/unapproved.png','ui/nexus-reticle.svg']) {
     const id=normalizePath(path.resolve('public/assets',name));
     assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
   }

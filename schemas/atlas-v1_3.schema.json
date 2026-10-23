@@ -435,7 +435,6 @@
         "cantumsPath",
         "connectionsPath",
         "systems",
-        "nexusPresentation",
         "factionsPath",
         "presentationPath"
       ],
@@ -492,6 +491,7 @@
           }
         },
         "nexusPresentation": {
+          "description": "Deprecated optional UI copy; ignored by the viewer. Edit public/content/nexus/fallback-data.json instead.",
           "$ref": "https://mcr.example.invalid/schemas/atlas-v1_2.schema.json#/$defs/sector/properties/nexusPresentation"
         },
         "zones": {

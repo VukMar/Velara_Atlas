@@ -14,6 +14,20 @@
   <main id="chart-stage" aria-label="Atlas chart and floating controls">
     <section id="viewport" aria-label="Atlas map"><div id="labels" aria-label="Map labels"></div>
       <div id="map-status"><p id="map-message" role="status">Preparing demonstration map…</p><button id="retry" hidden>Retry loading demo</button></div>
+      <section id="archival-view" aria-labelledby="archival-label archival-name" aria-describedby="archival-status archival-explanation" hidden>
+        <div class="archival-card">
+          <p id="archival-label"></p>
+          <div class="archival-layout">
+            <div class="archival-record">
+              <h2 id="archival-name" tabindex="-1"></h2><p id="archival-year"></p>
+              <h3 id="archival-status"></h3>
+              <p id="archival-explanation"></p>
+              <button id="archival-return">Return to Sector</button>
+            </div>
+            <img id="archival-portrait" width="2752" height="1536" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </section>
     </section>
     <details id="catalogue-panel" class="floating catalogue-panel"><summary>Catalogue</summary>
       <div class="panel-content"><button class="panel-close" aria-label="Close catalogue" data-close-panel="catalogue-panel">×</button>

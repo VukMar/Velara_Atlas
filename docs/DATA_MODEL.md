@@ -9,6 +9,28 @@ one required universal radius. The base spatial/history/navigation conventions
 below remain applicable. `atlas.schema.json`, its wrappers and `examples/v1_2/`
 retain v1.2 semantics, including legacy `org_` references and per-Cantum radii.
 
+## Universal NEXUS UI content — 4.2B correction
+
+`public/content/nexus/fallback-data.json` is the single source for the archival
+`title`, `subtitle` and `message`. It is universal Atlas UI content, independent
+of Demo, Canon and historical records. Edit only those three nonempty JSON string
+values to change NEXUS's archival text on the next local build. Keep valid JSON;
+missing/extra keys, empty values and malformed/missing files are technical failures.
+The viewer uses a literal static JSON import inside a guarded content module;
+there is no runtime content-path selector or separately published JSON asset.
+
+Modern v1.2 (`atlas.schema.json`) and v1.3 sector schemas retain
+`nexusPresentation` as an **optional deprecated** compatibility property. Its old
+`fallbackTitle`/`fallbackText` values are ignored by the viewer; future worlds need
+neither. Frozen v1.1/v1.2/v1.3 fixtures may retain their authored values, and the
+frozen v1.1 contract is unchanged. Only the obsolete UI-copy object is removed
+from the active NONCANONICAL Demo sector. System identity, history, coordinates,
+discovery and publication fields are unchanged. The selected system name and
+A.E. year still come from the resolved historical view.
+
+This contract is part of completed, creator-approved 4.2B (2026-10-23).
+Later milestones, Canon migration and historical-data changes remain separately gated.
+
 ## Identity and naming
 
 All entities have stable, globally unique IDs within a dataset. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link; `zon_0001` spatial zone. At least four digits; never reuse or rename an issued ID. Counters span the dataset, not each system. Frozen test snapshots are independent datasets, not duplicate production definitions. `npm run idfind -- all` provides read-only demo suggestions; it never reserves IDs.

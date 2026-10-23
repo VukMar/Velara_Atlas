@@ -4,6 +4,7 @@ async(page)=>{
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
+  const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
   const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
   const read=async file=>(await page.request.get(new URL(file,root).href)).json();
   const sector=await read('sector.json'),graph=await read('connections.json');
@@ -30,8 +31,9 @@ async(page)=>{
   }
   for(const system of archival) {
     await open(system.id);
-    const message=await page.locator('#map-message').innerText();
-    check(message.includes(sector.nexusPresentation.fallbackTitle)&&message.includes(sector.nexusPresentation.fallbackText),`${system.id} existing NEXUS archival notice`);
+    const message=await page.locator('#archival-view').innerText();
+    check(message.includes(fallback.title)&&message.includes(fallback.message),`${system.id} universal NEXUS archival notice`);
+    check(await page.locator('#map-message').isHidden(),`${system.id} ordinary status is separate`);
     check(+(await page.locator('#viewport').getAttribute('data-markers'))===0,`${system.id} no invented detailed markers`);
     check(await page.locator('#labels [data-record-id]').count()===0,`${system.id} no detailed object controls`);
     check(await page.locator('#retry').isHidden(),`${system.id} archival notice is not a technical error`);

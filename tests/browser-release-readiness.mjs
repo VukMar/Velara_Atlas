@@ -15,7 +15,8 @@ async page=>{
     check(await page.locator('#viewport').getAttribute('data-markers')==='5','all registered sector records rendered');
     for(const id of ['sys_0001','sys_0002','sys_0003','sys_0005','fac_0001','fac_0002'])check(requests.some(url=>url.includes('/assets/'+id+'-')),'eager published module '+id);
     await select('sys_0004');await page.locator('#enter').click();await close();
-    check((await page.locator('#map-message').innerText()).includes('NEXUS'),'published archival fallback');
+    const fallback=await page.evaluate(async()=>{const url=performance.getEntriesByType('resource').find(r=>/\/assets\/nexus-content-[^/]+\.js/.test(r.name)).name;return (await import(url)).fallbackData;});
+    check((await page.locator('#archival-view').innerText()).includes(fallback.title),'published archival fallback');
     await page.locator('#sector').click();await select('sys_0005');await page.locator('#enter').click();await close();
     for(const [y,a,b,link] of [[349,0,0,0],[350,1,0,0],[352,1,1,0],[353,1,1,1]]) {
       await year(y);for(const [id,n] of [['gat_0021',a],['gat_0022',b],['lnk_0012',link]])check(await page.locator('#selection option[value="'+id+'"]').count()===n,'release chronology '+id+' '+y);

@@ -118,7 +118,8 @@ async page => {
     const memory=[];
     for(let i=0;i<4;i++){await open('sys_0001');await images();memory.push((await state()).memory.geometries);await page.locator('#sector').click();}
     check(Math.max(...memory)-Math.min(...memory)<=1,'repeated systems release model geometries');
-    await open('sys_0004');check((await page.locator('#map-message').innerText()).includes(sector.nexusPresentation.fallbackText),'unchanged archival notice');
+    const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
+    await open('sys_0004');check((await page.locator('#archival-view').innerText()).includes(fallback.message),'universal archival explanation');
     check((await state()).objects.length===0&&await page.locator('.navigation-proxy').count()===0,'no archival models/proxies');await page.locator('#sector').click();
 
     const context=await page.context().browser().newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});

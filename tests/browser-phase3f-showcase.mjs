@@ -62,7 +62,8 @@ async page => {
       factions.push({year:y,name,legal,institution});
     }
     await sector();await choose('fac_0002');check((await page.locator('#facts').innerText()).includes('Independent'),'explicit independent faction');
-    await year(1000);await open('sys_0004');check((await page.locator('#map-message').innerText()).includes('ARCHIVAL SURVEY UNAVAILABLE'),'archival-only fallback preserved');await sector();
+    const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
+    await year(1000);await open('sys_0004');check((await page.locator('#archival-view').innerText()).includes(fallback.subtitle),'archival-only fallback preserved');await sector();
     for(const [width,height]of [[390,844],[844,390]]) {
       await page.setViewportSize({width,height});await year(900);await open('sys_0005');await choose('sta_0003');
       check((await page.locator('#facts').innerText()).includes('unlawful'),'mobile historical InfoCard');await sector();

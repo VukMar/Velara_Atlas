@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {EventDispatcher,Vector2,Vector3,Ray,TOUCH} from 'three';
 import {readDemoSource} from '../scripts/demo-files.mjs';
 import {resolveAtlas,recordedYears} from '../src/core/cartography.mjs';
@@ -8,6 +9,8 @@ import {AppState} from '../src/viewer/app-state.mjs';
 import {describeRecord} from '../src/viewer/infocard-model.mjs';
 import {LAYER_DEFAULTS,layerKeys} from '../src/viewer/layer-config.mjs';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
+import {createArchivalView} from '../src/viewer/archival-view.mjs';
+import {validateFallbackData} from '../src/viewer/nexus-fallback-config.mjs';
 import {CameraController} from '../src/viewer/camera-controller.mjs';
 import {AtlasMap} from '../src/viewer/map-scene.mjs';
 import {createVisualConfig,VIEWER_DEFAULTS,KM_PER_CNU,MINIMUM_DIAMETERS,MODEL_HANDOFF_RATIO} from '../src/viewer/visual-config.mjs';
@@ -15,6 +18,68 @@ import {createVisualConfig,VIEWER_DEFAULTS,KM_PER_CNU,MINIMUM_DIAMETERS,MODEL_HA
 const dataset=()=>readDemoSource().dataset;
 const card=(d,y,scope,id)=>{const view=resolveAtlas(d,y,scope);return describeRecord(view.records.find(r=>r.id===id),{yearAE:y,systemId:scope,view});};
 const fact=(model,label)=>model.facts.find(f=>f[0]===label)?.[1];
+const fallbackData=validateFallbackData(JSON.parse(fs.readFileSync(new URL('../public/content/nexus/fallback-data.json',import.meta.url),'utf8')));
+
+function archivalHarness(config=fallbackData) {
+  class Element extends EventTarget {
+    hidden=false;dataset={};textContent='';complete=false;focuses=0;
+    focus(){this.focuses++;}
+  }
+  const nodes=new Map(['archival-view','archival-portrait','archival-return','archival-label','archival-status','archival-name','archival-year','archival-explanation','viewport'].map(id=>[id,new Element()]));
+  const $=id=>nodes.get(id),lifetime=new Lifetime(),navigations=[];
+  const view=createArchivalView({$,navigate:id=>navigations.push(id),portraitURL:'approved-portrait.png',config},lifetime);
+  return {$,lifetime,navigations,view};
+}
+
+test('archival presentation uses resolved history, clears ineligible identity and never infers fallback from emptiness',()=>{
+  const d=dataset(),before=structuredClone(d),h=archivalHarness();
+  for(const y of [899,900,1200]) {
+    const resolved=resolveAtlas(d,y,'sys_0004');h.view.render(resolved);
+    assert.equal(h.$('archival-view').hidden,y<900);
+    assert.equal(h.$('archival-name').textContent,y<900?'':'TEST D Unreleased Survey');
+    assert.equal(h.$('archival-year').textContent,y<900?'':`${y} A.E.`);
+    assert.equal(h.$('archival-explanation').textContent,y<900?'':fallbackData.message);
+    assert.equal(h.$('archival-label').textContent,y<900?'':fallbackData.title);
+    assert.equal(h.$('archival-status').textContent,y<900?'':fallbackData.subtitle);
+  }
+  const resolved=resolveAtlas(d,900,'sys_0004');
+  h.view.render({...resolved,yearAE:901,system:{...resolved.system,name:'TEST <name> & historical alias'}});
+  assert.equal(h.$('archival-name').textContent,'TEST <name> & historical alias');
+  assert.equal(h.$('archival-year').textContent,'901 A.E.');
+  for(const other of [resolveAtlas(d,1200),resolveAtlas(d,1200,'sys_0001'),{state:'system',markers:[]},null]) {
+    h.view.render(other);assert(h.$('archival-view').hidden);assert.equal(h.$('archival-name').textContent,'');assert.equal(h.$('viewport').dataset.archival,'false');
+  }
+  assert.deepEqual(d,before);h.lifetime.dispose();
+});
+
+test('universal fallback config accepts only three nonempty strings and preserves exact authored copy',()=>{
+  assert(Object.isFrozen(fallbackData));assert.deepEqual(Object.keys(fallbackData).sort(),['message','subtitle','title']);
+  for(const key of ['title','subtitle','message']) {
+    const missing={...fallbackData};delete missing[key];assert.throws(()=>validateFallbackData(missing),/Invalid NEXUS fallback configuration/);
+    for(const value of ['', '  \n ', null, 123, [], {}])assert.throws(()=>validateFallbackData({...fallbackData,[key]:value}),/Invalid NEXUS/);
+  }
+  for(const value of [null,[],{...fallbackData,extra:'TEST'},Object.assign(Object.create({}),fallbackData)])assert.throws(()=>validateFallbackData(value),/Invalid NEXUS/);
+  const changed=validateFallbackData({...fallbackData,title:'TEST title',subtitle:'TEST subtitle',message:'  TEST exact spacing  '});
+  const h=archivalHarness(changed),d=dataset();
+  d.sector.nexusPresentation={fallbackTitle:'TEST deprecated title',fallbackText:'TEST deprecated copy'};
+  h.view.render(resolveAtlas(d,1200,'sys_0004'));
+  assert.equal(h.$('archival-label').textContent,changed.title);assert.equal(h.$('archival-status').textContent,changed.subtitle);assert.equal(h.$('archival-explanation').textContent,changed.message);
+  h.lifetime.dispose();
+});
+
+test('archival controls and image failure are lifetime-owned, with focus only on request',()=>{
+  const h=archivalHarness(),resolved=resolveAtlas(dataset(),1200,'sys_0004');
+  assert.equal(h.$('archival-portrait').src,'approved-portrait.png');
+  assert.equal(h.view.focus(),false);
+  for(let i=0;i<20;i++)h.view.render(resolved);
+  assert.equal(h.$('archival-name').focuses,0,'year refresh does not steal focus or reannounce a heading');
+  assert(h.view.focus());assert.equal(h.$('archival-name').focuses,1);
+  h.$('archival-return').dispatchEvent(new Event('click'));assert.deepEqual(h.navigations,[null]);
+  h.$('archival-portrait').dispatchEvent(new Event('error'));assert(h.$('archival-portrait').hidden);
+  assert(!h.$('archival-view').hidden);assert(h.$('archival-explanation').textContent);
+  h.lifetime.dispose();assert(h.$('archival-view').hidden);assert.equal(h.$('archival-name').textContent,'');
+  h.$('archival-return').dispatchEvent(new Event('click'));assert.deepEqual(h.navigations,[null]);
+});
 
 test('application year bounds, default and exact events reuse the historical contract',()=>{
   const d=dataset(),s=new AppState(d);assert.equal(s.yearAE,1200);assert.deepEqual(s.events,recordedYears(d));

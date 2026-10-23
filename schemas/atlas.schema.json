@@ -727,6 +727,7 @@
           }
         },
         "nexusPresentation": {
+          "description": "Deprecated optional UI copy retained for older datasets. The viewer uses public/content/nexus/fallback-data.json instead.",
           "type": "object",
           "properties": {
             "fallbackTitle": {
@@ -771,8 +772,7 @@
         "infoCard",
         "cantumsPath",
         "connectionsPath",
-        "systems",
-        "nexusPresentation"
+        "systems"
       ],
       "additionalProperties": false
     },
