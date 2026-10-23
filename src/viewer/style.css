@@ -2,7 +2,8 @@
 * { box-sizing:border-box; }
 body { margin:0; height:100dvh; display:flex; flex-direction:column; overflow:hidden; }
 header { flex:none; padding:.55rem .8rem; display:flex; gap:.65rem; flex-wrap:wrap; align-items:center; border-bottom:1px solid #234052; background:#081722; }
-.brand { letter-spacing:.1em; font-size:.95rem; }
+.brand { display:inline-flex; flex:none; align-items:center; gap:.6rem; letter-spacing:.1em; font-size:.95rem; white-space:nowrap; }
+#mcr-insignia { display:block; flex:none; width:32px; height:32px; object-fit:contain; }
 .demo-badge { color:#e6ba7b; font-size:.65rem; letter-spacing:.04em; }
 nav { display:flex; align-items:center; gap:.5rem; min-width:0; }
 #location { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:35vw; font-size:.9rem; }
@@ -79,6 +80,10 @@ small,.muted,#result-count { font-size:.8rem; color:#94b2c2; line-height:1.5; }
 #notice:empty { display:none; }
 #info-panel { position:fixed; inset:50% auto auto 50%; transform:translate(-50%,-50%); margin:0; width:min(460px,calc(100vw - 24px)); max-height:calc(100dvh - 32px); padding:1.4rem; color:inherit; background:#081722f7; border:1px solid #2376a3; border-radius:5px; box-shadow:0 12px 80px #000b; overflow:auto; overflow-wrap:anywhere; z-index:20; }
 #info-panel .panel-close { position:sticky; float:right; top:0; margin-top:-1rem; margin-right:-1rem; }
+#record-heading { display:flex; align-items:center; gap:.8rem; padding-right:1.25rem; }
+#record-heading > div { flex:1; min-width:0; }
+#nexus-portrait { flex:none; width:96px; height:96px; object-fit:contain; pointer-events:none; }
+#record-heading[data-dense="true"] #nexus-portrait { width:64px; height:64px; }
 .eyebrow { font-size:.75rem; color:#24c9c6; letter-spacing:.08em; padding-right:2rem; }
 h1 { font-size:1.3rem; margin:.6rem 0; }
 h2 { font-size:1rem; margin:0 0 .9rem; }
@@ -92,11 +97,14 @@ footer { flex:none; text-align:center; padding:.3rem .5rem; color:#94b2c2; font-
 @media(max-width:600px) {
   header { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:.4rem; padding:.4rem .5rem; }
   .brand { font-size:.8rem; } .demo-badge { font-size:.55rem; }
+  #mcr-insignia { width:24px; height:24px; } .brand { gap:.4rem; }
+  #nexus-portrait { width:64px; height:64px; }
   nav { grid-row:2; min-width:0; } #location { flex:1; max-width:none; } #year { grid-row:2; font-size:.8rem; } #units { display:none; }
   .floating summary { font-size:.75rem; padding:.6rem; }
   .panel-content { padding:.65rem; }
   #notice { max-width:80%; bottom:55px; }
 }
+@media(max-width:360px), (max-height:600px) { #nexus-portrait { display:none; } }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; } }
 .navigation-proxy { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:var(--display-diameter); height:var(--display-diameter); opacity:var(--proxy-opacity); max-width:none; pointer-events:none; user-select:none; }
 .map-label:has(.navigation-proxy):is(:hover,:focus-visible,[aria-pressed="true"])::before { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:clamp(20px,var(--display-diameter),56px); height:clamp(20px,var(--display-diameter),56px); border:1px solid #00d6ff; border-radius:50%; pointer-events:none; }

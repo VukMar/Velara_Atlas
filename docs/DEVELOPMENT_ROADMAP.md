@@ -7,11 +7,13 @@ includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration
 retaining Checkpoint 3.8 zones, labeling, version-aware v1.2/v1.3 navigation and Checkpoint 3.6 layout.
 The system grid uses Y = 0 CNU. [Maintenance evidence](POST_PHASE3_MAINTENANCE.md)
 records the earlier creator-approved System C navigation/discovery baseline.
-Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
+Remaining Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
 deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
-phases 4.2A–I are documented below; implementation has not begun.
+phases 4.2A–I were established without implementation authorization.
+**Closeout update (2026-10-23): 4.2A is implemented, complete and creator-approved.**
+Phases 4.2B–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -129,8 +131,8 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Roadmap established; implementation not started.** Nine separately gated phases 4.2A–I below. |
-| Checkpoint 4.2A — NEXUS and MCR Branding | **Planned:** integrate approved PNGs in header/InfoCards; explicit binary asset admission. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A complete and creator-approved; 4.2B–I remain planned and separately gated. |
+| Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Planned:** accurate NEXUS archival interface, no speech yet; retain technical errors. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Planned:** creator's existing `nexus-reticle.svg`, cyan rotating hover/focus and static gold lock in both views. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Planned:** up to 1.5× navigational minima; preserve physical geometry and Sector 8px marker. |
@@ -166,7 +168,8 @@ refinement for Phase 4. Further Checkpoint 4.2 visual refinement requires separa
 approval; architecture Phase 2.2 example simplification is complete and
 creator-approved. Its closeout does not authorize further visual work.
 The NEXUS side-profile PNG is supplied at
-`public/assets/nexus/nexus-side-profile.png`; its integration remains deferred.
+`public/assets/nexus/nexus-side-profile.png`; ordinary InfoCard integration is
+now complete and creator-approved in 4.2A. Broader archival/opening use is deferred.
 Preserve the current creator-approved System C geography,
 IDs/history, navigation workflow, labels/zones, asset paths and build disclosure
 boundaries. Use supplied curator assets only as authorized; do not invent them.
@@ -179,7 +182,8 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–I have not been implemented**. Approving/documenting the
+completed; **4.2A is complete and creator-approved; 4.2B–I remain planned and
+unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
 Past roadmap passages are retained as milestone history; this section
@@ -245,6 +249,10 @@ separate review/publication gates.
 
 ### Phase 4.2A — NEXUS and MCR Branding
 
+**Status: complete and creator-approved, 2026-10-23.** The creator reviewed and
+approved the working header and ordinary InfoCards, then separately authorized
+this implementation/documentation closeout and one normal push to `origin/main`.
+
 **Purpose/scope:** Apply existing approved studio imagery contextually:
 `public/assets/nexus/mcr-insignia.png` in the header and
 `nexus-side-profile.png` in ordinary InfoCards. Retain
@@ -262,6 +270,40 @@ release audit recognizes only trusted PNG files and valid subpath URLs.
 **Visual review:** header and several long/short InfoCards, desktop/mobile,
 portrait/background/cropping. **Depends on:** existing source art and InfoCard
 architecture. **Approval gate:** creator accepts art positioning and binary audit.
+
+**Implemented result:** original MCR insignia beside the Atlas title at 32 CSS px
+(24 px on narrow screens); original side-profile beside the ordinary record
+heading at 96 px, reduced to 64 px for narrow/dense records and hidden at widths
+≤360 px or heights ≤600 px. Images use `object-fit: contain`; image failures hide
+the image without a broken placeholder. Logo alt text identifies MCR; the portrait
+is decorative beside the existing NEXUS label. Centered dialog, close/Escape,
+focus return, facts/actions and independent square chart are preserved.
+
+Static Vite imports admit only these two PNGs. `scripts/png-assets.mjs` pins their
+source SHA-256 hashes; the output audit compares binary bytes and approved names,
+rejects duplicates/missing/unreferenced assets and retains all fifteen existing
+SVGs, dataset checks, canonical/private exclusions and `/Velara_Atlas/` URLs.
+No original artwork, datasets, schemas, historical or map semantics changed.
+
+**Verification:** final `npm test` passes 275 tests (zero failed/skipped), plus
+`npm run validate`, `npm run connections:check`, `npm run build`,
+`npm run release:check` and `git diff --check`. Tests use the ignored workspace
+temporary directory to avoid the sandbox's Windows temp-path restriction.
+The production audit verifies 26 files: HTML, seven JS, one CSS, fifteen SVGs
+and exactly two PNGs, totaling 2,492,994 bytes. Focused rejection coverage includes
+corrupt/truncated/appended, missing, duplicate, unapproved and unreferenced PNGs,
+wrong-base HTML URLs, reserved inputs and unsupported image/audio outputs.
+`tests/browser-branding4_2a.mjs` passes on normal Demo and production preview:
+desktop/narrow/landscape, keyboard/focus, year/navigation, 200% CSS text scaling,
+image-failure fallback and both production PNG requests returning HTTP 200.
+Existing navigation, layout, viewer-module, touch-emulation, celestial-scale,
+resource-lifetime and production release callbacks also passed implementation review.
+
+**Remaining limitations:** unchanged PNG originals add 1,751,093 bytes; the
+existing Vite chunk-size advisory remains. Physical devices, non-Chromium browsers,
+screen readers and actual browser zoom are not certified by these checks.
+Creator approval covers 4.2A only; 4.2B–I, final Checkpoint 4 acceptance/Cantum
+Stage 5, deployment, Canon migration and Atlas Creator remain separately gated.
 
 ### Phase 4.2B — Archival Fallback Redesign
 

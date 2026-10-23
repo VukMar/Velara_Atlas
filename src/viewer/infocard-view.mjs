@@ -7,6 +7,7 @@ export function createInfoCard({$,state,atlas,choose,navigate}, lifetime) {
   const render = (record,{present=true}={}) => {
     actions.dispose(); actions = new Lifetime();
     const model = describeRecord(record,state);
+    $('record-heading').dataset.dense = String(model.facts.length > 12 || model.description.length > 600);
     $('facts').replaceChildren(); $('destinations').replaceChildren();
     $('selected-name').textContent = model.name; $('selected-kind').textContent = model.kind;
     $('description').textContent = model.description; $('enter').hidden = !model.enter;

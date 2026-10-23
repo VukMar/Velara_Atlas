@@ -15,6 +15,7 @@ import {resolveAtlas,territoryGroups} from '../src/core/cartography.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 import {createDemoConfig,demoInputAudit,auditRegisteredModules} from '../vite.config.mjs';
 import {releaseCheck} from '../scripts/release-check.mjs';
+import {approvedPNGSources,pngFiles} from '../scripts/png-assets.mjs';
 
 test('controlled seeded workloads are deterministic, independent and release-valid at every tier',()=>{
   const base=readDemoSource().texts;
@@ -67,6 +68,37 @@ test('actual build includes every registered module and rejects output disclosur
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-release-test-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(!fs.lstatSync(top).isSymbolicLink());fs.rmSync(top,{recursive:true,force:true});});
   const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
   const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert(audit().datasetVerified);
+  assert.equal(config.publicDir,false);assert.equal(audit().pngCount,2);assert.equal(audit().svgCount,15);
+  assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
+  assert(!config.server.fs.allow.some(file=>/nexus-form|reticle/.test(file)));
+  const outputs=fs.readdirSync(path.join(top,'assets'));
+  assert(!outputs.some(name=>/nexus-form|reticle|\.(?:mp3|wav|ogg|webp|jpg)$/.test(name)));
+  const htmlFile=path.join(top,'index.html'),html=fs.readFileSync(htmlFile,'utf8');
+  for(const [stem,bytes] of approvedPNGSources()) {
+    const name=outputs.find(name=>name.startsWith(stem+'-')&&name.endsWith('.png'));
+    assert(name);
+    const file=path.join(top,'assets',name);assert(fs.readFileSync(file).equals(bytes));
+    fs.unlinkSync(file);assert.throws(audit,/Missing build resource|PNG inventory is incomplete/);fs.writeFileSync(file,bytes);
+    for(const corrupt of [Buffer.from('not PNG'),Buffer.concat([bytes,Buffer.from('extra')]),bytes.subarray(0,100)]) {
+      fs.writeFileSync(file,corrupt);assert.throws(audit,/Unexpected PNG/);
+    }
+    fs.writeFileSync(file,bytes);
+    const mainName=outputs.find(name=>/^index-.*\.js$/.test(name)),mainFile=path.join(top,'assets',mainName),mainText=fs.readFileSync(mainFile,'utf8');
+    const url=`/Velara_Atlas/assets/${name}`;assert(mainText.includes(url));
+    fs.writeFileSync(mainFile,mainText.replace(url,'unused.png'));assert.throws(audit,/Unreferenced distributable/);fs.writeFileSync(mainFile,mainText);
+    fs.writeFileSync(htmlFile,html+`<img src="/assets/${name}">`);assert.throws(audit,/Unexpected asset URL/);fs.writeFileSync(htmlFile,html);
+    for(const extraName of ['unapproved.png',`${stem}-duplicate.png`,'nexus-form-fixture.png']) {
+      const extra=path.join(top,'assets',extraName);fs.writeFileSync(extra,bytes);assert.throws(audit,/Unexpected PNG/);fs.unlinkSync(extra);
+    }
+  }
+  for(const suffix of ['webp','jpg','mp3','wav']) {
+    const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(extra);
+  }
+  const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
+  for(const name of ['nexus/nexus-form.png','nexus/unapproved.png','ui/nexus-reticle.svg']) {
+    const id=normalizePath(path.resolve('public/assets',name));
+    assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
+  }
   const inventory=readDemoSource().inventory,modules=Object.fromEntries(inventory.files.map(n=>[normalizePath(path.join(inventory.root,n)),{}]));
   assert.equal(auditRegisteredModules({x:{type:'chunk',modules}},inventory),inventory.files.length);
   delete modules[Object.keys(modules)[0]];assert.throws(()=>auditRegisteredModules({x:{type:'chunk',modules}},inventory),/missing from build/);

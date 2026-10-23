@@ -1,7 +1,7 @@
 # Velara Atlas — Visual Asset Policy and Fallback Contract
 
 **Version:** 1.0.0 · **Milestone 5 companion** · **2026-10-15**  
-**Status:** Rendering/fallback policy approved. Phase 3 implements fourteen original starter SVGs, the explicit icon registry and procedural physical models using the existing noncanonical v1.2 data. Final artistic refinement and NEXUS portrait integration remain separate work; this policy does not authorize canonical changes.
+**Status:** Rendering/fallback policy approved. Phase 3 implements fourteen original starter SVGs, the explicit icon registry and procedural physical models using the existing noncanonical v1.2 data. Completed, creator-approved 4.2A (2026-10-23) adds exact two-PNG admission for header/ordinary InfoCard branding; later artistic refinement remains separate work. This policy does not authorize canonical changes.
 
 ## 1. Separation of content and presentation
 
@@ -84,8 +84,9 @@ public/
 ```
 
 The fourteen listed SVG icons now exist as the original Phase 3 starter library.
-Existing NEXUS PNG files are untouched and are not copied by this build. Textures
-remain optional/deferred. Do not fabricate an artist-approved NEXUS side profile.
+NEXUS PNG originals remain untouched. Completed 4.2A explicitly bundles only
+`mcr-insignia.png` and `nexus-side-profile.png`; `nexus-form.png` remains excluded.
+Textures remain optional/deferred. Do not fabricate a NEXUS side profile.
 
 Use original, scalable, locally bundled SVGs for general navigation. Do not hotlink third-party assets. Resolve assets using the application's deployment base (e.g., Vite's `import.meta.env.BASE_URL` or its equivalent): GitHub Pages often serves the app under `/Velara_Atlas/`, not `/`.
 
@@ -171,15 +172,16 @@ Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 
 ## 7. Planned Checkpoint 4.2 PNG / UI SVG / audio admission
 
-**Planning-only addition.** Existing production policy still has
+**Original planning addition; 4.2A is now complete and creator-approved.** Production retains
 `publicDir: false`, exact approved file admission, fourteen navigation
 icons plus the separately registered Test sigil, limited SVG profile and
-the audited bundle. The approved NEXUS PNGs and new reticle SVG exist
-as sources but are not yet admitted to the release build.
+the audited bundle. Only the two 4.2A PNGs are now admitted; the front-facing
+`nexus-form.png`, reticle SVG and audio remain excluded. Later phases are planned.
 
 | Phase | Approved source or pending asset | Purpose |
 | --- | --- | --- |
-| 4.2A/B/G | `public/assets/nexus/mcr-insignia.png`, `nexus-form.png` and `nexus-side-profile.png` | Header, InfoCard, archival and short opening contexts; retain original artwork. |
+| 4.2A — complete/creator-approved | `public/assets/nexus/mcr-insignia.png`, `nexus-side-profile.png` | Header and ordinary InfoCards; exact source/output verification below. |
+| 4.2B/G — planned | Approved NEXUS/MCR originals, including reserved `nexus-form.png` | Future archival/opening contexts; no additional asset admission yet. |
 | 4.2C | `public/assets/ui/nexus-reticle.svg` | Final immutable 128×128 artwork for cyan hover and static gold selection. |
 | 4.2H | Creator-approved prerecorded welcome and fallback clips, filenames/formats TBD | Two spoken situations; never publish drafts. |
 | 4.2I | A few creator-approved short UI cue files, names/formats TBD | Playback integrated last and respecting mute. |
@@ -196,9 +198,9 @@ Extend `vite.config.mjs` source allowlist and
 `scripts/audit-demo-build.mjs` output tests **only** for approved additions:
 audited binary extension/bytes or hashes, allowed names/URLs, size and
 completeness, resource reachability, no extra outputs, and negative
-canonical/private/external-input checks. Existing text-only audit reads
-must be adapted to correctly handle PNG/audio binary data rather than
-treating arbitrary bytes as UTF-8. Verify missing/corrupt-asset fallback,
+canonical/private/external-input checks. The 4.2A audit now handles approved PNGs
+as binary buffers; future audio needs its own explicitly approved binary handling,
+without treating arbitrary bytes as UTF-8. Verify missing/corrupt-asset fallback,
 base-relative loading, release-check results and browser requests.
 Preserve originals when generating optimized derivative images.
 
@@ -209,3 +211,40 @@ creator approval before Git admission. 4.2G has **no playback**,
 formats, audio preferences and reticle displayed sizes remain phase
 review decisions, not established implementation. See
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
+
+## 8. Implemented Checkpoint 4.2A PNG admission
+
+**Complete and creator-approved, 2026-10-23.** `app-shell.mjs` uses two literal
+local Vite imports for the original PNGs. `vite.config.mjs` adds only those exact
+paths to the existing module/filesystem allowlists; `publicDir: false` and
+`assetsInlineLimit: 0` remain unchanged. Vite emits separate hashed resources
+with `/Velara_Atlas/assets/` URLs. There is no general PNG loader or wildcard
+permission to publish files from `public/`.
+
+`scripts/png-assets.mjs` defines the two source names and pins their SHA-256
+hashes. Build-start verification rejects changed source bytes. The output audit
+reads PNGs as buffers, requires byte equality with the hash-verified originals
+and the matching approved filename stem/hash-suffix shape, rejects duplicates,
+and requires both images. PNGs never enter UTF-8 content scans. HTML/JS/CSS/SVG
+retain the textual canonical/private/source-map scans and selected-Demo identity
+checks. Resource edges include PNGs; each approved PNG must be reachable from
+`index.html`, including structural audits without a selected dataset. Full
+selected-Demo audits continue to require all output files to be reachable.
+
+The original fourteen navigation SVGs plus the Test Cantum sigil still require
+the unchanged restricted SVG profile and exact content/name inventory. The
+reticle, front-facing NEXUS image, unapproved images, audio and other extensions
+are not admitted. Dataset inventory validation and module completeness remain
+mandatory. These checks enforce the named inventory, not a general detector of
+all possible secrets in arbitrary source code.
+
+Final production inventory: 26 files (HTML, seven JS, one CSS, fifteen SVGs and
+two PNGs), 2,492,994 bytes. PNGs are `mcr-insignia-r6lpjvi0.png` (377,504 bytes)
+and `nexus-side-profile-r9IZRR3k.png` (1,373,589 bytes); both load with HTTP 200
+under `/Velara_Atlas/`. Hash-suffixed output names are build results, not authored
+runtime paths. Tests reject missing/corrupt/truncated/appended, extra/renamed,
+duplicate and unreferenced PNGs, wrong-base HTML URLs and unsupported image/audio
+outputs; protected-input/output checks remain. Browser checks cover image-error
+fallback, responsive cards and keyboard focus. Original image bytes are unchanged.
+The 1.75 MB PNG addition and existing chunk-size advisory remain limitations;
+physical-device, non-Chromium and assistive-technology certification are deferred.

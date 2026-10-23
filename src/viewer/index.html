@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <strong class="brand">VELARA ATLAS</strong><span class="demo-badge">NONCANONICAL DEMONSTRATION</span>
+    <span class="brand"><img id="mcr-insignia" width="32" height="32" alt="Maric Cosmic Records"> <strong>VELARA ATLAS</strong></span><span class="demo-badge">NONCANONICAL DEMONSTRATION</span>
     <nav aria-label="Map navigation"><button id="sector" disabled>Sector View</button><span aria-hidden="true">/</span><strong id="location">Demo Sector</strong></nav>
     <span id="year">1200 A.E.</span><span id="units">ly · X/Z top-down</span>
   </header>
@@ -51,7 +51,10 @@
   </main>
   <dialog id="info-panel" aria-labelledby="selected-name" aria-describedby="selected-kind">
     <button id="close-info" class="panel-close" aria-label="Close NEXUS InfoCard">×</button>
-    <p class="eyebrow">NEXUS / DEMO RECORD</p><h1 id="selected-name"></h1><p id="selected-kind"></p>
+    <div id="record-heading">
+      <div><p class="eyebrow">NEXUS / DEMO RECORD</p><h1 id="selected-name"></h1><p id="selected-kind"></p></div>
+      <img id="nexus-portrait" width="96" height="96" alt="" aria-hidden="true">
+    </div>
     <dl id="facts"></dl><p id="description"></p><div class="toolbar"><button id="enter" hidden>Enter system</button><button id="focus" disabled>Focus selection</button></div>
     <div id="destinations"></div><p class="muted">1 CNU = 10,000 km. Distant icons are navigational symbols; known-size celestial models use authored physical diameters. Focus Selection inspects a body; Reset View returns to the chart. No orbital simulation is implied.</p>
   </dialog>

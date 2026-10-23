@@ -4,6 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {approvedSVGSources,svgFiles} from './svg-assets.mjs';
 import {readDemoSource,DEMO_ROOT} from './demo-files.mjs';
+import {approvedPNGSources} from './png-assets.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../dist/', import.meta.url));
 function list(directory) {
@@ -22,14 +23,21 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   const edges=new Map();let totalBytes=0;const bytesByType={};
   const approvedSVG = new Set(approvedSVGSources()), emittedSVG = new Set();
   const svgNames = new Map(approvedSVGSources().map((source,i)=>[source,path.basename(svgFiles[i],'.svg')]));
+  const approvedPNG=approvedPNGSources(),emittedPNG=new Set();
   for (const file of files) {
     const name = path.relative(root, file).replaceAll('\\', '/');
-    if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg)$/.test(name)) {
+    if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png)$/.test(name)) {
       throw new Error(`Unexpected distributable file: ${name}`);
     }
-    // Known legacy canonical IDs are never legitimate inputs to this demo.
-    const text = fs.readFileSync(file, 'utf8');
     const bytes=fs.statSync(file).size,extension=path.extname(name);totalBytes+=bytes;bytesByType[extension]=(bytesByType[extension]??0)+bytes;
+    if(extension==='.png') {
+      const source=fs.readFileSync(file);
+      const match=[...approvedPNG].find(([stem,approved])=>new RegExp(`^assets/${stem}-[A-Za-z0-9_-]+\\.png$`).test(name)&&source.equals(approved));
+      if(!match||emittedPNG.has(match[0]))throw new Error(`Unexpected PNG content/name or duplicate: ${name}`);
+      emittedPNG.add(match[0]);edges.set(name,[]);continue;
+    }
+    // Scan textual outputs only; approved binary bytes are checked above.
+    const text = fs.readFileSync(file, 'utf8');
     if (name.endsWith('.svg')) {
       if (!approvedSVG.has(text) || emittedSVG.has(text) || !name.startsWith(`assets/${svgNames.get(text)}-`)) throw new Error(`Unexpected SVG content/name or duplicate: ${name}`);
       emittedSVG.add(text);
@@ -41,15 +49,16 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
     const links=[];
     if(allowedIds) {
       if(/(?:\bfrom\s*|\bimport\s*\(|\bfetch\s*\(|@import\s*)["']https?:\/\//.test(text))throw new Error(`Unexpected external import/request in ${name}`);
-      for(const [,ref] of text.matchAll(/["']((?:\/Velara_Atlas\/assets\/|\.\/|assets\/)[A-Za-z0-9_.\/-]+\.(?:js|css|svg))["']/g)) {
-        const target=ref.startsWith('/Velara_Atlas/')?ref.slice('/Velara_Atlas/'.length):ref.startsWith('assets/')?ref:path.posix.normalize(path.posix.join(path.posix.dirname(name),ref));
-        if(!relative.has(target))throw new Error(`Missing build resource ${target} referenced by ${name}`);
-        links.push(target);
-      }
+    }
+    for(const [,ref] of text.matchAll(/["']((?:\/Velara_Atlas\/assets\/|\.\/|assets\/)[A-Za-z0-9_.\/-]+\.(?:js|css|svg|png))["']/g)) {
+      const target=ref.startsWith('/Velara_Atlas/')?ref.slice('/Velara_Atlas/'.length):ref.startsWith('assets/')?ref:path.posix.normalize(path.posix.join(path.posix.dirname(name),ref));
+      if(!relative.has(target))throw new Error(`Missing build resource ${target} referenced by ${name}`);
+      links.push(target);
     }
     edges.set(name,links);
   }
   if (emittedSVG.size !== approvedSVG.size) throw new Error('Approved SVG inventory is incomplete');
+  if (emittedPNG.size !== approvedPNG.size) throw new Error('Approved PNG inventory is incomplete');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   if (!html.includes('NONCANONICAL DEMONSTRATION')) throw new Error('Demo disclosure missing');
   for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
@@ -57,11 +66,11 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
     if (!url.startsWith('/Velara_Atlas/assets/')) throw new Error(`Unexpected asset URL: ${url}`);
     if (!fs.existsSync(path.join(root, url.slice('/Velara_Atlas/'.length)))) throw new Error('Missing build asset');
   }
-  if(allowedIds) {
+  {
     const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit('index.html');
-    for(const name of relative.keys())if(!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+    for(const name of relative.keys())if((allowedIds||name.endsWith('.png'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
   }
-  return {files:files.length,svgCount:emittedSVG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
+  return {files:files.length,svgCount:emittedSVG.size,pngCount:emittedPNG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${emittedSVG.size} exact approved SVGs and ${emittedPNG.size} exact approved PNGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 

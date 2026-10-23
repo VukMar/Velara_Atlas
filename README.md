@@ -40,19 +40,30 @@ see [the maintenance baseline](docs/POST_PHASE3_MAINTENANCE.md). Subsequent
 [Stage 4](docs/CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md) and
 [calibration](docs/CANTUM_SCALE_CALIBRATION_RESULTS.md) work is committed in
 `190bd21`; those reports retain their original pre-commit circumstances.
-Checkpoint 4.2 visual refinement and Cantum Stage 5 remain separately gated.
+Remaining Checkpoint 4.2 visual refinement and Cantum Stage 5 remain separately gated.
 
 **Roadmap planning update (2026-10-23):** The
 [original Milestone 6 roadmap](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
-now defines planned Checkpoint 4.2A–I for NEXUS imagery, archival fallback,
+established nine separately gated phases 4.2A–I for NEXUS imagery, archival fallback,
 final reticle, System symbols, camera/map transitions, opening,
-two prerecorded voice situations and optional UI sounds last. None is
-implemented by this documentation change. Final Checkpoint 4 visual
+two prerecorded voice situations and optional UI sounds last. The planning
+foundation did not authorize implementation. Final Checkpoint 4 visual
 acceptance includes the deferred Cantum Stage 5 decision. No phase,
 publication, Canon migration or Atlas Creator work is automatically
 authorized.
-The supplied NEXUS side-profile PNG is available at
-`public/assets/nexus/nexus-side-profile.png`; viewer integration remains deferred.
+
+**Checkpoint 4.2A closeout (2026-10-23): complete and creator-approved.** The
+unchanged MCR insignia now appears beside the header title; the supplied
+`public/assets/nexus/nexus-side-profile.png` appears beside ordinary InfoCard
+headings, reducing/hiding responsively before compromising text. Failed images
+collapse gracefully. Static imports, pinned source hashes and exact binary output
+checks admit only these two PNGs alongside the existing fifteen SVGs, with
+`publicDir: false` and `/Velara_Atlas/` URLs preserved. Final checks pass 275 tests,
+validation, connection freshness, build and release audit. The unchanged originals
+add 1.75 MB; physical-device, non-Chromium and assistive-technology checks remain
+limitations. See [4.2A results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42a--nexus-and-mcr-branding).
+**4.2B–I remain planned, unimplemented and unauthorized.** The front-facing
+`nexus-form.png`, reticle and audio are not admitted by 4.2A; no deployment occurs.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

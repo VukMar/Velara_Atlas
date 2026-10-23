@@ -12,6 +12,7 @@ import {ICON_PATHS,SIGIL_PATHS} from '../src/viewer/icon-manifest.mjs';
 import {iconFiles,sigilFiles,svgFiles,approvedSVGSources,validateIconSource} from '../scripts/svg-assets.mjs';
 import config,{demoInputAudit} from '../vite.config.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {approvedPNGSources} from '../scripts/png-assets.mjs';
 
 test('current v1.3 Cantum sigils are optional nullable identifiers, scoped away from other records',()=>{
   const {dataset}=readDemoSource(),a=dataset.cantums.cantums[0];
@@ -92,7 +93,9 @@ test('exact output audit requires all fifteen SVGs and rejects extra, duplicate 
     fs.rmSync(root,{recursive:true,force:true});
   });
   fs.mkdirSync(path.join(root,'assets'));
-  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title>');
+  const pngs=[...approvedPNGSources()];
+  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title>'+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
+  for(const [stem,bytes] of pngs)fs.writeFileSync(path.join(root,'assets',`${stem}-fixture.png`),bytes);
   const sources=approvedSVGSources(),files=svgFiles.map((f,i)=>path.join(root,'assets',`${path.basename(f,'.svg')}-fixture-${i}.svg`));
   sources.forEach((s,i)=>fs.writeFileSync(files[i],s));
   assert.equal(auditDemoBuild(root).svgCount,15);

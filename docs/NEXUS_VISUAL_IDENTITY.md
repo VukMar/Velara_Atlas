@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection; final artistic refinement, elaborate targeting-ring art and curator imagery remain deferred. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoint 4.2A header/ordinary InfoCard branding is complete and creator-approved (2026-10-23); broader archival/opening imagery, final artistic refinement and elaborate targeting-ring art remain deferred. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
 
 ## 1. Purpose and source references
 
@@ -10,7 +10,7 @@ The Velara Atlas is an interactive historical and navigational archive **curated
 Approved reference material supplied during design:
 
 - **MCR insignia** — `Hud Profile Picture.png`: large blue segmented rings, vivid cyan center emblem, technical radial geometry, extensive black negative space.
-- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference. The creator-supplied side-profile PNG exists at `public/assets/nexus/nexus-side-profile.png`; its viewer/InfoCard integration remains deferred. Do not substitute an invented identity.
+- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference. The creator-supplied `public/assets/nexus/nexus-side-profile.png` is now integrated in ordinary InfoCards by completed 4.2A; the front-facing reference remains reserved. Do not substitute an invented identity.
 - **NEXUS opening-interface screenshot** — the user-provided frame from the YouTube sequence: black background, restrained blue rectangular status frame, small circular connected record nodes, cyan/blue emphasis, green `CONNECTION ESTABLISHED` status. The screenshot is a style reference, **not** a directive to turn every celestial body into a node.
 - **Viewer behavior** — `docs/VIEWER_SPECIFICATION.md` v1.1 and `docs/CANTUM_TERRITORY_RENDERING.md` (approved Milestone 3). Their navigation, layering, chronology, and territorial rules remain authoritative.
 
@@ -274,10 +274,24 @@ Reticle position follows the real projected anchor and respects clipping,
 visibility, touch/keyboard and `prefers-reduced-motion`; overlay cannot
 interfere with picking or captions. Keep existing starter navigation SVGs.
 
-Creator-approved NEXUS/MCR PNG originals in `public/assets/nexus/` are
-to appear contextually in 4.2A ordinary InfoCards/header, 4.2B
-archival fallback and 4.2G opening, without losing the map-first design
-or readable history. Image assets are not yet bundled for public viewing.
+**4.2A implementation and creator approval (2026-10-23):** unchanged
+`mcr-insignia.png` appears beside `VELARA ATLAS` at 32 CSS px (24 px at widths
+≤600 px), retaining the title, noncanonical disclosure, navigation/year and units.
+The original transparent side-profile is contained in a separate area beside the
+ordinary InfoCard heading, above facts/actions: 96 px normally, 64 px at widths
+≤600 px or for more than twelve facts / descriptions longer than 600 characters.
+It is hidden at widths ≤360 px or heights ≤600 px. No crop, recolor, frame artwork
+or image mutation is used. Logo alt text identifies Maric Cosmic Records; the
+portrait has empty alt text and `aria-hidden` beside the existing NEXUS label.
+Image errors hide the failed image and collapse its slot; listeners use the shell
+lifetime. Centered dialog, close/Escape, focus return, facts and actions remain
+unchanged, and opening an InfoCard never sizes the square chart.
+
+The two PNGs are explicitly bundled and audited; see the
+[implemented binary policy](VISUAL_ASSET_POLICY.md#8-implemented-checkpoint-42a-png-admission).
+Creator approval accepts this ordinary-card/header treatment. 4.2B archival
+fallback and 4.2G opening remain planned and unimplemented; `nexus-form.png`
+is preserved but not bundled. All 4.2B–I implementation needs separate authority.
 
 The original broad voice deferral was for the first viewer. The narrow
 **planned** Checkpoint 4.2H exception is just two prerecorded,

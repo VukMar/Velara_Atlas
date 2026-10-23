@@ -1,5 +1,15 @@
+import insigniaURL from '../../public/assets/nexus/mcr-insignia.png';
+import portraitURL from '../../public/assets/nexus/nexus-side-profile.png';
+
 /** Floating-panel and chart-stage lifetime; overlays never determine chart size. */
 export function installShell($, lifetime, escape) {
+  // Approved branding is optional decoration; cached failures must also collapse.
+  for(const [id,url] of [['mcr-insignia',insigniaURL],['nexus-portrait',portraitURL]]) {
+    const image=$(id),hide=()=>{image.hidden=true;};
+    lifetime.listen(image,'error',hide);
+    image.src=url;
+    if(image.complete&&!image.naturalWidth)hide();
+  }
   const sizeChart = () => {
     const stage=$('chart-stage');
     $('viewport').style.setProperty('--chart-size',`${Math.max(1,Math.min(stage.clientWidth,stage.clientHeight)-16)}px`);
