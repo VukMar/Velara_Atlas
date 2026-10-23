@@ -1,11 +1,12 @@
 # Velara Atlas documentation index
 
-**Current original-roadmap status (2026-10-23):** Checkpoints 4.2A–E are
+**Current original-roadmap status (2026-10-23):** Checkpoints 4.2A–F are
 **complete and creator-approved**: compact MCR header branding, ordinary NEXUS
 InfoCard portrait, distinct archival presentation with approved front-facing
 portrait/universal JSON dialogue, unified cyan/gold reticles, approved System View
 minima, 550ms cancelable Focus animation with preserved inspection endpoints,
-and strict admission of sixteen SVGs and three PNGs. Checkpoints 4.2F–I remain
+420ms decorative chart navigation with synchronous state/camera restoration,
+and strict admission of sixteen SVGs and three PNGs. Checkpoints 4.2G–I remain
 **planned, unimplemented and unauthorized** in
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned),
 followed by final Checkpoint 4 creator acceptance and a Cantum Stage 5 decision.

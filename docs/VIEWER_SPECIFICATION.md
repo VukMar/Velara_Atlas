@@ -147,9 +147,31 @@ motion while moving completes it immediately. There is no replacement effect.
 
 The InfoCard closes and returns keyboard focus to the canvas as before; selection
 persists. Existing projected anchors drive reticles and proxy/model handoff on
-every frame, with no independent object or reticle movement. Normal map navigation
-remains instantaneous: 4.2F transitions are not implemented. See [accepted results
+every frame, with no independent object or reticle movement. Map navigation still
+commits immediately; the separate 4.2F reveal below adds presentation only. See [accepted results
 and limits](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
+
+### Chart navigation reveal — Checkpoint 4.2F
+
+**Complete and creator-approved, 2026-10-23.** Sector→System, System→Sector and
+eligible System→System navigation use a 420ms dark/cyan destination reveal with
+`cubic-bezier(.42,0,.58,1)` easing. This is a chart-record change, not simulated
+travel or a Focus camera animation. History, scene replacement, saved-camera
+restoration and destination focus commit synchronously; no obsolete map remains
+interactively active while an effect waits. Same-scope requests, selection,
+ordinary year refresh and layer/camera changes do not start the effect.
+
+One pointer-transparent, accessibility-hidden viewport decoration sits below
+reticles and outside the floating controls' ownership. Archival entry uses only
+a perimeter accent, preserving its approved portrait/copy and accessible Return
+action. Input, Reset, Focus, mode/zoom/tilt, selection, history refresh/automatic
+return, replacement navigation, technical context loss and disposal cancel it.
+Reduced motion navigates directly; a live preference change clears the effect.
+Keyboard/touch behavior and existing canvas/archival-heading focus are retained.
+Failure of the optional animation leaves navigation usable. Technical errors
+retain explicit recovery and cannot become an archival notice. Camera snapshots,
+550ms Focus, physical scale, geometry, data and assets remain unchanged.
+See [accepted results and limits](DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
 
 ### Sector chart grid
 
@@ -598,12 +620,12 @@ failure and failed startup remain technical errors with Retry. WebGL context los
 hides any prior archival panel and retains technical recovery feedback across
 historical refreshes; it cannot become an archival notice.
 
-Completed, creator-approved 4.2A–E retain branding, archival content, targeting,
-System minima and Focus motion described above. The remaining **planned** 4.2F adds three short cancelable
-navigation transitions, 4.2G introduces the entry screen before any
+Completed, creator-approved 4.2A–F retain branding, archival content, targeting,
+System minima, Focus motion and decorative chart navigation described above.
+The remaining **planned** 4.2G introduces the entry screen before any
 playback, 4.2H two approved prerecorded speeches and audio preferences,
 and 4.2I optional UI SFX last. Motion honors reduced motion and lifetime
-cleanup; no second renderer or extra world data. 4.2F–I remain unimplemented and
+cleanup; no second renderer or extra world data. 4.2G–I remain unimplemented and
 need separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 

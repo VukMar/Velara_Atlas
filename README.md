@@ -113,9 +113,25 @@ the final state immediately. All 306 tests and validation/build/release gates
 pass, with normal Demo and production browser regressions. Asset admission is
 unchanged (sixteen SVGs, three PNGs); the reserved 4.2H MP3 is unchanged and excluded.
 See [4.2E results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
-**4.2F–I remain planned, unimplemented and separately gated.** Final Checkpoint 4
+At the 4.2E closeout, 4.2F–I remained planned and unimplemented. Final Checkpoint 4
 acceptance and Cantum Stage 5 remain pending; Checkpoint 5 deployment, Canon
 migration and Atlas Creator are not authorized. No deployment occurred.
+
+**Checkpoint 4.2F closeout (2026-10-23): complete and creator-approved.** Sector→
+System, System→Sector and valid System→System actions now use a restrained
+420ms dark/cyan chart reveal with `cubic-bezier(.42,0,.58,1)` easing. Navigation,
+history, scene replacement and camera restoration still commit synchronously;
+there is no simulated travel or camera flight. Input, Reset, Focus, mode/history
+changes, rapid replacement, context loss and teardown cancel safely; reduced
+motion skips the effect. Archival entry accents only the perimeter, preserving
+the portrait/message and Return control. A–E behavior and asset bytes remain intact.
+All 318 tests and validation/connection/build/release gates pass, with dedicated
+Demo/production and existing browser regressions. The unchanged inventory is
+sixteen SVGs and three PNGs; the reserved MP3 remains untouched and excluded.
+See [4.2F results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
+**4.2G–I remain planned, unimplemented and separately gated.** Final Checkpoint 4
+acceptance and Cantum Stage 5 remain pending. Checkpoint 5, Canon migration,
+Atlas Creator and deployment are not authorized. No deployment occurred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

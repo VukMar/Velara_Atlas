@@ -12,8 +12,8 @@ deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A–E are implemented, complete and creator-approved.**
-Phases 4.2F–I remain planned, unimplemented and unauthorized.
+**Closeout update (2026-10-23): 4.2A–F are implemented, complete and creator-approved.**
+Phases 4.2G–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,13 +131,13 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–E complete and creator-approved; 4.2F–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–F complete and creator-approved; 4.2G–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Complete and creator-approved (2026-10-23):** centralized 42/36/30/24/21/18/15px System minima; physical geometry, picking and Sector 8px marker preserved. |
 | Checkpoint 4.2E — Focus Selection Animation | **Complete and creator-approved (2026-10-23):** 550ms smoothstep camera-owned Focus, exact inspection/zone/anchor endpoints, interruptible and immediate under reduced motion. |
-| Checkpoint 4.2F — Map Navigation Transitions | **Planned:** Sector→System, System→Sector, System→System record changes. |
+| Checkpoint 4.2F — Map Navigation Transitions | **Complete and creator-approved (2026-10-23):** 420ms decorative chart reveal, synchronous navigation/camera restoration, cancelable and immediate under reduced motion. |
 | Checkpoint 4.2G — NEXUS Atlas Opening | **Planned:** brief branded entry screen and audio/silent choices; no playback. |
 | Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Planned:** two approved prerecorded speech situations, persistent accessible toggle. |
 | Checkpoint 4.2I — UI Sound Effects | **Planned LAST:** restrained approved UI cues, throttled and muting-respectful. |
@@ -182,7 +182,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–E are complete and creator-approved; 4.2F–I remain planned and
+completed; **4.2A–F are complete and creator-approved; 4.2G–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -568,6 +568,10 @@ Creator remain separately gated. No deployment occurred.
 
 ### Phase 4.2F — Map Navigation Transitions
 
+**Status: implemented, creator-reviewed and approved (2026-10-23).** The original
+planning range and acceptance criteria below are retained; the accepted treatment
+and verification record follow them.
+
 **Purpose/scope:** Brief visual record transitions, tentatively
 350–500ms: Sector→System, System→Sector and System→other System.
 Keep `main.mjs` navigation and `scene-layers.mjs` rebuilding as
@@ -580,6 +584,52 @@ keyboard/touch available; reduced motion direct; fallback still works.
 **Visual review:** three paths, very rapid inputs, System fallback,
 2D/3D and mobile. **Depends on:** E. **Gate:** creator approves
 appearance, timing and cancellation.
+
+**Accepted implementation:** one decorative `map-transition.mjs` owner uses a
+finite Web Animation of **420ms**, easing **`cubic-bezier(.42,0,.58,1)`** and
+opacity keyframes 1 → .86 at 24% → 0. A dark `rgba(2,12,19,.82)` chart mask and
+restrained cyan/teal inset edge reveal the destination. Archival entry uses only
+a 2px cyan perimeter, leaving the approved portrait, message and Return action
+untouched. This communicates an archival chart change, never physical travel.
+
+All three paths—Sector→System, System→Sector and eligible System→System gate
+navigation—use the existing `main.navigate()` callback. History, scene replacement,
+camera restoration and focus placement commit synchronously before the reveal.
+No old scene, extra renderer, camera flight, dependency, dialogue or media is
+introduced. Same-scope requests do not replay the effect. Input (including touch
+and keyboard), Reset, Focus, mode/zoom/tilt, history refresh/automatic return,
+selection, replacement navigation, context loss and disposal cancel the visual
+operation. A generation guard invalidates stale completion callbacks. Reduced
+motion skips it; changing the preference cancels an active effect. Missing or
+failing Web Animations support leaves direct navigation functional.
+
+**Verification:** all **318 tests** pass, zero failed/skipped, including twelve
+focused transition-owner tests and the unchanged frozen Focus endpoints.
+Validation, generated-connection freshness, build, release audit and
+`git diff --check` pass. The dedicated callback passes normal Demo and audited
+production preview, with actual intermediate opacity samples, all three routes,
+rapid valid A→B→A→C gate navigation, camera restoration, ten interruption paths,
+899/900/1200 archival behavior, reduced motion and four viewports (1280×900,
+390×844, 320×740, 844×390). Existing Focus, celestial, reticle, sizing, navigation,
+zone, touch, responsive, archival, accessibility/release and lifecycle callbacks
+pass. Twenty warmed navigation cycles retain 13 geometries, two textures and one
+canvas; teardown removes the decoration and active animation, and remount leaves
+one canvas. Remembered perspective cameras and normal/reduced destination states
+match within `1e-9 * max(1, abs(expected))`; the 550ms Focus code is unchanged.
+
+**Preservation/limits:** A–E artwork, dialogue, 60/72px reticles and 30s rotation,
+42/36/30/24/21/18/15px System minima, 8px Sector symbols, physical scale/handoff,
+world data, schemas, historical resolver and geometry are unchanged. Exact
+admission/private/Canon restrictions remain: **29 files, 4,501,368 bytes**, sixteen
+SVGs and three PNGs. All three PNG URLs return HTTP 200 beneath `/Velara_Atlas/`.
+The 305,746-byte MP3 matches `d30681f` byte-for-byte, remains reserved for 4.2H,
+unimported/unplayed and excluded. Headless Chromium 139/Intel D3D11 supplies local
+browser evidence; software rendering can stall across the animation interval.
+Physical-device, non-Chromium, screen-reader and actual browser-zoom verification
+remain outstanding, as does the existing Vite chunk-size advisory. 4.2G–I remain
+planned, unimplemented and separately gated. Final Checkpoint 4 acceptance and
+Cantum Stage 5 remain pending; Checkpoint 5, Canon migration, Atlas Creator and
+deployment are not authorized. No deployment occurred.
 
 ### Phase 4.2G — NEXUS Atlas Opening
 

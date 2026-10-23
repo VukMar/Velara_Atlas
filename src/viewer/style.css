@@ -20,6 +20,10 @@ button:disabled { opacity:.45; cursor:default; }
 [hidden] { display:none !important; }
 #chart-stage { flex:1; min-height:0; min-width:0; position:relative; display:grid; place-items:center; overflow:hidden; }
 #viewport { position:relative; width:var(--chart-size,1px); height:var(--chart-size,1px); overflow:hidden; border:1px solid #31566a; }
+.map-transition { position:absolute; inset:0; z-index:2; pointer-events:none; background:rgba(2,12,19,.82); box-shadow:inset 0 0 0 1px #55d9e340,inset 0 0 32px #17646b30; }
+/* Archive content stays untouched; only the chart's perimeter signals its replacement. */
+#viewport[data-archival="true"] .map-transition { z-index:4; background:none; box-shadow:inset 0 0 0 2px #55d9e380; }
+@media (prefers-reduced-motion:reduce) { .map-transition { display:none; } }
 canvas { display:block; width:100%; height:100%; touch-action:none; }
 #labels,#grid-labels { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 #grid-labels { z-index:1; }

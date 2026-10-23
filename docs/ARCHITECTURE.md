@@ -26,6 +26,7 @@ Use the [index](INDEX.md) for authority and the
 | `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
 | `src/viewer/map-scene.mjs` | Stable AtlasMap facade, renderer and ordered coordination of camera, interaction, layers and projection owners |
 | `src/viewer/target-reticle.mjs` | Two decorative cyan/gold UI indicators consuming final shared anchor visibility and selected/hover state; no projection, picking, extra renderer or animation loop |
+| `src/viewer/map-transition.mjs` | One finite decorative destination reveal, reduced-motion/input cancellation and lifetime cleanup; no history, scene or camera state |
 | `src/viewer/visual-config.mjs`, `celestial-scale.mjs` | Central CSS minima and handoff ratio; pure physical-radius and camera-projection math |
 | `src/viewer/sector-markers.mjs` | Inverts active sphere projection for the central 4px CSS radius; Sector catalogue symbols only, never physical System View models |
 | `src/viewer/celestial-model.mjs` | Fixed physical spheres/normalized small bodies and deterministic symbolic material colors; no geometry for unknown sizes/artificial structures |
@@ -418,7 +419,8 @@ plane/direction; its ordinary path is unchanged. Optional `focusFrame` snapshot
 metadata retains frustum, clipping and control limits across history/navigation;
 `getView()` remains read-only. `data-focus-moving` exposes completion for browser
 checks. Projected labels/reticles and physical/proxy calculations remain their
-existing owners' responsibility. No 4.2F map transition is implemented.
+existing owners' responsibility. The separate 4.2F presentation below adds no
+map-navigation animation ownership to the camera controller.
 
 `tests/focus-camera.test.mjs` uses an injected clock and real controls update math;
 `tests/fixtures/focus4_2e-endpoints.json` freezes 20 original `0c635da` camera
@@ -427,6 +429,40 @@ reduced motion, intermediate projections, input/cancellation, four viewports and
 teardown on the normal Demo and audited production preview. Existing celestial,
 reticle, sizing and zone callbacks now await actual completion before their
 unchanged settled-state assertions. See [closeout evidence and limits](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
+
+### Checkpoint 4.2F chart-transition ownership and lifecycle
+
+**Complete and creator-approved, 2026-10-23.** `main.navigate()` remains the sole
+navigation entry point. It cancels the previous decoration, saves the current
+camera and synchronously navigates/resolves/rebuilds/restores/focuses the
+destination. Only after those operations does a changed valid scope request
+`createMapTransition().reveal()`. Same-scope navigation does not replay it;
+historical automatic return cancels through `refresh()` without starting one.
+`AppState.cameras`, `SceneLayers` disposal and Focus cancellation remain unchanged.
+
+The owner creates one `aria-hidden`, pointer-transparent viewport element and
+one finite 420ms Web Animation using `cubic-bezier(.42,0,.58,1)`. It owns no map,
+dataset, camera, navigation decisions, renderer or scheduler. CSS supplies the
+dark/cyan reveal and archival perimeter-only variant, leaving archival content
+and the higher reticle/control layers intact. The effect cannot delay or undo a
+navigation commit. Unavailable/failing animation support leaves direct navigation.
+
+Capture-phase listeners on the chart stage and InfoCard cancel before existing
+pointer/touch, wheel, keyboard, click and input handlers act. Selection/refresh,
+replacement navigation and context loss also cancel explicitly. Cancellation
+hides the overlay, detaches callbacks, cancels the active animation and advances
+a generation guard; stale completion cannot hide a replacement. Reduced motion
+skips animation, and an active preference change cancels it. The mount's
+`Lifetime` removes the decoration, listeners and animation before AtlasMap
+disposal. No callback restores a scene or camera. Existing 550ms Focus remains
+camera-owned with its frozen endpoints and cancellation rules.
+
+Twelve deterministic owner tests cover timing, replacement/stale callbacks,
+input priority, media changes, failed animation support and cleanup. The dedicated
+`browser-map-transitions4_2f.mjs` callback checks real intermediate frames,
+synchronous destinations, existing marker/Catalogue/InfoCard/gate/Return paths,
+camera restoration, rapid navigation, responsive bounds and lifecycle on normal
+Demo and audited preview. See [accepted evidence and limits](DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
 
 ### Safe presentation configuration
 

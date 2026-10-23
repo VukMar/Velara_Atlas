@@ -440,3 +440,43 @@ read-only Ubuntu/Windows Node 24 jobs are not declared successful by these local
 Windows Node 20 results. The closeout response reports the actual remote Git and
 CI state available after the push; no second commit is needed merely to insert
 the completion commit's SHA or its hosted run status into this report.
+
+## Checkpoint 4.2F local closeout evidence — 2026-10-23
+
+Creator-approved 4.2F adds only a finite 420ms decorative chart reveal. Baseline
+is `d30681fa0b4dd24107d37e930f63b36a4cf653c1`; the earlier Phase 6 measurements
+above retain their original scope and are not new transition performance budgets.
+Historical resolution, scene replacement and saved-camera restoration remain
+synchronous and independent of the effect. No extra renderer, scene clone,
+framebuffer pipeline, continuous JS loop or dependency is introduced.
+
+The dedicated normal-Demo and production-preview callback records native Web
+Animation opacity/timing samples across all three navigation paths, plus valid
+rapid gate navigation, ten interruption paths, reduced motion/live preference
+changes, camera restoration, keyboard/Chromium touch input and four viewport
+sizes (1280×900, 390×844, 320×740, 844×390). Equivalent warmed Sector states across
+twenty navigation cycles retain 13 geometries and two textures. Disposal removes
+the transition element and active animation; remount leaves one canvas. Unit
+tests additionally invalidate stale completion callbacks and verify owned-listener
+cleanup. Existing module/lifecycle and navigation callbacks pass. This measures
+resource counts, not GPU memory or physical-device responsiveness.
+
+All 318 tests pass, including twelve focused owner tests; validation, connection
+freshness, build, release audit and whitespace checks pass. Existing Focus,
+celestial, reticle, sizing, archival, zones, touch, layout and production
+release/accessibility checks pass. Camera-owned 550ms Focus and its frozen
+endpoints are unchanged. Strict release output remains 29 files, sixteen exact
+SVGs and three exact PNGs, totaling 4,501,368 bytes; all PNG URLs return HTTP 200
+under `/Velara_Atlas/`. Dataset/private/Canon restrictions and exact asset
+registries are unchanged. The reserved MP3 matches the baseline and is excluded;
+browser callbacks observe no audio requests. Screenshots and samples remain in
+ignored `.playwright-mcp/`, outside the reviewed commit.
+
+Local browser evidence uses headless Chromium 139, DPR 1, ANGLE Intel HD Graphics
+620/Direct3D11. Software rendering can stall across the animation interval, so
+those stalled runs are not motion passes. Native animation duration is 420ms;
+navigation wall time also includes the existing synchronous rebuild and browser
+scheduling. Physical devices, Firefox/WebKit, screen readers and actual browser
+zoom remain unverified. Existing Vite chunk-size advice remains. 4.2G–I, final
+Checkpoint 4 acceptance, Cantum Stage 5, Checkpoint 5 publication, Canon migration,
+Atlas Creator and deployment remain separately gated. No deployment occurred.

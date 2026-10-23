@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation, 4.2C unified reticles, 4.2D System minima and 4.2E Focus motion are complete and creator-approved (2026-10-23); opening and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation, 4.2C unified reticles, 4.2D System minima, 4.2E Focus motion and 4.2F chart navigation are complete and creator-approved (2026-10-23); opening and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
 
 ## 1. Purpose and source references
 
@@ -366,7 +366,30 @@ Manual input, subsequent camera commands, history/navigation and teardown cancel
 cleanly from the visible view. Reduced motion uses immediate framing and no
 replacement effect. Selection, ordinary InfoCards, physical scale, 4.2D minima,
 header/archival imagery and approved dialogue remain unchanged. This completed
-phase supersedes earlier Focus-motion deferment only; 4.2F–I remain planned and
-separately gated, with final Checkpoint 4 acceptance and Cantum Stage 5 pending.
-No opening, audio or map-navigation transition is included. Software rendering
+phase supersedes earlier Focus-motion deferment only. At its closeout, 4.2F–I
+remained planned and separately gated, with final Checkpoint 4 acceptance and
+Cantum Stage 5 pending. That phase included no opening, audio or map-navigation
+transition. Software rendering
 may deliver a frame after the configured deadline; see [verification and limits](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
+
+## Checkpoint 4.2F approved chart reveal — 2026-10-23
+
+The creator approved a **420ms** destination-chart reveal with
+**`cubic-bezier(.42,0,.58,1)`** easing: opacity 1 → .86 at 24% → 0 over a dark
+`rgba(2,12,19,.82)` surface. An inset 1px cyan `#55d9e340` edge and restrained
+teal `#17646b30` shadow supply the archival accent. The effect covers chart
+content below targeting and floating controls; it adds no text or artwork.
+Archival entry uses only a 2px `#55d9e380` perimeter, with no mask over the
+approved portrait, universal message or Return action.
+
+Sector→System, System→Sector and valid System→System actions change the active
+archival chart immediately, then reveal it. There is no physical travel, flight,
+shake, particle effect, sound or second scene. Existing camera snapshots and
+550ms Focus movement are unchanged. Input, commands, history, replacement
+navigation, errors and teardown cancel cleanly. Reduced motion uses direct
+navigation without a replacement effect. Keyboard/touch access and destination
+focus remain intact. The treatment preserves the square chart and A–E visuals.
+
+This supersedes chart-transition deferment only. 4.2G–I remain planned,
+unimplemented and separately gated; final Checkpoint 4 acceptance and Cantum
+Stage 5 remain pending. See [verification and limits](DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).

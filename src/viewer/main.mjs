@@ -10,6 +10,7 @@ import {createTimeline} from './timeline-view.mjs';
 import {createLayerView} from './layer-view.mjs';
 import {installShell} from './app-shell.mjs';
 import {createArchivalView} from './archival-view.mjs';
+import {createMapTransition} from './map-transition.mjs';
 
 const $=id=>document.getElementById(id);
 const message=text=>{$('map-message').textContent=text;$('map-message').hidden=!text;};
@@ -21,12 +22,14 @@ let startup=0;
 /** Composition only: history belongs to core/state, presentation to the UI owners. */
 function mount(dataset,{fallbackData,archivalPortraitURL}) {
   const lifetime=new Lifetime(),state=new AppState(dataset);
-  let atlas,info,catalogue,layers,timeline,archival,contextLost=false;
+  let atlas,info,catalogue,layers,timeline,archival,transition,contextLost=false;
   function choose(record,options) {
+    transition?.cancel();
     state.select(record);$('selection').value=state.selectedId??'';atlas.setSelected(state.selectedId);
     catalogue.selected(state.selectedId);info.render(record,options);
   }
   function refresh(preserve=true) {
+    transition?.cancel();
     const saved=preserve&&state.view?.map ? atlas.getView() : state.camera();
     const {view,returned,selected,selectionCleared}=state.resolve();
     if(returned)notice('The previous system is not known at this year. Returned to Sector View.');
@@ -49,12 +52,16 @@ function mount(dataset,{fallbackData,archivalPortraitURL}) {
     if(archivalHadFocus&&$('archival-view').hidden)atlas.renderer.domElement.focus({preventScroll:true});
   }
   function navigate(id) {
+    const previousScope=state.scope;
+    transition.cancel();
     state.saveCamera(atlas.getView());state.navigate(id);catalogue.reset();notice('');refresh(false);
     if(contextLost)$('retry').focus({preventScroll:true});
     else if(archival.focus()) {
       // A navigation destination must not land behind its source floating panel.
       for(const panel of document.querySelectorAll('.floating[open]'))panel.open=false;
     } else atlas.renderer.domElement.focus({preventScroll:true});
+    // History, scene replacement and saved-camera restoration have already committed.
+    if(!contextLost&&previousScope!==state.scope)transition.reveal();
   }
   function modeControls() {
     $('mode').textContent=atlas.mode==='top'?'Switch to 3D':'Switch to top-down';$('tilt-control').hidden=atlas.mode!=='perspective';
@@ -64,6 +71,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL}) {
     atlas=new AtlasMap($('viewport'),$('labels'),choose,navigate);
     // Registered first so component/listener cleanup runs before the scene is destroyed.
     lifetime.add(()=>atlas.dispose());
+    transition=createMapTransition({viewport:$('viewport'),inputs:[$('chart-stage'),$('info-panel')]},lifetime);
     const context={$,state,atlas,choose,navigate};
     archival=createArchivalView({$,navigate,portraitURL:archivalPortraitURL,config:fallbackData},lifetime);
     catalogue=createCatalogue(context,lifetime);info=createInfoCard(context,lifetime);layers=createLayerView(context,lifetime);
@@ -76,6 +84,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL}) {
       $('units').textContent=`${state.view.map.unit} · ${atlas.mode==='top'?'X/Z top-down':'true XYZ perspective'}`;});
     lifetime.listen($('tilt'),'input',()=>atlas.setTilt($('tilt').valueAsNumber));
     lifetime.listen(atlas.renderer.domElement,'webglcontextlost',event=>{
+      transition.cancel();
       event.preventDefault();contextLost=true;const hadFocus=archival.containsFocus();archival.hide();
       message('Graphics context lost. Reload to restore the map.');$('retry').hidden=false;
       if(hadFocus)$('retry').focus({preventScroll:true});
