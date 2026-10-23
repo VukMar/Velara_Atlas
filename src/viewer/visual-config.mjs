@@ -1,5 +1,5 @@
 /** CSS-pixel navigational minima; never physical dimensions or authored data. */
-export const MINIMUM_DIAMETERS = Object.freeze({star:28, gas:24, planet:20, moon:16, small:14, structure:12, short_range_gate:10});
+export const MINIMUM_DIAMETERS = Object.freeze({star:42, gas:36, planet:30, moon:24, small:21, structure:18, short_range_gate:15});
 export const MODEL_HANDOFF_RATIO = 1.35;
 export const KM_PER_CNU = 10000;
 // Sector catalogue symbol only; unrelated to local celestial physical sizes/minima.

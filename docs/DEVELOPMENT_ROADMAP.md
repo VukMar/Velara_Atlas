@@ -12,8 +12,8 @@ deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A–C are implemented, complete and creator-approved.**
-Phases 4.2D–I remain planned, unimplemented and unauthorized.
+**Closeout update (2026-10-23): 4.2A–D are implemented, complete and creator-approved.**
+Phases 4.2E–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,11 +131,11 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–C complete and creator-approved; 4.2D–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–D complete and creator-approved; 4.2E–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
-| Checkpoint 4.2D — System Object Icon Sizing | **Planned:** up to 1.5× navigational minima; preserve physical geometry and Sector 8px marker. |
+| Checkpoint 4.2D — System Object Icon Sizing | **Complete and creator-approved (2026-10-23):** centralized 42/36/30/24/21/18/15px System minima; physical geometry, picking and Sector 8px marker preserved. |
 | Checkpoint 4.2E — Focus Selection Animation | **Planned:** smooth cancelable camera focus; preserve exact final framing. |
 | Checkpoint 4.2F — Map Navigation Transitions | **Planned:** Sector→System, System→Sector, System→System record changes. |
 | Checkpoint 4.2G — NEXUS Atlas Opening | **Planned:** brief branded entry screen and audio/silent choices; no playback. |
@@ -182,7 +182,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–C are complete and creator-approved; 4.2D–I remain planned and
+completed; **4.2A–D are complete and creator-approved; 4.2E–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -444,6 +444,10 @@ Canon migration, Atlas Creator and deployment remain separately gated.
 
 ### Phase 4.2D — System Object Icon Sizing
 
+**Status: complete and creator-approved, 2026-10-23.** The creator reviewed and
+approved the implemented sizes, reticle/caption relationship and physical-model
+presentation, then separately authorized one closeout commit and normal push.
+
 **Purpose/scope:** Centralize/tune *apparent navigational minima only*,
 tested at no greater than 1.5× the current values:
 
@@ -466,6 +470,37 @@ remains continuous; Sector marker unchanged.
 **Visual review:** side-by-side screenshots at wide/close zoom in 2D/3D,
 small bodies, dense labels and model handoff. **Depends on:** C preferred
 for reticle comparisons. **Gate:** creator accepts exact chosen sizes.
+
+**Accepted result:** the original/max table above is retained as design history.
+Final System CSS minimum diameters are **42 star, 36 gas planet, 30 other planet,
+24 moon, 21 small body, 18 structure and 15 short-range gate**: exactly 50% above
+the initial values. Only the frozen central table in `visual-config.mjs` changed
+at runtime. Category mapping, unknown-size proxies, authored geometry/XYZ,
+`KM_PER_CNU = 10000`, `MODEL_HANDOFF_RATIO = 1.35`, smoothstep opacity, cameras,
+hit targets and caption algorithms remain unchanged. Existing diameter-aware
+caption offsets apply automatically. The 8px Sector symbols and 60/72px reticles
+with 30s cyan rotation/reduced motion remain independent and unchanged.
+
+**Verification:** final `npm test` passes 284 tests, zero failed/skipped;
+validation, connection freshness, build, release audit and `git diff --check`
+pass. Demo and production sizing/reticle callbacks cover seven categories across
+43 objects, four viewports, shared centers, physical inspection, DPR 2, keyboard/
+touch, reduced motion, history and archival navigation. Existing celestial,
+navigation, layout, zone, module/lifecycle and release callbacks pass. Tests now
+derive crossover samples from central minima and retain the original formula.
+A before/after comparison of 16 System A objects retains exact physical radii,
+XYZ, unit mesh scales, projected centers and hit sizes. Output remains 29 files,
+16 SVGs and three PNGs, 4,494,160 bytes; no new application assets or audio.
+
+**Preservation/limits:** original artwork, world JSON, schemas and resolver are
+unchanged. The 305,746-byte `nexus-fallback-message.mp3` in baseline `3a1bb44`
+remains byte-identical, unimported, unplayed and absent from output; its exact
+source path is rejected by the existing input audit. Greater dense-chart overlap
+is an accepted presentation trade-off; existing decluttering, Catalogue and Focus
+remain. Physical devices, non-Chromium browsers, screen readers and actual browser
+zoom are not certified; the existing Vite chunk advisory remains. 4.2E–I, final
+Checkpoint 4 acceptance, Cantum Stage 5, Checkpoint 5 deployment, Canon migration
+and Atlas Creator remain separately gated. No deployment occurred.
 
 ### Phase 4.2E — Focus Selection Animation
 

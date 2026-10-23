@@ -80,16 +80,18 @@ async page => {
 
     await open('sys_0001');await images();
     await page.locator('#labels [data-record-id="cb_0001"]').hover();
-    const transition=await page.evaluate(()=>{
+    const transition=await page.evaluate(async()=>{
+      const {minimumDiameter,MODEL_HANDOFF_RATIO}=await import('./visual-config.mjs');
       const m=window.__celestial,star=m.meshes.find(o=>o.userData.entity.id==='cb_0001'),radius=star.userData.physicalRadius;
-      const samples=[27.999,28,28.001,32.9,37.799,37.8,56].map(pixels=>{
+      const min=minimumDiameter(star.userData.entity),end=min*MODEL_HANDOFF_RATIO;
+      const samples=[min-.001,min,min+.001,(min+end)/2,end-.001,end,min*2].map(pixels=>{
         m.camera.zoom=pixels*m.map.size.x/(radius*2*m.height);m.render();
         const a=m.anchors.find(a=>a.entity.id==='cb_0001');
-        return {requested:pixels,projected:+a.button.dataset.physicalPixels,diameter:+a.button.dataset.displayDiameter,
+        return {minimum:min,requested:pixels,projected:+a.button.dataset.physicalPixels,diameter:+a.button.dataset.displayDiameter,
           model:star.material.opacity,proxy:+getComputedStyle(a.proxy.image).opacity,scale:star.scale.toArray(),hover:m.hoverSources.pointer};
       });return samples;
     });
-    for(const s of transition){check(s.hover==='cb_0001','hover identity survives handoff');check(Math.abs(s.projected-s.requested)<1e-8,'actual projection threshold');check(Math.abs(s.model+s.proxy-1)<1e-5,'complementary crossfade');check(s.scale.every(v=>v===1),'no zoom enlargement');check(Math.abs(s.diameter-Math.max(28,s.requested))<1e-8,'continuous apparent diameter');}
+    for(const s of transition){check(s.hover==='cb_0001','hover identity survives handoff');check(Math.abs(s.projected-s.requested)<1e-8,'actual projection threshold');check(Math.abs(s.model+s.proxy-1)<1e-5,'complementary crossfade');check(s.scale.every(v=>v===1),'no zoom enlargement');check(Math.abs(s.diameter-Math.max(s.minimum,s.requested))<1e-8,'continuous apparent diameter');}
     check(transition[0].model===0&&transition.at(-1).proxy===0,'full proxy/model endpoints');await reset();
     await panel('layers-panel');await page.getByRole('checkbox',{name:'Celestial bodies',exact:true}).uncheck();
     check((await state()).objects.filter(o=>o.id.startsWith('cb_')).every(o=>!o.visible&&o.hidden),'one layer hides model and proxy');
@@ -130,7 +132,8 @@ async page => {
       await mobile.waitForFunction(()=>[...document.querySelectorAll('.navigation-proxy')].every(n=>n.complete&&n.naturalWidth>0));
       highDPI=await mobile.locator('#labels [data-record-id="cb_0005"] img').evaluate(n=>({css:n.getBoundingClientRect().width,dpr:devicePixelRatio,
         canvas:document.querySelector('canvas').width,viewport:document.querySelector('canvas').clientWidth}));
-      check(highDPI.css===28&&Math.abs(highDPI.dpr-2)<1e-6&&Math.abs(highDPI.canvas/highDPI.viewport-2)<.01,'DPR 2 preserves CSS-pixel proxy size');
+      const starMinimum=await mobile.evaluate(async()=>(await import('./visual-config.mjs')).MINIMUM_DIAMETERS.star);
+      check(Math.abs(highDPI.css-starMinimum)<.01&&Math.abs(highDPI.dpr-2)<1e-6&&Math.abs(highDPI.canvas/highDPI.viewport-2)<.01,'DPR 2 preserves CSS-pixel proxy size');
       await mobile.locator('#selection').selectOption('cb_0007');await mobile.locator('#focus').click();
       check(await mobile.locator('#labels [data-record-id="cb_0007"]').getAttribute('data-representation')==='model','mobile high-DPI focus reaches physical model');
     } finally {await context.close();}

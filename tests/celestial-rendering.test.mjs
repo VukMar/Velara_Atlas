@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {OrthographicCamera,PerspectiveCamera,Vector3,Scene} from 'three';
 import {resolveObject} from '../src/core/history.mjs';
-import {KM_PER_CNU,minimumDiameter} from '../src/viewer/visual-config.mjs';
+import {KM_PER_CNU,MINIMUM_DIAMETERS,MODEL_HANDOFF_RATIO,minimumDiameter} from '../src/viewer/visual-config.mjs';
 import {physicalRadius,projectedDiameter,representation,projectedVisible} from '../src/viewer/celestial-scale.mjs';
 import {AtlasMap} from '../src/viewer/map-scene.mjs';
 import {createSystemObject} from '../src/viewer/celestial-model.mjs';
@@ -53,18 +53,41 @@ test('orthographic and perspective projection use actual matrices, CSS viewport 
 });
 
 test('central minima and continuous co-located crossfade never change physical radii',()=>{
-  assert.equal(minimumDiameter(body({objectType:'star'})),28);
-  assert.equal(minimumDiameter(body({visualVariant:'gas'})),24);
-  assert.equal(minimumDiameter(body()),20);
-  assert.equal(minimumDiameter(body({objectType:'moon'})),16);
-  assert.equal(minimumDiameter({entityType:'gate',objectType:'short_range_gate'}),10);
-  const e=body(),states=[19.99,20,20.001,23.5,26.999,27].map(px=>representation(e,px));
+  const original={star:28,gas:24,planet:20,moon:16,small:14,structure:12,short_range_gate:10};
+  assert(Object.isFrozen(MINIMUM_DIAMETERS));assert.deepEqual(Object.keys(MINIMUM_DIAMETERS),Object.keys(original));
+  for(const [key,old] of Object.entries(original))assert.equal(MINIMUM_DIAMETERS[key],old*1.5,'candidate uses authorized 50% upper bound');
+  assert.equal(MODEL_HANDOFF_RATIO,1.35);
+  const cases=[['star',body({objectType:'star'})],['gas',body({visualVariant:'gas'})],
+    ...['rocky','water','unknown',undefined].map(visualVariant=>['planet',body({visualVariant})]),
+    ['moon',body({objectType:'moon'})],...['asteroid','planetoid','comet','other'].map(objectType=>['small',body({objectType})]),
+    ['structure',{entityType:'station',objectType:'orbital_station'}],['structure',{entityType:'gate',objectType:'jump_gate'}],
+    ['structure',{entityType:'jump_hole'}],['short_range_gate',{entityType:'gate',objectType:'short_range_gate'}]];
+  for(const [key,entity] of cases) {
+    assert.equal(minimumDiameter(entity),MINIMUM_DIAMETERS[key]);
+    const unknown={...entity};delete unknown.physicalDiameterKm;
+    assert.deepEqual(representation(unknown,1e6),{diameter:MINIMUM_DIAMETERS[key],modelOpacity:0,proxyOpacity:1,kind:'proxy'});
+  }
+  const e=body(),min=minimumDiameter(e),end=min*MODEL_HANDOFF_RATIO;
+  const states=[min-.01,min,min+.001,(min+end)/2,end-.001,end].map(px=>representation(e,px));
   assert.equal(states[0].kind,'proxy');assert.equal(states.at(-1).kind,'model');
   assert.ok(states[2].modelOpacity<.00001);assert.ok(states.at(-2).proxyOpacity<.00001);
-  for(const s of states){assert.equal(s.modelOpacity+s.proxyOpacity,1);assert.ok(s.diameter>=20);assert.equal(physicalRadius(e),30);}
+  assert.ok(Math.abs(states[3].modelOpacity-.5)<1e-12);
+  for(const s of states){assert.equal(s.modelOpacity+s.proxyOpacity,1);assert.ok(s.diameter>=min);assert.equal(physicalRadius(e),30);}
   assert.equal(representation(body({physicalDiameterKm:undefined}),1000).kind,'proxy');
   for(const entity of [{entityType:'station'},{entityType:'gate',objectType:'jump_gate'},{entityType:'jump_hole'}]) {
-    for(const projected of [.001,12,100000])assert.deepEqual(representation(entity,projected),{diameter:12,modelOpacity:0,proxyOpacity:1,kind:'proxy'});
+    for(const projected of [.001,minimumDiameter(entity),100000])assert.deepEqual(representation(entity,projected),{diameter:MINIMUM_DIAMETERS.structure,modelOpacity:0,proxyOpacity:1,kind:'proxy'});
+  }
+});
+
+test('all known celestial categories retain a continuous smoothstep handoff at the central minima',()=>{
+  for(const entity of [body({objectType:'star'}),body({visualVariant:'gas'}),body(),body({objectType:'moon'}),body({objectType:'asteroid'})]) {
+    const min=minimumDiameter(entity);let previous=0;
+    for(let i=0;i<=100;i++) {
+      const t=i/100,pixels=min*(1+t*(MODEL_HANDOFF_RATIO-1)),state=representation(entity,pixels);
+      assert.ok(Math.abs(state.modelOpacity-t*t*(3-2*t))<1e-12);
+      assert.ok(state.modelOpacity>=previous-1e-12);assert.equal(state.modelOpacity+state.proxyOpacity,1);
+      assert.equal(state.diameter,Math.max(pixels,min));assert.equal(physicalRadius(entity),30);previous=state.modelOpacity;
+    }
   }
 });
 

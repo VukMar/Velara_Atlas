@@ -196,7 +196,7 @@ test('visual configuration is closed, immutable and leaves accepted defaults and
   for(const v of [null,[],{radiusLY:24},{schemaVersion:'1.3.0'},{hoverColor:-1},{hoverColor:1.5},{routeOpacity:NaN},{routeOpacity:2},{selectionDelayMs:'230'}, {[Symbol('x')]:1}])assert.throws(()=>createVisualConfig(v));
   let reads=0;const accessor={get routeOpacity(){reads++;return .5;}};assert.throws(()=>createVisualConfig(accessor));assert.equal(reads,0);
   assert.throws(()=>createVisualConfig(Object.create({routeOpacity:.5})));
-  assert.equal(KM_PER_CNU,10000);assert.equal(MODEL_HANDOFF_RATIO,1.35);assert.equal(MINIMUM_DIAMETERS.star,28);
+  assert.equal(KM_PER_CNU,10000);assert.equal(MODEL_HANDOFF_RATIO,1.35);assert.equal(MINIMUM_DIAMETERS.star,42);
   assert.throws(()=>new AtlasMap(null,null,null,null,{visual:{radiusLY:24}}),/Unsupported/,'invalid settings reject before WebGL allocation');
 });
 

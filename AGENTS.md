@@ -7,7 +7,7 @@ This file governs AI-assisted changes in this repository. Read it before making 
 [DEVELOPMENT_ROADMAP](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
 defines nine separately gated Checkpoint 4.2A–I phases, followed by final
 Checkpoint 4 creator acceptance and the pending Cantum Stage 5 decision.
-**4.2A–C are complete and creator-approved (2026-10-23); 4.2D–I remain planned,
+**4.2A–D are complete and creator-approved (2026-10-23); 4.2E–I remain planned,
 unimplemented and unauthorized**. The approved documentation foundation **does not**
 grant permission to implement or close out any phase.
 
@@ -154,6 +154,13 @@ validator: sixteen SVGs and three PNGs total. Preserve its bytes, shared project
 anchors, 60px cyan/30s hover rotation, 72px static gold lock and reduced-motion
 handling. Opening and audio remain excluded. Fixed radii never follow zoom;
 navigational minima affect proxies only.
+
+Completed, creator-approved 4.2D sets System View CSS minimum diameters centrally
+to 42/36/30/24/21/18/15px (star/gas planet/other planet/moon/small body/structure/
+short-range gate). Preserve 1 CNU = 10,000 km, the 1.35 handoff, physical geometry,
+original hit targets, 8px Sector symbols and 4.2C reticles. The committed
+`nexus-fallback-message.mp3` remains unchanged, reserved for 4.2H and excluded
+from the application build; source-repository presence grants no audio authority.
 
 Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Phase 3C is complete and creator-approved. Phase 3D is complete and creator-approved, with its implementation and completion documentation committed together. Phase 3E is complete and creator-approved, with its local authoring implementation and completion documentation committed together. Phase 3F integration and the noncanonical Demo showcase are complete and creator-approved; implementation and completion documentation enter Git history together. Architecture Phase 4 is complete and creator-approved, with implementation and status synchronization committed together. Phase 5 is complete and creator-approved, with implementation and status synchronization committed together. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. Further visual development, Atlas Creator, canonical migration and deployment remain unauthorized.
 

@@ -233,3 +233,37 @@ belong to renderer integration; Phase 1 does not claim those visuals exist.
 Data authority: [data model](DATA_MODEL.md) and current schema. Presentation
 authority: [viewer specification](VIEWER_SPECIFICATION.md),
 [NEXUS identity](NEXUS_VISUAL_IDENTITY.md) and [asset policy](VISUAL_ASSET_POLICY.md).
+
+## Checkpoint 4.2D visual-minimum amendment — approved 2026-10-23
+
+Checkpoint 4.2D is complete and creator-approved. The original Phase 3 minima
+above remain historical initial values. The accepted current **System View
+navigational minimum diameters**, owned by `MINIMUM_DIAMETERS` in
+`src/viewer/visual-config.mjs`, are:
+
+| Category | Original CSS px | Accepted CSS px | Increase |
+| --- | ---: | ---: | ---: |
+| Star | 28 | 42 | 50% |
+| Gas planet | 24 | 36 | 50% |
+| Other planet | 20 | 30 | 50% |
+| Moon | 16 | 24 | 50% |
+| Small celestial body | 14 | 21 | 50% |
+| Structure / station / Jump Gate / Jump Hole | 12 | 18 | 50% |
+| Short-range gate | 10 | 15 | 50% |
+
+Only that central table changes at runtime. Category mapping, unknown-size
+fallback, `KM_PER_CNU = 10000`, physical radius/geometry/mesh scale, authored XYZ,
+projection and camera math remain unchanged. Display diameter is still
+`max(projectedPhysicalDiameterPx, minimumDisplayDiameterPx)` and blending still
+uses the existing smoothstep over 1.0–1.35 times the minimum. Thus the star's
+handoff now spans 42–56.7px; physical inspection remains physically scaled.
+Interactive hit areas are unchanged; existing diameter-aware caption offsets and
+collision behavior require no algorithm change. Sector markers remain 8px;
+the independent 4.2C cyan/gold reticles remain 60/72px with 30s hover rotation.
+
+The creator approved the larger-symbol/reticle/caption relationship, including
+additional overlap in close clusters. Focus, Reset, top/perspective, history and
+navigation retain their existing semantics. No schema, world data, artwork,
+audio, Focus animation or transition work is included. Final checks pass 284
+tests and the existing release/browser gates; see [4.2D closeout](DEVELOPMENT_ROADMAP.md#phase-42d--system-object-icon-sizing)
+for results and remaining device/browser/accessibility limits.

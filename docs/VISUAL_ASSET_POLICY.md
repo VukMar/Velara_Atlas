@@ -321,3 +321,25 @@ bytes; the hash-suffixed name is a build result, not an authored runtime path.
 CSS alpha masking changes only presentation hues and retains source opacity and
 linework. No original artwork, other media, audio or extra dataset content was
 introduced. Existing bundle-size and cross-browser/device verification limits remain.
+
+## 11. Implemented Checkpoint 4.2D presentation minima
+
+**Complete and creator-approved, 2026-10-23.** System View minimum diameters are
+42px star, 36px gas planet, 30px other planet, 24px moon, 21px small body, 18px
+structure and 15px short-range gate. The central `visual-config.mjs` table is
+their sole runtime definition. Existing category artwork/mapping, neutral
+unknown-size fallback, physical dimensions/geometry, 1.35 handoff, projection,
+hit areas and independent 60/72px reticles are unchanged. Sector remains 8px.
+The [scale amendment](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md#checkpoint-42d-visual-minimum-amendment--approved-2026-10-23)
+preserves the original initial values and explains the apparent/physical boundary.
+
+No asset admission or production-audit rule changed. The inventory remains
+fourteen navigation SVGs, one Test Cantum sigil, one NEXUS reticle and three
+approved PNGs: 29 output files, 4,494,160 bytes. Exact source/output verification,
+subpath URLs, completeness/reachability and private/Canon restrictions remain.
+The committed `public/assets/nexus/nexus-fallback-message.mp3` remains reserved
+for separately authorized 4.2H, byte-identical to baseline `3a1bb44` (305,746 bytes,
+SHA-256 `9815ff5b01120100e8825aebb1b2a43a38329c82c8ec020b0cca0bf0011aab72`).
+It is not imported, emitted or played. Tests reject its exact source path and
+MP3 outputs; browser checks observe zero audio requests. A source-repository file
+does not grant application publication or playback permission.

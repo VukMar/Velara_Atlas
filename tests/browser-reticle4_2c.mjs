@@ -18,7 +18,9 @@ async page=>{
     check(a&&b&&Math.abs(a.x+a.width/2-b.x-b.width/2)<.1&&Math.abs(a.y+a.height/2-b.y-b.height/2)<.1,'shared projected center '+id);
     return a;
   };
-  page.on('pageerror',error);page.on('response',response);
+  const reticleRequest=/nexus-reticle.*\.svg(?:\?|$)/,resourceRoute=route=>route.continue();
+  // Exercise a fresh resource response on repeated runs, rather than decoded-mask cache reuse.
+  page.on('pageerror',error);page.on('response',response);await page.route(reticleRequest,resourceRoute);
   try {
     await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);
     await label('sys_0001').waitFor();await page.mouse.move(2,2);
@@ -95,11 +97,12 @@ async page=>{
     if(dev) {
       projection=await page.evaluate(async()=>{
         const {application:app}=await import('./main.mjs'),m=app.atlas;
-        const {projectedDiameter}=await import('./celestial-scale.mjs'),{MINIMUM_DIAMETERS}=await import('./visual-config.mjs');
+        const {projectedDiameter}=await import('./celestial-scale.mjs'),{MINIMUM_DIAMETERS,MODEL_HANDOFF_RATIO,minimumDiameter}=await import('./visual-config.mjs');
         const sectorDiameters=m.meshes.filter(o=>o.userData.entity.entityType==='star_system').map(o=>projectedDiameter(o.scale.x,o.position,m.camera,m.width,m.height));
         app.navigate('sys_0001');m.setMode('top');m.reset();const entity=m.entities.find(e=>e.id==='cb_0001');app.choose(entity,{present:false});
         const a=m.anchors.find(a=>a.entity.id===entity.id),samples=[];
-        for(const pixels of [27.99,32,38,56]) {
+        const minimum=minimumDiameter(entity);
+        for(const pixels of [minimum-.01,minimum*(1+MODEL_HANDOFF_RATIO)/2,minimum*MODEL_HANDOFF_RATIO+.01,minimum*2]) {
           m.camera.zoom=pixels*m.map.size.x/(a.object.userData.physicalRadius*2*m.height);m.render();
           samples.push({kind:a.button.dataset.representation,gold:m.targetReticle.selected.hidden,id:m.targetReticle.selected.dataset.recordId,x:m.targetReticle.selected.style.left,anchor:a.screen.x,size:a.button.dataset.displayDiameter,scale:a.object.scale.toArray()});
         }
@@ -116,7 +119,7 @@ async page=>{
         return {sectorDiameters,minima:MINIMUM_DIAMETERS,samples,occluded,offscreen,cycles:20,before,after};
       });
       check(projection.sectorDiameters.length===5&&projection.sectorDiameters.every(n=>Math.abs(n-8)<.01),'8px Sector symbols unchanged');
-      check(JSON.stringify(projection.minima)===JSON.stringify({star:28,gas:24,planet:20,moon:16,small:14,structure:12,short_range_gate:10}),'original apparent minima unchanged');
+      check(JSON.stringify(projection.minima)===JSON.stringify({star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15}),'4.2D central minima, independently of unchanged reticles');
       check(projection.samples.some(s=>s.kind==='proxy')&&projection.samples.some(s=>s.kind==='model'),'proxy/model handoff tested '+JSON.stringify(projection));
       check(projection.samples.every(s=>!s.gold&&s.id==='cb_0001'&&Math.abs(parseFloat(s.x)-s.anchor)<.01&&s.scale.every(v=>v===1)),'handoff preserves lock, anchor and geometry');
       check(projection.occluded&&projection.offscreen,'existing depth/clip decisions hide targeting');
@@ -125,7 +128,12 @@ async page=>{
       check(lifecycle.every(n=>n===2),'two indicators per lifetime');
     }
     check(!errors.length&&!failed.length,'normal errors/resources '+JSON.stringify({errors,failed}));
-    check(resources.length&&resources.every(r=>r.status===200),'reticle request succeeds under repository base');
+    // A decoded CSS mask can survive in Chromium's image cache without another
+    // page response event. Verify its actual computed resource URL explicitly too.
+    const assetURL=animation.mask.match(/^url\(["']?(.*?)["']?\)$/)?.[1];
+    check(assetURL&&new URL(assetURL,base).pathname.startsWith('/Velara_Atlas/'),'reticle uses repository base');
+    const assetResponse=await page.request.get(assetURL);resources.push({url:assetURL,status:assetResponse.status(),explicit:true});
+    check(resources.length&&resources.every(r=>r.status===200),'reticle request succeeds under repository base '+JSON.stringify(resources));
     return {base,animation,layouts,dpr,resources,projection,lifecycle,errors,failed};
-  } finally {page.off('pageerror',error);page.off('response',response);await page.emulateMedia({reducedMotion:'no-preference'});await page.evaluate(()=>document.documentElement.style.fontSize='');}
+  } finally {page.off('pageerror',error);page.off('response',response);await page.unroute(reticleRequest,resourceRoute);await page.emulateMedia({reducedMotion:'no-preference'});await page.evaluate(()=>document.documentElement.style.fontSize='');}
 }

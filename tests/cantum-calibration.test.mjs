@@ -37,7 +37,7 @@ test('8px Sector symbol projection is stable with camera zoom, perspective tilt,
     assert.ok(Math.abs(projectedDiameter(r,p,c,width,width)-8)<1e-8);
   }
   assert.equal(KM_PER_CNU,10000);
-  assert.deepEqual(MINIMUM_DIAMETERS,{star:28,gas:24,planet:20,moon:16,small:14,structure:12,short_range_gate:10});
+  assert.deepEqual(MINIMUM_DIAMETERS,{star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15});
   const mesh=createMarker({id:'sys_9999',entityType:'star_system',positionLY:{x:0,y:2,z:0}},'positionLY');
   assert.equal(mesh.material.color.getHex(),0xe6d3a2);assert.equal(mesh.geometry.type,'SphereGeometry');
   mesh.geometry.dispose();mesh.material.dispose();

@@ -89,9 +89,21 @@ UI-SVG admission preserves the narrow starter profile: sixteen SVGs and three
 PNGs total. Final checks pass 283 tests, validation, connections, build and release
 audit; Demo/production targeting and relevant browser regressions pass. See
 [4.2C results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42c--unified-targeting-reticle).
-**4.2D–I remain planned, unimplemented and unauthorized.** Final Checkpoint 4
+At the 4.2C closeout, 4.2D–I remained planned and unimplemented. Final Checkpoint 4
 acceptance and Cantum Stage 5 remain outstanding. Checkpoint 5, Canon migration,
 Atlas Creator and deployment remain separately gated; no deployment occurred.
+
+**Checkpoint 4.2D closeout (2026-10-23): complete and creator-approved.** System
+navigational minimum diameters are now 42/36/30/24/21/18/15 CSS px for star/gas
+planet/other planet/moon/small body/structure/short-range gate. Only the central
+size table changes; physical models, CNU conversion, 1.35 handoff, hit targets,
+8px Sector symbols and 60/72px reticles remain unchanged. All 284 tests and
+validation/build/release gates pass, with normal Demo/production browser checks.
+The 16-SVG/3-PNG inventory is unchanged. The repository MP3 remains untouched,
+reserved for 4.2H and excluded from the application. See [4.2D results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42d--system-object-icon-sizing).
+**4.2E–I remain planned and unimplemented.** Final Checkpoint 4 acceptance and
+Cantum Stage 5 remain pending; deployment, Canon migration and Atlas Creator are
+not authorized.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

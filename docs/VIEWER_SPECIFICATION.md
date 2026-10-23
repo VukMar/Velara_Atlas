@@ -116,6 +116,17 @@ The old generic proxy ring is retired. Marker dimensions, hit areas, authored XY
 physical scale, camera behavior, 4.2A InfoCards/header and 4.2B archival content are
 unchanged. See [approved treatment](NEXUS_VISUAL_IDENTITY.md#checkpoint-42-approved-direction--planned-implementation-amendment-2026-10-23).
 
+**4.2D apparent-size amendment (complete and creator-approved, 2026-10-23):**
+System View now uses centralized 42/36/30/24/21/18/15px minima for star/gas planet/
+other planet/moon/small body/structure/short-range gate. These are navigational
+pixels, never physical measurements. The original 1.35 smoothstep handoff,
+physical models, shared anchors, hit targets and camera behavior are unchanged;
+existing caption offsets/collision footprints follow the larger display sizes.
+The 60/72px reticles remain independent and unchanged. Original Phase 3 minimum
+values elsewhere in this specification describe that historical baseline; the
+[scale amendment](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md#checkpoint-42d-visual-minimum-amendment--approved-2026-10-23)
+records accepted current values. Sector symbols remain exactly 8px.
+
 ### Sector chart grid
 
 Sector View uses an **8×8 unnumbered grid** spanning the complete square X/Z

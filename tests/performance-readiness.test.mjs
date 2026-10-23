@@ -146,7 +146,7 @@ test('actual build includes every registered module and rejects output disclosur
     const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(extra);
   }
   const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
-  for(const name of ['nexus/unapproved.png','ui/unapproved.svg']) {
+  for(const name of ['nexus/unapproved.png','ui/unapproved.svg','nexus/nexus-fallback-message.mp3']) {
     const id=normalizePath(path.resolve('public/assets',name));
     assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
   }
