@@ -372,7 +372,7 @@ NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
 | `timeline-view.mjs` | Slider/numeric input, bounds/errors, previous/next exact event and latest; requests refresh without reloading. |
 | `layer-config.mjs`, `layer-view.mjs` | One frozen definition of supported layer keys/defaults/labels; independent per-map visibility. Visibility never changes historical eligibility. |
 | `app-shell.mjs` | Square stage sizing, floating-panel mutual exclusion/closing and Escape dispatch. |
-| `camera-controller.mjs` | Camera/OrbitControls creation, framing, constraints, modes, tilt, inspection, snapshots and control disposal. Reuses chart-layout and inspection-camera math unchanged. |
+| `camera-controller.mjs` | Camera/OrbitControls, framing, constraints, modes, inspection, snapshots and disposal; completed 4.2E owns one cancelable 550ms Focus RAF operation and local reduced-motion/input lifetime. Preserves inspection endpoints and ordinary chart math. |
 | `map-interaction.mjs` | Canvas/label inputs, drag-versus-click, delayed selection, pointer/focus/touch hover, one marker/route/zone picker and zone emphasis/tooltip. |
 | `scene-layers.mjs` | Per-map grid, influence, envelopes, zones, routes, meshes, labels/proxies, visibility and rebuild/disposal. Uses existing geometry/compositor/nameplate modules. |
 | `projected-labels.mjs` | Existing grid/caption/symbol projection, physical/proxy handoff, depth occlusion and caption layout; supplies final anchors to targeting, no new geometry or picking source. |
@@ -391,6 +391,42 @@ instrumentation; geometry/history are not copied into parallel stores. Lazy
 controller attachment preserves prototype-based non-WebGL harnesses. Camera,
 picking, scene and projection owners never import the facade: marker/hit-size
 factories are injected, avoiding circular imports.
+
+### Checkpoint 4.2E Focus ownership and lifecycle
+
+**Complete and creator-approved, 2026-10-23.** `CameraController.focus()` first
+cancels the old generation. In normal motion it snapshots both cameras,
+controls target/limits, inspection and saved top view, runs the established
+`applyFocus()` path with drawing suppressed, then restores the visible start.
+Planning suppresses camera change renders and renderer resizing; no duplicate
+live controls or renderer is constructed. One RAF handle interpolates toward
+the destination for 550ms using smoothstep and geometric scale/zoom/clipping.
+`finishFocus()` commits the exact captured endpoint and synchronizes controls.
+Inspection and ordinary chart constraints cannot fight the active transition.
+
+Capture-phase canvas listeners cancel before OrbitControls/manual keyboard
+input; programmatic `change` events only request rendering. Camera commands and
+resize cancel locally. `SceneLayers.clearMap()` cancels before scene cleanup,
+covering history, navigation and archival changes. Context loss, controller
+disposal and AtlasMap teardown cancel the handle and invalidate stale callbacks.
+The controller's `Lifetime` removes input/media-query listeners; reduced motion
+uses direct framing and an active preference change finishes immediately.
+
+Cancellation preserves the visible free camera. `clampChart()`'s optional actual
+half-frustum bounds this intermediate view without forcing the original chart
+plane/direction; its ordinary path is unchanged. Optional `focusFrame` snapshot
+metadata retains frustum, clipping and control limits across history/navigation;
+`getView()` remains read-only. `data-focus-moving` exposes completion for browser
+checks. Projected labels/reticles and physical/proxy calculations remain their
+existing owners' responsibility. No 4.2F map transition is implemented.
+
+`tests/focus-camera.test.mjs` uses an injected clock and real controls update math;
+`tests/fixtures/focus4_2e-endpoints.json` freezes 20 original `0c635da` camera
+destinations. The dedicated `browser-focus4_2e.mjs` callback checks normal and
+reduced motion, intermediate projections, input/cancellation, four viewports and
+teardown on the normal Demo and audited production preview. Existing celestial,
+reticle, sizing and zone callbacks now await actual completion before their
+unchanged settled-state assertions. See [closeout evidence and limits](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
 
 ### Safe presentation configuration
 

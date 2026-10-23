@@ -1,5 +1,6 @@
 /** Normal Demo / audited production Chromium callback. No authored data is changed. */
 async page=>{
+  const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failed=[],resources=[];
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());if(/nexus-reticle.*\.svg/.test(r.url()))resources.push({url:r.url(),status:r.status()});};
@@ -8,7 +9,7 @@ async page=>{
   const closePanels=()=>page.evaluate(()=>{for(const e of document.querySelectorAll('.floating'))e.open=false;});
   const select=async id=>{await panel('controls-panel');await page.locator('#selection').selectOption(id);await closePanels();};
   const open=async id=>{await select(id);await page.locator('#enter').click();};
-  const focus=async id=>{await select(id);await page.locator('#focus').click();};
+  const focus=async id=>{await select(id);await page.locator('#focus').click();await settled();};
   const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await closePanels();};
   const screenshot=name=>page.screenshot({path:`.playwright-mcp/4.2c-${name}.png`});
   const aligned=async (element,id)=>{
@@ -34,14 +35,14 @@ async page=>{
     check(Math.abs((await aligned(gold,'sys_0001')).width-72)<.01,'72px selected');check(await hover.isHidden(),'no duplicate cyan on selected');
     // The dialog is intentionally nonmodal; Focus closes it without deselecting.
     await screenshot('sector-selected');
-    await page.locator('#focus').click();await panel('controls-panel');await page.locator('#reset').click();await closePanels();
+    await page.locator('#focus').click();await settled();await panel('controls-panel');await page.locator('#reset').click();await closePanels();
     await label('sys_0002').hover();await aligned(hover,'sys_0002');await aligned(gold,'sys_0001');await screenshot('sector-both');
     check(await gold.evaluate(e=>getComputedStyle(e,'::before').animationName)==='none','selected is static');
     check(await gold.evaluate(e=>getComputedStyle(e,'::before').backgroundColor)==='rgb(230, 186, 123)','gold color');
     await select('sys_0001');await page.keyboard.press('Escape');check(await gold.isHidden(),'InfoCard Escape clears lock');
     await page.keyboard.press('Tab');await label('sys_0002').focus();await aligned(hover,'sys_0002');
     check(await label('sys_0002').evaluate(e=>getComputedStyle(e).outlineStyle!=='none'),'keyboard-visible outline retained');
-    await label('sys_0002').press('Enter');await page.locator('#focus').click();await panel('controls-panel');await page.locator('#reset').click();await closePanels();
+    await label('sys_0002').press('Enter');await page.locator('#focus').click();await settled();await panel('controls-panel');await page.locator('#reset').click();await closePanels();
     await page.keyboard.press('Tab');await label('sys_0002').focus();await aligned(gold,'sys_0002');check(await hover.isHidden(),'selected keyboard focus gives gold priority');
     check(await label('sys_0002').evaluate(e=>getComputedStyle(e).outlineStyle!=='none'),'selected marker retains explicit keyboard outline');
     await select('sys_0002');await page.keyboard.press('Escape');
@@ -69,7 +70,7 @@ async page=>{
     const layouts=[];
     for(const [width,height,scale] of [[1280,900,1],[390,844,1],[320,740,1],[844,390,1],[320,740,2]]) {
       await page.setViewportSize({width,height});await page.evaluate(scale=>document.documentElement.style.fontSize=scale*100+'%',scale);
-      await select('sys_0001');await page.locator('#focus').click();const b=await aligned(gold,'sys_0001');
+      await select('sys_0001');await page.locator('#focus').click();await settled();const b=await aligned(gold,'sys_0001');
       check(Math.abs(b.width-72)<.01,'CSS pixel sizing independent of viewport/text scaling');
       check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no horizontal overflow');
       layouts.push({width,height,scale,diameter:b.width});if(width===390)await screenshot('mobile');

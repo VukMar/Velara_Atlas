@@ -12,8 +12,8 @@ deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A–D are implemented, complete and creator-approved.**
-Phases 4.2E–I remain planned, unimplemented and unauthorized.
+**Closeout update (2026-10-23): 4.2A–E are implemented, complete and creator-approved.**
+Phases 4.2F–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,12 +131,12 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–D complete and creator-approved; 4.2E–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–E complete and creator-approved; 4.2F–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Complete and creator-approved (2026-10-23):** centralized 42/36/30/24/21/18/15px System minima; physical geometry, picking and Sector 8px marker preserved. |
-| Checkpoint 4.2E — Focus Selection Animation | **Planned:** smooth cancelable camera focus; preserve exact final framing. |
+| Checkpoint 4.2E — Focus Selection Animation | **Complete and creator-approved (2026-10-23):** 550ms smoothstep camera-owned Focus, exact inspection/zone/anchor endpoints, interruptible and immediate under reduced motion. |
 | Checkpoint 4.2F — Map Navigation Transitions | **Planned:** Sector→System, System→Sector, System→System record changes. |
 | Checkpoint 4.2G — NEXUS Atlas Opening | **Planned:** brief branded entry screen and audio/silent choices; no playback. |
 | Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Planned:** two approved prerecorded speech situations, persistent accessible toggle. |
@@ -182,7 +182,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–D are complete and creator-approved; 4.2E–I remain planned and
+completed; **4.2A–E are complete and creator-approved; 4.2F–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -504,6 +504,10 @@ and Atlas Creator remain separately gated. No deployment occurred.
 
 ### Phase 4.2E — Focus Selection Animation
 
+**Status: complete and creator-approved, 2026-10-23.** The creator reviewed and
+approved movement timing/easing, inspection framing, interruption and reduced
+motion, then separately authorized this closeout commit and normal push.
+
 **Purpose/scope:** Animate existing computed Focus camera position/target
 over a tentative 400–650ms, retaining established object inspection,
 zone framing, chart bounds and camera controls.
@@ -516,6 +520,51 @@ without animated movement or stale handlers.
 **Visual review:** small-body inspection, planets, stars, zones,
 rapid Focus/Reset in both camera modes. **Depends on:** D.
 **Gate:** creator accepts timing/inspection correctness.
+
+**Accepted implementation:** `CameraController` owns one cancelable RAF operation
+with **550ms** duration and smoothstep **`t*t*(3-2*t)`** easing. Viewing scale,
+zoom and positive clipping ranges interpolate geometrically; target movement is
+coordinated with scale. The existing Focus path computes the endpoint with
+drawing suppressed, then restores the starting state before moving. No second
+renderer, duplicate live OrbitControls, object animation or 4.2F navigation
+transition is introduced. Inspection constraints are deferred until exact
+endpoint commitment, preserving the original camera/controls/saved-top state.
+
+Manual pointer/wheel/touch and keyboard camera input cancels before controls act;
+internal controls changes do not cancel the animation. New Focus, Reset, zoom,
+tilt, mode/restore, resize, map rebuild, year change/disappearance, navigation,
+archival entry, context loss and disposal invalidate the old generation. Manual
+interruption retains the visible free camera and its actual frustum; optional
+`focusFrame` snapshots retain that view across history/navigation. Ordinary chart
+clamping is unchanged. Reduced motion applies the valid endpoint directly; an
+active preference change completes it immediately. Selection, projected reticles,
+InfoCard closure and canvas focus return remain intact.
+
+**Verification:** `npm test` passes **306 tests**, zero failed/skipped, including
+22 focused camera tests. Twenty frozen endpoints from `0c635da` cover seven
+record types in top/perspective and leaving existing inspection for station,
+gate and zone Focus. Position, target, orientation/up, zoom, clipping/projection,
+inspection limits and saved top view match within `1e-10 * max(1, abs(expected))`;
+controlled-clock tests cover continuity, stale callbacks and cancellation.
+Validation, connection freshness, build, release audit and `git diff --check`
+pass. Normal Demo and production callbacks separately exercise normal/reduced
+motion, 12 movements, 13 interruption paths and four viewport sizes. Celestial,
+reticle, sizing, navigation, zone, touch, layout, module/lifecycle, archival and
+release/accessibility regressions pass. Repeated Focus/Reset retains GPU resource
+counts and no queued frame; remount leaves one canvas. No delayed callback can
+overwrite the next authoritative camera operation.
+
+**Preservation/limits:** world JSON, schemas, resolver, inspection math, artwork,
+4.2D minima, 8px Sector markers and 60/72px reticles are unchanged. Strict source/
+output admission, private/Canon exclusions and dataset verification remain intact:
+29 files, 16 exact SVGs, three exact PNGs, **4,499,915 bytes**. The 305,746-byte
+reserved MP3 remains byte-identical to `0c635da`, unimported/unplayed and absent
+from output; browser callbacks observe no audio requests. Local Chromium software
+rendering can deliver frames after the 550ms clock deadline; physical-device,
+non-Chromium, assistive-technology and actual browser-zoom certification remain
+outstanding. Existing Vite chunk-size advisory remains. 4.2F–I, final Checkpoint 4
+acceptance, Cantum Stage 5, Checkpoint 5 deployment, Canon migration and Atlas
+Creator remain separately gated. No deployment occurred.
 
 ### Phase 4.2F — Map Navigation Transitions
 

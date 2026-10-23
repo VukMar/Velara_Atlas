@@ -20,15 +20,20 @@ export function fitSquare(camera, map) {
   return target;
 }
 
-/** Keep the complete visible X/Z rectangle inside the authored square. */
-export function clampChart(camera, target, map) {
+/** Keep the complete visible X/Z rectangle inside the authored square.
+ * A canceled Focus supplies its actual intermediate frustum: keep that free
+ * camera's plane/direction instead of reapplying the full-chart Y=origin frame.
+ * The ordinary navigation path and its original bounds remain unchanged. */
+export function clampChart(camera, target, map, visibleHalf) {
   const side = assertSquareMap(map);
+  const previous=visibleHalf===undefined?null:target.clone();
   camera.zoom = THREE.MathUtils.clamp(camera.zoom,1,2048);
-  const half = side / (2 * camera.zoom), reach = Math.max(0,side / 2 - half);
+  const half = visibleHalf ?? side / (2 * camera.zoom), reach = Math.max(0,side / 2 - half);
   target.x = THREE.MathUtils.clamp(target.x,map.origin.x - reach,map.origin.x + reach);
   target.z = THREE.MathUtils.clamp(target.z,map.origin.z - reach,map.origin.z + reach);
-  target.y = map.origin.y;
-  camera.position.x = target.x; camera.position.z = target.z;
+  if(visibleHalf===undefined)target.y = map.origin.y;
+  if(previous){camera.position.x+=target.x-previous.x;camera.position.z+=target.z-previous.z;}
+  else {camera.position.x = target.x; camera.position.z = target.z;}
   camera.lookAt(target); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
   return {minX:target.x-half,maxX:target.x+half,minZ:target.z-half,maxZ:target.z+half};
 }

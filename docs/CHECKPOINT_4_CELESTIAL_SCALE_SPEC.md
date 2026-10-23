@@ -267,3 +267,16 @@ navigation retain their existing semantics. No schema, world data, artwork,
 audio, Focus animation or transition work is included. Final checks pass 284
 tests and the existing release/browser gates; see [4.2D closeout](DEVELOPMENT_ROADMAP.md#phase-42d--system-object-icon-sizing)
 for results and remaining device/browser/accessibility limits.
+
+## Checkpoint 4.2E inspection-motion amendment — approved 2026-10-23
+
+Checkpoint 4.2E is complete and creator-approved. Focus now approaches the same
+inspection destination over 550ms using smoothstep easing; reduced motion applies
+it directly. `inspectionFor`, `frameInspection` and `constrainInspection` remain
+unchanged. Camera-owned interpolation defers inspection constraints until exact
+arrival; interruption retains the current free camera rather than snapping to
+an abandoned body. Original physical framing, clipping, distance/zoom limits,
+saved top view, CNU conversion, 1.35 handoff and 4.2D minima are preserved.
+Twenty frozen baseline endpoints and controlled-clock/browser regressions verify
+the contract. This changes Focus only, with no object scaling, authored geometry,
+map-navigation transition or audio. See [4.2E results](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).

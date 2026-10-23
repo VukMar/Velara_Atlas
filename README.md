@@ -101,9 +101,21 @@ size table changes; physical models, CNU conversion, 1.35 handoff, hit targets,
 validation/build/release gates pass, with normal Demo/production browser checks.
 The 16-SVG/3-PNG inventory is unchanged. The repository MP3 remains untouched,
 reserved for 4.2H and excluded from the application. See [4.2D results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42d--system-object-icon-sizing).
-**4.2E–I remain planned and unimplemented.** Final Checkpoint 4 acceptance and
-Cantum Stage 5 remain pending; deployment, Canon migration and Atlas Creator are
-not authorized.
+At the 4.2D closeout, 4.2E–I remained planned and unimplemented. Final Checkpoint 4
+acceptance and Cantum Stage 5 remain pending; deployment, Canon migration and
+Atlas Creator are not authorized.
+
+**Checkpoint 4.2E closeout (2026-10-23): complete and creator-approved.** Focus
+Selection uses a 550ms smoothstep camera movement, preserving the original
+physical inspection, ordinary object and zone destinations. Manual input,
+commands, history/navigation and teardown cancel safely; reduced motion applies
+the final state immediately. All 306 tests and validation/build/release gates
+pass, with normal Demo and production browser regressions. Asset admission is
+unchanged (sixteen SVGs, three PNGs); the reserved 4.2H MP3 is unchanged and excluded.
+See [4.2E results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
+**4.2F–I remain planned, unimplemented and separately gated.** Final Checkpoint 4
+acceptance and Cantum Stage 5 remain pending; Checkpoint 5 deployment, Canon
+migration and Atlas Creator are not authorized. No deployment occurred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

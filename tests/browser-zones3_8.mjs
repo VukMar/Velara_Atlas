@@ -1,5 +1,6 @@
 /** Demo Playwright MCP suite; synthetic released records are intercepted in memory only. */
 async page => {
+  const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base='http://127.0.0.1:5173/Velara_Atlas/',pattern=/public\/datasets\/demo\/systems\/sys_0001\.json/;
   const errors=[],check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',error);
@@ -60,7 +61,7 @@ async page => {
     }
     await choose('zon_9902');check((await page.locator('#facts').innerText()).includes('60000'),'InfoCard preserves off-map geometry origin');
     check((await page.locator('#facts').innerText()).includes('25000'),'InfoCard includes recorded radii');
-    await page.locator('#focus').click();await hide();
+    await page.locator('#focus').click();await settled();await hide();
     const focused=await state();check(focused.target[0]>=-50000&&focused.target[0]<=50000&&focused.target[2]>=-50000&&focused.target[2]<=50000,'Focus stays inside chart');
     check(focused.target[0]!==60000,'Focus never uses off-map origin');
     await panel('controls-panel');await page.locator('#reset').click();await hide();

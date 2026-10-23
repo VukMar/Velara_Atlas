@@ -127,6 +127,30 @@ values elsewhere in this specification describe that historical baseline; the
 [scale amendment](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md#checkpoint-42d-visual-minimum-amendment--approved-2026-10-23)
 records accepted current values. Sector symbols remain exactly 8px.
 
+### Focus Selection motion — Checkpoint 4.2E
+
+**Complete and creator-approved, 2026-10-23.** Normal-motion Focus uses **550ms**
+smoothstep (`t*t*(3-2*t)`) camera movement toward the original inspection,
+ordinary-anchor or zone destination. Scale/zoom/clipping interpolate geometrically;
+the settled position, controls target, orientation/up, zoom, clipping/projection,
+inspection restrictions and saved top view retain their established values.
+Inspection constraints activate at arrival, without prematurely pinning movement.
+
+Pointer drag/pan, wheel, touch, keyboard camera actions, Zoom, tilt, Reset, a
+second Focus, mode/restore, resize, year/rebuild/disappearance, navigation,
+archival entry, context loss and disposal cancel the old operation. Manual input
+takes precedence from the visible intermediate free view. Its actual frustum
+remains bounded and can be retained in an optional `focusFrame` camera snapshot;
+ordinary chart framing/clamping is unchanged. Reading a snapshot does not cancel
+Focus. Reduced motion applies the valid endpoint directly; changing to reduced
+motion while moving completes it immediately. There is no replacement effect.
+
+The InfoCard closes and returns keyboard focus to the canvas as before; selection
+persists. Existing projected anchors drive reticles and proxy/model handoff on
+every frame, with no independent object or reticle movement. Normal map navigation
+remains instantaneous: 4.2F transitions are not implemented. See [accepted results
+and limits](DEVELOPMENT_ROADMAP.md#phase-42e--focus-selection-animation).
+
 ### Sector chart grid
 
 Sector View uses an **8×8 unnumbered grid** spanning the complete square X/Z
@@ -574,11 +598,12 @@ failure and failed startup remain technical errors with Retry. WebGL context los
 hides any prior archival panel and retains technical recovery feedback across
 historical refreshes; it cannot become an archival notice.
 
-The remaining **planned** 4.2E smooths Focus only, 4.2F adds three short cancelable
+Completed, creator-approved 4.2A–E retain branding, archival content, targeting,
+System minima and Focus motion described above. The remaining **planned** 4.2F adds three short cancelable
 navigation transitions, 4.2G introduces the entry screen before any
 playback, 4.2H two approved prerecorded speeches and audio preferences,
 and 4.2I optional UI SFX last. Motion honors reduced motion and lifetime
-cleanup; no second renderer or extra world data. 4.2C–I remain unimplemented and
+cleanup; no second renderer or extra world data. 4.2F–I remain unimplemented and
 need separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 

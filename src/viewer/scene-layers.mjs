@@ -108,6 +108,7 @@ export class SceneLayers {
   }
   clearMap() {
     const m=this.host;
+    m.cameraController.cancelFocus();
     m.targetReticle?.clear();
     this.labelsLifetime.dispose();this.labelsLifetime=new Lifetime();
     m.influenceEnvelopes?.dispose();m.influenceEnvelopes=null;m.flatInfluence=null;

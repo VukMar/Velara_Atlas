@@ -1,5 +1,6 @@
 /** Demo MCP entry point: real renderer, public demo, no production debug hooks. */
 async page => {
+  const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],results=[];
   let expectedFailure=false;
   const error=message=>{if(message.type()==='error'&&!expectedFailure)errors.push(message.text());};
@@ -11,7 +12,7 @@ async page => {
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const reset=async()=>{await panel('controls-panel');await page.locator('#reset').click();};
-  const focus=async id=>{await choose(id);await page.locator('#focus').click();};
+  const focus=async id=>{await choose(id);await page.locator('#focus').click();await settled();};
   const mode=async()=>{await panel('controls-panel');await page.locator('#mode').click();};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');};
   const images=()=>page.waitForFunction(()=>[...document.querySelectorAll('.navigation-proxy')].every(n=>n.complete&&n.naturalWidth>0));
@@ -134,15 +135,15 @@ async page => {
         canvas:document.querySelector('canvas').width,viewport:document.querySelector('canvas').clientWidth}));
       const starMinimum=await mobile.evaluate(async()=>(await import('./visual-config.mjs')).MINIMUM_DIAMETERS.star);
       check(Math.abs(highDPI.css-starMinimum)<.01&&Math.abs(highDPI.dpr-2)<1e-6&&Math.abs(highDPI.canvas/highDPI.viewport-2)<.01,'DPR 2 preserves CSS-pixel proxy size');
-      await mobile.locator('#selection').selectOption('cb_0007');await mobile.locator('#focus').click();
+      await mobile.locator('#selection').selectOption('cb_0007');await mobile.locator('#focus').click();await mobile.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
       check(await mobile.locator('#labels [data-record-id="cb_0007"]').getAttribute('data-representation')==='model','mobile high-DPI focus reaches physical model');
     } finally {await context.close();}
 
-    const depth=await page.evaluate(()=>{
+    const depth=await page.evaluate(async()=>{
       const m=window.__celestial,front={id:'memory_front',entityType:'celestial_body',objectType:'star',name:'TEST FRONT',physicalDiameterKm:1000000,position:{x:0,y:0,z:0}},
         back={id:'memory_back',entityType:'celestial_body',objectType:'planet',name:'TEST BACK',position:{x:0,y:-500,z:0}};
       m.setMap({origin:{x:0,y:0,z:0},size:{x:10000,y:2000,z:10000},unit:'CNU'},[front,back],'position',null,{contextId:'memory-only-depth'});
-      m.focus(front);
+      m.focus(front);await new Promise(resolve=>{const frame=()=>m.cameraController.transition?requestAnimationFrame(frame):resolve();frame();});
       const hidden=()=>m.anchors.find(a=>a.entity.id===back.id).button.hidden;
       const top=hidden();m.setMode('perspective');m.meshes.find(o=>o.userData.entity.id===back.id).position.set(0,-400,-300);m.render();
       const r=m.renderer.domElement.getBoundingClientRect();

@@ -1,5 +1,6 @@
 /** Normal Demo or audited production callback: category pixels, shared centers and unchanged controls. */
 async page=>{
+  const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],failed=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>requests.push(r.url()),response=r=>{if(r.status()>=400)failed.push(r.url());};
   const expected={star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15};
@@ -35,12 +36,12 @@ async page=>{
       await page.waitForFunction(()=>{const e=document.querySelector('[data-record-id="cb_0001"] img');return e?.complete;});
       const layout=await page.locator('[data-record-id="cb_0001"] img').evaluate(e=>({diameter:e.getBoundingClientRect().width,scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
       check(Math.abs(layout.diameter-expected.star)<.02&&layout.scroll<=layout.viewport,'responsive minimum '+width);layouts.push({width,height,...layout});
-      await panel('controls-panel');await page.locator('#selection').selectOption('cb_0001');await page.locator('#focus').click();await closePanels();
+      await panel('controls-panel');await page.locator('#selection').selectOption('cb_0001');await page.locator('#focus').click();await settled();await closePanels();
       check(await page.locator('#labels [data-record-id="cb_0001"]').getAttribute('data-representation')==='model','physical inspection remains a model');
       check(Math.abs((await page.locator('.target-selected').boundingBox()).width-72)<.02,'gold lock stays 72px');await page.locator('#sector').click();
     }
     await page.setViewportSize({width:1280,height:900});await page.emulateMedia({reducedMotion:'reduce'});await open('sys_0003');
-    await panel('controls-panel');await page.locator('#selection').selectOption('gat_0013');await page.locator('#focus').click();await closePanels();
+    await panel('controls-panel');await page.locator('#selection').selectOption('gat_0013');await page.locator('#focus').click();await settled();await closePanels();
     await page.locator('[data-record-id="cb_0011"]').hover();
     check(await page.locator('.target-hover').evaluate(e=>getComputedStyle(e,'::before').animationName)==='none','reduced motion preserved');
     await page.screenshot({path:'.playwright-mcp/4.2d-after-dense-both.png'});
