@@ -129,9 +129,29 @@ All 318 tests and validation/connection/build/release gates pass, with dedicated
 Demo/production and existing browser regressions. The unchanged inventory is
 sixteen SVGs and three PNGs; the reserved MP3 remains untouched and excluded.
 See [4.2F results and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
-**4.2G–I remain planned, unimplemented and separately gated.** Final Checkpoint 4
+At the 4.2F closeout, **4.2G–I remained planned, unimplemented and separately gated.** Final Checkpoint 4
 acceptance and Cantum Stage 5 remain pending. Checkpoint 5, Canon migration,
 Atlas Creator and deployment are not authorized. No deployment occurred.
+
+**Checkpoint 4.2G closeout (2026-10-24): complete and creator-approved.** A ready-only
+opening presents the unchanged front-facing NEXUS artwork and MCR insignia, the
+approved [universal introduction](public/content/nexus/opening-data.json), and
+`Enter with audio` / `Enter silently`. Both enter immediately without changing
+the loaded chart, year or camera; the first records only in-memory audio intent.
+Escape enters silently. The opening appears once per successful fresh page load,
+including reload, with no browser persistence or reopening during navigation or
+same-document remount. The optional 240ms ease-out appearance respects reduced
+motion. Missing artwork leaves entry usable; startup errors expose Retry instead.
+No audio playback or welcome recording is implemented. Edit only the opening JSON
+and rebuild to revise the introduction; the released script is creator-approved
+for future 4.2H voice production. All 330 tests and required release gates pass;
+dedicated Demo/production opening and existing A–F browser regressions pass.
+The same sixteen SVGs and three PNGs are bundled; the reserved MP3 is unchanged
+and excluded. See [4.2G behavior and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42g--nexus-atlas-opening).
+**4.2A–G are complete and creator-approved; 4.2H–I remain planned, unimplemented
+and separately gated.** Final Checkpoint 4 acceptance and Cantum Stage 5 remain
+pending. Checkpoint 5, Canon migration, Atlas Creator and deployment remain
+unauthorized. No deployment occurred.
 
 The Checkpoint 3.6 layout refinement adds a centered square chart, floating panels,
 vertical History and a dismissible centered InfoCard. See [layout rules and controls](docs/LAYOUT_REVISION_3_6.md)

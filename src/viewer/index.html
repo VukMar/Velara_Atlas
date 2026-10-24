@@ -72,6 +72,22 @@
     <dl id="facts"></dl><p id="description"></p><div class="toolbar"><button id="enter" hidden>Enter system</button><button id="focus" disabled>Focus selection</button></div>
     <div id="destinations"></div><p class="muted">1 CNU = 10,000 km. Distant icons are navigational symbols; known-size celestial models use authored physical diameters. Focus Selection inspects a body; Reset View returns to the chart. No orbital simulation is implied.</p>
   </dialog>
+  <dialog id="opening-panel" aria-labelledby="opening-title opening-name" aria-describedby="opening-message opening-note">
+    <div class="opening-brand">
+      <img id="opening-insignia" width="48" height="48" alt="Maric Cosmic Records">
+      <div><p id="opening-title"></p><h1 id="opening-name" tabindex="-1" autofocus></h1></div>
+      <span class="demo-badge">NONCANONICAL DEMONSTRATION</span>
+    </div>
+    <div class="opening-layout">
+      <div class="opening-art"><img id="opening-portrait" width="2752" height="1536" alt="" aria-hidden="true"></div>
+      <div class="opening-copy">
+        <p id="opening-message"></p>
+        <div class="opening-actions"><button id="opening-audio" type="button">Enter with audio</button><button id="opening-silent" type="button">Enter silently</button></div>
+        <p id="opening-note">Voice playback is not available in this preview. Both entry options currently open the Atlas without sound.</p>
+        <p class="opening-escape">Escape enters silently.</p>
+      </div>
+    </div>
+  </dialog>
   <footer>Read-only demonstration · Hover/focus routes to highlight · Checkpoint 3.6</footer>
   <noscript>This Atlas requires JavaScript and WebGL.</noscript><script type="module" src="./main.mjs"></script>
 </body></html>

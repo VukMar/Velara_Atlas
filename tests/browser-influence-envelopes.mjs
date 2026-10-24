@@ -1,5 +1,6 @@
 /** Development Chromium MCP entry point: real meshes, shaders and controls. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());};const pageError=e=>errors.push(e.message);
@@ -21,7 +22,7 @@ async page=>{
       grid:m.scene.children.find(o=>o.userData.layer==='grid')?.geometry.attributes.position.array.filter((_,i)=>i%3===1).every(y=>y===m.map.planeY)};
   });
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await page.locator('.cantum-nameplate').first().waitFor();
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('.cantum-nameplate').first().waitFor();
     await page.evaluate(async()=>{const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;AtlasMap.prototype.render=function(){window.__envelopeScene=this;return render.call(this);};});
     await panel('controls-panel');await hide();
     const initial=await state();check(initial.flat&&!initial.active&&initial.grid,'top-down uses only unchanged flat shading on unchanged grid');
@@ -94,5 +95,5 @@ async page=>{
     }
     check(errors.length===0,errors.join('\n'));
     return {dualPresentation:'passed',geometryReuse:'passed',history:histories,gpuAlpha:gpu,dpr,layerControls:'passed',nameplatesAndSigils:'passed',resourceCleanup:'passed',mobileSizes:2,consoleErrors:errors};
-  } finally {page.off('console',error);page.off('pageerror',pageError);await page.setViewportSize({width:1440,height:1000});await page.goto(base);}
+  } finally {page.off('console',error);page.off('pageerror',pageError);await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);}
 }

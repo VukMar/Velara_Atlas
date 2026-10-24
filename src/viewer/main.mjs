@@ -11,6 +11,7 @@ import {createLayerView} from './layer-view.mjs';
 import {installShell} from './app-shell.mjs';
 import {createArchivalView} from './archival-view.mjs';
 import {createMapTransition} from './map-transition.mjs';
+import {createOpeningView} from './opening-view.mjs';
 
 const $=id=>document.getElementById(id);
 const message=text=>{$('map-message').textContent=text;$('map-message').hidden=!text;};
@@ -18,11 +19,13 @@ const notice=text=>{$('notice').textContent=text;};
 const rootLifetime=new Lifetime();
 export let application=null;
 let startup=0;
+// Page-session UI intent only; never persisted or mixed with historical AppState.
+const entrySession={choice:null,presented:false};
 
 /** Composition only: history belongs to core/state, presentation to the UI owners. */
-function mount(dataset,{fallbackData,archivalPortraitURL}) {
+function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL}) {
   const lifetime=new Lifetime(),state=new AppState(dataset);
-  let atlas,info,catalogue,layers,timeline,archival,transition,contextLost=false;
+  let atlas,info,catalogue,layers,timeline,archival,transition,opening,contextLost=false;
   function choose(record,options) {
     transition?.cancel();
     state.select(record);$('selection').value=state.selectedId??'';atlas.setSelected(state.selectedId);
@@ -74,6 +77,8 @@ function mount(dataset,{fallbackData,archivalPortraitURL}) {
     transition=createMapTransition({viewport:$('viewport'),inputs:[$('chart-stage'),$('info-panel')]},lifetime);
     const context={$,state,atlas,choose,navigate};
     archival=createArchivalView({$,navigate,portraitURL:archivalPortraitURL,config:fallbackData},lifetime);
+    opening=createOpeningView({$,config:openingData,portraitURL:archivalPortraitURL,insigniaURL,session:entrySession,
+      returnFocus:()=>atlas.renderer.domElement.focus({preventScroll:true})},lifetime);
     catalogue=createCatalogue(context,lifetime);info=createInfoCard(context,lifetime);layers=createLayerView(context,lifetime);
     timeline=createTimeline({$,state,notice,onChange:()=>refresh()},lifetime);
     lifetime.listen($('selection'),'change',()=>choose(state.view.records.find(r=>r.id===$('selection').value)??null));
@@ -85,12 +90,14 @@ function mount(dataset,{fallbackData,archivalPortraitURL}) {
     lifetime.listen($('tilt'),'input',()=>atlas.setTilt($('tilt').valueAsNumber));
     lifetime.listen(atlas.renderer.domElement,'webglcontextlost',event=>{
       transition.cancel();
+      const openingHadFocus=opening.visible;opening.hide();
       event.preventDefault();contextLost=true;const hadFocus=archival.containsFocus();archival.hide();
       message('Graphics context lost. Reload to restore the map.');$('retry').hidden=false;
-      if(hadFocus)$('retry').focus({preventScroll:true});
+      if(hadFocus||openingHadFocus)$('retry').focus({preventScroll:true});
     });
     refresh(false);
-    return {state,atlas,refresh,navigate,choose,dismissInfo:()=>info.dismiss(),dispose:()=>lifetime.dispose()};
+    opening.show();
+    return {state,atlas,refresh,navigate,choose,get entryChoice(){return entrySession.choice;},dismissInfo:()=>info.dismiss(),dispose:()=>lifetime.dispose()};
   } catch(error) {lifetime.dispose();throw error;}
 }
 
@@ -98,7 +105,7 @@ export async function start() {
   const generation=++startup;
   application?.dispose();application=null;$('retry').hidden=true;message('Loading public demonstration records…');
   try {
-    // The content module statically imports one JSON file. Catch import/validation
+    // The content module statically imports two exact JSON files. Catch import/validation
     // failures here as technical startup errors, including missing/malformed JSON.
     const [dataset,content]=await Promise.all([loadDemoDataset(),import('./nexus-content.mjs')]);
     if(rootLifetime.disposed||generation!==startup)return;

@@ -1,5 +1,6 @@
 /** Integrated acceptance against the ordinary Demo, not a fixture server. */
 async page => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],politics=[],navigation=[],factions=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());},onPageError=e=>errors.push(e.message);
@@ -17,7 +18,7 @@ async page => {
     labels:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,text:a.element.textContent,sigil:!!a.element.querySelector('img'),visible:a.visible})),
     memory:{...m.renderer.info.memory}};});
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     const preload=await page.evaluate(async()=>{const d=await(await import('./demo-data.mjs')).loadDemoDataset();return {details:d.detailFiles.size,factions:d.factionFiles.size,radius:d.presentation.territoryOverlay.radiusLY};});
     check(preload.details===4&&preload.factions===2&&preload.radius===24,'registered full Demo eagerly loaded');

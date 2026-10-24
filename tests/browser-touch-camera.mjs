@@ -1,5 +1,6 @@
 /** Playwright MCP Demo-server entry point; native OrbitControls, CDP touch input. */
 async(page)=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const p=await context.newPage(),errors=[],results=[];
   p.on('pageerror',error=>errors.push(error.message));
@@ -63,7 +64,7 @@ async(page)=>{
     check(!await p.locator('#info-panel').evaluate(n=>n.open),'gesture transitions do not select objects');
   };
   try {
-    await p.goto('http://127.0.0.1:5173/Velara_Atlas/');await p.bringToFront();
+    await p.goto('http://127.0.0.1:5173/Velara_Atlas/');await enterAtlas(p);await p.bringToFront();
     await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
     // Observe the real existing scene, without replacing controls or handlers.
     await p.evaluate(async()=>{

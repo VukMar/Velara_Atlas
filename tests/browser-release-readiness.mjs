@@ -1,6 +1,7 @@
 /** MCP callback against npm run preview -- --port 4173 --strictPort, after release:check. */
 async page=>{
-  await page.goto('about:blank');
+  const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
+  await page.goto('about:blank');await enterAtlas(page);
   const base='http://127.0.0.1:4173/Velara_Atlas/',errors=[],requests=[],failures=[];
   const check=(v,m)=>{if(!v)throw Error(m);},onConsole=m=>{if(m.type()==='error')errors.push(m.text());},onError=e=>errors.push(e.message);
   const onRequest=r=>requests.push(r.url()),onResponse=r=>{if(r.status()>=400)failures.push({url:r.url(),status:r.status()});};
@@ -11,7 +12,7 @@ async page=>{
   const select=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);};
   try {
     await page.setViewportSize({width:1280,height:900});await page.emulateMedia({reducedMotion:'reduce'});
-    const start=Date.now();await page.goto(base);await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});const startupWallMs=Date.now()-start;
+    const start=Date.now();await page.goto(base);await enterAtlas(page);await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});const startupWallMs=Date.now()-start;
     check(await page.locator('#viewport').getAttribute('data-markers')==='5','all registered sector records rendered');
     for(const id of ['sys_0001','sys_0002','sys_0003','sys_0005','fac_0001','fac_0002'])check(requests.some(url=>url.includes('/assets/'+id+'-')),'eager published module '+id);
     await select('sys_0004');await page.locator('#enter').click();await close();
@@ -51,21 +52,21 @@ async page=>{
       const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth,chart:document.querySelector('#viewport').getBoundingClientRect().width,year:document.querySelector('#year-input').value}));
       check(dimensions.scroll<=width+1&&dimensions.chart>0&&dimensions.year==='800','responsive/text scaling '+width);layouts.push({width,height,textScale:zoom,...dimensions});
     }
-    await page.evaluate(()=>document.documentElement.style.fontSize='');await page.setViewportSize({width:1280,height:900});await page.reload();await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
+    await page.evaluate(()=>document.documentElement.style.fontSize='');await page.setViewportSize({width:1280,height:900});await page.reload();await enterAtlas(page);await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     check(requests.every(url=>url.startsWith(base)),'all production requests same origin/base');check(!requests.some(url=>/calibration|fixtures|performance|public\/data|\.rtf|\.map(?:$|\?)/.test(url)),'no protected or test requests');check(!failures.length&&!errors.length,'production resource/console errors: '+JSON.stringify({failures,errors}));
     await page.screenshot({path:'.playwright-mcp/phase6-production.png'});
     const failurePage=await page.context().newPage();
     try {
       await failurePage.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /^webgl/.test(type)?null:original.call(this,type,...args);};});
-      await failurePage.goto(base);await failurePage.locator('#retry').waitFor({state:'visible'});check((await failurePage.locator('#map-message').innerText()).includes('Technical error'),'WebGL unsupported has technical recovery message');
-      await failurePage.locator('#retry').click();await failurePage.locator('#retry').waitFor({state:'visible'});check((await failurePage.locator('#map-message').innerText()).includes('Technical error'),'retry retains failure while WebGL remains unavailable');
+      await failurePage.goto(base);await enterAtlas(failurePage);await failurePage.locator('#retry').waitFor({state:'visible'});check((await failurePage.locator('#map-message').innerText()).includes('Technical error'),'WebGL unsupported has technical recovery message');
+      await retryAtlas(failurePage);await failurePage.locator('#retry').waitFor({state:'visible'});check((await failurePage.locator('#map-message').innerText()).includes('Technical error'),'retry retains failure while WebGL remains unavailable');
     }finally{await failurePage.close();}
     const contextPage=await page.context().newPage();
     try {
-      await contextPage.goto(base);await contextPage.locator('#viewport canvas').waitFor();
+      await contextPage.goto(base);await enterAtlas(contextPage);await contextPage.locator('#viewport canvas').waitFor();
       const supported=await contextPage.evaluate(()=>{const gl=document.querySelector('#viewport canvas').getContext('webgl2'),ext=gl.getExtension('WEBGL_lose_context');if(ext)ext.loseContext();return !!ext;});
       check(supported,'context-loss extension available');await contextPage.waitForFunction(()=>document.querySelector('#map-message').textContent.includes('Graphics context lost'));
-      await contextPage.reload();await contextPage.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
+      await contextPage.reload();await enterAtlas(contextPage);await contextPage.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     }finally{await contextPage.close();}
     return {startupWallMs,productionRequests:new Set(requests).size,consoleErrors:errors,failures,semantics,contrast,layouts,factions,politics,webglUnsupported:'passed',contextLossAndReload:'passed',reload:'passed',textScaling:'CSS text scaling, not browser zoom or assistive-technology certification'};
   }finally{page.off('console',onConsole);page.off('pageerror',onError);page.off('request',onRequest);page.off('response',onResponse);await page.emulateMedia({reducedMotion:null});}

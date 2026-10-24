@@ -1,5 +1,6 @@
 /** Playwright MCP Demo entry point; observes the real scene without production hooks. */
 async page => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/', errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=message=>{if(message.type()==='error')errors.push(message.text());};page.on('console',error);
@@ -22,7 +23,7 @@ async page => {
     return {font:getComputedStyle(n).fontSize,width:r.width,x:r.x+r.width/2,markerX:b.x+b.width/2,top:r.top,markerBottom:b.y+b.height/2+4};
   });
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
     await page.evaluate(async()=>{
       const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;
@@ -146,5 +147,5 @@ async page => {
     check(dense.markers===300&&dense.focused==='true','dense UTF-8 system keeps all markers and focused name');
     check(errors.length===0,errors.join('\n'));
     return {cameraFacingNameplates:'passed',stableAnchorsAndZoomFade:'passed',lowTiltAndOrbit:'passed',captionSizingAndCollisions:'passed',independentPreferences:'passed',historyAndDisposal:'passed',islands,mobileSizes:3,progressive,dense,consoleErrors:errors};
-  } finally {page.off('console',error);await page.goto(base);}
+  } finally {page.off('console',error);await page.goto(base);await enterAtlas(page);}
 }

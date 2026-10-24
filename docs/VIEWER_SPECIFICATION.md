@@ -620,14 +620,41 @@ failure and failed startup remain technical errors with Retry. WebGL context los
 hides any prior archival panel and retains technical recovery feedback across
 historical refreshes; it cannot become an archival notice.
 
-Completed, creator-approved 4.2A–F retain branding, archival content, targeting,
-System minima, Focus motion and decorative chart navigation described above.
-The remaining **planned** 4.2G introduces the entry screen before any
-playback, 4.2H two approved prerecorded speeches and audio preferences,
-and 4.2I optional UI SFX last. Motion honors reduced motion and lifetime
-cleanup; no second renderer or extra world data. 4.2G–I remain unimplemented and
-need separate authorization. See the
+Completed, creator-approved 4.2A–G retain branding, archival content, targeting,
+System minima, Focus motion, decorative chart navigation and the opening below.
+The remaining **planned** 4.2H introduces two approved prerecorded speeches and
+audio preferences, followed by optional UI SFX in 4.2I. Motion honors reduced
+motion and lifetime cleanup; no second renderer or extra world data. 4.2H–I
+remain unimplemented and need separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
+
+### Approved 4.2G startup opening — 2026-10-24
+
+After validated Demo/content loading and actual chart construction succeed, a
+native named/described opening dialog presents NEXUS's contained front-facing
+portrait, MCR insignia, connection heading and welcome. The only introduction
+source is `public/content/nexus/opening-data.json`; see the [exact approved script](DEVELOPMENT_ROADMAP.md#phase-42g--nexus-atlas-opening)
+for future 4.2H voice production. Text is assigned safely; no world schema or
+fallback dialogue changes. No welcome recording or audio playback is implemented.
+
+Show once per successful fresh page load, including reload/Retry. Ordinary
+navigation, year changes, Reset, Focus and same-document remount do not reopen it.
+There is no remembered browser preference. Both `Enter with audio` and
+`Enter silently` close immediately, recording only page-session `audio` or
+`silent` intent. Escape also enters silently. The readable preview note states
+that neither choice currently plays sound. Entry preserves the exact initialized
+year, scope, camera, layers and selection without navigation or scene rebuild.
+
+Initial focus moves to the welcome heading; native modal isolation keeps
+background controls inert. Tab reaches both visibly focused entry buttons;
+Enter/Space and touch activate them. Entry returns focus to the real map canvas.
+Artwork is decorative, contained and hidden on failure; text/actions remain
+usable. The dialog is bounded and scrollable at small heights or enlarged text.
+The optional 240ms ease-out opacity appearance never delays entry, is skipped
+under reduced motion and canceled on a live preference change or disposal.
+Startup/content failure leaves technical feedback/Retry without the opening.
+Context loss hides it and focuses Retry; teardown closes it and removes owned
+listeners/animation. Existing InfoCard Escape and archival navigation remain intact.
 
 ## 12. Initial development fixtures and demo goals
 

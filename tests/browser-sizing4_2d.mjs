@@ -1,5 +1,6 @@
 /** Normal Demo or audited production callback: category pixels, shared centers and unchanged controls. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],failed=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>requests.push(r.url()),response=r=>{if(r.status()>=400)failed.push(r.url());};
@@ -9,7 +10,7 @@ async page=>{
   const open=async id=>{await page.keyboard.press('Escape');await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#enter').click();if(await page.locator('#reset').isEnabled()){await panel('controls-panel');await page.locator('#reset').click();}await closePanels();};
   page.on('pageerror',error);page.on('request',request);page.on('response',response);
   try {
-    await page.setViewportSize({width:1280,height:900});await page.goto(base);await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
+    await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
     const samples=[],categories=new Set();
     for(const system of ['sys_0001','sys_0002','sys_0003','sys_0005']) {
       await open(system);

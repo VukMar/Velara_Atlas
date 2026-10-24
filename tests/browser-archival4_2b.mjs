@@ -1,5 +1,6 @@
 /** MCP callback against the normal Demo or audited production preview. No source records are written. */
 async page=>{
+  const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,isDev=new URL(base).port==='5173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failures=[],images=[],layouts=[];
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
@@ -27,7 +28,7 @@ async page=>{
   };
   page.on('pageerror',onError);page.on('console',onConsole);page.on('response',onResponse);await page.route(assetPattern,imageRoute);
   try {
-    await page.setViewportSize({width:1280,height:900});await page.goto(base);await wait(page);
+    await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);await wait(page);
     const moduleURL=await contentURL(page),config=await page.evaluate(async url=>(await import(url)).fallbackData,moduleURL);
     check(Object.keys(config).sort().join(',')==='message,subtitle,title','universal config contract');
     await year(899);await page.keyboard.press('Escape');
@@ -44,8 +45,10 @@ async page=>{
     check((await page.locator('#nexus-portrait').getAttribute('src')).includes('nexus-side-profile'),'ordinary InfoCard keeps side-profile');
     check(await page.locator('#archival-name').evaluate(e=>e===document.activeElement),'entry focuses heading');
     check(await page.locator('.floating[open]').count()===0,'entry reveals notice without a source panel covering it');
-    check(!await page.locator('#info-panel').evaluate(e=>e.open),'entry never opens a dialog');
-    check(await page.locator('dialog').count()===1,'only ordinary InfoCard dialog');
+    check(!await page.locator('#info-panel').evaluate(e=>e.open),'archival navigation never opens the ordinary InfoCard');
+    check(await page.locator('dialog').count()===2&&await page.locator('dialog#info-panel').count()===1&&
+      await page.locator('dialog#opening-panel').evaluate(e=>!e.open)&&
+      await page.locator('#archival-view').evaluate(e=>e.tagName==='SECTION'),'only the InfoCard and closed opening are dialogs; archival navigation stays nonmodal');
     check(await page.locator('#map-message').isHidden()&&await page.locator('#retry').isHidden(),'archival separate from status/retry');
     await page.keyboard.press('Escape');check(await page.locator('#archival-view').isVisible(),'Escape does not dismiss destination');
     await page.screenshot({path:'.playwright-mcp/4.2b-900-desktop.png'});
@@ -94,36 +97,36 @@ async page=>{
     const isolated=await page.context().newPage();
     let transient=null;
     try {
-      await isolated.route(imagePattern,r=>r.request().resourceType()==='image'?r.abort():r.continue());await isolated.goto(base);await wait(isolated);await helpers(isolated).open('sys_0004');
+      await isolated.route(imagePattern,r=>r.request().resourceType()==='image'?r.abort():r.continue());await isolated.goto(base);await enterAtlas(isolated);await wait(isolated);await helpers(isolated).open('sys_0004');
       await isolated.waitForFunction(()=>document.querySelector('#archival-portrait').hidden);
       check((await isolated.locator('#archival-explanation').innerText()).length>0,'portrait failure retains text');await isolated.locator('#archival-return').click();check(await isolated.locator('#archival-view').isHidden(),'portrait failure retains Return');
-      await isolated.unroute(imagePattern);await isolated.reload();await wait(isolated);
+      await isolated.unroute(imagePattern);await isolated.reload();await enterAtlas(isolated);await wait(isolated);
       await helpers(isolated).open('sys_0004');await isolated.locator('#archival-return').focus();
       const lost=await isolated.evaluate(()=>{const gl=document.querySelector('canvas').getContext('webgl2'),ext=gl.getExtension('WEBGL_lose_context');ext?.loseContext();return !!ext;});check(lost,'actual context-loss extension');
       await isolated.waitForFunction(()=>document.querySelector('#map-message').textContent.includes('Graphics context lost'));
       check(await isolated.locator('#archival-view').isHidden()&&await isolated.locator('#retry').isVisible(),'context loss replaces prior archival notice');
       await helpers(isolated).year(900);check(await isolated.locator('#archival-view').isHidden(),'history cannot replace technical error with archival state');
-      await isolated.locator('#retry').click();await wait(isolated);check(await isolated.locator('#archival-view').isHidden(),'context retry restores clean startup');
+      await retryAtlas(isolated);await wait(isolated);check(await isolated.locator('#archival-view').isHidden(),'context retry restores clean startup');
       const detail=isDev?/public\/datasets\/demo\/systems\/sys_0001\.json/:/\/assets\/sys_0001-[^/]+\.js/;
       for(const response of [{status:404,body:'TEST missing registered detail'},{status:200,body:'export default { malformed'},{status:200,body:'export default {id:"TEST_INVALID_DETAIL"};'}]) {
-        await isolated.route(detail,r=>r.fulfill({...response,contentType:'text/javascript'}));await isolated.reload();await isolated.locator('#retry').waitFor({state:'visible'});
+        await isolated.route(detail,r=>r.fulfill({...response,contentType:'text/javascript'}));await isolated.reload();await enterAtlas(isolated);await isolated.locator('#retry').waitFor({state:'visible'});
         check((await isolated.locator('#map-message').innerText()).includes('Technical error'),'registered load failure is technical');check(await isolated.locator('#archival-view').isHidden(),'load failure not archival');
-        await isolated.unroute(detail);await isolated.locator('#retry').click();await wait(isolated);
+        await isolated.unroute(detail);await retryAtlas(isolated);await wait(isolated);
       }
       const content=await contentURL(isolated),compiled=await (await isolated.request.get(content)).text();
       const configPattern=isDev?/public\/content\/nexus\/fallback-data\.json/:content;
       const invalidShape=isDev?'export default {};':compiled.replace(JSON.stringify(config.title),'null');
       if(!isDev)check(invalidShape!==compiled,'production malformed-config probe retains real validator');
       for(const response of [{status:200,body:invalidShape},{status:200,body:'export default { malformed'},{status:404,body:'TEST missing universal config'}]) {
-        await isolated.route(configPattern,r=>r.fulfill({...response,contentType:'text/javascript'}));await isolated.reload();await isolated.locator('#retry').waitFor({state:'visible'});
+        await isolated.route(configPattern,r=>r.fulfill({...response,contentType:'text/javascript'}));await isolated.reload();await enterAtlas(isolated);await isolated.locator('#retry').waitFor({state:'visible'});
         check((await isolated.locator('#map-message').innerText()).includes('Technical error')&&await isolated.locator('#archival-view').isHidden(),'bad universal config is technical, never archival');
-        await isolated.unroute(configPattern);await isolated.locator('#retry').click();await wait(isolated);
+        await isolated.unroute(configPattern);await retryAtlas(isolated);await wait(isolated);
       }
       if(isDev) {
         const revised=Object.fromEntries(Object.keys(config).map(key=>[key,`TEST Revised Universal ${key}`]));
-        await isolated.route(configPattern,r=>r.fulfill({status:200,contentType:'text/javascript',body:`export default ${JSON.stringify(revised)};`}));await isolated.reload();await wait(isolated);await helpers(isolated).open('sys_0004');
+        await isolated.route(configPattern,r=>r.fulfill({status:200,contentType:'text/javascript',body:`export default ${JSON.stringify(revised)};`}));await isolated.reload();await enterAtlas(isolated);await wait(isolated);await helpers(isolated).open('sys_0004');
         check(await isolated.locator('#archival-label').innerText()===revised.title&&await isolated.locator('#archival-status').innerText()===revised.subtitle&&await isolated.locator('#archival-explanation').innerText()===revised.message,'changing only JSON fields updates all UI text');
-        await isolated.unroute(configPattern);await isolated.reload();await wait(isolated);
+        await isolated.unroute(configPattern);await isolated.reload();await enterAtlas(isolated);await wait(isolated);
         // Isolated in-memory clones only: no mutation of imported data or Demo JSON.
         transient=await isolated.evaluate(async()=>{
           const {application:app}=await import('./main.mjs'),d=structuredClone(app.state.dataset);app.state.dataset=d;

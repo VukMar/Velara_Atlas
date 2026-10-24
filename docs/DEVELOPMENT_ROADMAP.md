@@ -13,7 +13,9 @@ deployment remain separately gated.
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
 **Closeout update (2026-10-23): 4.2A–F are implemented, complete and creator-approved.**
-Phases 4.2G–I remain planned, unimplemented and unauthorized.
+At that closeout, phases 4.2G–I remained planned, unimplemented and unauthorized.
+**Closeout update (2026-10-24): 4.2G is complete and creator-approved.**
+4.2H–I remain planned, unimplemented and unauthorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -131,14 +133,14 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–F complete and creator-approved; 4.2G–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–G complete and creator-approved; 4.2H–I remain planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Complete and creator-approved (2026-10-23):** centralized 42/36/30/24/21/18/15px System minima; physical geometry, picking and Sector 8px marker preserved. |
 | Checkpoint 4.2E — Focus Selection Animation | **Complete and creator-approved (2026-10-23):** 550ms smoothstep camera-owned Focus, exact inspection/zone/anchor endpoints, interruptible and immediate under reduced motion. |
 | Checkpoint 4.2F — Map Navigation Transitions | **Complete and creator-approved (2026-10-23):** 420ms decorative chart reveal, synchronous navigation/camera restoration, cancelable and immediate under reduced motion. |
-| Checkpoint 4.2G — NEXUS Atlas Opening | **Planned:** brief branded entry screen and audio/silent choices; no playback. |
+| Checkpoint 4.2G — NEXUS Atlas Opening | **Complete and creator-approved (2026-10-24):** ready-only branded opening, universal approved script, immediate audio-intent/silent entry and once-per-fresh-load policy; no playback or persistence. |
 | Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Planned:** two approved prerecorded speech situations, persistent accessible toggle. |
 | Checkpoint 4.2I — UI Sound Effects | **Planned LAST:** restrained approved UI cues, throttled and muting-respectful. |
 | Checkpoint 4 — final creator acceptance | **Pending:** full visual/audiovisual/accessibility/security review and explicit Cantum Stage 5 disposition. |
@@ -169,7 +171,8 @@ approval; architecture Phase 2.2 example simplification is complete and
 creator-approved. Its closeout does not authorize further visual work.
 The NEXUS side-profile PNG is supplied at
 `public/assets/nexus/nexus-side-profile.png`; ordinary InfoCard integration is
-now complete and creator-approved in 4.2A. Broader archival/opening use is deferred.
+now complete and creator-approved in 4.2A. At that closeout, broader archival/opening
+use remained deferred; the later approved 4.2B and 4.2G records below supersede it.
 Preserve the current creator-approved System C geography,
 IDs/history, navigation workflow, labels/zones, asset paths and build disclosure
 boundaries. Use supplied curator assets only as authorized; do not invent them.
@@ -182,7 +185,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–F are complete and creator-approved; 4.2G–I remain planned and
+completed; **4.2A–G are complete and creator-approved; 4.2H–I remain planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -626,12 +629,15 @@ The 305,746-byte MP3 matches `d30681f` byte-for-byte, remains reserved for 4.2H,
 unimported/unplayed and excluded. Headless Chromium 139/Intel D3D11 supplies local
 browser evidence; software rendering can stall across the animation interval.
 Physical-device, non-Chromium, screen-reader and actual browser-zoom verification
-remain outstanding, as does the existing Vite chunk-size advisory. 4.2G–I remain
+remain outstanding, as does the existing Vite chunk-size advisory. At the 4.2F closeout, 4.2G–I remained
 planned, unimplemented and separately gated. Final Checkpoint 4 acceptance and
 Cantum Stage 5 remain pending; Checkpoint 5, Canon migration, Atlas Creator and
 deployment are not authorized. No deployment occurred.
 
 ### Phase 4.2G — NEXUS Atlas Opening
+
+**Complete, creator-reviewed and approved, 2026-10-24.** The following original
+scope is retained; the completion record below records the approved decisions.
 
 **Purpose/scope:** Short branded welcome/entry using approved NEXUS form
 and MCR insignia, readable introduction and explicit enter-with-audio
@@ -647,6 +653,64 @@ selected A.E., camera geography or archival state.
 **Visual review:** desktop/mobile opening, focus order, silent option,
 refresh/retry. **Depends on:** A, B, F. **Gate:** creator approves
 script/UI and return policy.
+
+**Approved implementation and script:** `opening-view.mjs` owns the native
+opening dialog, contained original front-facing NEXUS portrait, unchanged MCR
+insignia and dark/cyan composition. The ready chart is constructed before the
+dialog opens; no historical or camera command runs on opening or entry. A finite
+**240ms ease-out opacity appearance** is optional; reduced motion skips it and
+live preference changes cancel it. Entry never waits for animation.
+
+The only editable introduction source is
+`public/content/nexus/opening-data.json`, with exactly these three nonempty strings:
+
+```json
+{
+  "title": "NEXUS // CONNECTION ESTABLISHED",
+  "subtitle": "VELARA ATLAS",
+  "message": "Ah, a Visitor. Welcome to the Velara Atlas. You may explore this edition of the archive by system and by year. History has a habit of resisting simple explanations. Fortunately, you have me. Do try to keep up."
+}
+```
+
+This is the **approved 4.2G script for future 4.2H voice production**, independent
+of world records and the existing approved fallback script. No welcome recording
+or playback is implemented or admitted. Edit only this JSON and rebuild to change
+the introduction; revised released wording still requires creator approval.
+
+**Approved entry/return policy:** show once after each successful fresh page load,
+including reload/Retry; never reopen during ordinary navigation, year changes,
+Reset, Focus or same-document remount. No browser storage suppresses it.
+`Enter with audio` records only in-memory `audio` intent; `Enter silently` and
+Escape record `silent`. Both close immediately and focus the real map canvas,
+preserving year, scope, selection, layers and exact camera state. The visible note
+is: "Voice playback is not available in this preview. Both entry options currently
+open the Atlas without sound." A second note states "Escape enters silently."
+Native modal focus isolates background controls; entry buttons retain visible
+focus. Responsive contained artwork yields to scrollable text/actions on small,
+short or enlarged-text screens. Failed images hide without blocking entry.
+
+**Startup/security/lifecycle:** missing or malformed opening content fails through
+technical startup feedback/Retry, never a false connection-established notice.
+Context loss hides the opening and focuses Retry. `Lifetime` removes listeners,
+closes the dialog and cancels its animation; remount leaves one canvas and one
+opening element. The exact two-file NEXUS content audit validates fallback/opening
+source paths, rejects redirects and mid-build changes, and requires both modules
+in the build. `publicDir: false`, PNG/SVG pins, binary output equality,
+reachability and dataset/private/Canon restrictions remain unchanged.
+
+**Verification:** 330 automated tests pass, including twelve focused opening tests;
+validation, connection freshness, build, release audit and whitespace checks pass.
+Dedicated normal-Demo and audited-preview browser checks cover both entry intents,
+Escape, exact copy, reload, no state/camera rebuild, touch/keyboard, normal/reduced
+motion, live preference changes, image/startup failure and lifecycle. Existing A–F
+regressions remain applicable; see [closeout evidence and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42g-opening-closeout--2026-10-24).
+Production remains 29 files, sixteen exact SVGs and three exact PNGs; no audio or
+raw UI JSON output. The reserved 305,746-byte fallback MP3 is unchanged and excluded.
+Physical-device, non-Chromium, screen-reader and actual browser-zoom certification
+remain unverified; CSS text scaling is checked. The existing chunk-size advisory
+remains. 4.2H–I remain planned and unimplemented; final Checkpoint 4 acceptance and
+Cantum Stage 5 remain pending. Checkpoint 5, Canon migration, Atlas Creator and
+deployment remain unauthorized. No deployment occurred.
 
 ### Phase 4.2H — NEXUS Voice and Audio Preferences
 
@@ -686,10 +750,10 @@ final restrained sound and code/assets.
 
 ### Unresolved design choices (not yet final requirements)
 
-1. **Opening:** show on every fresh load versus only first visit;
-   decide stored preference behavior and default silent/audio state.
-   Showing entry each load with first-visit silence is a recommendation,
-   **not an approved final decision** until G.
+1. **Opening (resolved in approved 4.2G):** show once per successful fresh page
+   load, including reload; no persistence. Both buttons enter immediately;
+   Escape enters silently. The original fresh-load/first-visit question is
+   superseded by this decision. Persistent playback preferences remain for H.
 2. **Scripts/recordings:** approve fallback text in B and welcome text in G;
    approve exact released recordings before H. Never invent hidden lore,
    false classified status or future information.

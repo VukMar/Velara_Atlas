@@ -1,5 +1,6 @@
 /** Demo Playwright MCP entry point: inspect the real scene without production hooks. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',onError);
@@ -53,7 +54,7 @@ async page=>{
     return s;
   };
   try{
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
     const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
@@ -98,5 +99,5 @@ async page=>{
     check(above>0&&below>0,'real authored objects are present above and below zero');
     check(errors.length===0,errors.join('\n'));
     return {releasedSystems:released.length,objectsAbove:above,objectsBelow:below,zeroPlaneAndH8:'passed',bothCameraModesAndPreferences:'passed',sectorReferenceScaleAndCantums:'passed',consoleErrors:errors};
-  }finally{page.off('console',onError);await page.goto(base);}
+  }finally{page.off('console',onError);await page.goto(base);await enterAtlas(page);}
 }

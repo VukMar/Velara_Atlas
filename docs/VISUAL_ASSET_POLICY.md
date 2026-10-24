@@ -179,13 +179,13 @@ Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 icons plus the separately registered Test sigil, limited SVG profile and
 the audited bundle. The two 4.2A PNGs and specifically approved front-facing
 `nexus-form.png` are admitted. 4.2C additionally admits the exact original UI
-reticle; audio remains excluded. Later phases are planned.
+reticle; completed 4.2G reuses the existing PNGs for its opening. Audio remains excluded.
 
 | Phase | Approved source or pending asset | Purpose |
 | --- | --- | --- |
 | 4.2A — complete/creator-approved | `public/assets/nexus/mcr-insignia.png`, `nexus-side-profile.png` | Header and ordinary InfoCards; exact source/output verification below. |
 | 4.2B — complete/creator-approved | Existing approved `nexus-form.png` | Archival presentation; exact third-PNG admission, Section 9. |
-| 4.2G — planned | Approved NEXUS/MCR originals | Opening context remains separately gated; no opening implemented. |
+| 4.2G — complete/creator-approved | Existing `nexus-form.png` and `mcr-insignia.png` | Opening reuses exact bundled originals; one additional exact UI-content JSON module, no new binary assets or audio. |
 | 4.2C — complete/creator-approved | `public/assets/ui/nexus-reticle.svg` | Immutable 128×128 artwork, independent pinned admission; cyan hover/static gold selection. |
 | 4.2H | Creator-approved prerecorded welcome and fallback clips, filenames/formats TBD | Two spoken situations; never publish drafts. |
 | 4.2I | A few creator-approved short UI cue files, names/formats TBD | Playback integrated last and respecting mute. |
@@ -264,7 +264,8 @@ and ordinary InfoCard side-profile retain their approved use. The existing sourc
 SHA-256 pins, binary output/name comparisons, completeness, duplicate and
 reachability checks apply equally to the third image. Original bytes are never
 changed; the full front-facing image is contained without cropping or stretching.
-The reticle, audio and opening screen remain unauthorized and excluded.
+At the 4.2B closeout, the reticle, audio and opening screen remained unauthorized
+and excluded; the later 4.2C/G sections record their narrowly approved additions.
 
 Universal archival `title`, `subtitle` and `message` live only in
 `public/content/nexus/fallback-data.json`; see [the content contract](DATA_MODEL.md#universal-nexus-ui-content--42b-correction).
@@ -343,3 +344,31 @@ SHA-256 `9815ff5b01120100e8825aebb1b2a43a38329c82c8ec020b0cca0bf0011aab72`).
 It is not imported, emitted or played. Tests reject its exact source path and
 MP3 outputs; browser checks observe zero audio requests. A source-repository file
 does not grant application publication or playback permission.
+
+## 12. Implemented Checkpoint 4.2G opening reuse and content admission
+
+**Complete and creator-approved, 2026-10-24.** The opening reuses the already
+admitted original `nexus-form.png` and `mcr-insignia.png` through static imports
+in the existing NEXUS module. Vite shares their URLs with existing uses; no
+second copy, new binary asset, image transform or registry exception is added.
+All original image bytes and pins remain unchanged. The ordinary InfoCard keeps
+its side-profile; the archival presentation and fallback JSON remain unchanged.
+
+Only `public/content/nexus/opening-data.json` is added to the exact content input
+allowlist. It contains exactly nonempty `title`, `subtitle`, `message` strings,
+validated independently from the existing fallback. The closed two-file audit
+rejects missing/malformed content, symlink/reparse redirects and production bytes
+changing during a build, and requires both actual modules in generated chunks.
+Strings use `textContent`; no arbitrary content root, world field or runtime
+JSON fetch is introduced. Edit only this JSON and rebuild for introduction edits;
+the [approved script](DEVELOPMENT_ROADMAP.md#phase-42g--nexus-atlas-opening) is public
+UI wording for future separately authorized voice production.
+
+`publicDir: false`, exact hash-pinned PNG/SVG sources, binary output/name equality,
+duplicate/completeness/reachability checks and private/Canon/data restrictions
+remain intact. Production contains sixteen SVGs (fourteen navigation, one sigil,
+one reticle) and three PNGs, with no raw UI JSON or new media. No audio path is
+admitted. The reserved fallback MP3 remains byte-identical and absent from the
+bundle; entry choices record only in-memory intent, with no playback or storage.
+Earlier phase-specific exclusions above describe their historical closeouts;
+this section supersedes opening-only deferment, without authorizing H–I.

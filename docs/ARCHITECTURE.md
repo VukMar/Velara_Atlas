@@ -24,6 +24,7 @@ Use the [index](INDEX.md) for authority and the
 | `src/viewer/zone-outline.mjs` | Pointer-transparent 2D SVG hover/focus contours, constant CSS stroke, solid authored boundaries and dashed chart-clipping edges; no hit testing |
 | `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
 | `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
+| `src/viewer/opening-view.mjs`, `nexus-opening-config.mjs` | Ready-only native welcome, page-session entry intent, focus/image/motion lifecycle and exact three-string UI-content validation; no history, camera or audio owner |
 | `src/viewer/map-scene.mjs` | Stable AtlasMap facade, renderer and ordered coordination of camera, interaction, layers and projection owners |
 | `src/viewer/target-reticle.mjs` | Two decorative cyan/gold UI indicators consuming final shared anchor visibility and selected/hover state; no projection, picking, extra renderer or animation loop |
 | `src/viewer/map-transition.mjs` | One finite decorative destination reveal, reduced-motion/input cancellation and lifetime cleanup; no history, scene or camera state |
@@ -463,6 +464,37 @@ input priority, media changes, failed animation support and cleanup. The dedicat
 synchronous destinations, existing marker/Catalogue/InfoCard/gate/Return paths,
 camera restoration, rapid navigation, responsive bounds and lifecycle on normal
 Demo and audited preview. See [accepted evidence and limits](DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
+
+### Checkpoint 4.2G opening ownership and lifecycle
+
+**Complete and creator-approved, 2026-10-24.** `main.start()` loads validated
+Demo and the exact NEXUS content module inside its existing technical boundary.
+`mount()` constructs the real chart, refreshes it and then shows the opening
+without yielding to a separate loading sequence. `opening-view.mjs` owns only the
+static native dialog, safe text, original image URLs, entry handlers, focus and a
+finite optional 240ms ease-out Web Animation. It neither changes AppState nor
+calls camera/navigation APIs. It adds no renderer, scene, dependency or scheduler.
+
+One root page-session `{choice:null,presented:false}` survives same-document
+remount; full reload resets it. Explicit entry stores `audio`/`silent`, and Escape
+or unexpected native dismissal is silent. Both close immediately and focus the
+existing canvas. No storage or audio API is involved; `application.entryChoice`
+exposes the intent for separately authorized future integration. Startup failure
+cannot open it; context loss hides it and exposes/focuses Retry. Lifetime cleanup
+closes the dialog, cancels animation and removes image/control/media listeners.
+Queued old close events and stale animation completion cannot reopen it or
+change a replacement session. Reduced motion skips/cancels decoration only.
+
+`nexus-content.mjs` statically imports the existing fallback and exactly one new
+`public/content/nexus/opening-data.json`, plus existing pinned image URLs. Each
+configuration is independently validated as exactly three nonempty strings.
+The closed `scripts/nexus-content.mjs` audit checks both exact paths for redirects,
+validates before transformation, rejects changed production source bytes and
+requires both actual modules in output. Vite adds only the new exact JSON input;
+`publicDir: false`, binary registries and output security remain unchanged. JSON
+is bundled into JavaScript, not emitted/fetched as arbitrary runtime content.
+See [approved behavior](VIEWER_SPECIFICATION.md#approved-42g-startup-opening--2026-10-24)
+and [verification limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42g-opening-closeout--2026-10-24).
 
 ### Safe presentation configuration
 

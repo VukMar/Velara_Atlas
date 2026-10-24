@@ -1,5 +1,6 @@
 /** Chromium MCP entry point; Demo or base-path production preview. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,errors=[];
   let expectedFailure=false;
   const onError=m=>{if(m.type()==='error'&&!expectedFailure)errors.push(m.text());};
@@ -17,7 +18,7 @@ async page=>{
       image:i&&{src:i.src,width:i.getBoundingClientRect().width,height:i.getBoundingClientRect().height,pointer:getComputedStyle(i).pointerEvents,opacity:getComputedStyle(i).opacity,parent:i.parentElement===n}};
   });
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await loaded();await hide();
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await loaded();await hide();
     let s=await snapshot();
     check(s.text==='Test Cantum'&&s.image?.parent,'A sigil and resolved name share one plate');
     check(s.image.width===24&&s.image.height===24&&s.image.pointer==='none','desktop decorative 24px sigil');
@@ -74,12 +75,12 @@ async page=>{
     await page.setViewportSize({width:1440,height:1000});
     const pattern=/test-cantum-a[^/]*\.svg(?:\?|$)/;let blocked=0;
     const abort=route=>{blocked++;return route.abort('failed');};
-    expectedFailure=true;await page.route(pattern,abort);await page.goto(base);
+    expectedFailure=true;await page.route(pattern,abort);await page.goto(base);await enterAtlas(page);
     await page.waitForFunction(()=>{const n=document.querySelector('.cantum-nameplate[data-cantum-id="can_0001"]');return n?.textContent==='Test Cantum'&&!n.querySelector('img');});
     check(blocked>0,'real sigil asset failure exercised');
     check(await plate('can_0001').isVisible()&&await page.locator('#grid-labels [data-cell="sector-bottom-right"]').innerText()==='20 ly','failed sigil keeps name and grid');
-    await page.unroute(pattern,abort);await page.goto(base);await loaded();expectedFailure=false;
+    await page.unroute(pattern,abort);await page.goto(base);await enterAtlas(page);await loaded();expectedFailure=false;
     check(errors.length===0,errors.join('\n'));
     return {bothCantumsAndCameras:'passed',groupFadeAndToggles:'passed',historyAndNavigation:'passed',mobileSizes:3,lifecycle,assetFailure:'name-only',deploymentBase:'passed',consoleErrors:errors};
-  } finally {page.off('console',onError);page.off('pageerror',pageError);await page.goto(base);}
+  } finally {page.off('console',onError);page.off('pageerror',pageError);await page.goto(base);await enterAtlas(page);}
 }

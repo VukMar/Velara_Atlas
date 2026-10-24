@@ -1,5 +1,6 @@
 /** Chromium Demo entry point. All detached-island data live only in page memory. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
@@ -15,7 +16,7 @@ async page=>{
     });
   });
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await page.locator('.cantum-sigil').waitFor();
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('.cantum-sigil').waitFor();
     await page.evaluate(async()=>{
       const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;
       const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;
@@ -104,6 +105,6 @@ async page=>{
       screenshots:['.playwright-mcp/stage4-islands-top.png','.playwright-mcp/stage4-islands-perspective.png']};
   } finally {
     page.off('console',error);page.off('pageerror',pageError);
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   }
 }

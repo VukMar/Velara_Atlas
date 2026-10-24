@@ -1,12 +1,13 @@
 /** Run as the existing Playwright callback against normal Demo or audited preview. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[],failures=[],requests=[];
   const onError=e=>errors.push(e.message),onResponse=r=>{if(r.status()>=400)failures.push(r.url());},onRequest=r=>requests.push(r.url());
   page.on('pageerror',onError);page.on('response',onResponse);page.on('request',onRequest);
   try {
     await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});
-    await page.goto(base);await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
+    await page.goto(base);await enterAtlas(page);await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     const environment=await page.evaluate(()=>{
       const gl=document.querySelector('#viewport>canvas').getContext('webgl2'),debug=gl.getExtension('WEBGL_debug_renderer_info');
       return {userAgent:navigator.userAgent,renderer:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),dpr:devicePixelRatio};

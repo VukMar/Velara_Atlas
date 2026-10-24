@@ -1,13 +1,14 @@
 /** MCP entry point: documented review workflow and observed read-only traffic. */
 async(page)=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()),requests=[];
   const observe=request=>requests.push({url:request.url(),method:request.method()});
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   page.on('request',observe);
   try {
-    await page.setViewportSize({width:1280,height:900});await page.goto(base.href);
+    await page.setViewportSize({width:1280,height:900});await page.goto(base.href);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
-    check(await page.locator('.demo-badge').innerText()==='NONCANONICAL DEMONSTRATION','public demo disclosure');
+    check(await page.locator('header .demo-badge').innerText()==='NONCANONICAL DEMONSTRATION','public demo disclosure');
     check(!await page.locator('#info-panel').evaluate(n=>n.open),'documented initial no-selection state');
     for(const title of ['Catalogue','Map controls','Map layers','History']) {
       const panel=page.locator('details').filter({has:page.getByText(title,{exact:true})});
@@ -42,7 +43,7 @@ async(page)=>{
     check(requests.every(r=>r.method==='GET'),'documented browser workflow made only GET requests');
     check(requests.every(r=>new URL(r.url).origin===base.origin),'no external asset or service requests');
     check(requests.every(r=>!/public\/data\/|\.rtf(?:[?#]|$)|\.local-references\/|\/private\/|\/secrets\//i.test(decodeURIComponent(r.url))),'no canonical/private-source requests');
-    await page.goto(base.href);await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
+    await page.goto(base.href);await enterAtlas(page);await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
     return {documentedPanels:4,systems:systems.length,recordFocusAndReset:'passed',observedRequestMethods:[...new Set(requests.map(r=>r.method))],externalOrCanonicalRequests:0,
       limitation:'Observed requests for this workflow only; build/source audits separately enforce input boundaries.'};
   } finally {page.off('request',observe);}

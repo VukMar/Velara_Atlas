@@ -1,5 +1,6 @@
 /** Normal Demo / audited production Focus callback. No world records or release hooks. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',errors=[],failed=[],audio=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());},request=r=>{if(/\.mp3(?:\?|$)/.test(r.url()))audio.push(r.url());};
@@ -17,7 +18,7 @@ async page=>{
       left:parseFloat(e.style.left),top:parseFloat(e.style.top),diameter:+e.dataset.displayDiameter})).filter(e=>e.id===document.querySelector('#selection').value)}));
   page.on('pageerror',error);page.on('response',response);page.on('request',request);
   try {
-    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);
+    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
     if(dev)await page.evaluate(async()=>{window.__focusModule=await import('./main.mjs');});
     const motions=[];

@@ -1,5 +1,6 @@
 /** Demo MCP entry point: real renderer, public demo, no production debug hooks. */
 async page => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],results=[];
   let expectedFailure=false;
@@ -44,7 +45,7 @@ async page => {
     return s;
   };
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0004"]').waitFor({state:'attached'});await hook();
     const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
@@ -128,7 +129,7 @@ async page => {
     const context=await page.context().browser().newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
     let highDPI;
     try {
-      const mobile=await context.newPage();await mobile.goto(base);
+      const mobile=await context.newPage();await mobile.goto(base);await enterAtlas(mobile);
       await mobile.locator('#controls-panel > summary').click();await mobile.locator('#selection').selectOption('sys_0002');await mobile.locator('#enter').click();
       await mobile.waitForFunction(()=>[...document.querySelectorAll('.navigation-proxy')].every(n=>n.complete&&n.naturalWidth>0));
       highDPI=await mobile.locator('#labels [data-record-id="cb_0005"] img').evaluate(n=>({css:n.getBoundingClientRect().width,dpr:devicePixelRatio,
@@ -154,11 +155,11 @@ async page => {
     // Expected asset failures exercise generic and built-in fallback without a page failure.
     expectedFailure=true;
     const broken=/public\/assets\/icons\/(?:celestial\/planet-water|generic\/unknown)\.svg/;
-    await page.route(broken,r=>r.abort('failed'));await page.goto(base);await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
+    await page.route(broken,r=>r.abort('failed'));await page.goto(base);await enterAtlas(page);await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
     await open('sys_0001');await page.locator('#labels [data-record-id="cb_0003"][data-icon-fallback="primitive"]').waitFor();
     check(await page.locator('#labels [data-record-id="cb_0003"] img').evaluate(n=>n.hidden),'failed SVG never leaves a broken image');
-    await page.unroute(broken);await page.goto(base);expectedFailure=false;
+    await page.unroute(broken);await page.goto(base);await enterAtlas(page);expectedFailure=false;
     check(errors.length===0,errors.join('\n'));
     return {results,transitionSamples:transition.length,layersHistoryRotationAndMobile:'passed',highDPI,depth,repeatedMapGeometryCounts:memory,archivalAndIconFailureFallback:'passed',consoleErrors:errors};
-  } finally {page.off('console',error);page.off('pageerror',pageError);await page.unroute(/public\/assets\/icons\/(?:celestial\/planet-water|generic\/unknown)\.svg/);await page.goto(base);}
+  } finally {page.off('console',error);page.off('pageerror',pageError);await page.unroute(/public\/assets\/icons\/(?:celestial\/planet-water|generic\/unknown)\.svg/);await page.goto(base);await enterAtlas(page);}
 }

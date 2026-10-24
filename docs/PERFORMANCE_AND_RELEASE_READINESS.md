@@ -480,3 +480,73 @@ scheduling. Physical devices, Firefox/WebKit, screen readers and actual browser
 zoom remain unverified. Existing Vite chunk-size advice remains. 4.2G–I, final
 Checkpoint 4 acceptance, Cantum Stage 5, Checkpoint 5 publication, Canon migration,
 Atlas Creator and deployment remain separately gated. No deployment occurred.
+
+## Checkpoint 4.2G opening closeout — 2026-10-24
+
+The creator approved the original-artwork opening composition, exact universal
+script, entry wording, fresh-load policy, Escape and reduced-motion behavior.
+`opening-view.mjs` adds one static native dialog and an optional finite 240ms
+ease-out appearance, after actual successful chart initialization. Entry is
+immediate and neither changes historical/camera state nor rebuilds the scene.
+The session intent is memory-only; the opening does not reopen on navigation or
+same-document remount. No audio constructor, playback, storage or MP3 request is
+used. The approved script is recorded for future 4.2H voice production, without
+claiming an existing welcome recording.
+
+Final `npm test` passes **330/330**, with no failures/skips, including twelve
+focused opening tests for the closed three-string contract, literal safe copy,
+session choices, Escape/native dismissal, once-per-page policy, image failure,
+reduced motion, disposal/stale callbacks, exact-path content admission, missing/
+malformed/redirected/changed sources and a real audited JSON-only edit build.
+`npm run validate`, `npm run connections:check`, `npm run build`,
+`npm run release:check` and `git diff --check` pass. One initial Windows build
+attempt failed clearing generated `dist/assets` with `ENOTEMPTY`; a retry after
+stopping the task's local servers succeeded without changing source or weakening
+checks. The existing Vite chunk-size advisory remains.
+
+The dedicated normal-Demo and audited-production opening callback verifies exact
+copy, both entry intents, Enter/Space/Escape, native background isolation, canvas
+focus return, reload, no navigation reopening, missing portrait, explicit startup
+failure and zero audio/storage use. Demo checks additionally compare exact live
+camera/state snapshots and zero scene rebuilds across entry, malformed-content
+failure, context-loss/Retry focus and four remounts. Each remount has one opening
+element, a closed dialog and one canvas. Unit tests verify listener/animation
+cleanup; this is bounded resource evidence, not a GPU-memory certification.
+
+Responsive bounds pass at 1280×900, 390×844, 320×740 and 844×390, plus 200% CSS
+text scaling at desktop and narrow mobile. Normal motion records the actual
+240ms Web Animation; reduced motion omits it and a live preference change cancels
+it. Both choices work through Chromium CDP touch input. Existing branding,
+archival/history/technical recovery, targeting, sizing, Focus, chart navigation,
+camera/touch, route/zone and lifecycle regressions are repeated as applicable.
+Existing callbacks use a shared helper to activate the real entry action, never
+a production bypass. The archival test still requires a nonmodal section and
+permits only the known InfoCard and closed opening dialogs.
+
+Closeout browser results: **13/13 normal-Demo callbacks** pass (opening, branding,
+chart transitions, Focus, reticles, sizing, archival, documentation walkthrough,
+viewer modules, resource lifetime, touch camera, navigation and zones).
+**8/8 audited-production callbacks** pass (opening, branding, chart transitions,
+Focus, reticles, sizing, archival and release readiness). No unexpected page or
+resource failures remain. Intentional failure probes retain explicit recovery.
+
+The unchanged binary inventory is **16 exact SVGs and 3 exact PNGs**: fourteen
+navigation icons, one Test Cantum sigil, one original reticle, MCR insignia,
+side-profile and front-facing NEXUS. Production totals **29 files / 4,507,604
+bytes** (HTML 7,556; JS 731,463; CSS 14,758; SVG 16,022; PNG 3,737,805).
+All PNG URLs work beneath `/Velara_Atlas/`; no raw UI JSON, audio or unauthorized
+outputs appear. Original artwork, fallback JSON, world data, schemas and exact
+asset registries remain unchanged. The 305,746-byte MP3 equals the 4.2F baseline
+with SHA-256 `9815ff5b01120100e8825aebb1b2a43a38329c82c8ec020b0cca0bf0011aab72`;
+it remains unimported, unplayed and excluded. The closed content audit adds only
+the exact opening JSON module and retains source snapshots, path guards and
+module completeness. Existing Canon/private/reachability audits remain intact.
+
+Browser evidence is local headless Chromium 139 with Intel HD Graphics 620 /
+Direct3D11, DPR 1, and emulated touch. No physical-device, Firefox/WebKit,
+screen-reader or actual browser-zoom certification is claimed. Screenshots,
+logs and intermediate evidence stay in ignored `.playwright-mcp/`, outside Git.
+4.2A–G are complete and creator-approved; H–I remain planned and unimplemented.
+Final Checkpoint 4 acceptance and Cantum Stage 5 remain pending; Checkpoint 5,
+Canon migration, Atlas Creator and deployment remain unauthorized. No deployment
+occurred.

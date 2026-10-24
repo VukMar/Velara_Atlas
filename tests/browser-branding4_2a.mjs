@@ -1,5 +1,6 @@
 /** Playwright MCP callback: normal Demo or audited production preview at /Velara_Atlas/. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],failures=[],images=[],layouts=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
@@ -26,7 +27,7 @@ async page=>{
   page.on('pageerror',onError);page.on('console',onConsole);page.on('response',onResponse);
   await page.route(imagePattern,imageRoute); // Disable cache for repeatable HTTP image checks.
   try {
-    await page.setViewportSize({width:1280,height:900});await page.goto(base);
+    await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     await page.waitForFunction(()=>[...document.querySelectorAll('#mcr-insignia,#nexus-portrait')].every(e=>e.complete&&e.naturalWidth>0&&!e.hidden));
     check(await page.locator('#year').innerText()==='1200 A.E.','latest normal Demo');
@@ -68,7 +69,7 @@ async page=>{
     // Separate failure page: reject only the two images, retain all record controls.
     const fallback=await page.context().newPage();
     try {
-      await fallback.route(/(?:mcr-insignia|nexus-side-profile).*\.png/,route=>route.request().resourceType()==='image'?route.abort():route.continue());await fallback.goto(base);
+      await fallback.route(/(?:mcr-insignia|nexus-side-profile).*\.png/,route=>route.request().resourceType()==='image'?route.abort():route.continue());await fallback.goto(base);await enterAtlas(fallback);
       await fallback.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
       await fallback.waitForFunction(()=>['mcr-insignia','nexus-portrait'].every(id=>document.getElementById(id).hidden));
       await fallback.locator('#controls-panel>summary').click();await fallback.locator('#selection').focus();await fallback.locator('#selection').selectOption('sys_0005');

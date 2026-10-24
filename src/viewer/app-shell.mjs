@@ -23,7 +23,7 @@ export function installShell($, lifetime, escape) {
     const panel=$(button.dataset.closePanel);panel.open=false;panel.querySelector('summary').focus({preventScroll:true});
   });
   lifetime.listen(document,'keydown',event=>{
-    if(event.key!=='Escape')return;
+    if(event.key!=='Escape'||$('opening-panel')?.open)return;
     if($('info-panel').open){event.preventDefault();escape();}
     else for(const panel of document.querySelectorAll('.floating[open]')){panel.open=false;panel.querySelector('summary').focus({preventScroll:true});}
   });

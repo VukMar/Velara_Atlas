@@ -1,5 +1,6 @@
 /** Demo Playwright MCP suite; synthetic released records are intercepted in memory only. */
 async page => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base='http://127.0.0.1:5173/Velara_Atlas/',pattern=/public\/datasets\/demo\/systems\/sys_0001\.json/;
   const errors=[],check=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -23,7 +24,7 @@ async page => {
   });
   let detail;
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
     const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
     detail=await (await page.request.get(new URL('systems/sys_0001.json',root).href)).json();
     const source=structuredClone(detail.zones[0]);
@@ -35,7 +36,7 @@ async page => {
       zone('zon_9903','TEST EDGE BOX',{kind:'box',size:{x:20000,y:10000,z:30000}},{x:-55000,y:0,z:35000}),
       zone('zon_9904','TEST POLYGON',{kind:'polygon_volume',footprint:[{x:-40000,z:30000},{x:40000,z:30000},{x:40000,z:34000},{x:-40000,z:34000}],minY:-5000,maxY:5000},{x:0,y:0,z:0})];
     await page.route(pattern,r=>r.fulfill({status:200,contentType:'text/javascript',body:`export default ${JSON.stringify(detail)};`}));
-    await page.goto(base);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
+    await page.goto(base);await enterAtlas(page);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
     await page.evaluate(async()=>{
       const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;
       const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;
@@ -125,7 +126,7 @@ async page => {
       const send=async(type,touchPoints)=>{await cdp.send('Input.dispatchTouchEvent',{type,touchPoints});await p.waitForTimeout(35);};
       const tap=async(x,y)=>{await send('touchStart',[{id:1,x,y}]);await send('touchEnd',[]);};
       const tapControl=async selector=>{const b=await p.locator(selector).boundingBox();await tap(b.x+b.width/2,b.y+b.height/2);};
-      await p.goto(base);await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
+      await p.goto(base);await enterAtlas(p);await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
       await tapControl('#labels [data-record-id="sys_0001"]');await p.locator('#info-panel').waitFor({state:'visible'});await tapControl('#enter');
       await p.locator('#labels [data-record-id="cb_0001"]').waitFor();
       const b=await p.locator('canvas').boundingBox(),c={x:b.x+b.width*.3,y:b.y+b.height*.25};
@@ -142,5 +143,5 @@ async page => {
     } finally {await context.close();}
     check(errors.length===0,errors.join('\n'));
     return {zones:4,offMapAndGiant:'passed',objectRoutePriority:'passed',overlapAndLayers:'passed',historyFocusAndTooltip:'passed',inside3D:'passed',outline2D:'solid/dashed clipping, keyboard, priority, 1/4/16x constant stroke passed',mobileLayouts:2,touchTapDragPinchOrbit:'passed',consoleErrors:errors};
-  } finally {await page.unroute(pattern);page.off('console',error);await page.goto(base);}
+  } finally {await page.unroute(pattern);page.off('console',error);await page.goto(base);await enterAtlas(page);}
 }

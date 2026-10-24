@@ -1,5 +1,6 @@
 /** Playwright MCP filename entry point, valid on Demo and production preview. */
 async(page) => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href;
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const results=[];
@@ -39,7 +40,7 @@ async(page) => {
     check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth||document.documentElement.scrollHeight>innerHeight+1),'no page overflow');
     return v;
   };
-  await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+  await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   check(!await page.locator('#info-panel').evaluate(n=>n.open),'no initial InfoCard');
   check(await page.locator('#grid-labels [data-cell="H8"]').count()===0,'Sector View has no system-cell designation');
@@ -147,7 +148,7 @@ async(page) => {
     await page.locator('#close-info').click();await panel('controls-panel');await page.locator('#mode').click();await square();
     await page.locator('#mode').click();await page.locator('#sector').click();
   }
-  await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+  await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   return [...results,'390/320 portrait and 844×390 landscape layouts, narrow popup and perspective fit without clipping'];
 }

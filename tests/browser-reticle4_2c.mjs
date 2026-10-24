@@ -1,5 +1,6 @@
 /** Normal Demo / audited production Chromium callback. No authored data is changed. */
 async page=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failed=[],resources=[];
@@ -23,7 +24,7 @@ async page=>{
   // Exercise a fresh resource response on repeated runs, rather than decoded-mask cache reuse.
   page.on('pageerror',error);page.on('response',response);await page.route(reticleRequest,resourceRoute);
   try {
-    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);
+    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
     await label('sys_0001').waitFor();await page.mouse.move(2,2);
     check(await hover.isHidden()&&await gold.isHidden(),'no idle targeting');
     check(await page.locator('.target-reticles').getAttribute('aria-hidden')==='true','decorative accessibility');
@@ -90,7 +91,7 @@ async page=>{
     const dprContext=await page.context().browser().newContext({viewport:{width:390,height:844},deviceScaleFactor:2});
     let dpr;
     try {
-      const p=await dprContext.newPage();await p.goto(base);await p.locator('#labels [data-record-id="sys_0001"]').hover();
+      const p=await dprContext.newPage();await p.goto(base);await enterAtlas(p);await p.locator('#labels [data-record-id="sys_0001"]').hover();
       dpr=await p.evaluate(()=>{const a=document.querySelector('.target-hover').getBoundingClientRect(),b=document.querySelector('#labels [data-record-id="sys_0001"]').getBoundingClientRect();return {ratio:devicePixelRatio,width:a.width,dx:a.x+a.width/2-b.x-b.width/2,dy:a.y+a.height/2-b.y-b.height/2};});
       check(Math.abs(dpr.ratio-2)<.001&&Math.abs(dpr.width-60)<.01&&Math.abs(dpr.dx)<.1&&Math.abs(dpr.dy)<.1,'DPR 2 shared CSS-pixel anchor '+JSON.stringify(dpr));
     }finally{await dprContext.close();}

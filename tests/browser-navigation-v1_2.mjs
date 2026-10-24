@@ -1,8 +1,9 @@
 /** Demo MCP suite: expectations come from the current public demo, not frozen dates. */
 async(page)=>{
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base='http://127.0.0.1:5173/Velara_Atlas/';
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
-  await page.setViewportSize({width:1440,height:1000});await page.goto(base);
+  await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
   const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
@@ -75,7 +76,7 @@ async(page)=>{
     check(destination.includes(` / ${partner}`)&&destination.includes('bidirectional'),`${id} correct available partner and direction`);
   }
   await year(sector.timeline.defaultAE);await panel('controls-panel');await page.locator('#sector').click();
-  await page.keyboard.press('Escape');await page.goto(base);
+  await page.keyboard.press('Escape');await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
   check(await page.locator('#catalogue [data-id="can_0001"]').count()===1&&await page.locator('#catalogue [data-id="can_0002"]').count()===1,'distinct Cantum records retained');
   return {systems:sector.systems.length,releasedSystems:released.length,archivalSystems:archival.length,pointerSelectedObjects:selected,exclusiveLocalEndpoints:localEndpoints,interstellarRoutes:graph.connections.filter(l=>l.linkType==='interstellar').length,historyAndDestinations:'passed',archivalFallback:'passed',perspective:'passed'};

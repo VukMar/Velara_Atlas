@@ -1,5 +1,6 @@
 /** Playwright MCP filename entry point; Chromium touch emulation, not hardware. */
 async(page) => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href;
   const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const p=await context.newPage(),errors=[];p.on('pageerror',error=>errors.push(error.message));
@@ -18,7 +19,7 @@ async(page) => {
     await touch('touchEnd',[]);
   };
   try {
-    await p.goto(base);await p.bringToFront();await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
+    await p.goto(base);await enterAtlas(p);await p.bringToFront();await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
     await tap('#labels [data-record-id="sys_0001"]');await p.locator('#info-panel').waitFor({state:'visible'});
     await tap('#enter');await p.locator('#labels [data-record-id="gat_0001"]').waitFor();
     await tap('#labels [data-record-id="gat_0001"]');

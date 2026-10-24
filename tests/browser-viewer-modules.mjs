@@ -1,12 +1,13 @@
 /** Phase 4 lifecycle and UI owners against the ordinary Demo; no fixture server. */
 async page => {
+  const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[];
   const consoleError=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
   page.on('console',consoleError);page.on('pageerror',pageError);
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+' > summary').click();};
   const year=async value=>{await page.keyboard.press('Escape');await panel('timeline-panel');await page.locator('#year-input').fill(String(value));await page.locator('#year-input').press('Enter');};
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5173/Velara_Atlas/');
+    await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5173/Velara_Atlas/');await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     await panel('controls-panel');await page.locator('#selection').focus();await page.locator('#selection').selectOption('sys_0005');
     check(await page.locator('#close-info').evaluate(e=>e===document.activeElement),'InfoCard takes focus');

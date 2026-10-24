@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation, 4.2C unified reticles, 4.2D System minima, 4.2E Focus motion and 4.2F chart navigation are complete and creator-approved (2026-10-23); opening and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
+**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation, 4.2C unified reticles, 4.2D System minima, 4.2E Focus motion and 4.2F chart navigation are complete and creator-approved (2026-10-23); 4.2G opening is complete and creator-approved (2026-10-24), while audio and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
 
 ## 1. Purpose and source references
 
@@ -390,6 +390,38 @@ navigation, errors and teardown cancel cleanly. Reduced motion uses direct
 navigation without a replacement effect. Keyboard/touch access and destination
 focus remain intact. The treatment preserves the square chart and A–E visuals.
 
-This supersedes chart-transition deferment only. 4.2G–I remain planned,
+This supersedes chart-transition deferment only. At the 4.2F closeout, 4.2G–I remained planned,
 unimplemented and separately gated; final Checkpoint 4 acceptance and Cantum
 Stage 5 remain pending. See [verification and limits](DEVELOPMENT_ROADMAP.md#phase-42f--map-navigation-transitions).
+
+## Checkpoint 4.2G approved Atlas opening — 2026-10-24
+
+The creator approved the ready-only, black opening dialog with restrained cyan
+rectangular framing, green `NEXUS // CONNECTION ESTABLISHED` identity, readable
+`VELARA ATLAS` branding and unchanged MCR insignia. The original front-facing
+NEXUS form is the dominant character image, contained without distortion or face
+cropping. Desktop separates portrait and copy with a quiet divider; narrow layouts
+stack and reduce artwork, while short landscape gives priority to copy/actions.
+Text and buttons remain reachable through bounded vertical scrolling. Image
+failure hides the artwork while preserving all essential text and entry actions.
+
+The universal introduction in `public/content/nexus/opening-data.json` is the
+**approved 4.2G script for future 4.2H voice production**:
+
+- Title: `NEXUS // CONNECTION ESTABLISHED`
+- Subtitle: `VELARA ATLAS`
+- Message: "Ah, a Visitor. Welcome to the Velara Atlas. You may explore this edition of the archive by system and by year. History has a habit of resisting simple explanations. Fortunately, you have me. Do try to keep up."
+
+This approval establishes public UI copy, not new historical facts. No welcome
+recording or playback has been implemented or admitted. The two visible actions
+are `Enter with audio` and `Enter silently`; the approved note is "Voice playback
+is not available in this preview. Both entry options currently open the Atlas
+without sound." Escape enters silently. Both choices enter immediately, preserving
+the initialized chart and recording only in-memory intent. Show once on each
+successful fresh page load; no persistence or reopening during navigation/remount.
+
+An optional **240ms ease-out opacity appearance** is the only new motion.
+Reduced motion skips it; entry is never delayed. Native dialog focus isolation,
+visible action focus, map focus return and technical-error visibility are retained.
+A–F presentation, artwork and dialogue remain unchanged. H–I remain planned and
+separately gated, with final Checkpoint 4 acceptance and Cantum Stage 5 pending.
