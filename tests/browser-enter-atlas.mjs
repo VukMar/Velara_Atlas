@@ -5,8 +5,14 @@
 export async function enterAtlas(page,choice='silent') {
   if(!await page.locator('#opening-panel').count())return false;
   await page.waitForFunction(()=>document.querySelector('#opening-panel')?.open||
-    (document.querySelector('#retry')&&!document.querySelector('#retry').hidden));
-  if(!await page.locator('#opening-panel').evaluate(e=>e.open))return false;
+    (document.querySelector('#retry')&&!document.querySelector('#retry').hidden)||
+    (document.querySelector('#viewport')?.dataset.markers!==undefined&&!document.querySelector('#audio-toggle')?.disabled));
+  if(!await page.locator('#opening-panel').evaluate(e=>e.open)){
+    // Unrelated regressions explicitly request a silent test session through the
+    // real header control; returning Visitors do not have another entry dialog.
+    if(choice==='silent'&&await page.locator('#audio-toggle[aria-pressed="true"]').count())await page.locator('#audio-toggle').click();
+    return false;
+  }
   await page.getByRole('button',{name:choice==='audio'?'Enter with audio':'Enter silently',exact:true}).click();
   await page.waitForFunction(()=>!document.querySelector('#opening-panel').open);
   return true;

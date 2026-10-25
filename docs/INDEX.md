@@ -1,13 +1,14 @@
 # Velara Atlas documentation index
 
-**Current original-roadmap status (2026-10-24):** Checkpoints 4.2A–G are
+**Current original-roadmap status (2026-10-25):** Checkpoints 4.2A–H are
 **complete and creator-approved**: compact MCR header branding, ordinary NEXUS
 InfoCard portrait, distinct archival presentation with approved front-facing
 portrait/universal JSON dialogue, unified cyan/gold reticles, approved System View
 minima, 550ms cancelable Focus animation with preserved inspection endpoints,
 420ms decorative chart navigation with synchronous state/camera restoration,
-the ready-only opening with approved universal JSON script and in-memory entry intent,
-and strict admission of sixteen SVGs and three PNGs. Checkpoints 4.2H–I remain
+the ready-only opening with approved universal JSON script, persistent first-entry
+completion/global audio with no returning autoplay, two approved prerecorded
+speeches and strict admission of sixteen SVGs, three PNGs and two MP3s. Checkpoint 4.2I remains
 **planned, unimplemented and unauthorized** in
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned),
 followed by final Checkpoint 4 creator acceptance and a Cantum Stage 5 decision.
@@ -51,8 +52,8 @@ cannot authorize new work.
 | [ZONE_GEOMETRY_INTERACTION_SPEC](ZONE_GEOMETRY_INTERACTION_SPEC.md) | Implemented zone intersection and picking contract. |
 | [CARTOGRAPHIC_LABELING](CARTOGRAPHIC_LABELING.md) | Implemented typography and caption rules with later Cantum amendments. |
 | [CANTUM_TERRITORY_RENDERING](CANTUM_TERRITORY_RENDERING.md) | Current membership, Gaussian fields, compositing, identities and calibration. |
-| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved visual direction, completed 4.2A branding, 4.2B archival composition/wording and 4.2C cyan/gold targeting; later refinement remains deferred. |
-| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Asset categories, safe registries, fallbacks, exact three-PNG/UI-reticle admission and universal UI-content boundary. |
+| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved A–H presentation, unchanged scripts, targeting/motion and first-entry/two-speech treatment; SFX remain deferred. |
+| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Safe registries/fallbacks, exact PNG/UI-reticle/two-MP3 binary admission and universal UI-content boundary. |
 | [CHECKPOINT_4_CELESTIAL_SCALE_SPEC](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) | Approved CNU conversion, physical dimensions/proxy scale and inspection. |
 | [LEGACY_MIGRATION_PLAN](LEGACY_MIGRATION_PLAN.md) | Canonical migration safeguards; separate approval and ID crosswalk required. |
 

@@ -2,14 +2,14 @@
 
 This file governs AI-assisted changes in this repository. Read it before making edits. Keep it concise; detailed decisions live in `docs/`.
 
-## Current original-roadmap planning authority (updated 2026-10-24)
+## Current original-roadmap planning authority (updated 2026-10-25)
 
 [DEVELOPMENT_ROADMAP](docs/DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned)
 defines nine separately gated Checkpoint 4.2A–I phases, followed by final
 Checkpoint 4 creator acceptance and the pending Cantum Stage 5 decision.
 **4.2A–F are complete and creator-approved (2026-10-23), as is 4.2G (2026-10-24);
-4.2H–I remain planned,
-unimplemented and unauthorized**. The approved documentation foundation **does not**
+4.2H is complete and creator-approved (2026-10-25).
+4.2I remains planned, unimplemented and unauthorized**. The approved documentation foundation **does not**
 grant permission to implement or close out any phase.
 
 For a *separately creator-authorized* phase, inspect current `main`,
@@ -153,7 +153,8 @@ Completed, creator-approved 4.2C adds exactly `public/assets/ui/nexus-reticle.sv
 through independent pinned-hash UI admission, without relaxing the starter SVG
 validator: sixteen SVGs and three PNGs total. Preserve its bytes, shared projected
 anchors, 60px cyan/30s hover rotation, 72px static gold lock and reduced-motion
-handling. Audio remains excluded; 4.2G reuses the admitted images for its approved
+handling. Audio was excluded through 4.2G; the exact two-recording 4.2H
+admission below now applies. 4.2G reuses the admitted images for its approved
 opening. Fixed radii never follow zoom;
 navigational minima affect proxies only.
 
@@ -161,8 +162,9 @@ Completed, creator-approved 4.2D sets System View CSS minimum diameters centrall
 to 42/36/30/24/21/18/15px (star/gas planet/other planet/moon/small body/structure/
 short-range gate). Preserve 1 CNU = 10,000 km, the 1.35 handoff, physical geometry,
 original hit targets, 8px Sector symbols and 4.2C reticles. The committed
-`nexus-fallback-message.mp3` remains unchanged, reserved for 4.2H and excluded
-from the application build; source-repository presence grants no audio authority.
+`nexus-fallback-message.mp3` remained unchanged, reserved for 4.2H and excluded
+at the 4.2D closeout. Completed 4.2H now admits that original and the approved
+entry acknowledgment; source-repository presence alone grants no audio authority.
 
 Completed, creator-approved 4.2E animates Focus only: 550ms smoothstep, one
 cancelable camera-owned RAF operation, exact existing inspection/zone/anchor
@@ -175,18 +177,35 @@ Completed, creator-approved 4.2F owns a separate 420ms decorative chart reveal i
 still commits history, scene replacement and camera restoration synchronously;
 the effect never schedules navigation or interpolates between chart coordinates.
 Preserve input/history/error/replacement/disposal cancellation, immediate reduced
-motion, pointer transparency and the unchanged archival copy/portrait. 4.2H–I,
+motion, pointer transparency and the unchanged archival copy/portrait. 4.2I,
 final Checkpoint 4 acceptance, Cantum Stage 5 and deployment remain separately gated.
 
 Completed, creator-approved 4.2G (2026-10-24) adds the ready-only native opening
 dialog, reusing original front-facing NEXUS/MCR images and the exact universal
-`public/content/nexus/opening-data.json` script. Show once per successful fresh
+`public/content/nexus/opening-data.json` script. Its original policy was once per successful fresh
 page load; ordinary navigation/remount does not reopen it. Entry records only
 in-memory `audio`/`silent` intent, with Escape silent; no storage or playback.
 Preserve 240ms ease-out appearance, immediate entry/reduced motion, map focus,
 unchanged historical/camera state and technical-error visibility. The closed
 two-JSON input audit retains validation, redirect/mid-build-change rejection and
-module completeness. No new binary asset is admitted. H–I remain separately gated.
+module completeness. G admitted no new binary asset. Its repeat-entry and audio
+policy is superseded only by completed 4.2H below.
+
+Completed, creator-approved 4.2H (2026-10-25) shows the unchanged opening until an
+explicit first-entry choice is completed. Returning Visitors bypass it, restore
+global audio ON/OFF and never autoplay the entry acknowledgment. Preserve the
+three strict localStorage keys in `audio-controller.mjs`, safe one-time legacy
+migration, clearing-completion behavior, header-only preference independence and
+functional in-memory fallback when storage fails. Audio entry persists ON and
+completion, then requests the approved clip in the user gesture; silent/Escape
+entry persists OFF and completion. Header ON never starts speech; OFF stops it.
+One root-lifetime audio owner permits only entry acknowledgment and explicit
+eligible archival navigation, with stop/replacement on navigation/year/error/
+context loss/remount/disposal. Preserve exactly two hash-pinned original MP3s,
+static imports, binary source/output/name/completeness/reachability checks and
+all prior SVG/PNG/Canon/private restrictions: sixteen SVGs, three PNGs, two MP3s.
+No UI sound effects are implemented. 4.2I, final Checkpoint 4 acceptance, Cantum
+Stage 5, Checkpoint 5, Canon migration, Atlas Creator and deployment remain gated.
 
 Local visual editor is deferred, not part of the MVP. The v1.2 schema applies to noncanonical demo/reference records, not an automatic canonical migration. Canonical public v0.1 records and permanent IDs require a separate approved migration. Preserve committed Stage 4 and the intermediate Cantum scale calibration. Phase 2.2 example simplification is complete and creator-approved. Architecture Phase 3A is complete and creator-approved, with implementation and status synchronization included in the same closeout commit. Phase 3B is complete and creator-approved, with implementation and completion documentation committed together. Phase 3C is complete and creator-approved. Phase 3D is complete and creator-approved, with its implementation and completion documentation committed together. Phase 3E is complete and creator-approved, with its local authoring implementation and completion documentation committed together. Phase 3F integration and the noncanonical Demo showcase are complete and creator-approved; implementation and completion documentation enter Git history together. Architecture Phase 4 is complete and creator-approved, with implementation and status synchronization committed together. Phase 5 is complete and creator-approved, with implementation and status synchronization committed together. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. Further visual development, Atlas Creator, canonical migration and deployment remain unauthorized.
 

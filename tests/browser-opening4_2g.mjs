@@ -1,9 +1,11 @@
 /** Normal Demo / audited preview. Inspect the real opening, never bypass it. */
 async page=>{
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
-  const check=(ok,message)=>{if(!ok)throw Error(message);},requests=[],errors=[],failures=[];
-  const request=r=>requests.push(r.url()),error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failures.push(r.url());};
+  const check=(ok,message)=>{if(!ok)throw Error(message);},requests=[],mediaRequests=[],errors=[],failures=[];
+  const request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failures.push(r.url());};
   page.on('request',request);page.on('pageerror',error);page.on('response',response);
+  const keys=['velara-atlas:audio-enabled:v1','velara-atlas:first-entry-completed:v1','velara-atlas:first-entry-migration:v1'];
+  const fresh=async()=>{await page.evaluate(keys=>keys.forEach(k=>localStorage.removeItem(k)),keys);await page.reload();};
   const wait=()=>page.locator('#opening-panel[open]').waitFor({state:'visible'});
   const snapshot=()=>page.evaluate(()=>{
     const m=window.__openingMain?.application;
@@ -24,18 +26,17 @@ async page=>{
     check(await page.locator('#viewport>canvas').evaluate(e=>e===document.activeElement),'map receives focus');
     check(await page.locator('.map-transition').isHidden(),'entry does not trigger chart transition');
     if(dev)check(await page.evaluate(choice=>window.__openingMain.application.entryChoice===choice,choice),'session intent '+choice);
-    check(await page.evaluate(()=>window.__openingEvidence.audio===0&&window.__openingEvidence.storage.length===0),'entry creates neither audio nor stored preferences');
+    check(await page.evaluate(choice=>window.__openingEvidence.audio===(choice==='audio'?1:0)&&window.__openingEvidence.storage.length===3&&window.__openingEvidence.storage[1].key==='velara-atlas:first-entry-migration:v1'&&window.__openingEvidence.storage[2].key==='velara-atlas:first-entry-completed:v1'&&window.__openingEvidence.storage[2].value==='true'&&window.__openingEvidence.storage[0].key==='velara-atlas:audio-enabled:v1'&&window.__openingEvidence.storage[0].value===String(choice==='audio')&&window.__openingEvidence.clips.every(src=>/nexus-enter-with-audio/.test(src)),choice),'4.2H entry persists Boolean intent and explicit first-entry completion and requests only its approved speech');
   };
   try {
     await page.addInitScript(()=>{
-      window.__openingEvidence={audio:0,storage:[],animations:[]};
-      window.Audio=function(){window.__openingEvidence.audio++;throw Error('Audio forbidden in 4.2G');};
+      window.__openingEvidence={audio:0,storage:[],animations:[],clips:[]};
       for(const key of ['AudioContext','webkitAudioContext'])if(window[key])window[key]=function(){window.__openingEvidence.audio++;throw Error('Audio context forbidden in 4.2G');};
-      HTMLMediaElement.prototype.play=function(){window.__openingEvidence.audio++;throw Error('Playback forbidden in 4.2G');};
-      const store=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){window.__openingEvidence.storage.push(key);return store.call(this,key,value);};
+      HTMLMediaElement.prototype.play=function(){window.__openingEvidence.audio++;window.__openingEvidence.clips.push(this.src);return Promise.resolve();};
+      const store=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){window.__openingEvidence.storage.push({key,value});return store.call(this,key,value);};
       const animate=Element.prototype.animate;Element.prototype.animate=function(frames,options){if(this.id==='opening-panel')window.__openingEvidence.animations.push(options);return animate.call(this,frames,options);};
     });
-    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);await prepare();
+    await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});await page.goto(base);await fresh();await prepare();
     const copy=await page.locator('#opening-panel').evaluate(e=>({title:e.querySelector('#opening-title').textContent,subtitle:e.querySelector('#opening-name').textContent,message:e.querySelector('#opening-message').textContent}));
     check(copy.title==='NEXUS // CONNECTION ESTABLISHED'&&copy.subtitle==='VELARA ATLAS','exact connection identity');
     check(copy.message==='Ah, a Visitor. Welcome to the Velara Atlas. You may explore this edition of the archive by system and by year. History has a habit of resisting simple explanations. Fortunately, you have me. Do try to keep up.','verbatim approved 4.2G script');
@@ -57,14 +58,18 @@ async page=>{
     await page.screenshot({path:`.playwright-mcp/4.2g-${edition}-archival.png`});await page.locator('#archival-return').click();
     await page.evaluate(()=>{const y=document.querySelector('#year-input');y.value='900';y.dispatchEvent(new Event('change'));document.querySelector('#reset').click();});
     check(await page.locator('#opening-panel').evaluate(e=>!e.open),'no reopening on navigation/year/reset');
-    await page.reload();await prepare();await enter('audio');await page.screenshot({path:`.playwright-mcp/4.2g-${edition}-audio-sector.png`});
-    await page.reload();await prepare();const escapeBefore=await snapshot();await page.keyboard.press('Escape');
+    // Completed Visitors bypass the welcome on ordinary reloads, with no entry speech.
+    await page.reload();await page.waitForFunction(()=>!document.querySelector('#audio-toggle').disabled);
+    check(await page.locator('#opening-panel').evaluate(e=>!e.open),'completed Visitor bypasses welcome');
+    check(await page.evaluate(()=>window.__openingEvidence.audio===0),'returning Visitor never receives an entry acknowledgment');
+    await fresh();await prepare();await enter('audio');await page.screenshot({path:`.playwright-mcp/4.2g-${edition}-audio-sector.png`});
+    await fresh();await prepare();const escapeBefore=await snapshot();await page.keyboard.press('Escape');
     check(await page.locator('#opening-panel').evaluate(e=>!e.open&&e.returnValue==='silent'),'Escape enters silently');
     check(JSON.stringify(escapeBefore)===JSON.stringify(await snapshot()),'Escape preserves historical/chart state');
     if(dev)check(await page.evaluate(()=>window.__openingMain.application.entryChoice==='silent'),'Escape session intent');
     const layouts=[];
     for(const [width,height,scale] of [[1280,900,1],[390,844,1],[320,740,1],[844,390,1],[1280,900,2],[320,740,2]]){
-      await page.setViewportSize({width,height});await page.reload();await wait();await page.evaluate(scale=>document.documentElement.style.fontSize=(scale*100)+'%',scale);
+      await page.setViewportSize({width,height});await fresh();await wait();await page.evaluate(scale=>document.documentElement.style.fontSize=(scale*100)+'%',scale);
       const metrics=await page.locator('#opening-panel').evaluate(e=>{
         const r=e.getBoundingClientRect(),image=e.querySelector('#opening-portrait'),style=getComputedStyle(image);
         return {x:r.x,y:r.y,dialogWidth:r.width,dialogHeight:r.height,scroll:e.scrollWidth,client:e.clientWidth,objectFit:style.objectFit,
@@ -76,23 +81,23 @@ async page=>{
       check(await page.locator('#opening-silent').evaluate(e=>{const r=e.getBoundingClientRect();return r.y>=0&&r.bottom<=innerHeight;}),'entry reachable on short/scaled viewport');
       await page.screenshot({path:`.playwright-mcp/4.2g-${edition}-${width}x${height}-${scale}x.png`});await page.keyboard.press('Enter');check(await page.locator('#opening-panel').evaluate(e=>!e.open),'keyboard Enter works');layouts.push({width,height,scale,...metrics});
     }
-    await page.evaluate(()=>document.documentElement.style.fontSize='');await page.emulateMedia({reducedMotion:'reduce'});await page.reload();await prepare();
+    await page.evaluate(()=>document.documentElement.style.fontSize='');await page.emulateMedia({reducedMotion:'reduce'});await fresh();await prepare();
     check(await page.evaluate(()=>window.__openingEvidence.animations.length===0),'reduced motion has no appearance animation');await enter('silent');
-    await page.emulateMedia({reducedMotion:'no-preference'});await page.reload();await wait();
+    await page.emulateMedia({reducedMotion:'no-preference'});await fresh();await wait();
     check(await page.evaluate(()=>window.__openingEvidence.animations.some(a=>a.duration===240)),'normal motion uses 240ms appearance');
     await page.emulateMedia({reducedMotion:'reduce'});check(await page.locator('#opening-panel').evaluate(e=>e.getAnimations().length===0),'live media change cancels decoration');await page.locator('#opening-silent').click();
-    // Real Chromium touch activation of both choices, each on a fresh page load.
+    // Real Chromium touch activation of both choices, each with clean first-entry storage.
     const cdp=await page.context().newCDPSession(page);
     try{
       await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});
       for(const choice of ['audio','silent']){
-        await page.reload();await wait();const button=page.locator('#opening-'+choice);await button.scrollIntoViewIfNeeded();const box=await button.boundingBox();
+        await fresh();await wait();const button=page.locator('#opening-'+choice);await button.scrollIntoViewIfNeeded();const box=await button.boundingBox();
         await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
         await page.waitForFunction(choice=>{const e=document.querySelector('#opening-panel');return !e.open&&e.returnValue===choice;},choice);
-        check(await page.evaluate(()=>window.__openingEvidence.audio===0&&window.__openingEvidence.storage.length===0),'touch entry creates no audio or persistence');
+        check(await page.evaluate(choice=>window.__openingEvidence.audio===(choice==='audio'?1:0)&&window.__openingEvidence.storage.length===3&&window.__openingEvidence.storage[0].value===String(choice==='audio'),choice),'4.2H touch entry has precise speech/persistence behavior');
       }
     }finally{await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await cdp.detach();}
-    const noAudio=await page.evaluate(()=>window.__openingEvidence);check(noAudio.audio===0&&noAudio.storage.length===0&&!requests.some(u=>/\.mp3(?:\?|$)/.test(u)),'no playback, persistence or audio request');
+    const noAudio=await page.evaluate(()=>window.__openingEvidence);check(noAudio.audio===0&&noAudio.storage.length===3&&noAudio.storage[0].value==='false'&&!mediaRequests.some(u=>/\.mp3(?:\?|$)/.test(u)),'silent entry has no speech/media request; mocked audio-intent playback is covered separately by real 4.2H tests');
     let lifecycle=null;
     if(dev){
       lifecycle=await page.evaluate(async()=>{
@@ -112,7 +117,7 @@ async page=>{
     }finally{await failurePage.close();}
     const imagePage=await page.context().newPage();
     try{
-      await imagePage.route(/nexus-form.*\.png(?:\?|$)/,r=>r.request().resourceType()==='image'?r.abort():r.continue());await imagePage.goto(base);await imagePage.locator('#opening-panel[open]').waitFor();
+      await imagePage.route(/nexus-form.*\.png(?:\?|$)/,r=>r.request().resourceType()==='image'?r.abort():r.continue());await imagePage.goto(base);await imagePage.evaluate(keys=>keys.forEach(k=>localStorage.removeItem(k)),keys);await imagePage.reload();await imagePage.locator('#opening-panel[open]').waitFor();
       await imagePage.waitForFunction(()=>document.querySelector('#opening-portrait').hidden);check(await imagePage.locator('#opening-message').isVisible(),'failed portrait preserves dialogue');
       await imagePage.screenshot({path:`.playwright-mcp/4.2g-${edition}-image-fallback.png`});await imagePage.locator('#opening-silent').click();check(await imagePage.locator('#opening-panel').evaluate(e=>!e.open),'failed portrait preserves entry');
     }finally{await imagePage.close();}
@@ -123,7 +128,7 @@ async page=>{
         await contentPage.goto(base);await contentPage.locator('#retry').waitFor({state:'visible'});check(await contentPage.locator('#opening-panel').evaluate(e=>!e.open),'invalid opening content remains technical');
         check((await contentPage.locator('#map-message').innerText()).includes('Invalid NEXUS opening'),'invalid configuration error is explicit');
       }finally{await contentPage.close();}
-      await page.reload();await prepare();await page.evaluate(()=>window.__openingMain.application.atlas.renderer.getContext().getExtension('WEBGL_lose_context').loseContext());
+      await fresh();await prepare();await page.evaluate(()=>window.__openingMain.application.atlas.renderer.getContext().getExtension('WEBGL_lose_context').loseContext());
       await page.locator('#retry').waitFor({state:'visible'});check(await page.locator('#opening-panel').evaluate(e=>!e.open),'context loss removes modal');check(await page.locator('#retry').evaluate(e=>e===document.activeElement),'Retry receives focus');
       await page.screenshot({path:`.playwright-mcp/4.2g-${edition}-context-error.png`});
     }

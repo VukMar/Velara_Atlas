@@ -18,6 +18,7 @@ import {validateIconSource} from '../scripts/svg-assets.mjs';
 import {createDemoConfig,demoInputAudit,auditRegisteredModules} from '../vite.config.mjs';
 import {releaseCheck} from '../scripts/release-check.mjs';
 import {approvedPNGSources,pngFiles} from '../scripts/png-assets.mjs';
+import {audioFiles} from '../scripts/audio-assets.mjs';
 import {NEXUS_FALLBACK_FILE,readFallbackSource,nexusContentAudit} from '../scripts/nexus-content.mjs';
 
 test('exact universal-content admission rejects malformed, missing, redirected and unregistered inputs',()=>{
@@ -111,7 +112,9 @@ test('actual build includes every registered module and rejects output disclosur
   assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
   assert.deepEqual(config.server.fs.allow.filter(file=>/reticle/.test(file)),[RETICLE_FILE]);
   const outputs=fs.readdirSync(path.join(top,'assets'));
-  assert(!outputs.some(name=>/\.(?:mp3|wav|ogg|webp|jpg|json)$/.test(name)));
+  assert.equal(audit().audioCount,2);assert.equal(outputs.filter(name=>name.endsWith('.mp3')).length,2);
+  assert(audioFiles.every(file=>config.server.fs.allow.includes(file)));
+  assert(!outputs.some(name=>/\.(?:wav|ogg|webp|jpg|json)$/.test(name)));
   const reticleNames=outputs.filter(name=>/^nexus-reticle-.*\.svg$/.test(name));assert.equal(reticleNames.length,1);
   const reticleFile=path.join(top,'assets',reticleNames[0]),reticle=approvedReticleSource();assert(fs.readFileSync(reticleFile).equals(reticle));
   fs.unlinkSync(reticleFile);assert.throws(audit,/Missing build resource|reticle SVG inventory/);fs.writeFileSync(reticleFile,reticle);
@@ -143,10 +146,10 @@ test('actual build includes every registered module and rejects output disclosur
     }
   }
   for(const suffix of ['webp','jpg','mp3','wav']) {
-    const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(extra);
+    const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,suffix==='mp3'?/Unexpected MP3/:/Unexpected distributable/);fs.unlinkSync(extra);
   }
   const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
-  for(const name of ['nexus/unapproved.png','ui/unapproved.svg','nexus/nexus-fallback-message.mp3']) {
+  for(const name of ['nexus/unapproved.png','ui/unapproved.svg','nexus/unapproved.mp3']) {
     const id=normalizePath(path.resolve('public/assets',name));
     assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
   }

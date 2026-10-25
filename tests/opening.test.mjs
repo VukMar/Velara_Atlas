@@ -13,7 +13,7 @@ import {readDemoSource,DEMO_ROOT} from '../scripts/demo-files.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 
 const source=readOpeningSource();
-function harness(config=source.data,session={choice:null,presented:false},motion=new EventTarget()) {
+function harness(config=source.data,session={choice:null},motion=new EventTarget()) {
   class Element extends EventTarget {
     hidden=false;open=false;complete=false;textContent='';focuses=0;shows=0;animations=[];
     focus(){this.focuses++;}
@@ -22,9 +22,9 @@ function harness(config=source.data,session={choice:null,presented:false},motion
     animate(frames,options){const a={frames,options,canceled:false,cancel(){this.canceled=true;}};this.animations.push(a);return a;}
   }
   const nodes=new Map(['opening-panel','opening-title','opening-name','opening-message','opening-portrait','opening-insignia','opening-audio','opening-silent'].map(id=>[id,new Element()]));
-  const $=id=>nodes.get(id),lifetime=new Lifetime();let returns=0;
-  const view=createOpeningView({$,config,session,motion,portraitURL:'exact-form.png',insigniaURL:'exact-insignia.png',returnFocus:()=>returns++},lifetime);
-  return {$,view,session,motion,lifetime,get returns(){return returns;}};
+  const $=id=>nodes.get(id),lifetime=new Lifetime(),choices=[],entered=[];let returns=0;
+  const view=createOpeningView({$,config,session,motion,portraitURL:'exact-form.png',insigniaURL:'exact-insignia.png',onChoice:choice=>{choices.push(choice);},onEntered:choice=>{assert(!$('opening-panel').open);entered.push(choice);},returnFocus:()=>returns++},lifetime);
+  return {$,view,session,motion,lifetime,choices,entered,get returns(){return returns;}};
 }
 
 test('opening contract accepts only exactly three nonempty strings, safely preserving authored bytes',()=>{
@@ -46,10 +46,10 @@ test('approved 4.2G JSON script is verbatim and separate from the unchanged fall
   assert.deepEqual(readDemoSource().texts,before);assert.equal(readFallbackSource().text,fallback);
 });
 
-for(const choice of ['audio','silent'])test(`${choice} records only session intent, closes immediately and returns focus once`,()=>{
+for(const choice of ['audio','silent'])test(`${choice} delegates the entry choice synchronously, closes immediately and returns focus once`,()=>{
   const h=harness();assert(h.view.show());assert(h.view.visible);assert.equal(h.$('opening-name').focuses,1);
   h.$('opening-'+choice).dispatchEvent(new Event('click'));
-  assert.equal(h.session.choice,choice);assert(!h.view.visible);assert(!h.$('opening-panel').open);assert.equal(h.returns,1);
+  assert.deepEqual(h.choices,[choice]);assert.deepEqual(h.entered,[choice]);assert.equal(h.session.choice,choice);assert(!h.view.visible);assert(!h.$('opening-panel').open);assert.equal(h.returns,1);
   h.$('opening-'+choice).dispatchEvent(new Event('click'));assert.equal(h.returns,1);h.lifetime.dispose();
 });
 
@@ -62,10 +62,11 @@ test('Escape and unexpected native dismissal both enter silently without inconsi
   }
 });
 
-test('once-per-page policy survives remount; a new page session opens again',()=>{
+test('completed entry never reopens; an interrupted undecided welcome remains eligible after remount',()=>{
   const h=harness();assert(h.view.show());assert(!h.view.show());h.$('opening-silent').dispatchEvent(new Event('click'));assert(!h.view.show());
   h.lifetime.dispose();const remount=harness(source.data,h.session);assert(!remount.view.show());assert.equal(remount.session.choice,'silent');remount.lifetime.dispose();
-  const reload=harness();assert(reload.view.show());assert.equal(reload.session.choice,null);reload.lifetime.dispose();
+  const pending=harness();assert(pending.view.show());pending.lifetime.dispose();
+  const retry=harness(source.data,pending.session);assert(retry.view.show());assert.equal(retry.session.choice,null);retry.lifetime.dispose();
 });
 
 test('image failures preserve dialogue and usable entry; error hide does not invent a choice or steal focus',()=>{

@@ -2,8 +2,8 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],failed=[];
-  const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>requests.push(r.url()),response=r=>{if(r.status()>=400)failed.push(r.url());};
+  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],mediaRequests=[],failed=[];
+  const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},response=r=>{if(r.status()>=400)failed.push(r.url());};
   const expected={star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
   const closePanels=()=>page.evaluate(()=>{for(const e of document.querySelectorAll('.floating'))e.open=false;});
@@ -47,7 +47,7 @@ async page=>{
     check(await page.locator('.target-hover').evaluate(e=>getComputedStyle(e,'::before').animationName)==='none','reduced motion preserved');
     await page.screenshot({path:'.playwright-mcp/4.2d-after-dense-both.png'});
     await page.locator('#sector').click();await open('sys_0004');check(await page.locator('#archival-view').isVisible()&&await page.locator('.target-reticle:not([hidden])').count()===0,'archival destination unchanged');await page.locator('#archival-return').click();
-    check(!requests.some(url=>/\.mp3(?:\?|$)/.test(url)),'no audio request');
+    check(!mediaRequests.some(url=>/\.mp3(?:\?|$)/.test(url)),'no audio request');
     check(!errors.length&&!failed.length,'browser errors/resources '+JSON.stringify({errors,failed}));
     return {base,categories:[...categories],samples,layouts,reticles:'60/72 and reduced motion checked alongside dedicated 4.2C callback',audioRequests:0,errors,failed};
   }finally{page.off('pageerror',error);page.off('request',request);page.off('response',response);await page.emulateMedia({reducedMotion:'no-preference'});}

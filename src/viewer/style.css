@@ -11,6 +11,12 @@ nav button { white-space:nowrap; flex-shrink:0; }
 #year { margin-left:auto; white-space:nowrap; }
 #year,#units { font-family:ui-monospace,Consolas,monospace; font-size:.85rem; }
 #units { color:#94b2c2; }
+#audio-toggle { min-height:44px; min-width:100px; width:7.5em; flex:none; white-space:nowrap; font-size:.85rem; }
+/* Reserve a header column instead of adding a full-height row on short wide screens. */
+@media(min-width:601px) {
+  header { position:relative; padding-right:8rem; }
+  #audio-toggle { position:absolute; right:.8rem; top:50%; transform:translateY(-50%); }
+}
 button,select,input { font:inherit; }
 button,select { color:inherit; background:#102735; border:1px solid #43637a; border-radius:3px; padding:.55rem .7rem; }
 button { cursor:pointer; min-height:40px; }

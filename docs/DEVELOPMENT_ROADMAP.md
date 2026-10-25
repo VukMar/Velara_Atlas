@@ -15,7 +15,9 @@ phases 4.2A–I were established without implementation authorization.
 **Closeout update (2026-10-23): 4.2A–F are implemented, complete and creator-approved.**
 At that closeout, phases 4.2G–I remained planned, unimplemented and unauthorized.
 **Closeout update (2026-10-24): 4.2G is complete and creator-approved.**
-4.2H–I remain planned, unimplemented and unauthorized.
+At that closeout, 4.2H–I remained planned, unimplemented and unauthorized.
+**Closeout update (2026-10-25): 4.2H is complete and creator-approved.**
+4.2I remains planned, unimplemented and separately gated; no deployment is authorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -133,15 +135,15 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–G complete and creator-approved; 4.2H–I remain planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–H complete and creator-approved; 4.2I remains planned and separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
 | Checkpoint 4.2D — System Object Icon Sizing | **Complete and creator-approved (2026-10-23):** centralized 42/36/30/24/21/18/15px System minima; physical geometry, picking and Sector 8px marker preserved. |
 | Checkpoint 4.2E — Focus Selection Animation | **Complete and creator-approved (2026-10-23):** 550ms smoothstep camera-owned Focus, exact inspection/zone/anchor endpoints, interruptible and immediate under reduced motion. |
 | Checkpoint 4.2F — Map Navigation Transitions | **Complete and creator-approved (2026-10-23):** 420ms decorative chart reveal, synchronous navigation/camera restoration, cancelable and immediate under reduced motion. |
-| Checkpoint 4.2G — NEXUS Atlas Opening | **Complete and creator-approved (2026-10-24):** ready-only branded opening, universal approved script, immediate audio-intent/silent entry and once-per-fresh-load policy; no playback or persistence. |
-| Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Planned:** two approved prerecorded speech situations, persistent accessible toggle. |
+| Checkpoint 4.2G — NEXUS Atlas Opening | **Complete and creator-approved (2026-10-24):** ready-only branded opening and universal approved script; original entry policy superseded by H. |
+| Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Complete and creator-approved (2026-10-25):** two exact recordings, global header toggle, first-entry completion and safe returning-Visitor persistence without autoplay. |
 | Checkpoint 4.2I — UI Sound Effects | **Planned LAST:** restrained approved UI cues, throttled and muting-respectful. |
 | Checkpoint 4 — final creator acceptance | **Pending:** full visual/audiovisual/accessibility/security review and explicit Cantum Stage 5 disposition. |
 | Checkpoint 5 | **Publication review/deployment pending approval.** Architecture Phase 6 already completed local release preparation, not hosted deployment or creator publication acceptance. |
@@ -185,7 +187,7 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–G are complete and creator-approved; 4.2H–I remain planned and
+completed; **4.2A–H are complete and creator-approved; 4.2I remains planned and
 unimplemented**. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
@@ -677,7 +679,7 @@ of world records and the existing approved fallback script. No welcome recording
 or playback is implemented or admitted. Edit only this JSON and rebuild to change
 the introduction; revised released wording still requires creator approval.
 
-**Approved entry/return policy:** show once after each successful fresh page load,
+**Historical 4.2G entry/return policy (superseded by the 4.2H correction below):** show once after each successful fresh page load,
 including reload/Retry; never reopen during ordinary navigation, year changes,
 Reset, Focus or same-document remount. No browser storage suppresses it.
 `Enter with audio` records only in-memory `audio` intent; `Enter silently` and
@@ -708,11 +710,25 @@ Production remains 29 files, sixteen exact SVGs and three exact PNGs; no audio o
 raw UI JSON output. The reserved 305,746-byte fallback MP3 is unchanged and excluded.
 Physical-device, non-Chromium, screen-reader and actual browser-zoom certification
 remain unverified; CSS text scaling is checked. The existing chunk-size advisory
-remains. 4.2H–I remain planned and unimplemented; final Checkpoint 4 acceptance and
+remains. At the 4.2G closeout, 4.2H–I remained planned and unimplemented; final Checkpoint 4 acceptance and
 Cantum Stage 5 remain pending. Checkpoint 5, Canon migration, Atlas Creator and
 deployment remain unauthorized. No deployment occurred.
 
 ### Phase 4.2H — NEXUS Voice and Audio Preferences
+
+**Complete and creator-approved, 2026-10-25.**
+
+**Accepted creator correction (2026-10-25):** the
+once-per-fresh-load policy recorded under 4.2G above is historical and superseded.
+Show the unchanged opening only until an explicit first-entry decision. Audio
+entry saves completion and audio ON; silent entry and Escape save completion and
+audio OFF. Completed Visitors bypass the opening after successful startup,
+restore the header preference and never automatically play the entry recording.
+Header toggles change only audio. Strict legacy Boolean preferences migrate once;
+clearing completion alone restores first-entry behavior. Unavailable storage
+retains functional in-memory choices. The creator reviewed and approved this
+implementation and authorized its documentation and local commit; no push or
+deployment is part of this closeout. 4.2I is not authorized.
 
 **Purpose/scope:** Only **two** prerecorded creator-approved speeches:
 a short welcome on audio-enabled entry and the archival fallback message
@@ -731,7 +747,43 @@ text and navigation usable. Preference/storage-unavailable behavior tested;
 only creator-cleared recordings admitted, binary release audit passes.
 **Audio review:** both clips, interruption, refresh, denied autoplay,
 silent choice and mobile. **Depends on:** B/G and final approved
-script/recording assets. **Gate:** explicit creator audio approval.
+script/recording assets. **Gate:** explicit creator audio approval, received for H.
+
+**Implemented ownership and playback:** `audio-controller.mjs` owns global audio,
+first-entry completion, the persistent accessible header toggle and at most one
+lazy speech element. `voice-assets.mjs` imports only the two exact approved URLs.
+`main.mjs` requests entry acknowledgment synchronously after audio-choice
+dismissal, or fallback speech only on explicit changed-scope navigation resolving
+to `archival_fallback`. Header ON, restored ON, ordinary renders, year changes,
+panels and resize never start speech. OFF, navigation, historical refresh,
+technical error, context loss, pagehide, remount and disposal stop/release speech;
+generation guards isolate obsolete promises/events. Failed playback preserves
+text and navigation without automatic retries. No SFX or ordinary narration.
+
+**Persistence:** `velara-atlas:audio-enabled:v1` retains strict `true`/`false`;
+`velara-atlas:first-entry-completed:v1` accepts only `true` as completion;
+`velara-atlas:first-entry-migration:v1` prevents repeated legacy inference after
+completion is cleared. Only a strict legacy Boolean with both entry keys absent
+migrates. Header-only choices mark the modern protocol without completing entry.
+No cookies, identity, playback progress, world state or camera data is stored.
+The original opening/fallback JSON, 240ms appearance, artwork and A–G behavior
+are unchanged. The entry clip is the approved acknowledgment, not narration of
+the entire written introduction. The current note is: "Audio-enabled entry
+activates NEXUS speech. You can change this setting in the header."
+
+**Security and verification:** exactly two original MP3s are admitted with pinned
+sizes/SHA-256, regular-file/ancestor checks and verification across build stages.
+Output auditing requires their exact hashed names, binary equality, completeness
+and reachability; existing SVG/PNG, dataset, Canon/private and source-map rules
+remain. `publicDir: false` and `assetsInlineLimit: 0` remain. Production totals
+32 files / 4,940,241 bytes: sixteen SVGs, three PNGs and two MP3s.
+348 automated tests and validate/connections/build/release/diff checks pass;
+15 Demo and 9 production callbacks plus seven independent browser starts verify
+the corrected policy and A–G regressions. See [full evidence and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25)
+and [exact recordings/admission](VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission).
+Physical-device, non-Chromium, assistive-technology, actual browser-zoom and
+speaker/fidelity certification remain outside this evidence. 4.2I, final
+Checkpoint 4 acceptance and Cantum Stage 5 remain separately gated.
 
 ### Phase 4.2I — UI Sound Effects (implement LAST)
 
@@ -750,18 +802,16 @@ final restrained sound and code/assets.
 
 ### Unresolved design choices (not yet final requirements)
 
-1. **Opening (resolved in approved 4.2G):** show once per successful fresh page
-   load, including reload; no persistence. Both buttons enter immediately;
-   Escape enters silently. The original fresh-load/first-visit question is
-   superseded by this decision. Persistent playback preferences remain for H.
-2. **Scripts/recordings:** approve fallback text in B and welcome text in G;
-   approve exact released recordings before H. Never invent hidden lore,
-   false classified status or future information.
+1. **Opening (corrected and approved in 4.2H):** show until explicit first-entry
+   completion; returning Visitors bypass it without autoplay. Both buttons enter
+   immediately; Escape is silent. This supersedes G's original fresh-load policy.
+2. **Scripts/recordings (resolved in B/G/H):** fallback text and welcome text are
+   approved, as are the two exact H recordings. Revisions need creator approval;
+   never invent hidden lore, false classified status or future information.
 3. **Reticle:** finalize display-size ratio, safe SVG treatment and exact
    palette through 4.2C screenshot comparison; no permission to redraw.
-4. **Audio controls/files:** decide master-only versus optional voice/SFX
-   split, persistence and formats by H/I, keeping audio opt-in and
-   publications explicitly cleared.
+4. **Audio controls/files (H resolved):** one persistent master toggle, two exact
+   approved MP3s and first-entry persistence; SFX remain a separate I decision.
 5. **Cantum Stage 5:** deferred final refinement remains unresolved.
    Document explicit acceptance of existing appearance or authorize
    a separate tightly scoped Stage 5 patch.

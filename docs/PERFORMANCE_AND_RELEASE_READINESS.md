@@ -546,7 +546,79 @@ Browser evidence is local headless Chromium 139 with Intel HD Graphics 620 /
 Direct3D11, DPR 1, and emulated touch. No physical-device, Firefox/WebKit,
 screen-reader or actual browser-zoom certification is claimed. Screenshots,
 logs and intermediate evidence stay in ignored `.playwright-mcp/`, outside Git.
-4.2A–G are complete and creator-approved; H–I remain planned and unimplemented.
+At the G closeout, 4.2A–G were complete and creator-approved; H–I remained planned and unimplemented.
 Final Checkpoint 4 acceptance and Cantum Stage 5 remain pending; Checkpoint 5,
 Canon migration, Atlas Creator and deployment remain unauthorized. No deployment
 occurred.
+
+## Checkpoint 4.2H voice and first-entry closeout — 2026-10-25
+
+**Complete and creator-approved.** The creator reviewed the two original
+recordings, global header control and corrected first-entry behavior. The
+original G-only fresh-load policy above is historical and superseded. Pending
+Visitors see the unchanged opening until an audio/silent/Escape decision is
+completed. Returning Visitors bypass it, restore ON/OFF and never automatically
+request acknowledgment speech. The three namespaced storage values distinguish
+audio, completion and one-time migration; clearing completion alone restores
+entry. A modern header-only change cannot prove entry. Malformed records and
+storage denial retain safe, functional behavior. No history/camera data is stored.
+
+One root-lifetime audio owner creates media lazily, retains at most one active
+speech and releases listeners/source on completion, error, replacement, mute,
+navigation, year refresh, context loss, pagehide, remount and disposal. Generation
+guards prevent stale events/promises affecting replacement speech. Restored ON,
+header ON, ordinary archive renders/panels/resize and timeline refresh never start
+speech. Explicit changed-scope archival navigation is the only fallback trigger.
+No scene rebuild, historical command or chart reveal runs on opening dismissal.
+
+Final checks: **348/348 automated tests**, no failures/skips, including eighteen
+audio tests and retained opening/media/security regressions. `npm run validate`,
+`npm run connections:check`, `npm run build`, `npm run release:check` and
+`git diff --check` pass. Two exact original MP3s are pinned and compared as binary
+buffers at input/output, with exact filenames, module completeness and graph
+reachability; negative tests reject changed/redirected inputs and missing,
+renamed, duplicate, corrupt, unreferenced and unauthorized outputs. Existing
+SVG/PNG/content/dataset/private/Canon rules remain intact.
+
+Final local release totals **32 files / 4,940,241 bytes**: HTML 7,629; JS 734,095;
+CSS 15,010; SVG 16,022; PNG 3,737,805; MP3 429,680. This is fourteen navigation
+SVGs, one Cantum sigil, one NEXUS reticle, three original PNGs and exactly two
+MP3s. Full base-relative recording requests return exact original buffers;
+Chromium media range requests succeed. No source map, raw UI JSON, extra audio,
+private records or Canon data enters the release. See [pins and output contract](VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission).
+
+**Browser evidence:** 15/15 normal-Demo callbacks and 9/9 audited-production
+callbacks pass. Demo covers audio, opening, branding, archival, chart transitions,
+Focus, reticles, sizing, square layout, viewer modules, resource lifetime, touch
+camera, navigation, zones and celestial rendering. Production covers audio,
+opening, branding, archival, transitions, Focus, reticles, sizing and release
+readiness. Seven independent persistent-profile Chromium launches verify first
+entry, two ON returns, OFF return, cleared completion, silent return and Escape.
+Completed returning starts make zero autoplay media requests.
+
+The dedicated audio callback uses actual browser MP3 decoding/playing/currentTime,
+not mocked playback: entry 6.687313s, fallback 18.050563s, natural entry completion
+and resource release. It checks trusted entry activation, repeated ON/OFF reloads,
+strict legacy migration, clearing completion, malformed storage, header keyboard/
+touch operation, mute/replacement, 899/900/1200 chronology, released charts,
+no rerender replay, denied playback, missing/corrupt recordings, storage denial,
+startup failure/Retry, a header-only choice during failed first startup, remount,
+context loss and disposal. The adapted G callback uses a separate playback spy
+for exact copy, state/camera invariance, focus, image/motion and input assertions;
+it deliberately resets entry fixtures rather than reinstating the old policy.
+
+Responsive checks cover 1280×900, 390×844, 320×740 and 844×390, plus 200% CSS text
+scaling and normal/reduced motion. Stable ON/OFF header bounds preserve the chart;
+the desktop reserved column prevents an extra tall landscape row. Headless
+Chromium 139/Intel HD Graphics 620 Direct3D11 and emulated touch were tested.
+Physical devices, Firefox/WebKit, screen readers, actual browser zoom and physical
+speaker/fidelity certification remain unverified. The creator's personal audio/
+functional approval is separate from this automated evidence. The existing Vite
+chunk-size advisory remains; no unresolved meaningful regression is reported.
+
+Logs, screenshots, native media results and temporary profiles remain in ignored
+`.playwright-mcp/`; no generated evidence is committed. Earlier checkpoint
+history is retained. 4.2A–H are complete and creator-approved; 4.2I remains planned
+and unimplemented. Final Checkpoint 4 acceptance and Cantum Stage 5 are pending;
+Checkpoint 5, Canon migration, Atlas Creator and deployment remain unauthorized.
+This closeout authorizes a local commit only; no push or deployment occurred.

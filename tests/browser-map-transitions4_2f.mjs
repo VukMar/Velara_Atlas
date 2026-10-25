@@ -2,8 +2,8 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
-  const check=(value,message)=>{if(!value)throw Error(message);},errors=[],failures=[],requests=[];
-  const onError=e=>errors.push(e.message),onResponse=r=>{if(r.status()>=400)failures.push(r.url());},onRequest=r=>requests.push(r.url());
+  const check=(value,message)=>{if(!value)throw Error(message);},errors=[],failures=[],requests=[],mediaRequests=[];
+  const onError=e=>errors.push(e.message),onResponse=r=>{if(r.status()>=400)failures.push(r.url());},onRequest=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());};
   page.on('pageerror',onError);page.on('response',onResponse);page.on('request',onRequest);
   try {
     await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1280,height:900});
@@ -173,7 +173,7 @@ async page=>{
     await act('sector');await settle();
     const semantics=await page.locator('.map-transition').evaluate(e=>({hidden:e.hidden,aria:e.getAttribute('aria-hidden'),pointer:getComputedStyle(e).pointerEvents,tab:e.tabIndex,animations:e.getAnimations().length}));
     check(semantics.hidden&&semantics.aria==='true'&&semantics.pointer==='none'&&semantics.tab===-1&&semantics.animations===0,'noninteractive, nonfocusable and no active animation');
-    check(!errors.length&&!failures.length&&!requests.some(url=>/\.mp3(?:\?|$)/.test(url)),'clean resources, errors and no audio '+JSON.stringify({errors,failures}));
+    check(!errors.length&&!failures.length&&!mediaRequests.some(url=>/\.mp3(?:\?|$)/.test(url)),'clean resources, errors and no audio '+JSON.stringify({errors,failures}));
     if(!dev)check(requests.every(url=>url.startsWith(base)),'all production requests beneath repository base');
     const result={base,environment,samples,rapid,interruptions,cameras,lifecycle,layouts,semantics,errors,failures};
     await (await import('node:fs/promises')).writeFile(`.playwright-mcp/4.2f-${edition}-samples.json`,JSON.stringify(result,null,2));return result;

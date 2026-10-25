@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {approvedSVGSources,svgFiles} from './svg-assets.mjs';
 import {readDemoSource,DEMO_ROOT} from './demo-files.mjs';
 import {approvedPNGSources} from './png-assets.mjs';
+import {approvedAudioSources,AUDIO_PINS} from './audio-assets.mjs';
 import {approvedReticleSource} from './ui-reticle-asset.mjs';
 
 const defaultRoot = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -25,13 +26,20 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   const approvedSVG = new Set(approvedSVGSources()), emittedSVG = new Set();
   const svgNames = new Map(approvedSVGSources().map((source,i)=>[source,path.basename(svgFiles[i],'.svg')]));
   const approvedPNG=approvedPNGSources(),emittedPNG=new Set();
+  const approvedAudio=approvedAudioSources(),emittedAudio=new Set();
   const reticle=approvedReticleSource();let emittedReticle=false;
   for (const file of files) {
     const name = path.relative(root, file).replaceAll('\\', '/');
-    if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png)$/.test(name)) {
+    if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png|mp3)$/.test(name)) {
       throw new Error(`Unexpected distributable file: ${name}`);
     }
     const bytes=fs.statSync(file).size,extension=path.extname(name);totalBytes+=bytes;bytesByType[extension]=(bytesByType[extension]??0)+bytes;
+    if(extension==='.mp3') {
+      const source=fs.readFileSync(file);
+      const match=[...approvedAudio].find(([stem,approved])=>name==='assets/'+AUDIO_PINS.find(pin=>pin.name===stem).output&&source.equals(approved));
+      if(!match||emittedAudio.has(match[0]))throw new Error('Unexpected MP3 content/name or duplicate: '+name);
+      emittedAudio.add(match[0]);edges.set(name,[]);continue;
+    }
     if(extension==='.png') {
       const source=fs.readFileSync(file);
       const match=[...approvedPNG].find(([stem,approved])=>new RegExp(`^assets/${stem}-[A-Za-z0-9_-]+\\.png$`).test(name)&&source.equals(approved));
@@ -57,7 +65,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
     if(allowedIds) {
       if(/(?:\bfrom\s*|\bimport\s*\(|\bfetch\s*\(|@import\s*)["']https?:\/\//.test(text))throw new Error(`Unexpected external import/request in ${name}`);
     }
-    for(const [,ref] of text.matchAll(/["']((?:\/Velara_Atlas\/assets\/|\.\/|assets\/)[A-Za-z0-9_.\/-]+\.(?:js|css|svg|png))["']/g)) {
+    for(const [,ref] of text.matchAll(/["']((?:\/Velara_Atlas\/assets\/|\.\/|assets\/)[A-Za-z0-9_.\/-]+\.(?:js|css|svg|png|mp3))["']/g)) {
       const target=ref.startsWith('/Velara_Atlas/')?ref.slice('/Velara_Atlas/'.length):ref.startsWith('assets/')?ref:path.posix.normalize(path.posix.join(path.posix.dirname(name),ref));
       if(!relative.has(target))throw new Error(`Missing build resource ${target} referenced by ${name}`);
       links.push(target);
@@ -67,6 +75,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   if (emittedSVG.size !== approvedSVG.size) throw new Error('Approved SVG inventory is incomplete');
   if (!emittedReticle) throw new Error('Approved UI reticle SVG inventory is incomplete');
   if (emittedPNG.size !== approvedPNG.size) throw new Error('Approved PNG inventory is incomplete');
+  if(emittedAudio.size!==approvedAudio.size)throw new Error('Approved MP3 inventory is incomplete');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   if (!html.includes('NONCANONICAL DEMONSTRATION')) throw new Error('Demo disclosure missing');
   for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
@@ -76,10 +85,10 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   }
   {
     const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit('index.html');
-    for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+    for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.endsWith('.mp3')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
   }
   const svgCount=emittedSVG.size+Number(emittedReticle);
-  return {files:files.length,svgCount,pngCount:emittedPNG.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
+  return {files:files.length,svgCount,pngCount:emittedPNG.size,audioCount:emittedAudio.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs and ${emittedAudio.size} exact approved MP3s, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 

@@ -345,7 +345,7 @@ are implemented. The closeout approves 4.2B only; 4.2C–I, final Checkpoint 4
 acceptance and Cantum Stage 5 remain outstanding.
 
 The original broad voice deferral was for the first viewer. The narrow
-**planned** Checkpoint 4.2H exception is just two prerecorded,
+**completed, creator-approved** Checkpoint 4.2H exception is just two prerecorded,
 creator-approved speeches: welcome and archival fallback; ordinary
 InfoCards are **not narrated**. 4.2G designs opening without playback;
 4.2I adds a few optional short sounds **last**. Still deferred:
@@ -396,6 +396,9 @@ Stage 5 remain pending. See [verification and limits](DEVELOPMENT_ROADMAP.md#pha
 
 ## Checkpoint 4.2G approved Atlas opening — 2026-10-24
 
+The original G-only playback/entry policy below is historical; approved H below
+supersedes it without changing the composition, universal message or artwork.
+
 The creator approved the ready-only, black opening dialog with restrained cyan
 rectangular framing, green `NEXUS // CONNECTION ESTABLISHED` identity, readable
 `VELARA ATLAS` branding and unchanged MCR insignia. The original front-facing
@@ -423,5 +426,33 @@ successful fresh page load; no persistence or reopening during navigation/remoun
 An optional **240ms ease-out opacity appearance** is the only new motion.
 Reduced motion skips it; entry is never delayed. Native dialog focus isolation,
 visible action focus, map focus return and technical-error visibility are retained.
-A–F presentation, artwork and dialogue remain unchanged. H–I remain planned and
+A–F presentation, artwork and dialogue remained unchanged. At the G closeout, H–I remained planned and
 separately gated, with final Checkpoint 4 acceptance and Cantum Stage 5 pending.
+
+## Checkpoint 4.2H approved voice and first-entry treatment — 2026-10-25
+
+The creator approved the two original recordings, header audio state and corrected
+first-entry policy. The exact written introduction above remains unchanged. The
+entry recording is a brief approved acknowledgment, not narration of the entire
+written introduction. The original fallback text and front-facing presentation
+remain unchanged. There are no alternate welcome messages, ordinary InfoCard
+narration, speaking-avatar effects, ambient audio or UI sound effects.
+
+Keep the original opening until an explicit audio/silent/Escape decision is
+complete. Audio entry persists ON and requests acknowledgment directly from the
+gesture; silent/Escape persists OFF without speech. Returning Visitors proceed
+directly into the loaded chart with saved ON/OFF, without the opening or welcome
+autoplay. The one persistent header `Audio: On`/`Audio: Off` control is visually
+restrained and keyboard/touch accessible. Its stable bounds preserve the square
+chart and existing header branding. OFF stops speech; ON does not speak. The
+current opening note is "Audio-enabled entry activates NEXUS speech. You can
+change this setting in the header."
+
+Explicit eligible archival navigation may request the second recording when ON;
+routine historical rerenders do not. Mute, navigation, history/error changes and
+teardown interrupt cleanly. Missing/denied audio leaves the approved text and
+actions fully usable. Reduced motion preserves the original immediate entry and
+240ms optional appearance rules. A–G imagery, dialogue, reticles, symbol sizes,
+Focus and chart transitions are unchanged. See [persistence/playback contract](VIEWER_SPECIFICATION.md#approved-42h-voice-and-first-entry-persistence--2026-10-25).
+4.2I remains planned and unimplemented; final Checkpoint 4 acceptance and Cantum
+Stage 5 remain pending. No later audiovisual expansion is implied.

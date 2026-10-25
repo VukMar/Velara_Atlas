@@ -620,15 +620,27 @@ failure and failed startup remain technical errors with Retry. WebGL context los
 hides any prior archival panel and retains technical recovery feedback across
 historical refreshes; it cannot become an archival notice.
 
-Completed, creator-approved 4.2A–G retain branding, archival content, targeting,
+Completed, creator-approved 4.2A–H retain branding, archival content, targeting,
 System minima, Focus motion, decorative chart navigation and the opening below.
-The remaining **planned** 4.2H introduces two approved prerecorded speeches and
-audio preferences, followed by optional UI SFX in 4.2I. Motion honors reduced
-motion and lifetime cleanup; no second renderer or extra world data. 4.2H–I
-remain unimplemented and need separate authorization. See the
+4.2H adds two approved prerecorded speeches, persistent audio and first-entry
+completion, as specified below. Optional UI SFX in 4.2I remain planned and
+unimplemented. Motion honors reduced motion and lifetime cleanup; no second
+renderer or extra world data. Later work requires separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
 ### Approved 4.2G startup opening — 2026-10-24
+
+**4.2H correction, complete and creator-approved (2026-10-25):** the
+fresh-load behavior below records the original 4.2G implementation. The corrected
+contract shows this same opening until the first explicit entry decision only.
+Completion is stored separately from the global audio Boolean. Returning Visitors
+proceed directly to the initialized chart with their saved audio preference and
+no welcome playback. Escape completes silent entry. Header toggles do not change
+completion; clearing completion restores the welcome. Exact legacy Boolean audio
+choices migrate once, while malformed records never prove completion. Storage
+failure preserves the current in-memory session. Startup errors retain Retry and
+never show a false connection-established screen. The historical G record below
+is retained; the H contract following it is current.
 
 After validated Demo/content loading and actual chart construction succeed, a
 native named/described opening dialog presents NEXUS's contained front-facing
@@ -655,6 +667,50 @@ under reduced motion and canceled on a live preference change or disposal.
 Startup/content failure leaves technical feedback/Retry without the opening.
 Context loss hides it and focuses Retry; teardown closes it and removes owned
 listeners/animation. Existing InfoCard Escape and archival navigation remain intact.
+
+### Approved 4.2H voice and first-entry persistence — 2026-10-25
+
+The original opening title, subtitle, message, artwork and 240ms appearance are
+unchanged. First entry is pending until `Enter with audio`, `Enter silently` or
+Escape completes a decision. Audio entry persists ON/completion, dismisses
+immediately and requests the approved entry acknowledgment synchronously from
+the gesture. Silent/Escape entry persists OFF/completion without media allocation.
+Returning Visitors bypass the opening only after successful startup, restore the
+header preference, focus the actual map and never play acknowledgment audio.
+Neither path changes the initialized chart, history, camera, selection or layers.
+The current explanatory note is "Audio-enabled entry activates NEXUS speech. You
+can change this setting in the header."
+
+One native `Audio: On`/`Audio: Off` header button exposes `aria-pressed`, keyboard
+and touch activation, a stable width and at least 44px height. It persists audio
+independently from completion. OFF immediately stops speech; ON alone never
+requests speech. An audio-enabled explicit navigation to a different scope that
+resolves to `archival_fallback` requests the original fallback recording. Ordinary
+renders, timeline refresh, panels, resize and same-scope actions do not replay it.
+Archival text/actions remain usable if playback fails or is denied. Technical
+failures never speak or become archival states.
+
+The only storage is three namespaced localStorage values:
+
+| Key | Accepted meaning |
+| --- | --- |
+| `velara-atlas:audio-enabled:v1` | Exact `true` restores ON; `false`/absent/invalid defaults OFF. |
+| `velara-atlas:first-entry-completed:v1` | Only exact `true` proves completed entry. |
+| `velara-atlas:first-entry-migration:v1` | One-time marker; exact legacy Boolean preferences migrate only when both entry keys are absent. |
+
+The marker prevents cleared completion from being inferred again from saved
+audio, and keeps a modern header-only choice from proving entry. Malformed entry
+records do not establish completion. Access/write failure leaves current-session
+choices functional; a fresh load may require entry again without persistence.
+No cookies, account, world/camera state, playback progress or extra settings.
+
+Only one lazy speech element is active. New speech replaces the previous one;
+mute/navigation/year refresh/errors/context loss/pagehide/remount/disposal stop
+it, clear its source and detach listeners. Stale promises/events cannot restart
+or alter replacement speech. There is no automatic retry, loop, ordinary InfoCard
+narration, SFX or new animation owner. Reduced motion retains the same entry and
+audio choice semantics. 4.2I, final Checkpoint 4 acceptance and Cantum Stage 5
+remain separately gated. See [verification limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
 
 ## 12. Initial development fixtures and demo goals
 

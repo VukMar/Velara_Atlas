@@ -1,13 +1,13 @@
 export const OPENING_APPEAR_MS=240;
 
-/** One page-session welcome. Has no historical, navigation, camera or audio API. */
-export function createOpeningView({$,config,portraitURL,insigniaURL,session,returnFocus,motion=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')},lifetime) {
+/** First-entry welcome. Completion belongs to the preference owner, not historical state. */
+export function createOpeningView({$,config,portraitURL,insigniaURL,session,isCompleted=()=>['audio','silent'].includes(session.choice),returnFocus,onChoice=()=>{},onEntered=()=>{},motion=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')},lifetime) {
   const panel=$('opening-panel');let active=false,animation=null;
   const stop=()=>{animation?.cancel();animation=null;};
   const hide=()=>{active=false;stop();if(panel.open)panel.close();};
   const enter=choice=>{
     if(!active||lifetime.disposed)return;
-    session.choice=choice;panel.returnValue=choice;hide();returnFocus();
+    session.choice=choice;onChoice(choice);panel.returnValue=choice;hide();onEntered(choice);returnFocus();
   };
   for(const [id,key] of [['opening-title','title'],['opening-name','subtitle'],['opening-message','message']])$(id).textContent=config[key];
   for(const [id,url] of [['opening-portrait',portraitURL],['opening-insignia',insigniaURL]]){
@@ -26,8 +26,8 @@ export function createOpeningView({$,config,portraitURL,insigniaURL,session,retu
     get visible(){return active&&panel.open;},
     hide,
     show() {
-      if(lifetime.disposed||session.presented)return false;
-      panel.returnValue='';panel.showModal();active=true;session.presented=true;
+      if(lifetime.disposed||active||isCompleted())return false;
+      panel.returnValue='';panel.showModal();active=true;
       $('opening-name').focus({preventScroll:true});
       if(!motion?.matches&&panel.animate)try {
         animation=panel.animate([{opacity:0},{opacity:1}],{duration:OPENING_APPEAR_MS,easing:'ease-out'});

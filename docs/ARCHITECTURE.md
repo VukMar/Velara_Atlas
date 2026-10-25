@@ -24,7 +24,8 @@ Use the [index](INDEX.md) for authority and the
 | `src/viewer/zone-outline.mjs` | Pointer-transparent 2D SVG hover/focus contours, constant CSS stroke, solid authored boundaries and dashed chart-clipping edges; no hit testing |
 | `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
 | `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
-| `src/viewer/opening-view.mjs`, `nexus-opening-config.mjs` | Ready-only native welcome, page-session entry intent, focus/image/motion lifecycle and exact three-string UI-content validation; no history, camera or audio owner |
+| `src/viewer/opening-view.mjs`, `nexus-opening-config.mjs` | Ready-only native welcome, completion predicate/entry callbacks, focus/image/motion lifecycle and exact three-string UI-content validation; no history, camera or audio owner |
+| `src/viewer/audio-controller.mjs`, `voice-assets.mjs` | Root-lifetime first-entry/global-audio preferences, safe migration/storage, accessible header state and one cancelable speech element; exactly two static recording URLs |
 | `src/viewer/map-scene.mjs` | Stable AtlasMap facade, renderer and ordered coordination of camera, interaction, layers and projection owners |
 | `src/viewer/target-reticle.mjs` | Two decorative cyan/gold UI indicators consuming final shared anchor visibility and selected/hover state; no projection, picking, extra renderer or animation loop |
 | `src/viewer/map-transition.mjs` | One finite decorative destination reveal, reduced-motion/input cancellation and lifetime cleanup; no history, scene or camera state |
@@ -467,6 +468,9 @@ Demo and audited preview. See [accepted evidence and limits](DEVELOPMENT_ROADMAP
 
 ### Checkpoint 4.2G opening ownership and lifecycle
 
+This retained G closeout describes the original memory-only/fresh-load policy;
+approved H below supersedes only its entry persistence and audio integration.
+
 **Complete and creator-approved, 2026-10-24.** `main.start()` loads validated
 Demo and the exact NEXUS content module inside its existing technical boundary.
 `mount()` constructs the real chart, refreshes it and then shows the opening
@@ -495,6 +499,44 @@ requires both actual modules in output. Vite adds only the new exact JSON input;
 is bundled into JavaScript, not emitted/fetched as arbitrary runtime content.
 See [approved behavior](VIEWER_SPECIFICATION.md#approved-42g-startup-opening--2026-10-24)
 and [verification limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42g-opening-closeout--2026-10-24).
+
+### Checkpoint 4.2H preferences, speech and startup ownership
+
+**Complete and creator-approved, 2026-10-25.** `main.start()` loads the exact
+voice URL module alongside validated Demo/NEXUS content inside its technical
+boundary. One root-lifetime audio controller survives application remounts and
+owns the global Boolean preference, first-entry completion, one-time migration
+and header toggle. Its three localStorage keys are isolated from AppState and
+camera snapshots; storage failures retain in-memory choices. Restoring ON never
+constructs a speech element or calls playback.
+
+After real chart construction/refresh succeeds, `opening-view.mjs` reads the
+controller's completion predicate. Pending entry opens the original dialog;
+completed entry focuses the real canvas directly. Synchronous choice callbacks
+persist completion/audio before dismissal, and the post-dismiss callback requests
+only audio-entry acknowledgment in the originating gesture stack. No AppState or
+camera command, scene rebuild or chart-navigation reveal runs on entry. An
+undecided welcome interrupted by remount remains eligible; a completed one does
+not reopen. Startup failure never shows a false established connection.
+
+`main.navigate()` remains authoritative and synchronous. Only changed-scope
+navigation whose resolved view is `archival_fallback` requests fallback speech.
+Refresh/year changes stop existing speech without replay. Root pagehide and
+application error/context/remount/disposal also stop it. One lazy detached media
+element has ended/error listeners; replacement pauses, clears source, reloads and
+removes those listeners. A generation token prevents stale play promises/media
+events from changing a replacement. Header OFF stops immediately; ON only permits
+future eligible events. Rejected play promises/media errors leave UI usable.
+No audio contexts, timers, extra renderer, framework or narration scheduler.
+
+`voice-assets.mjs` imports only two approved MP3 URLs. `scripts/audio-assets.mjs`
+independently pins paths, filenames, sizes/hashes and verifies regular files and
+ancestor identity across build stages. The output audit compares exact buffers,
+requires both names once and verifies graph reachability beneath `/Velara_Atlas/`.
+Existing dataset, content, SVG/PNG and private/Canon restrictions remain. See
+[asset contract](VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission)
+and [verification evidence](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
+SFX and later phases remain unimplemented and separately gated.
 
 ### Safe presentation configuration
 

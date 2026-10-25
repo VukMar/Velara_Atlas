@@ -11,6 +11,7 @@ import {CANTUM_SIGILS,sigilURL,attachSigil} from '../src/viewer/sigil-registry.m
 import {ICON_PATHS,SIGIL_PATHS} from '../src/viewer/icon-manifest.mjs';
 import {iconFiles,sigilFiles,svgFiles,approvedSVGSources,validateIconSource} from '../scripts/svg-assets.mjs';
 import {approvedReticleSource} from '../scripts/ui-reticle-asset.mjs';
+import {approvedAudioSources,AUDIO_PINS} from '../scripts/audio-assets.mjs';
 import config,{demoInputAudit} from '../vite.config.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
 import {approvedPNGSources} from '../scripts/png-assets.mjs';
@@ -94,10 +95,11 @@ test('exact output audit retains fifteen starter/sigil SVGs alongside one exact 
     fs.rmSync(root,{recursive:true,force:true});
   });
   fs.mkdirSync(path.join(root,'assets'));
-  const pngs=[...approvedPNGSources()];
-  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title><img src="/Velara_Atlas/assets/nexus-reticle-fixture.svg" alt="">'+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
+  const pngs=[...approvedPNGSources()],audio=[...approvedAudioSources()];
+  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title><img src="/Velara_Atlas/assets/nexus-reticle-fixture.svg" alt="">'+audio.map(([stem])=>`<audio src="/Velara_Atlas/assets/${AUDIO_PINS.find(pin=>pin.name===stem).output}"></audio>`).join('')+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
   fs.writeFileSync(path.join(root,'assets','nexus-reticle-fixture.svg'),approvedReticleSource());
   for(const [stem,bytes] of pngs)fs.writeFileSync(path.join(root,'assets',`${stem}-fixture.png`),bytes);
+  for(const [stem,bytes] of audio)fs.writeFileSync(path.join(root,'assets',`${AUDIO_PINS.find(pin=>pin.name===stem).output}`),bytes);
   const sources=approvedSVGSources(),files=svgFiles.map((f,i)=>path.join(root,'assets',`${path.basename(f,'.svg')}-fixture-${i}.svg`));
   sources.forEach((s,i)=>fs.writeFileSync(files[i],s));
   assert.equal(auditDemoBuild(root).svgCount,16);

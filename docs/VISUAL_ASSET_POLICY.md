@@ -179,7 +179,8 @@ Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 icons plus the separately registered Test sigil, limited SVG profile and
 the audited bundle. The two 4.2A PNGs and specifically approved front-facing
 `nexus-form.png` are admitted. 4.2C additionally admits the exact original UI
-reticle; completed 4.2G reuses the existing PNGs for its opening. Audio remains excluded.
+reticle; completed 4.2G reuses the existing PNGs for its opening. Completed 4.2H
+admits only the exact two original MP3s in Section 13; other audio remains excluded.
 
 | Phase | Approved source or pending asset | Purpose |
 | --- | --- | --- |
@@ -187,7 +188,7 @@ reticle; completed 4.2G reuses the existing PNGs for its opening. Audio remains 
 | 4.2B — complete/creator-approved | Existing approved `nexus-form.png` | Archival presentation; exact third-PNG admission, Section 9. |
 | 4.2G — complete/creator-approved | Existing `nexus-form.png` and `mcr-insignia.png` | Opening reuses exact bundled originals; one additional exact UI-content JSON module, no new binary assets or audio. |
 | 4.2C — complete/creator-approved | `public/assets/ui/nexus-reticle.svg` | Immutable 128×128 artwork, independent pinned admission; cyan hover/static gold selection. |
-| 4.2H | Creator-approved prerecorded welcome and fallback clips, filenames/formats TBD | Two spoken situations; never publish drafts. |
+| 4.2H — complete/creator-approved | `nexus-enter-with-audio.mp3`, `nexus-fallback-message.mp3` | Two exact pinned recordings only; Section 13. |
 | 4.2I | A few creator-approved short UI cue files, names/formats TBD | Playback integrated last and respecting mute. |
 
 For **each authorized phase**, verify the concrete asset and publication
@@ -203,7 +204,7 @@ Extend `vite.config.mjs` source allowlist and
 audited binary extension/bytes or hashes, allowed names/URLs, size and
 completeness, resource reachability, no extra outputs, and negative
 canonical/private/external-input checks. The 4.2A audit now handles approved PNGs
-as binary buffers; future audio needs its own explicitly approved binary handling,
+as binary buffers; 4.2H adds independent exact MP3 binary handling below,
 without treating arbitrary bytes as UTF-8. Verify missing/corrupt-asset fallback,
 base-relative loading, release-check results and browser requests.
 Preserve originals when generating optimized derivative images.
@@ -212,7 +213,7 @@ Every file committed to this public repository is public even if unused
 by the app. Audio files, voice scripts and any sound effects require
 creator approval before Git admission. 4.2G has **no playback**,
 4.2H implements voice/control, 4.2I implements SFX last. Exact file
-formats and audio preferences remain future phase review decisions. Reticle
+formats and preferences are resolved for H below; SFX remain a future I decision. Reticle
 display sizes are approved in completed 4.2C below. See
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
@@ -372,3 +373,40 @@ admitted. The reserved fallback MP3 remains byte-identical and absent from the
 bundle; entry choices record only in-memory intent, with no playback or storage.
 Earlier phase-specific exclusions above describe their historical closeouts;
 this section supersedes opening-only deferment, without authorizing H–I.
+
+## 13. Implemented Checkpoint 4.2H exact audio admission
+
+**Complete and creator-approved, 2026-10-25.** Only these two original,
+creator-provided recordings are imported by `src/viewer/voice-assets.mjs`:
+
+| Source in `public/assets/nexus/` | Exact output in `/Velara_Atlas/assets/` | Bytes | SHA-256 (source and output) |
+| --- | --- | ---: | --- |
+| `nexus-enter-with-audio.mp3` | `nexus-enter-with-audio-Dm57uHQd.mp3` | 123934 | `1af39d2429a47f030f027e26f888c8dc1df1834e176e0df2f83b7528cbdd646d` |
+| `nexus-fallback-message.mp3` | `nexus-fallback-message-DIPDwvOf.mp3` | 305746 | `9815ff5b01120100e8825aebb1b2a43a38329c82c8ec020b0cca0bf0011aab72` |
+
+Both source files remain byte-identical to baseline `e5fe7a2`. No transform,
+regeneration or derivative media is added. `scripts/audio-assets.mjs` is an
+independent exact registry: pinned sizes/hashes, regular-file/ancestor real-path
+checks, source verification at build start/load/generation/completion and actual
+module completeness. Vite admits only these two exact paths, preserving
+`publicDir: false`, `assetsInlineLimit: 0` and strict local file serving.
+
+The production audit handles MP3 buffers before textual scans. Each output must
+match the exact pinned filename and source bytes, appear once and be reachable
+from the generated entry graph with the correct repository base. Missing,
+renamed, duplicate, corrupt or unreferenced recordings fail. Arbitrary MP3,
+WAV/OGG/M4A/WebM and extra JSON outputs still fail. Tests reject changed/redirected
+source files and unauthorized build inputs as well. Existing fourteen starter
+SVG validation, sigil, reticle, three PNG pins, dataset inventory and Canon/private
+and source-map restrictions are unchanged. No wildcard audio permission exists.
+
+Final audited output is **32 files / 4,940,241 bytes**: sixteen SVGs (fourteen
+navigation, one Cantum sigil, one NEXUS reticle), three original PNGs and exactly
+two MP3s, plus HTML/JS/CSS. Audio totals 429,680 bytes. No raw UI JSON or extra
+media appears. URL imports alone do not fetch/play media. Only explicit audio
+entry or eligible audio-enabled archival navigation requests speech; restoration
+of a saved ON preference is silent. Failed media never blocks text/navigation.
+
+This supersedes earlier phase-specific audio exclusion only for these approved
+recordings. Opening/fallback JSON and all artwork remain unchanged. No SFX or
+additional audio types are authorized; 4.2I remains planned and separately gated.

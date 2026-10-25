@@ -3,7 +3,7 @@ async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',errors=[],failed=[],audio=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
-  const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());},request=r=>{if(/\.mp3(?:\?|$)/.test(r.url()))audio.push(r.url());};
+  const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());},request=r=>{if(r.resourceType()==='media'&&/\.mp3(?:\?|$)/.test(r.url()))audio.push(r.url());};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
   const hide=()=>page.evaluate(()=>{for(const p of document.querySelectorAll('.floating'))p.open=false;});
   const settle=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');

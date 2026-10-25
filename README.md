@@ -148,7 +148,30 @@ for future 4.2H voice production. All 330 tests and required release gates pass;
 dedicated Demo/production opening and existing A–F browser regressions pass.
 The same sixteen SVGs and three PNGs are bundled; the reserved MP3 is unchanged
 and excluded. See [4.2G behavior and limits](docs/DEVELOPMENT_ROADMAP.md#phase-42g--nexus-atlas-opening).
-**4.2A–G are complete and creator-approved; 4.2H–I remain planned, unimplemented
+At the 4.2G closeout, H–I remained planned and unimplemented; its original
+fresh-load/no-playback policy is superseded by the approved H behavior below.
+
+**Checkpoint 4.2H closeout (2026-10-25): complete and creator-approved.** The
+opening appears until the Visitor explicitly completes first entry. Audio entry
+persists ON and plays the approved acknowledgment from the gesture; silent entry
+and Escape persist OFF. Returning Visitors enter the initialized Atlas directly,
+restore the header ON/OFF state and never autoplay the acknowledgment. The header
+toggle changes audio independently; OFF stops speech immediately and ON merely
+permits later eligible archival speech. Strict one-time migration, cleared
+completion and storage denial retain safe entry behavior. The universal text,
+artwork, history and camera behavior remain unchanged.
+
+Two original recordings are admitted through exact binary source/output audits;
+one root-lifetime owner stops/replaces speech on navigation, year changes, errors
+and teardown. 348 tests and the required validation/build/release gates pass;
+15 Demo and 9 production browser callbacks plus seven independent browser starts
+verify entry, persistence, recovery and earlier checkpoints. Production contains
+16 SVGs, 3 PNGs and exactly 2 MP3s (32 files / 4,940,241 bytes). See
+[H behavior](docs/DEVELOPMENT_ROADMAP.md#phase-42h--nexus-voice-and-audio-preferences),
+[asset integrity](docs/VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission)
+and [evidence/limits](docs/PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
+
+**4.2A–H are complete and creator-approved; 4.2I remains planned, unimplemented
 and separately gated.** Final Checkpoint 4 acceptance and Cantum Stage 5 remain
 pending. Checkpoint 5, Canon migration, Atlas Creator and deployment remain
 unauthorized. No deployment occurred.
