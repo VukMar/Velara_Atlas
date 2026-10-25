@@ -618,7 +618,72 @@ chunk-size advisory remains; no unresolved meaningful regression is reported.
 
 Logs, screenshots, native media results and temporary profiles remain in ignored
 `.playwright-mcp/`; no generated evidence is committed. Earlier checkpoint
-history is retained. 4.2A–H are complete and creator-approved; 4.2I remains planned
-and unimplemented. Final Checkpoint 4 acceptance and Cantum Stage 5 are pending;
+history is retained. At H closeout, 4.2A–H were complete and creator-approved;
+4.2I remained planned and unimplemented. Final Checkpoint 4 acceptance and Cantum Stage 5 are pending;
 Checkpoint 5, Canon migration, Atlas Creator and deployment remain unauthorized.
 This closeout authorizes a local commit only; no push or deployment occurred.
+
+## Checkpoint 4.2I interface audio and ambience closeout — 2026-10-25
+
+**Complete and creator-approved.** The creator personally approved six unchanged
+original recordings, simultaneous generic/action effects, speech priority,
+continuous ambience, ducking/restoration and the current volume balance. The
+explicit approved scope amendment adds one quiet archival-computer loop to the
+original five-cue phase; it authorizes no music or further audio features.
+Accepted native gains remain speech 1.00, click 0.35, action 0.45 and ambience
+0.08, with a bounded 180ms ambient restoration. Closeout changes documentation
+only; runtime/test/asset fingerprints match the approved implementation.
+
+Final checks pass **369/369 automated tests**, including **21 interface-audio
+tests**, with no failures/skips. `npm run validate`, `npm run connections:check`,
+`npm run build`, `npm run release:check` and `git diff --check` pass. Coverage
+includes independent concurrent foreground slots, repeat coalescing, timeline
+commit/release, voice suppression, loop lifecycle, mute, denied/failed media,
+storage persistence and unchanged strict release rejection cases.
+
+Reviewed completed browser evidence passes **17/17 Demo callbacks** and
+**11/11 production callbacks**, including dedicated I/native-history checks and
+the prior A–H, navigation, Focus, reticle, sizing, archival, responsive, touch and
+resource-lifetime regressions. **Seven independent persistent-profile Chromium
+starts** verify first entry, ON/OFF returns, cleared completion, silent and Escape
+returns; returning visits make no unsolicited media requests. These completed
+browser runs are reused for documentation-only closeout, rather than represented
+as newly executed runs.
+
+Native decoded playback demonstrates separate Focus click/lock starts 10ms apart
+on Demo and 5.9ms in production, with observed overlapping playback. Chart,
+selection and history actions retain the same independent triggering. Native
+mouse/touch timeline dragging updates history immediately without cue storms;
+release produces one confirmation. The same lazy 30-second loop survives chart/
+year operations and speech duck/restore without a new player or play call; a
+boundary-wrap probe observes continued playback. Speech clears foreground slots
+and sets ambient volume to zero, then restores 0.08. Immediate mute, failed/denied
+media, rapid activation, context loss, repeated remount and disposal pass without
+stale callbacks or duplicate players. Hidden-document behavior was simulated.
+
+Final audited output is **39 files / 5,399,246 bytes**: ten JS chunks (739,662),
+one CSS (15,010), one HTML (7,629), sixteen SVGs (16,022), three PNGs (3,737,805)
+and eight MP3s (883,118). SVGs remain fourteen navigation icons, one Cantum sigil
+and one NEXUS reticle. The six new recordings total 453,438 bytes; both original
+voice recordings are byte-identical to H. All eight source/output buffers, pinned
+hashes, exact hashed filenames and `/Velara_Atlas/assets/` HTTP responses match.
+No raw UI JSON, source maps, extra media, Canon or private records enter output.
+`publicDir: false`, `assetsInlineLimit: 0`, binary validation, module completeness,
+duplicate rejection and resource reachability remain restrictive. See [exact
+pins](VISUAL_ASSET_POLICY.md#14-implemented-42i-binary-admission--2026-10-25).
+
+Headless Chromium 139 with Intel HD Graphics 620 / Direct3D11, emulated touch,
+1280×900, 390×844, 320×740 and 844×390 layouts and normal/reduced motion were
+tested. Physical devices, Firefox/WebKit, assistive technology, actual browser
+zoom, physical-speaker fidelity and sample-perfect loop-seam certification were
+not tested. The creator's listening approval is separate from these automation
+limits. The existing Vite chunk-size advisory remains; no meaningful unresolved
+regression is reported. Logs, profiles and screenshots remain ignored under
+`.playwright-mcp/` and are excluded from the commit.
+
+**4.2A–I are complete and creator-approved; Checkpoint 4.2 audiovisual
+implementation is complete.** Final Checkpoint 4 integrated visual acceptance
+requires separate creator authorization. Cantum Stage 5 remains pending.
+Checkpoint 5, Canon migration, Atlas Creator and public deployment remain
+unauthorized. This closeout authorizes one reviewed commit and normal push only;
+no deployment or further checkpoint work occurs.

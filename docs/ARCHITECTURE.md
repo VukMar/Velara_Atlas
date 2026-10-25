@@ -536,7 +536,29 @@ requires both names once and verifies graph reachability beneath `/Velara_Atlas/
 Existing dataset, content, SVG/PNG and private/Canon restrictions remain. See
 [asset contract](VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission)
 and [verification evidence](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
-SFX and later phases remain unimplemented and separately gated.
+At H closeout, SFX remained unimplemented and separately gated; the approved I
+extension follows. Later milestones remain separately gated.
+
+**4.2I complete and creator-approved (2026-10-25):**
+the root audio controller retains the sole master preference and H speech owner.
+`interface-audio.mjs` adds two independent foreground slots (generic/action) and
+one lazy ambient player; `interface-assets.mjs` imports only six exact new URLs.
+One capture/bubble delegation mechanism observes native button/summary clicks,
+snapshots eligibility/speech priority and starts generic playback after semantic
+handlers in the same activation. Successful choose/navigation/Focus/committed-year
+callbacks request dedicated effects independently. No navigation, camera or
+historical operation waits for sound. Timeline input still updates immediately;
+release/commit coalesces the presentation callback without a chronology debounce.
+Speech clears foreground effects and silences the existing loop; natural finish
+permits ambience or restores its level with a bounded 180ms volume ramp. The loop
+keeps its position across navigation/year changes, pauses while hidden/muted and
+is released on teardown/context loss. Saved ON alone allocates/plays nothing;
+trusted gestures authorize ambience. No new preference, renderer or framework.
+All source audio stays unchanged. The creator approved the concurrent channels,
+speech priority, continuous loop and native gains (speech 1.00, click 0.35,
+action 0.45, ambience 0.08). This completes I and the 4.2 audiovisual implementation;
+final Checkpoint 4 integrated visual acceptance and later milestones require
+separate authorization. See [verification and limitations](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
 
 ### Safe presentation configuration
 

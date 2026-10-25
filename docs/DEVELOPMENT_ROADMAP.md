@@ -7,8 +7,8 @@ includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration
 retaining Checkpoint 3.8 zones, labeling, version-aware v1.2/v1.3 navigation and Checkpoint 3.6 layout.
 The system grid uses Y = 0 CNU. [Maintenance evidence](POST_PHASE3_MAINTENANCE.md)
 records the earlier creator-approved System C navigation/discovery baseline.
-Remaining Checkpoint 4.2 visual refinement, Cantum Stage 5, canonical migration and
-deployment remain separately gated.
+Checkpoint 4.2 audiovisual implementation is complete. Final Checkpoint 4 integrated
+visual acceptance, Cantum Stage 5, canonical migration and deployment remain separately gated.
 
 **Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
 phases 4.2A–I were established without implementation authorization.
@@ -17,7 +17,9 @@ At that closeout, phases 4.2G–I remained planned, unimplemented and unauthoriz
 **Closeout update (2026-10-24): 4.2G is complete and creator-approved.**
 At that closeout, 4.2H–I remained planned, unimplemented and unauthorized.
 **Closeout update (2026-10-25): 4.2H is complete and creator-approved.**
-4.2I remains planned, unimplemented and separately gated; no deployment is authorized.
+At that closeout, 4.2I remained planned, unimplemented and separately gated.
+**Closeout update (2026-10-25): 4.2I is complete and creator-approved.**
+4.2A–I and Checkpoint 4.2 audiovisual implementation are complete; no deployment is authorized.
 The completed Architecture Optimization work is separate. Checkpoint 4
 still requires final creator acceptance and a Cantum Stage 5 decision.
 This is roadmap approval, **not** authorization for feature work.
@@ -135,7 +137,7 @@ future implementation or canonical content migration.
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Partially implemented:** 4.2A–H complete and creator-approved; 4.2I remains planned and separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Audiovisual implementation complete:** 4.2A–I complete and creator-approved; final Checkpoint 4 integrated acceptance remains separately gated. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
@@ -144,7 +146,7 @@ future implementation or canonical content migration.
 | Checkpoint 4.2F — Map Navigation Transitions | **Complete and creator-approved (2026-10-23):** 420ms decorative chart reveal, synchronous navigation/camera restoration, cancelable and immediate under reduced motion. |
 | Checkpoint 4.2G — NEXUS Atlas Opening | **Complete and creator-approved (2026-10-24):** ready-only branded opening and universal approved script; original entry policy superseded by H. |
 | Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Complete and creator-approved (2026-10-25):** two exact recordings, global header toggle, first-entry completion and safe returning-Visitor persistence without autoplay. |
-| Checkpoint 4.2I — UI Sound Effects | **Planned LAST:** restrained approved UI cues, throttled and muting-respectful. |
+| Checkpoint 4.2I — UI Sound Effects | **Complete and creator-approved (2026-10-25):** five concurrent interface cues and one quiet continuous loop, voice priority and exact eight-MP3 admission. |
 | Checkpoint 4 — final creator acceptance | **Pending:** full visual/audiovisual/accessibility/security review and explicit Cantum Stage 5 disposition. |
 | Checkpoint 5 | **Publication review/deployment pending approval.** Architecture Phase 6 already completed local release preparation, not hosted deployment or creator publication acceptance. |
 
@@ -187,8 +189,9 @@ This roadmap is not authorization to create assets now. Follow
 **Current planning authority, 2026-10-23.** This is the authoritative, original
 Milestone 6 feature roadmap, **not** the separate Architecture Optimization
 Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–H are complete and creator-approved; 4.2I remains planned and
-unimplemented**. Approving/documenting the
+completed; **4.2A–I are complete and creator-approved; Checkpoint 4.2 audiovisual
+implementation is complete**. Final Checkpoint 4 integrated visual acceptance
+requires separate creator authorization. Approving/documenting the
 sequence never authorizes Codex to begin any phase. Each needs a separate
 creator request, working implementation review, and approved closeout.
 Past roadmap passages are retained as milestone history; this section
@@ -728,7 +731,7 @@ Header toggles change only audio. Strict legacy Boolean preferences migrate once
 clearing completion alone restores first-entry behavior. Unavailable storage
 retains functional in-memory choices. The creator reviewed and approved this
 implementation and authorized its documentation and local commit; no push or
-deployment is part of this closeout. 4.2I is not authorized.
+deployment was part of that H closeout. It did not authorize 4.2I; the later I record follows.
 
 **Purpose/scope:** Only **two** prerecorded creator-approved speeches:
 a short welcome on audio-enabled entry and the archival fallback message
@@ -782,12 +785,50 @@ remain. `publicDir: false` and `assetsInlineLimit: 0` remain. Production totals
 the corrected policy and A–G regressions. See [full evidence and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25)
 and [exact recordings/admission](VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission).
 Physical-device, non-Chromium, assistive-technology, actual browser-zoom and
-speaker/fidelity certification remain outside this evidence. 4.2I, final
-Checkpoint 4 acceptance and Cantum Stage 5 remain separately gated.
+speaker/fidelity certification remain outside this evidence. At H closeout, 4.2I
+remained separately gated; final Checkpoint 4 acceptance and Cantum Stage 5 remain pending.
 
 ### Phase 4.2I — UI Sound Effects (implement LAST)
 
-**Purpose/scope:** Add a small creator-approved set of restrained technical
+**Complete and creator-approved, 2026-10-25. Creator-approved scope amendment:**
+the original no-ambience scope below is retained as
+history and superseded for this phase only. The creator supplied five exact
+interface recordings and one quiet archival-computer loop. Generic button/summary
+activation and successful dedicated actions are independent: a Focus button must
+start both click and Focus Lock concurrently, never substitute or sequence them.
+The same applies to button-driven record, chart and committed-year actions.
+Continuous history input remains live, with one confirmation at commit/held-key
+release. Speech takes priority and suppresses foreground effects. One master
+Audio preference controls all eight recordings; no extra UI or storage keys.
+Returning saved ON never autoplays; ambience begins on a permitted deliberate
+interaction, or after natural audio-entry acknowledgment, remains continuous
+across chart/year operations, ducks for speech and pauses while hidden. No source
+audio edits, music, new dialogue or visual synchronization effects are authorized.
+All six new assets require the same exact binary admission as the two H clips.
+The creator personally approved all six original recordings, concurrent generic/
+dedicated playback, speech priority, loop continuity, ducking and current balance.
+Accepted native levels are speech 1.00, click 0.35, dedicated 0.45 and ambience
+0.08, with 180ms ambient restoration. No audio adjustment accompanies closeout.
+
+`interface-audio.mjs`, owned by the root audio lifetime, retains two bounded
+foreground slots and one lazy loop. Same-kind repeats coalesce within 35ms;
+mute, navigation, speech, visibility, context loss and disposal retain explicit
+cancellation/cleanup. Media failure leaves text and navigation functional. The
+existing H storage contract, historical/camera state and A–H visuals are unchanged.
+Eight exact MP3s use static imports, pinned source/output bytes and filenames,
+completeness and reachability checks; sixteen SVGs and three PNGs remain unchanged.
+
+Final checks pass: 369/369 automated tests, including 21 interface-audio tests,
+validation, connections, build, release audit and diff validation. Reviewed completed
+browser evidence is 17/17 Demo callbacks, 11/11 production callbacks and seven
+independent browser starts; closeout changes documentation only. Output is
+39 files / 5,399,246 bytes. See [verification and limitations](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25)
+and [exact audio admission](VISUAL_ASSET_POLICY.md#14-implemented-42i-binary-admission--2026-10-25).
+Final Checkpoint 4 integrated visual acceptance requires separate authorization;
+Cantum Stage 5 remains pending. Checkpoint 5, Canon migration, Atlas Creator and
+deployment remain unauthorized.
+
+**Original scope (historical; ambience exclusion superseded above):** Add a small creator-approved set of restrained technical
 cues for meaningful selections, panel actions, committed timeline navigation,
 system changes and archive entry (fewer is fine); no music or ambience.
 Throttle/coalesce fast repeats and continuous slider movement.
@@ -810,8 +851,9 @@ final restrained sound and code/assets.
    never invent hidden lore, false classified status or future information.
 3. **Reticle:** finalize display-size ratio, safe SVG treatment and exact
    palette through 4.2C screenshot comparison; no permission to redraw.
-4. **Audio controls/files (H resolved):** one persistent master toggle, two exact
-   approved MP3s and first-entry persistence; SFX remain a separate I decision.
+4. **Audio controls/files (H/I resolved):** one persistent master toggle and
+   first-entry persistence; eight exact approved MP3s, including the separately
+   approved I effects/ambient amendment.
 5. **Cantum Stage 5:** deferred final refinement remains unresolved.
    Document explicit acceptance of existing appearance or authorize
    a separate tightly scoped Stage 5 patch.

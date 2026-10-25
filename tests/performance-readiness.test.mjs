@@ -112,7 +112,7 @@ test('actual build includes every registered module and rejects output disclosur
   assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
   assert.deepEqual(config.server.fs.allow.filter(file=>/reticle/.test(file)),[RETICLE_FILE]);
   const outputs=fs.readdirSync(path.join(top,'assets'));
-  assert.equal(audit().audioCount,2);assert.equal(outputs.filter(name=>name.endsWith('.mp3')).length,2);
+  assert.equal(audit().audioCount,8);assert.equal(outputs.filter(name=>name.endsWith('.mp3')).length,8);
   assert(audioFiles.every(file=>config.server.fs.allow.includes(file)));
   assert(!outputs.some(name=>/\.(?:wav|ogg|webp|jpg|json)$/.test(name)));
   const reticleNames=outputs.filter(name=>/^nexus-reticle-.*\.svg$/.test(name));assert.equal(reticleNames.length,1);

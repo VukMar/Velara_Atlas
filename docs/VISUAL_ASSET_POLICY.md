@@ -180,7 +180,8 @@ icons plus the separately registered Test sigil, limited SVG profile and
 the audited bundle. The two 4.2A PNGs and specifically approved front-facing
 `nexus-form.png` are admitted. 4.2C additionally admits the exact original UI
 reticle; completed 4.2G reuses the existing PNGs for its opening. Completed 4.2H
-admits only the exact two original MP3s in Section 13; other audio remains excluded.
+admits the exact two original MP3s in Section 13; completed I adds only the six
+exact originals in Section 14. All other audio remains excluded.
 
 | Phase | Approved source or pending asset | Purpose |
 | --- | --- | --- |
@@ -189,7 +190,7 @@ admits only the exact two original MP3s in Section 13; other audio remains exclu
 | 4.2G — complete/creator-approved | Existing `nexus-form.png` and `mcr-insignia.png` | Opening reuses exact bundled originals; one additional exact UI-content JSON module, no new binary assets or audio. |
 | 4.2C — complete/creator-approved | `public/assets/ui/nexus-reticle.svg` | Immutable 128×128 artwork, independent pinned admission; cyan hover/static gold selection. |
 | 4.2H — complete/creator-approved | `nexus-enter-with-audio.mp3`, `nexus-fallback-message.mp3` | Two exact pinned recordings only; Section 13. |
-| 4.2I | A few creator-approved short UI cue files, names/formats TBD | Playback integrated last and respecting mute. |
+| 4.2I | Five exact interface MP3s and one quiet loop; see Section 14 | Complete and creator-approved; concurrent cues, speech priority and shared master mute. |
 
 For **each authorized phase**, verify the concrete asset and publication
 rights. Add exact trusted source imports/registry paths, never wildcard
@@ -213,7 +214,8 @@ Every file committed to this public repository is public even if unused
 by the app. Audio files, voice scripts and any sound effects require
 creator approval before Git admission. 4.2G has **no playback**,
 4.2H implements voice/control, 4.2I implements SFX last. Exact file
-formats and preferences are resolved for H below; SFX remain a future I decision. Reticle
+formats and preferences are resolved for H below; completed I admission is recorded
+in Section 14. Reticle
 display sizes are approved in completed 4.2C below. See
 [DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
@@ -408,5 +410,34 @@ entry or eligible audio-enabled archival navigation requests speech; restoration
 of a saved ON preference is silent. Failed media never blocks text/navigation.
 
 This supersedes earlier phase-specific audio exclusion only for these approved
-recordings. Opening/fallback JSON and all artwork remain unchanged. No SFX or
-additional audio types are authorized; 4.2I remains planned and separately gated.
+recordings. Opening/fallback JSON and all artwork remain unchanged. At H closeout,
+no SFX or additional audio types were authorized; the later approved I amendment
+below admits only six additional exact originals.
+
+## 14. Implemented 4.2I binary admission — 2026-10-25
+
+The creator supplied these six finished local originals and authorized their
+exact admission in addition to the two unchanged H voice clips. Eight MP3s are
+required, alongside the unchanged sixteen SVGs and three PNGs. The I amendment
+permits five interface effects and one quiet loop; no other media or music.
+
+| Source in public/assets/nexus/ | Bytes | SHA-256 | Exact production filename |
+| --- | ---: | --- | --- |
+| `nexus-sfx-button-click.mp3` | 2665 | `d8455f9ad528ca7ff0e68afa1c0bd63805e770010c59d172018f16bbc6a4b242` | `nexus-sfx-button-click-a_I3QjUx.mp3` |
+| `nexus-sfx-record-select.mp3` | 4057 | `192443c02a13ee73f88c8656c3cad136d0169b660ae0ca85ebc7271ed84270c7` | `nexus-sfx-record-select-7HBcAbxf.mp3` |
+| `nexus-sfx-focus-lock.mp3` | 7273 | `273c1f41f9c511fd30903595937843ad554bf8f83d6d7c65deda8a8e7ea64abc` | `nexus-sfx-focus-lock-CbFGHw9I.mp3` |
+| `nexus-sfx-chart-switch.mp3` | 6937 | `e9ffa41cd09b1dc8a7b96cb5663c68df0f5391d3098e6d765ab95a69a5f45b2c` | `nexus-sfx-chart-switch-BJl4b-qm.mp3` |
+| `nexus-sfx-history-confirm.mp3` | 6913 | `b0f84dc72f6ea2af1242814925698d60dc6406fab53adc6d36a91cb791e77558` | `nexus-sfx-history-confirm-CBFM2bC6.mp3` |
+| `nexus-ambience-interface-loop.mp3` | 425593 | `45b9929496bb3ed57631c4919f6df3399612eee885ae9ad11177151ba40ea0fb` | `nexus-ambience-interface-loop-Bj3HkUeN.mp3` |
+
+The existing independent registry now pins all eight exact regular-file paths,
+sizes, hashes and hashed output names. Original H pins are unchanged. Build-stage
+source checks, module completeness, exact output-buffer comparison, duplicate/
+missing/renamed/changed/unreferenced rejection and graph reachability remain.
+MP3 buffers are never UTF-8 scanned. Keep publicDir:false, assetsInlineLimit:0,
+the restricted SVG/PNG profiles, dataset inventory and private/Canon/source-map
+exclusions. No wildcard permission, runtime path selection or source transform.
+The creator approved all six recordings and the integrated soundscape. I is
+complete and creator-approved; exact output is eight MP3s totaling 883,118 bytes,
+with the original two voice recordings unchanged. No broader audio admission is
+authorized. Final Checkpoint 4 integrated visual acceptance remains separately gated.

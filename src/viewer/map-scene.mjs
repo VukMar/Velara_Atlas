@@ -63,13 +63,14 @@ export class AtlasMap {
   set interaction(value) { this._interaction=value; }
   get sceneLayers() { return this._sceneLayers ??= new SceneLayers(this,createMarker); }
   set sceneLayers(value) { this._sceneLayers=value; }
-  constructor(container,labels,onSelect,onOpen,{visual={}}={}) {
+  constructor(container,labels,onSelect,onOpen,{visual={},onFocus}={}) {
     this.visual=createVisualConfig(visual);
     this.lifetime=new Lifetime();this.disposed=false;
     this.container = container;
     this.labels = labels;
     this.onSelect = onSelect;
     this.onOpen = onOpen;
+    this.onFocus = onFocus;
     this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.domElement.tabIndex = 0;
@@ -115,7 +116,12 @@ export class AtlasMap {
   positionPerspective(...args) { return this.cameraController.positionPerspective(...args); }
   setMode(...args) { return this.cameraController.setMode(...args); }
   setTilt(...args) { return this.cameraController.setTilt(...args); }
-  focus(...args) { return this.cameraController.focus(...args); }
+  focus(...args) {
+    const valid=!this.disposed&&!this.cameraController.lifetime.disposed&&this.canFocus(args[0]);
+    const result=this.cameraController.focus(...args);
+    if(valid)this.onFocus?.();
+    return result;
+  }
   canFocus(...args) { return this.cameraController.canFocus(...args); }
   zoom(...args) { return this.cameraController.zoom(...args); }
   resize(...args) { return this.cameraController.resize(...args); }

@@ -620,12 +620,13 @@ failure and failed startup remain technical errors with Retry. WebGL context los
 hides any prior archival panel and retains technical recovery feedback across
 historical refreshes; it cannot become an archival notice.
 
-Completed, creator-approved 4.2A–H retain branding, archival content, targeting,
+Completed, creator-approved 4.2A–I retain branding, archival content, targeting,
 System minima, Focus motion, decorative chart navigation and the opening below.
 4.2H adds two approved prerecorded speeches, persistent audio and first-entry
-completion, as specified below. Optional UI SFX in 4.2I remain planned and
-unimplemented. Motion honors reduced motion and lifetime cleanup; no second
-renderer or extra world data. Later work requires separate authorization. See the
+completion, as specified below. 4.2I adds concurrent interface effects and one
+quiet loop under the same master control. Motion honors reduced motion and
+lifetime cleanup; no second renderer or extra world data. Later work requires
+separate authorization. See the
 [Checkpoint 4.2 roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
 ### Approved 4.2G startup opening — 2026-10-24
@@ -709,8 +710,36 @@ mute/navigation/year refresh/errors/context loss/pagehide/remount/disposal stop
 it, clear its source and detach listeners. Stale promises/events cannot restart
 or alter replacement speech. There is no automatic retry, loop, ordinary InfoCard
 narration, SFX or new animation owner. Reduced motion retains the same entry and
-audio choice semantics. 4.2I, final Checkpoint 4 acceptance and Cantum Stage 5
-remain separately gated. See [verification limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
+audio choice semantics. At H closeout, I remained separately gated; its approved
+extension follows. Final Checkpoint 4 acceptance and Cantum Stage 5 remain pending.
+See [H verification limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
+
+### Approved 4.2I audio presentation amendment — 2026-10-25
+
+The creator authorized five interface effects plus one quiet archival-computer
+loop, superseding only the original I no-ambience restriction. One generic click
+follows eligible native button/summary activation. Successful changed record,
+valid Focus, changed chart scope and committed changed year independently request
+their dedicated clip. A button-driven action plays both foreground recordings
+concurrently; neither substitutes for or intentionally delays the other. Existing
+deferred pointer selection timing remains authoritative. Hover/focus, ordinary
+filter typing, pan/pinch/orbit and internal rendering do not request foreground
+effects. Continuous year updates remain unchanged; one history cue follows
+release/commit, with held-key changes coalesced until release.
+
+H's one master toggle and three storage keys remain. Silent entry is silent;
+returning ON never autoplays. A permitted deliberate gesture starts ambience,
+or it starts after natural audio-entry acknowledgment. It loops at the accepted
+0.08 level, without chart/year restarts. Foreground levels are 0.35 (click) and
+0.45 (action), speech 1.0. Speech suppresses both effect channels and temporarily
+silences the same loop; restoration uses a bounded 180ms volume ramp. OFF pauses
+all audio immediately; ON does not replay speech. Hidden documents pause the loop;
+teardown releases it and stale callbacks cannot revive muted/disposed sound.
+Failed media leaves all text/actions usable. No new visible controls, storage,
+artwork, dialogue or timing changes. The creator personally approved the levels,
+integrated balance, concurrency, loop and entry/mute behavior. I and the 4.2
+audiovisual implementation are complete; final Checkpoint 4 integrated visual
+acceptance remains pending separate authorization. See [I verification and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
 
 ## 12. Initial development fixtures and demo goals
 

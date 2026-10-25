@@ -1,6 +1,6 @@
 # Velara Atlas documentation index
 
-**Current original-roadmap status (2026-10-25):** Checkpoints 4.2A–H are
+**Current original-roadmap status (2026-10-25):** Checkpoints 4.2A–I are
 **complete and creator-approved**: compact MCR header branding, ordinary NEXUS
 InfoCard portrait, distinct archival presentation with approved front-facing
 portrait/universal JSON dialogue, unified cyan/gold reticles, approved System View
@@ -8,10 +8,14 @@ minima, 550ms cancelable Focus animation with preserved inspection endpoints,
 420ms decorative chart navigation with synchronous state/camera restoration,
 the ready-only opening with approved universal JSON script, persistent first-entry
 completion/global audio with no returning autoplay, two approved prerecorded
-speeches and strict admission of sixteen SVGs, three PNGs and two MP3s. Checkpoint 4.2I remains
-**planned, unimplemented and unauthorized** in
-[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned),
-followed by final Checkpoint 4 creator acceptance and a Cantum Stage 5 decision.
+speeches, five concurrent interface cues and one quiet ambient loop under the
+same master toggle, with strict admission of sixteen SVGs, three PNGs and eight
+MP3s. **Checkpoint 4.2 audiovisual implementation is complete.**
+The approved scope and phase history remain in
+[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
+Final Checkpoint 4 integrated visual acceptance requires separate creator
+authorization; Cantum Stage 5 remains pending. Checkpoint 5, Canon migration,
+Atlas Creator and deployment remain unauthorized.
 That document controls
 future phase order, scope, dependencies and acceptance; the subject
 specifications below remain authoritative for their respective rules.
@@ -52,8 +56,8 @@ cannot authorize new work.
 | [ZONE_GEOMETRY_INTERACTION_SPEC](ZONE_GEOMETRY_INTERACTION_SPEC.md) | Implemented zone intersection and picking contract. |
 | [CARTOGRAPHIC_LABELING](CARTOGRAPHIC_LABELING.md) | Implemented typography and caption rules with later Cantum amendments. |
 | [CANTUM_TERRITORY_RENDERING](CANTUM_TERRITORY_RENDERING.md) | Current membership, Gaussian fields, compositing, identities and calibration. |
-| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved A–H presentation, unchanged scripts, targeting/motion and first-entry/two-speech treatment; SFX remain deferred. |
-| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Safe registries/fallbacks, exact PNG/UI-reticle/two-MP3 binary admission and universal UI-content boundary. |
+| [NEXUS_VISUAL_IDENTITY](NEXUS_VISUAL_IDENTITY.md) | Approved A–I presentation, unchanged scripts, targeting/motion, first-entry and accepted voice/concurrent-SFX/ambient treatment. |
+| [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Safe registries/fallbacks, exact PNG/UI-reticle/eight-MP3 binary admission and universal UI-content boundary. |
 | [CHECKPOINT_4_CELESTIAL_SCALE_SPEC](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) | Approved CNU conversion, physical dimensions/proxy scale and inspection. |
 | [LEGACY_MIGRATION_PLAN](LEGACY_MIGRATION_PLAN.md) | Canonical migration safeguards; separate approval and ID crosswalk required. |
 

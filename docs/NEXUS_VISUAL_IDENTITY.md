@@ -348,8 +348,9 @@ The original broad voice deferral was for the first viewer. The narrow
 **completed, creator-approved** Checkpoint 4.2H exception is just two prerecorded,
 creator-approved speeches: welcome and archival fallback; ordinary
 InfoCards are **not narrated**. 4.2G designs opening without playback;
-4.2I adds a few optional short sounds **last**. Still deferred:
-animated speaking avatar, AI dialogue, on-demand voice API, ambience,
+Completed 4.2I adds five short sounds and one explicitly approved quiet loop
+**last**, as recorded below. Still deferred:
+animated speaking avatar, AI dialogue, on-demand voice API,
 music and routine audio commentary. Speech text and recordings require
 separate creator approval. See the [phase roadmap](DEVELOPMENT_ROADMAP.md#checkpoint-42--nexus-visual-and-audiovisual-completion-planned).
 
@@ -454,5 +455,24 @@ teardown interrupt cleanly. Missing/denied audio leaves the approved text and
 actions fully usable. Reduced motion preserves the original immediate entry and
 240ms optional appearance rules. A–G imagery, dialogue, reticles, symbol sizes,
 Focus and chart transitions are unchanged. See [persistence/playback contract](VIEWER_SPECIFICATION.md#approved-42h-voice-and-first-entry-persistence--2026-10-25).
-4.2I remains planned and unimplemented; final Checkpoint 4 acceptance and Cantum
-Stage 5 remain pending. No later audiovisual expansion is implied.
+At H closeout, 4.2I remained planned and unimplemented; the later approved
+amendment follows. Final Checkpoint 4 acceptance and Cantum Stage 5 remain pending.
+
+## Approved 4.2I soundscape amendment — 2026-10-25
+
+The creator supplied five finished interface recordings and one quiet continuous
+archival-computer loop. This explicitly supersedes the original I ambience
+exclusion; it authorizes no music or speaking-avatar effects. Generic button
+clicks and committed action effects are separate concurrent recordings. Focus
+Selection must blend click plus Focus Lock in one activation. Speech takes
+priority, clears foreground effects and silences the ongoing background loop.
+No source is trimmed, normalized, synthesized or re-encoded. Accepted native
+playback levels are click 0.35, dedicated 0.45, ambient 0.08 and speech 1.0, with
+180ms ambient restoration. The single existing master toggle controls all eight
+clips. Saved ON starts nothing until deliberate interaction; first audio entry
+retains the approved acknowledgment before ambience. There is no new UI or
+visual motion. The creator personally approved all six recordings, simultaneous
+generic/action playback, integrated mix, repetition, speech priority, ducking and
+loop continuity. I and Checkpoint 4.2 audiovisual implementation are complete;
+final Checkpoint 4 integrated visual acceptance remains pending separate creator
+authorization. This approval grants no further audio refinement or deployment.

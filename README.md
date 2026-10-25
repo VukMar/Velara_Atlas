@@ -171,8 +171,27 @@ verify entry, persistence, recovery and earlier checkpoints. Production contains
 [asset integrity](docs/VISUAL_ASSET_POLICY.md#13-implemented-checkpoint-42h-exact-audio-admission)
 and [evidence/limits](docs/PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42h-voice-and-first-entry-closeout--2026-10-25).
 
-**4.2A–H are complete and creator-approved; 4.2I remains planned, unimplemented
-and separately gated.** Final Checkpoint 4 acceptance and Cantum Stage 5 remain
+**Checkpoint 4.2I closeout (2026-10-25): complete and creator-approved.** Five
+original interface cues and one quiet continuous archival-computer loop extend
+the existing master toggle without new controls or storage keys. Generic button/
+summary clicks and successful record, Focus, chart and committed-year cues are
+independent: button-driven actions play both recordings concurrently. Timeline
+input remains live with one release/commit cue. Speech suppresses foreground
+effects and silences the continuing loop; ambience restores over 180ms. Accepted
+gains remain speech 1.00, click 0.35, action 0.45 and ambience 0.08. Returning ON
+does not autoplay; permitted gestures start ambience, and mute/teardown/failure
+handling remains safe. All eight original recordings are byte-identical.
+
+Final checks pass 369 automated tests and required validation/connections/build/
+release gates. Reviewed completed browser evidence passes 17 Demo callbacks,
+11 production callbacks and seven independent restarts. Exact binary admission
+retains sixteen SVGs, three PNGs and eight MP3s: 39 files / 5,399,246 bytes. See
+[approved I behavior](docs/DEVELOPMENT_ROADMAP.md#phase-42i--ui-sound-effects-implement-last)
+and [evidence/limits](docs/PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
+
+**4.2A–I and Checkpoint 4.2 audiovisual implementation are complete and
+creator-approved.** Final Checkpoint 4 integrated visual acceptance requires
+separate creator authorization. Cantum Stage 5 remains
 pending. Checkpoint 5, Canon migration, Atlas Creator and deployment remain
 unauthorized. No deployment occurred.
 

@@ -111,8 +111,8 @@ test('disposal removes toggle behavior, releases speech and ignores outstanding 
   assert.equal(h.writes.length,writes);assert.equal(h.media.length,1);assert.equal(m.src,'');assert(h.button.disabled);assert.equal(h.audio.speak('fallback'),false);
 });
 
-test('two original MP3 source buffers have exact SHA-256 pins and reject arbitrary/changed bytes',()=>{
-  const sources=approvedAudioSources();assert.equal(sources.size,2);
+test('eight approved MP3 source buffers have exact SHA-256 pins and reject arbitrary/changed bytes',()=>{
+  const sources=approvedAudioSources();assert.equal(sources.size,8);
   for(const {name,size,sha256} of AUDIO_PINS){const b=sources.get(name);assert.equal(b.length,size);assert.match(sha256,/^[a-f0-9]{64}$/);
     for(const changed of [b.subarray(0,100),Buffer.concat([b,Buffer.from('x')]),Buffer.alloc(size)])assert.throws(()=>verifyAudioSource(name,changed),/Changed or unapproved/);
   }
@@ -132,21 +132,21 @@ test('MP3 plugin verifies load/final bytes, actual module completeness and exact
   const config=createDemoConfig();assert(audioFiles.every(f=>config.server.fs.allow.includes(f)));assert.equal(config.publicDir,false);assert.equal(config.build.assetsInlineLimit,0);
   assert.throws(()=>demoInputAudit().generateBundle.call(ctx,{}, {x:{type:'chunk',modules:{[path.resolve('public/assets/nexus/unapproved.mp3')]:{}}}}),/Unexpected input/);
 });
-test('real build preserves two exact MP3s; rejects missing/corrupt/renamed/duplicate/unreferenced/unsupported outputs',async t=>{
+test('real build preserves eight exact MP3s; rejects missing/corrupt/renamed/duplicate/unreferenced/unsupported outputs',async t=>{
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-audio-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));fs.rmSync(top,{recursive:true,force:true});});
   const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
-  const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert.equal(audit().audioCount,2);assert.equal(audit().svgCount,16);assert.equal(audit().pngCount,3);
+  const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert.equal(audit().audioCount,8);assert.equal(audit().svgCount,16);assert.equal(audit().pngCount,3);
   const names=fs.readdirSync(path.join(top,'assets'));
   for(const [stem,bytes]of approvedAudioSources()){
     const name=names.find(n=>n.startsWith(stem+'-')&&n.endsWith('.mp3')),file=path.join(top,'assets',name);assert(fs.readFileSync(file).equals(bytes));
+    const url='/Velara_Atlas/assets/'+name,js=names.find(n=>n.endsWith('.js')&&fs.readFileSync(path.join(top,'assets',n),'utf8').includes(url)),ref=path.join(top,'assets',js),text=fs.readFileSync(ref,'utf8');
     fs.unlinkSync(file);assert.throws(audit,/MP3 inventory|Missing build resource/);fs.writeFileSync(file,bytes);
     fs.writeFileSync(file,Buffer.concat([bytes,Buffer.from('x')]));assert.throws(audit,/Unexpected MP3/);fs.writeFileSync(file,bytes);
     for(const extraName of ['unapproved.mp3',stem+'-duplicate.mp3',stem+'.mp3']){const extra=path.join(top,'assets',extraName);fs.writeFileSync(extra,bytes);assert.throws(audit,/Unexpected MP3/);fs.unlinkSync(extra);}
-    const renamed=path.join(top,'assets',stem+'-renamed.mp3');fs.renameSync(file,renamed);assert.throws(audit,/Unexpected MP3/);fs.renameSync(renamed,file);
-    const url='/Velara_Atlas/assets/'+name,js=names.find(n=>n.endsWith('.js')&&fs.readFileSync(path.join(top,'assets',n),'utf8').includes(url)),ref=path.join(top,'assets',js),text=fs.readFileSync(ref,'utf8');
+    const renamed=path.join(top,'assets',stem+'-renamed.mp3');fs.renameSync(file,renamed);fs.writeFileSync(ref,text.replaceAll(url,'/Velara_Atlas/assets/'+path.basename(renamed)));assert.throws(audit,/Unexpected MP3/);fs.renameSync(renamed,file);fs.writeFileSync(ref,text);
     fs.writeFileSync(ref,text.replaceAll(url,'unused.mp3'));assert.throws(audit,/Unreferenced/);fs.writeFileSync(ref,text);
     fs.writeFileSync(ref,text.replaceAll(url,'/assets/'+name));assert.throws(audit,/Unreferenced/);fs.writeFileSync(ref,text);
   }
   for(const extension of ['wav','ogg','m4a','webm','json']){const file=path.join(top,'assets','unapproved.'+extension);fs.writeFileSync(file,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(file);}
-  assert.equal(audit().audioCount,2);
+  assert.equal(audit().audioCount,8);
 });

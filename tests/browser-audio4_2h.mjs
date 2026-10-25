@@ -6,13 +6,13 @@ async page=>{
   const clear=()=>page.evaluate(keys=>keys.forEach(k=>localStorage.removeItem(k)),keys);
   const fresh=async()=>{await clear();await page.reload();await visible();};
   const check=(value,message)=>{if(!value)throw Error(message);},requests=[],responses=[],errors=[],layouts=[];
-  const request=r=>{if(r.resourceType()==='media')requests.push(r.url());},response=r=>{if(/\.mp3(?:\?|$)/.test(r.url())&&r.request().resourceType()==='media')responses.push({url:r.url(),status:r.status()});},error=e=>errors.push(e.message);
+  const request=r=>{if(r.resourceType()==='media'&&/nexus-(?:enter-with-audio|fallback-message)/.test(r.url()))requests.push(r.url());},response=r=>{if(/\.mp3(?:\?|$)/.test(r.url())&&r.request().resourceType()==='media')responses.push({url:r.url(),status:r.status()});},error=e=>errors.push(e.message);
   page.on('request',request);page.on('response',response);page.on('pageerror',error);
   const instrumentation=()=>{
     window.__voice=[];const Original=window.Audio;
-    window.Audio=function(...args){const media=new Original(...args),record={media,attempts:0,activation:[],events:[]};window.__voice.push(record);
+    window.Audio=function(...args){const media=new Original(...args),record={media,attempts:0,activation:[],events:[]};
       for(const type of ['loadedmetadata','playing','ended','error','pause'])media.addEventListener(type,()=>record.events.push({type,time:media.currentTime}));
-      const play=media.play.bind(media);media.play=()=>{record.attempts++;record.url=media.src;record.activation.push(navigator.userActivation.isActive);return play();};return media;
+      const play=media.play.bind(media);media.play=()=>{if(/nexus-(?:enter-with-audio|fallback-message)/.test(media.src)&&!window.__voice.includes(record))window.__voice.push(record);record.attempts++;record.url=media.src;record.activation.push(navigator.userActivation.isActive);return play();};return media;
     };
   };
   const visible=()=>page.locator('#opening-panel[open]').waitFor();
