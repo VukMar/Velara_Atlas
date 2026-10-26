@@ -26,7 +26,6 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm run connections
       - run: npm run connections:check
       - run: npm test
       - run: npm run validate

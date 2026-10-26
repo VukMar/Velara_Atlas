@@ -117,7 +117,10 @@ test('integrated registered inventory eagerly loads and builds while unregistere
   const config=createDemoConfig({datasetRoot:root}), server=await createServer({...config,configFile:false,logLevel:'silent',optimizeDeps:{noDiscovery:true,include:[]},server:{...config.server,port:0,hmr:false}});
   try {
     await server.listen();const base=`http://127.0.0.1:${server.httpServer.address().port}/Velara_Atlas/`;
-    for(const file of [path.join(root,'systems/sys_9998.json'),fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url)),fileURLToPath(new URL('../public/data/sector.json',import.meta.url))])assert.equal((await fetch(base+'@fs/'+normalizePath(file))).status,403);
+    for(const file of [path.join(root,'systems/sys_9998.json'),fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url)),fileURLToPath(new URL('../public/data/sector.json',import.meta.url))]){
+      const response=await fetch(base+'@fs/'+normalizePath(file),{headers:{connection:'close'}}),body=await response.text();
+      assert.equal(response.status,403,file);assert(!body.includes('UNREGISTERED_PHASE3F_SENTINEL'));
+    }
     const {loadDemoDataset,loadDemoDetail}=await server.ssrLoadModule('/demo-data.mjs'), d=await loadDemoDataset();
     assert.equal(d.detailFiles.size,5);assert.equal(d.factionFiles.size,2);
     assert.equal((await loadDemoDetail(d.sector.systems.find(s=>s.id==='sys_9901'))).objects.length,5);
