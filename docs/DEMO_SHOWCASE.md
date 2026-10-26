@@ -189,7 +189,7 @@ Phase 5 expands only Development, leaving this approved normal-Demo walkthrough
 and all Demo JSON unchanged. Use `npm run dev` (or `preview:calibration`) on
 5174 for **Original Cantum scale** and **Island merging and elevation**, with
 JSON-defined presets, Replay, safe visual controls and read-only diagnostics.
-See [local preview operations](../README.md#named-local-preview-scenarios-completed-phase-5).
+See [local preview operations](LOCAL_DEVELOPMENT.md#named-local-preview-scenarios).
 Automated TEST fixtures remain separate; Canon has no active viewer dataset.
 Phases 5 and 6 are complete and creator-approved. Subsequent development requires
 separate authorization; no editor, Canon migration or deployment is implemented.

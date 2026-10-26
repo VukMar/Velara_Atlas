@@ -5,8 +5,7 @@ supersedes the v1.1 short-range branching rule. System object declarations are
 the **authoring source of truth**. `connections.json` is the **generated,
 Git-tracked runtime index**. The read-only viewer uses the same graph shape and
 ordinary stored XYZ. Historical semantics remain compatible with the pure modern
-resolver; the current viewer layout follows Checkpoint 3.6. This guide authorizes
-neither Checkpoint 4 work nor canonical migration.
+resolver; the current viewer layout follows Checkpoint 3.6. This guide authorizes no future milestone or canonical migration; see [PROJECT_STATUS](PROJECT_STATUS.md).
 
 ```text
 Edit system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
@@ -195,8 +194,8 @@ The current MCP suites `tests/browser-checkpoint3.mjs` and
 intercept its public demo modules. `tests/browser-layout3_6.mjs` and
 `tests/browser-touch3_6.mjs` support the graphical Demo or production preview under
 `/Velara_Atlas/`. They are MCP entry points, not automatically discovered Node
-tests. See [current verification and limits](REPOSITORY_AUDIT_3_6.md).
-The [original implementation report](NAVIGATION_V1_2_RESULTS.md) remains historical
+tests. See [current verification and limits](archive/reports/REPOSITORY_AUDIT_3_6.md).
+The [original implementation report](archive/reports/NAVIGATION_V1_2_RESULTS.md) remains historical
 evidence for generation, migration and recovery; its counts/layout are not current.
 
 ## v1.3 activation and migration review

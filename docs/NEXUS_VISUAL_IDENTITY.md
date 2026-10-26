@@ -1,7 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
-**Status:** Approved visual identity; exact theme tokens remain tuneable. Checkpoint 3.6 implements the map-first layout and restrained surfaces. Checkpoint 4.1 Phase 3 adds fourteen original starter SVGs, procedural physical models and bounded inspection. Checkpoints 4.2A branding, 4.2B archival presentation, 4.2C unified reticles, 4.2D System minima, 4.2E Focus motion and 4.2F chart navigation are complete and creator-approved (2026-10-23); 4.2G opening is complete and creator-approved (2026-10-24), while audio and later refinement remain separately gated. The active noncanonical Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md); frozen v1.2 references remain supported. [Checkpoint 4.1 Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md) retain their historical verification context.
+**Status:** Approved implemented visual identity, including 4.2A?I. Checkpoint 4 integrated creator acceptance is complete; future changes remain separately authorized under [PROJECT_STATUS](PROJECT_STATUS.md). Dated amendment/closeout paragraphs below preserve their original phase scope; later approved amendments govern current behavior. The active Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md).
 
 ## 1. Purpose and source references
 
@@ -10,7 +10,7 @@ The Velara Atlas is an interactive historical and navigational archive **curated
 Approved reference material supplied during design:
 
 - **MCR insignia** — `Hud Profile Picture.png`: large blue segmented rings, vivid cyan center emblem, technical radial geometry, extensive black negative space.
-- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference. The creator-supplied `public/assets/nexus/nexus-side-profile.png` is now integrated in ordinary InfoCards by completed 4.2A; the front-facing reference remains reserved. Do not substitute an invented identity.
+- **NEXUS visual form** — `NEXUS Visual Form V2.png`: fine turquoise/cyan human wireframe on black, triangular mesh contours and controlled luminous detail. The supplied image is a *front-facing* reference. The creator-supplied `public/assets/nexus/nexus-side-profile.png` is now integrated in ordinary InfoCards by completed 4.2A; the original front-facing portrait is integrated in the archival interface and opening under B/G. Do not substitute an invented identity.
 - **NEXUS opening-interface screenshot** — the user-provided frame from the YouTube sequence: black background, restrained blue rectangular status frame, small circular connected record nodes, cyan/blue emphasis, green `CONNECTION ESTABLISHED` status. The screenshot is a style reference, **not** a directive to turn every celestial body into a node.
 - **Viewer behavior** — `docs/VIEWER_SPECIFICATION.md` v1.1 and `docs/CANTUM_TERRITORY_RENDERING.md` (approved Milestone 3). Their navigation, layering, chronology, and territorial rules remain authoritative.
 
@@ -105,7 +105,7 @@ zoom reveals smaller objects where space permits. **Object Names** hides passive
 captions while focus, hover and selection preserve identification. Markers and
 catalogue access survive decluttering. Names use released, historically resolved
 text only. These controls retain session preferences through timeline, navigation
-and 2D/3D changes. [Results and limits](CARTOGRAPHIC_LABELING_RESULTS.md) record
+and 2D/3D changes. [Results and limits](archive/reports/CARTOGRAPHIC_LABELING_RESULTS.md) record
 verification; final assets/reticles remain separate work.
 
 **2D:** default top-down navigational icons, readable labels, real X/Z projection of stored XYZ positions. Y remains available in InfoCard and optional elevation overlay.  
@@ -258,7 +258,7 @@ Only the loopback Development preview exposes background/selected-marker colors
 and selection delay. All values pass `createVisualConfig`; named presets and
 Replay restore validated presentation and camera state. Radius experiments remain
 local reduced-format overrides. No normal-Demo settings panel, art, physical/history
-controls, persistence or publication is added. See [local preview guide](../README.md#named-local-preview-scenarios-completed-phase-5).
+controls, persistence or publication is added. See [local preview guide](LOCAL_DEVELOPMENT.md#named-local-preview-scenarios).
 Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
 
 ## Checkpoint 4.2 approved direction / planned implementation amendment (2026-10-23)
@@ -474,5 +474,4 @@ retains the approved acknowledgment before ambience. There is no new UI or
 visual motion. The creator personally approved all six recordings, simultaneous
 generic/action playback, integrated mix, repetition, speech priority, ducking and
 loop continuity. I and Checkpoint 4.2 audiovisual implementation are complete;
-final Checkpoint 4 integrated visual acceptance remains pending separate creator
-authorization. This approval grants no further audio refinement or deployment.
+final Checkpoint 4 integrated creator acceptance is complete; see [PROJECT_STATUS](PROJECT_STATUS.md). This approval grants no further audio refinement or deployment.

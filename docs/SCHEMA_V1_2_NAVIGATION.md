@@ -14,10 +14,10 @@ for current generator and recovery paths. No navigation semantics changed.
 The exact names `navigation`, `localLinks`, `interstellarConnection` and
 `positionMode` are implemented by current v1.2 definitions and offline tools.
 Use [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for commands, six-decimal
-rounding, allowlists and recovery; [the original results](NAVIGATION_V1_2_RESULTS.md)
+rounding, allowlists and recovery; [the original results](archive/reports/NAVIGATION_V1_2_RESULTS.md)
 retain acceptance evidence. Design examples and the original implementation
 sequence below are preserved as approved history, not a pending migration task
-or a current live-demo inventory. [The current audit](REPOSITORY_AUDIT_3_6.md)
+or a current live-demo inventory. [The current audit](archive/reports/REPOSITORY_AUDIT_3_6.md)
 records subsequent layout/tests. No Checkpoint 4 or canonical authorization follows.
 
 ## 1. Purpose

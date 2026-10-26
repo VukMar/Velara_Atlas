@@ -88,7 +88,7 @@ These are **tunable starting defaults**, not canon. The sample uses a **maximum 
   noncanonical demonstration asset; null/omission/unknown/failure is text-only.
   This does not change contributors, fields, colors, radii, flat surfaces or
   connected-component eligibility in Stage 2. Stage 4 extends identity eligibility
-  below without changing the field; see [Stage 2 results](CANTUM_SIGILS_STAGE2_RESULTS.md).
+  below without changing the field; see [Stage 2 results](archive/reports/CANTUM_SIGILS_STAGE2_RESULTS.md).
 - **Other spatial zones:** nebula, radiation and asteroid-field volumes are independent **system-map features**. Do not merge their geometry with Cantum influence shading.
 
 ## 4. Implemented public-safe presentation settings
@@ -153,7 +153,7 @@ The color and radius for `can_0001` here apply **only to the noncanonical test d
 field, deterministic overlap mixing and the approved Gaussian/smoothstep formula.
 Style tuning requires its own authorized visual work and must preserve membership,
 fixed ly radii, opacity caps, disclosure and layer order. See
-[implementation notes](VIEWER_PROTOTYPE.md) and [current audit](REPOSITORY_AUDIT_3_6.md).
+[implementation notes](archive/reports/VIEWER_PROTOTYPE.md) and [historical audit](archive/reports/REPOSITORY_AUDIT_3_6.md).
 No territory calculations or settings were changed in the documentation audit.
 
 ## Stage 3 dual presentation and bounded envelope geometry
@@ -220,7 +220,7 @@ the target to its actual drawing buffer, including DPR changes. Target memory
 is eight bytes per drawing-buffer pixel. System zones and celestial rendering
 are independent. Stage 4 identity rules below leave these envelopes unchanged;
 Stage 5 polish remains deferred.
-See [Stage 3 results](CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
+See [Stage 3 results](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
 
 ## Stage 4 detached-island identities
 
@@ -268,16 +268,16 @@ retains its name. Rebuild/disposal removes image listeners. The existing bounded
 eight-entry placement cache additionally keys registered-sigil availability.
 Camera movement only projects/fades existing markers; it does not resample fields
 or rebuild geometry. Synthetic cases are memory-only, with no demo JSON edits.
-See [Stage 4 results](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 remains
-deferred pending creator approval.
+See [Stage 4 results](archive/reports/CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 remains
+deferred and is not a release-planning blocker; see [PROJECT_STATUS](PROJECT_STATUS.md).
 
 ## Intermediate realistic-scale calibration
 
 Stage 4 and the intermediate calibration are committed in `190bd21` and preserved
 through architecture Phase 2 at `6e026cb`. The calibration changed only Sector
 star-symbol size and the provisional envelope-height clamp, adding an isolated
-memory-only 40-ly preview. It does not complete Stage 5 or select a
-permanent canonical radius. The existing demo still authors 24/18-ly radii.
+40-ly preview, now backed by the named calibration JSON. It does not complete Stage 5 or select a
+permanent canonical radius. At that calibration checkpoint the Demo authored 24/18-ly radii; the active v1.3 Demo now uses the shared 24-ly radius described below.
 
 Sector star-system spheres keep their color/geometry and use a centralized 4 CSS
 pixel visible radius, inverted from the active camera projection. Caption radius
@@ -298,19 +298,18 @@ mesh closure or compositing failure was found in the checks.
 Run `npm run dev` (compatibility alias `npm run preview:calibration`) and open
 `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. Only this explicit loopback
 server installs the preview; graphical Demo/build allowlists remain unchanged.
-Four resources (HTML, controller, adapter and the named calibration JSON) are
-served from an exact read-only inventory. The real
+HTML/modules and finite registry-declared scenario JSON are served from an exact read-only inventory. The real
 Atlas renderer, resolver, cameras, layer controls and Stage 4 nameplates show a
 named A cluster, sigil-only outpost, name-only B cluster and unassociated controls.
 At 128x128 sampling the 40-ly chart has a .3125-ly step / .442-ly diagonal tolerance.
 Sub-cell necks remain resolution-limited; larger charts with the same small radii
 need separate sampling review, not coordinate/radius rescaling.
-See [calibration evidence and viewing instructions](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+See [calibration evidence and viewing instructions](archive/reports/CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Architecture Phase 3A operational changes are complete and creator-approved.
-Phase 3B remains proposed and requires separate authorization. The scenario JSON and
+Architecture Phases 1?6 are complete; [PROJECT_STATUS](PROJECT_STATUS.md) owns future authorization. The scenario JSON and
 cloning adapter preserve these calculations and all existing synthetic facts; see
-[current commands, format and tests](../README.md#local-development-and-future-canon).
+[current commands, format and tests](LOCAL_DEVELOPMENT.md#local-development-and-future-canon).
 
 ## Completed Phase 3D governing-field activation
 

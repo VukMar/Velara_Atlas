@@ -29,5 +29,5 @@ For any former standalone filename, its basename identifies the corresponding
 file here or in the legacy fixture directory. Current learning material is in
 [examples](../../../examples/README.md); use the
 [data model](../../DATA_MODEL.md) and [current schema](../../../schemas/atlas.schema.json).
-See [Phase 2 results](../../PHASE_02_DATASET_MIGRATION_RESULTS.md) for the complete
+See [Phase 2 results](../reports/PHASE_02_DATASET_MIGRATION_RESULTS.md) for the complete
 old-to-new map and hash evidence.

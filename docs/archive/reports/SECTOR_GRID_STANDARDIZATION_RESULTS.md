@@ -1,5 +1,7 @@
 # Sector grid standardization — implementation results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 > This report records the grid implementation before Cantum Visual Patch Stage 1.
 > Its grid geometry remains unchanged. Stage 1 subsequently replaces floor text
 > meshes with projected nameplates; see [that report](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).

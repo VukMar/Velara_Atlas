@@ -1,5 +1,7 @@
 # Cantum Visual Patch — Stage 1 results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented Stage 1 only on local `main` at `eca903b`, preserving the pending
 Sector View grid changes already in the worktree. No reset, data edits, commit,
 push or deployment was performed. Sigils, emblems, 3D influence envelopes and

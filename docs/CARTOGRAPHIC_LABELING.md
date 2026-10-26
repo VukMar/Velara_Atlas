@@ -1,7 +1,7 @@
 # Velara Atlas — Cartographic Typography and Adaptive Labels
 
 **Status:** Implemented labeling contract with later Cantum Stage 1-4 amendments.
-See [original evidence](CARTOGRAPHIC_LABELING_RESULTS.md); this specification
+See [original evidence](archive/reports/CARTOGRAPHIC_LABELING_RESULTS.md); this specification
 does not authorize further visual changes.
 **Original target:** post-Checkpoint-3.6 labeling. Starter icons/physical models and
 Cantum Stages 1-4 are now implemented; final artistic refinement remains deferred.
@@ -15,7 +15,7 @@ Cantum Stages 1-4 are now implemented; final artistic refinement remains deferre
 original floor-mounted glyph rendering, world-space glyph sizing and tilt fades.
 The geographic field/component fitting and all object-caption rules remain in
 force. See [the current viewer contract](VIEWER_SPECIFICATION.md#cartographic-typography-and-adaptive-captions--implemented-refinement)
-and [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md). The original geometric
+and [Stage 1 results](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md). The original geometric
 metrics below now select eligible components and stable X/Z anchors only.
 
 The Sector View should convey political/geographic identity at wide zoom without turning into a crowded set of interface overlays. The System View should make the names of stars, planets, moons, stations, short-range gates, Jump Gates and Jump Holes easier to associate with their markers. The implementation has two coordinated, technically independent layers:

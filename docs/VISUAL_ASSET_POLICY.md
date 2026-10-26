@@ -1,7 +1,7 @@
 # Velara Atlas — Visual Asset Policy and Fallback Contract
 
 **Version:** 1.0.0 · **Milestone 5 companion** · **2026-10-15**  
-**Status:** Rendering/fallback policy approved. Phase 3 implements fourteen original starter SVGs, the explicit icon registry and procedural physical models using the existing noncanonical v1.2 data. Completed, creator-approved 4.2A (2026-10-23) adds exact two-PNG admission for header/ordinary InfoCard branding; completed 4.2B adds the specifically approved third PNG and universal UI content below; completed 4.2C adds independent exact UI-reticle admission. Later artistic refinement remains separate work. This policy does not authorize canonical changes.
+**Status:** Approved implemented asset/fallback contract through 4.2I: sixteen SVGs, three PNGs, eight MP3s and two universal UI-content modules. [PROJECT_STATUS](PROJECT_STATUS.md) owns completion/approval. Dated amendment sections retain their original scope; later approved admissions supersede earlier exclusions. No additional assets or canonical changes are authorized.
 
 ## 1. Separation of content and presentation
 
@@ -154,7 +154,7 @@ adds one separately verified UI reticle (Section 10), never through this profile
 profile and requires exact approved asset content/name in output; no general SVG
 sanitization or arbitrary custom loader is claimed. This preserves canonical and
 private-data scans. [Scale/transition and camera details](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md)
-and [browser/build evidence](CHECKPOINT_4_PHASE3_RESULTS.md) record implementation.
+and [browser/build evidence](archive/reports/CHECKPOINT_4_PHASE3_RESULTS.md) record implementation.
 
 No additional schema migration or canonical change is needed for the already
 supported null/variant fields. Any future stored-shape extension requires its
@@ -173,6 +173,8 @@ Checkpoint 3.6 chart/layout, history, connection and influence contracts intact.
 **Authority:** This document governs appearance/fallback policy; [DATA_MODEL.md](DATA_MODEL.md) and schemas govern valid JSON. [Viewer behavior](VIEWER_SPECIFICATION.md) governs the Checkpoint 3.6 square chart and overlays. Canonical public v0.1 records remain unchanged pending separately approved migration.
 
 ## 7. Planned Checkpoint 4.2 PNG / UI SVG / audio admission
+
+This original admission plan is historical; implemented exact admissions are in sections 8?14.
 
 **Original planning addition; 4.2A–C are now complete and creator-approved.** Production retains
 `publicDir: false`, exact approved file admission, fourteen navigation
@@ -440,4 +442,4 @@ exclusions. No wildcard permission, runtime path selection or source transform.
 The creator approved all six recordings and the integrated soundscape. I is
 complete and creator-approved; exact output is eight MP3s totaling 883,118 bytes,
 with the original two voice recordings unchanged. No broader audio admission is
-authorized. Final Checkpoint 4 integrated visual acceptance remains separately gated.
+authorized. Checkpoint 4 integrated creator acceptance is complete; future work remains separately gated under [PROJECT_STATUS](PROJECT_STATUS.md).

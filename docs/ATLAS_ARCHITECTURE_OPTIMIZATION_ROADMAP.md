@@ -1,12 +1,15 @@
 # Velara Atlas — Architecture, Data and Developer-Workflow Optimization Roadmap
 
 **Status:** Architecture Phases 1, 2, 2.1, 2.2, 3A–3F, 4, 5 and 6 are complete and creator-approved. Phase 6 implementation and completion documentation are committed together. The current Architecture Optimization Roadmap (Phases 1–6) is complete; the entire project is not finished or deployed.
+
+> **Completed roadmap, retained for provenance and link continuity.** [PROJECT_STATUS](PROJECT_STATUS.md) owns present decisions. All phase tasks and authorization text below describe completed work; do not execute them again.
+
 **Baseline reviewed:** `main` at `190bd21bcdfd6bfafc94b51ffccd705592b0648c` (2026-10-20, `feat: Visual callibration`).  
 **Completed maintenance:** Phase 2 dataset migration is committed in `6e026cb`
 (2026-10-20), and Phase 2.1 in `711a410`. Phase 2.2's simplified entity-family
 reference library is complete and creator-approved.
 **Roadmap baseline:** `main` at `1f36182` (2026-10-21); Phase 2.2 was committed in `8d88ef2`.
-**Current authorization:** creator-approved Phase 6 final verification, documentation,
+**Completed historical authorization (not a current work order):** creator-approved Phase 6 final verification, documentation,
 one completion commit and normal push only. No additional development, deployment,
 Canon migration or Atlas Creator is authorized. No next milestone is automatically
 authorized by completion of this roadmap.
@@ -25,7 +28,7 @@ entity-family references and one guide with explicit gate-authoring semantics.
 The active demonstration remains in `public/datasets/demo/`. Results are reported
 directly to the creator; no additional Codex task/results document is required. Completed task records are retained only
 in [the historical archive](INDEX.md#archived-completed-or-superseded-material).
-The committed Phase 2 evidence remains in [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+The committed Phase 2 evidence remains in [its report](archive/reports/PHASE_02_DATASET_MIGRATION_RESULTS.md).
 
 ## Original baseline findings (190bd21)
 
@@ -52,7 +55,7 @@ The baseline has a working separation between pure historical/cartographic logic
 
 ### Calibration preview: exact ownership at this baseline
 
-`npm run preview:calibration` starts a loopback-only Vite server at `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. At the pre-3A baseline its scenario was created **in memory** in `tests/calibration/scenario.mjs` (15 synthetic star systems, a 40 x 40 ly sector, independent 12-ly Y extent, two synthetic Cantums and selectable 2/2.5/3 ly radii). `tests/calibration/controller.mjs` resolves/displays it. `tests/calibration/index.html` owns the controls. `scripts/preview-cantum-calibration.mjs` serves an explicit three-file inventory. **That baseline read no Demo JSON and stored no scenario JSON.** The completed, creator-approved Phase 3A workflow is documented in [README](../README.md#local-development-and-future-canon); its named JSON is now the local source of truth. It is test infrastructure, not the canonical source or the main demo loader. Preserve its reproducibility and production exclusion.
+`npm run preview:calibration` starts a loopback-only Vite server at `http://127.0.0.1:5174/Velara_Atlas/__calibration/`. At the pre-3A baseline its scenario was created **in memory** in `tests/calibration/scenario.mjs` (15 synthetic star systems, a 40 x 40 ly sector, independent 12-ly Y extent, two synthetic Cantums and selectable 2/2.5/3 ly radii). `tests/calibration/controller.mjs` resolves/displays it. `tests/calibration/index.html` owns the controls. `scripts/preview-cantum-calibration.mjs` serves an explicit three-file inventory. **That baseline read no Demo JSON and stored no scenario JSON.** The completed, creator-approved Phase 3A workflow is documented in [local development](LOCAL_DEVELOPMENT.md#local-development-and-future-canon); its named JSON is now the local source of truth. It is test infrastructure, not the canonical source or the main demo loader. Preserve its reproducibility and production exclusion.
 
 ### Non-negotiable design and publication boundaries
 
@@ -111,7 +114,7 @@ Separate approval: MCR Canon migration / Atlas Creator
 
 ### Phase 2 — Dataset and repository organization
 
-**Completed:** committed in `6e026cb`; see [results](PHASE_02_DATASET_MIGRATION_RESULTS.md).
+**Completed:** committed in `6e026cb`; see [results](archive/reports/PHASE_02_DATASET_MIGRATION_RESULTS.md).
 Original delivery plan below is retained for reference.
 
 **Goal:** Give active demonstration data, examples, calibration fixtures, legacy canon and public-release output unambiguous ownership.
@@ -262,7 +265,7 @@ audited 21-file/15-SVG build and unchanged terminal history passed. Chromium
 calibration covered all nine radius/camera combinations plus historical transfer,
 nameplates/sigils, touch/keyboard, mobile and resource reuse. Graphical Demo suites
 verified navigation, history, rendering and interaction. Physical touch hardware
-is not verified. See [commands, format and test entry points](../README.md#local-development-and-future-canon).
+is not verified. See [commands, format and test entry points](LOCAL_DEVELOPMENT.md#local-development-and-future-canon).
 
 **Retained original design and acceptance criteria (pre-3A command names):**
 
@@ -326,7 +329,7 @@ history, catalogue, archival fallback, navigation, rendering and calibration's
 nine radius/camera combinations. Protected data and calibration facts remain
 byte-identical. The existing bundle-size advisory and physical-device/cross-browser
 verification limits remain. See [operating architecture](ARCHITECTURE.md#validated-dataset-inventory)
-and [authoring/testing steps](../README.md#registered-demo-systems-and-loading).
+and [authoring/testing steps](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
 
 **Retained original Phase 3B objectives and acceptance criteria:**
 
@@ -434,7 +437,7 @@ verification and the existing bundle-size advisory remain limitations; fixed
 sampling still approximates influence, never exact political borders.
 
 See [the migration crosswalk and measured visual difference](DATA_MODEL_V1_3_PROPOSAL.md#phase-3d-demo-migration-crosswalk)
-and [browser verification instructions](../README.md#historical-governing-influence-phase-3d).
+and [browser verification instructions](LOCAL_DEVELOPMENT.md#governance-test-preview).
 Original Phase 3D objectives and acceptance criteria follow.
 
 **Work:** Resolve direct and ultimate Cantum
@@ -672,7 +675,7 @@ The normal v1.3 Demo, Canon, baseline JSON, schemas/fixtures, navigation, Phase 
 defaults and production restrictions remain unchanged. No save API, arbitrary
 dataset root, editor, new dependency or Phase 6 implementation is introduced.
 The creator reviewed and approved these local-preview results. See
-[scenario operations and test entry points](../README.md#named-local-preview-scenarios-completed-phase-5).
+[scenario operations and test entry points](LOCAL_DEVELOPMENT.md#named-local-preview-scenarios).
 At the Phase 5 closeout, Phase 6 remained proposed. Its current
 completion and remaining limitations are recorded in the Phase 6 section below.
 

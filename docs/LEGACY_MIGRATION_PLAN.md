@@ -4,7 +4,7 @@
 
 `public/data/political.json`, `public/data/sector.json` and
 `src/timeline/resolve.mjs` retain the legacy v0.1 contract and permanent IDs.
-The modern pure resolver, Schema v1.2, generator and three-system viewer are
+The modern pure resolver, versioned schemas, generator and four-chart viewer are
 implemented for **noncanonical `public/datasets/demo/` only**. Frozen v1.1 and
 v1.2 test datasets preserve earlier behavior; none is a canonical release.
 
@@ -33,7 +33,6 @@ v1.2 test datasets preserve earlier behavior; none is a canonical release.
    separately authorized release. Do not read private RTF without an explicit
    task, and never commit source lore or hidden records.
 
-The Checkpoint 3.6 audit changes documentation only. It does not perform this
-crosswalk, migrate history or rewrite any canonical file. Current structure and
+This plan does not perform the crosswalk, migrate history or rewrite any canonical file. [PROJECT_STATUS](PROJECT_STATUS.md) records the separate authorization gates. Current structure and
 authoring instructions live in [DATA_MODEL.md](DATA_MODEL.md) and
 [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md).

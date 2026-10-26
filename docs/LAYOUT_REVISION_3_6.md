@@ -102,8 +102,8 @@ Reusable Playwright MCP entry points (pass an absolute `filename` to
   workflow across all systems, Focus/Reset actions and observed read-only,
   same-origin traffic without canonical/private-source requests.
 
-See [the original results](CHECKPOINT_3_6_RESULTS.md) and
-[the current synchronization audit](REPOSITORY_AUDIT_3_6.md). No authored
+See [the original results](archive/reports/CHECKPOINT_3_6_RESULTS.md) and
+[the current synchronization audit](archive/reports/REPOSITORY_AUDIT_3_6.md). No authored
 coordinates, histories, schemas, IDs, navigation declarations, generated graph,
 Cantum calculations, zone geometry or publication configuration are changed.
 

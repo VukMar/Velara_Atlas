@@ -1,9 +1,11 @@
 # Viewer implementation and current noncanonical demonstration
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 **Classification:** Historical implementation reference with later compatibility
-notes. The current architecture is [ARCHITECTURE.md](ARCHITECTURE.md), operating
-commands are in [README](../README.md), and the exact behavior contracts are in
-[the documentation index](INDEX.md). These notes are not new implementation orders.
+notes. The current architecture is [ARCHITECTURE.md](../../ARCHITECTURE.md), operating
+commands are in [README](../../../README.md), and the exact behavior contracts are in
+[the documentation index](../../INDEX.md). These notes are not new implementation orders.
 
 The read-only noncanonical viewer now reads `public/datasets/demo/`. Architecture
 Phase 2 is committed in `6e026cb`; [its report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
@@ -44,7 +46,7 @@ Local Development/calibration: `http://127.0.0.1:5174/Velara_Atlas/__calibration
 via `npm run dev` or its compatibility alias `preview:calibration`.
 Production preview: `http://127.0.0.1:4173/Velara_Atlas/`. The console
 `history:demo` command retains legacy political-history output. Future Canon has
-no launcher. See [current commands and tests](../README.md#local-development-and-future-canon).
+no launcher. See [current commands and tests](../../LOCAL_DEVELOPMENT.md#local-development-and-future-canon).
 No command commits, pushes or deploys anything.
 No dependency was added in Checkpoint 3.
 
@@ -109,7 +111,7 @@ both modes. Camera state is retained per map; switches never relocate objects.
 Station/gate SVGs face the screen at their projected XYZ; known-size natural bodies
 use physical models with distant SVG proxies. There is no orbital simulation.
 The approved unit is 1 CNU = 10,000 km; see
-[the Phase 1 scale contract](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md). Dense or
+[the Phase 1 scale contract](../../CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md). Dense or
 coincident projected records remain available in the catalogue; nearby hit areas
 shrink without changing geometry.
 
@@ -136,7 +138,7 @@ plain-text pointer tooltips and the existing InfoCard; system zones have no
 origin-anchored caption/button. Focus uses a visible witness and clipped extent.
 Spatial zones controls geometry and picking together. Zones follow discovery/
 known-by dates; v1.1/v1.2 has no zone-expiry field, so no expiry is invented.
-See [specification](ZONE_GEOMETRY_INTERACTION_SPEC.md) and
+See [specification](../../ZONE_GEOMETRY_INTERACTION_SPEC.md) and
 [Checkpoint 3.8 verification](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 Sector political influence follows historically eligible, positioned systems'
@@ -150,7 +152,7 @@ The implementation uses the approved Gaussian sum, smoothstep thresholds,
 per-Cantum alpha at most **0.16**, and one deterministic alpha-weighted composite
 capped at **0.22**. A 256×256 RGBA texture is clipped to declared sector bounds
 for top-down mode. Stage 3 supersedes the old floor presentation in perspective
-with flattened influence envelopes under [the current contract](CANTUM_TERRITORY_RENDERING.md). Up to eight fields are cached by
+with flattened influence envelopes under [the current contract](../../CANTUM_TERRITORY_RENDERING.md). Up to eight fields are cached by
 world inputs, not camera state; pan/zoom never recalculates membership or radius.
 Different Cantums remain separate inputs; distant same-Cantum holdings need no
 forced bridge. No manual political boundary is introduced.
@@ -223,6 +225,6 @@ historical resolver, Cantum calculations or nebula placement.
 The v1.2 implementation added `sys_0003` and offline graph/position generation;
 it reused the existing historical/cartographic behavior. Checkpoint 3.6 later
 refined camera/layout/interaction. `npm run connections:check` guards validation,
-dev and build, including direct Vite builds. See [authoring details](NAVIGATION_AUTHORING.md),
+dev and build, including direct Vite builds. See [authoring details](../../NAVIGATION_AUTHORING.md),
 the [historical navigation report](NAVIGATION_V1_2_RESULTS.md) and
 [historical repository audit](REPOSITORY_AUDIT_3_6.md).

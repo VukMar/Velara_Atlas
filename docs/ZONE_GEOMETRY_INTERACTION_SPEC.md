@@ -1,7 +1,7 @@
 # Velara Atlas — Checkpoint 3.8: Spatial Zone Geometry & Interaction
 
 **Status:** Implemented Checkpoint 3.8 behavior contract. See
-[historical verification](ZONE_GEOMETRY_INTERACTION_RESULTS.md); future changes
+[historical verification](archive/reports/ZONE_GEOMETRY_INTERACTION_RESULTS.md); future changes
 require a separate scoped authorization.
 **Date:** 2026-10-17  
 **Repository baseline audited:** `VukMar/Velara_Atlas`, `main` commit `77906c5e6449` (2026-10-17); Codex must inspect its actual local checkout and preserve newer or uncommitted work.  

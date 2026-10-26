@@ -1,5 +1,7 @@
 # Cantum Visual Patch — Stage 3 implementation results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented Stage 3 only on clean local `main` at
 `39821c13f6ec99b9220f439a22d0b2dc3def2a3b`. Stages 1–2 remain creator-approved.
 No data, schema, asset, dependency, commit, push or deployment change was made.

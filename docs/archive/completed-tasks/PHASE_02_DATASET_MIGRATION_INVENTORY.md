@@ -9,7 +9,7 @@
 explicitly authorized by [its task](CODEX_PHASE_02_DATASET_MIGRATION_TASK.md).
 The live demo has moved to `public/datasets/demo/` in Substep A. Substep B
 preserves three legacy fixtures, archives eight obsolete proposals and adds
-validated reference-only examples. See [results](../../PHASE_02_DATASET_MIGRATION_RESULTS.md).
+validated reference-only examples. See [results](../reports/PHASE_02_DATASET_MIGRATION_RESULTS.md).
 The old paths in the baseline inventory below describe pre-migration dependencies, not current
 operating paths. No canonical conversion is authorized.
 
