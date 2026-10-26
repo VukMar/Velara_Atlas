@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {build,createServer,normalizePath} from 'vite';
@@ -12,16 +11,17 @@ import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {resolveAtlas} from '../src/core/cartography.mjs';
 import {scanDataset} from '../scripts/idfind.mjs';
-import {createDemoConfig,demoInputAudit,DEMO_VIRTUAL_ID} from '../vite.config.mjs';
+import {createDemoConfig,demoInputAudit,auditRegisteredModules,DEMO_VIRTUAL_ID} from '../vite.config.mjs';
 import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {viteSandbox} from './vite-sandbox.mjs';
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const write=(root,name,value)=>fs.writeFileSync(path.join(root,name),JSON.stringify(value,null,2)+'\n');
 function sandbox(t) {
-  const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-inventory-'));
+  const {top,cleanup}=viteSandbox('velara-inventory-');
   const root=path.join(top,'public/datasets/demo');fs.mkdirSync(path.join(root,'systems'),{recursive:true});
   for(const [name,text] of readDemoSource().texts){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.writeFileSync(path.join(root,name),text);}
-  t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(path.basename(top).startsWith('velara-inventory-'));fs.rmSync(top,{recursive:true,force:true});});
+  t.after(cleanup);
   return {top,root};
 }
 function addSystem(root,id='sys_0042',suffix='9901') {
@@ -37,6 +37,15 @@ function addSystem(root,id='sys_0042',suffix='9901') {
 }
 const change=(root,file,fn)=>{const value=read(path.join(root,file));fn(value);write(root,file,value);};
 const publish=root=>{const plugin=demoInputAudit({root});plugin.buildStart();return plugin;};
+
+test('module completeness accepts Windows drive case only and still requires every exact registered file',()=>{
+  const inventory={root:'c:/TEST/dataset',files:['sector.json','systems/sys_0042.json']};
+  const bundle=ids=>({chunk:{type:'chunk',modules:Object.fromEntries(ids.map(id=>[id,{}]))}});
+  const ids=['C:/TEST/dataset/sector.json','C:/TEST/dataset/systems/sys_0042.json'];
+  assert.equal(auditRegisteredModules(bundle(ids),inventory),2);
+  for(const invalid of [ids.slice(0,1),[ids[0],ids[1].replace('sys_0042','sys_0099')],[ids[0],ids[1].replace('/TEST/','/test/')]])
+    assert.throws(()=>auditRegisteredModules(bundle(invalid),inventory),/Registered dataset inputs missing/);
+});
 
 test('inventory derives deterministic registered paths and preserves archival entries',()=>{
   const a=datasetInventory(),b=datasetInventory();assert.deepEqual(a.files,b.files);
@@ -139,9 +148,12 @@ test('one validated mapping owns eager browser loading, HTTP admission and a com
   const server=await createServer({...config,configFile:false,logLevel:'silent',optimizeDeps:{noDiscovery:true,include:[]},server:{...config.server,port:0,strictPort:false,hmr:false}});
   try {
     await server.listen();const base=`http://127.0.0.1:${server.httpServer.address().port}/Velara_Atlas/`;
-    assert.equal((await fetch(base)).status,200);
+    const page=await fetch(base,{headers:{connection:'close'}});await page.text();assert.equal(page.status,200);
     for(const [name,status] of [[path.join(root,'systems/sys_0042.json'),200],[path.join(root,'systems/sys_0099.json'),403],[fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url)),403]]){
-      const response=await fetch(base+'@fs/'+normalizePath(name));assert.equal(response.status,status);await response.text();
+      const response=await fetch(base+'@fs/'+normalizePath(name),{headers:{connection:'close'}}),body=await response.text();
+      assert.equal(response.status,status,name);
+      if(status===200){assert.match(response.headers.get('content-type'),/application\/json/);assert.equal(body,fs.readFileSync(name,'utf8'));}
+      else assert(!body.includes('UNREGISTERED_INVENTORY_SENTINEL'));
     }
     const {loadDemoDataset,loadDemoDetail}=await server.ssrLoadModule('/demo-data.mjs');const data=await loadDemoDataset();
     assert.equal(data.detailFiles.size,5);assert.equal(data.detailFiles.get(system.id).objects.length,2);
@@ -154,6 +166,9 @@ test('one validated mapping owns eager browser loading, HTTP admission and a com
   const plugin=demoInputAudit({root}),context={error(message){throw new Error(message);}};
   const bundle=id=>({chunk:{type:'chunk',modules:{[id]:{}}}});
   assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(path.join(root,'systems/sys_0042.json'))));
+  // Vite realpaths may uppercase a drive supplied in lowercase by os.tmpdir().
+  const alternateDrive=id=>id.replace(/^([a-z]):/i,(_,drive)=>drive===drive.toUpperCase()?drive.toLowerCase()+':':drive.toUpperCase()+':');
+  assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(alternateDrive(path.join(root,'systems/sys_0042.json')))));
   for(const id of [path.join(root,'systems/sys_0099.json'),'\0unapproved-virtual-module',fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url))])assert.throws(()=>plugin.generateBundle.call(context,{},bundle(id)),/Unexpected input/);
   assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(DEMO_VIRTUAL_ID)));
   const outDir=path.join(top,'dist');await build({...createDemoConfig({datasetRoot:root}),configFile:false,logLevel:'silent',build:{...config.build,outDir}});

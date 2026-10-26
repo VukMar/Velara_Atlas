@@ -1,24 +1,19 @@
 /** Explicitly synthetic integration data. Never installed in the active Demo. */
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
-import assert from 'node:assert/strict';
+import {viteSandbox} from './vite-sandbox.mjs';
 import {readDemoSource} from '../scripts/demo-files.mjs';
 import {planNewSystem, applyNewSystem} from '../scripts/system-authoring.mjs';
 import {runConnections} from '../scripts/connections.mjs';
 
 export const chart = {size: {x: 100000, y: 10000, z: 100000}};
 export function authoringSandbox() {
-  const top = fs.mkdtempSync(path.join(os.tmpdir(), 'velara-authoring-'));
+  const {top, cleanup} = viteSandbox('velara-authoring-');
   const root = path.join(top, 'public/datasets/demo');
   for (const [name, text] of readDemoSource().texts) {
     const file = path.join(root, name); fs.mkdirSync(path.dirname(file), {recursive: true}); fs.writeFileSync(file, text);
   }
-  return {top, root, cleanup() {
-    assert.equal(path.dirname(top), fs.realpathSync(os.tmpdir()));
-    assert(path.basename(top).startsWith('velara-authoring-'));
-    fs.rmSync(top, {recursive: true, force: true});
-  }};
+  return {top, root, cleanup};
 }
 export function populateAuthoringScenario(root) {
   const plan = planNewSystem({...chart, id: 'sys_9901', name: 'TEST MANUAL AUTHORING', nameFromAE: 300,

@@ -13,18 +13,20 @@ import {audioFiles,audioAssetAudit} from './scripts/audio-assets.mjs';
 import {NEXUS_FALLBACK_FILE,NEXUS_OPENING_FILE,nexusContentAudit} from './scripts/nexus-content.mjs';
 import {RETICLE_FILE,approvedReticleSource} from './scripts/ui-reticle-asset.mjs';
 
+// Vite realpaths canonicalize Windows drive letters; keep every other byte exact.
+const modulePath=id=>normalizePath(id).replace(/^[A-Z]:/,drive=>drive.toLowerCase());
 const local=relative=>fileURLToPath(new URL(relative,import.meta.url));
-const approvedIcons=new Set(svgFiles.map(normalizePath));
-const approvedBranding=new Set(pngFiles.map(normalizePath));
-const approvedAudio=new Set(audioFiles.map(normalizePath));
+const approvedIcons=new Set(svgFiles.map(modulePath));
+const approvedBranding=new Set(pngFiles.map(modulePath));
+const approvedAudio=new Set(audioFiles.map(modulePath));
 const virtualName='virtual:velara-demo-dataset';
 export const DEMO_VIRTUAL_ID='\0velara-demo-dataset';
 const viteHelpers=new Set(['\0vite/preload-helper.js','\0vite/modulepreload-polyfill.js']);
 
 /** Actual build completeness, in addition to per-module admission. */
 export function auditRegisteredModules(bundle,inventory) {
-  const seen=new Set(Object.values(bundle).filter(o=>o.type==='chunk').flatMap(o=>Object.keys(o.modules)).map(id=>normalizePath(id.split('?')[0])));
-  const missing=inventory.files.filter(name=>!seen.has(normalizePath(path.join(inventory.root,name))));
+  const seen=new Set(Object.values(bundle).filter(o=>o.type==='chunk').flatMap(o=>Object.keys(o.modules)).map(id=>modulePath(id.split('?')[0])));
+  const missing=inventory.files.filter(name=>!seen.has(modulePath(path.join(inventory.root,name))));
   if(missing.length)throw new Error('Registered dataset inputs missing from build: '+missing.join(', '));
   return inventory.files.length;
 }
@@ -33,7 +35,7 @@ export function auditRegisteredModules(bundle,inventory) {
  * Root injection supports isolated integration tests, not public dataset selection. */
 export function demoInputAudit({root=DEMO_ROOT}={}) {
   const inventory=datasetInventory(root);
-  const admitted=new Map(inventory.files.map(name=>[normalizePath(path.join(inventory.root,name)),name]));
+  const admitted=new Map(inventory.files.map(name=>[modulePath(path.join(inventory.root,name)),name]));
   let snapshot=null,production=false,dirty=false;
   const verifiedSource=(name=null)=>{
     assertNoAuthoring(inventory.root);
@@ -66,7 +68,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
     buildStart(){snapshot=null;approvedSVGSources();approvedPNGSources();approvedReticleSource();verifiedSource();},
     resolveId(id){if(id===virtualName)return DEMO_VIRTUAL_ID;},
     load(id){
-      if(normalizePath(id.split('?')[0])===normalizePath(RETICLE_FILE))approvedReticleSource();
+      if(modulePath(id.split('?')[0])===modulePath(RETICLE_FILE))approvedReticleSource();
       if(id===DEMO_VIRTUAL_ID) {
         verifiedSource();
         const specifier=name=>JSON.stringify(normalizePath(path.join(inventory.root,name)));
@@ -82,7 +84,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
           `export const detailLoaders=new Map([${inventory.systemFiles.map(name=>`[${JSON.stringify(name)},()=>import(${specifier(name)})]`).join(',')}]);`
         ].join('\n');
       }
-      const name=admitted.get(normalizePath(id.split('?')[0]));
+      const name=admitted.get(modulePath(id.split('?')[0]));
       // JSON transformations receive the exact bytes that passed validation.
       if(name)return verifiedSource(name).texts.get(name);
     },
@@ -94,10 +96,10 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
       for(const output of Object.values(bundle)) {
         if(output.type!=='chunk')continue;
         for(const raw of Object.keys(output.modules)) {
-          const id=normalizePath(raw.split('?')[0]);
-          if(id===DEMO_VIRTUAL_ID||viteHelpers.has(id)||id.startsWith(normalizePath(local('node_modules/')))||
-            id.startsWith(normalizePath(local('src/viewer/')))||
-            ['src/core/history.mjs','src/core/cartography.mjs','src/core/zone-geometry.mjs','src/core/infocard-resolver.mjs'].some(file=>id===normalizePath(local(file)))||admitted.has(id)||approvedIcons.has(id)||approvedBranding.has(id)||approvedAudio.has(id)||id===normalizePath(NEXUS_FALLBACK_FILE)||id===normalizePath(NEXUS_OPENING_FILE)||id===normalizePath(RETICLE_FILE))continue;
+          const id=modulePath(raw.split('?')[0]);
+          if(id===DEMO_VIRTUAL_ID||viteHelpers.has(id)||id.startsWith(modulePath(local('node_modules/')))||
+            id.startsWith(modulePath(local('src/viewer/')))||
+            ['src/core/history.mjs','src/core/cartography.mjs','src/core/zone-geometry.mjs','src/core/infocard-resolver.mjs'].some(file=>id===modulePath(local(file)))||admitted.has(id)||approvedIcons.has(id)||approvedBranding.has(id)||approvedAudio.has(id)||id===modulePath(NEXUS_FALLBACK_FILE)||id===modulePath(NEXUS_OPENING_FILE)||id===modulePath(RETICLE_FILE))continue;
           this.error(`Unexpected input in demo build: ${id}`);
         }
       }
