@@ -1,58 +1,8 @@
 # Velara Atlas — Development roadmap
 
-**Status:** Architecture Phase 2 is committed at `6e026cb` (2026-10-20),
-preserving the visual/runtime baseline from `190bd21`. Checkpoint 4.1
-Phases 1–3 are complete and creator-approved. The local noncanonical demo also
-includes the sector grid, Cantum Stages 1–4 and intermediate scale calibration,
-retaining Checkpoint 3.8 zones, labeling, version-aware v1.2/v1.3 navigation and Checkpoint 3.6 layout.
-The system grid uses Y = 0 CNU. [Maintenance evidence](POST_PHASE3_MAINTENANCE.md)
-records the earlier creator-approved System C navigation/discovery baseline.
-Checkpoint 4.2 audiovisual implementation is complete. Final Checkpoint 4 integrated
-visual acceptance, Cantum Stage 5, canonical migration and deployment remain separately gated.
+**Current status:** See [PROJECT_STATUS](PROJECT_STATUS.md). Checkpoint 4 is complete and creator-approved, including final integrated acceptance. Architecture Phases 1-6 are complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 release preparation requires separate authorization; Canon migration, Atlas Creator and deployment remain separately gated.
 
-**Checkpoint 4.2 planning baseline (2026-10-23):** Nine individually gated
-phases 4.2A–I were established without implementation authorization.
-**Closeout update (2026-10-23): 4.2A–F are implemented, complete and creator-approved.**
-At that closeout, phases 4.2G–I remained planned, unimplemented and unauthorized.
-**Closeout update (2026-10-24): 4.2G is complete and creator-approved.**
-At that closeout, 4.2H–I remained planned, unimplemented and unauthorized.
-**Closeout update (2026-10-25): 4.2H is complete and creator-approved.**
-At that closeout, 4.2I remained planned, unimplemented and separately gated.
-**Closeout update (2026-10-25): 4.2I is complete and creator-approved.**
-4.2A–I and Checkpoint 4.2 audiovisual implementation are complete; no deployment is authorized.
-The completed Architecture Optimization work is separate. Checkpoint 4
-still requires final creator acceptance and a Cantum Stage 5 decision.
-This is roadmap approval, **not** authorization for feature work.
-
-**Architecture status:** Phases **1, 2, 2.1, 2.2, 3A, 3B, 3C, 3D, 3E, 3F, 4, 5 and 6 are complete and creator-approved**.
-Architecture Phase 3A is creator-approved; its environment/command separation,
-calibration JSON and status synchronization are included in the same closeout
-commit. The v1.2 example library remains in `examples/v1_2/`, and the active
-NONCANONICAL Demo remains in `public/datasets/demo/`. Earlier stages are committed:
-Phase 2 in `6e026cb`, Phase 2.1 in `711a410` and Phase 2.2 in `8d88ef2`.
-**Phase 3B is complete and creator-approved**: sector-derived validated inventory,
-eager detail preload and shared offline/Vite admission, with implementation and
-completion documentation committed together. **Phase 3C is complete and creator-approved**, with implementation and
-completion documentation committed together. Its separate
-[v1.3 entity contract](DATA_MODEL_V1_3_PROPOSAL.md) is now activated in the local Demo
-by completed, creator-approved Phase 3D, with implementation and completion
-documentation committed together. **Phase 3E is complete and creator-approved**: safe local system creation,
-sector registration, recoverable writes and manual entity/gate workflows, with
-implementation and completion documentation committed together. **Phase 3F integration and the curated Demo showcase are
-complete and creator-approved**, with implementation and completion documentation
-committed together. Overall Architecture Phase 3 is complete. Architecture Phase 4 viewer modularization and safe configuration are complete
-and creator-approved, with implementation and completion documentation committed
-together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
-See the [architecture optimization roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md)
-and [documentation index](INDEX.md). Architecture phases, Checkpoint 4.1 phases
-and Cantum stages are distinct. The [Phase 2 report](PHASE_02_DATASET_MIGRATION_RESULTS.md)
-preserves its original verification context. Completed Phase 3D introduces
-governing fields, a shared provisional 24-ly radius and historical InfoCards in
-the NONCANONICAL v1.3 Demo. Frozen v1.2/calibration remain unchanged. Phase 3F completes the integration gate and normal-Demo showcase. Overall
-Architecture Phase 3 is complete; Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
-
-Earlier evidence remains in
-[the repository audit](REPOSITORY_AUDIT_3_6.md) and checkpoint reports.
+This document retains original milestone scope, approval sequence and dated implementation evidence. Historical closeout statements about pending work describe their dates, not current permission or blockers. Active technical rules live in the subject specifications linked by [INDEX](INDEX.md).
 
 ## Completed Architecture Phase 6
 
@@ -60,7 +10,7 @@ Phase 6 is complete and creator-approved, including performance measurement,
 preservation, read-only CI configuration and a local publication dry run. The
 current architecture optimization roadmap is complete; this is not completion
 of the whole project or authorization for further development. [Readiness evidence](PERFORMANCE_AND_RELEASE_READINESS.md)
-distinguishes local results from unexecuted cross-browser/device/hosted-CI checks.
+distinguishes its original results from unexecuted cross-browser/device checks. Current hosted CI evidence is in [PROJECT_STATUS](PROJECT_STATUS.md).
 No Canon migration, deployment or Atlas Creator is authorized.
 
 **Completed focused authorization:** following the approved SVG family at `eca903b`,
@@ -75,7 +25,7 @@ were replaced with camera-facing DOM nameplates, retaining
 component X/Z placement and contributor-based provisional height. That stage
 preserved the then-pending sector grid work, flat fields, icons, data and
 navigation. Sigils, envelopes and detached-island rules followed in Stages 2–4.
-See [implementation and verification](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+See [implementation and verification](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 ## Approved foundations and design
 
@@ -86,7 +36,7 @@ half-height is `clamp(radiusLY * .30, .5, 3)`. The separate loopback preview
 compares 2/2.5/3-ly radii in a synthetic 40-ly in-memory scenario, not demo JSON.
 Existing demo radii, coordinates and all System View scales remain unchanged.
 No permanent canonical radius is selected. Stage 5 remains deferred.
-The [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) preserves its
+The [calibration report](archive/reports/CANTUM_SCALE_CALIBRATION_RESULTS.md) preserves its
 original uncommitted-work context and historical verification claims.
 
 **Implemented and committed — Cantum Visual Patch Stage 4:** Stages 1–3 are
@@ -96,7 +46,7 @@ components and DOM nameplate lifecycle. Fixed overview fitting avoids camera
 classification flicker; local envelope sampling preserves separate island heights.
 No data, SVG, schema, grid or influence-geometry changes. Stage 5 final refinement,
 canonical migration and deployment remain deferred.
-[Stage 4 verification](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md) is historical
+[Stage 4 verification](archive/reports/CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md) is historical
 evidence from before the combined `190bd21` commit, not today's worktree status.
 
 **Completed authorization — Cantum Visual Patch Stage 3:** Stages 1–2 are
@@ -104,7 +54,7 @@ creator-approved. Perspective envelopes now visualize the unchanged 2D field,
 with bounded contributor-Y shaping, local nameplate heights and restrained capped
 compositing. Top-down stays unchanged. Stage 4 was deferred at that checkpoint;
 Stage 5 final refinement remains planned. See
-[Stage 3 verification](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
+[Stage 3 verification](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
 **Completed authorization — Cantum Visual Patch Stage 2:** Stage 1 has been
 reviewed and approved. Add the optional current v1.2 sigil identifier, one explicit
@@ -112,7 +62,7 @@ noncanonical demo SVG, secure bundling and integration with existing nameplates.
 Stage 3 flattened influence envelopes and Stage 4 sigil-only detached-island
 rules were deferred at that checkpoint and subsequently authorized separately.
 Grid, influence and navigation behavior were preserved. See
-[Stage 2 verification](CANTUM_SIGILS_STAGE2_RESULTS.md).
+[Stage 2 verification](archive/reports/CANTUM_SIGILS_STAGE2_RESULTS.md).
 
 Milestones 1–5 established repository/disclosure rules, the structural data model,
 the viewer specification, Cantum rendering, NEXUS identity and asset policy.
@@ -132,12 +82,12 @@ future implementation or canonical content migration.
 | Checkpoint 3.6 audit extension | Repository inventory, documentation authority/status synchronization and retention proposals; no uncertain deletion/move |
 | Checkpoint 3.8 and follow-ups | Clipped interactive system zones, 2D hover contours distinguishing physical/chart edges, and the absolute Y = 0 system grid |
 | Checkpoint 4.1 Phase 1 | Approved celestial scale specification, additive v1.2 diameter field and tests; no demo/renderer/assets changes |
-| Checkpoint 4.1 Phase 2 | Authorized noncanonical demo expansion: 100K/80K/160K CNU charts, offset/peripheral stars, physical measurements, small bodies and one archival-only system; see [results](CHECKPOINT_4_PHASE2_RESULTS.md) |
-| Checkpoint 4.1 Phase 3 | Physical radii, projected SVG proxies, 14 starter icons, bounded physical inspection and explicit asset bundling; [verification](CHECKPOINT_4_PHASE3_RESULTS.md); creator-approved |
+| Checkpoint 4.1 Phase 2 | Authorized noncanonical demo expansion: 100K/80K/160K CNU charts, offset/peripheral stars, physical measurements, small bodies and one archival-only system; see [results](archive/reports/CHECKPOINT_4_PHASE2_RESULTS.md) |
+| Checkpoint 4.1 Phase 3 | Physical radii, projected SVG proxies, 14 starter icons, bounded physical inspection and explicit asset bundling; [verification](archive/reports/CHECKPOINT_4_PHASE3_RESULTS.md); creator-approved |
 | Post-Phase-3 maintenance | Synchronize tests/docs with creator-approved System C changes; preserve current authored data |
 | Sector grid and Cantum Stages 1–4 | Implemented; Stage 4 included in `190bd21`, alongside the intermediate calibration |
 | Intermediate Cantum scale calibration | Committed in `190bd21`; 8px Sector symbols, provisional envelope clamp and isolated in-memory preview; no canonical radius decision |
-| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Audiovisual implementation complete:** 4.2A–I complete and creator-approved; final Checkpoint 4 integrated acceptance remains separately gated. |
+| Checkpoint 4.2 — NEXUS visual and audiovisual completion | **Audiovisual implementation complete:** 4.2A–I complete and creator-approved; final Checkpoint 4 integrated acceptance is complete. |
 | Checkpoint 4.2A — NEXUS and MCR Branding | **Complete and creator-approved (2026-10-23):** approved header/ordinary InfoCard PNGs and exact binary asset admission. |
 | Checkpoint 4.2B — Archival Fallback Redesign | **Complete and creator-approved (2026-10-23):** distinct archival interface, universal approved dialogue and front-facing portrait; technical errors retained, no speech. |
 | Checkpoint 4.2C — Unified Targeting Reticle | **Complete and creator-approved (2026-10-23):** exact original SVG, 60px cyan rotating hover/focus and 72px static gold lock in both views; independent UI asset admission. |
@@ -147,8 +97,8 @@ future implementation or canonical content migration.
 | Checkpoint 4.2G — NEXUS Atlas Opening | **Complete and creator-approved (2026-10-24):** ready-only branded opening and universal approved script; original entry policy superseded by H. |
 | Checkpoint 4.2H — NEXUS Voice and Audio Preferences | **Complete and creator-approved (2026-10-25):** two exact recordings, global header toggle, first-entry completion and safe returning-Visitor persistence without autoplay. |
 | Checkpoint 4.2I — UI Sound Effects | **Complete and creator-approved (2026-10-25):** five concurrent interface cues and one quiet continuous loop, voice priority and exact eight-MP3 admission. |
-| Checkpoint 4 — final creator acceptance | **Pending:** full visual/audiovisual/accessibility/security review and explicit Cantum Stage 5 disposition. |
-| Checkpoint 5 | **Publication review/deployment pending approval.** Architecture Phase 6 already completed local release preparation, not hosted deployment or creator publication acceptance. |
+| Checkpoint 4 — final creator acceptance | **Complete and creator-approved:** final integrated acceptance; Cantum Stage 5 deferred, not a blocker. |
+| Checkpoint 5 | **Release preparation requires separate creator authorization.** Public deployment remains separately gated. Architecture Phase 6 completed local release checks. |
 
 Checkpoint 3.6 is saved in `7d9231c`; earlier navigation implementation is in
 `4ff0ecb`. Those reports record their checkpoint's evidence, not current worktree
@@ -184,18 +134,11 @@ boundaries. Use supplied curator assets only as authorized; do not invent them.
 This roadmap is not authorization to create assets now. Follow
 [NEXUS identity](NEXUS_VISUAL_IDENTITY.md) and [asset policy](VISUAL_ASSET_POLICY.md).
 
-## Checkpoint 4.2 — NEXUS visual and audiovisual completion (planned)
+<a id="checkpoint-42--nexus-visual-and-audiovisual-completion-planned"></a>
 
-**Current planning authority, 2026-10-23.** This is the authoritative, original
-Milestone 6 feature roadmap, **not** the separate Architecture Optimization
-Roadmap (Phases 1–6, completed). Checkpoints 1–3 and 4.1 Phases 1–3 are
-completed; **4.2A–I are complete and creator-approved; Checkpoint 4.2 audiovisual
-implementation is complete**. Final Checkpoint 4 integrated visual acceptance
-requires separate creator authorization. Approving/documenting the
-sequence never authorizes Codex to begin any phase. Each needs a separate
-creator request, working implementation review, and approved closeout.
-Past roadmap passages are retained as milestone history; this section
-supersedes their outdated future-work and sequence assumptions.
+## Checkpoint 4.2 - completed scope and phase history
+
+The original 2026-10-23 sequence below is retained as completed history. All nine phases and final Checkpoint 4 integrated acceptance are creator-approved. Original per-phase scope, test counts and pending-work conclusions remain dated evidence. They do not authorize new work; [PROJECT_STATUS](PROJECT_STATUS.md) controls current gates.
 
 ### Design authority and fixed limits
 
@@ -841,55 +784,19 @@ SFX files individually public-release-approved and explicitly audited.
 voice/cues, mute and mobile. **Depends on:** H. **Gate:** creator approves
 final restrained sound and code/assets.
 
-### Unresolved design choices (not yet final requirements)
+### Resolved design choices and integrated acceptance
 
-1. **Opening (corrected and approved in 4.2H):** show until explicit first-entry
-   completion; returning Visitors bypass it without autoplay. Both buttons enter
-   immediately; Escape is silent. This supersedes G's original fresh-load policy.
-2. **Scripts/recordings (resolved in B/G/H):** fallback text and welcome text are
-   approved, as are the two exact H recordings. Revisions need creator approval;
-   never invent hidden lore, false classified status or future information.
-3. **Reticle:** finalize display-size ratio, safe SVG treatment and exact
-   palette through 4.2C screenshot comparison; no permission to redraw.
-4. **Audio controls/files (H/I resolved):** one persistent master toggle and
-   first-entry persistence; eight exact approved MP3s, including the separately
-   approved I effects/ambient amendment.
-5. **Cantum Stage 5:** deferred final refinement remains unresolved.
-   Document explicit acceptance of existing appearance or authorize
-   a separate tightly scoped Stage 5 patch.
+The creator has approved the combined Checkpoint 4 result, including final integrated acceptance. Opening/first-entry behavior, original scripts and recordings, exact reticle, and the single audio master follow the completed B-I amendments and subject contracts. No repeat acceptance milestone is pending.
 
-### Final Checkpoint 4 creator visual acceptance (after 4.2I)
+Cantum Visual Stage 5 is **deferred and not required now**. Existing Stages 1-4/calibration and documented sampling/device limitations are retained. Stage 5 does not block Checkpoint 5 release planning, and deferral grants no permission to alter political membership, Gaussian math, radii or authored geometry.
 
-Review the combined ordinary NONCANONICAL Demo and appropriate named
-local calibration previews: NEXUS/MCR art and InfoCards, fallback/error
-distinction and year-safe copy, two reticle states in both views, symbol
-sizing and physical model handoff, Focus and three map transitions,
-opening, voice/mute/SFX, historical routes/gates/factions and Cantum
-influence; desktop/narrow/landscape, 2D/3D, keyboard/pointer/touch,
-reduced motion, technical failure, reload and resource teardown.
-Repeat scoped automated/browser/audited production checks. Record
-real-device, Safari/Firefox and screen-reader limitations accurately.
-
-**Cantum Visual Patch Stage 5 remains open.** Review flat fields, names,
-detached islands, sigils, perspective envelopes, map legibility,
-large/small radius appearance and known wide-map/small-radius sampling
-limitations from [PERFORMANCE_AND_RELEASE_READINESS](PERFORMANCE_AND_RELEASE_READINESS.md).
-Either (a) creator **explicitly accepts** Stage 1–4 appearance and known
-limitations as final, or (b) approves a **separate focused Stage 5** patch
-with its own implementation/review/commit. Never change political
-membership, Gaussian math, radii or authored geometry for aesthetics.
-
-**Checkpoint 4 closure requires:** all nine phases individually
-creator-approved and committed, Cantum Stage 5 disposition recorded,
-final integrated creator acceptance, updated truthful docs and
-preserved build security. Completion does **not** authorize Checkpoint 5
-deployment/publication, Canon migration, or Atlas Creator.
+Completion does not authorize Checkpoint 5 work, public deployment, Canon migration or Atlas Creator. See [PROJECT_STATUS](PROJECT_STATUS.md) for the next possible separately authorized workstream.
 
 ## Subsequent publication and separate workstreams
 
-Checkpoint 5 covers static build/deployment review, repository-subpath URLs,
+A separately authorized Checkpoint 5 release-preparation scope may cover static build review, repository-subpath URLs,
 runtime/fallback behavior, disclosure audit, accessibility and performance.
-GitHub Pages is a target host, not an active deployment.
+GitHub Pages is a target host, not an active deployment. Public deployment requires its own explicit authorization.
 
 Canonical v0.1 → proposed modern schema migration remains a **separate creator-approved workstream**
 requiring an explicit permanent-ID crosswalk and historical review. Never promote

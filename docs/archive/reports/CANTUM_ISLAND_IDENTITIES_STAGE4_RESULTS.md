@@ -1,5 +1,7 @@
 # Cantum Visual Patch — Stage 4 results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented Stage 4 only on clean local `main` at
 `4c1f04d6a442317e0da1b517673e8560746f2e90`. Stages 1–3 are creator-approved.
 Stage 5 remains deferred. No commit, push or deployment was performed.

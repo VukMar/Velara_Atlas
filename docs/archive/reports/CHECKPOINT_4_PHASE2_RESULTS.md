@@ -1,5 +1,7 @@
 # Checkpoint 4.1 Phase 2 — Implementation results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 > **Post-Phase-3 addendum:** Phases 1–3 are now creator-approved. This report
 > preserves the original Phase 2 implementation evidence. Phase 3 originally
 > preserved Phase 2 data; the creator subsequently made intentional System C

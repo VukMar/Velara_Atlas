@@ -157,7 +157,7 @@ console.log(later.name, later.cantumId);     // Test System A, can_0001
 existing transport/schema regressions, and strict live-demo validation. Historical
 tests use frozen v1.1 fixtures and synthetic variants; navigation regressions use
 the fixed v1.2 snapshot, while viewer/browser validation exercises live data.
-No fixture is promoted to public lore. [The audit](REPOSITORY_AUDIT_3_6.md)
+No fixture is promoted to public lore. [The audit](archive/reports/REPOSITORY_AUDIT_3_6.md)
 records current checks and outstanding browser limitations.
 
 ## v1.3 entity and political presentation

@@ -1,5 +1,7 @@
 # Cantum Visual Patch — Stage 2 results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented Stage 2 only against clean local `main` at
 `d21b7c8e9481e7513d94d223dc7986bb1621fe18`. Stage 1 is creator-approved.
 No commit, push, deployment, 3D influence volume or new island-layout rule was

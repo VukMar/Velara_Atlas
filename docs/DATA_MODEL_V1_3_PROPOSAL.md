@@ -4,8 +4,7 @@
 completion documentation are committed together. The active NONCANONICAL Demo
 uses this accepted v1.3 contract. Introduced as an isolated Phase 3C proposal,
 this document retains its filename for link continuity and its design history.
-Phase 3E safe local authoring is complete and creator-approved; Phase 3F integration/showcase and overall Architecture Phase 3 are complete and creator-approved; Architecture Phase 4 is complete and creator-approved; Phase 5 and later remain unauthorized. Test records and the provisional 24-ly
-Demo radius introduce no MCR canon.
+Current completion and future gates are recorded in [PROJECT_STATUS](PROJECT_STATUS.md). Test records and the provisional 24-ly Demo radius introduce no MCR canon.
 
 The exact v1.3 contract is [atlas-v1_3.schema.json](../schemas/atlas-v1_3.schema.json).
 It uses Draft 2020-12 and offline references to established v1.2 spatial/property
@@ -168,7 +167,7 @@ Tests exercise pure and graphical station presentation. The existing Demo input
 audit rejects isolated fixtures, while explicitly admitting the pure resolver.
 `tests/governing-influence.test.mjs` covers radius, temporal grouping, elevation,
 labels, InfoCards and versioned navigation/writer safety. The local browser
-fixture and MCP entry point are documented in [README](../README.md#historical-governing-influence-phase-3d).
+fixture and MCP entry point are documented in [local development](LOCAL_DEVELOPMENT.md#governance-test-preview).
 Calibration remains JSON-backed and v1.2-compatible; its facts and radii are unchanged.
 
 ## Universal radius and governing fields

@@ -1,10 +1,12 @@
 # v1.2 navigation implementation results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 > **Historical implementation report.** Counts, camera framing, browser-suite
 > behavior and test totals below describe the original `4ff0ecb` implementation,
 > not today's author-editable demo or Checkpoint 3.6 layout. Retained for migration,
 > generation/recovery and disclosure evidence. Use
-> [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for current procedure and
+> [NAVIGATION_AUTHORING.md](../../NAVIGATION_AUTHORING.md) for current procedure and
 > [REPOSITORY_AUDIT_3_6.md](REPOSITORY_AUDIT_3_6.md) for current verification.
 
 The accepted Checkpoint 3 baseline was commit `32f43d6`. Before edits, the only
@@ -67,7 +69,7 @@ out shows the wider chart without changing geometry or membership.
 
 ## Contracts and compatibility
 
-See [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md) for declarations, the
+See [NAVIGATION_AUTHORING.md](../../NAVIGATION_AUTHORING.md) for declarations, the
 migration table, exact rewrite permissions, six-decimal CNU rounding, offline
 allowlist, authoring/release validation and manual recovery. The graph retains
 its prior shape and stable six original link identities/dates/directions, with

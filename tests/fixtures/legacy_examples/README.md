@@ -15,4 +15,4 @@ The two noncanon files remain synthetic legacy inputs. `cantum_b.json` preserves
 previously public chronology-derived reference content; retaining it here neither
 migrates canon nor approves its old format for current authoring. Every file
 remains excluded from the viewer and production build. Original and moved hashes
-are recorded in [Phase 2 results](../../../docs/PHASE_02_DATASET_MIGRATION_RESULTS.md).
+are recorded in [Phase 2 results](../../../docs/archive/reports/PHASE_02_DATASET_MIGRATION_RESULTS.md).

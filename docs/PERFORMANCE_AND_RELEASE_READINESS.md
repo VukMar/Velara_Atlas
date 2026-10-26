@@ -1,5 +1,7 @@
 # Performance and local release readiness
 
+> **Mixed operating guide and historical evidence.** Use [the local release checklist](#local-publication-dry-run-and-security) for operations. Dated measurements and closeout records below retain their original counts, conclusions and limitations. [PROJECT_STATUS](PROJECT_STATUS.md) owns present approval and CI status; old statements that acceptance or hosted CI is pending are historical.
+
 Phase 6 implementation/verification evidence, 2026-10-22. **Complete and creator-approved.**
 Baseline: clean `main` at `6d417e56865b2d0f2e57e239b36db7657ed0fd23`.
 Phases 1–6 of the current Architecture Optimization Roadmap are complete and

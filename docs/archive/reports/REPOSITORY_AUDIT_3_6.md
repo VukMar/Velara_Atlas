@@ -1,5 +1,7 @@
 # Checkpoint 3.6 — Repository audit and documentation synchronization
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 ## Scope and baseline
 
 The audit began from clean local commit `7d9231c` (`feat: Redesigned the UI
@@ -42,16 +44,16 @@ remain ignored. A file-level classification appears at the end.
 
 | Primary reference | Responsibility |
 | --- | --- |
-| [README](../README.md) | Public introduction, present status, installation/use and commands |
-| [AGENTS](../AGENTS.md) | Agent instructions, read-first order and non-negotiable safeguards |
-| [Architecture](ARCHITECTURE.md) | Implemented modules, data flow and future components |
-| [Data model](DATA_MODEL.md) | Current structural model; schemas are the exact validation definitions |
-| [Navigation design](SCHEMA_V1_2_NAVIGATION.md) | Approved navigation contract and historical design decisions |
-| [Navigation authoring](NAVIGATION_AUTHORING.md) | Practical generator/check/recovery workflow |
-| [Viewer specification](VIEWER_SPECIFICATION.md) | Viewer behavior, incorporating the Checkpoint 3.6 revision |
-| [NEXUS identity](NEXUS_VISUAL_IDENTITY.md) | Approved visual direction and curator identity |
-| [Visual asset policy](VISUAL_ASSET_POLICY.md) | Asset conventions, data support and future appearance fallbacks |
-| [Roadmap](DEVELOPMENT_ROADMAP.md) | Completed stages, current refinement and separately authorized future checkpoints |
+| [README](../../../README.md) | Public introduction, present status, installation/use and commands |
+| [AGENTS](../../../AGENTS.md) | Agent instructions, read-first order and non-negotiable safeguards |
+| [Architecture](../../ARCHITECTURE.md) | Implemented modules, data flow and future components |
+| [Data model](../../DATA_MODEL.md) | Current structural model; schemas are the exact validation definitions |
+| [Navigation design](../../SCHEMA_V1_2_NAVIGATION.md) | Approved navigation contract and historical design decisions |
+| [Navigation authoring](../../NAVIGATION_AUTHORING.md) | Practical generator/check/recovery workflow |
+| [Viewer specification](../../VIEWER_SPECIFICATION.md) | Viewer behavior, incorporating the Checkpoint 3.6 revision |
+| [NEXUS identity](../../NEXUS_VISUAL_IDENTITY.md) | Approved visual direction and curator identity |
+| [Visual asset policy](../../VISUAL_ASSET_POLICY.md) | Asset conventions, data support and future appearance fallbacks |
+| [Roadmap](../../DEVELOPMENT_ROADMAP.md) | Completed stages, current refinement and separately authorized future checkpoints |
 
 Separate documents retain distinct responsibilities: historical data caveats,
 resolver API, Cantum formula, release safeguards, layout rationale and evidence

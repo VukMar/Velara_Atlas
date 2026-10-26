@@ -79,7 +79,7 @@ Released paths must be `systems/<matching-system-id>.json`; malformed, missing,
 escaping or symlinked declarations fail validation. A valid file left unregistered
 does not enter the viewer/build. All released details preload eagerly. Adding an
 approved system is a JSON operation; restart Demo after registration changes and
-run the generation/check/validation workflow in [README](../README.md#registered-demo-systems-and-loading).
+run the generation/check/validation workflow in [local development](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
 The same inventory now supports v1.2 and v1.3; only v1.3 admits its registered faction files.
 No unregistered files enter the viewer, and full eager preload remains.
 
@@ -109,7 +109,7 @@ to the authored zone origin. Stars, planets, stations, gates and navigation
 boundaries retain strict chart bounds. Frozen v1.1 and sector zones retain full
 containment. This changes scoped relational validation, with no new JSON field
 or schema version. See [approved scope](ZONE_GEOMETRY_INTERACTION_SPEC.md) and
-[implementation evidence](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
+[implementation evidence](archive/reports/ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 `positionLY: null` is valid for a system that has not yet been spatially placed. Such a system can be listed in the catalogue (if its visibility is otherwise known), but **must not** be assigned `(0,0,0)` automatically or plotted on the spatial map. A null discovery date is **unknown**, not year 0. The UI must avoid claiming the system was known at an earlier date based on `null`.
 

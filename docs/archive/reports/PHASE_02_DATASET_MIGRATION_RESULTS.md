@@ -1,5 +1,7 @@
 # Architecture Optimization Phase 2 ? Dataset migration results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 **Status:** Complete locally for creator review. Phase 3 not started.
 **Date:** 2026-10-20. No commit, push, deployment or connection regeneration.
 

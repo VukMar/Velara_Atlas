@@ -1,5 +1,7 @@
 # Cantum visual patch — intermediate scale calibration
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 This is a focused calibration, not Stage 5 completion or canonical radius approval.
 The starting branch was `main` at `4c1f04d6a442317e0da1b517673e8560746f2e90`,
 with the completed Stage 4 work already present and uncommitted. That work was

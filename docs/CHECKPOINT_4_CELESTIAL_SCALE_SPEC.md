@@ -4,10 +4,8 @@
 Phases 1–3 are complete and creator-approved. The physical renderer, starter SVG
 proxies/icons, inspection cameras and secure asset bundling are implemented.
 Subsequent creator-approved System C testing changes do not alter this scale
-contract; see [the maintenance baseline](POST_PHASE3_MAINTENANCE.md). The next
-planned stage, Checkpoint 4.2 — Visual Identity and SVG Icon Refinement, requires
-separate approval. Canonical migration and deployment remain unauthorized.
-See [Phase 3 results](CHECKPOINT_4_PHASE3_RESULTS.md).
+contract; see [the maintenance baseline](archive/reports/POST_PHASE3_MAINTENANCE.md). Checkpoint 4, including 4.2 and integrated acceptance, is complete; see [PROJECT_STATUS](PROJECT_STATUS.md) for separately gated future work. Canonical migration and deployment remain unauthorized.
+See [Phase 3 results](archive/reports/CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## Units and authored geography
 
@@ -175,7 +173,7 @@ Dyson-sphere-scale constructs, require a separate approved extension.
 
 No new animation loop, dependencies, detailed textures, authored fields or
 Phase 2 geometry changes are introduced. Model resources and image error
-listeners are disposed on chart changes. See [measured evidence and limits](CHECKPOINT_4_PHASE3_RESULTS.md).
+listeners are disposed on chart changes. See [measured evidence and limits](archive/reports/CHECKPOINT_4_PHASE3_RESULTS.md).
 
 ## Phased delivery and review gates
 
@@ -216,10 +214,9 @@ implementation authorized by this maintenance task.
    grid toggling and archival fallback. Stop for review.
 
 Phase 1 did not change demo JSON. Phase 2 authors demo measurements and geography
-only, with [implementation evidence](CHECKPOINT_4_PHASE2_RESULTS.md). Phase 3 now
+only, with [implementation evidence](archive/reports/CHECKPOINT_4_PHASE2_RESULTS.md). Phase 3 now
 implements physical models and the starter icon library. Detailed textures,
-Phase 4 artwork/refinement, canonical migration, deployment, commit and push
-remain outside the current authorization.
+The delivery phases above are completed history. New artwork/refinement, canonical migration, deployment, commit and push require their relevant creator authorization.
 
 ## Verification contract
 

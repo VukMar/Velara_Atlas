@@ -1,5 +1,7 @@
 # Post-Phase-3 maintenance — approved System C baseline
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Phases 1–3 are creator-approved. Inspection began on clean local `main` at
 `16668e2d4583ca829a554b4495036d4243188021`. The Phase 3 implementation originally
 preserved Phase 2 JSON; the creator subsequently made intentional System C

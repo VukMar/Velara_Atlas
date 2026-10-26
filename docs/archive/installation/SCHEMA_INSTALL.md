@@ -11,7 +11,7 @@
 > [NAVIGATION_AUTHORING.md](../../NAVIGATION_AUTHORING.md). Ajv, wrappers and modern tests
 > are already installed/integrated. The original instructions below record the
 > v1.0 integration stage only. Proposed archival movement is listed in
-> [the audit](../../REPOSITORY_AUDIT_3_6.md).
+> [the audit](../reports/REPOSITORY_AUDIT_3_6.md).
 
 **Do not extract the package over `public/data/`, `src/timeline/resolve.mjs`, `package.json`, `README.md`, or `AGENTS.md`.** The package was deliberately created without replacements for those files.
 

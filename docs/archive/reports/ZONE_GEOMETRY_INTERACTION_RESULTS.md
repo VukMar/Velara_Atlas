@@ -1,7 +1,9 @@
 # Checkpoint 3.8 — Zone geometry and interaction results
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented for creator review on 2026-10-18. The actual approved specification
-is [ZONE_GEOMETRY_INTERACTION_SPEC.md](ZONE_GEOMETRY_INTERACTION_SPEC.md);
+is [ZONE_GEOMETRY_INTERACTION_SPEC.md](../../ZONE_GEOMETRY_INTERACTION_SPEC.md);
 the requested `ZONE_GEOMETRY_INTERACTION.md` filename was absent. The existing
 specification was preserved without renaming or editing it. The inspected baseline
 was `77906c5`; only that specification was untracked before work began.

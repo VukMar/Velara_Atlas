@@ -1,7 +1,9 @@
 # Cartographic labeling — implementation and verification
 
+> **Historical evidence.** Original dates, counts, conclusions and work orders below describe their checkpoint, not current authority. See [project status](../../PROJECT_STATUS.md). Recorded old paths and local artifacts are provenance, not setup instructions.
+
 Implemented for creator review on 2026-10-17 under the explicit cartographic
-typography implementation request. The approved [specification](CARTOGRAPHIC_LABELING.md)
+typography implementation request. The approved [specification](../../CARTOGRAPHIC_LABELING.md)
 remains the design authority. This does not begin final artwork, canonical migration
 or deployment. No commit or push was made.
 

@@ -20,3 +20,7 @@
 - Exact legal dissolution date of the unified state; 1200 is a display/snapshot cutoff for a sector of six sovereign powers.
 - Founding system's official star-system name and canonical coordinates; no made-up spatial positioning included.
 - Proper distinction among discovery, classification, first mapped year, and classified knowledge for future storylines.
+
+## Protected legacy display context
+
+The founding civilization is Drevnasel; the Visshum name, Drevnasel as the founding/capital Cantum, and unified name The Continuance emerge around the draft 360 A.E. display boundary. These cautions are retained from the former detailed AGENTS instructions. Cantums initially were administrative divisions of a centralized republic, not federal sovereign states. The 1200 A.E. snapshot shows six sovereign Cantums, with Rekdolin a historic region within Okeanberg. Existing `datePrecision` notes qualify these boundaries; never claim precise legal event dates. Consult the committed [legacy political records](../public/data/political.json); no canonical facts are changed by this documentation move.

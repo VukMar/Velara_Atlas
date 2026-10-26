@@ -1,17 +1,6 @@
 # Velara Atlas — Implemented architecture
 
-**Status:** Runtime baseline from `190bd21`, with Phase 2 paths updated from
-`main` at `6ae6ee2` (2026-10-20). The local
-noncanonical viewer includes Checkpoint 4.1 Phase 3, the sector grid, Cantum
-Stages 1–4 and intermediate calibration, retaining Checkpoint 3.8 zones,
-cartographic labeling, Checkpoint 3.6 layout and version-aware v1.2/v1.3 navigation authoring.
-Architecture Phase 2 is committed in `6e026cb`; Architecture Phases 3A, 3B, 3C, 3D, 3E and 3F
-are complete and creator-approved. Overall Architecture Phase 3 is complete.
-Architecture Phases 4, 5 and 6 are complete and creator-approved; the current
-optimization roadmap is complete. Canonical migration, final artwork, deployment,
-the local editor and all subsequent development remain separately gated.
-Use the [index](INDEX.md) for authority and the
-[migration inventory](archive/completed-tasks/PHASE_02_DATASET_MIGRATION_INVENTORY.md) for historical planning context, not operating instructions.
+**Scope:** Implemented module ownership, data flow and security boundaries. The active viewer uses v1.3 NONCANONICAL Demo data; legacy v0.1, versioned fixtures and Development/calibration stay separate. [PROJECT_STATUS](PROJECT_STATUS.md) owns current completion and authorization. Dated implementation/closeout sections below preserve their original scope; later approved amendments govern behavior.
 
 ## Runtime responsibilities
 
@@ -137,7 +126,7 @@ The navigation writer's raw text, file association, concurrency/transaction and
 recovery interfaces remain intact. ID Finder shares the filesystem guard but
 retains its separate read-only diagnostic scan of direct unregistered system
 files and legacy `--public` scope. Diagnostic visibility confers no publication
-admission. See [authoring steps](../README.md#registered-demo-systems-and-loading).
+admission. See [authoring steps](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
 `tests/dataset-inventory.test.mjs` covers unsafe declarations, a temporary extra
 system through the real loader/full build, and new-file navigation generation.
 That Phase 3B checkpoint preserved the Demo, fixtures, schema and historical
@@ -193,7 +182,7 @@ contributor Y plus modest clearance. Projection/fade updates share the event-dri
 render path; the nameplate overlay owns no GPU textures, and removes its image
 error listeners on rebuild/disposal. Authored XYZ,
 chart extents, camera framing, political calculations and system-grid behavior
-do not change. See [the Stage 1 report](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+do not change. See [the Stage 1 report](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 Stage 3 supersedes the always-flat perspective presentation. `AtlasMap` retains
 the original flat mesh for top-down and shows only the envelope composite in
@@ -253,9 +242,9 @@ It rejects encoded/case/separator variants, non-GET/HEAD methods and real-path o
 symlink/reparse redirection. Registry changes require a Development restart; no
 filesystem glob, arbitrary root, remote URL or save API is added. Demo Vite source
 admission/output audits remain unchanged and reject all preview-only resources.
-Operational steps and diagnostic meanings are in [README](../README.md#named-local-preview-scenarios-completed-phase-5).
+Operational steps and diagnostic meanings are in [local development](LOCAL_DEVELOPMENT.md#named-local-preview-scenarios).
 Architecture Phase 5 is complete and creator-approved; implementation and status documentation are committed together. Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization.
-See [historical calibration results](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+See [historical calibration results](archive/reports/CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Phase 2 supplies 100K/80K/160K CNU charts and authored physical measurements in
 the three released details. A fourth positioned sector entry has
@@ -266,7 +255,7 @@ physical models consume known diameters; their Phase 3 implementation originally
 preserved Phase 2 data. Subsequent creator testing intentionally changed System C
 navigation and discovery dates. The current committed demo has ten System C
 objects and two local transfers, within the same chart and asset/data allowlists.
-See [the maintenance baseline](POST_PHASE3_MAINTENANCE.md). The supplied
+See [the maintenance baseline](archive/reports/POST_PHASE3_MAINTENANCE.md). The supplied
 `public/assets/nexus/nexus-side-profile.png` exists; viewer integration remains
 deferred and it remains outside the current demo build.
 
@@ -326,10 +315,10 @@ The data contract has no latest-published-year field: this demo uses
 `timeline.startAE` through `defaultAE`. Exact event markers beyond conservative
 record jumps, final assets, full accessibility, cross-browser/touch-hardware QA
 and large-atlas performance remain future work. See
-[Checkpoint 3.6 audit evidence](REPOSITORY_AUDIT_3_6.md) for its original limits;
-the [calibration report](CANTUM_SCALE_CALIBRATION_RESULTS.md) records subsequent
+[Checkpoint 3.6 audit evidence](archive/reports/REPOSITORY_AUDIT_3_6.md) for its original limits;
+the [calibration report](archive/reports/CANTUM_SCALE_CALIBRATION_RESULTS.md) records subsequent
 emulated-touch checks and the continuing bundle-size advisory. These are
-historical results. [Phase 2 results](PHASE_02_DATASET_MIGRATION_RESULTS.md) record
+historical results. [Phase 2 results](archive/reports/PHASE_02_DATASET_MIGRATION_RESULTS.md) record
 the browser and boundary verification performed for this path migration.
 
 ## Local manual system authoring (completed Phase 3E)
@@ -557,8 +546,7 @@ trusted gestures authorize ambience. No new preference, renderer or framework.
 All source audio stays unchanged. The creator approved the concurrent channels,
 speech priority, continuous loop and native gains (speech 1.00, click 0.35,
 action 0.45, ambience 0.08). This completes I and the 4.2 audiovisual implementation;
-final Checkpoint 4 integrated visual acceptance and later milestones require
-separate authorization. See [verification and limitations](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
+Checkpoint 4 integrated acceptance is now complete; future work requires separate authorization under [PROJECT_STATUS](PROJECT_STATUS.md). See [verification and limitations](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
 
 ### Safe presentation configuration
 

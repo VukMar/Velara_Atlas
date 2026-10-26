@@ -12,6 +12,8 @@
 > square chart, floating panels, vertical History and a dismissible centered
 > InfoCard. Schema v1.2 separately supersedes old local-gate branching examples.
 
+Current completion/approval is recorded in [PROJECT_STATUS](PROJECT_STATUS.md). Dated phase amendments preserve their original review context; their historical pending-work statements do not reopen completed gates.
+
 ## 1. Purpose and governing principles
 
 The Velara Atlas is a **read-only, JSON-driven, historical navigational atlas**, curated in-universe by **NEXUS** for Maric Cosmic Records / *The New World*. It represents authored three-dimensional space through a clear, mostly top-down navigation interface in the spirit of classic space-game charts, with an optional perspective view. All artwork, copy, and application assets must be original or appropriately licensed; **do not copy Freelancer or Discovery assets**.
@@ -33,7 +35,7 @@ The viewer must remain **data-driven**: adding another supported object, system,
 
 Use the repository's existing source of truth, in this priority for matters of scope:
 
-1. `docs/DATA_MODEL.md` and `schemas/atlas.schema.json` — current **v1.2.0** noncanonical structure; `docs/SCHEMA_V1_2_NAVIGATION.md` owns approved navigation design and `docs/NAVIGATION_AUTHORING.md` its operational workflow.
+1. `docs/DATA_MODEL.md` and `schemas/atlas-v1_3.schema.json` - active **v1.3** NONCANONICAL Demo structure, with `schemas/atlas.schema.json` retaining v1.2 compatibility; `docs/SCHEMA_V1_2_NAVIGATION.md` owns approved navigation design and `docs/NAVIGATION_AUTHORING.md` its operational workflow.
 2. `docs/DATA_RULES.md` — existing Continuance chronology and date caveats.
 3. `docs/ARCHITECTURE.md` and `docs/CONTENT_WORKFLOW.md` — viewer/publication boundaries.
 4. `public/datasets/demo/` — **noncanonical** test fixture (not official sector geography).
@@ -299,7 +301,7 @@ visible witness point and clipped extent, respecting camera zoom/clamp limits.
 The Spatial zones toggle controls rendering and picking together. Discovery/
 known-by filtering is unchanged; v1.2 has no zone-expiry field. Do not invent one.
 
-See [verification and limits](ZONE_GEOMETRY_INTERACTION_RESULTS.md).
+See [verification and limits](archive/reports/ZONE_GEOMETRY_INTERACTION_RESULTS.md).
 
 **2D hover-outline follow-up:** Hover or keyboard focus also outlines the active
 system-zone footprint in cyan, at approximately 1.75 CSS pixels through zoom.
@@ -467,7 +469,7 @@ its nodes; scene disposal removes the overlay. There are no text GPU resources
 or new animation loops; the topology/placement cache retains eight input sets.
 Top-down influence remains flat and unchanged. Stage 2 adds optional sigils;
 Stage 3 adds perspective envelopes. Stage 4 extends small-island identities below.
-See [Stage 1 results](CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+See [Stage 1 results](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
 
 **Stage 2 optional Cantum sigils:** the closed registry recognizes only
 `test-cantum-a` for the noncanonical demo. A valid image is prepended inside the
@@ -491,7 +493,7 @@ half-float color target; no volumetric raymarching or new selection identity exi
 Perspective nameplates keep X/Z and eligibility, sitting above the local upper
 surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independent
 of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
-and [Stage 3 evidence](CANTUM_ENVELOPES_STAGE3_RESULTS.md).
+and [Stage 3 evidence](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
 **Stage 4 island identities:** the original full-name fitting pass remains first
 and unchanged. An island that cannot fit its complete resolved name may display
@@ -506,7 +508,7 @@ perspective heights use their local envelope upper surface and existing clearanc
 Missing surfaces hide the marker. A failed outpost image removes its entire plate.
 Influence shading, geometry, colors and political history remain unchanged.
 See [the policy](CANTUM_TERRITORY_RENDERING.md#stage-4-detached-island-identities)
-and [Stage 4 evidence](CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 is deferred.
+and [Stage 4 evidence](archive/reports/CANTUM_ISLAND_IDENTITIES_STAGE4_RESULTS.md). Stage 5 is deferred.
 
 **Intermediate calibration:** Sector `star_system` spheres have an 8 CSS-pixel
 diameter independent of camera zoom, tilt, projection and DPR. The central 4px
@@ -517,7 +519,7 @@ unchanged. A separate loopback-only 40-ly calibration preview compares explicit
 2/2.5/3-ly territory radii without changing demo/canonical data or Stage 4 placement.
 The existing 24/18-ly demo envelopes now have 3-ly half-heights. This is provisional
 scale evaluation, not Stage 5 or canonical radius approval. See
-[the report](CANTUM_SCALE_CALIBRATION_RESULTS.md).
+[the report](archive/reports/CANTUM_SCALE_CALIBRATION_RESULTS.md).
 
 Projected HTML object captions stay centered beneath marker footprints at readable
 CSS font sizes (0.8rem by default), following actual XYZ in both camera modes.
@@ -531,7 +533,7 @@ passive obstacles; the active caption wins if several active names collide.
 Routes/zones retain temporary identification only. Suppression affects text alone;
 marker buttons, picking, catalogue and Selection access remain available.
 
-See [implementation evidence and limitations](CARTOGRAPHIC_LABELING_RESULTS.md).
+See [implementation evidence and limitations](archive/reports/CARTOGRAPHIC_LABELING_RESULTS.md).
 
 ### Generated Cantum regions — approved revision (supersedes manual territories as default)
 
@@ -545,7 +547,7 @@ The sector political overlay uses **soft, semi-transparent, blurred-edge Cantum 
 - Exclude all unpublished data from calculations. A political layer toggle hides/shows the drawing only; no lore data is deleted or inferred.
 - No manually authored region polygon is required for version 1. Manual *precise* boundary overlays may be added later as a separately approved feature, not as the default renderer and not as a prerequisite for deployment.
 
-**Implementation contract and numeric defaults:** Follow `docs/CANTUM_TERRITORY_RENDERING.md`, including the exact field, opacity caps, compositing, 3D presentation and performance rules. The current v1.2 schema validates the separate `presentation.json`; this is style data, not a legal boundary or canonical migration.
+**Implementation contract and numeric defaults:** Follow `docs/CANTUM_TERRITORY_RENDERING.md`, including the exact field, opacity caps, compositing, 3D presentation and performance rules. The active v1.3 schema validates the separate `presentation.json`, including its shared radius; v1.2 retains its separate contract. This is style data, not a legal boundary or canonical migration.
 
 ### Elevation
 
@@ -595,7 +597,7 @@ authoritative: `publicDetailPath: null` gives NEXUS archival fallback
 when the system is historically known, while a missing/invalid registered
 detail is a technical error with retry. Source ownership is documented in
 [ARCHITECTURE](ARCHITECTURE.md#validated-dataset-inventory) and
-[README](../README.md#registered-demo-systems-and-loading).
+[local development](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
 
 **Completed and creator-approved 4.2B (2026-10-23)** changes presentation, not this
 state logic. `archival-view.mjs` owns a dedicated nonmodal section inside the
@@ -738,8 +740,7 @@ teardown releases it and stale callbacks cannot revive muted/disposed sound.
 Failed media leaves all text/actions usable. No new visible controls, storage,
 artwork, dialogue or timing changes. The creator personally approved the levels,
 integrated balance, concurrency, loop and entry/mute behavior. I and the 4.2
-audiovisual implementation are complete; final Checkpoint 4 integrated visual
-acceptance remains pending separate authorization. See [I verification and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
+audiovisual implementation and final Checkpoint 4 integrated creator acceptance are complete. See [PROJECT_STATUS](PROJECT_STATUS.md) for future gates. See [I verification and limits](PERFORMANCE_AND_RELEASE_READINESS.md#checkpoint-42i-interface-audio-and-ambience-closeout--2026-10-25).
 
 ## 12. Initial development fixtures and demo goals
 
@@ -748,7 +749,7 @@ The **only required initial content** is the noncanonical `public/datasets/demo`
 - Two noncanonical Cantums, four released systems (`sys_0001`–`sys_0003` plus the Phase 3F `sys_0005` showcase), retaining independent charts, and one additional positioned archival-only system (`sys_0004`, known from 900 A.E., no Cantum assignment or detail JSON).
 - Separate A/B **interstellar routes**: one exclusive Jump Gate pair and one exclusive Jump Hole pair; an additional dedicated A/C Jump Gate pair.
 - Dedicated, exclusive local short-range pairs authored on eligible anchor objects, including transfer to a Jump Gate navigation boundary.
-- Stars, rocky/gas/water/unknown planets, moons, a planetoid, an individual asteroid, stations and dated InfoCard changes. Phase 2 authors physical diameters with one omitted unknown; Phase 3 renders known sizes with distant proxies and Focus inspection. Central/offset/peripheral stars retain independent chart framing. See [Phase 2 data](CHECKPOINT_4_PHASE2_RESULTS.md) and [Phase 3 rendering](CHECKPOINT_4_PHASE3_RESULTS.md).
+- Stars, rocky/gas/water/unknown planets, moons, a planetoid, an individual asteroid, stations and dated InfoCard changes. Phase 2 authors physical diameters with one omitted unknown; Phase 3 renders known sizes with distant proxies and Focus inspection. Central/offset/peripheral stars retain independent chart framing. See [Phase 2 data](archive/reports/CHECKPOINT_4_PHASE2_RESULTS.md) and [Phase 3 rendering](archive/reports/CHECKPOINT_4_PHASE3_RESULTS.md).
 
 The live demo is author-editable; fixed regression snapshots preserve earlier acceptance scenarios under `tests/fixtures/v1_1/` and `v1_2/`. Its names, counts, positions and dates are **test data only**. **Do not promote them into official MCR canon.** Canonical systems/Cantums remain outside viewer prototyping.
 
@@ -806,7 +807,7 @@ Before changes, inspect the current workspace, tests, schemas and documentation.
 
 ---
 
-**Approval lineage:** Milestone 3 approved real XYZ navigation, soft Cantum influence, hybrid representation, zones, continuous history, search and archival fallback. Schema v1.2 superseded local-gate branching. Checkpoint 3.6 explicitly superseded permanent side columns/bottom timeline and selection-driven route highlighting. This document owns behavior; schemas and `DATA_MODEL.md` own stored structure, and [verification reports](REPOSITORY_AUDIT_3_6.md) record what has actually been tested.
+**Approval lineage:** Milestone 3 approved real XYZ navigation, soft Cantum influence, hybrid representation, zones, continuous history, search and archival fallback. Schema v1.2 superseded local-gate branching. Checkpoint 3.6 explicitly superseded permanent side columns/bottom timeline and selection-driven route highlighting. This document owns behavior; schemas and `DATA_MODEL.md` own stored structure, and [verification reports](archive/reports/REPOSITORY_AUDIT_3_6.md) record what has actually been tested.
 
 ## Completed Phase 4 module compatibility
 
