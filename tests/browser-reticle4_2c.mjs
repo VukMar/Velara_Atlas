@@ -2,7 +2,7 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173';
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failed=[],resources=[];
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());if(/nexus-reticle.*\.svg/.test(r.url()))resources.push({url:r.url(),status:r.status()});};
   const label=id=>page.locator(`#labels [data-record-id="${id}"]`),hover=page.locator('.target-hover'),gold=page.locator('.target-selected');

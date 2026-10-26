@@ -1,7 +1,7 @@
 /** MCP entry point: documented review workflow and observed read-only traffic. */
 async(page)=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()),requests=[];
+  const base=new URL('/Velara_Atlas/demo.html',page.url()),requests=[];
   const observe=request=>requests.push({url:request.url(),method:request.method()});
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   page.on('request',observe);

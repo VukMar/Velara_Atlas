@@ -2,15 +2,17 @@
 
 Use [README](../README.md) for first setup and [PROJECT_STATUS](PROJECT_STATUS.md) for current approval gates. This is an operating guide, not authorization to change Demo data, add scenarios or publish. Commands run from the repository root. Node 24 matches CI.
 
+NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual/functional acceptance; see [public entrance ownership and routes](PUBLIC_ENTRANCE.md) and [verification limits](PUBLIC_ENTRANCE_VERIFICATION.md). Run `tests/browser-public-entrance.mjs` against both 5173 and 4173 for homepage and cross-page checks.
+
 ## Local Development and future Canon
 
 | Command | Environment and URL |
 | --- | --- |
 | `npm run dev` | Synthetic Development/calibration: `http://127.0.0.1:5174/Velara_Atlas/__calibration/` |
-| `npm run demo` | Validates then serves the graphical noncanonical Atlas: `http://127.0.0.1:5173/Velara_Atlas/` |
+| `npm run demo` | Validates then serves the homepage at `/Velara_Atlas/` and the noncanonical Atlas: `http://127.0.0.1:5173/Velara_Atlas/demo.html` |
 | `npm run history:demo` | Legacy console chronology (`tests/demo.mjs`), no server |
 | `npm run preview:calibration` | Compatibility alias for `npm run dev`, using the same server and port |
-| `npm run build` / `npm run preview` | Audited noncanonical Demo output / preview at `http://127.0.0.1:4173/Velara_Atlas/` |
+| `npm run build` / `npm run preview` | Audited two-page output / homepage preview at `http://127.0.0.1:4173/Velara_Atlas/` |
 
 Run Development and Demo in separate terminals. The compatibility command is an
 alternative name for Development, not a second server to launch on the same port.
@@ -59,7 +61,7 @@ With both browser servers running, use Playwright MCP's
 `browser_run_code_unsafe` with `filename: "tests/browser-cantum-calibration.mjs"`
 for all nine radius/camera combinations, history/transfer, input, mobile and
 resource checks. Graphical suites `tests/browser-*.mjs` target the Demo on 5173;
-run them with the Demo page selected (for example navigation, celestial, layout,
+run them with the `demo.html` page selected (for example navigation, celestial, layout,
 labeling, zones and touch suites). They are Playwright callback files, not Node
 CLI tests; no Playwright dependency is added to the project. Historical reports
 retain their original command names and results.
@@ -72,7 +74,7 @@ The sector-derived inventory supplies eager imports, HTTP admission and producti
 ## Governance test preview
 
 Run `node tests/preview-governance.mjs` for the isolated, loopback-only test viewer
-at `http://127.0.0.1:5175/Velara_Atlas/`, then execute the MCP entry point
+at `http://127.0.0.1:5175/Velara_Atlas/demo.html`, then execute the MCP entry point
 `tests/browser-governing-influence.mjs`. It derives TEST A/B/C governance and
 factions from the existing v1.3 fixture, adds rendering-only statuses/positions,
 and removes its temporary dataset on Ctrl+C. It does not edit the live Demo or
@@ -180,4 +182,4 @@ explicit creator authorization. See the readiness guide for historical Phase 6 e
 
 ## Local release checks and profiling
 
-`npm run release:check` builds and audits the fixed NONCANONICAL Demo; it does not generate navigation or deploy. Use [the release checklist](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security). `npm run benchmark -- all 3` writes ignored local measurements; run benchmarks without concurrent tests. Browser callbacks require the existing MCP harness and are not part of `npm test`. Historical timing/device results are evidence for their recorded environments, not current performance guarantees.
+`npm run release:check` builds and audits the fixed NEXUS homepage plus NONCANONICAL Demo; it does not generate navigation or deploy. Use [the release checklist](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security). `npm run benchmark -- all 3` writes ignored local measurements; run benchmarks without concurrent tests. Browser callbacks require the existing MCP harness and are not part of `npm test`. Historical timing/device results are evidence for their recorded environments, not current performance guarantees.

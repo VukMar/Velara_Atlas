@@ -1,7 +1,7 @@
 /** MCP callback against the normal Demo or audited production preview. No source records are written. */
 async page=>{
   const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,isDev=new URL(base).port==='5173';
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,isDev=new URL(base).port==='5173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failures=[],images=[],layouts=[];
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
   const onResponse=r=>{if(r.status()>=400)failures.push(r.url());if(r.request().resourceType()==='image'&&/\.png(?:\?|$)/.test(r.url()))images.push({url:r.url(),status:r.status()});};

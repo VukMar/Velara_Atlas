@@ -1,7 +1,7 @@
 /** Demo MCP historical/fallback suite, adapted to Checkpoint 3.6 overlays. */
 async(page)=>{
   const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/',results=[];
+  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',results=[];
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});

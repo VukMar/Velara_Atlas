@@ -1,7 +1,7 @@
 /** Chromium MCP entry point. Requires isolated tests/preview-governance.mjs on 5175. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5175/Velara_Atlas/',errors=[],snapshots=[];
+  const base='http://127.0.0.1:5175/Velara_Atlas/demo.html',errors=[],snapshots=[];
   const check=(v,message)=>{if(!v)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
   page.on('console',error);page.on('pageerror',pageError);

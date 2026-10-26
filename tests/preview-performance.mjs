@@ -10,6 +10,6 @@ try {
   // A separate cache prevents concurrent ordinary Demo/fixture optimization conflicts.
   server=await createServer({...config,configFile:false,cacheDir:fixture.top+'/vite-cache',server:{...config.server,port:5178,strictPort:true}});
   await server.listen();
-  console.log(`NONCANONICAL ${tier}: http://127.0.0.1:5178/Velara_Atlas/`);
+  console.log(`NONCANONICAL ${tier}: http://127.0.0.1:5178/Velara_Atlas/demo.html`);
   process.once('SIGINT',async()=>{await server.close();fixture.cleanup();process.exit(0);});
 }catch(e){await server?.close();fixture.cleanup();throw e;}

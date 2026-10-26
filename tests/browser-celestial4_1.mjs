@@ -2,7 +2,7 @@
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],results=[];
+  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[],results=[];
   let expectedFailure=false;
   const error=message=>{if(message.type()==='error'&&!expectedFailure)errors.push(message.text());};
   const pageError=e=>errors.push(e.message);

@@ -1,7 +1,7 @@
 /** Real pointer/touch range commits, with unchanged live historical updates. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,edition=new URL(base).port==='5173'?'demo':'production';
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,edition=new URL(base).port==='5173'?'demo':'production';
   const check=(value,message)=>{if(!value)throw Error(message);};
   await page.addInitScript(()=>{
     window.__historyAudio=[];const original=HTMLMediaElement.prototype.play;

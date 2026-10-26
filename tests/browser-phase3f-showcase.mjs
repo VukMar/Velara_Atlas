@@ -1,7 +1,7 @@
 /** Integrated acceptance against the ordinary Demo, not a fixture server. */
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[],politics=[],navigation=[],factions=[];
+  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[],politics=[],navigation=[],factions=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());},onPageError=e=>errors.push(e.message);
   page.on('console',onError);page.on('pageerror',onPageError);

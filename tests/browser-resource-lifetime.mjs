@@ -1,7 +1,7 @@
 /** MCP callback against the ordinary Demo; actual observer/timer ownership. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  await page.goto('http://127.0.0.1:5173/Velara_Atlas/');await enterAtlas(page);
+  await page.goto('http://127.0.0.1:5173/Velara_Atlas/demo.html');await enterAtlas(page);
   await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
   return await page.evaluate(async()=>{
     const main=await import('./main.mjs'),Observer=window.ResizeObserver,set=window.setTimeout,clear=window.clearTimeout;

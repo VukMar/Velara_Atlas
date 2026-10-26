@@ -1,4 +1,4 @@
-/** Fixed Demo local dry run. Builds/audits; never publishes, generates data or writes Git. */
+/** Fixed two-page website local dry run. Builds/audits; never publishes, generates data or writes Git. */
 import {performance} from 'node:perf_hooks';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -11,7 +11,7 @@ export async function releaseCheck({buildSite=()=>build({...createDemoConfig(),c
   const errors=checkConnections(readDemoSource()).errors;
   if(errors.length)throw new Error(errors.join('\n'));
   const start=performance.now();await buildSite();
-  return {...auditDemoBuild(),buildMs:performance.now()-start,scope:'Local audited NONCANONICAL Demo only. Browser/subpath checks are separate; no deployment or Canon readiness.'};
+  return {...auditDemoBuild(),buildMs:performance.now()-start,scope:'Local audited NEXUS homepage and NONCANONICAL Demo. Browser/subpath checks are separate; no deployment or Canon readiness.'};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   if(process.argv.length>2)throw new Error('release:check accepts no dataset roots or publication options');

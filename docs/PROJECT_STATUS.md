@@ -9,10 +9,17 @@
 | Original Development Checkpoint 4 | **Complete and creator-approved, including final integrated acceptance** |
 | Checkpoint 4.1 Phases 1-3 and 4.2A-I | Complete and creator-approved |
 | Architecture Optimization Roadmap, Phases 1-6 | Complete and creator-approved |
+| NEXUS Public Entrance Integration | **Complete and creator-approved, 2026-10-26; manual visual and functional acceptance completed** |
 | Cantum Visual Stages 1-4 and intermediate calibration | Retained implemented baseline |
 | Windows CI reliability maintenance | Merged in [PR #2](https://github.com/VukMar/Velara_Atlas/pull/2), included in `main` at `f0d8d14` |
 
 **Cantum Visual Stage 5 is deferred and is not required now. It does not block Checkpoint 5 release planning.** Deferral does not authorize visual tuning or a canonical radius decision.
+
+## NEXUS Public Entrance Integration — Complete and Creator-Approved (2026-10-26)
+
+The creator tested and explicitly approved the completed two-page implementation, including manual visual and functional acceptance. The audited Vite build includes `src/viewer/index.html` (NEXUS public landing page) and `src/viewer/demo.html` (the existing noncanonical interactive Atlas). Both share the approved first-entry experience, completion and global audio preference. The landing page initializes no Atlas renderer or Demo dataset. Commands and the `/Velara_Atlas/` base remain unchanged. See [the subsequent architecture amendment](PUBLIC_ENTRANCE.md) and [verification results and limits](PUBLIC_ENTRANCE_VERIFICATION.md). Checkpoint 4.2G-I records retain their original approved audiovisual authority.
+
+For a future separately approved canonical release, index.html becomes the actual canonical MCR Velara Sector Atlas; demo.html is retired or archived only following separate creator approval. Current landing copy is temporary presentation, not Canon. This milestone does not complete or authorize Checkpoint 5, Canon migration, Atlas Creator or public deployment. Push and deployment remain separately gated.
 
 ## Next separately authorized work
 
@@ -28,7 +35,7 @@ Development/calibration uses separate finite registered synthetic scenarios with
 
 The Demo uses a provisional shared 24-ly influence radius; frozen v1.2 and calibration radii remain unchanged. No canonical radius or new worldbuilding facts are established by this page.
 
-Production remains an audited static Demo build with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. No backend, write endpoint or publishing workflow is implemented.
+Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. No backend, write endpoint or publishing workflow is implemented.
 
 ## Verified baseline and limits
 

@@ -30,7 +30,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   const reticle=approvedReticleSource();let emittedReticle=false;
   for (const file of files) {
     const name = path.relative(root, file).replaceAll('\\', '/');
-    if (name !== 'index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png|mp3)$/.test(name)) {
+    if (!['index.html','demo.html'].includes(name) && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png|mp3)$/.test(name)) {
       throw new Error(`Unexpected distributable file: ${name}`);
     }
     const bytes=fs.statSync(file).size,extension=path.extname(name);totalBytes+=bytes;bytesByType[extension]=(bytesByType[extension]??0)+bytes;
@@ -76,19 +76,32 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   if (!emittedReticle) throw new Error('Approved UI reticle SVG inventory is incomplete');
   if (emittedPNG.size !== approvedPNG.size) throw new Error('Approved PNG inventory is incomplete');
   if(emittedAudio.size!==approvedAudio.size)throw new Error('Approved MP3 inventory is incomplete');
-  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  if (!html.includes('NONCANONICAL DEMONSTRATION')) throw new Error('Demo disclosure missing');
-  for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
-    if (url === 'data:,') continue; // Explicit empty favicon; no asset or network request.
-    if (!url.startsWith('/Velara_Atlas/assets/')) throw new Error(`Unexpected asset URL: ${url}`);
-    if (!fs.existsSync(path.join(root, url.slice('/Velara_Atlas/'.length)))) throw new Error('Missing build asset');
+  for(const page of ['index.html','demo.html']) {
+    if(!relative.has(page))throw new Error(`Required HTML entry missing: ${page}`);
+    const html=fs.readFileSync(relative.get(page),'utf8');
+    if(!html.includes(page==='demo.html'?'NONCANONICAL DEMONSTRATION':'NONCANONICAL DEMONSTRATION — FICTIONAL TEST RECORDS'))throw new Error(`Demo disclosure missing in ${page}`);
+    const navigation=page==='index.html'?'./demo.html':'./';
+    if(!html.includes(`href="${navigation}"`))throw new Error(`Required page navigation missing in ${page}`);
+    for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+      if(url==='data:,'||url===navigation)continue;
+      if(!url.startsWith('/Velara_Atlas/assets/'))throw new Error(`Unexpected asset URL: ${url}`);
+      if(!relative.has(url.slice('/Velara_Atlas/'.length)))throw new Error('Missing build asset');
+    }
   }
-  {
-    const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit('index.html');
-    for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.endsWith('.mp3')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+  const reachable=start=>{
+    const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit(start);return seen;
+  };
+  const landing=reachable('index.html'),demo=reachable('demo.html'),seen=new Set([...landing,...demo]);
+  for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.endsWith('.mp3')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
+  // Independent output check; source-module closure is also enforced by Vite.
+  for(const name of landing) {
+    if(/\.(?:svg|png|mp3)$/.test(name)&&!/^assets\/(?:mcr-insignia|nexus-form|nexus-enter-with-audio)-[A-Za-z0-9_-]+\.(?:png|mp3)$/.test(name))throw new Error(`Unexpected landing media: ${name}`);
+    if(!/\.(js|css)$/.test(name))continue;
+    const text=fs.readFileSync(relative.get(name),'utf8');
+    if(ids(text).length||/WebGLRenderer|THREE\.REVISION|virtual:velara-demo-dataset|VELARA_PERFORMANCE_ONLY/.test(text))throw new Error(`Demo/renderer input reachable from landing: ${name}`);
   }
   const svgCount=emittedSVG.size+Number(emittedReticle);
-  return {files:files.length,svgCount,pngCount:emittedPNG.size,audioCount:emittedAudio.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS demo build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs and ${emittedAudio.size} exact approved MP3s, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
+  return {pages:2,landingFiles:landing.size,files:files.length,svgCount,pngCount:emittedPNG.size,audioCount:emittedAudio.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS two-page build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs and ${emittedAudio.size} exact approved MP3s, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 

@@ -1,7 +1,7 @@
 /** Normal Demo / audited production Focus callback. No world records or release hooks. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',errors=[],failed=[],audio=[];
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',errors=[],failed=[],audio=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());},request=r=>{if(r.resourceType()==='media'&&/\.mp3(?:\?|$)/.test(r.url()))audio.push(r.url());};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};

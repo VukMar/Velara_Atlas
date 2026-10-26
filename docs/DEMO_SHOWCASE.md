@@ -15,7 +15,7 @@ or graphical Atlas Creator is implemented.
 npm run demo
 ```
 
-Open **http://127.0.0.1:5173/Velara_Atlas/**. Everything below is available in this
+Open **http://127.0.0.1:5173/Velara_Atlas/demo.html** directly, or follow **Indulge your curiosity** from the [NEXUS homepage](PUBLIC_ENTRANCE.md). First-entry completion/audio preferences are shared. Everything below is available in this
 normal graphical Demo; no fixture server is needed. All added names, dates,
 measurements and positions are explicit TEST choices, not MCR history.
 

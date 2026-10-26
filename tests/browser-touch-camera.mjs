@@ -64,7 +64,7 @@ async(page)=>{
     check(!await p.locator('#info-panel').evaluate(n=>n.open),'gesture transitions do not select objects');
   };
   try {
-    await p.goto('http://127.0.0.1:5173/Velara_Atlas/');await enterAtlas(p);await p.bringToFront();
+    await p.goto('http://127.0.0.1:5173/Velara_Atlas/demo.html');await enterAtlas(p);await p.bringToFront();
     await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
     // Observe the real existing scene, without replacing controls or handlers.
     await p.evaluate(async()=>{

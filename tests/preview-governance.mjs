@@ -23,6 +23,6 @@ try {
   for(const [name,record]of files){const file=path.join(root,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(record,null,2)+'\n');}
   server=await createServer({...createDemoConfig({datasetRoot:root}),configFile:false,server:{...createDemoConfig({datasetRoot:root}).server,port:5175,strictPort:true}});
   await server.listen();
-  console.log('NONCANONICAL isolated governance test: http://127.0.0.1:5175/Velara_Atlas/');
+  console.log('NONCANONICAL isolated governance test: http://127.0.0.1:5175/Velara_Atlas/demo.html');
   process.once('SIGINT',async()=>{await server.close();cleanup();process.exit(0);});
 } catch(error){await server?.close();cleanup();throw error;}

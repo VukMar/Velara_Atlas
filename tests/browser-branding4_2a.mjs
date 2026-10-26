@@ -1,7 +1,7 @@
 /** Playwright MCP callback: normal Demo or audited production preview at /Velara_Atlas/. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],failures=[],images=[],layouts=[];
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,errors=[],failures=[],images=[],layouts=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
   const onResponse=r=>{if(r.status()>=400)failures.push({url:r.url(),status:r.status()});if(/\.png(?:\?|$)/.test(r.url()))images.push({url:r.url(),status:r.status()});};

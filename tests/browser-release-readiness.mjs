@@ -2,7 +2,7 @@
 async page=>{
   const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   await page.goto('about:blank');await enterAtlas(page);
-  const base='http://127.0.0.1:4173/Velara_Atlas/',errors=[],requests=[],failures=[];
+  const base='http://127.0.0.1:4173/Velara_Atlas/demo.html',errors=[],requests=[],failures=[];
   const check=(v,m)=>{if(!v)throw Error(m);},onConsole=m=>{if(m.type()==='error')errors.push(m.text());},onError=e=>errors.push(e.message);
   const onRequest=r=>requests.push(r.url()),onResponse=r=>{if(r.status()>=400)failures.push({url:r.url(),status:r.status()});};
   page.on('console',onConsole);page.on('pageerror',onError);page.on('request',onRequest);page.on('response',onResponse);

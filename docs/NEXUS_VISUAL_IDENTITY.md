@@ -1,5 +1,7 @@
 # Velara Atlas — NEXUS Visual Identity
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
 **Status:** Approved implemented visual identity, including 4.2A?I. Checkpoint 4 integrated creator acceptance is complete; future changes remain separately authorized under [PROJECT_STATUS](PROJECT_STATUS.md). Dated amendment/closeout paragraphs below preserve their original phase scope; later approved amendments govern current behavior. The active Demo uses the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md).
 

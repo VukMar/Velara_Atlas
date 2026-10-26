@@ -47,7 +47,7 @@ redirected to canonical data as part of this workflow.
 Completed, creator-approved Architecture Phase 6 adds `npm run release:check`:
 fixed NONCANONICAL Demo validation, read-only navigation freshness, static build
 and disclosure/resource audits. Follow with `npm run preview -- --port 4173 --strictPort`
-at `http://127.0.0.1:4173/Velara_Atlas/` and the browser walkthrough in
+at `http://127.0.0.1:4173/Velara_Atlas/` (NEXUS homepage) and `http://127.0.0.1:4173/Velara_Atlas/demo.html` (noncanonical map), and the browser walkthrough in
 [performance and release readiness](PERFORMANCE_AND_RELEASE_READINESS.md).
 This local simulation does not deploy, generate navigation, promote fixtures or
 authorize Canon publication. The read-only Ubuntu/Windows CI workflow verifies

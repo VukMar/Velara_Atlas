@@ -1,7 +1,7 @@
 /** Chromium Demo entry point. All detached-island data live only in page memory. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/',errors=[];
+  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
   page.on('console',error);page.on('pageerror',pageError);

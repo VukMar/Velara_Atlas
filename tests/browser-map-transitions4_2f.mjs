@@ -1,7 +1,7 @@
 /** Run as the existing Playwright callback against normal Demo or audited preview. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[],failures=[],requests=[],mediaRequests=[];
   const onError=e=>errors.push(e.message),onResponse=r=>{if(r.status()>=400)failures.push(r.url());},onRequest=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());};
   page.on('pageerror',onError);page.on('response',onResponse);page.on('request',onRequest);

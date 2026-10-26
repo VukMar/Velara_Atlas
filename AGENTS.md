@@ -5,7 +5,8 @@ Read this file before editing. Follow the current creator request; documentation
 ## Status and authorization
 
 [PROJECT_STATUS](docs/PROJECT_STATUS.md) is the single current-status authority.
-Checkpoint 4, including integrated creator acceptance, and Architecture Phases 1-6 are complete and creator-approved.
+Checkpoint 4, including integrated creator acceptance, Architecture Phases 1-6 and NEXUS Public Entrance Integration (2026-10-26) are complete and creator-approved.
+The audited website has a NEXUS landing page at `src/viewer/index.html` and the separate noncanonical Atlas at `src/viewer/demo.html`, sharing first-entry completion and audio preferences. The landing page does not load the renderer or Demo data. Future canonical population of index.html and retirement/archival of demo.html require separate approval; preserve the `/Velara_Atlas/` base and current npm commands.
 Cantum Visual Stage 5 is deferred, not a release-planning blocker.
 Checkpoint 5 release preparation needs separate creator authorization.
 Canon migration, graphical Atlas Creator and public deployment remain separately gated.

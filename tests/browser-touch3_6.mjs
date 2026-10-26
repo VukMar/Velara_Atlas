@@ -1,7 +1,7 @@
 /** Playwright MCP filename entry point; Chromium touch emulation, not hardware. */
 async(page) => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href;
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href;
   const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const p=await context.newPage(),errors=[];p.on('pageerror',error=>errors.push(error.message));
   const check=(ok,message)=>{if(!ok)throw new Error(message);};

@@ -1,5 +1,7 @@
 # Velara Atlas — Development roadmap
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 **Current status:** See [PROJECT_STATUS](PROJECT_STATUS.md). Checkpoint 4 is complete and creator-approved, including final integrated acceptance. Architecture Phases 1-6 are complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 release preparation requires separate authorization; Canon migration, Atlas Creator and deployment remain separately gated.
 
 This document retains original milestone scope, approval sequence and dated implementation evidence. Historical closeout statements about pending work describe their dates, not current permission or blockers. Active technical rules live in the subject specifications linked by [INDEX](INDEX.md).
@@ -791,6 +793,12 @@ The creator has approved the combined Checkpoint 4 result, including final integ
 Cantum Visual Stage 5 is **deferred and not required now**. Existing Stages 1-4/calibration and documented sampling/device limitations are retained. Stage 5 does not block Checkpoint 5 release planning, and deferral grants no permission to alter political membership, Gaussian math, radii or authored geometry.
 
 Completion does not authorize Checkpoint 5 work, public deployment, Canon migration or Atlas Creator. See [PROJECT_STATUS](PROJECT_STATUS.md) for the next possible separately authorized workstream.
+
+## NEXUS Public Entrance Integration — Complete and Creator-Approved (2026-10-26)
+
+This subsequent amendment is complete and creator-approved, including manual visual and functional acceptance. One audited production build emits the NEXUS welcome/teaser at index.html and the existing noncanonical Atlas at demo.html. Both use the approved first-entry/completion/audio model; the homepage loads no Atlas renderer or Demo data. Existing npm commands, `/Velara_Atlas/`, original recordings/artwork and Demo records/restrictions are retained. See [implemented scope](PUBLIC_ENTRANCE.md) and [automated verification and browser limits](PUBLIC_ENTRANCE_VERIFICATION.md). The completed 4.2G-I records above remain unchanged historical evidence.
+
+The future canonical release will replace the temporary index.html presentation with the actual canonical MCR Velara Sector Atlas. Retirement or archival of demo.html needs separate creator approval. Canon migration, Atlas Creator and public deployment remain separately authorized workstreams; no release date or deployment is established here.
 
 ## Subsequent publication and separate workstreams
 

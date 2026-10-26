@@ -31,6 +31,23 @@ export function auditRegisteredModules(bundle,inventory) {
   return inventory.files.length;
 }
 
+/** Landing entry closure is deliberately smaller than the Demo admission boundary. */
+export function auditLandingModules(bundle) {
+  const allowed=new Set(['index.html','landing.mjs','landing.css','opening.css','lifetime.mjs','opening-view.mjs','audio-controller.mjs',
+    'interface-audio.mjs','opening-content.mjs','nexus-opening-config.mjs','entry-voice.mjs'].map(name=>modulePath(local('src/viewer/'+name))));
+  for(const file of [NEXUS_OPENING_FILE,...pngFiles.filter(file=>/[/\\](?:nexus-form|mcr-insignia)\.png$/.test(file)),...audioFiles.filter(file=>file.endsWith('nexus-enter-with-audio.mp3'))])allowed.add(modulePath(file));
+  const entry=Object.values(bundle).find(o=>o.type==='chunk'&&o.isEntry&&modulePath(o.facadeModuleId??'')===modulePath(local('src/viewer/index.html')));
+  if(!entry)throw new Error('Landing HTML entry missing from build');
+  const seen=new Set(),visit=chunk=>{
+    if(seen.has(chunk.fileName))return;seen.add(chunk.fileName);
+    for(const raw of Object.keys(chunk.modules)) {
+      const id=modulePath(raw.split('?')[0]);
+      if(!allowed.has(id)&&!viteHelpers.has(id))throw new Error('Unexpected landing input: '+id);
+    }
+    for(const name of [...chunk.imports,...chunk.dynamicImports])if(bundle[name]?.type==='chunk')visit(bundle[name]);
+  };visit(entry);
+}
+
 /** The same registered snapshot owns imports, JSON serving and build admission.
  * Root injection supports isolated integration tests, not public dataset selection. */
 export function demoInputAudit({root=DEMO_ROOT}={}) {
@@ -89,7 +106,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
       if(name)return verifiedSource(name).texts.get(name);
     },
     writeBundle(_options,bundle){
-      try{verifiedSource();auditRegisteredModules(bundle,inventory);}catch(error){this.error(error.message);}
+      try{verifiedSource();auditRegisteredModules(bundle,inventory);auditLandingModules(bundle);}catch(error){this.error(error.message);}
     },
     generateBundle(_options,bundle){
       approvedReticleSource();
@@ -117,7 +134,7 @@ export function createDemoConfig({datasetRoot=DEMO_ROOT}={}) {
       allow:[...['src/viewer/','src/core/','node_modules/'].map(local),...inventory.files.map(name=>path.join(inventory.root,name)),...svgFiles,...pngFiles,...audioFiles,NEXUS_FALLBACK_FILE,NEXUS_OPENING_FILE,RETICLE_FILE],
       deny:['**/.git/**','**/.env*','**/private/**','**/secrets/**','**/*.rtf','**/public/data/**']}},
     preview:{host:'127.0.0.1'},
-    build:{outDir:local('dist/'),emptyOutDir:true,sourcemap:false,assetsInlineLimit:0}
+    build:{outDir:local('dist/'),emptyOutDir:true,sourcemap:false,assetsInlineLimit:0,rollupOptions:{input:{index:local('src/viewer/index.html'),demo:local('src/viewer/demo.html')}}}
   });
 }
 export default createDemoConfig();

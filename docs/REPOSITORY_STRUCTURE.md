@@ -1,5 +1,7 @@
 # Repository structure and ownership
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 This page describes current directory ownership and publication boundaries. [PROJECT_STATUS](PROJECT_STATUS.md) owns completion/authorization; [ARCHITECTURE](ARCHITECTURE.md) describes module interfaces, and [INDEX](INDEX.md) maps documentation authority.
 
 ## Current tree
@@ -11,7 +13,7 @@ Velara_Atlas/
   package.json / package-lock.json Commands and locked dependencies
   .gitattributes                  Stable JSON/SVG bytes; binary PNG/MP3
   .github/workflows/verify.yml     Read-only Ubuntu/Windows Node 24 CI
-  vite.config.mjs                  Demo root/base and strict input/build admission
+  vite.config.mjs                  Two-page root/base and strict input/build admission
   docs/
     INDEX.md / PROJECT_STATUS.md   Navigation / current completion and gates
     LOCAL_DEVELOPMENT.md           Local environments, scenarios and checks
@@ -29,7 +31,7 @@ Velara_Atlas/
   src/
     core/                         Pure modern history/cartography/geometry
     timeline/resolve.mjs           Independent legacy v0.1 resolver
-    viewer/                       Read-only NEXUS UI, Three.js owners and approved assets
+    viewer/                       index.html/landing.mjs: NEXUS homepage; demo.html/main.mjs: read-only Atlas
   public/
     datasets/demo/                Registered v1.3 NONCANONICAL Demo JSON
       sector.json                 Sole system registration source
@@ -51,7 +53,7 @@ Velara_Atlas/
     calibration/                  Finite synthetic Development/scenario registry
     performance/                  Seeded test-only workloads and sampling probes
     fixtures/                     Separate legacy/v1.1/v1.2/v1.3 regression inputs
-  dist/                           Ignored audited static Demo output
+  dist/                           Ignored audited homepage + Demo output
   .playwright-mcp/                 Ignored local reports/screenshots/test output
   node_modules/                   Ignored dependencies
 ```

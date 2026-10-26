@@ -1,7 +1,7 @@
 /** Playwright MCP Demo entry point; observes the real scene without production hooks. */
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/', errors=[];
+  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html', errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=message=>{if(message.type()==='error')errors.push(message.text());};page.on('console',error);
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};

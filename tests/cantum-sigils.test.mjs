@@ -95,8 +95,9 @@ test('exact output audit retains fifteen starter/sigil SVGs alongside one exact 
     fs.rmSync(root,{recursive:true,force:true});
   });
   fs.mkdirSync(path.join(root,'assets'));
+  fs.writeFileSync(path.join(root,'index.html'),'<p>NONCANONICAL DEMONSTRATION — FICTIONAL TEST RECORDS</p><a href="./demo.html">Demo</a>');
   const pngs=[...approvedPNGSources()],audio=[...approvedAudioSources()];
-  fs.writeFileSync(path.join(root,'index.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title><img src="/Velara_Atlas/assets/nexus-reticle-fixture.svg" alt="">'+audio.map(([stem])=>`<audio src="/Velara_Atlas/assets/${AUDIO_PINS.find(pin=>pin.name===stem).output}"></audio>`).join('')+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
+  fs.writeFileSync(path.join(root,'demo.html'),'<!doctype html><title>NONCANONICAL DEMONSTRATION</title><a href="./">Homepage</a><img src="/Velara_Atlas/assets/nexus-reticle-fixture.svg" alt="">'+audio.map(([stem])=>`<audio src="/Velara_Atlas/assets/${AUDIO_PINS.find(pin=>pin.name===stem).output}"></audio>`).join('')+pngs.map(([stem])=>`<img src="/Velara_Atlas/assets/${stem}-fixture.png" alt="">`).join(''));
   fs.writeFileSync(path.join(root,'assets','nexus-reticle-fixture.svg'),approvedReticleSource());
   for(const [stem,bytes] of pngs)fs.writeFileSync(path.join(root,'assets',`${stem}-fixture.png`),bytes);
   for(const [stem,bytes] of audio)fs.writeFileSync(path.join(root,'assets',`${AUDIO_PINS.find(pin=>pin.name===stem).output}`),bytes);

@@ -2,7 +2,7 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],mediaRequests=[],failed=[];
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,errors=[],requests=[],mediaRequests=[],failed=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},response=r=>{if(r.status()>=400)failed.push(r.url());};
   const expected={star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};

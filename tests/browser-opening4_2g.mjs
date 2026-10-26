@@ -1,6 +1,6 @@
 /** Normal Demo / audited preview. Inspect the real opening, never bypass it. */
 async page=>{
-  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
   const check=(ok,message)=>{if(!ok)throw Error(message);},requests=[],mediaRequests=[],errors=[],failures=[];
   const request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failures.push(r.url());};
   page.on('request',request);page.on('pageerror',error);page.on('response',response);

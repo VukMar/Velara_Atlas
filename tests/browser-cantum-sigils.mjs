@@ -1,7 +1,7 @@
 /** Chromium MCP entry point; Demo or base-path production preview. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[];
+  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,errors=[];
   let expectedFailure=false;
   const onError=m=>{if(m.type()==='error'&&!expectedFailure)errors.push(m.text());};
   const pageError=e=>errors.push(e.message);page.on('console',onError);page.on('pageerror',pageError);

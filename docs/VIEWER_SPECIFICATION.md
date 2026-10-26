@@ -1,5 +1,7 @@
 # Velara Atlas — Viewer Specification
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 **Document status:** Approved Milestone 3 functional specification  
 **Version:** Milestone 3 v1.1 behavior, revised by navigation v1.2, Checkpoint 3.6 layout, cartographic labeling and Checkpoint 3.8 zones (separate from the JSON Schema version)
 **Approved:** 2026-10-15 (territory-overlay revision, superseding the manual-boundary default)  

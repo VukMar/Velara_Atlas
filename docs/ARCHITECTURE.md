@@ -1,5 +1,7 @@
 # Velara Atlas — Implemented architecture
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 **Scope:** Implemented module ownership, data flow and security boundaries. The active viewer uses v1.3 NONCANONICAL Demo data; legacy v0.1, versioned fixtures and Development/calibration stay separate. [PROJECT_STATUS](PROJECT_STATUS.md) owns current completion and authorization. Dated implementation/closeout sections below preserve their original scope; later approved amendments govern behavior.
 
 ## Runtime responsibilities
@@ -31,7 +33,9 @@
 | `src/viewer/influence-compositor.mjs` | Non-pickable envelope geometry in a private scene, half-float accumulation and one capped chart-layer composite; target/resource lifecycle |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom; 8×8 sector grid on `map.planeY` with an unnumbered ly scale, and absolute-zero system grid with A–H/1–8 and H8 CNU scale |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
-| `src/viewer/index.html`, `style.css` | Compact header, centered square stage, floating panels and dismissible centered record dialog |
+| `src/viewer/index.html`, `landing.mjs`, `landing.css` | NEXUS public welcome/teaser, static background and normal Demo link; no Atlas renderer or dataset initialization |
+| `src/viewer/opening-content.mjs`, `entry-voice.mjs`, `opening.css` | Shared validated approved welcome, original artwork/acknowledgment URLs and unchanged opening styles |
+| `src/viewer/demo.html`, `main.mjs`, `style.css` | Existing noncanonical interactive Atlas, compact header, centered square stage, floating panels and record dialog; Homepage link |
 | `src/timeline/resolve.mjs` | Separate legacy v0.1 resolver, used by legacy tests and console demo; not imported into the viewer |
 
 The app is vanilla JavaScript ES modules, Three.js and Vite. The public viewer

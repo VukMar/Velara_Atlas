@@ -1,5 +1,7 @@
 # Velara Atlas — Visual Asset Policy and Fallback Contract
 
+> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
 **Version:** 1.0.0 · **Milestone 5 companion** · **2026-10-15**  
 **Status:** Approved implemented asset/fallback contract through 4.2I: sixteen SVGs, three PNGs, eight MP3s and two universal UI-content modules. [PROJECT_STATUS](PROJECT_STATUS.md) owns completion/approval. Dated amendment sections retain their original scope; later approved admissions supersede earlier exclusions. No additional assets or canonical changes are authorized.
 

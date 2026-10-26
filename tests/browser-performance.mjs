@@ -8,7 +8,7 @@ async page=>{
     await page.setViewportSize({width:1280,height:900});
     const startup=[];
     for(let i=0;i<3;i++) {
-      const t=Date.now();await page.goto('http://127.0.0.1:5178/Velara_Atlas/');
+      const t=Date.now();await page.goto('http://127.0.0.1:5178/Velara_Atlas/demo.html');
       await page.waitForFunction(()=>Number(document.querySelector('#viewport')?.dataset.markers)>0,{},{timeout:180000});
       startup.push(Date.now()-t);
     }
