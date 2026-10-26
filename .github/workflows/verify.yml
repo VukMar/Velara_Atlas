@@ -28,6 +28,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run validate
+      - run: npm run connections
       - run: npm run connections:check
       - run: npm run build
       - run: npm run history:demo
