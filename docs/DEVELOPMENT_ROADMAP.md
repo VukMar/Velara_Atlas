@@ -800,6 +800,12 @@ This subsequent amendment is complete and creator-approved, including manual vis
 
 The future canonical release will replace the temporary index.html presentation with the actual canonical MCR Velara Sector Atlas. Retirement or archival of demo.html needs separate creator approval. Canon migration, Atlas Creator and public deployment remain separately authorized workstreams; no release date or deployment is established here.
 
+## Checkpoint 5 — Phase 1: GitHub Pages Deployment Preparation — Complete and Creator-Approved (2026-10-27)
+
+The creator approved the manual-only main-branch Pages workflow and deployment operating instructions. The two-page audited Vite artifact, ignored dist/, automatic Ubuntu/Windows verify.yml, required pre-upload checks, existing commands/base and publication safeguards are preserved. This closeout formally adopts 0.5.0 (Pre-release) as a deliberate milestone rebaseline and establishes [VERSIONING_POLICY](VERSIONING_POLICY.md); version numbers do not measure percentage completion. Documentation, verification, one commit and normal push to main are authorized. See the [operating guide and separate verification records](GITHUB_PAGES_DEPLOYMENT.md).
+
+The first live Pages deployment has not been executed; hosting, public URLs and the deployment action are not live-verified. Manual GitHub configuration and public deployment remain separately authorized, as do Canon migration, Atlas Creator and other Checkpoint 5 work. No Git tag or GitHub Release is created by this closeout.
+
 ## Subsequent publication and separate workstreams
 
 A separately authorized Checkpoint 5 release-preparation scope may cover static build review, repository-subpath URLs,

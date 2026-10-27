@@ -13,6 +13,7 @@ Velara_Atlas/
   package.json / package-lock.json Commands and locked dependencies
   .gitattributes                  Stable JSON/SVG bytes; binary PNG/MP3
   .github/workflows/verify.yml     Read-only Ubuntu/Windows Node 24 CI
+  .github/workflows/deploy-pages.yml Approved manual-only main Pages workflow; no live deployment yet
   vite.config.mjs                  Two-page root/base and strict input/build admission
   docs/
     INDEX.md / PROJECT_STATUS.md   Navigation / current completion and gates
@@ -58,7 +59,7 @@ Velara_Atlas/
   node_modules/                   Ignored dependencies
 ```
 
-This is an ownership summary, not a complete file listing. There is no graphical editor or deployment workflow. Private lore belongs outside public Git; do not inspect private sibling folders without explicit scope.
+This is an ownership summary, not a complete file listing. There is no graphical editor. The [manual-only Pages workflow](GITHUB_PAGES_DEPLOYMENT.md) is reviewed and creator-approved; GitHub configuration and the first live deployment remain separate and unexecuted. Private lore belongs outside public Git; do not inspect private sibling folders without explicit scope.
 
 ## Authoring and generated ownership
 

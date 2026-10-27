@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-confirmed, 2026-10-26.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized scope updated 2026-10-27; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -10,6 +10,7 @@
 | Checkpoint 4.1 Phases 1-3 and 4.2A-I | Complete and creator-approved |
 | Architecture Optimization Roadmap, Phases 1-6 | Complete and creator-approved |
 | NEXUS Public Entrance Integration | **Complete and creator-approved, 2026-10-26; manual visual and functional acceptance completed** |
+| Checkpoint 5 Phase 1 - GitHub Pages deployment preparation | **Complete and creator-approved, 2026-10-27; first live deployment not executed** |
 | Cantum Visual Stages 1-4 and intermediate calibration | Retained implemented baseline |
 | Windows CI reliability maintenance | Merged in [PR #2](https://github.com/VukMar/Velara_Atlas/pull/2), included in `main` at `f0d8d14` |
 
@@ -21,9 +22,15 @@ The creator tested and explicitly approved the completed two-page implementation
 
 For a future separately approved canonical release, index.html becomes the actual canonical MCR Velara Sector Atlas; demo.html is retired or archived only following separate creator approval. Current landing copy is temporary presentation, not Canon. This milestone does not complete or authorize Checkpoint 5, Canon migration, Atlas Creator or public deployment. Push and deployment remain separately gated.
 
-## Next separately authorized work
+## Checkpoint 5 — Phase 1: GitHub Pages Deployment Preparation — Complete and Creator-Approved (2026-10-27)
 
-The next possible workstream is **Checkpoint 5 release preparation**. Its scope must be authorized by the creator before work starts. No implementation or release work is authorized merely by this status update.
+The creator reviewed and approved the manual-only main-branch Pages workflow, its operating instructions and the audited two-page dist/ artifact path. Automatic Ubuntu/Windows verification, required checks before upload/publication, least-privilege deployment and ignored build output are preserved. The authorized closeout also adopts the deliberate pre-release version rebaseline to 0.5.0 and the authoritative [versioning policy](VERSIONING_POLICY.md); this does not represent percentage completion. Documentation, verification, one commit and a normal push to main are authorized for this closeout. See the [operating guide, original verification and closeout amendment](GITHUB_PAGES_DEPLOYMENT.md).
+
+The workflow is prepared and reviewed; its first live Pages deployment has not been executed. Hosting, public URLs, artifact transfer/OIDC and the actual deployment action have no live verification from this work. GitHub-side configuration, public deployment and other Checkpoint 5 work remain separately gated. No tag, GitHub Release, Canon migration or Atlas Creator is authorized.
+
+## Other separately authorized work
+
+Checkpoint 5 work beyond this limited Phase 1 scope requires separate creator authorization. This preparation is not completion of Checkpoint 5 or authorization to publish.
 
 Canon migration, graphical Atlas Creator and public deployment each require separate creator authorization. GitHub Pages is the target host; a configured repository-subpath base and local production preview do not constitute deployment. The local authoring CLI is implemented; a graphical editor is not.
 
@@ -35,7 +42,7 @@ Development/calibration uses separate finite registered synthetic scenarios with
 
 The Demo uses a provisional shared 24-ly influence radius; frozen v1.2 and calibration radii remain unchanged. No canonical radius or new worldbuilding facts are established by this page.
 
-Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. No backend, write endpoint or publishing workflow is implemented.
+Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. There is no backend or write endpoint. The manual Pages workflow is reviewed and approved for this commit/push closeout; it publishes only after a separately authorized manual dispatch. No live deployment has been executed.
 
 ## Verified baseline and limits
 

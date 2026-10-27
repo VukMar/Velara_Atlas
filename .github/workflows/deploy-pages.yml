@@ -1,0 +1,68 @@
+name: Deploy Velara Atlas to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the selected main commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Set up Node.js 24
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run connections:check
+      - run: npm test
+      # This command builds both pages and audits the actual production output.
+      - run: npm run release:check
+      - name: Reject tracked-file changes
+        run: |
+          git diff --exit-code
+          git diff --cached --exit-code
+      - name: Upload only the audited website
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          name: github-pages
+          path: dist/
+
+  deploy:
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' && needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Read the manually configured Pages site
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+        with:
+          enablement: false
+      - name: Deploy the verified artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        with:
+          artifact_name: github-pages

@@ -8,7 +8,7 @@ Read this file before editing. Follow the current creator request; documentation
 Checkpoint 4, including integrated creator acceptance, Architecture Phases 1-6 and NEXUS Public Entrance Integration (2026-10-26) are complete and creator-approved.
 The audited website has a NEXUS landing page at `src/viewer/index.html` and the separate noncanonical Atlas at `src/viewer/demo.html`, sharing first-entry completion and audio preferences. The landing page does not load the renderer or Demo data. Future canonical population of index.html and retirement/archival of demo.html require separate approval; preserve the `/Velara_Atlas/` base and current npm commands.
 Cantum Visual Stage 5 is deferred, not a release-planning blocker.
-Checkpoint 5 release preparation needs separate creator authorization.
+Checkpoint 5 Phase 1 (manual GitHub Pages deployment preparation) is complete and creator-approved (2026-10-27). Its first live deployment remains unexecuted. Other release preparation, Pages configuration and public deployment need separate creator authorization; commit/push authority comes from the current creator request.
 Canon migration, graphical Atlas Creator and public deployment remain separately gated.
 Do not automatically advance milestones or treat an old task/closeout as current permission.
 
@@ -16,7 +16,7 @@ For viewer-facing work, implement only the authorized scope, run checks, provide
 
 ## Read by task
 
-Start with [README](README.md) for setup and [INDEX](docs/INDEX.md) for document authority.
+Start with [README](README.md) for setup and [INDEX](docs/INDEX.md) for document authority. Follow [VERSIONING_POLICY](docs/VERSIONING_POLICY.md): evaluate version impact at each milestone closeout/release, recommend an increment or none with a brief reason, and obtain approval before changing versions unless the creator already specified the new version.
 
 - Architecture/source changes: [ARCHITECTURE](docs/ARCHITECTURE.md), [REPOSITORY_STRUCTURE](docs/REPOSITORY_STRUCTURE.md).
 - Data/history: [DATA_MODEL](docs/DATA_MODEL.md), [accepted v1.3 contract](docs/DATA_MODEL_V1_3_PROPOSAL.md), versioned schemas, [DATA_RULES](docs/DATA_RULES.md), [HISTORICAL_RESOLVER](docs/HISTORICAL_RESOLVER.md).

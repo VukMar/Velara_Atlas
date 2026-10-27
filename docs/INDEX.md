@@ -5,6 +5,7 @@ Start with [README](../README.md) to run the project, [PROJECT_STATUS](PROJECT_S
 ## Authority
 
 - **Current status and authorization:** [PROJECT_STATUS](PROJECT_STATUS.md). The current creator request defines the authorized task.
+- **Version decisions:** [VERSIONING_POLICY](VERSIONING_POLICY.md). `package.json` owns the machine-readable version; README and root lockfile metadata must agree.
 - **Stored data:** the appropriate versioned schema in [schemas/](../schemas/), explained by [DATA_MODEL](DATA_MODEL.md) and the [accepted v1.3 contract](DATA_MODEL_V1_3_PROPOSAL.md).
 - **Behavior:** the subject specifications below. A design document is not permission to implement its deferred ideas.
 - **Evidence:** dated implementation reports and completed roadmaps. Their original test counts, limitations and pending work describe their checkpoints, not current instructions.
@@ -15,6 +16,8 @@ The active Demo is v1.3; v1.2 examples, frozen fixtures and legacy v0.1 Canon ha
 
 | Document | Purpose |
 | --- | --- |
+| [VERSIONING_POLICY](VERSIONING_POLICY.md) | Authoritative version decisions, creator approval, metadata synchronization and repository/published distinction |
+| [GITHUB_PAGES_DEPLOYMENT](GITHUB_PAGES_DEPLOYMENT.md) | Approved manual-only Pages workflow, creator setup/release/rollback procedure and live-verification boundary |
 | [LOCAL_DEVELOPMENT](LOCAL_DEVELOPMENT.md) | Environments, calibration/scenarios, ID Finder, focused/browser checks |
 | [ARCHITECTURE](ARCHITECTURE.md) | Implemented ownership, pure core, lifecycle and validated input/build boundary |
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Directory ownership, generated files and publication surfaces |
