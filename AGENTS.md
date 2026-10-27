@@ -8,7 +8,7 @@ Read this file before editing. Follow the current creator request; documentation
 Checkpoint 4, including integrated creator acceptance, Architecture Phases 1-6 and NEXUS Public Entrance Integration (2026-10-26) are complete and creator-approved.
 The audited website has a NEXUS landing page at `src/viewer/index.html` and the separate noncanonical Atlas at `src/viewer/demo.html`, sharing first-entry completion and audio preferences. The landing page does not load the renderer or Demo data. Future canonical population of index.html and retirement/archival of demo.html require separate approval; preserve the `/Velara_Atlas/` base and current npm commands.
 Cantum Visual Stage 5 is deferred, not a release-planning blocker.
-Checkpoint 5 Phase 1 (manual GitHub Pages deployment preparation) is complete and creator-approved (2026-10-27). Its first live deployment remains unexecuted. Other release preparation, Pages configuration and public deployment need separate creator authorization; commit/push authority comes from the current creator request.
+Checkpoint 5 (first public noncanonical release) is complete and creator-approved (2026-10-27); the initial public version is 0.5.0. See [deployment evidence](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27). The next direction is creator-led canonical worldbuilding, not more Checkpoint 5 implementation. Future Canon integration and every further public deployment need separate authorization; ordinary pushes run verification only, and commit/push authority comes from the current creator request.
 Canon migration, graphical Atlas Creator and public deployment remain separately gated.
 Do not automatically advance milestones or treat an old task/closeout as current permission.
 

@@ -10,11 +10,12 @@
 | Checkpoint 4.1 Phases 1-3 and 4.2A-I | Complete and creator-approved |
 | Architecture Optimization Roadmap, Phases 1-6 | Complete and creator-approved |
 | NEXUS Public Entrance Integration | **Complete and creator-approved, 2026-10-26; manual visual and functional acceptance completed** |
-| Checkpoint 5 Phase 1 - GitHub Pages deployment preparation | **Complete and creator-approved, 2026-10-27; first live deployment not executed** |
+| Checkpoint 5 Phase 1 - GitHub Pages deployment preparation | Complete and creator-approved, 2026-10-27; historical preparation/versioning milestone |
+| Checkpoint 5 - First Public Deployment | **Complete and creator-approved, 2026-10-27; first noncanonical public pre-release live** |
 | Cantum Visual Stages 1-4 and intermediate calibration | Retained implemented baseline |
 | Windows CI reliability maintenance | Merged in [PR #2](https://github.com/VukMar/Velara_Atlas/pull/2), included in `main` at `f0d8d14` |
 
-**Cantum Visual Stage 5 is deferred and is not required now. It does not block Checkpoint 5 release planning.** Deferral does not authorize visual tuning or a canonical radius decision.
+**Cantum Visual Stage 5 remains deferred and was not required for the completed Checkpoint 5 launch.** Deferral does not authorize visual tuning or a canonical radius decision.
 
 ## NEXUS Public Entrance Integration — Complete and Creator-Approved (2026-10-26)
 
@@ -24,15 +25,21 @@ For a future separately approved canonical release, index.html becomes the actua
 
 ## Checkpoint 5 — Phase 1: GitHub Pages Deployment Preparation — Complete and Creator-Approved (2026-10-27)
 
+> Historical preparation-stage record: the pre-deployment statements in this section describe Phase 1, before the successful public release recorded below.
+
 The creator reviewed and approved the manual-only main-branch Pages workflow, its operating instructions and the audited two-page dist/ artifact path. Automatic Ubuntu/Windows verification, required checks before upload/publication, least-privilege deployment and ignored build output are preserved. The authorized closeout also adopts the deliberate pre-release version rebaseline to 0.5.0 and the authoritative [versioning policy](VERSIONING_POLICY.md); this does not represent percentage completion. Documentation, verification, one commit and a normal push to main are authorized for this closeout. See the [operating guide, original verification and closeout amendment](GITHUB_PAGES_DEPLOYMENT.md).
 
 The workflow is prepared and reviewed; its first live Pages deployment has not been executed. Hosting, public URLs, artifact transfer/OIDC and the actual deployment action have no live verification from this work. GitHub-side configuration, public deployment and other Checkpoint 5 work remain separately gated. No tag, GitHub Release, Canon migration or Atlas Creator is authorized.
 
-## Other separately authorized work
+## Checkpoint 5 — First Public Deployment — Complete and Creator-Approved (2026-10-27)
 
-Checkpoint 5 work beyond this limited Phase 1 scope requires separate creator authorization. This preparation is not completion of Checkpoint 5 or authorization to publish.
+The initial public-launch objective is complete: GitHub Pages is configured using GitHub Actions, and the audited two-page NEXUS homepage/noncanonical Demo is published as the first public pre-release, v0.5.0. The manual-only deployment workflow and automatic Ubuntu/Windows verification are preserved. The creator performed and approved live website verification, including the public entrance, Demo, first-entry and shared audio behavior.
 
-Canon migration, graphical Atlas Creator and public deployment each require separate creator authorization. GitHub Pages is the target host; a configured repository-subpath base and local production preview do not constitute deployment. The local authoring CLI is implemented; a graphical editor is not.
+GitHub independently reports successful build and deploy jobs in [manual deployment run 40587944992](https://github.com/VukMar/Velara_Atlas/actions/runs/40587944992), publishing commit `77d2ab0ea484770eb6e40f6d0ac5aaa581d74209`. Package metadata at that exact commit records 0.5.0; the deployment log reports the [live homepage](https://vukmar.github.io/Velara_Atlas/). The [Demo](https://vukmar.github.io/Velara_Atlas/demo.html), evidence sources, creator-confirmed scope and remaining coverage limits are documented in the [deployment record](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27). This documentation-closeout commit is distinct from the published commit and is not deployed by an ordinary push.
+
+## Next direction - creator-led canonical worldbuilding
+
+The next workstream is development and approval of the actual MCR Velara Sector's lore, followed by canonical dataset planning, separately authorized integration and a future creator-approved canonical public release. See [Stages A-D in the roadmap](DEVELOPMENT_ROADMAP.md#future-canonical-direction---not-current-authorization). These stages grant no implementation or disclosure authority. Canon migration, Atlas Creator, replacement of the public Demo and further deployments remain separately gated. Version 1.0.0 is reserved for the first approved canonical public launch; the local authoring CLI exists, while a graphical editor does not.
 
 ## Implemented product and environment boundaries
 
@@ -42,7 +49,7 @@ Development/calibration uses separate finite registered synthetic scenarios with
 
 The Demo uses a provisional shared 24-ly influence radius; frozen v1.2 and calibration radii remain unchanged. No canonical radius or new worldbuilding facts are established by this page.
 
-Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. There is no backend or write endpoint. The manual Pages workflow is reviewed and approved for this commit/push closeout; it publishes only after a separately authorized manual dispatch. No live deployment has been executed.
+Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. There is no backend or write endpoint. The audited two-page site is live on GitHub Pages. Future publication still requires a successful authorized manual dispatch; a repository push or passing verification does not change the published website.
 
 ## Verified baseline and limits
 

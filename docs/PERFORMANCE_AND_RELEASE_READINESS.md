@@ -1,5 +1,7 @@
 # Performance and local release readiness
 
+> **2026-10-27 first public release:** Checkpoint 5 is complete and creator-approved. The [deployment evidence and live URLs](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27) supersede earlier present-tense deployment/hosted-CI limitations for that verified release. Dated reports below retain their original scope; device, accessibility, non-Chromium and scaling limitations are not waived. Ordinary pushes never deploy.
+
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
 
 > **Mixed operating guide and historical evidence.** Use [the local release checklist](#local-publication-dry-run-and-security) for operations. Dated measurements and closeout records below retain their original counts, conclusions and limitations. [PROJECT_STATUS](PROJECT_STATUS.md) owns present approval and CI status; old statements that acceptance or hosted CI is pending are historical.

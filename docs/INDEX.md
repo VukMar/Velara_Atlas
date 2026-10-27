@@ -17,7 +17,7 @@ The active Demo is v1.3; v1.2 examples, frozen fixtures and legacy v0.1 Canon ha
 | Document | Purpose |
 | --- | --- |
 | [VERSIONING_POLICY](VERSIONING_POLICY.md) | Authoritative version decisions, creator approval, metadata synchronization and repository/published distinction |
-| [GITHUB_PAGES_DEPLOYMENT](GITHUB_PAGES_DEPLOYMENT.md) | Approved manual-only Pages workflow, creator setup/release/rollback procedure and live-verification boundary |
+| [GITHUB_PAGES_DEPLOYMENT](GITHUB_PAGES_DEPLOYMENT.md) | First public release evidence, exact published commit, manual-only operations/rollback and verification boundaries |
 | [LOCAL_DEVELOPMENT](LOCAL_DEVELOPMENT.md) | Environments, calibration/scenarios, ID Finder, focused/browser checks |
 | [ARCHITECTURE](ARCHITECTURE.md) | Implemented ownership, pure core, lifecycle and validated input/build boundary |
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Directory ownership, generated files and publication surfaces |
@@ -51,7 +51,7 @@ The active Demo is v1.3; v1.2 examples, frozen fixtures and legacy v0.1 Canon ha
 
 ## Planning and completed work
 
-[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) retains original milestone scope, completed 4.2 phase records and the separately gated Checkpoint 5 outline. Current completion decisions live only in [PROJECT_STATUS](PROJECT_STATUS.md).
+[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) retains original milestone scope, completed 4.2 records, historical Checkpoint 5 Phase 1 preparation and the completed first-public-deployment amendment. Its future canonical Stages A-D remain separately gated. Current completion decisions live only in [PROJECT_STATUS](PROJECT_STATUS.md).
 
 The [Architecture Optimization Roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) is **completed history**, retained at its well-linked path. Its old implementation tasks and Phase 6 authorization must not be executed again.
 

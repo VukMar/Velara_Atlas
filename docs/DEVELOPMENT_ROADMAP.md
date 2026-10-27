@@ -802,15 +802,28 @@ The future canonical release will replace the temporary index.html presentation 
 
 ## Checkpoint 5 — Phase 1: GitHub Pages Deployment Preparation — Complete and Creator-Approved (2026-10-27)
 
+> Historical Phase 1 preparation/versioning record; its pre-deployment status is retained. The subsequent final public-deployment amendment below owns the launch completion.
+
 The creator approved the manual-only main-branch Pages workflow and deployment operating instructions. The two-page audited Vite artifact, ignored dist/, automatic Ubuntu/Windows verify.yml, required pre-upload checks, existing commands/base and publication safeguards are preserved. This closeout formally adopts 0.5.0 (Pre-release) as a deliberate milestone rebaseline and establishes [VERSIONING_POLICY](VERSIONING_POLICY.md); version numbers do not measure percentage completion. Documentation, verification, one commit and normal push to main are authorized. See the [operating guide and separate verification records](GITHUB_PAGES_DEPLOYMENT.md).
 
 The first live Pages deployment has not been executed; hosting, public URLs and the deployment action are not live-verified. Manual GitHub configuration and public deployment remain separately authorized, as do Canon migration, Atlas Creator and other Checkpoint 5 work. No Git tag or GitHub Release is created by this closeout.
 
-## Subsequent publication and separate workstreams
+## Checkpoint 5 — First Public Deployment — Complete and Creator-Approved (2026-10-27)
 
-A separately authorized Checkpoint 5 release-preparation scope may cover static build review, repository-subpath URLs,
-runtime/fallback behavior, disclosure audit, accessibility and performance.
-GitHub Pages is a target host, not an active deployment. Public deployment requires its own explicit authorization.
+This final amendment closes the initial public-launch objective after Phase 1's workflow preparation and versioning. The creator subsequently configured GitHub Pages with GitHub Actions, manually deployed the audited NEXUS homepage and separate noncanonical Demo, and tested and approved the functioning public website, including first-entry/shared audio behavior. v0.5.0 is the first noncanonical public pre-release; no version increment is needed for this documentation-only closeout. [Exact published commit, successful jobs and deployment run](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27) are recorded separately from this new documentation commit. The Phase 1 record above retains its historical pre-deployment status.
+
+Automatic Ubuntu/Windows verification and manual-only deployment remain unchanged. An ordinary push does not publish. Existing browser, accessibility, device and scaling limitations remain; creator acceptance and successful deployment do not certify every environment. No further deployment is part of this closeout.
+
+## Future canonical direction - not current authorization
+
+- **Stage A - Canonical worldbuilding:** The creator develops and approves the sector's history, geography, star systems, Cantums, political history, settlements and foundational lore. This work is creator-controlled and may remain private outside public Git.
+- **Stage B - Canonical dataset planning:** Once a coherent portion is approved, plan its representation in the existing model. Review compatibility, chronology, spatial positions, permanent IDs, connections and authoring requirements before any migration.
+- **Stage C - Separately authorized Atlas integration:** Implement approved content under a separate development scope. Preserve Canon/Demo separation, keep the public Demo available and do not expose unreleased lore during development.
+- **Stage D - Future canonical public release:** When sufficient canonical content and functionality are ready, the creator may separately authorize index.html becoming the real canonical Velara Sector Atlas. 1.0.0 is reserved for that first approved canonical public release. Demo retirement/archival requires explicit creator approval.
+
+These stages are future direction, not authorization to implement, migrate, disclose or deploy now. The next direction is canonical worldbuilding rather than more Checkpoint 5 infrastructure work.
+
+## Retained separate engineering boundaries
 
 Canonical v0.1 → proposed modern schema migration remains a **separate creator-approved workstream**
 requiring an explicit permanent-ID crosswalk and historical review. Never promote

@@ -1,10 +1,14 @@
 # Velara Atlas
 
-**Version 0.5.0 (Pre-release)** · [Versioning policy](docs/VERSIONING_POLICY.md)
+**Velara Atlas v0.5.0 — Public Pre-release** · [Versioning policy](docs/VERSIONING_POLICY.md)
+
+[Live NEXUS homepage](https://vukmar.github.io/Velara_Atlas/) · [Noncanonical interactive Demo](https://vukmar.github.io/Velara_Atlas/demo.html)
+
+First published October 27, 2026 on GitHub Pages. This is a noncanonical public preview; the future canonical MCR Velara Sector Atlas requires separate creator approval. [Published commit, deployment run and creator acceptance](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
 
 A historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local viewer uses vanilla JavaScript, Three.js and Vite.
 
-**Checkpoint 4 is complete and creator-approved, including final integrated acceptance.** The Architecture Optimization Roadmap (Phases 1-6) is complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 Phase 1 (manual Pages deployment preparation) is complete and creator-approved; other release preparation, Canon migration, Atlas Creator and public deployment remain separately gated. See [current project status](docs/PROJECT_STATUS.md).
+**Checkpoint 4 is complete and creator-approved, including final integrated acceptance.** The Architecture Optimization Roadmap (Phases 1-6) is complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 (first public deployment) is complete and creator-approved. Canon development/integration, Atlas Creator and future public deployments remain separately gated. See [current project status](docs/PROJECT_STATUS.md).
 
 The [public entrance amendment](docs/PUBLIC_ENTRANCE.md) describes the two-page structure. The homepage is temporary presentation, reserved for the future canonical Atlas; the Demo remains explicitly noncanonical. Canonical population/migration, Demo retirement/archival and public deployment need separate approval. NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual and functional acceptance. Automated checks and their limits are recorded in the [verification report](docs/PUBLIC_ENTRANCE_VERIFICATION.md).
 
@@ -12,7 +16,7 @@ The [public entrance amendment](docs/PUBLIC_ENTRANCE.md) describes the two-page 
 
 The read-only NONCANONICAL Demo contains four released system charts, one archival-only system and two TEST factions. It supports historical names and InfoCards, catalogue/search, local and interstellar routes, 2D/3D cameras, physical celestial models, spatial zones and approximate Cantum influence. NEXUS artwork, targeting, Focus/chart transitions, first-entry preferences, voice and interface audio are implemented. Follow the [Demo walkthrough](docs/DEMO_SHOWCASE.md).
 
-Development/calibration is a separate synthetic preview with named scenarios and replayable presets. Legacy v0.1 records remain protected under `public/data/`; there is no Canon launcher or graphical editor. The [manual GitHub Pages workflow](docs/GITHUB_PAGES_DEPLOYMENT.md) is reviewed and approved; it never deploys on push or pull request. Its first live deployment has not been executed, and public deployment remains separately authorized.
+Development/calibration is a separate synthetic preview with named scenarios and replayable presets. Legacy v0.1 records remain protected under `public/data/`; there is no Canon launcher or graphical editor. The [manual GitHub Pages workflow](docs/GITHUB_PAGES_DEPLOYMENT.md) is reviewed and approved; it never deploys on push or pull request. The first public release is live and creator-approved. Ordinary pushes do not update the website; each later deployment requires separate authorization and manual dispatch.
 
 ## Setup and run
 
@@ -51,7 +55,7 @@ git diff --check
 
 CI runs the repository checks on Ubuntu and Windows with Node 24. Navigation checks are read-only: after an authorized navigation edit, run `npm run connections` manually, review the generated diff, then run the checks above. Do not use generation as CI repair. See [navigation authoring and recovery](docs/NAVIGATION_AUTHORING.md).
 
-`npm run release:check` performs a local audited two-page build; it does not publish. Vite keeps `publicDir: false`, exact dataset/asset admission and production disclosure checks. The `/Velara_Atlas/` base supports repository-subpath URLs; it is not evidence of a deployed site.
+`npm run release:check` performs a local audited two-page build; it does not publish. Vite keeps `publicDir: false`, exact dataset/asset admission and production disclosure checks. The `/Velara_Atlas/` base supports the live repository-subpath URLs; local build success and ordinary pushes do not replace the published site.
 
 ## Documentation and authoring
 
