@@ -1,0 +1,3604 @@
+{
+  "schemaVersion": "1.3.0",
+  "id": "sec_1000001",
+  "entityType": "sector",
+  "title": "Velara Sector - Private candidate",
+  "map": {
+    "origin": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "size": {
+      "x": 55,
+      "y": 10,
+      "z": 55
+    },
+    "unit": "ly",
+    "projection": "topdown_xz",
+    "planeY": 0
+  },
+  "timeline": {
+    "epoch": "A.E.",
+    "startAE": 0,
+    "defaultAE": 1200
+  },
+  "infoCard": {
+    "affiliation": null,
+    "class": null,
+    "crew": null,
+    "population": null,
+    "armament": null,
+    "description": null
+  },
+  "cantumsPath": "cantums.json",
+  "factionsPath": "factions.json",
+  "connectionsPath": "connections.json",
+  "presentationPath": "presentation.json",
+  "systems": [
+    {
+      "id": "sys_1000001",
+      "entityType": "star_system",
+      "discoveredAE": null,
+      "colonizedAE": 0,
+      "positionLY": {
+        "x": 6.5,
+        "y": -1.23,
+        "z": -10.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 1201,
+          "name": "Putluk",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": null,
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000002",
+      "entityType": "star_system",
+      "discoveredAE": 42,
+      "colonizedAE": 90,
+      "positionLY": {
+        "x": 4.5,
+        "y": 2.82,
+        "z": -14.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 42,
+          "untilAE": 90,
+          "name": "Az-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 90,
+          "untilAE": 1201,
+          "name": "Mladpolye",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 42,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000003",
+      "entityType": "star_system",
+      "discoveredAE": 80,
+      "colonizedAE": 99,
+      "positionLY": {
+        "x": 7.5,
+        "y": 1.64,
+        "z": -4.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 80,
+          "untilAE": 99,
+          "name": "Az-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 99,
+          "untilAE": 1201,
+          "name": "Svetberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 80,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000004",
+      "entityType": "star_system",
+      "discoveredAE": 105,
+      "colonizedAE": 150,
+      "positionLY": {
+        "x": 2.5,
+        "y": -0.38,
+        "z": -17.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 105,
+          "untilAE": 150,
+          "name": "Az-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 150,
+          "untilAE": 1201,
+          "name": "Polyeput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 105,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000005",
+      "entityType": "star_system",
+      "discoveredAE": 153,
+      "colonizedAE": 229,
+      "positionLY": {
+        "x": 4.5,
+        "y": 2.24,
+        "z": -7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 153,
+          "untilAE": 229,
+          "name": "Az-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 229,
+          "untilAE": 1201,
+          "name": "Kamunput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 153,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000006",
+      "entityType": "star_system",
+      "discoveredAE": 168,
+      "colonizedAE": 241,
+      "positionLY": {
+        "x": 9.5,
+        "y": -3.96,
+        "z": -8.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 168,
+          "untilAE": 241,
+          "name": "Az-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 241,
+          "untilAE": 1201,
+          "name": "Tuketvrd",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 168,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000007",
+      "entityType": "star_system",
+      "discoveredAE": 272,
+      "colonizedAE": 390,
+      "positionLY": {
+        "x": 14.5,
+        "y": 3.28,
+        "z": -7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 272,
+          "untilAE": 390,
+          "name": "Az-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 390,
+          "untilAE": 1201,
+          "name": "Burberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 272,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000008",
+      "entityType": "star_system",
+      "discoveredAE": 275,
+      "colonizedAE": 409,
+      "positionLY": {
+        "x": 11.5,
+        "y": -3.33,
+        "z": -5.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 275,
+          "untilAE": 409,
+          "name": "Az-8",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 409,
+          "untilAE": 1201,
+          "name": "Puteberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 275,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000014",
+      "entityType": "star_system",
+      "discoveredAE": 426,
+      "colonizedAE": 440,
+      "positionLY": {
+        "x": 0.5,
+        "y": -0.81,
+        "z": -14.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 426,
+          "untilAE": 440,
+          "name": "Az-9",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 440,
+          "untilAE": 1201,
+          "name": "Bergovar",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1125,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1168,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1168,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 426,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000019",
+      "entityType": "star_system",
+      "discoveredAE": 507,
+      "colonizedAE": 521,
+      "positionLY": {
+        "x": 0.5,
+        "y": -0.83,
+        "z": -7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 507,
+          "untilAE": 521,
+          "name": "Az-10",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 521,
+          "untilAE": 1201,
+          "name": "Belput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1125,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1168,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1168,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 507,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000020",
+      "entityType": "star_system",
+      "discoveredAE": 519,
+      "colonizedAE": 533,
+      "positionLY": {
+        "x": 1.5,
+        "y": 1.61,
+        "z": -3.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 519,
+          "untilAE": 533,
+          "name": "Az-11",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 533,
+          "untilAE": 1201,
+          "name": "Senpolye",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 519,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000027",
+      "entityType": "star_system",
+      "discoveredAE": 602,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 9.5,
+        "y": 4.16,
+        "z": -16.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 602,
+          "untilAE": 1201,
+          "name": "Az-12",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 602,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000028",
+      "entityType": "star_system",
+      "discoveredAE": 604,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 12.5,
+        "y": 1.84,
+        "z": -12.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 604,
+          "untilAE": 1201,
+          "name": "Az-13",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 604,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000029",
+      "entityType": "star_system",
+      "discoveredAE": 606,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 13.5,
+        "y": 3.71,
+        "z": -16.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 606,
+          "untilAE": 1201,
+          "name": "Az-14",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 606,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000030",
+      "entityType": "star_system",
+      "discoveredAE": 608,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 17.5,
+        "y": 2.93,
+        "z": -8.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 608,
+          "untilAE": 1201,
+          "name": "Az-15",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 608,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000031",
+      "entityType": "star_system",
+      "discoveredAE": 613,
+      "colonizedAE": 625,
+      "positionLY": {
+        "x": 5.5,
+        "y": 3.31,
+        "z": -1.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 613,
+          "untilAE": 625,
+          "name": "Az-16",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 625,
+          "untilAE": 1201,
+          "name": "Zrenberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 613,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000032",
+      "entityType": "star_system",
+      "discoveredAE": 616,
+      "colonizedAE": 630,
+      "positionLY": {
+        "x": 12.5,
+        "y": -2.90,
+        "z": -2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 616,
+          "untilAE": 630,
+          "name": "Az-17",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 630,
+          "untilAE": 1201,
+          "name": "Bujnasel",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 616,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000039",
+      "entityType": "star_system",
+      "discoveredAE": 757,
+      "colonizedAE": 790,
+      "positionLY": {
+        "x": 0.5,
+        "y": -4.87,
+        "z": -10.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 757,
+          "untilAE": 790,
+          "name": "Az-18",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 790,
+          "untilAE": 1201,
+          "name": "Rekput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 757,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000009",
+      "entityType": "star_system",
+      "discoveredAE": 334,
+      "colonizedAE": 340,
+      "positionLY": {
+        "x": -17.5,
+        "y": 1.44,
+        "z": -17.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 334,
+          "untilAE": 340,
+          "name": "Buki-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 340,
+          "untilAE": 1201,
+          "name": "Bergdom",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 345,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 334,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000010",
+      "entityType": "star_system",
+      "discoveredAE": 370,
+      "colonizedAE": 381,
+      "positionLY": {
+        "x": -14.5,
+        "y": -2.84,
+        "z": -19.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 370,
+          "untilAE": 381,
+          "name": "Buki-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 381,
+          "untilAE": 1201,
+          "name": "Shumberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 370,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000011",
+      "entityType": "star_system",
+      "discoveredAE": 379,
+      "colonizedAE": 391,
+      "positionLY": {
+        "x": -20.5,
+        "y": 0.21,
+        "z": -15.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 379,
+          "untilAE": 391,
+          "name": "Buki-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 391,
+          "untilAE": 1201,
+          "name": "Visluk",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 379,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000012",
+      "entityType": "star_system",
+      "discoveredAE": 391,
+      "colonizedAE": 405,
+      "positionLY": {
+        "x": -12.5,
+        "y": 0.66,
+        "z": -17.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 391,
+          "untilAE": 405,
+          "name": "Buki-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 405,
+          "untilAE": 1201,
+          "name": "Lesgrad",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1168,
+          "untilAE": 1176,
+          "cantumId": "can_1000002",
+          "datePrecision": "within_window"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 391,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000013",
+      "entityType": "star_system",
+      "discoveredAE": 407,
+      "colonizedAE": 424,
+      "positionLY": {
+        "x": -14.5,
+        "y": -4.28,
+        "z": -14.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 407,
+          "untilAE": 424,
+          "name": "Buki-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 424,
+          "untilAE": 1201,
+          "name": "Mladnasel",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 407,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000015",
+      "entityType": "star_system",
+      "discoveredAE": 429,
+      "colonizedAE": 448,
+      "positionLY": {
+        "x": -11.5,
+        "y": -1.17,
+        "z": -14.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 429,
+          "untilAE": 448,
+          "name": "Buki-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 448,
+          "untilAE": 1201,
+          "name": "Chernput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1172,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 429,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000016",
+      "entityType": "star_system",
+      "discoveredAE": 456,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -20.5,
+        "y": 4.85,
+        "z": -19.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 456,
+          "untilAE": 1201,
+          "name": "Buki-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 456,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000036",
+      "entityType": "star_system",
+      "discoveredAE": 679,
+      "colonizedAE": 711,
+      "positionLY": {
+        "x": -10.5,
+        "y": 2.75,
+        "z": -19.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 679,
+          "untilAE": 711,
+          "name": "Buki-8",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 711,
+          "untilAE": 1201,
+          "name": "Drevluk",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 679,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000017",
+      "entityType": "star_system",
+      "discoveredAE": 463,
+      "colonizedAE": 475,
+      "positionLY": {
+        "x": -12.5,
+        "y": 0.06,
+        "z": -11.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 463,
+          "untilAE": 475,
+          "name": "Vedi-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 475,
+          "untilAE": 1201,
+          "name": "Rekberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 480,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1171,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1171,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 463,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000018",
+      "entityType": "star_system",
+      "discoveredAE": 488,
+      "colonizedAE": 503,
+      "positionLY": {
+        "x": -7.5,
+        "y": -0.35,
+        "z": -14.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 488,
+          "untilAE": 503,
+          "name": "Vedi-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 503,
+          "untilAE": 1201,
+          "name": "Murnasel",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1170,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1170,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 488,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000023",
+      "entityType": "star_system",
+      "discoveredAE": 569,
+      "colonizedAE": 586,
+      "positionLY": {
+        "x": -2.5,
+        "y": 2.89,
+        "z": -15.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 569,
+          "untilAE": 586,
+          "name": "Vedi-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 586,
+          "untilAE": 1201,
+          "name": "Oyek",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1169,
+          "untilAE": 1175,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1169,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 569,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000025",
+      "entityType": "star_system",
+      "discoveredAE": 583,
+      "colonizedAE": 595,
+      "positionLY": {
+        "x": -7.5,
+        "y": 4.29,
+        "z": -11.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 583,
+          "untilAE": 595,
+          "name": "Vedi-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 595,
+          "untilAE": 1201,
+          "name": "Dubiput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1168,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 583,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000057",
+      "entityType": "star_system",
+      "discoveredAE": 980,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -17.5,
+        "y": 1.78,
+        "z": -7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 980,
+          "untilAE": 1201,
+          "name": "Vedi-10",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 980,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000058",
+      "entityType": "star_system",
+      "discoveredAE": 998,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -17.5,
+        "y": 1.43,
+        "z": -11.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 998,
+          "untilAE": 1201,
+          "name": "Vedi-11",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 998,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000062",
+      "entityType": "star_system",
+      "discoveredAE": 1049,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -12.5,
+        "y": 1.48,
+        "z": 2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1049,
+          "untilAE": 1201,
+          "name": "Vedi-12",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1049,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000068",
+      "entityType": "star_system",
+      "discoveredAE": 1183,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -15.5,
+        "y": -3.51,
+        "z": -2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1183,
+          "untilAE": 1201,
+          "name": "Vedi-13",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1183,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000069",
+      "entityType": "star_system",
+      "discoveredAE": 1193,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -14.5,
+        "y": 1.41,
+        "z": 6.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1193,
+          "untilAE": 1201,
+          "name": "Vedi-14",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1193,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000021",
+      "entityType": "star_system",
+      "discoveredAE": 531,
+      "colonizedAE": 542,
+      "positionLY": {
+        "x": -2.5,
+        "y": -1.61,
+        "z": -5.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 531,
+          "untilAE": 542,
+          "name": "Glagoli-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 542,
+          "untilAE": 1175,
+          "name": "Putnasel",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "name": "Pustosh-7",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 548,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1173,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1173,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 531,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000022",
+      "entityType": "star_system",
+      "discoveredAE": 556,
+      "colonizedAE": 574,
+      "positionLY": {
+        "x": -2.5,
+        "y": -2.60,
+        "z": -9.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 556,
+          "untilAE": 574,
+          "name": "Glagoli-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 574,
+          "untilAE": 1175,
+          "name": "Kamunvod",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "name": "Pustosh-11",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1174,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1174,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 556,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000024",
+      "entityType": "star_system",
+      "discoveredAE": 573,
+      "colonizedAE": 589,
+      "positionLY": {
+        "x": -6.5,
+        "y": -2.48,
+        "z": -6.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 573,
+          "untilAE": 589,
+          "name": "Glagoli-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 589,
+          "untilAE": 1201,
+          "name": "Dulinberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1168,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 573,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000026",
+      "entityType": "star_system",
+      "discoveredAE": 583,
+      "colonizedAE": 597,
+      "positionLY": {
+        "x": -4.5,
+        "y": 3.34,
+        "z": -2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 583,
+          "untilAE": 597,
+          "name": "Glagoli-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 597,
+          "untilAE": 1175,
+          "name": "Kamunrek",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "name": "Pustosh-13",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1172,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1172,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 583,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000041",
+      "entityType": "star_system",
+      "discoveredAE": 760,
+      "colonizedAE": 799,
+      "positionLY": {
+        "x": -9.5,
+        "y": 3.05,
+        "z": -8.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 776,
+          "untilAE": 799,
+          "name": "Glagoli-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 799,
+          "untilAE": 1201,
+          "name": "Shumdom",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1004,
+          "cantumId": "can_1000004",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "entityId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1168,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 760,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000045",
+      "entityType": "star_system",
+      "discoveredAE": 812,
+      "colonizedAE": 866,
+      "positionLY": {
+        "x": -11.5,
+        "y": -3.46,
+        "z": -4.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 838,
+          "untilAE": 866,
+          "name": "Glagoli-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 866,
+          "untilAE": 1201,
+          "name": "Morluk",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 812,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000051",
+      "entityType": "star_system",
+      "discoveredAE": 908,
+      "colonizedAE": 936,
+      "positionLY": {
+        "x": -13.5,
+        "y": -0.81,
+        "z": -7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 908,
+          "untilAE": 936,
+          "name": "Glagoli-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 936,
+          "untilAE": 1201,
+          "name": "Murkamun",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 908,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000053",
+      "entityType": "star_system",
+      "discoveredAE": 924,
+      "colonizedAE": 951,
+      "positionLY": {
+        "x": -8.5,
+        "y": 1.71,
+        "z": -1.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 924,
+          "untilAE": 951,
+          "name": "Glagoli-8",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 951,
+          "untilAE": 1201,
+          "name": "Luknasel",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 970,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": [
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "entityId": "can_1000002",
+          "datePrecision": "confirmed_by"
+        }
+      ],
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 924,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000033",
+      "entityType": "star_system",
+      "discoveredAE": 633,
+      "colonizedAE": 737,
+      "positionLY": {
+        "x": -1.5,
+        "y": 4.22,
+        "z": 6.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 633,
+          "untilAE": 737,
+          "name": "Yest-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 737,
+          "untilAE": 1201,
+          "name": "Puteprist",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 745,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 633,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000040",
+      "entityType": "star_system",
+      "discoveredAE": 759,
+      "colonizedAE": 791,
+      "positionLY": {
+        "x": -1.5,
+        "y": -1.66,
+        "z": -0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 759,
+          "untilAE": 791,
+          "name": "Yest-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 791,
+          "untilAE": 1201,
+          "name": "Stengrad",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 759,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000044",
+      "entityType": "star_system",
+      "discoveredAE": 806,
+      "colonizedAE": 843,
+      "positionLY": {
+        "x": -4.5,
+        "y": 3.53,
+        "z": 5.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 806,
+          "untilAE": 843,
+          "name": "Yest-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 843,
+          "untilAE": 1201,
+          "name": "Mureberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 806,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000049",
+      "entityType": "star_system",
+      "discoveredAE": 879,
+      "colonizedAE": 920,
+      "positionLY": {
+        "x": 0.5,
+        "y": -0.32,
+        "z": 3.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 879,
+          "untilAE": 920,
+          "name": "Yest-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 920,
+          "untilAE": 1201,
+          "name": "Dolinvis",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 879,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000055",
+      "entityType": "star_system",
+      "discoveredAE": 966,
+      "colonizedAE": 1006,
+      "positionLY": {
+        "x": -2.5,
+        "y": 3.69,
+        "z": 2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 966,
+          "untilAE": 1006,
+          "name": "Yest-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1006,
+          "untilAE": 1201,
+          "name": "Skolnsten",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 966,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000056",
+      "entityType": "star_system",
+      "discoveredAE": 975,
+      "colonizedAE": 990,
+      "positionLY": {
+        "x": -5.5,
+        "y": -0.67,
+        "z": -0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 975,
+          "untilAE": 990,
+          "name": "Yest-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 990,
+          "untilAE": 1201,
+          "name": "Durmberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 990,
+          "untilAE": 1175,
+          "cantumId": "can_1000007",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 975,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000063",
+      "entityType": "star_system",
+      "discoveredAE": 1085,
+      "colonizedAE": 1176,
+      "positionLY": {
+        "x": -6.5,
+        "y": -1.52,
+        "z": 2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1085,
+          "untilAE": 1176,
+          "name": "Yest-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1176,
+          "untilAE": 1201,
+          "name": "Stenluk",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1085,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000042",
+      "entityType": "star_system",
+      "discoveredAE": 773,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -8.5,
+        "y": 1.72,
+        "z": 6.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 773,
+          "untilAE": 1201,
+          "name": "Yest-Az",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 773,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000048",
+      "entityType": "star_system",
+      "discoveredAE": 852,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -5.5,
+        "y": 0.45,
+        "z": 9.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 852,
+          "untilAE": 1201,
+          "name": "Yest-Buki",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 852,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000061",
+      "entityType": "star_system",
+      "discoveredAE": 1027,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": -0.5,
+        "y": -2.80,
+        "z": 10.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1027,
+          "untilAE": 1201,
+          "name": "Yest-Vedi",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1027,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000034",
+      "entityType": "star_system",
+      "discoveredAE": 635,
+      "colonizedAE": 721,
+      "positionLY": {
+        "x": 5.5,
+        "y": 4.76,
+        "z": 3.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 635,
+          "untilAE": 721,
+          "name": "Dzelo-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 721,
+          "untilAE": 1201,
+          "name": "Stenput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 730,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 635,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000038",
+      "entityType": "star_system",
+      "discoveredAE": 750,
+      "colonizedAE": 783,
+      "positionLY": {
+        "x": 3.5,
+        "y": -1.51,
+        "z": 0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 750,
+          "untilAE": 783,
+          "name": "Dzelo-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 783,
+          "untilAE": 1201,
+          "name": "Visvod",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 750,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000046",
+      "entityType": "star_system",
+      "discoveredAE": 822,
+      "colonizedAE": 928,
+      "positionLY": {
+        "x": 3.5,
+        "y": 1.81,
+        "z": 5.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 822,
+          "untilAE": 928,
+          "name": "Dzelo-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 928,
+          "untilAE": 1201,
+          "name": "Gureprist",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 822,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000050",
+      "entityType": "star_system",
+      "discoveredAE": 886,
+      "colonizedAE": 926,
+      "positionLY": {
+        "x": 7.5,
+        "y": 4.48,
+        "z": 5.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 886,
+          "untilAE": 926,
+          "name": "Dzelo-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 926,
+          "untilAE": 1201,
+          "name": "Basanberg",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 886,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000054",
+      "entityType": "star_system",
+      "discoveredAE": 959,
+      "colonizedAE": 997,
+      "positionLY": {
+        "x": 3.5,
+        "y": 4.35,
+        "z": 8.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 959,
+          "untilAE": 997,
+          "name": "Dzelo-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 997,
+          "untilAE": 1201,
+          "name": "Obalput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 959,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000060",
+      "entityType": "star_system",
+      "discoveredAE": 1018,
+      "colonizedAE": 1059,
+      "positionLY": {
+        "x": 1.1,
+        "y": -4.42,
+        "z": 7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1018,
+          "untilAE": 1059,
+          "name": "Dzelo-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1059,
+          "untilAE": 1201,
+          "name": "Plavput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1018,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000064",
+      "entityType": "star_system",
+      "discoveredAE": 1089,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 7.5,
+        "y": 3.12,
+        "z": 12.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1089,
+          "untilAE": 1201,
+          "name": "Dzelo-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1089,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000066",
+      "entityType": "star_system",
+      "discoveredAE": 1130,
+      "colonizedAE": 1160,
+      "positionLY": {
+        "x": 3.5,
+        "y": 2.66,
+        "z": 11.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1130,
+          "untilAE": 1160,
+          "name": "Dzelo-8",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1160,
+          "untilAE": 1201,
+          "name": "Dulinpol",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1130,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000035",
+      "entityType": "star_system",
+      "discoveredAE": 639,
+      "colonizedAE": 715,
+      "positionLY": {
+        "x": 12.5,
+        "y": 0.47,
+        "z": 0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 639,
+          "untilAE": 715,
+          "name": "Zhivete-1",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 715,
+          "untilAE": 1201,
+          "name": "Vudegrad",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 725,
+          "untilAE": 1201,
+          "cantumId": "can_1000005",
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 639,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000037",
+      "entityType": "star_system",
+      "discoveredAE": 739,
+      "colonizedAE": 768,
+      "positionLY": {
+        "x": 9.5,
+        "y": 0.73,
+        "z": -0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 739,
+          "untilAE": 768,
+          "name": "Zhivete-2",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 768,
+          "untilAE": 1201,
+          "name": "Visdom",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 739,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000043",
+      "entityType": "star_system",
+      "discoveredAE": 779,
+      "colonizedAE": 810,
+      "positionLY": {
+        "x": 12.5,
+        "y": 0.92,
+        "z": 4.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 779,
+          "untilAE": 810,
+          "name": "Zhivete-3",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 810,
+          "untilAE": 1201,
+          "name": "Tolaput",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 779,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000047",
+      "entityType": "star_system",
+      "discoveredAE": 838,
+      "colonizedAE": 874,
+      "positionLY": {
+        "x": 15.5,
+        "y": -2.59,
+        "z": 0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 838,
+          "untilAE": 874,
+          "name": "Zhivete-4",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 874,
+          "untilAE": 1201,
+          "name": "Pulysten",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 838,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000052",
+      "entityType": "star_system",
+      "discoveredAE": 917,
+      "colonizedAE": 960,
+      "positionLY": {
+        "x": 9.5,
+        "y": -0.66,
+        "z": 2.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 917,
+          "untilAE": 960,
+          "name": "Zhivete-5",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 960,
+          "untilAE": 1201,
+          "name": "Drvhrid",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": [
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 917,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000059",
+      "entityType": "star_system",
+      "discoveredAE": 1005,
+      "colonizedAE": 1048,
+      "positionLY": {
+        "x": 18.5,
+        "y": 0.48,
+        "z": 0.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1005,
+          "untilAE": 1048,
+          "name": "Zhivete-6",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1048,
+          "untilAE": 1201,
+          "name": "Ravnvod",
+          "kind": "proper_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1005,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000065",
+      "entityType": "star_system",
+      "discoveredAE": 1094,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 21,
+        "y": -0.56,
+        "z": -2.6
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1094,
+          "untilAE": 1201,
+          "name": "Zhivete-7",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1094,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000067",
+      "entityType": "star_system",
+      "discoveredAE": 1164,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 17.5,
+        "y": -0.30,
+        "z": 7.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1164,
+          "untilAE": 1201,
+          "name": "Zhivete-8",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1164,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    },
+    {
+      "id": "sys_1000070",
+      "entityType": "star_system",
+      "discoveredAE": 1195,
+      "colonizedAE": null,
+      "positionLY": {
+        "x": 21,
+        "y": 1.00,
+        "z": 12.5
+      },
+      "nameHistory": [
+        {
+          "fromAE": 1195,
+          "untilAE": 1201,
+          "name": "Zhivete-9",
+          "kind": "survey_designation",
+          "datePrecision": "exact"
+        }
+      ],
+      "cantumHistory": null,
+      "controlHistory": null,
+      "publicDetailPath": null,
+      "infoCard": {
+        "affiliation": null,
+        "class": [
+          {
+            "fromAE": 1195,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": null
+      }
+    }
+  ]
+}

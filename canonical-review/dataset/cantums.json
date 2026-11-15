@@ -1,0 +1,598 @@
+{
+  "schemaVersion": "1.3.0",
+  "cantums": [
+    {
+      "id": "can_1000001",
+      "entityType": "cantum",
+      "letter": "A",
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 1201,
+          "name": "Drevnasel",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 345,
+          "status": "founding_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 345,
+          "untilAE": 1167,
+          "status": "central_cantum_of_the_continuance",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 0,
+            "untilAE": 345,
+            "text": "Drevnasel is the founding regional identity, centred on Putluk. Its founding community is established in Year 0.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 345,
+            "untilAE": 1167,
+            "text": "Drevnasel is the central Cantum of the Continuance. Its existing government exercises the unified state’s central authority.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1201,
+            "text": "Drevnasel continues under its existing sovereign government after the dissolution of the Continuance.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000002",
+      "entityType": "cantum",
+      "letter": "B",
+      "nameHistory": [
+        {
+          "fromAE": 345,
+          "untilAE": 360,
+          "name": "Cantum",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 360,
+          "untilAE": 1201,
+          "name": "Visshum",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 345,
+          "untilAE": 930,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 930,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 345,
+            "untilAE": 930,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 930,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 345,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 345,
+            "untilAE": 360,
+            "text": "Cantum is the second established regional government, centred on Bergdom and subordinate to Drevnasel.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 360,
+            "untilAE": 930,
+            "text": "Visshum is the second established Cantum, centred on Bergdom and subordinate to Drevnasel.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 930,
+            "untilAE": 931,
+            "text": "Visshum has peacefully become a sovereign Cantum.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 931,
+            "untilAE": 1126,
+            "text": "Visshum is a sovereign Cantum whose government has adopted a hereditary Empire.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1126,
+            "untilAE": 1138,
+            "text": "Visshum is conducting its conquest campaign. The extent of local military occupation depends on campaign progress.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1168,
+            "text": "Visshum has completed the conquest campaign; military occupation remains distinct from local civil administration.",
+            "datePrecision": "confirmed_by"
+          },
+          {
+            "fromAE": 1168,
+            "untilAE": 1175,
+            "text": "Visshum is engaged in the Final War. Imperial control recedes at the separately recorded local liberation and withdrawal boundaries.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Visshum has surrendered and its former imperial government has been defeated. The Cantum remains sovereign; the separate replacement-dynasty installation date is unrecorded.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000003",
+      "entityType": "cantum",
+      "letter": "C",
+      "nameHistory": [
+        {
+          "fromAE": 480,
+          "untilAE": 1201,
+          "name": "Okeanberg",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 480,
+          "untilAE": 970,
+          "status": "constituent_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 970,
+          "untilAE": 1126,
+          "status": "sovereign_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "status": "historical_cantum_under_imperial_occupation",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "status": "restored_sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 480,
+            "untilAE": 970,
+            "entityId": "can_1000001",
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1126,
+            "entityId": null,
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 480,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 480,
+            "untilAE": 970,
+            "text": "Okeanberg is the third established regional government, centred on Rekberg and subordinate to Drevnasel.",
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1000,
+            "text": "Okeanberg has peacefully become sovereign around 970 A.E. The selected visualization anchor is 970; the historical date remains approximate.",
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1126,
+            "text": "Okeanberg sovereignty is confirmed by 1000 A.E., following its approximate separation around 970. This confirmation is not a new independence event.",
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1169,
+            "text": "Okeanberg’s government has been defeated in the 1126–1138 conquest campaign. This is the confirmed-by outcome, not a date for each local capture.",
+            "datePrecision": "confirmed_by"
+          },
+          {
+            "fromAE": 1169,
+            "untilAE": 1175,
+            "text": "Selected systems have been liberated, but Okeanberg’s sovereign government has not yet been restored. Their administrative absences follow their individual liberation years.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Okeanberg’s own sovereign government has been restored under Drevnasel influence. Influence does not constitute direct Drevnasel administration.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000004",
+      "entityType": "cantum",
+      "letter": "D",
+      "nameHistory": [
+        {
+          "fromAE": 548,
+          "untilAE": 1201,
+          "name": "Rekdolin",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 548,
+          "untilAE": 1000,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1000,
+          "untilAE": 1008,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1201,
+          "status": "historical_cantum_without_sovereign_government",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 548,
+            "untilAE": 1000,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1008,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 548,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 548,
+            "untilAE": 1000,
+            "text": "Rekdolin is the fourth established regional government, centred on Putnasel and subordinate to Drevnasel.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1008,
+            "text": "Rekdolin is a sovereign Cantum following negotiated independence.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1201,
+            "text": "Rekdolin has lost sovereignty following the 1004–1008 conquest. Its historical identity remains; no restored sovereign Rekdolin government is established.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000005",
+      "entityType": "cantum",
+      "letter": "G",
+      "nameHistory": [
+        {
+          "fromAE": 725,
+          "untilAE": 1201,
+          "name": "Vodravan",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 725,
+          "untilAE": 1153,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1153,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 725,
+            "untilAE": 1153,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 725,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 725,
+            "untilAE": 1153,
+            "text": "Vodravan is an established constituent Cantum under Drevnasel’s central authority.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": 1201,
+            "text": "Vodravan has peacefully become a sovereign Cantum.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000006",
+      "entityType": "cantum",
+      "letter": "F",
+      "nameHistory": [
+        {
+          "fromAE": 730,
+          "untilAE": 1201,
+          "name": "Gornebes",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 730,
+          "untilAE": 1146,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1146,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 730,
+            "untilAE": 1146,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1146,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 730,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 730,
+            "untilAE": 1146,
+            "text": "Gornebes is an established constituent Cantum under Drevnasel’s central authority.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1146,
+            "untilAE": 1201,
+            "text": "Gornebes has peacefully become a sovereign Cantum.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000007",
+      "entityType": "cantum",
+      "letter": "E",
+      "nameHistory": [
+        {
+          "fromAE": 745,
+          "untilAE": 1201,
+          "name": "Zaklun",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 745,
+          "untilAE": 1167,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 745,
+            "untilAE": 1167,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 745,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 745,
+            "untilAE": 1167,
+            "text": "Zaklun is an established constituent Cantum under Drevnasel’s central authority.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1201,
+            "text": "Zaklun has peacefully become sovereign. Its separation ends the unified Continuance; no intra-year ordering relative to the Bergovar Betrayal is selected.",
+            "datePrecision": "exact"
+          }
+        ]
+      }
+    }
+  ]
+}

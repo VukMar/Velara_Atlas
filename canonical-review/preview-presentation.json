@@ -1,0 +1,15 @@
+{
+  "status": "PROVISIONAL PRIVATE ATLAS PRESENTATION — CREATOR VISUAL REVIEW",
+  "basis": "administrative",
+  "radiusLY": 4,
+  "palette": {
+    "A": "#57B8D9",
+    "B": "#D88962",
+    "C": "#72BC89",
+    "D": "#C08ACE",
+    "E": "#E0C36B",
+    "F": "#799DE5",
+    "G": "#D97FA1"
+  },
+  "rationale": "4 ly is 7.3% of the 55-ly chart width; a single contributor reaches the existing 0.35 field threshold at about 4.92 ly. This is a starting calibration for sparse, explicitly evidenced administrations, not a territorial boundary or a canonical radius."
+}

@@ -59,6 +59,8 @@ CI runs the repository checks on Ubuntu and Windows with Node 24. Navigation che
 
 ## Documentation and authoring
 
+The separately authorized [canonical migration review](canonical-review/README.md) runs with `npm run canonical:dev` on loopback port 5175. It packages the current 70-system/seven-Cantum candidate for PR review; the default build and published website remain noncanonical and unchanged.
+
 Start with the [documentation index](docs/INDEX.md), which separates current specifications, operating guides and historical evidence.
 
 - [Project status and approval gates](docs/PROJECT_STATUS.md)

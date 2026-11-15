@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {datasetRoot,repoModule} from './config.mjs';
+const {readDatasetSource}=await repoModule('scripts/demo-files.mjs');
+const {structuralErrors}=await repoModule('scripts/atlas-validation.mjs');
+const {validateRelationships}=await repoModule('scripts/check-relations.mjs');
+const {checkConnections}=await repoModule('scripts/connections.mjs');
+for(const name of ['systems','factions'])fs.mkdirSync(path.join(datasetRoot,name),{recursive:true});
+const source=readDatasetSource(datasetRoot);
+const errors=[...structuralErrors(source.dataset),...validateRelationships(source.dataset),...checkConnections(source).errors];
+assert.deepEqual(errors,[]);
+console.log('Private candidate: schema, registered inventory, relationships and navigation freshness PASS; '+source.inventory.files.length+' exact JSON inputs.');

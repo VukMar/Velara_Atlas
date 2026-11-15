@@ -30,6 +30,8 @@ jobs:
       - run: npm test
       - run: npm run validate
       - run: npm run build
+      - run: npm run canonical:check
+      - run: npm run canonical:test
       - run: npm run history:demo
       - run: npm run idfind -- all
       - run: npm run release:check

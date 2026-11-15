@@ -50,6 +50,8 @@ No canonical radius is chosen. Completed, creator-approved named local previews 
 
 ## Automated and browser verification
 
+The separately authorized canonical review branch also provides `npm run canonical:dev` on port 5175, with a fixed reviewed dataset and the existing Vite runtime. This review-only environment does not change default build selection or the website. See [candidate launch, reproduction and limitations](../canonical-review/README.md).
+
 Run `npm test`, `npm run validate`, `npm run connections:check`,
 `npm run build` and `npm run history:demo` from the repository root.
 For focused calibration checks: `node --test tests/cantum-calibration.test.mjs`.

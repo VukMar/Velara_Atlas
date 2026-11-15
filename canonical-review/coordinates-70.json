@@ -1,0 +1,1061 @@
+{
+  "sourceCommit": "0ef93d16d70ce9633451acd8612c8e5ac39c11b1",
+  "status": "RECONCILED_D130",
+  "compared": 70,
+  "matches": 70,
+  "mismatches": 0,
+  "fingerprintScope": "Only the 70 authorized historical records; not the full private coordinate artifact.",
+  "fingerprint": "0d9e735bfde7bb61d515f876c613d27510703e630ad52544a48271950ec2c8e2",
+  "comparisons": [
+    {
+      "mapperId": "system-mvs1ya3f-6",
+      "atlasId": "sys_1000001",
+      "sourceXYZText": [
+        "6.5",
+        "-1.23",
+        "-10.5"
+      ],
+      "candidatePosition": {
+        "x": 6.5,
+        "y": -1.23,
+        "z": -10.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs1yz1a-7",
+      "atlasId": "sys_1000002",
+      "sourceXYZText": [
+        "4.5",
+        "2.82",
+        "-14.5"
+      ],
+      "candidatePosition": {
+        "x": 4.5,
+        "y": 2.82,
+        "z": -14.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsegds2-14",
+      "atlasId": "sys_1000003",
+      "sourceXYZText": [
+        "7.5",
+        "1.64",
+        "-4.5"
+      ],
+      "candidatePosition": {
+        "x": 7.5,
+        "y": 1.64,
+        "z": -4.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs257hv-c",
+      "atlasId": "sys_1000004",
+      "sourceXYZText": [
+        "2.5",
+        "-0.38",
+        "-17.5"
+      ],
+      "candidatePosition": {
+        "x": 2.5,
+        "y": -0.38,
+        "z": -17.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs247d4-b",
+      "atlasId": "sys_1000005",
+      "sourceXYZText": [
+        "4.5",
+        "2.24",
+        "-7.5"
+      ],
+      "candidatePosition": {
+        "x": 4.5,
+        "y": 2.24,
+        "z": -7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs2a6by-e",
+      "atlasId": "sys_1000006",
+      "sourceXYZText": [
+        "9.5",
+        "-3.96",
+        "-8.5"
+      ],
+      "candidatePosition": {
+        "x": 9.5,
+        "y": -3.96,
+        "z": -8.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs273or-d",
+      "atlasId": "sys_1000007",
+      "sourceXYZText": [
+        "14.5",
+        "3.28",
+        "-7.5"
+      ],
+      "candidatePosition": {
+        "x": 14.5,
+        "y": 3.28,
+        "z": -7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs21k4w-a",
+      "atlasId": "sys_1000008",
+      "sourceXYZText": [
+        "11.5",
+        "-3.33",
+        "-5.5"
+      ],
+      "candidatePosition": {
+        "x": 11.5,
+        "y": -3.33,
+        "z": -5.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfmnd6-1i",
+      "atlasId": "sys_1000014",
+      "sourceXYZText": [
+        "0.5",
+        "-0.81",
+        "-14.5"
+      ],
+      "candidatePosition": {
+        "x": 0.5,
+        "y": -0.81,
+        "z": -14.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsg0c23-21",
+      "atlasId": "sys_1000019",
+      "sourceXYZText": [
+        "0.5",
+        "-0.83",
+        "-7.5"
+      ],
+      "candidatePosition": {
+        "x": 0.5,
+        "y": -0.83,
+        "z": -7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfob6e-1k",
+      "atlasId": "sys_1000020",
+      "sourceXYZText": [
+        "1.5",
+        "1.61",
+        "-3.5"
+      ],
+      "candidatePosition": {
+        "x": 1.5,
+        "y": 1.61,
+        "z": -3.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfyqlr-1y",
+      "atlasId": "sys_1000027",
+      "sourceXYZText": [
+        "9.5",
+        "4.16",
+        "-16.5"
+      ],
+      "candidatePosition": {
+        "x": 9.5,
+        "y": 4.16,
+        "z": -16.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfypjg-1x",
+      "atlasId": "sys_1000028",
+      "sourceXYZText": [
+        "12.5",
+        "1.84",
+        "-12.5"
+      ],
+      "candidatePosition": {
+        "x": 12.5,
+        "y": 1.84,
+        "z": -12.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfyrpv-1z",
+      "atlasId": "sys_1000029",
+      "sourceXYZText": [
+        "13.5",
+        "3.71",
+        "-16.5"
+      ],
+      "candidatePosition": {
+        "x": 13.5,
+        "y": 3.71,
+        "z": -16.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsg5so7-22",
+      "atlasId": "sys_1000030",
+      "sourceXYZText": [
+        "17.5",
+        "2.93",
+        "-8.5"
+      ],
+      "candidatePosition": {
+        "x": 17.5,
+        "y": 2.93,
+        "z": -8.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfo4xa-1j",
+      "atlasId": "sys_1000031",
+      "sourceXYZText": [
+        "5.5",
+        "3.31",
+        "-1.5"
+      ],
+      "candidatePosition": {
+        "x": 5.5,
+        "y": 3.31,
+        "z": -1.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfq0ts-1l",
+      "atlasId": "sys_1000032",
+      "sourceXYZText": [
+        "12.5",
+        "-2.90",
+        "-2.5"
+      ],
+      "candidatePosition": {
+        "x": 12.5,
+        "y": -2.9,
+        "z": -2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse5qqb-y",
+      "atlasId": "sys_1000039",
+      "sourceXYZText": [
+        "0.5",
+        "-4.87",
+        "-10.5"
+      ],
+      "candidatePosition": {
+        "x": 0.5,
+        "y": -4.87,
+        "z": -10.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvs2gu8k-h",
+      "atlasId": "sys_1000009",
+      "sourceXYZText": [
+        "-17.5",
+        "1.44",
+        "-17.5"
+      ],
+      "candidatePosition": {
+        "x": -17.5,
+        "y": 1.44,
+        "z": -17.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdokt3-i",
+      "atlasId": "sys_1000010",
+      "sourceXYZText": [
+        "-14.5",
+        "-2.84",
+        "-19.5"
+      ],
+      "candidatePosition": {
+        "x": -14.5,
+        "y": -2.84,
+        "z": -19.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdu3a7-j",
+      "atlasId": "sys_1000011",
+      "sourceXYZText": [
+        "-20.5",
+        "0.21",
+        "-15.5"
+      ],
+      "candidatePosition": {
+        "x": -20.5,
+        "y": 0.21,
+        "z": -15.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsduuk3-k",
+      "atlasId": "sys_1000012",
+      "sourceXYZText": [
+        "-12.5",
+        "0.66",
+        "-17.5"
+      ],
+      "candidatePosition": {
+        "x": -12.5,
+        "y": 0.66,
+        "z": -17.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdvkvl-l",
+      "atlasId": "sys_1000013",
+      "sourceXYZText": [
+        "-14.5",
+        "-4.28",
+        "-14.5"
+      ],
+      "candidatePosition": {
+        "x": -14.5,
+        "y": -4.28,
+        "z": -14.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsl3gvi-2a",
+      "atlasId": "sys_1000015",
+      "sourceXYZText": [
+        "-11.5",
+        "-1.17",
+        "-14.5"
+      ],
+      "candidatePosition": {
+        "x": -11.5,
+        "y": -1.17,
+        "z": -14.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfvrwd-1n",
+      "atlasId": "sys_1000016",
+      "sourceXYZText": [
+        "-20.5",
+        "4.85",
+        "-19.5"
+      ],
+      "candidatePosition": {
+        "x": -20.5,
+        "y": 4.85,
+        "z": -19.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdwby1-m",
+      "atlasId": "sys_1000036",
+      "sourceXYZText": [
+        "-10.5",
+        "2.75",
+        "-19.5"
+      ],
+      "candidatePosition": {
+        "x": -10.5,
+        "y": 2.75,
+        "z": -19.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse0i8b-p",
+      "atlasId": "sys_1000017",
+      "sourceXYZText": [
+        "-12.5",
+        "0.06",
+        "-11.5"
+      ],
+      "candidatePosition": {
+        "x": -12.5,
+        "y": 0.06,
+        "z": -11.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdxy1f-n",
+      "atlasId": "sys_1000018",
+      "sourceXYZText": [
+        "-7.5",
+        "-0.35",
+        "-14.5"
+      ],
+      "candidatePosition": {
+        "x": -7.5,
+        "y": -0.35,
+        "z": -14.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse0ttz-q",
+      "atlasId": "sys_1000023",
+      "sourceXYZText": [
+        "-2.5",
+        "2.89",
+        "-15.5"
+      ],
+      "candidatePosition": {
+        "x": -2.5,
+        "y": 2.89,
+        "z": -15.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfu6hz-1m",
+      "atlasId": "sys_1000025",
+      "sourceXYZText": [
+        "-7.5",
+        "4.29",
+        "-11.5"
+      ],
+      "candidatePosition": {
+        "x": -7.5,
+        "y": 4.29,
+        "z": -11.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfx6v0-1p",
+      "atlasId": "sys_1000057",
+      "sourceXYZText": [
+        "-17.5",
+        "1.78",
+        "-7.5"
+      ],
+      "candidatePosition": {
+        "x": -17.5,
+        "y": 1.78,
+        "z": -7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsjxb7i-29",
+      "atlasId": "sys_1000058",
+      "sourceXYZText": [
+        "-17.5",
+        "1.43",
+        "-11.5"
+      ],
+      "candidatePosition": {
+        "x": -17.5,
+        "y": 1.43,
+        "z": -11.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxd87-1r",
+      "atlasId": "sys_1000062",
+      "sourceXYZText": [
+        "-12.5",
+        "1.48",
+        "2.5"
+      ],
+      "candidatePosition": {
+        "x": -12.5,
+        "y": 1.48,
+        "z": 2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxb1v-1q",
+      "atlasId": "sys_1000068",
+      "sourceXYZText": [
+        "-15.5",
+        "-3.51",
+        "-2.5"
+      ],
+      "candidatePosition": {
+        "x": -15.5,
+        "y": -3.51,
+        "z": -2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxeis-1s",
+      "atlasId": "sys_1000069",
+      "sourceXYZText": [
+        "-14.5",
+        "1.41",
+        "6.5"
+      ],
+      "candidatePosition": {
+        "x": -14.5,
+        "y": 1.41,
+        "z": 6.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse3a40-t",
+      "atlasId": "sys_1000021",
+      "sourceXYZText": [
+        "-2.5",
+        "-1.61",
+        "-5.5"
+      ],
+      "candidatePosition": {
+        "x": -2.5,
+        "y": -1.61,
+        "z": -5.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse4q6x-w",
+      "atlasId": "sys_1000022",
+      "sourceXYZText": [
+        "-2.5",
+        "-2.60",
+        "-9.5"
+      ],
+      "candidatePosition": {
+        "x": -2.5,
+        "y": -2.6,
+        "z": -9.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse5aty-x",
+      "atlasId": "sys_1000024",
+      "sourceXYZText": [
+        "-6.5",
+        "-2.48",
+        "-6.5"
+      ],
+      "candidatePosition": {
+        "x": -6.5,
+        "y": -2.48,
+        "z": -6.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse43i7-v",
+      "atlasId": "sys_1000026",
+      "sourceXYZText": [
+        "-4.5",
+        "3.34",
+        "-2.5"
+      ],
+      "candidatePosition": {
+        "x": -4.5,
+        "y": 3.34,
+        "z": -2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse3niw-u",
+      "atlasId": "sys_1000041",
+      "sourceXYZText": [
+        "-9.5",
+        "3.05",
+        "-8.5"
+      ],
+      "candidatePosition": {
+        "x": -9.5,
+        "y": 3.05,
+        "z": -8.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsdzr5b-o",
+      "atlasId": "sys_1000045",
+      "sourceXYZText": [
+        "-11.5",
+        "-3.46",
+        "-4.5"
+      ],
+      "candidatePosition": {
+        "x": -11.5,
+        "y": -3.46,
+        "z": -4.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse269n-s",
+      "atlasId": "sys_1000051",
+      "sourceXYZText": [
+        "-13.5",
+        "-0.81",
+        "-7.5"
+      ],
+      "candidatePosition": {
+        "x": -13.5,
+        "y": -0.81,
+        "z": -7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvse1ai3-r",
+      "atlasId": "sys_1000053",
+      "sourceXYZText": [
+        "-8.5",
+        "1.71",
+        "-1.5"
+      ],
+      "candidatePosition": {
+        "x": -8.5,
+        "y": 1.71,
+        "z": -1.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsef2ri-12",
+      "atlasId": "sys_1000033",
+      "sourceXYZText": [
+        "-1.5",
+        "4.22",
+        "6.5"
+      ],
+      "candidatePosition": {
+        "x": -1.5,
+        "y": 4.22,
+        "z": 6.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsefn7m-13",
+      "atlasId": "sys_1000040",
+      "sourceXYZText": [
+        "-1.5",
+        "-1.66",
+        "-0.5"
+      ],
+      "candidatePosition": {
+        "x": -1.5,
+        "y": -1.66,
+        "z": -0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsedlte-10",
+      "atlasId": "sys_1000044",
+      "sourceXYZText": [
+        "-4.5",
+        "3.53",
+        "5.5"
+      ],
+      "candidatePosition": {
+        "x": -4.5,
+        "y": 3.53,
+        "z": 5.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsecx03-z",
+      "atlasId": "sys_1000049",
+      "sourceXYZText": [
+        "0.5",
+        "-0.32",
+        "3.5"
+      ],
+      "candidatePosition": {
+        "x": 0.5,
+        "y": -0.32,
+        "z": 3.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfm3ul-1h",
+      "atlasId": "sys_1000055",
+      "sourceXYZText": [
+        "-2.5",
+        "3.69",
+        "2.5"
+      ],
+      "candidatePosition": {
+        "x": -2.5,
+        "y": 3.69,
+        "z": 2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsjsoq2-28",
+      "atlasId": "sys_1000056",
+      "sourceXYZText": [
+        "-5.5",
+        "-0.67",
+        "-0.5"
+      ],
+      "candidatePosition": {
+        "x": -5.5,
+        "y": -0.67,
+        "z": -0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvseeevf-11",
+      "atlasId": "sys_1000063",
+      "sourceXYZText": [
+        "-6.5",
+        "-1.52",
+        "2.5"
+      ],
+      "candidatePosition": {
+        "x": -6.5,
+        "y": -1.52,
+        "z": 2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxfx4-1t",
+      "atlasId": "sys_1000042",
+      "sourceXYZText": [
+        "-8.5",
+        "1.72",
+        "6.5"
+      ],
+      "candidatePosition": {
+        "x": -8.5,
+        "y": 1.72,
+        "z": 6.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxh4a-1u",
+      "atlasId": "sys_1000048",
+      "sourceXYZText": [
+        "-5.5",
+        "0.45",
+        "9.5"
+      ],
+      "candidatePosition": {
+        "x": -5.5,
+        "y": 0.45,
+        "z": 9.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsfxiso-1v",
+      "atlasId": "sys_1000061",
+      "sourceXYZText": [
+        "-0.5",
+        "-2.80",
+        "10.5"
+      ],
+      "candidatePosition": {
+        "x": -0.5,
+        "y": -2.8,
+        "z": 10.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsej5zl-15",
+      "atlasId": "sys_1000034",
+      "sourceXYZText": [
+        "5.5",
+        "4.76",
+        "3.5"
+      ],
+      "candidatePosition": {
+        "x": 5.5,
+        "y": 4.76,
+        "z": 3.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsel9xt-18",
+      "atlasId": "sys_1000038",
+      "sourceXYZText": [
+        "3.5",
+        "-1.51",
+        "0.5"
+      ],
+      "candidatePosition": {
+        "x": 3.5,
+        "y": -1.51,
+        "z": 0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsek9mg-16",
+      "atlasId": "sys_1000046",
+      "sourceXYZText": [
+        "3.5",
+        "1.81",
+        "5.5"
+      ],
+      "candidatePosition": {
+        "x": 3.5,
+        "y": 1.81,
+        "z": 5.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvselra2-19",
+      "atlasId": "sys_1000050",
+      "sourceXYZText": [
+        "7.5",
+        "4.48",
+        "5.5"
+      ],
+      "candidatePosition": {
+        "x": 7.5,
+        "y": 4.48,
+        "z": 5.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsekp5a-17",
+      "atlasId": "sys_1000054",
+      "sourceXYZText": [
+        "3.5",
+        "4.35",
+        "8.5"
+      ],
+      "candidatePosition": {
+        "x": 3.5,
+        "y": 4.35,
+        "z": 8.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsme8vl-2b",
+      "atlasId": "sys_1000060",
+      "sourceXYZText": [
+        "1.1",
+        "-4.42",
+        "7.5"
+      ],
+      "candidatePosition": {
+        "x": 1.1,
+        "y": -4.42,
+        "z": 7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsmmg5x-2c",
+      "atlasId": "sys_1000064",
+      "sourceXYZText": [
+        "7.5",
+        "3.12",
+        "12.5"
+      ],
+      "candidatePosition": {
+        "x": 7.5,
+        "y": 3.12,
+        "z": 12.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsemexo-1a",
+      "atlasId": "sys_1000066",
+      "sourceXYZText": [
+        "3.5",
+        "2.66",
+        "11.5"
+      ],
+      "candidatePosition": {
+        "x": 3.5,
+        "y": 2.66,
+        "z": 11.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsemy4u-1b",
+      "atlasId": "sys_1000035",
+      "sourceXYZText": [
+        "12.5",
+        "0.47",
+        "0.5"
+      ],
+      "candidatePosition": {
+        "x": 12.5,
+        "y": 0.47,
+        "z": 0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsep4tb-1e",
+      "atlasId": "sys_1000037",
+      "sourceXYZText": [
+        "9.5",
+        "0.73",
+        "-0.5"
+      ],
+      "candidatePosition": {
+        "x": 9.5,
+        "y": 0.73,
+        "z": -0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsenkb4-1c",
+      "atlasId": "sys_1000043",
+      "sourceXYZText": [
+        "12.5",
+        "0.92",
+        "4.5"
+      ],
+      "candidatePosition": {
+        "x": 12.5,
+        "y": 0.92,
+        "z": 4.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsepqig-1f",
+      "atlasId": "sys_1000047",
+      "sourceXYZText": [
+        "15.5",
+        "-2.59",
+        "0.5"
+      ],
+      "candidatePosition": {
+        "x": 15.5,
+        "y": -2.59,
+        "z": 0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvseokue-1d",
+      "atlasId": "sys_1000052",
+      "sourceXYZText": [
+        "9.5",
+        "-0.66",
+        "2.5"
+      ],
+      "candidatePosition": {
+        "x": 9.5,
+        "y": -0.66,
+        "z": 2.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvseq5ah-1g",
+      "atlasId": "sys_1000059",
+      "sourceXYZText": [
+        "18.5",
+        "0.48",
+        "0.5"
+      ],
+      "candidatePosition": {
+        "x": 18.5,
+        "y": 0.48,
+        "z": 0.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsj72as-23",
+      "atlasId": "sys_1000065",
+      "sourceXYZText": [
+        "21",
+        "-0.56",
+        "-2.6"
+      ],
+      "candidatePosition": {
+        "x": 21,
+        "y": -0.56,
+        "z": -2.6
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsj8v3f-25",
+      "atlasId": "sys_1000067",
+      "sourceXYZText": [
+        "17.5",
+        "-0.30",
+        "7.5"
+      ],
+      "candidatePosition": {
+        "x": 17.5,
+        "y": -0.3,
+        "z": 7.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    },
+    {
+      "mapperId": "system-mvsj99l3-27",
+      "atlasId": "sys_1000070",
+      "sourceXYZText": [
+        "21",
+        "1.00",
+        "12.5"
+      ],
+      "candidatePosition": {
+        "x": 21,
+        "y": 1,
+        "z": 12.5
+      },
+      "result": "EXACT_MATCH; unchanged from corrected preview"
+    }
+  ]
+}

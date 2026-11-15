@@ -1,0 +1,18 @@
+{
+  "sourceRepository": "VukMar/MCR_Worldbuilding",
+  "sourceCommit": "0ef93d16d70ce9633451acd8612c8e5ac39c11b1",
+  "decision": "D-130 / Worldbuilding PR #43",
+  "registryPath": "02_Canon/Sector_Registry/Velara_System_and_Cantum_Historical_Registry_0-1200_AE.md",
+  "coordinatePath": "03_Working/Proposals/Velara_Sector_3D_Coordinate_Candidates_v1.1.md",
+  "reproduction": "Materializes frozen, creator-authorized migration outputs. Full source extraction remains private and is not required for a fresh checkout.",
+  "sha256": {
+    "dataset/sector.json": "52368e2a3c39e41fc9934ef164e1d79ebd551505c1b1fe937a6ecd883ec5859e",
+    "dataset/cantums.json": "42383d44d06b58a349936fd63167f1415055963edb158f33a690f776e3c33345",
+    "dataset/factions.json": "2f17c91597a35d61d4a40d62e93bc44f0fb32e3e4aefcde946a47df64dccce36",
+    "dataset/connections.json": "217779677717f8a86e7684230de849f0305cb090abceb882cbb68eb594db0809",
+    "dataset/presentation.json": "f019eb81ed71ac53c06941819cdd3b3656641b99db35b7d58e8e90ae1599f2be",
+    "inputs/reviewed-records.json": "3ca57088ddbabd73e8c6f68496f31179de300ce67ba9084ce171f78f363454da",
+    "crosswalk.json": "28dc599c4e4237ddd778f6f78b4774a9fb1457fbfe39bf111e2366e82a334462",
+    "identity-lock.json": "ccc53886e481828233ac0b2bac8475b6e960f6565e805c4433554919d055bf79"
+  }
+}

@@ -44,6 +44,8 @@ For chosen year `Y`:
 
 ## 2. Exact field and compositing algorithm (initial recommended implementation)
 
+Internal callers may explicitly request `territoryGroups(view, sector, presentation, {basis:'administrative'})` to group by effective direct `cantumHistory`. The default remains governing-Cantum grouping. The derived administrative groups declare `identityBasis: 'administrative'`, which envelope and nameplate contributor checks also honor. This option changes no stored schema, governance history, public selector or Demo configuration.
+
 **Coordinates are world-space `ly` in the sector X/Z plane**, not CNU, and **bubble radii are `ly`**, never screen pixels. One bubble is centered at each eligible system `(x_i, z_i)` and uses the shared v1.3 `radiusLY > 0` (`r_c` below). Frozen v1.2 uses its Cantum's authored radius.
 
 At a sample map-plane point `(x,z)` define squared distance and influence:

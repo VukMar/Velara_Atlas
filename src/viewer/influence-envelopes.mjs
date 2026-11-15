@@ -1,4 +1,4 @@
-import {cantumField} from '../core/cartography.mjs';
+import {cantumField,territoryContributorMatches} from '../core/cartography.mjs';
 
 const cache=new Map(),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const ENVELOPE_RESOLUTION=128;
@@ -14,7 +14,7 @@ export function influenceEnvelopes(groups, systems, map, presentation, resolutio
   for(const axis of ['x','y','z'])bounds[axis]=[map.origin[axis]-map.size[axis]/2,map.origin[axis]+map.size[axis]/2];
   const eligible=groups.map(g=>({...g,points:g.points.flatMap(p=>{
     const s=source.get(p.id),v=s?.positionLY;
-    return (Object.hasOwn(s??{},'governingCantumId')?s.governingCantumId===g.id:s?.cantumId===g.id)&&v&&p.x===v.x&&p.z===v.z&&['x','y','z'].every(a=>Number.isFinite(v[a])&&v[a]>=bounds[a][0]&&v[a]<=bounds[a][1])
+    return territoryContributorMatches(s,g)&&v&&p.x===v.x&&p.z===v.z&&['x','y','z'].every(a=>Number.isFinite(v[a])&&v[a]>=bounds[a][0]&&v[a]<=bounds[a][1])
       ? [{id:p.id,x:p.x,z:p.z,y:v.y}] : [];
   })})).filter(g=>g.points.length&&Number.isFinite(g.radius)&&g.radius>0);
   const key=JSON.stringify([eligible,bounds,start,end,resolution]);
