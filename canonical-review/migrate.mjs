@@ -9,7 +9,7 @@ export const names=['sector.json','cantums.json','factions.json','connections.js
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 export function reviewedOutputs(){
  const manifest=JSON.parse(fs.readFileSync(path.join(workspace,'review-manifest.json'),'utf8'));
- for(const name of ['inputs/reviewed-records.json','crosswalk.json','identity-lock.json'])assert.equal(hash(fs.readFileSync(path.join(workspace,name))),manifest.sha256[name],'Reviewed input changed: '+name);
+ for(const name of ['inputs/reviewed-records.json','crosswalk.json','identity-lock.json','cartographic-associations.json'])assert.equal(hash(fs.readFileSync(path.join(workspace,name))),manifest.sha256[name],'Reviewed input changed: '+name);
  const input=JSON.parse(fs.readFileSync(path.join(workspace,'inputs/reviewed-records.json'),'utf8'));
  const crosswalk=JSON.parse(fs.readFileSync(path.join(workspace,'crosswalk.json'),'utf8'));
  const lock=JSON.parse(fs.readFileSync(path.join(workspace,'identity-lock.json'),'utf8'));

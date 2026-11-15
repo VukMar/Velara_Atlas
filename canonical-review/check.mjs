@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import {validateCartographicPolicy} from './associations.mjs';
 import {datasetRoot,repoModule} from './config.mjs';
 const {readDatasetSource}=await repoModule('scripts/demo-files.mjs');
 const {structuralErrors}=await repoModule('scripts/atlas-validation.mjs');
@@ -10,4 +11,5 @@ for(const name of ['systems','factions'])fs.mkdirSync(path.join(datasetRoot,name
 const source=readDatasetSource(datasetRoot);
 const errors=[...structuralErrors(source.dataset),...validateRelationships(source.dataset),...checkConnections(source).errors];
 assert.deepEqual(errors,[]);
+validateCartographicPolicy(JSON.parse(fs.readFileSync(path.join(datasetRoot,'../cartographic-associations.json'),'utf8')),source.dataset);
 console.log('Private candidate: schema, registered inventory, relationships and navigation freshness PASS; '+source.inventory.files.length+' exact JSON inputs.');

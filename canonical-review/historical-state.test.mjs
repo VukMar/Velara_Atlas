@@ -25,10 +25,10 @@ test('all candidate positions retain X/Y precision, correct Z sign, and stay fix
  for(const [i,r] of records.entries()){assert.deepEqual(positions[i].slice(1).map(x=>x.trim()),correctedXYZText(r));const s=byName(r.referenceName);for(const y of checkpoints){const resolved=resolveSystem(s,y);if(resolved.catalogueEligible)assert.deepEqual(resolved.positionLY,s.positionLY);}}
  const missing=structuredClone(byName('Mladpolye'));missing.positionLY=null;const resolved=resolveSystem(missing,1200);assert.equal(resolved.positionLY,null);assert.equal(resolved.markerEligible,false);assert.equal(resolved.catalogueEligible,true);
 });
-test('visibility follows all 69 official registrations, never scientific/private milestones; Putluk stays unresolved',()=>{
- for(const r of records){const s=byName(r.referenceName);assert.equal(s.discoveredAE,r.registration);assert(!Object.hasOwn(s,'knownByAE'));if(r.registration!==null){assert.equal(resolveSystem(s,r.registration-1).catalogueEligible,false);assert.equal(resolveSystem(s,r.registration).catalogueEligible,true);}}
- for(let y=0;y<=1200;y++){assert.equal(state('Putluk',y).catalogueEligible,false);const known=resolveCatalogue(d.sector,y);assert.equal(known.length,records.filter(r=>r.registration!==null&&r.registration<=y).length);for(const p of privateRecords)assert(!known.some(k=>k.id===original.crosswalk.find(c=>c.mapperId===p.mapperId).atlasId));}
- assert.equal(resolveCatalogue(d.sector,0).length,0);assert.equal(resolveCatalogue(d.sector,1200).length,69);
+test('visibility preserves 69 registrations and the founding system confirmed known by Year 0',()=>{
+ for(const r of records){const s=byName(r.referenceName);assert.equal(s.discoveredAE,r.registration);if(r.referenceName==='Putluk')assert.equal(s.knownByAE,0);else assert(!Object.hasOwn(s,'knownByAE'));if(r.registration!==null){assert.equal(resolveSystem(s,r.registration-1).catalogueEligible,false);assert.equal(resolveSystem(s,r.registration).catalogueEligible,true);}}
+ for(let y=0;y<=1200;y++){assert.equal(state('Putluk',y).catalogueEligible,true);assert.equal(state('Putluk',y).knowledge.basis,'known_by');const known=resolveCatalogue(d.sector,y);assert.equal(known.length,1+records.filter(r=>r.registration!==null&&r.registration<=y).length);}
+ assert.equal(resolveCatalogue(d.sector,0).length,1);assert.equal(resolveCatalogue(d.sector,1200).length,70);
 });
 test('all name boundaries, Polyeput private/provisional sequence, Pustosh and survey-only names',()=>{
  assert.equal(state('Polyeput',95).state,'not_known');assert.equal(state('Polyeput',104).name,undefined);assert.equal(state('Polyeput',105).name,'Az-4');assert.equal(state('Polyeput',149).name,'Az-4');assert.equal(state('Polyeput',150).name,'Polyeput');

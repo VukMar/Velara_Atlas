@@ -21,7 +21,8 @@
     "canonical:dev": "node canonical-review/preview.mjs",
     "canonical:check": "node canonical-review/check.mjs",
     "canonical:rebuild": "node canonical-review/migrate.mjs",
-    "canonical:test": "node --test canonical-review/migration.test.mjs canonical-review/historical-state.test.mjs canonical-review/cantum-integration.test.mjs"
+    "canonical:test": "node --test canonical-review/migration.test.mjs canonical-review/historical-state.test.mjs canonical-review/cantum-integration.test.mjs canonical-review/settlement.test.mjs",
+    "canonical:audit": "node canonical-review/audit.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

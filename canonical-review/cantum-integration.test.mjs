@@ -38,7 +38,7 @@ test('seven stable private colors and administrative contributors stay separate 
   assert(!view.records.some(r=>r.name==='The Continuance'));assert(!view.records.some(r=>r.id.startsWith('pol_')));
  }
  assert.equal(seen.size,7,'Each historical Cantum has a source-backed region at an applicable year, not a fabricated region in every year');
- const high=admin(745);assert.equal(high.view.cantums.length,7);assert.equal(high.groups.length,6,'Founding system visibility is unresolved; no invented early A contributor');assert.equal(territoryGroups(high.view,d.sector,d.presentation).length,1,'Default v1.3 behavior remains governing aggregation');
+ const high=admin(745);assert.equal(high.view.cantums.length,7);assert.equal(high.groups.length,7,'Confirmed founding system contributes without a fabricated registration');assert.equal(territoryGroups(high.view,d.sector,d.presentation).length,1,'Default v1.3 behavior remains governing aggregation');
 });
 
 test('formation, historical names, independence, transferred administration and neutral fields remain independent',()=>{
@@ -57,7 +57,7 @@ test('historical nameplates and three-dimensional envelopes use direct identity 
   const {view,groups}=admin(y);
   // Fixed text-fit metrics isolate historical identity here; the browser verifies actual font fitting.
   const aspects=Object.fromEntries(view.cantums.map(c=>[c.id,3]));
-  const labels=territorialLabels(groups,view.cantums,view.map,d.presentation,aspects,128);
+  const labels=territorialLabels(groups,view.cantums,view.map,d.presentation,aspects,128,[],{minimumNameHeightFraction:.012,singleNamePerCantum:true});
   for(const l of labels){seen.add(l.cantumId);assert.equal(l.name,view.cantums.find(c=>c.id===l.cantumId).name);assert.notEqual(l.name,'The Continuance');}
   if([745,1200].includes(y)){const envelopes=influenceEnvelopes(groups,view.systems,view.map,d.presentation,16);for(const g of groups){assert(Number.isFinite(territorialAnchorY(g,view.systems,view.map)));assert.deepEqual(envelopes.find(e=>e.id===g.id).contributors,g.points.map(p=>p.id));}}
  }assert.equal(seen.size,7);

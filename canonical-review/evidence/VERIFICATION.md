@@ -1,41 +1,26 @@
-# Review migration verification
+# Settlement/cartography review verification
 
-Local checks on 15 November 2026, Windows, Node **20.5.1**, npm **9.8.0**. Fresh checkouts should use Node 24, matching the existing CI matrix. These results do not claim remote CI, other browsers, physical devices or deployment coverage.
+Local environment: Windows, Node 20.5.1/npm 9.8.0. CI uses Node 24 on Ubuntu and Windows. These results concern PR #4's settlement correction; older `cantums-*` screenshots retain the superseded pre-clarification appearance.
 
-| Command or check | Actual result |
+The local standard checks passed: `connections:check`, `npm test` (**374 tests**, plus legacy/Demo checks), `validate`, `build`, and `release:check`. Candidate schema/navigation, deterministic rebuild and **31 canonical tests** passed, including the all-70 audit reproducibility assertion. `git diff --check` passed. Hosted matrix results for the final SHA are reported on the updated PR.
+
+Tests now cover all integer years 0–1200, every settlement's preceding/at/following years, 17 systems without documented settlement, seven formation boundaries, c.970 transfers, annexation versus civil administration, occupation/liberation gaps, all eight neutral borders, three Pustosh withdrawals, Lesgrad's continued affiliation, exact coordinate tokens, 2-LY radius, fitted labels, InfoCard distinctions, historical alias search, disclosure and unchanged production output. A machine audit generated from the resolver covers all 70 identities.
+
+The browser callback **passed all 47 selected years with zero application/console errors**, including 1004, 1126, 1137 and 1138 in addition to formation, naming, sovereignty, withdrawal and settlement checkpoints. It checked every rendered contributor's settlement/association, all seven historical labels across applicable years, the known-by Putluk card and survey search, regional-only and neutral/excluded cards, separate occupation, both cameras, archival fallback and five denied non-runtime input requests. The 1200 perspective view had six envelopes and six visible nameplates. [Machine results](affiliation-browser-results.json) and requested screenshots are retained below. The independent Demo passed a separate browser check at 1200 and 850: radius 24 LY, five/four systems, governing groups two/one, with no candidate key.
+
+The walkthrough exposed an existing candidate key error at unrecorded Cantum-status intervals: calling `replaceAll` on a null status. The key now displays a historical-status gap instead of inventing a government. Initial browser-harness issues (hidden search input and compositor inspection property) were corrected in the callback. No historical data was changed for those harness errors.
+
+A local repeat of the default suite, concurrent with browser verification, had 373 passes and one `ENOTEMPTY` failure in an existing inventory-test temporary-directory cleanup hook. Its assertions did not report a map/data failure. Both an earlier full run and the final isolated retry **passed all 374**, without changing the test or historical data. Hosted CI is independently required for the final commit.
+
+| Requested year/view | Screenshot |
 | --- | --- |
-| `npm run connections:check` | PASS; read-only generated navigation check |
-| `npm test` | PASS; 374 Node tests, legacy check script and Demo validation |
-| `npm run validate` | PASS; strict v1.3 Demo validation |
-| `npm run build` | PASS; default Demo/landing build and output audit |
-| `npm run release:check` | PASS; audited local release build, no publication |
-| `npm run canonical:check` | PASS; exact five-file inventory, schema, relationships and navigation freshness |
-| `npm run canonical:rebuild` | PASS; five outputs byte-identical to the pre-migration working candidate |
-| `npm run canonical:test` | PASS; 20 portable review tests |
-| Existing private migration and Cantum suites | PASS; 20 tests with only the superseded publication-boundary assertion adapted in a separate private test copy |
-| Private-informed content audit | PASS; confidential identities/tuples, full private sources, draft system descriptions, credentials and machine paths excluded |
-| `git diff --check` | PASS |
-| Clean local clone | PASS; `npm ci`, `npm run canonical:rebuild`, `npm run build`, all 20 `canonical:test` tests and clean Git diff, with independent dependencies and no original private-workspace inputs |
+| 0 | [Top-down](affiliations-0-top.png) |
+| 345 | [Top-down](affiliations-345-top.png) |
+| 745 | [Top-down](affiliations-745-top.png) |
+| 970 | [Top-down](affiliations-970-top.png) |
+| 1008 | [Top-down](affiliations-1008-top.png) |
+| 1138 | [Top-down](affiliations-1138-top.png) |
+| 1175 | [Top-down](affiliations-1175-top.png) |
+| 1200 | [Top-down](affiliations-1200-top.png), [perspective](affiliations-1200-3d.png) |
 
-The untouched original private suite's former requirement that only six generic files could be dirty failed when the newly authorized review package appeared. That old no-publication assertion was replaced in a separate private copy by an audit against the confidential source records. Its historical, extraction, source-pin, identity, coordinate, transport and resolver assertions were retained and passed. The original private tests/source archives remain outside this PR. The portable tests retain applicable historical assertions and replace private-source dependencies with the authorized frozen review subset.
-
-An initial sandboxed default test run had temporary-directory/realpath access failures (331 passed, 43 failed). Repeating the same commands with the required filesystem access passed all 374 tests. A test-loader record-order mismatch during packaging was corrected in the loader; no runtime JSON changed. There are no remaining local check failures. The existing large-chunk build advisory remains.
-
-## Browser evidence
-
-Chromium at **1440 × 1000** compared the complete resolved view and administrative groups at **44 historical years** between the original running private preview and the branch launcher. Every snapshot matched exactly. Years included formation/name/independence boundaries and each year 1167–1175.
-
-The packaged browser callback separately passed all 44 snapshots, all seven historical nameplates/colors across their supported periods, both camera modes, historical Rekdolin selection, qualified Okeanberg InfoCards, marker picking and NEXUS archival fallback. It recorded no application errors. Four non-runtime review inputs were explicitly requested through the Vite filesystem route and all returned **403**; the exact input boundary remains enforced.
-
-The independent Demo was inspected at 1200 and 850: five/four visible TEST systems, respectively; 24-LY radius; 160 × 60 × 160 LY chart; two governing groups at 1200 and one combined group at 850. The candidate's Cantum key was absent from the Demo. Its data, homepage, assets, production selector and deployment workflow have no changes.
-
-Representative screenshots from the original visually inspected candidate are safe review content. Runtime bytes and browser state are identical after transfer:
-
-| Year/view | Evidence |
-| --- | --- |
-| 345, original second-Cantum name | [Top-down screenshot](cantums-345-top.png) |
-| 745, seven identities and six supported fields | [Top-down screenshot](cantums-745-top.png) |
-| 1200, six successor fields | [Top-down screenshot](cantums-1200-top.png) |
-| 1200, perspective camera | [3D screenshot](cantums-1200-3d.png) |
-
-No merge, deployment or version change was performed. Remote CI results should be read on the PR after push.
+Default production and the independent Demo retain the 24-LY radius and governing aggregation. No deployment, merge, version change, other-browser or physical-device coverage is claimed. The existing large-bundle advisory remains. All private source material and confidential identities/positions stay outside Git.

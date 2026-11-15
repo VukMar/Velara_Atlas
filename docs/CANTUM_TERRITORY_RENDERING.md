@@ -326,3 +326,4 @@ and actual XYZ, including subordinate elevations. Cache keys retain grouped IDs,
 positions, radius, thresholds and elevation/identity where consumed. Existing
 clear/dispose paths replace WebGL/DOM resources on year changes. Unknown roots
 are omitted from political shading and explained as Not recorded in InfoCards.
+The canonical review candidate additionally opts into a `cartographic` derived basis, resolved separately from administration and military control with mandatory settlement eligibility. Shared defaults are unchanged. Its compact name fitting is opt-in, selects one fitted label per contributing Cantum and does not enlarge geographic fields. See [the candidate report](../canonical-review/IMPLEMENTATION_REPORT.md).

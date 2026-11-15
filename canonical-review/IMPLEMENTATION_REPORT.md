@@ -1,59 +1,50 @@
-# Canonical Velara candidate: review PR implementation report
+# Settlement eligibility and historical cartography correction
 
-15 November 2026. This transfers the existing inspected candidate into a reproducible review branch. The creator authorized publication of the 70 historically known systems and seven Cantums. This migration does not approve additional historical claims, repair unresolved behavior, replace the Demo, or deploy the website. Project version remains **0.5.0**, as requested.
+This review iteration updates PR #4 on `review/canonical-velara-cantum-migration`. It uses the existing D-130 registry at **`0ef93d16d70ce9633451acd8612c8e5ac39c11b1`** and the creator's explicit settlement, Putluk, Lesgrad and 2-LY clarifications. Worldbuilding is unchanged. The candidate is for visual/historical review only; version stays **0.5.0**. No merge or deployment is authorized.
 
-## Source and coordinate verification
+## Historical rules and counts
 
-Worldbuilding D-130 / PR #43 revision: **`0ef93d16d70ce9633451acd8612c8e5ac39c11b1`**. Sources are the [historical registry](https://github.com/VukMar/MCR_Worldbuilding/blob/0ef93d16d70ce9633451acd8612c8e5ac39c11b1/02_Canon/Sector_Registry/Velara_System_and_Cantum_Historical_Registry_0-1200_AE.md) and [approved coordinate v1.1 artifact](https://github.com/VukMar/MCR_Worldbuilding/blob/0ef93d16d70ce9633451acd8612c8e5ac39c11b1/03_Working/Proposals/Velara_Sector_3D_Coordinate_Candidates_v1.1.md). Source documents were read without modification and are not copied into this repository.
+Without a documented permanent settlement by the selected year, a system has **no Cantum administration, governing Cantum or cartographic association**. Registration still makes it visible. Lack of a settlement milestone does not establish zero inhabitants, activity or habitability. Settlement does not by itself prove current habitation or population.
 
-All **70/70** authorized positions match the synchronized D-130 source comparison, with **zero mismatches**. Every five-file runtime input is byte-identical to the prior working candidate, including numeric precision. X is `mapper_x - 32.5`; Z is `32.5 - mapper_y`; Y retains the approved elevation. No reflection, rescaling, regeneration or relocation occurs here. Orientation tests project lower-left to bottom-left, upper-right to upper-right and increasing Mapper y toward screen top using the unchanged Atlas camera.
+The pure, candidate-only `associations.mjs` resolver applies these priorities: settlement eligibility; explicit unaffiliated/neutral/excluded status; effective dated direct administration; individually reviewed regional association for an existing Cantum; otherwise an explained gap. It reads `cartographic-associations.json`, which reviews each of the 70 source entries against its regional inventory, settlement and Cantum chronology. It never derives runtime ownership from a prefix or writes regional associations into `cantumHistory`. All 17 systems without a settlement have empty regional-association periods.
 
-`coordinates-70.json` contains the authorized comparison and a fingerprint explicitly scoped to these 70 records. The complete private source artifacts, their confidential references and extraction caches remain outside Git. `review-manifest.json` pins the reviewed input and output bytes. `crosswalk.json`, its human-readable companion and `identity-lock.json` preserve permanent assignments without allocating or renumbering identities.
+| 1200 A.E. result | Count |
+| --- | ---: |
+| Historically visible systems | 70 |
+| Documented permanent settlement | 53 |
+| No documented permanent settlement | 17 |
+| Explicitly unaffiliated settled systems | 11 |
+| Recorded direct administration | 17 |
+| Settled, direct administration unrecorded | 25 |
+| Cartographically associated | 42 |
+| Of those, derived regional association only | 25 |
 
-## Preserved historical and graphical implementation
+The earlier 26 settled/unrecorded entries included Lesgrad. Correcting its continued Visshum affiliation moves it to the recorded group, leaving **25 unrecorded and 17 recorded**. The associated total is derived from individual records; no renderer count target is hardcoded.
 
-The sector chart remains centered at zero, **55 × 10 × 55 LY**, with X/Z projection and Y elevation. The separate Mapper planning grid remains 65 × 65. Official registration controls visibility; scientific discovery, settlement and naming are independent. Polyeput's 105 survey visibility and 150 proper name, survey-only names and the three 1175 Pustosh display transitions are retained.
+Putluk retains `discoveredAE: null`, its original identity, position and administration, and now has **`knownByAE: 0`, `colonizedAE: 0`**. It is visible, searchable and selectable at every year 0–1200, without a Year 0 registration event. Lesgrad retains separate wartime 1168–1175 and continuing post-surrender 1175–1200 coverage; the segment boundary is not a new political transition. Other administrative endpoints were reviewed; the conservative conquest/handover gaps are retained rather than extended.
 
-Seven permanent Cantum identities follow government formation rather than alphabetical designation:
+## Associations, qualifications and unresolved intervals
 
-| Designation | Atlas identity | Historical name | Formation | Provisional color |
-| --- | --- | --- | --- | --- |
-| A | can_1000001 | Drevnasel | 0 | #57B8D9 |
-| B | can_1000002 | Cantum; Visshum from 360 | 345 | #D88962 |
-| C | can_1000003 | Okeanberg | 480 | #72BC89 |
-| D | can_1000004 | Rekdolin | 548 | #C08ACE |
-| G | can_1000005 | Vodravan | 725 | #D97FA1 |
-| F | can_1000006 | Gornebes | 730 | #799DE5 |
-| E | can_1000007 | Zaklun | 745 | #E0C36B |
+The [70-system human audit](AFFILIATION_AUDIT.md) and [machine-readable audit](AFFILIATION_AUDIT.json) contain registration, settlement, all representative-year administration/cartography/control states, source justification, neutral/excluded boundaries and settlement ±1-year checks. The 25 remaining unrecorded administrations are individually justified for derived regional coloring, without manufacturing local government records.
 
-The existing preview adapters group influence by direct administration, retain stable colors through independence, supply the current-year Cantum key and date-correct cards, and preserve known-null versus unrecorded administration. Shared core/viewer changes make this grouping opt-in; the ordinary Demo still groups by governing authority. The existing rendering, cameras, selection, assets, audio and NEXUS behavior are reused.
+Rekput keeps Az-18 identity, Drevnasel regional association before c.970, recorded Rekdolin administration at the qualified 970 anchor, and postwar Drevnasel affiliation from 1175. Glagoli-6/7/8 switch to Okeanberg at the same qualified c.970 boundary; 1000 remains confirmation, not a new independence event. The six-system 1008 annexation outcome supports **derived Okeanberg cartography**, qualified confirmed-by, without inserting local civil administration records or reviving sovereign Rekdolin.
 
-The palette and **4-LY radius** remain provisional visualization calibration, not approved territorial facts. Soft influence fields are not legal borders. All seven nameplates/colors appear in applicable historical periods; six source-supported successor fields appear at 1200. No sigils or territorial polygons were added.
+Genuine gaps remain uncolored: pre-formation settlements with relative central-oversight records but no precise local cartographic handover; individual captures/handoffs during 1004–1008; and the 1126–1175 conquest/occupation/liberation intervals until a dated affiliation or explicit absence applies. Military Visshum control stays separate and supplies no Visshum administrative/cartographic substitution. Okeanberg restoration occurs at 1175; liberation alone does not restore administration. All eight border systems are neutral from 1175. The three Pustosh systems are excluded from their separate 1172/1173/1174 withdrawal boundaries, with display-name changes still at 1175.
 
-## Findings retained for review
+## Visual and InfoCard integration
 
-- There are 70 records and **69 visible systems at 1200**. Putluk's Year 0 foundation is preserved, but its registration and precise visibility rule remain unresolved. It stays hidden; no fallback date or known-by milestone was introduced.
-- At 1200, visible systems comprise **15 recorded administrative memberships, 11 explicit administrative absences and 43 unrecorded administrations**. Unrecorded systems remain uncolored. The 11 absences include all eight neutral border systems and the three Pustosh systems. Survey affiliation, proximity and occupation do not fill these gaps.
-- At Year 0, the founding Cantum is selectable but has no visible system contributor. At 745 seven governments exist but six fields render. Rekdolin remains a selectable historical identity at 1200 without invented sovereign territory. These are intentional review findings, unchanged in this transfer.
-- Circa-970 Okeanberg uses the selected visualization anchor with its H qualification. The 1000 confirmation is not a new independence event or prematurely displayed prose. Local liberation, withdrawal, civil administration and effective control retain their separate boundaries and gaps. Liberation does not automatically restore administration.
-- Histories use an exclusive technical end of 1201 for the inclusive integer-year 1200 observation; this introduces no event in 1201. Uncertain local handovers remain unrecorded rather than exact invented events.
-- The Continuance has no independent entity, search target, color, nameplate or sovereign overlay. Existing Cantum structures cannot fully represent a distinct unified sovereign polity. A minimal future political-entity representation would be needed for that separate capability; it is deferred and unnecessary for this administrative view. Private membership provenance was not published as an additional unreviewed registry.
-- Every system has `publicDetailPath: null` and uses the existing NEXUS archival fallback. System descriptions and unknown physical, demographic or military attributes remain null. Proposed system narration is excluded. Source-backed Cantum summaries are those already present in the inspected candidate.
-- Connections and factions are empty validated registries. The private extraction's historical transport relationships lack complete technical endpoints/lifetimes and remain excluded, with no fictional objects or navigable routes.
-- The existing candidate badge, title, footer wording, timeline interaction and graphical presentation are preserved, including wording inherited from the private preview. This PR does not redesign them.
+The candidate uses **2 LY exactly**, the creator's maximum for this review. All seven existing colors remain stable. Only eligible associated systems contribute; disconnected Gaussian islands are permitted, with no invented linking corridors. The chart is unchanged at **55 × 10 × 55 LY**, centered at zero. All 70 literal D-130 XYZ tokens and permanent IDs are unchanged, verified against the pinned coordinate ledger and prior committed dataset.
 
-## Packaging and disclosure
+Compact name fitting lowers the candidate's label threshold and chooses one fitted nameplate per contributing Cantum. Font size follows its fitted area; fields are never enlarged to make room. The ordinary viewer keeps its existing fitting defaults. The preview key also handles historically unrecorded Cantum-status intervals without converting them into governments.
 
-`dataset/` contains the five actual v1.3 runtime JSON files. `inputs/reviewed-records.json` freezes their reviewed historical records; `migrate.mjs` materializes the same bytes with exact coordinate formatting and locked identities. This is reproducible snapshot materialization, not a public reimplementation of private-source extraction. The full extraction process and source archives stay private.
+Candidate InfoCards distinguish no documented settlement, regional-only association, proven administration, neutral borders, abandoned/excluded Pustosh systems and separately recorded control. They use Cantum names and readable qualifications. Original survey designations and only already-established historical aliases are searchable; future proper names do not appear early. No system narration, interiors, endpoints, factions or replacement governments were invented. The Continuance remains confined to relevant historical descriptions: no polity registry, label or unified color. A separate future political-entity representation remains deferred.
 
-The review package includes only the authorized 70-system crosswalk and seven Cantums. It omits the three undiscovered records, their identifiers and tuples, complete source registry/coordinate documents, private provenance, proposed unreleased system prose, temporary extraction caches and unrelated concepts. A private-informed audit compares repository/review text against confidential source identifiers, complete XYZ tuples, source documents and draft descriptions without embedding that denylist in Git. Additional scans check credentials and machine-specific paths. Screenshots contain the Atlas canvas and approved review content only.
+## Integration, CI and launch
 
-The original six generic implementation changes are preserved: core cartography, influence envelopes, territorial labels, their synthetic regression tests, territory API documentation and package test registration. New packaging lives under `canonical-review/`. Package scripts add explicit review launch/check/rebuild/test commands; the existing verification workflow runs review checks after the normal build. A short README/local-development pointer documents this separately authorized environment. Default Vite production selection, exact input/output audits, `publicDir: false`, `/Velara_Atlas/`, Demo data, legacy data, landing page, approved media and deployment workflow remain unchanged.
+Changes are concentrated in the candidate's resolver/provenance, dataset inputs, fixed-root preview, InfoCard adapter, tests, audit and evidence. Shared cartography adds an opt-in `cartographic` basis; labels add opt-in compact fitting. Governing/admin defaults stay intact. Three exact public-safe review runtime files are admitted in the isolated preview; arbitrary directories, roots and non-runtime source/audit inputs remain denied. The provenance JSON is hash-pinned and rechecked on load. Default `publicDir: false`, output/disclosure audits, Demo selection, assets and deployment workflow are unchanged.
 
-## Launch and verification
+The identity collision test now scans **all tracked retained JSON, modules, Markdown and HTML outside the authorized candidate**, including frozen fixtures, and verifies that the expected retained corpus exists. It has no `origin/main` or remote-history dependency, works in shallow Actions merge checkouts, and broadens rather than skips the collision audit.
 
-From a fresh Git checkout: `npm ci`, then **`npm run canonical:dev`**. Open **http://127.0.0.1:5175/Velara_Atlas/demo.html**. Stop an existing listener on 5175 first. Normal Demo remains `npm run demo` on port 5173. See [README](README.md) for reproduction and browser-harness commands.
+Launch from this branch with `npm ci` then **`npm run canonical:dev`**; open **http://127.0.0.1:5175/Velara_Atlas/demo.html**. Stop an older candidate listener first. Normal Demo remains `npm run demo` on port 5173. Reproduce with `npm run canonical:rebuild`, regenerate the audit with `npm run canonical:audit`, build the normal output, then run `npm run canonical:test`.
 
-The verification results and representative screenshots are recorded in [evidence/VERIFICATION.md](evidence/VERIFICATION.md). The browser comparison checked the complete resolved view and administrative groups at 44 years against the still-running original preview before switching servers; all 44 were identical. No historical content was changed to satisfy tests.
-
-This branch is for review only. No merge, deployment, version change or further issue correction is included.
+See [verification and screenshots](evidence/VERIFICATION.md). Hosted Ubuntu and Windows results for the final pushed SHA are required before calling this PR technically verified; read the latest PR checks and the delivery report. Local success alone is insufficient. Confidential references and private source artifacts remain excluded from this branch.

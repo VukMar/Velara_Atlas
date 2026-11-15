@@ -67,12 +67,21 @@
       "publicDetailPath": null,
       "infoCard": {
         "affiliation": null,
-        "class": null,
+        "class": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "code": "star_system",
+            "label": "Star system",
+            "datePrecision": "exact"
+          }
+        ],
         "crew": null,
         "population": null,
         "armament": null,
         "description": null
-      }
+      },
+      "knownByAE": 0
     },
     {
       "id": "sys_1000002",
@@ -1101,9 +1110,15 @@
       "cantumHistory": [
         {
           "fromAE": 1168,
-          "untilAE": 1176,
+          "untilAE": 1175,
           "cantumId": "can_1000002",
           "datePrecision": "within_window"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "exact"
         }
       ],
       "controlHistory": null,

@@ -40,8 +40,11 @@ test('fixed identity assignments are deterministic, collision-free and independe
  const registered=crosswalk.systems.filter(c=>c.ordering.category==='official_registration');assert.equal(registered.length,69);
  for(let i=1;i<registered.length;i++)assert(registered[i].ordering.year>=registered[i-1].ordering.year);
  for(const c of crosswalk.systems){assert.equal(lock[c.mapperId],c.atlasId);const s=d.sector.systems.find(s=>s.id===c.atlasId);for(let y=0;y<=1200;y++)assert.equal(resolveSystem(s,y).id,c.atlasId);}
- const retained=execFileSync('git',['ls-tree','-r','--name-only','origin/main'],{cwd:repositoryRoot,encoding:'utf8'}).trim().split('\n');
- for(const file of retained){if(!/\.(json|mjs)$/.test(file)||!fs.existsSync(path.join(repositoryRoot,file)))continue;const value=fs.readFileSync(path.join(repositoryRoot,file),'utf8');for(const id of Object.values(lock))assert(!value.includes(id),'Retained identity collision in '+file);}
+ // Audit the actual tracked retained corpus, including frozen fixtures, without
+ // requiring a remote ref or extra history in Actions' shallow merge checkout.
+ const retained=execFileSync('git',['ls-files','-z'],{cwd:repositoryRoot,encoding:'utf8'}).split('\0').filter(file=>file&&!file.startsWith('canonical-review/'));
+ assert(retained.includes('public/datasets/demo/sector.json'));assert(retained.includes('tests/schema-v1.test.mjs'));
+ for(const file of retained){if(!/\.(json|mjs|md|html)$/.test(file))continue;const value=fs.readFileSync(path.join(repositoryRoot,file),'utf8');const ids=new Set(value.match(/\b(?:sys|can|sec)_\d{4,}\b/g)??[]);for(const id of Object.values(lock))assert(!ids.has(id),'Retained identity collision in '+file);}
 });
 
 test('repeat materialization is byte-identical to all five reviewed candidate inputs',()=>{
