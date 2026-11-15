@@ -1,4 +1,4 @@
-import {cantumField,territoryContributorMatches} from '../core/cartography.mjs';
+import {cantumField} from '../core/cartography.mjs';
 
 const cache = new Map();
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -26,10 +26,10 @@ export function fieldComponents(mask, resolution) {
 }
 
 /** Bounded sampling and conservative full-rectangle fitting, independent of camera. */
-export function territorialLabels(groups, cantums, map, presentation, aspects = {}, resolution = 128, sigilCantums = [], {minimumNameHeightFraction=.028,singleNamePerCantum=false}={}) {
+export function territorialLabels(groups, cantums, map, presentation, aspects = {}, resolution = 128, sigilCantums = []) {
   const named = cantums.filter(c => c.statusRecord && typeof c.name === 'string' && c.name.trim()).map(c => [c.id, c.name]);
   const sigils = new Set(sigilCantums);
-  const key = JSON.stringify([groups,named,map,presentation?.territoryOverlay,aspects,resolution,[...sigils].sort(),minimumNameHeightFraction,singleNamePerCantum]);
+  const key = JSON.stringify([groups,named,map,presentation?.territoryOverlay,aspects,resolution,[...sigils].sort()]);
   if (cache.has(key)) return cache.get(key);
   const result = [], span = Math.min(map.size.x,map.size.z), stepX = map.size.x/resolution, stepZ = map.size.z/resolution;
   const markerPoints = groups.flatMap(group=>group.points);
@@ -86,18 +86,14 @@ export function territorialLabels(groups, cantums, map, presentation, aspects = 
           const dx=p.x-c.p.x,dz=p.z-c.p.z;
           return Math.abs(dx*cos+dz*sin)<lo*aspect/2+span*.008 && Math.abs(-dx*sin+dz*cos)<lo/2+span*.008;
         });
-        // Compact review labels prefer clear space above/between system labels.
-        // The point/label obstacles affect text placement only, never the field.
-        const compact=minimumNameHeightFraction<.028;
-        const coversCaption=compact&&markerPoints.some(p=>Math.abs(p.x-c.p.x)<lo*aspect/2+span*.035&&Math.abs(p.z+span*.012-c.p.z)<lo/2+span*.009);
-        const score=lo*(compact&&(coversMarker||coversCaption) ? .03 : coversMarker ? .7 : 1);
-        if(lo>=span*minimumNameHeightFraction && score>bestScore+stepX*.1) {
+        const score=lo*(coversMarker ? .7 : 1);
+        if(lo>=span*.028 && score>bestScore+stepX*.1) {
           bestScore=score;
           best={id:`${group.id}:${id}`,cantumId:group.id,name,color:group.color,...c.p,angle,width:lo*aspect,height:lo};
         }
       }
       if(best) {
-        result.push({...best,variant:'name-with-optional-sigil',...(minimumNameHeightFraction<.028?{compact:true}:{})});
+        result.push({...best,variant:'name-with-optional-sigil'});
         continue;
       }
       if(!sigils.has(group.id))continue;
@@ -135,7 +131,6 @@ export function territorialLabels(groups, cantums, map, presentation, aspects = 
         variant:'sigil-only',angle:0,width:diameter,height:diameter,contributorIds});
     }
   }
-  if(singleNamePerCantum){const best=new Map();for(const label of result)if(!best.has(label.cantumId)||label.height>best.get(label.cantumId).height)best.set(label.cantumId,label);result.splice(0,result.length,...best.values());}
   if(cache.size>=8)cache.delete(cache.keys().next().value);
   cache.set(key,result);
   return result;
@@ -144,7 +139,7 @@ export function territorialLabels(groups, cantums, map, presentation, aspects = 
 /** Provisional Stage 1 height; later envelopes can replace this helper alone. */
 export function territorialAnchorY(group, systems, map) {
   const ids=new Set(group.points.map(p=>p.id));
-  const elevations=systems.filter(s=>ids.has(s.id)&&territoryContributorMatches(s,group)&&group.points.some(p=>p.id===s.id&&p.x===s.positionLY?.x&&p.z===s.positionLY?.z)&&Number.isFinite(s.positionLY?.y)).map(s=>s.positionLY.y);
+  const elevations=systems.filter(s=>ids.has(s.id)&&(Object.hasOwn(s,'governingCantumId')?s.governingCantumId===group.id:s.cantumId===group.id)&&group.points.some(p=>p.id===s.id&&p.x===s.positionLY?.x&&p.z===s.positionLY?.z)&&Number.isFinite(s.positionLY?.y)).map(s=>s.positionLY.y);
   if(!elevations.length)return null;
   const clearance=Math.min(map.size.y*.05,map.size.x*.02);
   return Math.max(...elevations)+clearance;

@@ -115,33 +115,23 @@ export function routePoints(route, routes, map) {
   });
 }
 
-export function territoryGroups(view, sector, presentation, {basis='governing'}={}) {
-  if(!['governing','administrative','cartographic'].includes(basis))throw new RangeError('Unsupported territory grouping basis');
+export function territoryGroups(view, sector, presentation) {
   const t = presentation?.territoryOverlay ?? {}, modern=sector.schemaVersion==='1.3.0';
   if(modern&&(!Number.isFinite(t.radiusLY)||t.radiusLY<=0))throw new RangeError('v1.3 territory requires a finite positive universal radiusLY');
   const groups = new Map();
   const active = new Set(view.cantums.filter(c => c.statusRecord).map(c => c.id));
   for (const s of [...view.systems].sort((a,b)=>a.id.localeCompare(b.id))) {
-    const p = s.positionLY, id=basis==='cartographic'?s.cartographicCantumId:modern&&basis==='governing'?s.governingCantumId:s.cantumId;
-    if (!p || (basis!=='cartographic'&&!active.has(s.cantumId)) || !active.has(id) || !['x', 'y', 'z'].every(axis => Number.isFinite(p[axis]) &&
+    const p = s.positionLY, id=modern?s.governingCantumId:s.cantumId;
+    if (!p || !active.has(s.cantumId) || !active.has(id) || !['x', 'y', 'z'].every(axis => Number.isFinite(p[axis]) &&
       Math.abs(p[axis] - sector.map.origin[axis]) <= sector.map.size[axis] / 2)) continue;
     const style = t.cantums?.[id];
     const color = /^#[0-9a-f]{6}$/i.test(style?.color) ? style.color : /^#[0-9a-f]{6}$/i.test(t.fallbackColor) ? t.fallbackColor : '#73808C';
     const fraction = Number.isFinite(t.fallbackRadiusFraction) && t.fallbackRadiusFraction > 0 && t.fallbackRadiusFraction <= 1 ? t.fallbackRadiusFraction : .08;
-    if (!groups.has(id)) groups.set(id, {id, color,...(basis!=='governing'?{identityBasis:basis}:{}),
+    if (!groups.has(id)) groups.set(id, {id, color,
       radius: modern?t.radiusLY:Number.isFinite(style?.radiusLY) && style.radiusLY > 0 ? style.radiusLY : fraction * Math.min(sector.map.size.x, sector.map.size.z), points: []});
     groups.get(id).points.push({id: s.id, x: p.x, z: p.z});
   }
   return [...groups.values()].sort((a, b) => a.id.localeCompare(b.id));
-}
-
-/** A derived field declares its identity basis; governance records stay intact. */
-export function territoryContributorMatches(system, group) {
-  if(!system)return false;
-  if(group.identityBasis==='cartographic')return system.cartographicCantumId===group.id;
-  if(group.identityBasis==='administrative')return system.cantumId===group.id;
-  if(group.identityBasis!==undefined)return false;
-  return (Object.hasOwn(system,'governingCantumId')?system.governingCantumId:system.cantumId)===group.id;
 }
 
 /** Shared per-Cantum field; geography never depends on routes or blended colors. */

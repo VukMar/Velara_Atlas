@@ -44,8 +44,6 @@ For chosen year `Y`:
 
 ## 2. Exact field and compositing algorithm (initial recommended implementation)
 
-Internal callers may explicitly request `territoryGroups(view, sector, presentation, {basis:'administrative'})` to group by effective direct `cantumHistory`. The default remains governing-Cantum grouping. The derived administrative groups declare `identityBasis: 'administrative'`, which envelope and nameplate contributor checks also honor. This option changes no stored schema, governance history, public selector or Demo configuration.
-
 **Coordinates are world-space `ly` in the sector X/Z plane**, not CNU, and **bubble radii are `ly`**, never screen pixels. One bubble is centered at each eligible system `(x_i, z_i)` and uses the shared v1.3 `radiusLY > 0` (`r_c` below). Frozen v1.2 uses its Cantum's authored radius.
 
 At a sample map-plane point `(x,z)` define squared distance and influence:
@@ -326,4 +324,3 @@ and actual XYZ, including subordinate elevations. Cache keys retain grouped IDs,
 positions, radius, thresholds and elevation/identity where consumed. Existing
 clear/dispose paths replace WebGL/DOM resources on year changes. Unknown roots
 are omitted from political shading and explained as Not recorded in InfoCards.
-The canonical review candidate additionally opts into a `cartographic` derived basis, resolved separately from administration and military control with mandatory settlement eligibility. Shared defaults are unchanged. Its compact name fitting is opt-in, selects one fitted label per contributing Cantum and does not enlarge geographic fields. See [the candidate report](../canonical-review/IMPLEMENTATION_REPORT.md).

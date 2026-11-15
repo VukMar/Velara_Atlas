@@ -2,7 +2,7 @@
   "schemaVersion": "1.3.0",
   "id": "sec_1000001",
   "entityType": "sector",
-  "title": "Velara Sector - Private candidate",
+  "title": "Velara Sector",
   "map": {
     "origin": {
       "x": 0,
@@ -79,7 +79,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "text": "Original survey identity: Az-1. The permanent founding community is established in Year 0; no separate registration year is selected.",
+            "datePrecision": "exact"
+          }
+        ]
       },
       "knownByAE": 0
     },
@@ -109,7 +116,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 42,
+          "untilAE": 90,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -126,7 +140,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 42,
+            "untilAE": 90,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -155,7 +176,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 80,
+          "untilAE": 99,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -172,7 +200,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 80,
+            "untilAE": 99,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -201,7 +236,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 105,
+          "untilAE": 150,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -218,7 +260,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 105,
+            "untilAE": 150,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -247,7 +296,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 153,
+          "untilAE": 229,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -264,7 +320,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 153,
+            "untilAE": 229,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -293,7 +356,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 168,
+          "untilAE": 241,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -310,7 +380,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 168,
+            "untilAE": 241,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -339,7 +416,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 272,
+          "untilAE": 390,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -356,7 +440,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 272,
+            "untilAE": 390,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -385,7 +476,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 275,
+          "untilAE": 409,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -402,7 +500,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 275,
+            "untilAE": 409,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -432,6 +537,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 426,
+          "untilAE": 440,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 1125,
           "untilAE": 1126,
@@ -474,7 +585,26 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 426,
+            "untilAE": 440,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1168,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -504,6 +634,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 507,
+          "untilAE": 521,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 1125,
           "untilAE": 1126,
@@ -546,7 +682,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 507,
+            "untilAE": 521,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1168,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -577,6 +726,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 519,
+          "untilAE": 533,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -599,7 +754,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 519,
+            "untilAE": 533,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -621,7 +789,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 602,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -638,7 +813,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 602,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -660,7 +842,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 604,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -677,7 +866,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 604,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -699,7 +895,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 606,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -716,7 +919,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 606,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -738,7 +948,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 608,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -755,7 +972,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 608,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -786,6 +1010,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 613,
+          "untilAE": 625,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -808,7 +1038,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 613,
+            "untilAE": 625,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -839,6 +1082,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 616,
+          "untilAE": 630,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -861,7 +1110,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 616,
+            "untilAE": 630,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -891,6 +1153,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 757,
+          "untilAE": 790,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1004,
@@ -933,7 +1201,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 757,
+            "untilAE": 790,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -964,6 +1239,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 334,
+          "untilAE": 340,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 345,
           "untilAE": 1201,
           "cantumId": "can_1000002",
@@ -986,7 +1267,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 334,
+            "untilAE": 340,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1015,7 +1303,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 370,
+          "untilAE": 381,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1032,7 +1327,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 370,
+            "untilAE": 381,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1061,7 +1363,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 379,
+          "untilAE": 391,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1078,7 +1387,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 379,
+            "untilAE": 391,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1109,6 +1425,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 391,
+          "untilAE": 405,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1168,
           "untilAE": 1175,
           "cantumId": "can_1000002",
@@ -1137,7 +1459,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 391,
+            "untilAE": 405,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1166,7 +1495,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 407,
+          "untilAE": 424,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1183,7 +1519,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 407,
+            "untilAE": 424,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1214,6 +1557,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 429,
+          "untilAE": 448,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1172,
           "untilAE": 1175,
           "cantumId": null,
@@ -1242,7 +1591,26 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 429,
+            "untilAE": 448,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1172,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1264,7 +1632,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 456,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1281,7 +1656,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 456,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1310,7 +1692,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 679,
+          "untilAE": 711,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1327,7 +1716,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 679,
+            "untilAE": 711,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1357,6 +1753,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 463,
+          "untilAE": 475,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 480,
           "untilAE": 1126,
@@ -1399,7 +1801,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 463,
+            "untilAE": 475,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1171,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1429,6 +1844,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 488,
+          "untilAE": 503,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 1170,
           "untilAE": 1175,
@@ -1465,7 +1886,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 488,
+            "untilAE": 503,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1170,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1495,6 +1929,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 569,
+          "untilAE": 586,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 1169,
           "untilAE": 1175,
@@ -1531,7 +1971,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 569,
+            "untilAE": 586,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1169,
+            "untilAE": 1175,
+            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1562,6 +2015,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 583,
+          "untilAE": 595,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": "can_1000003",
@@ -1591,7 +2050,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 583,
+            "untilAE": 595,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1613,7 +2079,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 980,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1630,7 +2103,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 980,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1652,7 +2132,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 998,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1669,7 +2156,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 998,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1691,7 +2185,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1049,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1708,7 +2209,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1049,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1730,7 +2238,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1183,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1747,7 +2262,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1183,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1769,7 +2291,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1193,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -1786,7 +2315,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1193,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1823,6 +2359,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 531,
+          "untilAE": 542,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 548,
           "untilAE": 970,
@@ -1871,7 +2413,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 531,
+            "untilAE": 542,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1173,
+            "untilAE": 1201,
+            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1908,6 +2463,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 556,
+          "untilAE": 574,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1004,
@@ -1950,7 +2511,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 556,
+            "untilAE": 574,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1174,
+            "untilAE": 1201,
+            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -1980,6 +2554,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 573,
+          "untilAE": 589,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1004,
@@ -2022,7 +2602,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 573,
+            "untilAE": 589,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2059,6 +2646,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 583,
+          "untilAE": 597,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1004,
@@ -2101,7 +2694,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 583,
+            "untilAE": 597,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1172,
+            "untilAE": 1201,
+            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2131,6 +2737,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 760,
+          "untilAE": 799,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1004,
@@ -2173,7 +2785,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 760,
+            "untilAE": 799,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2203,6 +2822,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 812,
+          "untilAE": 866,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1126,
@@ -2239,7 +2864,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 812,
+            "untilAE": 866,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2269,6 +2901,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 908,
+          "untilAE": 936,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1126,
@@ -2305,7 +2943,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 908,
+            "untilAE": 936,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2335,6 +2980,12 @@
         }
       ],
       "cantumHistory": [
+        {
+          "fromAE": 924,
+          "untilAE": 951,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
         {
           "fromAE": 970,
           "untilAE": 1126,
@@ -2371,7 +3022,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 924,
+            "untilAE": 951,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2402,6 +3060,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 633,
+          "untilAE": 737,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 745,
           "untilAE": 1201,
           "cantumId": "can_1000007",
@@ -2424,7 +3088,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 633,
+            "untilAE": 737,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2453,7 +3124,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 759,
+          "untilAE": 791,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2470,7 +3148,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 759,
+            "untilAE": 791,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2499,7 +3184,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 806,
+          "untilAE": 843,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2516,7 +3208,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 806,
+            "untilAE": 843,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2545,7 +3244,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 879,
+          "untilAE": 920,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2562,7 +3268,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 879,
+            "untilAE": 920,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2591,7 +3304,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 966,
+          "untilAE": 1006,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2608,7 +3328,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 966,
+            "untilAE": 1006,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2639,6 +3366,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 975,
+          "untilAE": 990,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 990,
           "untilAE": 1175,
           "cantumId": "can_1000007",
@@ -2667,7 +3400,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 975,
+            "untilAE": 990,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2696,7 +3442,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1085,
+          "untilAE": 1176,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2713,7 +3466,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1085,
+            "untilAE": 1176,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2735,7 +3495,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 773,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2752,7 +3519,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 773,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2774,7 +3548,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 852,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2791,7 +3572,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 852,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2813,7 +3601,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1027,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2830,7 +3625,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1027,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2861,6 +3663,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 635,
+          "untilAE": 721,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 730,
           "untilAE": 1201,
           "cantumId": "can_1000006",
@@ -2883,7 +3691,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 635,
+            "untilAE": 721,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2912,7 +3727,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 750,
+          "untilAE": 783,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2929,7 +3751,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 750,
+            "untilAE": 783,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -2958,7 +3787,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 822,
+          "untilAE": 928,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -2975,7 +3811,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 822,
+            "untilAE": 928,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3004,7 +3847,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 886,
+          "untilAE": 926,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3021,7 +3871,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 886,
+            "untilAE": 926,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3050,7 +3907,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 959,
+          "untilAE": 997,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3067,7 +3931,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 959,
+            "untilAE": 997,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3098,6 +3969,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 1018,
+          "untilAE": 1059,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -3120,7 +3997,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1018,
+            "untilAE": 1059,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3142,7 +4032,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1089,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3159,7 +4056,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1089,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3188,7 +4092,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1130,
+          "untilAE": 1160,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3205,7 +4116,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1130,
+            "untilAE": 1160,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3236,6 +4154,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 639,
+          "untilAE": 715,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 725,
           "untilAE": 1201,
           "cantumId": "can_1000005",
@@ -3258,7 +4182,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 639,
+            "untilAE": 715,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3287,7 +4218,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 739,
+          "untilAE": 768,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3304,7 +4242,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 739,
+            "untilAE": 768,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3333,7 +4278,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 779,
+          "untilAE": 810,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3350,7 +4302,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 779,
+            "untilAE": 810,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3379,7 +4338,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 838,
+          "untilAE": 874,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3396,7 +4362,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 838,
+            "untilAE": 874,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3427,6 +4400,12 @@
       ],
       "cantumHistory": [
         {
+          "fromAE": 917,
+          "untilAE": 960,
+          "cantumId": null,
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -3449,7 +4428,20 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 917,
+            "untilAE": 960,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3478,7 +4470,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1005,
+          "untilAE": 1048,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3495,7 +4494,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1005,
+            "untilAE": 1048,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3517,7 +4523,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1094,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3534,7 +4547,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1094,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3556,7 +4576,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1164,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3573,7 +4600,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1164,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     },
     {
@@ -3595,7 +4629,14 @@
           "datePrecision": "exact"
         }
       ],
-      "cantumHistory": null,
+      "cantumHistory": [
+        {
+          "fromAE": 1195,
+          "untilAE": 1201,
+          "cantumId": null,
+          "datePrecision": "exact"
+        }
+      ],
       "controlHistory": null,
       "publicDetailPath": null,
       "infoCard": {
@@ -3612,7 +4653,14 @@
         "crew": null,
         "population": null,
         "armament": null,
-        "description": null
+        "description": [
+          {
+            "fromAE": 1195,
+            "untilAE": 1201,
+            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
+            "datePrecision": "exact"
+          }
+        ]
       }
     }
   ]
