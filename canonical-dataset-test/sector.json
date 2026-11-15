@@ -122,6 +122,12 @@
           "untilAE": 90,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 90,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -182,6 +188,12 @@
           "untilAE": 99,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 99,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -242,6 +254,12 @@
           "untilAE": 150,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 150,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -302,6 +320,12 @@
           "untilAE": 229,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 229,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -362,6 +386,12 @@
           "untilAE": 241,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 241,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -422,6 +452,12 @@
           "untilAE": 390,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 390,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -482,6 +518,12 @@
           "untilAE": 409,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 409,
+          "untilAE": 1201,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -542,6 +584,12 @@
           "untilAE": 440,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 440,
+          "untilAE": 1113,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1125,
@@ -641,6 +689,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 521,
+          "untilAE": 1113,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 1125,
           "untilAE": 1126,
           "cantumId": "can_1000003",
@@ -730,6 +784,12 @@
           "untilAE": 533,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 533,
+          "untilAE": 1175,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1175,
@@ -1016,6 +1076,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 625,
+          "untilAE": 1175,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 1175,
           "untilAE": 1201,
           "cantumId": null,
@@ -1086,6 +1152,12 @@
           "untilAE": 630,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 630,
+          "untilAE": 1175,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1175,
@@ -1160,10 +1232,22 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 790,
+          "untilAE": 970,
+          "cantumId": "can_1000001",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1004,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
         },
         {
           "fromAE": 1175,
@@ -1309,6 +1393,12 @@
           "untilAE": 381,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 381,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -1369,6 +1459,12 @@
           "untilAE": 391,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 391,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -1429,6 +1525,12 @@
           "untilAE": 405,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 405,
+          "untilAE": 1168,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1168,
@@ -1501,6 +1603,12 @@
           "untilAE": 424,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 424,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -1561,6 +1669,12 @@
           "untilAE": 448,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 448,
+          "untilAE": 1172,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1172,
@@ -1698,6 +1812,12 @@
           "untilAE": 711,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 711,
+          "untilAE": 1201,
+          "cantumId": "can_1000002",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -1851,6 +1971,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 503,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 1170,
           "untilAE": 1175,
           "cantumId": null,
@@ -1936,6 +2062,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 586,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 1169,
           "untilAE": 1175,
           "cantumId": null,
@@ -2019,6 +2151,12 @@
           "untilAE": 595,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 595,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1175,
@@ -2378,6 +2516,12 @@
           "datePrecision": "circa"
         },
         {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
+        },
+        {
           "fromAE": 1173,
           "untilAE": 1201,
           "cantumId": null,
@@ -2470,10 +2614,22 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 574,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1004,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
         },
         {
           "fromAE": 1174,
@@ -2561,10 +2717,22 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 589,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1004,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
         },
         {
           "fromAE": 1175,
@@ -2653,10 +2821,22 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 597,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1004,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
         },
         {
           "fromAE": 1172,
@@ -2744,10 +2924,22 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 799,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1004,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1126,
+          "cantumId": "can_1000003",
+          "datePrecision": "exact"
         },
         {
           "fromAE": 1175,
@@ -2829,6 +3021,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 866,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1126,
           "cantumId": "can_1000003",
@@ -2908,6 +3106,12 @@
           "datePrecision": "exact"
         },
         {
+          "fromAE": 936,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
+        },
+        {
           "fromAE": 970,
           "untilAE": 1126,
           "cantumId": "can_1000003",
@@ -2985,6 +3189,12 @@
           "untilAE": 951,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 951,
+          "untilAE": 970,
+          "cantumId": "can_1000004",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 970,
@@ -3130,6 +3340,12 @@
           "untilAE": 791,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 791,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3190,6 +3406,12 @@
           "untilAE": 843,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 843,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3250,6 +3472,12 @@
           "untilAE": 920,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 920,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3310,6 +3538,12 @@
           "untilAE": 1006,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1006,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3448,6 +3682,12 @@
           "untilAE": 1176,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1176,
+          "untilAE": 1201,
+          "cantumId": "can_1000007",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3733,6 +3973,12 @@
           "untilAE": 783,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 783,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3793,6 +4039,12 @@
           "untilAE": 928,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 928,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3853,6 +4105,12 @@
           "untilAE": 926,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 926,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3913,6 +4171,12 @@
           "untilAE": 997,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 997,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -3973,6 +4237,12 @@
           "untilAE": 1059,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1059,
+          "untilAE": 1175,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1175,
@@ -4098,6 +4368,12 @@
           "untilAE": 1160,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1160,
+          "untilAE": 1201,
+          "cantumId": "can_1000006",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -4224,6 +4500,12 @@
           "untilAE": 768,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 768,
+          "untilAE": 1201,
+          "cantumId": "can_1000005",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -4284,6 +4566,12 @@
           "untilAE": 810,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 810,
+          "untilAE": 1201,
+          "cantumId": "can_1000005",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -4344,6 +4632,12 @@
           "untilAE": 874,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 874,
+          "untilAE": 1201,
+          "cantumId": "can_1000005",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
@@ -4404,6 +4698,12 @@
           "untilAE": 960,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 960,
+          "untilAE": 1175,
+          "cantumId": "can_1000005",
+          "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1175,
@@ -4476,6 +4776,12 @@
           "untilAE": 1048,
           "cantumId": null,
           "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1048,
+          "untilAE": 1201,
+          "cantumId": "can_1000005",
+          "datePrecision": "confirmed_by"
         }
       ],
       "controlHistory": null,
