@@ -212,7 +212,7 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1126,
+          "untilAE": 1138,
           "status": "sovereign_cantum",
           "datePrecision": "circa"
         },
@@ -239,9 +239,15 @@
           },
           {
             "fromAE": 970,
-            "untilAE": 1126,
+            "untilAE": 1138,
             "entityId": null,
             "datePrecision": "circa"
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "entityId": "can_1000002",
+            "datePrecision": "confirmed_by"
           },
           {
             "fromAE": 1175,
@@ -282,15 +288,21 @@
             "datePrecision": "circa"
           },
           {
+            "fromAE": 1126,
+            "untilAE": 1138,
+            "text": "Okeanberg is under invasion. This historical map retains its regional administration and independent governing affiliation until the completed-conquest checkpoint in 1138. Individual capture dates and the precise loss of effective government remain unrecorded.",
+            "datePrecision": "within_window"
+          },
+          {
             "fromAE": 1138,
             "untilAE": 1169,
-            "text": "Okeanberg’s government has been defeated in the 1126–1138 conquest campaign. This is the confirmed-by outcome, not a date for each local capture.",
+            "text": "The conquest is confirmed complete by 1138. Okeanberg retains its regional administrative identity under Visshum governing authority; this checkpoint does not date each local capture.",
             "datePrecision": "confirmed_by"
           },
           {
             "fromAE": 1169,
             "untilAE": 1175,
-            "text": "Selected systems have been liberated, but Okeanberg’s sovereign government has not yet been restored. Their administrative absences follow their individual liberation years.",
+            "text": "Selected systems have been liberated and are unaffiliated from their individual liberation years. The remaining affiliated systems retain Okeanberg regional administration under Visshum governing authority; Okeanberg sovereignty has not yet been restored.",
             "datePrecision": "exact"
           },
           {

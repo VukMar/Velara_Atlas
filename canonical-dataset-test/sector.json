@@ -587,13 +587,13 @@
         },
         {
           "fromAE": 440,
-          "untilAE": 1113,
+          "untilAE": 1125,
           "cantumId": "can_1000001",
           "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1125,
-          "untilAE": 1126,
+          "untilAE": 1168,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -690,13 +690,13 @@
         },
         {
           "fromAE": 521,
-          "untilAE": 1113,
+          "untilAE": 1125,
           "cantumId": "can_1000001",
           "datePrecision": "confirmed_by"
         },
         {
           "fromAE": 1125,
-          "untilAE": 1126,
+          "untilAE": 1168,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -1239,13 +1239,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -1881,7 +1881,7 @@
         },
         {
           "fromAE": 480,
-          "untilAE": 1126,
+          "untilAE": 1171,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -1972,7 +1972,7 @@
         },
         {
           "fromAE": 503,
-          "untilAE": 1126,
+          "untilAE": 1170,
           "cantumId": "can_1000003",
           "datePrecision": "confirmed_by"
         },
@@ -2063,7 +2063,7 @@
         },
         {
           "fromAE": 586,
-          "untilAE": 1126,
+          "untilAE": 1169,
           "cantumId": "can_1000003",
           "datePrecision": "confirmed_by"
         },
@@ -2154,7 +2154,7 @@
         },
         {
           "fromAE": 595,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "confirmed_by"
         },
@@ -2511,13 +2511,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1173,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -2621,13 +2621,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1174,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -2724,13 +2724,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -2828,13 +2828,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1172,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -2931,13 +2931,13 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1004,
+          "untilAE": 1008,
           "cantumId": "can_1000004",
           "datePrecision": "circa"
         },
         {
           "fromAE": 1008,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "exact"
         },
@@ -3028,7 +3028,7 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "circa"
         },
@@ -3113,7 +3113,7 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "circa"
         },
@@ -3198,7 +3198,7 @@
         },
         {
           "fromAE": 970,
-          "untilAE": 1126,
+          "untilAE": 1175,
           "cantumId": "can_1000003",
           "datePrecision": "circa"
         },
