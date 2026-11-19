@@ -82,9 +82,33 @@
         "description": [
           {
             "fromAE": 0,
-            "untilAE": 1201,
-            "text": "Original survey identity: Az-1. The permanent founding community is established in Year 0; no separate registration year is selected.",
-            "datePrecision": "exact"
+            "untilAE": 130,
+            "datePrecision": "exact",
+            "text": "Putluk is humanity’s first permanent home in the Velara Sector. The settlers arrived aboard The Continuance after escaping the wars of Old Earth, and the foundation of Drevnasel here marks Year 0 A.E. Mountains, elevated terrain and extensive rivers shape the inhabited world, where the community has begun building a lasting civilization among indigenous life."
+          },
+          {
+            "fromAE": 130,
+            "untilAE": 345,
+            "datePrecision": "exact",
+            "text": "Putluk's first permanent settlement became the center of Drevnasel's early expansion. A colony at Mladpolye was established in part to cultivate Old Earth crops that could not flourish on Putluk. In 130 A.E., an artificial gate brought that distant community into direct contact with the founding system.\n\nAlongside conventional voyages and exploration through natural jumpholes, the new connection gave Drevnasel another means of extending its civilization beyond the world where it began."
+          },
+          {
+            "fromAE": 345,
+            "untilAE": 1167,
+            "datePrecision": "exact",
+            "text": "From Putluk, Drevnasel's government oversaw the founding of new colonies through conventional expeditions, natural jumpholes and constructed gates. Project Novzor carried that expansion to distant Bergdom, where a second regional administration was established in 345 A.E.\n\nThe united state adopted the name The Continuance in honor of the vessel that brought its founders to Velara. Putluk remained both the capital of Drevnasel and the seat of the central government exercising authority over the civilization's constituent Cantums."
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Putluk’s founding settlement began the A.E. calendar, and its government later directed the expansion of The Continuance from Drevnasel into seven Cantums. Centuries of exploration and common development gave way to negotiated separations, territorial disputes and wars. Zaklun’s peaceful independence has ended the last multi-Cantum union, leaving Putluk the seat of Drevnasel’s continuing sovereign government. The institutions of the founding region endure after the state they once governed has dissolved."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Putluk remains the founding seat of Drevnasel. The permanent settlement established here by survivors of The Continuance began the A.E. calendar, and its government later directed the exploration and regional programmes that formed seven Cantums. Their gradual separations ended the unified state in 1167, but centuries of common history could not prevent the wars and territorial conquests that fractured its former territory.\n\nAfter the Bergovar Betrayal, Drevnasel mobilized against Visshum, supported by the independent Cantums of Zaklun, Gornebes and Vodravan. Visshum surrendered in 1175, ending the Final Inter-Cantum War. The victory did not restore the old union. Putluk remains the capital of one sovereign Cantum among six."
           }
         ]
       },
@@ -150,8 +174,20 @@
           {
             "fromAE": 42,
             "untilAE": 90,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-2 has entered Drevnasel’s survey register after remote astronomical investigation. The discovery offers a destination for expansion beyond Putluk, where the cultivation of some crops preserved from Old Earth has proved difficult. Scientific recognition has opened the way for a colonial undertaking, although it does not itself establish a settlement."
+          },
+          {
+            "fromAE": 90,
+            "untilAE": 130,
+            "datePrecision": "exact",
+            "text": "Mladpolye was founded by an agricultural expedition that left Putluk on a long conventional voyage. First recorded as Az-2, the system has acquired a permanent community and its proper name. The settlers brought fabrication equipment and autonomous machinery to sustain their colony beyond the reach of routine physical resupply, pursuing the cultivation of crops that Putluk could not support."
+          },
+          {
+            "fromAE": 130,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Mladpolye began as Drevnasel's agricultural expedition, launched from Putluk in 49 A.E. and permanently settled in 90. Its settlers relied on fabrication equipment and autonomous machinery to cultivate crops unsuited to the founding world, developing their community during years without reliable communications.\n\nIn 105 A.E., a long-range relay restored contact with Putluk. Mladpolye was officially recognized as Drevnasel's third colony, although it had been permanently settled before Svetberg, which received recognition as the second. An artificial gate connected Mladpolye with Putluk in 130, ending its dependence on lengthy conventional journeys for physical contact with the founding system. Its agricultural and industrial capabilities became part of a directly connected interstellar civilization."
           }
         ]
       }
@@ -216,8 +252,20 @@
           {
             "fromAE": 80,
             "untilAE": 99,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-3 lies beyond the natural jumphole discovered in Putluk. Explorers have crossed the anomaly and returned, revealing a way to reach another star without a prolonged conventional voyage. The system’s registration and the investigation of this passage have opened a new direction for Drevnasel’s exploration."
+          },
+          {
+            "fromAE": 99,
+            "untilAE": 145,
+            "datePrecision": "exact",
+            "text": "Svetberg’s permanent settlement follows the exploration of the natural jumphole linking it with Putluk. Registered as Az-3, it has developed through a route very different from the long conventional voyage undertaken by the agricultural colonists. The passage that first brought explorers here has made this system part of Drevnasel’s earliest expansion beyond its founding world."
+          },
+          {
+            "fromAE": 145,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Svetberg began as Az-3, reached through the natural jumphole discovered by explorers from Putluk. Permanent settlement followed, and it received recognition as Drevnasel’s second official colony even though Mladpolye had settled earlier. A constructed gate now supplements the original natural connection with Putluk. The two routes reflect Svetberg’s place in both the discovery of interstellar anomalies and the development of an engineered transport network."
           }
         ]
       }
@@ -282,8 +330,14 @@
           {
             "fromAE": 105,
             "untilAE": 150,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-4 entered Drevnasel's official survey register in 105 A.E., but explorers from Mladpolye had discovered the destination a decade earlier through a natural jumphole. Without reliable communications with Putluk, they established a scientific observation outpost under the provisional designation Az-N.\n\nWhen Mladpolye's long-range relay became operational in 105, the colony's findings could be submitted for official recognition. The destination received the numerical designation Az-4, although its scientific outpost had not yet developed into a permanent settlement."
+          },
+          {
+            "fromAE": 150,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Polyeput grew from the scientific outpost established beyond Mladpolye’s natural jumphole. Its explorers initially used the provisional designation Az-N while they lacked reliable contact with Putluk; official registration as Az-4 followed once communications were restored. Permanent settlement has made Polyeput Drevnasel’s fourth enduring colony, extending a frontier first opened by the agricultural community’s own exploration."
           }
         ]
       }
@@ -348,8 +402,14 @@
           {
             "fromAE": 153,
             "untilAE": 229,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-5 is a new destination in Drevnasel’s expanding survey programme. Remote astronomical investigation has qualified the system for official registration, extending the recognized frontier beyond the early settled colonies. Its entry records a scientific discovery rather than the arrival of a founding population."
+          },
+          {
+            "fromAE": 229,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Kamunput became a permanent Drevnasel colony in 229 A.E., more than seven decades after its remote discovery and registration as Az-5. Its colonization expedition departed Putluk in 205 and reached the destination in 221, beginning the construction of local infrastructure and an artificial receiving gate.\n\nIn 226 A.E., that gate established an operational connection with Svetberg, allowing additional support to reach the developing community before permanent settlement. Kamunput's conventional expedition had departed from Putluk, but its artificial transport connection was established with Svetberg. The colony became part of Drevnasel's nearer expansion while the distant Project Novzor expeditions continued their work."
           }
         ]
       }
@@ -414,8 +474,14 @@
           {
             "fromAE": 168,
             "untilAE": 241,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-6 extends Drevnasel’s officially recognized frontier beyond its first colonies. The system qualified through remote astronomical surveying and has entered the Az register as a destination for further investigation and development. Registration establishes its recognized identity without implying that a permanent colony has already been founded."
+          },
+          {
+            "fromAE": 241,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Tuketvrd became a permanent Drevnasel colony in 241 A.E., following its earlier remote discovery and registration as Az-6. The colonization expedition departed in 215 and arrived in 232, beginning work on the infrastructure and receiving installation required to support an enduring settlement.\n\nAn artificial connection with Putluk became operational in 238, three years before permanent settlement and the adoption of Tuketvrd's name. The colony extended Drevnasel's inhabited territory through a combination of conventional interstellar travel, autonomous construction and engineered transport."
           }
         ]
       }
@@ -480,8 +546,14 @@
           {
             "fromAE": 272,
             "untilAE": 390,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-7 entered the survey register after explorers from Tuketvrd investigated a natural jumphole into the system. It extends a frontier that can be reached through naturally connected stars, while the work of establishing permanent colonies remains separate from scientific exploration."
+          },
+          {
+            "fromAE": 390,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Burberg became a permanent Drevnasel colony in 390 A.E., long after explorers from Tuketvrd discovered the system through a natural jumphole. The destination qualified as a scientific discovery in 271 and entered the official survey register as Az-7 the following year.\n\nFurther investigation revealed another natural passage in 274, extending exploration beyond Az-7 before a permanent community had been established there. When Burberg finally received its name and permanent settlement, the natural route through its system had already been known to researchers for more than a century."
           }
         ]
       }
@@ -546,8 +618,14 @@
           {
             "fromAE": 275,
             "untilAE": 409,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-8 was found through a second natural passage encountered while researchers investigated Az-7. The discovery came before that intermediate system had a permanent colony, showing how exploration could advance beyond settled territory. Official registration has added the destination to Drevnasel’s recognized frontier."
+          },
+          {
+            "fromAE": 409,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Puteberg became a permanent Drevnasel colony in 409 A.E., after more than a century as a surveyed destination. Explorers discovered the system in 274 through a second natural jumphole encountered while investigating Az-7. Official registration as Az-8 followed in 275, when neither system had yet developed a permanent colony.\n\nThe intermediate system became Burberg upon settlement in 390. Puteberg followed nineteen years later, extending permanent habitation along a natural route that scientific explorers had mapped generations before its colonies were established."
           }
         ]
       }
@@ -637,20 +715,38 @@
           {
             "fromAE": 426,
             "untilAE": 440,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-9 entered Drevnasel's official survey register in 426 A.E., following its scientific discovery the previous year. The system marked another recognized destination along the founding region's expanding frontier.\n\nNo permanent settlement had yet been established, and Az-9 remained its official designation."
           },
           {
-            "fromAE": 1168,
+            "fromAE": 440,
+            "untilAE": 1125,
+            "datePrecision": "exact",
+            "text": "First registered as Az-9, Bergovar became a permanent Drevnasel colony in 440 A.E. Its settlement extended the founding Cantum's inhabited frontier while the Continuance was also developing distant regional administrations.\n\nThough the civilization was expanding in several directions, Bergovar belonged to Drevnasel's original colonial programme."
+          },
+          {
+            "fromAE": 1125,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Bergovar’s history reaches back to Drevnasel’s early expansion, when Az-9 became a permanent colony. Centuries later, the system became one of the principal contested places in the Okeanberg–Continuance War. The peace of 1125 ceded it to Okeanberg to end further fighting. Qualifying Continuance citizens retained their citizenship and protected entry rights to Drevnasel-controlled territory, preserving a civic connection across the new sovereign frontier."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1167,
+            "datePrecision": "confirmed_by",
+            "text": "Bergovar was founded by Drevnasel and ceded to Okeanberg in the peace of 1125, after years of destructive fighting. Qualifying residents retained their Continuance citizenship and protected entry rights to Drevnasel-controlled territory, but Visshum's subsequent conquest placed Bergovar under imperial military occupation.\n\nThe protections established by the earlier peace had preserved a legal bond with Drevnasel. They could not prevent another power from taking control of the system."
+          },
+          {
+            "fromAE": 1167,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Originally settled by Drevnasel, Bergovar was ceded to Okeanberg in 1125 and later occupied by Visshum. During the Empire's persecution of Drevnasel citizens, the rights promised to qualifying inhabitants under the earlier peace offered little refuge behind a closed frontier.\n\nIn 1167, the Emperor announced that persecuted civilians would be transferred through a temporarily reopened connection into Bergovar. Instead, coordinated reactor overloads destroyed the refugee vessels and the Drevnasel escort sent to receive them. The massacre became known as the Bergovar Betrayal and prompted Drevnasel's general military mobilization."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Bergovar began as Az-9, a permanent Drevnasel colony later ceded to Okeanberg after years of destructive war. Qualifying residents retained Continuance citizenship, but Visshum’s conquest and the closed frontier obstructed their protected access to Drevnasel. In 1167 the Emperor turned an announced refugee transfer into the Bergovar Betrayal, destroying the civilian vessels and their receiving escort.\n\nLiberated in 1168, the opening year of the Final Inter-Cantum War, Bergovar remained without a governing Cantum until the postwar settlement. In 1175 it became the neutral official border system between Drevnasel and Okeanberg, unaffiliated with either. The settlement gives this place of conquest and massacre a role in regulating relations between the surviving states."
           }
         ]
       }
@@ -740,14 +836,32 @@
           {
             "fromAE": 507,
             "untilAE": 521,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-10 entered Drevnasel's official survey register in 507 A.E., following its scientific discovery the previous year. The system marked another recognized destination along the founding Cantum's expanding frontier.\n\nNo permanent colony had yet been established, and Az-10 remained its official designation."
           },
           {
-            "fromAE": 1168,
+            "fromAE": 521,
+            "untilAE": 1125,
+            "datePrecision": "exact",
+            "text": "Belput became a permanent Drevnasel colony in 521 A.E., after its registration as Az-10. Its settlement followed earlier conventional exploration from Kamunput, extending the inhabited frontier of the founding Cantum.\n\nWhile other regional administrations were taking shape within the Continuance, Belput remained part of Drevnasel's own expanding territory."
+          },
+          {
+            "fromAE": 1125,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Belput developed from the original Drevnasel frontier registered as Az-10, but its long colonial history has been overshadowed by the Okeanberg–Continuance War. Fighting severely devastated an inhabited planet and its infrastructure, leaving surviving communities to bear the consequences. The peace of 1125 ceded the system to Okeanberg. Qualifying Continuance citizens retained citizenship and protected entry rights to Drevnasel-controlled territory, even as territorial authority changed."
+          },
+          {
+            "fromAE": 1138,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "confirmed_by",
+            "text": "Belput was originally settled by Drevnasel before the war with Okeanberg severely devastated one of its inhabited planets. The planet and its population survived, but the peace of 1125 ceded the system to Okeanberg. Qualifying Continuance citizens retained their citizenship and protected entry rights to Drevnasel-controlled territory.\n\nVisshum's subsequent conquest brought imperial military occupation to a system already marked by war. The earlier peace had changed its sovereign government and preserved a legal connection with Drevnasel, but it could not protect Belput's inhabitants from another conquest."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Belput was founded as Az-10 in Drevnasel’s expanding frontier. Its inhabited planet suffered severe devastation during the war with Okeanberg, and the 1125 peace transferred the system while preserving citizenship and entry rights for qualifying Continuance citizens. Visshum’s subsequent conquest brought imperial occupation.\n\nLiberation in 1168 ended that occupation, but Belput remained without a governing Cantum until the settlement of 1175 restored its affiliation with Drevnasel. Its return preserves the history of a community shaped by colonial development, civilian suffering and successive changes of territorial power."
           }
         ]
       }
@@ -818,14 +932,26 @@
           {
             "fromAE": 519,
             "untilAE": 533,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-11 entered Drevnasel's official survey register in 519 A.E., following qualified scientific discovery the previous year. Its recognition added another destination to the founding Cantum's expanding survey programme as established colonies continued developing and exploration advanced beyond them.\n\nNo permanent settlement had yet been established, and Az-11 remained the system's official designation."
+          },
+          {
+            "fromAE": 533,
+            "untilAE": 745,
+            "datePrecision": "exact",
+            "text": "Senpolye has become a permanent community on Drevnasel’s frontier, retaining Az-11 as its original survey identity. Its natural connection with Kamunput places it within the geography of the founding region’s expansion, while permanent settlement gives the once-surveyed destination its own colonial history."
+          },
+          {
+            "fromAE": 745,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "In 745 A.E., Senpolye became the originating endpoint of an operational artificial connection with Puteprist, the permanent capital settlement established by the Yest expedition. Completion of that connection activated the prior central authorization for Zaklun, formally establishing the seventh Cantum of the Continuance.\n\nSenpolye's natural connection with Kamunput already belonged to the founding region's transport geography. The new artificial route gave the colony a second, more distant role in the expansion of the civilization. Senpolye remained part of Drevnasel even as Zaklun began administering its own territory."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Originally registered as Az-11 and settled under Drevnasel, Senpolye was linked by a natural jumphole to Kamunput. In 745 A.E., its artificial connection with Puteprist became operational, activating Zaklun's government as the Continuance's seventh Cantum. The connection initially joined two regions of one sovereign civilization, but later crossed an international frontier following Zaklun's peaceful independence.\n\nThe postwar settlement of 1175 designated Senpolye as the neutral official border system between Drevnasel and Zaklun. It is unaffiliated with either sovereign Cantum and outside their direct administration, while its original Az-11 identity remains part of its history."
           }
         ]
       }
@@ -876,9 +1002,15 @@
         "description": [
           {
             "fromAE": 602,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": 608,
+            "datePrecision": "exact",
+            "text": "Az-12 has entered Drevnasel’s official survey register. Its scientific recognition extends the Az programme beyond the founding region’s earlier colonial destinations. The designation records an investigated system; it is not the name of a permanent colony."
+          },
+          {
+            "fromAE": 608,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "First registered in 602 A.E., Az-12 became the starting point of an unexpected series of discoveries by Drevnasel's deep-space exploration teams. Natural jumpholes found in relatively close proximity led explorers onward to Az-13, Az-14 and Az-15.\n\nHazardous fields and environmental conditions made the region unsuitable for permanent colonization. By 608 A.E., a limited scientific and mining operation was beginning to take shape in Az-12, while the remaining systems were left largely unexplored. Travel beyond Az-12 is not prohibited, but is undertaken at the traveler's own risk."
           }
         ]
       }
@@ -929,9 +1061,15 @@
         "description": [
           {
             "fromAE": 604,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": 608,
+            "datePrecision": "exact",
+            "text": "The Az programme has added Az-13 to Drevnasel’s recognized systems. Qualified discovery and official registration have established its survey identity, extending the region’s scientific frontier. The system is recorded under that designation without a permanent colony name."
+          },
+          {
+            "fromAE": 608,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Registered in 604 A.E., Az-13 was discovered through the natural-jumphole chain extending from Az-12. Its discovery was part of a rapid exploration effort in which Drevnasel teams encountered several nearby spatial anomalies almost by chance.\n\nHazardous conditions discouraged permanent settlement, and the system received little detailed exploration. Az-13 remains largely uncharted, although its connections to Az-12 and Az-14 are known. Travelers proceeding through the region do so at their own risk."
           }
         ]
       }
@@ -982,9 +1120,15 @@
         "description": [
           {
             "fromAE": 606,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": 608,
+            "datePrecision": "exact",
+            "text": "Az-14 is one of the systems recorded as Drevnasel’s survey programme extends beyond its earlier colonial frontier. Scientific discovery has been followed by official registration under the Az sequence. Its identity remains that of a surveyed destination rather than a named permanent settlement."
+          },
+          {
+            "fromAE": 608,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Az-14 was registered in 606 A.E., following the discovery of another natural jumphole beyond Az-13. The nearby passages allowed Drevnasel explorers to continue their expedition toward Az-15 without undertaking an extensive survey of each system.\n\nInitial observations revealed hazardous conditions unsuitable for permanent colonization. As a result, Az-14 remains largely uncharted, with no documented permanent settlement. Passage through the system is possible but discouraged because of the known dangers."
           }
         ]
       }
@@ -1035,9 +1179,9 @@
         "description": [
           {
             "fromAE": 608,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Registered in 608 A.E., Az-15 was the last system documented in Drevnasel's rapid exploration of the natural-jumphole chain beginning at Az-12. Its discovery completed a sequence of four systems found through unusually accessible, closely situated passages.\n\nLike the preceding systems, Az-15 presented hazardous conditions that discouraged permanent settlement. Detailed exploration was limited, leaving much of the system uncharted. Access remains possible, though travelers are advised to proceed at their own risk."
           }
         ]
       }
@@ -1108,14 +1252,26 @@
           {
             "fromAE": 613,
             "untilAE": 625,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-16 entered Drevnasel's official survey register in 613 A.E., following qualified scientific discovery in 612. A natural jumphole links the system with Svetberg, placing it within the founding region's network of naturally connected destinations.\n\nRegistration established its official identity before permanent settlement. The system remained known as Az-16, another surveyed frontier destination awaiting colonization."
+          },
+          {
+            "fromAE": 625,
+            "untilAE": 730,
+            "datePrecision": "exact",
+            "text": "Zrenberg’s permanent settlement has added a named community to the frontier first registered as Az-16. A natural jumphole links its system with Svetberg, connecting its history to the exploration of Drevnasel’s original region. The colony belongs to the period in which the older Cantums were developing the foundations for more distant expansion."
+          },
+          {
+            "fromAE": 730,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Zrenberg's original Az-16 colony became the Drevnasel endpoint of an operational artificial connection with Stenput in 730 A.E. The Dzelo expedition had already established a permanent settlement at Stenput, and completion of the connection activated the prior central authorization for Gornebes as the sixth Cantum of the Continuance.\n\nThe new route connected a distant regional capital to the established civilization without transferring Zrenberg from Drevnasel. Its earlier natural connection with Svetberg remained part of the system's regional transport history, alongside its new role in the foundation of Gornebes."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Zrenberg began as Drevnasel’s Az-16 and became a permanent colony before the final three regional foundations. Its artificial connection to Stenput supported Gornebes’s establishment within the unified Continuance. Gornebes later separated peacefully, leaving the old connection between sovereign Cantums. In the settlement of 1175, Zrenberg became the neutral official border system between Drevnasel and Gornebes, unaffiliated with both and outside their direct administration."
           }
         ]
       }
@@ -1186,14 +1342,26 @@
           {
             "fromAE": 616,
             "untilAE": 630,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-17 entered Drevnasel's official survey register in 616 A.E., following qualified scientific discovery in 615. The new destination extended the founding Cantum's exploration programme during the period when the Continuance was preparing three additional distant regional administrations.\n\nRegistration established another recognized system within Drevnasel, but no permanent colony had yet been founded. Az-17 remained its official designation."
+          },
+          {
+            "fromAE": 630,
+            "untilAE": 725,
+            "datePrecision": "exact",
+            "text": "Bujnasel has taken its proper name with permanent settlement in the system registered as Az-17. Its foundation continues the growth of Drevnasel’s original inhabited region during the preparations for three more distant Cantums. The community is part of the established civilization from which that expansion is being organized."
+          },
+          {
+            "fromAE": 725,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "In 725 A.E., the artificial connection between Bujnasel and Vudegrad became operational. Vudegrad, permanently settled by the Zhivete sleeper expedition in 715, could now receive regular transport support from the established Continuance network. The same event activated the central government's prior authorization for Vodravan, formally establishing the fifth Cantum.\n\nBujnasel remained an original Drevnasel colony, first registered as Az-17. Its participation as the originating endpoint of the artificial connection supported the foundation of Vodravan without transferring the colony into the new Cantum's administration."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Founded as Az-17 within Drevnasel, Bujnasel became an important endpoint in the final expansion of the Continuance. Its connection to Vudegrad marked the establishment of Vodravan’s regional government. Vodravan’s later peaceful independence changed that internal relationship into one between sovereign states. The postwar settlement of 1175 has made Bujnasel the neutral official Vodravan–Drevnasel border system, unaffiliated with either Cantum and outside their direct administration."
           }
         ]
       }
@@ -1289,8 +1457,38 @@
           {
             "fromAE": 757,
             "untilAE": 790,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Az-18 entered Drevnasel's official survey register in 757 A.E., following its qualified scientific discovery in 755. Even as seven Cantums were developing across the Continuance, this new destination belonged to the founding region's own exploration programme.\n\nNo permanent settlement or proper name had yet been established."
+          },
+          {
+            "fromAE": 790,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "Rekput became a permanent Drevnasel colony in 790 A.E., having first been registered as Az-18. Its settlement added another inhabited community to the founding Cantum's territory during the High Age of the Continuance.\n\nThough the seven Cantums were developing their respective regions, Rekput's origins remained firmly within Drevnasel's original survey and settlement programme."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1008,
+            "datePrecision": "circa",
+            "text": "Rekput began as Az-18, an established colony of Drevnasel. Around 970, the territorial compromise accompanying Okeanberg’s independence assigned this inhabited system to Rekdolin as compensation for the loss of Morluk, Murkamun and Luknasel. The transfer took place between two constituent regions of the Continuance. Rekput’s original community and Drevnasel history remained distinct from the regional administration to which it was assigned."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Established as Drevnasel's Az-18, Rekput had passed to Rekdolin as compensation for the Morluk frontier. It belonged to Rekdolin's six-system territory when that Cantum gained independence in 1000 A.E., becoming part of a newly sovereign state.\n\nThat independence ended with Okeanberg's conquest of Rekdolin, completed by annexation in 1008. Rekput was absorbed into Okeanberg's enlarged territory, but the change of sovereignty did not erase its original Az identity or the community's longstanding ties to Drevnasel."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Rekput’s history began as Drevnasel’s Az-18, before its transfer to Rekdolin in compensation for the Morluk frontier. It passed through Rekdolin’s independence and Okeanberg’s annexation, then fell within Visshum’s imperial conquest. Although most inhabitants retained a strong Drevnasel civic identity, the special citizenship and entry protections negotiated for Bergovar and Belput in 1125 excluded Rekput. Its original heritage has therefore carried a different legal history through successive changes of power."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Rekput began as Drevnasel's Az-18 before a territorial compromise assigned it to Rekdolin around 970 A.E. It shared in Rekdolin's independence and Okeanberg's subsequent annexation, then fell under Visshum's imperial occupation. Despite its strong Drevnasel civic heritage, Rekput had been excluded from the special citizenship and entry protections established for Bergovar and Belput in the peace of 1125.\n\nVisshum held Rekput until its surrender in 1175, when the postwar settlement returned the system to Drevnasel. Its political affiliation once again reflects its founding origins, although the history of territorial transfers, independence and conquest remains an enduring part of the community's identity."
           }
         ]
       }
@@ -1355,8 +1553,32 @@
           {
             "fromAE": 334,
             "untilAE": 340,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-1 is the successful destination of Project Novzor, the autonomous expansion programme launched from Putluk. Its expedition established the authorized artificial connection required to win the undertaking after investigating the resources and conditions for development. Official registration has opened a new regional survey sequence beyond Drevnasel’s original territory."
+          },
+          {
+            "fromAE": 340,
+            "untilAE": 360,
+            "datePrecision": "exact",
+            "text": "Bergdom became a permanent settlement in 340 A.E., following its official registration as Buki-1. It stood at Project Novzor's successful distant destination, connected to Putluk by an operational artificial gate established in 333. The link allowed people, equipment and technical expertise from the founding region to support a community first prepared by an autonomous construction expedition.\n\nWhat began as a remote construction project was now an inhabited base for further exploration. Developing the surrounding region would require local infrastructure and sustained investment, even with direct access to Drevnasel's resources."
+          },
+          {
+            "fromAE": 360,
+            "untilAE": 931,
+            "datePrecision": "exact",
+            "text": "Bergdom grew from Project Novzor’s winning destination into the capital of the second Cantum. The expedition’s artificial connection with Putluk made permanent settlement possible, and the regional government established here in 345 gave the new frontier its own administration within The Continuance. The region has received the name Visshum. Its foundation carries forward Novzor’s purpose: a distant centre from which exploration and settlement can advance into the space between the original regions."
+          },
+          {
+            "fromAE": 931,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Bergdom’s rise began with the Novzor expedition that connected this distant region to Putluk. It became the seat of Visshum’s subordinate administration and the foundation of the Buki expansion programme. Centuries of development strengthened the region’s case for governing itself, and peaceful independence in 930 ended its membership in the Continuance. Visshum has since adopted hereditary imperial government with majority support, giving its old regional capital a new role at the centre of a sovereign Empire."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Bergdom began as Project Novzor’s successful destination, linked to Putluk before its permanent settlement and establishment as Visshum’s capital. The region later gained peaceful independence and adopted hereditary imperial rule. Under subsequent imperial leadership, Visshum conquered Okeanberg and former Rekdolin territory; its persecution of Drevnasel citizens and the Bergovar Betrayal led to the Final Inter-Cantum War.\n\nThe advance through the connected invasion corridor placed pressure on the imperial heartland, but Bergdom remained a Visshum system throughout the conflict. Surrender in 1175 ended the old government’s power while preserving Visshum’s sovereignty. The settlement provides for a citizen-chosen replacement dynasty, leaving the capital with the consequences of an empire’s defeat rather than annexation to another Cantum."
           }
         ]
       }
@@ -1421,8 +1643,14 @@
           {
             "fromAE": 370,
             "untilAE": 381,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-2 entered Visshum's official survey register in 370 A.E., following discovery through a natural jumphole from Bergdom. The passage carried scientific exploration outward from the second Cantum's capital, reaching another destination before permanent settlement.\n\nBuki-2 remained a surveyed system without a permanent colony."
+          },
+          {
+            "fromAE": 381,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Shumberg became a permanent Visshum colony in 381 A.E., following its registration as Buki-2. A natural jumphole linked the system to Bergdom, while a second passage led onward to the surveyed destination Buki-3.\n\nExploration had already extended through that second passage before Shumberg's own permanent settlement. The colony therefore occupied a distinctive place in Visshum's early expansion: an inhabited link along a frontier first investigated through natural connections."
           }
         ]
       }
@@ -1487,8 +1715,14 @@
           {
             "fromAE": 379,
             "untilAE": 391,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-3 entered Visshum's official survey register in 379 A.E., following qualified discovery through a natural passage from the registered system Buki-2. At that time, Buki-2 had not yet achieved permanent settlement, illustrating how exploration could advance ahead of colonization.\n\nBuki-3 remained a recognized survey destination without a permanent colony of its own."
+          },
+          {
+            "fromAE": 391,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Visluk’s foundation followed the exploration of the natural branch from Bergdom through the system that became Shumberg. Surveyed as Buki-3, it was recognized before Shumberg’s permanent settlement and has gained a named community of its own. Its history reflects the difference between the rapid extension of exploration through natural passages and the longer work of establishing colonies."
           }
         ]
       }
@@ -1565,8 +1799,20 @@
           {
             "fromAE": 391,
             "untilAE": 405,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-4 entered Visshum's official survey register in 391 A.E., following its qualified scientific discovery the previous year. The new destination extended the regional programme beyond Bergdom and its earliest outward settlements.\n\nNo permanent colony had yet been established, and Buki-4 remained the system's official designation."
+          },
+          {
+            "fromAE": 405,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Lesgrad was founded as Visshum extended settlement beyond Bergdom and its earliest outward colonies. Its original Buki-4 survey identity belongs to that regional programme, while the adoption of its proper name marks the establishment of a permanent community. The system forms part of the second Cantum’s colonial foundations."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Lesgrad’s colonial origins belong to the Buki programme that extended Visshum beyond Bergdom. First registered as Buki-4, it became a permanent community long before the region’s independence and imperial era. During the Final Inter-Cantum War, the route through Chernput and Lesgrad toward Bergdom helped bring military pressure against the imperial heartland. Lesgrad remained within Visshum throughout the conflict and retains that affiliation after the surrender of 1175, when the old imperial government was defeated and the Cantum’s sovereignty preserved."
           }
         ]
       }
@@ -1631,8 +1877,14 @@
           {
             "fromAE": 407,
             "untilAE": 424,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-5 entered Visshum's official survey register in 407 A.E., following scientific discovery the previous year. The new designation extended the regional exploration programme beyond the settlements already established around Bergdom.\n\nThe system had not yet reached permanent settlement and remained known by its Buki survey designation."
+          },
+          {
+            "fromAE": 424,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Mladnasel became a permanent Visshum colony in 424 A.E., receiving its proper name after earlier registration as Buki-5. The settlement extended the inhabited territory developing outward from Bergdom.\n\nIts foundation belongs to the period when Visshum was building a network of communities under its own regional administration within the unified Continuance."
           }
         ]
       }
@@ -1709,20 +1961,26 @@
           {
             "fromAE": 429,
             "untilAE": 448,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-6 received official registration in 429 A.E., after its qualified scientific discovery the previous year. It joined Visshum's expanding survey programme beyond Bergdom, at a time when the second Cantum was developing permanent colonies across the region.\n\nThe destination remained known by its survey designation, without an established permanent settlement."
           },
           {
-            "fromAE": 1172,
+            "fromAE": 448,
+            "untilAE": 480,
+            "datePrecision": "exact",
+            "text": "Chernput became a permanent Visshum colony in 448 A.E., transforming the registered destination Buki-6 into an inhabited system. The settlement extended a regional programme established around Bergdom during the decades following Project Novzor.\n\nIts original administration belonged to Visshum, whose government was expanding its network of colonies within the unified Continuance."
+          },
+          {
+            "fromAE": 480,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Chernput developed as a Visshum colony under the original designation Buki-6. Its part in expansion has since reached beyond that programme: a conventional expedition from here contributed to the founding of Rekberg, the capital of the newly established Okeanberg. The undertaking was centrally authorized and principally supported by Visshum, linking Chernput’s colonial history to the creation of a separate third Cantum."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Chernput was founded within Visshum’s Buki programme and later supported the expedition that helped establish Rekberg and Okeanberg. Its history thus connects the second Cantum’s expansion with the foundation of the third. During the Final Inter-Cantum War, it lay on the invasion corridor between Rekberg and Lesgrad. Liberation in 1172 ended Visshum control, leaving the system without a governing Cantum until the settlement. In 1175 Chernput became the neutral official border system between Visshum and Okeanberg, unaffiliated with either and outside their direct administration."
           }
         ]
       }
@@ -1773,9 +2031,9 @@
         "description": [
           {
             "fromAE": 456,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Buki-7 entered Visshum’s survey register as its early programme extended beyond the settled colonies. It retains its scientific designation without a recorded permanent colonial foundation or a proper settlement name. Its place in the Buki sequence reflects recognized exploration rather than the establishment of another inhabited colony."
           }
         ]
       }
@@ -1840,8 +2098,14 @@
           {
             "fromAE": 679,
             "untilAE": 711,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Buki-8 has been registered as Visshum continues exploring beyond the systems recorded during its first expansion. The entry extends the established regional sequence while the wider Continuance undertakes the foundations of its more distant Cantums."
+          },
+          {
+            "fromAE": 711,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Drevluk became a permanent Visshum colony in 711 A.E., following its registration as Buki-8. Its settlement came during the period when the wider Continuance was conducting founding programmes for three more distant Cantums, but Drevluk belonged to Visshum's own regional expansion.\n\nThe earlier Buki-7 remained a separate surveyed destination without a permanent colony. Drevluk's foundation did not rename or replace it; the two systems retain distinct survey histories."
           }
         ]
       }
@@ -1925,14 +2189,38 @@
           {
             "fromAE": 463,
             "untilAE": 475,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Vedi-1 is the first registered destination of a new regional expansion programme authorized by Drevnasel. Visshum provides its principal regional support under the founding government’s authorization. The separate Vedi sequence identifies the intended foundation of a third region before its formal government exists."
           },
           {
-            "fromAE": 1171,
+            "fromAE": 475,
+            "untilAE": 480,
+            "datePrecision": "exact",
+            "text": "Rekberg became the first permanent settlement of the planned Vedi region in 475 A.E., following its official registration as Vedi-1. A conventional expedition from Chernput had contributed to its foundation under Drevnasel's authorization, with Visshum providing principal regional support.\n\nThe new community gave the proposed third Cantum an inhabited base for future exploration and administration. Its separate regional government had not yet been established."
+          },
+          {
+            "fromAE": 480,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "When Okeanberg's subordinate government was established in 480 A.E., Rekberg became the capital of the third Cantum of the Continuance. The colony had been permanently settled five years earlier through the centrally authorized Vedi programme, supported principally by Visshum.\n\nFrom Rekberg, the new government directed regional exploration, resources and settlement while remaining under Drevnasel's central authority. Visshum's support for the founding programme did not grant it administrative authority over Okeanberg."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1138,
+            "datePrecision": "circa",
+            "text": "Rekberg’s history began with the Vedi programme supported by Visshum and authorized from Drevnasel. Its settlement became the capital of Okeanberg, which developed a regional identity and persistent grievances over the recognition of discoveries beyond its original colonies. Around 970, peaceful negotiations brought Okeanberg sovereignty and transferred the Morluk frontier to it. Rekberg’s rise from a supported foundation to the seat of an independent Cantum reflects that widening political ambition."
+          },
+          {
+            "fromAE": 1138,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "confirmed_by",
+            "text": "Rekberg rose from a centrally authorized Vedi-1 colony to the capital of independent Okeanberg. After gaining sovereignty, the Cantum acquired the Morluk frontier, annexed Rekdolin and fought a prolonged war with the Continuance.\n\nVisshum's subsequent campaign defeated Okeanberg's government and brought imperial military occupation to Rekberg. The conquest became a defining episode in the capital's history, standing alongside its earlier development as the founding settlement and seat of government of the third Cantum."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Rekberg’s original Vedi-1 foundation grew through central authorization and Visshum’s support into Okeanberg’s capital. The region gained peaceful independence, expanded at Rekdolin’s expense and fought the Continuance before Visshum conquered its territory. Liberation reached Rekberg in 1171, but the system remained without a governing Cantum until the postwar settlement. Okeanberg’s sovereignty and Rekberg’s affiliation were restored in 1175. Drevnasel exercises substantial influence in the resulting relationship, while Okeanberg governs itself."
           }
         ]
       }
@@ -2016,14 +2304,26 @@
           {
             "fromAE": 488,
             "untilAE": 503,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Vedi-2 entered Okeanberg's official survey register in 488 A.E., following qualified scientific discovery the previous year. A natural jumphole connected the destination to Rekberg, extending the young third Cantum's exploration beyond its capital.\n\nNo permanent colony had yet been established, and the system retained its official survey designation."
           },
           {
-            "fromAE": 1170,
+            "fromAE": 503,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "In 503 A.E., Vedi-2 became Murnasel, Okeanberg's first permanent colony beyond Rekberg. A natural jumphole connected the two systems, extending the inhabited frontier of the third Cantum through its original regional programme.\n\nMurnasel's foundation provided another established community from which Okeanberg could continue developing its territory beyond the capital."
+          },
+          {
+            "fromAE": 1138,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "confirmed_by",
+            "text": "Murnasel was established as Okeanberg's first outward Vedi colony, connected to Rekberg by a natural jumphole. The settlement formed part of the region's early development and remained an original Okeanberg community through the Cantum's later independence.\n\nVisshum's subsequent conquest defeated Okeanberg's government and brought imperial military occupation to Murnasel. The loss of sovereign authority became part of the colony's history, without altering its origins in the third Cantum's earliest expansion."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Murnasel’s community grew from Okeanberg’s Vedi-2 frontier beyond Rekberg, connected to the capital by a natural jumphole. It became part of the independent Cantum before Visshum’s later conquest brought imperial occupation. During the Final Inter-Cantum War, the invasion corridor followed the natural connections through Oyek, Murnasel and Rekberg. Murnasel was liberated in 1170 and remained without a governing Cantum until the settlement of 1175 restored its affiliation with sovereign Okeanberg."
           }
         ]
       }
@@ -2107,14 +2407,26 @@
           {
             "fromAE": 569,
             "untilAE": 586,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Vedi-3 entered Okeanberg's official survey register in 569 A.E., following qualified scientific discovery the previous year. The destination lay beyond Murnasel along a natural passage, extending the original Vedi programme farther from the capital at Rekberg.\n\nNo permanent colony had yet been established, and Vedi-3 remained the system's official designation."
           },
           {
-            "fromAE": 1169,
+            "fromAE": 586,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Oyek’s permanent colony extends the exploration that advanced from Rekberg through Murnasel. A natural passage from Murnasel opened this part of the Vedi frontier, where official registration preceded the work of establishing a lasting community. The settlement named Oyek continues the growth of Okeanberg beyond its first two colonies."
+          },
+          {
+            "fromAE": 1138,
             "untilAE": 1175,
-            "text": "Temporarily unaffiliated, with an explicitly established absence of governing Cantum administration. Liberation does not by itself restore administration.",
-            "datePrecision": "exact"
+            "datePrecision": "confirmed_by",
+            "text": "Oyek began as Vedi-3, a colony reached along the natural branch extending from Rekberg through Murnasel. Its permanent settlement belonged to Okeanberg's original colonial programme, long before the Cantum gained independent sovereignty.\n\nVisshum's later conquest defeated Okeanberg's government and brought imperial military occupation to Oyek. The system's history thus includes the loss of the sovereign state that had developed from its original regional government, while its Vedi-3 foundation remains unchanged."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Oyek’s Vedi-3 origins lie in the natural exploration branch extending from Rekberg through Murnasel. The colony became part of independent Okeanberg before Visshum’s conquest brought occupation. In the Final Inter-Cantum War, the main invasion corridor joined Bergovar to Oyek and continued through the natural passages toward Murnasel and Rekberg. Liberation in 1169 left Oyek temporarily without a governing Cantum. The settlement of 1175 restored its affiliation with Okeanberg as the Cantum regained sovereignty."
           }
         ]
       }
@@ -2192,8 +2504,26 @@
           {
             "fromAE": 583,
             "untilAE": 595,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Vedi-4 entered Okeanberg's official survey register in 583 A.E., following its qualified scientific discovery the previous year. Rekberg and Murnasel were already permanent colonies, while Vedi-3 remained a surveyed destination awaiting settlement.\n\nThe new registration extended Okeanberg's original scientific frontier, but Vedi-4 had not yet established a permanent community or received a proper settlement name."
+          },
+          {
+            "fromAE": 595,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Dubiput’s permanent foundation completes another stage in Okeanberg’s early colonial expansion. The system was first recorded as Vedi-4, following the survey destinations that produced Rekberg, Murnasel and Oyek. Its settlement adds a fourth named community to the original regional programme under the unified Continuance."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Dubiput’s colonial history began as Vedi-4, one of Okeanberg’s four original settled systems. The region later became independent and enlarged its territory through settlement and conquest. Visshum’s campaign then defeated Okeanberg’s government and brought occupation to its original colonies. Dubiput’s place in that history remains rooted in the early Vedi programme, distinct from the systems acquired through Okeanberg’s later expansion."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Dubiput became the fourth permanently settled community of Okeanberg's original Vedi programme in 595 A.E. It belonged to the Cantum's established colonial territory long before independence, territorial expansion and war altered the region's political future.\n\nVisshum's later conquest brought Dubiput under imperial military occupation. Following the surrender and settlement of 1175, the system was affiliated with restored sovereign Okeanberg. Its original Vedi-4 identity survived the changes in political authority that had overtaken the third Cantum."
           }
         ]
       }
@@ -2244,9 +2574,9 @@
         "description": [
           {
             "fromAE": 980,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Vedi-10 entered the official register of sovereign Okeanberg in 980 A.E., following qualified scientific discovery in 979. Its designation continued a survey sequence beyond the four original Vedi systems once recognized by the unified Continuance.\n\nOkeanberg had maintained additional internal survey records under the intervening Vedi-5 through Vedi-9 numbers, without all of them receiving central recognition. The registration of Vedi-10 therefore represented a continuation of the Cantum's own scientific programme, not the discovery of five missing officially registered colonies.\n\nThe new entry marked a recognized destination rather than the establishment of a permanent community. Vedi-10 retained its numerical identity without a documented colonial foundation or proper settlement name."
           }
         ]
       }
@@ -2297,9 +2627,9 @@
         "description": [
           {
             "fromAE": 998,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Okeanberg registered Vedi-11 as its sovereign survey programme continued beyond the original centrally recognized colonies. Scientific discovery preceded this official entry, which preserves the continuing Vedi sequence. The system’s recorded identity is a survey designation rather than a permanent settlement name."
           }
         ]
       }
@@ -2350,9 +2680,9 @@
         "description": [
           {
             "fromAE": 1049,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Vedi-12 is a destination recorded by sovereign Okeanberg’s continuing scientific programme. Official registration followed its discovery, adding another recognized system to a sequence that began during the Continuance’s expansion. Its designation carries that survey history without a recorded permanent colony."
           }
         ]
       }
@@ -2403,9 +2733,9 @@
         "description": [
           {
             "fromAE": 1183,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Vedi-13 entered Okeanberg's official survey register in 1183 A.E., following qualified scientific discovery the previous year. Its recognition came after the Final Inter-Cantum War and the postwar restoration of Okeanberg's sovereign government in 1175.\n\nThe new designation continued a scientific programme whose history extended back to the unified Continuance and through Okeanberg's successive political transformations. In the postwar era, exploration remained part of the Cantum's activities alongside reconstruction and the restoration of relations with neighboring states.\n\nVedi-13 remained an officially surveyed destination without a documented permanent settlement or proper colonial name. Its registration does not establish a separate history of local wartime occupation or liberation."
           }
         ]
       }
@@ -2456,9 +2786,9 @@
         "description": [
           {
             "fromAE": 1193,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Okeanberg’s renewed surveying has added Vedi-14 to its official records. Registered after the Cantum’s postwar reformation, the system extends the Vedi sequence beyond the destinations known before the Final Inter-Cantum War. Its scientific identity remains separate from the establishment of a permanent named colony."
           }
         ]
       }
@@ -2561,14 +2891,44 @@
           {
             "fromAE": 531,
             "untilAE": 542,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-1 is the first official destination of the planned fourth regional programme. Drevnasel authorized the undertaking along its developing frontier to establish another regional centre. The reserved Glagoli sequence identifies a new foundation before a separate Cantum government has been established."
           },
           {
-            "fromAE": 1173,
-            "untilAE": 1201,
-            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
-            "datePrecision": "exact"
+            "fromAE": 542,
+            "untilAE": 548,
+            "datePrecision": "exact",
+            "text": "Putnasel’s permanent colony has given the Glagoli programme its first named community. Its foundation followed Drevnasel’s decision to create a fourth regional administration rather than extend the older Cantums indefinitely. The system’s original Glagoli-1 registration and expedition access from Belput belong to the beginnings of that planned region."
+          },
+          {
+            "fromAE": 548,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "Founded through the Glagoli programme and supported by expeditions from Drevnasel's older frontier, Putnasel became Rekdolin's capital in 548 A.E.\n\nFrom here, the new regional government directed exploration, resources and settlement while Rekdolin formed part of the unified Continuance. What began as a planned colony had become the administrative center of the fourth Cantum."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Putnasel grew from Glagoli-1 into the capital of Rekdolin. Around 970 A.E., the territorial compromise accompanying Okeanberg's independence transferred the Morluk frontier away from Rekdolin. Compensation with Rekput did not erase the loss, and dissatisfaction with the settlement deepened over the following decades.\n\nIn 1000, Rekdolin peacefully gained sovereignty, with Putnasel as its capital. Independence also ended automatic central subsidies and military protection. Okeanberg invaded in 1004, and Rekdolin's defeat in 1008 brought annexation and the loss of its independent government. Its sovereign existence had been brief, but its communities and regional identity survived."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1166,
+            "datePrecision": "confirmed_by",
+            "text": "Putnasel’s history began with the planned Glagoli foundation and the establishment of Rekdolin’s government. It became a sovereign capital only briefly before Okeanberg’s conquest annexed the region. Visshum’s later campaign brought imperial occupation to the former capital alongside the other territories held by Okeanberg. Successive conquests have changed the power governing this old community without erasing its origins as the centre of Rekdolin."
+          },
+          {
+            "fromAE": 1166,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Putnasel was founded as Glagoli-1 and became the capital of Rekdolin, passing through its independence, Okeanberg’s annexation and Visshum’s later imperial conquest. The former capital has become the scene of the assassination of Visshum’s only imperial heir during a public appearance. The identified assassin, a Drevnasel citizen, was captured and executed. The Emperor alleges Drevnasel’s responsibility, while Drevnasel denies involvement; the assassin’s citizenship alone does not establish governmental direction of the killing."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Pustosh-7 was once Putnasel, the Glagoli-1 settlement that became Rekdolin’s founding capital. Its short sovereign era ended with Okeanberg’s annexation, followed by Visshum’s imperial conquest. The assassination of the imperial heir here in 1166 became the occasion for accusations against Drevnasel and the wider persecution that preceded the Final Inter-Cantum War. In 1173 imperial forces withdrew after deliberately destroying infrastructure, leaving the system largely abandoned and outside Cantum administration.\n\nThe settlement of 1175 formally abolished Rekdolin and introduced Putnasel’s Pustosh-7 designation. The Pustosh Treaty, enacted and effective that year, excludes sovereign claims by all six surviving Cantums. Civilian entry is not generally forbidden, but private activity creates no sovereignty. The former capital’s devastated communities remain part of Rekdolinian history even without a restored state."
           }
         ]
       }
@@ -2671,14 +3031,32 @@
           {
             "fromAE": 556,
             "untilAE": 574,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-2 entered Rekdolin's official survey register in 556 A.E., following qualified scientific discovery the previous year. The fourth Cantum's government had been established at Putnasel in 548, and this new destination extended its regional exploration programme beyond the founding capital.\n\nNo permanent colony had yet been established, and Glagoli-2 remained the system's official designation."
           },
           {
-            "fromAE": 1174,
-            "untilAE": 1201,
-            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
-            "datePrecision": "exact"
+            "fromAE": 574,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "Kamunvod became a permanent Rekdolin colony in 574 A.E., following its registration as Glagoli-2. It was the first named community established by the fourth Cantum beyond its founding capital, Putnasel.\n\nThe settlement extended Rekdolin's inhabited territory into a second system, becoming part of the network of communities developed under its regional administration within the unified Continuance."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Kamunvod began as one of Rekdolin’s early Glagoli colonies and remained among its retained systems after the Morluk frontier passed to Okeanberg. It formed part of Rekdolin’s six-system territory at peaceful independence in 1000. The war begun by Okeanberg four years later ended in annexation in 1008, bringing the community into the conqueror’s enlarged state while its Rekdolinian history endured."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Kamunvod was one of Rekdolin's earliest permanent colonies. It remained with the fourth Cantum when the Morluk frontier passed to Okeanberg, entered Rekdolin's brief period of independence in 1000 A.E., and subsequently came under Okeanberg's authority after the annexation of 1008.\n\nVisshum's later conquest brought imperial military occupation to this former Rekdolin settlement. The successive changes of sovereignty became part of Kamunvod's history without erasing its origins in the fourth Cantum's earliest expansion."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Pustosh-11 preserves the history of Kamunvod, the Glagoli-2 colony founded during Rekdolin’s early expansion. Retained after the Morluk territorial compromise, it passed through Rekdolin’s independence, Okeanberg’s annexation and Visshum’s imperial occupation. Imperial forces deliberately destroyed infrastructure before withdrawing in 1174, leaving the system largely abandoned and unaffiliated.\n\nIn 1175 the postwar settlement formally abolished Rekdolin and gave Kamunvod its Pustosh-11 designation. The Pustosh Treaty was enacted and entered into effect that year, excluding sovereign claims by the six surviving Cantums. The system remains individually unclaimed; civilian and private activity is not generally prohibited, and the devastation does not erase the heritage of its former communities."
           }
         ]
       }
@@ -2774,8 +3152,32 @@
           {
             "fromAE": 573,
             "untilAE": 589,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-3 entered Rekdolin's official survey register in 573 A.E., as the fourth Cantum extended its exploration beyond Putnasel. The registration established another destination within Rekdolin's own regional programme.\n\nNo permanent settlement had yet been established."
+          },
+          {
+            "fromAE": 589,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "By 589 A.E., Glagoli-3 had become the permanent colony of Dulinberg. Established after Putnasel and Kamunvod, the settlement extended Rekdolin's inhabited territory during the fourth Cantum's early development within the unified Continuance.\n\nDulinberg belonged to the region's original colonial programme, contributing another established community to a growing network beyond the capital."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Dulinberg's early settlement later became a departure point for the conventional expedition through which Rekdolin independently explored the system that became Shumdom. The colony remained under Rekdolin after the loss of the Morluk frontier and formed part of its independent six-system territory in 1000 A.E.\n\nThat independence was short-lived. Okeanberg invaded Rekdolin in 1004 and annexed its territory in 1008, bringing Dulinberg under another sovereign government. The community's original Glagoli identity and its role in Rekdolin's exploration remained part of its history."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Dulinberg’s early settlement and its role in the exploration toward Shumdom belong to Rekdolin’s original development. The system remained with Rekdolin through the Morluk territorial compromise, then passed from its brief independence into Okeanberg’s annexed territory. Visshum’s later conquest brought imperial occupation to Dulinberg alongside the other former Rekdolin systems, layering a second conquest over the loss of its original Cantum’s sovereignty."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Dulinberg was founded as Glagoli-3 in Rekdolin’s early expansion and later supported conventional exploration toward Shumdom. It remained part of Rekdolin through the Morluk territorial compromise, experienced its brief sovereignty and Okeanberg’s annexation, and subsequently came under Visshum’s imperial occupation. The war-ending settlement of 1175 formally abolished Rekdolin and placed Dulinberg with restored sovereign Okeanberg. Its political future belongs to that Cantum, while its colonial and exploratory history remains part of Rekdolin’s surviving heritage."
           }
         ]
       }
@@ -2878,14 +3280,32 @@
           {
             "fromAE": 583,
             "untilAE": 597,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-4 entered Rekdolin's official survey register in 583 A.E., following qualified scientific discovery the previous year. At that time, the earlier registered Glagoli-3 also remained unsettled, illustrating how the fourth Cantum's exploration was advancing ahead of permanent colonization.\n\nNo permanent community had yet been established in Glagoli-4, which retained its numerical survey designation."
           },
           {
-            "fromAE": 1172,
-            "untilAE": 1201,
-            "text": "No governing Cantum administration following the recorded withdrawal and abandonment. Earlier permanent settlement remains a historical milestone; abandonment does not establish zero survivors.",
-            "datePrecision": "exact"
+            "fromAE": 597,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "Kamunrek’s permanent foundation adds the fourth named colony to Rekdolin’s original programme. The Glagoli-4 survey entry preceded settlement, preserving the separate stages through which a scientific destination became an inhabited community. Its foundation belongs to the early four-Cantum expansion of the Continuance."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Kamunrek belonged to the five original Glagoli colonies retained by Rekdolin when Morluk, Murkamun and Luknasel passed to independent Okeanberg around 970 A.E. With Rekput added as compensation, Rekdolin possessed six systems when it gained sovereignty in 1000.\n\nOkeanberg invaded in 1004. After several years of war, Rekdolin was defeated and annexed in 1008, bringing Kamunrek under Okeanberg's government. The annexation ended the Cantum's sovereignty but did not erase the colony's Rekdolinian origins."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Kamunrek began as Glagoli-4, one of Rekdolin's four earliest permanently settled colonies. It remained within the region after the Morluk territorial compromise, experienced Rekdolin's brief independence, and passed to Okeanberg following the annexation of 1008.\n\nVisshum's subsequent conquest brought imperial occupation to the former Rekdolin settlement. Kamunrek's history thus includes two successive conquests, while its original Glagoli-4 survey identity and regional heritage remained unchanged."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Pustosh-13 was founded as Kamunrek, the Glagoli-4 colony of Rekdolin. It remained with the region after the Morluk compromise, then passed through independence, Okeanberg’s annexation and Visshum’s conquest. Imperial forces destroyed infrastructure on withdrawal in 1172, leaving Kamunrek largely abandoned and outside direct Cantum administration.\n\nRekdolin was formally abolished in the 1175 settlement, when Kamunrek received the Pustosh-13 designation. The Pustosh Treaty, enacted and effective in the same year, leaves this system individually unclaimed by the six sovereign Cantums. Private activity creates no territorial sovereignty, and civilian entry is not generally banned. Its devastation is part of Rekdolin’s history, not evidence that every inhabitant or installation disappeared."
           }
         ]
       }
@@ -2979,10 +3399,34 @@
         "armament": null,
         "description": [
           {
-            "fromAE": 760,
+            "fromAE": 776,
             "untilAE": 799,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-5 entered Rekdolin's official survey register in 776 A.E., following independent investigation through a conventional expedition from Dulinberg. Its recognition extended the fourth Cantum's exploration beyond its first four colonies.\n\nThe destination had not yet been permanently settled, and Glagoli-5 remained its official designation."
+          },
+          {
+            "fromAE": 799,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "Shumdom became a permanent Rekdolin colony in 799 A.E., following independent scientific investigation and registration as Glagoli-5. Its explorers had reached the system by conventional travel from Dulinberg, extending the region's activities beyond its earlier settlements.\n\nThe foundation made Shumdom the fifth named community of Rekdolin's original Glagoli programme, establishing another inhabited system within the fourth Cantum."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Shumdom’s exploration has two histories: Okeanberg first discovered the system but retained its findings internally, while Rekdolin independently investigated it, secured Glagoli-5 registration and founded the permanent colony. Unlike the Morluk frontier, Shumdom remained with Rekdolin in the territorial compromise accompanying Okeanberg’s independence. It later belonged to sovereign Rekdolin before Okeanberg’s war ended in annexation in 1008, placing the colony under the Cantum whose earlier discovery had not secured its original registration."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Shumdom's history was shaped by two independent discoveries. Okeanberg recorded the system first, but Rekdolin obtained official registration as Glagoli-5 and established its permanent colony. Shumdom remained within Rekdolin when Morluk and its two frontier branches passed to Okeanberg, only to enter Okeanberg's territory through the annexation of Rekdolin in 1008.\n\nVisshum's subsequent conquest brought imperial military occupation to the system. A colony once disputed through scientific recognition had now experienced successive conquests without losing its identity as an original Rekdolinian settlement."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Shumdom was first discovered by Okeanberg, whose findings remained internal, and later explored independently by Rekdolin. Rekdolin obtained official Glagoli-5 registration and established the permanent colony. When the Morluk frontier passed to Okeanberg around 970 A.E., Shumdom remained in Rekdolin; its later annexation by Okeanberg and occupation by Visshum came through conquest.\n\nThe settlement of 1175 placed Shumdom under restored sovereign Okeanberg and formally abolished Rekdolin. Its original survey identity and colonial roots nevertheless remain part of Rekdolinian history, even as the system's governing affiliation has changed."
           }
         ]
       }
@@ -3064,10 +3508,34 @@
         "armament": null,
         "description": [
           {
-            "fromAE": 812,
+            "fromAE": 838,
             "untilAE": 866,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-6 has received official recognition following Rekdolin’s independent investigation through the natural passage from Shumdom. The investigators established an exploratory outpost and submitted their findings before the system entered the register. Its recognized survey identity precedes a permanent colony or proper settlement name."
+          },
+          {
+            "fromAE": 866,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "Established in 866 A.E., Morluk grew from an exploratory outpost reached through a natural jumphole from Shumdom. Rekdolin's investigators had independently qualified the destination and obtained its official registration as Glagoli-6 before the permanent colony adopted its proper name.\n\nThe settlement extended Rekdolin's inhabited frontier beyond Shumdom, transforming a site of scientific exploration into an established community."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1138,
+            "datePrecision": "circa",
+            "text": "Morluk’s origins were contested long before its territorial transfer. Okeanberg recorded an earlier discovery internally, but Rekdolin independently explored the system from Shumdom, obtained Glagoli-6 registration and established its colony. Drevnasel upheld that recognition and reimbursed Okeanberg’s unsuccessful expedition, leaving lasting grievances despite acceptance of the ruling. Around 970, Okeanberg’s negotiated independence brought Morluk and its frontier branches, Murkamun and Luknasel, into the new sovereign Cantum. That political compromise changed territorial authority without reversing Morluk’s original survey history."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Morluk was originally discovered by Okeanberg, which retained an internal record, and independently explored by Rekdolin, whose Glagoli-6 registration was upheld by Drevnasel. Rekdolin founded the permanent colony, but the territorial compromise surrounding Okeanberg's independence transferred Morluk and its two frontier branches to Okeanberg.\n\nVisshum's later conquest brought imperial occupation to the system. Morluk's historical identity still reflects its Rekdolinian foundation, even as another power governs the frontier once at the center of the dispute."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Morluk grew from Rekdolin’s exploration through the natural passage from Shumdom, receiving Glagoli-6 registration and later its permanent settlement name. Okeanberg’s earlier internal discovery led to a dispute: Drevnasel upheld Rekdolin’s registration and reimbursed the unsuccessful expedition, but the grievance persisted. The territorial compromise around 970 transferred Morluk, Murkamun and Luknasel to independent Okeanberg.\n\nVisshum’s later conquest brought occupation that lasted here until its surrender in 1175. The postwar settlement restored Morluk’s affiliation with sovereign Okeanberg. Its original Rekdolinian foundation remains part of a community shaped by competing discoveries, a negotiated frontier and imperial rule."
           }
         ]
       }
@@ -3151,8 +3619,32 @@
           {
             "fromAE": 908,
             "untilAE": 936,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-7 entered Rekdolin's official survey register in 908 A.E., following discovery through a natural jumphole from Morluk. The passage opened one branch of the frontier extending beyond that established colony.\n\nThe system remained an officially recognized destination awaiting permanent settlement."
+          },
+          {
+            "fromAE": 936,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "By 936 A.E., Glagoli-7 had become the permanent colony of Murkamun. Rekdolin's explorers reached the system through a natural jumphole from Morluk, continuing the outward expansion that had earlier brought permanent settlement to Shumdom and Morluk.\n\nThe new colony extended the fourth Cantum's inhabited territory into one of the frontier branches developing beyond its older communities."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1138,
+            "datePrecision": "circa",
+            "text": "Murkamun developed from the Glagoli-7 frontier reached through Morluk’s natural passage. Rekdolin established its permanent settlement before the negotiations over Okeanberg’s independence. Around 970, the resulting territorial compromise transferred this colony with Morluk and Luknasel to the newly sovereign Cantum. The settlement changed authority over an inhabited community whose exploration and foundation remained part of Rekdolin’s history."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Murkamun began as a Rekdolin colony reached through a natural passage from Morluk. It passed to sovereign Okeanberg with Morluk and Luknasel in the territorial compromise around 970, after its founding and settlement had already become part of Rekdolin's history.\n\nVisshum's subsequent conquest placed Murkamun under imperial military occupation, bringing another change of power to a colony whose original survey designation remained Glagoli-7."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Murkamun’s history began as Rekdolin’s Glagoli-7 branch beyond Morluk. The permanent colony passed to Okeanberg in the territorial compromise around 970, then fell under Visshum’s later imperial conquest. Occupation continued until the surrender of 1175, when Murkamun’s affiliation with sovereign Okeanberg was restored. Its original settlement remains part of Rekdolinian heritage despite the loss of Rekdolin’s frontier and the state’s formal abolition in the postwar settlement."
           }
         ]
       }
@@ -3236,8 +3728,32 @@
           {
             "fromAE": 924,
             "untilAE": 951,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Glagoli-8 is a new registered destination beyond Morluk. Rekdolin’s explorers reached it through a separate natural branch from that system, extending the frontier independently of the passage toward Glagoli-7. Official recognition precedes a permanent settlement and its proper name."
+          },
+          {
+            "fromAE": 951,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "Luknasel’s permanent settlement completes another branch of Rekdolin’s frontier beyond Morluk. The system was discovered through a separate natural passage and registered as Glagoli-8 before the colony acquired its proper name. Its foundation brings an inhabited community to the last of Rekdolin’s eight original survey systems."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1138,
+            "datePrecision": "circa",
+            "text": "Of Rekdolin's eight original Glagoli systems, Luknasel was the last to establish a permanent colony, receiving its name in 951 A.E. Its exploration had followed a natural branch from Morluk distinct from the route to Murkamun.\n\nAround 970, the territorial compromise accompanying Okeanberg's independence transferred Luknasel with Morluk and Murkamun to the newly sovereign Cantum. The change of authority did not alter the colony's original Glagoli-8 identity or its history of development under Rekdolin."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Luknasel’s origins lie in Rekdolin’s exploration and settlement of the Glagoli-8 branch beyond Morluk. It later passed to independent Okeanberg through the three-system territorial compromise. Visshum’s conquest brought imperial occupation to this acquired frontier, placing a colony founded by one Cantum and transferred to another beneath the military power of a third."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Luknasel was founded as Glagoli-8 along a separate natural branch from Morluk. The territorial compromise around 970 transferred the settled colony from Rekdolin to Okeanberg before Visshum’s later conquest imposed imperial occupation. That occupation lasted until the surrender of 1175, when the settlement restored Luknasel’s affiliation with sovereign Okeanberg. Its postwar position also forms part of the corridor through neutral Durmberg toward Stengrad, connecting the colony’s inherited frontier geography with the new order between sovereign Cantums."
           }
         ]
       }
@@ -3302,8 +3818,26 @@
           {
             "fromAE": 633,
             "untilAE": 737,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-1 entered the official survey register in 633 A.E., following remote scientific qualification two years earlier. The system was designated as the intended capital of Zaklun, one of three distant Cantums planned by the Continuance.\n\nRegistration established a recognized destination for the Yest founding expedition, not proof of permanent settlement or a functioning regional government. Establishing an inhabited community and connecting it to the existing Continuance network remained separate objectives of the colonial undertaking."
+          },
+          {
+            "fromAE": 737,
+            "untilAE": 745,
+            "datePrecision": "exact",
+            "text": "Puteprist’s permanent settlement follows the long conventional voyage of the Yest expedition. The settlers arrived in the system registered as Yest-1 and began building a community on a rocky, tidally locked world around a dim dwarf star. Radiation and stellar activity make protected habitation and dependable food production essential, with the twilight terminator offering possible settlement areas. The community has its proper name, while completion of its receiving connection remains a separate task."
+          },
+          {
+            "fromAE": 745,
+            "untilAE": 1167,
+            "datePrecision": "exact",
+            "text": "In 745 A.E., Puteprist's artificial receiving gate established an operational connection with Senpolye in Drevnasel. The same event activated the central government's prior authorization for Zaklun, making Puteprist the capital of the seventh and final subordinate Cantum.\n\nThe Yest expedition had reached the system in 725 and secured permanent settlement in 737 on a rocky, tidally locked world orbiting a dim dwarf star. Radiation and stellar activity demanded protected habitation and dependable controlled food production. The new connection provided regular access to the established civilization, but did not remove the challenges imposed by the capital's environment."
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Puteprist’s origins lie in the Yest expedition and the work of establishing protected habitation on its tidally locked capital world. The connection with Senpolye brought Zaklun into the seven-Cantum Continuance, and the region later developed a scientific and colonial programme beyond its difficult foundation. Central defence protected Zaklun during the Okeanberg–Continuance War without permanent territorial loss. Its long political relationship with Drevnasel has ended through peaceful independence in 1167. Puteprist remains Zaklun’s capital, while the final separation ends the unified multi-Cantum state."
           }
         ]
       }
@@ -3368,8 +3902,14 @@
           {
             "fromAE": 759,
             "untilAE": 791,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-2 is Zaklun’s first registered outward colonization candidate beyond its capital system. The survey entry extends the numbered regional programme after the founding connection brought Zaklun into the Continuance. Recognition establishes a destination for investigation before a permanent community is named."
+          },
+          {
+            "fromAE": 791,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Stengrad became Zaklun's first permanent colony beyond Puteprist in 791 A.E. The system had been qualified and officially registered as Yest-2 during the Cantum's early outward survey programme.\n\nA natural jumphole from Puteprist provided the established exploration route into this part of the frontier. The development of Stengrad created an inhabited community along a passage that had already extended Zaklun's exploration beyond its difficult founding capital."
           }
         ]
       }
@@ -3434,8 +3974,14 @@
           {
             "fromAE": 806,
             "untilAE": 843,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-3 has received official registration among Zaklun’s numbered colonization candidates. Its scientific recognition extends the programme beyond the first destinations surveyed after the region’s foundation, while permanent settlement remains a separate undertaking."
+          },
+          {
+            "fromAE": 843,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Mureberg became a permanent Zaklun colony in 843 A.E., following scientific discovery and registration as Yest-3. Its established exploratory approach was conventional travel from Puteprist, unlike the natural connection used to reach Stengrad.\n\nThe settlement added another named community to Zaklun's regional programme, extending permanent habitation through conventional interstellar voyages alongside the exploration made possible by natural jumpholes."
           }
         ]
       }
@@ -3500,8 +4046,14 @@
           {
             "fromAE": 879,
             "untilAE": 920,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-4 is a recognized colonization candidate in Zaklun’s growing survey programme. Its official entry continues exploration beyond the region’s established settlements, preserving the distinction between identifying a possible destination and founding a permanent community there."
+          },
+          {
+            "fromAE": 920,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Yest-4 became Dolinvis upon permanent settlement in 920 A.E., following qualified discovery in 877 and official registration in 879. A natural passage from Stengrad connected the destination to Zaklun's explored frontier.\n\nIts foundation extended permanent habitation along a branch first recognized through scientific investigation. The original Yest-4 identity remained part of the colony's history after the settlement adopted its proper name."
           }
         ]
       }
@@ -3566,8 +4118,14 @@
           {
             "fromAE": 966,
             "untilAE": 1006,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-5 has entered Zaklun’s numbered survey programme as a candidate for colonization. Its recognition continues the region’s scientific work while the older Cantums reconsider their political relationships. The official designation precedes permanent settlement or a proper colony name."
+          },
+          {
+            "fromAE": 1006,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Skolnsten’s permanent community grew from the destination registered as Yest-5. Its foundation continues Zaklun’s regional settlement programme during the fragmentation of the older Continuance, adding a named colony to a scientific frontier explored earlier. The original survey identity remains part of its history alongside the later achievement of permanent settlement."
           }
         ]
       }
@@ -3638,14 +4196,20 @@
           {
             "fromAE": 975,
             "untilAE": 990,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-6 has received official registration in Zaklun’s numbered survey sequence. Scientific discovery preceded this entry, which records a further destination for investigation and colonial development along the region’s frontier. Recognition does not itself establish a permanent settlement."
+          },
+          {
+            "fromAE": 990,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Durmberg became a permanent Zaklun colony in 990 A.E., following the scientific discovery and official registration of Yest-6. A natural jumphole from Stengrad connected the destination with Zaklun's established regional frontier.\n\nThe settlement extended the Cantum's inhabited territory without transferring authority away from Zaklun. Its frontier position would later become important to relations with Rekdolin and Okeanberg, but its original survey identity and administration remained Zaklun's."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Durmberg was founded within Zaklun’s numbered programme as Yest-6, with natural access from Stengrad. Its frontier history included a relationship with Rekdolin before that Cantum’s collapse and later the changing authority of Okeanberg. The postwar settlement of 1175 has made Durmberg the neutral official border system between Zaklun and Okeanberg. It is unaffiliated, and neither Cantum directly administers it. The corridor links Luknasel through Durmberg to Stengrad; neighboring Cantums and independent organizations may operate here without acquiring system-wide sovereignty. Its neutral status continues a frontier history that began under Zaklun administration."
           }
         ]
       }
@@ -3710,8 +4274,14 @@
           {
             "fromAE": 1085,
             "untilAE": 1176,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Yest-7 has joined Zaklun’s numbered register of colonization candidates. Its entry continues the regional programme beyond the earlier frontier destinations. Scientific recognition records the system before the establishment of a permanent colony and the adoption of a proper settlement name."
+          },
+          {
+            "fromAE": 1176,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "In 1176 A.E., the long-registered Yest-7 became the permanent Zaklun colony of Stenluk. The destination had been discovered in 1083 and officially registered in 1085, when Zaklun still belonged to the unified Continuance.\n\nPermanent settlement followed Zaklun's peaceful independence in 1167 and the end of the Final Inter-Cantum War in 1175. Its foundation carried an earlier regional programme into the era of sovereign Cantums without changing the system's original survey identity."
           }
         ]
       }
@@ -3762,9 +4332,9 @@
         "description": [
           {
             "fromAE": 773,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Yest-Az entered Zaklun's official survey register in 773 A.E., following qualified scientific discovery in 771. It became the first entry in the Cantum's separate Azbuka-letter sequence, established for scientifically recognized destinations assessed as unsuitable or insufficiently promising under contemporary colonization criteria.\n\nUnlike the numbered Yest systems, which represented potential colonial destinations, the lettered designation recorded a scientific discovery excluded from current settlement planning. That classification did not invalidate the discovery or establish a prohibition on travel.\n\nThe suffix Az was an inherited letter name, not a reference to Drevnasel's territorial administration. Yest-Az retained its scientific identity without a recorded permanent colony or proper settlement name."
           }
         ]
       }
@@ -3815,9 +4385,9 @@
         "description": [
           {
             "fromAE": 852,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Yest-Buki was qualified as a scientific discovery in 850 A.E. and officially registered by Zaklun in 852. It followed Yest-Az in the separate Azbuka-letter sequence, which recorded recognized destinations excluded from the Cantum's current colonial settlement plans.\n\nThe classification distinguished the system from numbered Yest colonization candidates without asserting that future settlement was physically impossible. Its registration preserved a valid scientific discovery, independent of the region's inhabited colonial expansion.\n\nBuki was the next letter in the historical sequence, not an indication of Visshum sovereignty or association with that Cantum's Buki survey programme. No permanent colony or proper settlement name is documented for Yest-Buki through 1200 A.E."
           }
         ]
       }
@@ -3868,9 +4438,9 @@
         "description": [
           {
             "fromAE": 1027,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Scientific qualification in 1024 A.E. preceded Yest-Vedi's official registration in 1027, making it the third recorded entry in Zaklun's separate Azbuka-letter survey sequence.\n\nThe designation reflected the Cantum's assessment of the system's colonial prospects under the criteria of the period. It represented a recognized scientific destination excluded from current settlement plans, rather than a failed colony or an inhabited community.\n\nThe suffix Vedi belonged to Zaklun's lettered sequence and did not place the system within Okeanberg's territory. Yest-Vedi retained its original survey identity without a documented permanent settlement or later reclassification through 1200 A.E."
           }
         ]
       }
@@ -3935,8 +4505,26 @@
           {
             "fromAE": 635,
             "untilAE": 721,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-1 is the first registered destination of the planned Gornebes region. Remote scientific qualification has preceded the founding expedition, placing the system within the Continuance’s programme to establish three distant regional centres. Official recognition supplies a destination for that undertaking before settlement and government formation."
+          },
+          {
+            "fromAE": 721,
+            "untilAE": 730,
+            "datePrecision": "exact",
+            "text": "The Dzelo sleeper expedition reached its destination in 710 A.E., following a conventional voyage begun in 646. Its settlers established the foundations of a permanent community amid rugged highlands and substantial mineral-resource potential. In 721, the settlement received the name Stenput, replacing its original Dzelo-1 survey designation.\n\nThe community's industrial and supporting infrastructure was developing before regular access to the established Continuance network became available. Its artificial receiving connection with Zrenberg remained unfinished, and the authorized regional government of Gornebes had not yet been activated."
+          },
+          {
+            "fromAE": 730,
+            "untilAE": 1146,
+            "datePrecision": "exact",
+            "text": "In 730 A.E., Stenput's artificial receiving gate established an operational connection with Zrenberg, an established Drevnasel colony. The same event activated the central government's prior authorization for Gornebes, establishing the sixth Cantum of the Continuance with Stenput as its capital.\n\nThe colony had achieved permanent settlement in 721, following the Dzelo expedition's arrival eleven years earlier. The new connection brought regular access to the resources of the established civilization, supporting further exploration, infrastructure and industrial development. Gornebes exercised its regional responsibilities within the unified Continuance, under Drevnasel's central authority."
+          },
+          {
+            "fromAE": 1146,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Stenput was founded by the Dzelo sleeper expedition and became Gornebes’s capital when its receiving connection with Zrenberg brought the region into the Continuance. From that foundation, the Cantum developed an outward programme of scientific exploration and colonial settlement alongside its industrial and resource capabilities. Peaceful independence in 1146 has transformed the regional administration into a sovereign government. Stenput remains its capital, carrying the history of a supported distant colony into self-government with continuing diplomatic and commercial ties."
           }
         ]
       }
@@ -4001,8 +4589,14 @@
           {
             "fromAE": 750,
             "untilAE": 783,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-2 is the first registered outward destination beyond Gornebes’s capital foundation. Its official recognition continues the regional programme established at Stenput, opening another scientific and potential colonial frontier before permanent settlement."
+          },
+          {
+            "fromAE": 783,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Visvod became Gornebes's first permanent colony beyond Stenput in 783 A.E., following qualified scientific discovery in 749 and official registration as Dzelo-2 in 750.\n\nIts established exploration route was conventional interstellar travel from Stenput, rather than one of the natural-jumphole passages used elsewhere in the region. Permanent settlement extended the inhabited territory of Gornebes beyond its founding capital, adding another community to the regional programme."
           }
         ]
       }
@@ -4067,8 +4661,14 @@
           {
             "fromAE": 822,
             "untilAE": 928,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-3 entered Gornebes's official survey register in 822 A.E., following qualified scientific discovery two years earlier. A natural jumphole connected the destination with Stenput, extending the region's exploration along a branch distinct from the conventional route toward Dzelo-2.\n\nOfficial registration established the system's place within the Dzelo programme, but no permanent colony had yet been founded. The destination remained known by its survey designation."
+          },
+          {
+            "fromAE": 928,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Gureprist’s permanent settlement follows more than a century under the survey designation Dzelo-3. The system belongs to the natural exploration branch from Stenput, but its colonial foundation came after the later-registered Basanberg. Its history reflects the separate pace of discovery and settlement within Gornebes’s expanding regional programme."
           }
         ]
       }
@@ -4133,8 +4733,14 @@
           {
             "fromAE": 886,
             "untilAE": 926,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-4 entered Gornebes’s survey register as its exploration programme reached beyond the earliest regional colonies. Scientific discovery and official recognition have identified the destination before a permanent community gives it a proper name."
+          },
+          {
+            "fromAE": 926,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Basanberg became a permanent Gornebes colony in 926 A.E., following qualified scientific discovery in 884 and official registration as Dzelo-4 in 886. The settlement extended the inhabited frontier of a region whose scientific exploration had already reached several destinations beyond Stenput.\n\nAt the time Basanberg was established, the earlier-registered Dzelo-3 still lacked a permanent colony. The two systems illustrate how survey registration and permanent settlement advanced on different schedules within Gornebes's colonial programme."
           }
         ]
       }
@@ -4199,8 +4805,14 @@
           {
             "fromAE": 959,
             "untilAE": 997,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-5 entered Gornebes's official survey register in 959 A.E., following qualified scientific discovery two years earlier. A natural jumphole connected the destination with Gureprist, extending the explored branch outward from Stenput.\n\nThe new registration added another recognized system to Gornebes's regional programme, but permanent settlement had not yet been established. Dzelo-5 remained its official designation."
+          },
+          {
+            "fromAE": 997,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Obalput became a permanent Gornebes colony in 997 A.E., following its earlier discovery and registration as Dzelo-5. A natural jumphole connected the system with Gureprist, placing its settlement along the explored branch extending outward from Stenput.\n\nThe colony was founded during a period when older Cantums had begun obtaining sovereignty from the Continuance. That political fragmentation formed part of the historical circumstances of Obalput's establishment, while its own foundation belonged to Gornebes's continuing regional programme. The system retained its original Dzelo-5 identity through the subsequent changes in the sector's political order."
           }
         ]
       }
@@ -4271,14 +4883,20 @@
           {
             "fromAE": 1018,
             "untilAE": 1059,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-6 entered Gornebes's official survey register in 1018 A.E., following qualified scientific discovery in 1016. A natural passage connected the destination with Obalput, continuing the region's explored frontier beyond the earlier Dzelo colonies.\n\nRegistration established another recognized system within Gornebes, but no permanent colony or proper settlement name had yet been established. The destination remained officially designated Dzelo-6."
+          },
+          {
+            "fromAE": 1059,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Plavput’s permanent colony continues the Dzelo programme beyond Gornebes’s earlier foundations. Its original Dzelo-6 identity records the surveying that preceded settlement, while its natural connection with Obalput belongs to the region’s outward exploration geography. The community carries that frontier from scientific recognition into a named colonial history."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Plavput began as Dzelo-6 in Gornebes’s outward programme and became a permanent colony on the natural branch beyond Obalput. Its original Gornebes foundation predates the sovereign order created by the Continuance’s dissolution. The postwar settlement of 1175 has made Plavput the sole official neutral border system for Zaklun and Gornebes. It is unaffiliated with both Cantums and outside their direct administration, placing an old regional colony within the new framework of regulated relations between independent states."
           }
         ]
       }
@@ -4329,9 +4947,9 @@
         "description": [
           {
             "fromAE": 1089,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Dzelo-7 is a scientifically recognized destination in Gornebes’s original survey programme. Official registration followed its discovery, but its recorded history contains no permanent colonial foundation or proper settlement name. The system retains its place in the Dzelo sequence as an explored destination distinct from the region’s named colonies."
           }
         ]
       }
@@ -4396,8 +5014,14 @@
           {
             "fromAE": 1130,
             "untilAE": 1160,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Dzelo-8 entered Gornebes's official survey register in 1130 A.E., following qualified scientific discovery two years earlier. A natural jumphole connected the destination with Obalput, placing it on another branch of the region's established exploration network.\n\nThe system received official recognition while Gornebes still belonged to the unified Continuance. Registration did not itself establish a permanent colony, and the destination remained known by its numerical designation."
+          },
+          {
+            "fromAE": 1160,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Dulinpol’s permanent foundation carries an older Gornebes survey undertaking into the Cantum’s sovereign era. First registered as Dzelo-8 while Gornebes still belonged to the Continuance, the system now receives its proper name after peaceful independence. Its natural connection with Obalput belongs to the inherited geography of regional exploration, which has continued across the political separation."
           }
         ]
       }
@@ -4462,8 +5086,26 @@
           {
             "fromAE": 639,
             "untilAE": 715,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-1 entered the Continuance's official survey register in 639 A.E., following remote scientific qualification two years earlier. It was designated as the intended capital system of Vodravan, one of three distant Cantums planned for establishment through sleeper expeditions.\n\nRegistration established the destination's official identity, but did not signify a permanent colony or an active regional government. The expedition's conventional journey, the establishment of an inhabited community and the construction of an artificial receiving connection were separate stages of the founding programme."
+          },
+          {
+            "fromAE": 715,
+            "untilAE": 725,
+            "datePrecision": "exact",
+            "text": "The Zhivete sleeper expedition reached its destination in 705 A.E., following a conventional voyage begun in 647. Its settlers began constructing the infrastructure needed to sustain a permanent community among freshwater environments and fertile basins. In 715, the settlement received the name Vudegrad, replacing its original Zhivete-1 survey designation.\n\nThe colony had achieved permanent habitation, but its artificial receiving connection with Bujnasel was not yet operational. The expedition's designated leadership continued the founding undertaking without constituting the formally activated government of a subordinate Cantum."
+          },
+          {
+            "fromAE": 725,
+            "untilAE": 1153,
+            "datePrecision": "exact",
+            "text": "In 725 A.E., Vudegrad's artificial receiving gate established an operational connection with Bujnasel in Drevnasel. The same milestone activated the central government's prior authorization for Vodravan, making Vudegrad the capital of the fifth Cantum of the Continuance.\n\nThe Zhivete expedition had reached the system in 705 and established a permanent colony in 715. With regular transport from the older systems now possible, the young Cantum could continue developing its agricultural, freshwater and supporting infrastructure while remaining under Drevnasel's central authority. Vodravan was the first of the three distant regions to complete the founding sequence."
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Vudegrad’s history began with the Zhivete sleeper expedition and the work of building a community before reconnection to the Continuance. The successful link with Bujnasel established Vodravan’s formal government here, after which the region extended its settlement and survey programmes while developing agriculture, freshwater infrastructure and productive capabilities. Peaceful independence in 1153 has made Vudegrad the capital of a sovereign Cantum, with diplomacy and commerce continuing across the former internal political boundary."
           }
         ]
       }
@@ -4528,8 +5170,14 @@
           {
             "fromAE": 739,
             "untilAE": 768,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-2 has joined Vodravan’s register as its first outward destination beyond the capital. Scientific discovery and official recognition continue the programme established at Vudegrad, opening another colonial candidate before permanent settlement and proper naming."
+          },
+          {
+            "fromAE": 768,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Visdom became Vodravan's first permanent colony beyond Vudegrad in 768 A.E. The destination had qualified for scientific discovery in 738 and entered the official register as Zhivete-2 in 739.\n\nA natural jumphole connected the system with Vudegrad, allowing the regional programme to extend its exploration beyond the capital. Visdom's foundation established a second permanently inhabited community within the growing Cantum, carrying its original survey identity into an expanding colonial territory."
           }
         ]
       }
@@ -4594,8 +5242,14 @@
           {
             "fromAE": 779,
             "untilAE": 810,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-3 has received official recognition as Vodravan’s outward programme advances beyond its earliest colonies. Its survey registration follows scientific discovery and records another destination before a permanent community supplies a proper settlement name."
+          },
+          {
+            "fromAE": 810,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Tolaput became a permanent Vodravan colony in 810 A.E., following qualified scientific discovery in 777 and official registration as Zhivete-3 in 779. A natural jumphole connected the destination with Visdom, the earlier colony reached from Vudegrad.\n\nThe settlement extended the inhabited frontier farther along the region's natural network. Tolaput became another established community in Vodravan's outward programme, retaining the history of Zhivete-3 as its original survey identity."
           }
         ]
       }
@@ -4660,8 +5314,14 @@
           {
             "fromAE": 838,
             "untilAE": 874,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-4 is an officially recognized destination in Vodravan’s continuing exploration programme. Registration follows its scientific discovery, extending the recorded frontier beyond the region’s earlier colonies without itself establishing permanent settlement."
+          },
+          {
+            "fromAE": 874,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Pulysten’s permanent settlement extends the natural branch explored beyond Tolaput. Its original Zhivete-4 designation records the scientific recognition that preceded the named colony. The community continues the sequence of foundations through which Vodravan developed an inhabited territory beyond Vudegrad and its earliest outward settlements."
           }
         ]
       }
@@ -4732,14 +5392,20 @@
           {
             "fromAE": 917,
             "untilAE": 960,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-5 entered Vodravan's official survey register in 917 A.E., following qualified scientific discovery two years earlier. A natural jumphole connected the destination with Tolaput, extending the growing regional programme along another branch beyond its original capital.\n\nOfficial registration established the system's place within Vodravan's survey sequence, but no permanent colony or proper settlement name had yet been established. The destination remained known as Zhivete-5."
+          },
+          {
+            "fromAE": 960,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Drvhrid’s permanent community grew from the system registered as Zhivete-5. Its natural connection with Tolaput belongs to Vodravan’s outward exploration geography, while the founding of a colony has given the destination its proper name. The system’s origins lie within that regional programme, independent of any later international role."
           },
           {
             "fromAE": 1175,
-            "untilAE": 1201,
-            "text": "Neutral and unaffiliated official border system, outside direct Cantum administration.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Drvhrid was founded through Vodravan’s outward programme, with Zhivete-5 registration preceding its permanent settlement. The natural branch from Tolaput belongs to its early exploration geography. After Vodravan and Gornebes gained sovereignty, their inherited connections became part of relations between separate states. The settlement of 1175 has made Drvhrid their official neutral border system, unaffiliated with either Cantum and outside direct Cantum administration. Its original Vodravan history remains distinct from this new international role."
           }
         ]
       }
@@ -4804,8 +5470,14 @@
           {
             "fromAE": 1005,
             "untilAE": 1048,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "datePrecision": "exact",
+            "text": "Zhivete-6 has received official registration during Vodravan’s continuing survey programme. Its recognition extends the regional sequence beyond the earlier frontier destinations, recording scientific discovery before permanent settlement and a proper colonial name."
+          },
+          {
+            "fromAE": 1048,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Ravnvod became Vodravan's sixth permanently settled original Zhivete system in 1048 A.E., following qualified scientific discovery in 1003 and official registration as Zhivete-6 in 1005.\n\nA natural jumphole connected the destination with Pulysten, extending the inhabited frontier along one of the branches beyond Tolaput. Its foundation continued Vodravan's colonial development while the Cantum remained a constituent region of the Continuance, preserving Zhivete-6 as its original survey identity."
           }
         ]
       }
@@ -4856,9 +5528,9 @@
         "description": [
           {
             "fromAE": 1094,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Zhivete-7 entered Vodravan’s survey register as exploration continued beyond its named colonies. Scientific discovery and official recognition established the system’s place in the regional sequence. It retains that designation without a recorded permanent colonial foundation or proper settlement name."
           }
         ]
       }
@@ -4909,9 +5581,9 @@
         "description": [
           {
             "fromAE": 1164,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Zhivete-8 was registered after Vodravan’s peaceful independence, continuing the survey programme begun during its time within the Continuance. Its official identity follows scientific discovery under the sovereign Cantum and records a destination without a permanent colony name. Political separation has preserved the original regional sequence."
           }
         ]
       }
@@ -4962,9 +5634,9 @@
         "description": [
           {
             "fromAE": 1195,
-            "untilAE": 1201,
-            "text": "Permanent settlement is not documented at this date; there is no Cantum affiliation. This does not establish zero inhabitants or activity.",
-            "datePrecision": "exact"
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Zhivete-9 extends Vodravan’s official survey sequence in the era after the Final Inter-Cantum War. Discovery and registration continue a scientific programme inherited from the unified Continuance and maintained under Vodravan’s sovereign government. The system is recorded under its survey designation without a permanent colonial foundation."
           }
         ]
       }
