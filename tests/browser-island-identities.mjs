@@ -22,7 +22,7 @@ async page=>{
       const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;
       AtlasMap.prototype.render=function(){window.__islandScene=this;return render.call(this);};
     });
-    await page.locator('#controls-panel > summary').click();await page.keyboard.press('Escape');await page.mouse.move(2,2);
+    await page.locator('#controls-toggle').click();await page.keyboard.press('Escape');await page.mouse.move(2,2);
     await page.evaluate(()=>{
       const m=window.__islandScene;
       const points=[...Array.from({length:20},(_,i)=>({id:`main${i}`,x:-45+(i%5-2)*.7,z:(Math.floor(i/5)-1.5)*.7})),{id:'outpost',x:48,z:0}];

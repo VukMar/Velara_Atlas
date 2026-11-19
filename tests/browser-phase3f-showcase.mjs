@@ -5,7 +5,7 @@ async page => {
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());},onPageError=e=>errors.push(e.message);
   page.on('console',onError);page.on('pageerror',onPageError);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.mouse.move(1,1);};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await close();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});await page.locator('#technical-tab').click();};

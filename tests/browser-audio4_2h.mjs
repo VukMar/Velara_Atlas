@@ -19,7 +19,7 @@ async page=>{
   const pref=()=>page.locator('#audio-toggle').getAttribute('aria-pressed');
   const stopped=()=>page.waitForFunction(()=>window.__voice.every(r=>r.media.paused&&!r.media.getAttribute('src')));
   const playing=kind=>page.waitForFunction(kind=>window.__voice.some(r=>r.url?.includes('nexus-'+kind)&&r.media.readyState>=2&&!r.media.paused&&r.media.currentTime>.15),kind);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const year=async n=>{await page.keyboard.press('Escape');await panel('timeline-panel');await page.locator('#year-input').fill(String(n));await page.locator('#year-input').press('Enter');await page.keyboard.press('Escape');};
   const enterSystem=async id=>{await page.keyboard.press('Escape');await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#enter').click();};
   try{
@@ -172,7 +172,7 @@ async page=>{
         }
         await p.waitForFunction(()=>window.__voice.every(r=>r.media.paused&&!r.media.getAttribute('src')));
         check(await p.evaluate(()=>window.__voice.length===1&&window.__voice[0].attempts===1),'no automatic retry '+kind);
-        await p.locator('#controls-panel>summary').click();await p.locator('#selection').selectOption('sys_0004');await p.locator('#enter').click();
+        await p.locator('#controls-toggle').click();await p.locator('#selection').selectOption('sys_0004');await p.locator('#enter').click();
         await p.locator('#archival-explanation').waitFor({state:'visible'});
         check(await p.locator('#archival-explanation').isVisible(),'failed entry media preserves archival text/navigation '+kind);
         if(kind==='missing'||kind==='corrupt'){

@@ -7,7 +7,7 @@ async page=>{
  await page.setViewportSize({width:1440,height:900});await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
  await page.waitForFunction(()=>document.querySelector('#opening-panel').open||!document.querySelector('#audio-toggle').disabled);
  if(await page.locator('#opening-panel').evaluate(n=>n.open))await page.locator('#opening-silent').click();
- const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+'>summary').click();};
+ const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
  const select=async id=>{await panel('controls-panel');await page.locator('#selection').focus();await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
  const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');};
  const active=async name=>check(await page.locator('#'+name+'-tab').getAttribute('aria-selected')==='true','active '+name);
@@ -15,6 +15,7 @@ async page=>{
   if(!document.querySelector('script[src$="/main.mjs"],script[src="./main.mjs"]'))return null; // Production uses its audited bundle.
   return (await import('./main.mjs')).application.atlas.getView();
  });
+ await panel('controls-panel');await page.waitForTimeout(80);
  const beforeCamera=await camera(),beforeChart=await page.locator('#viewport').boundingBox();
  await select('can_1000004');await active('description');
  check(JSON.stringify(await camera())===JSON.stringify(beforeCamera),'selection preserves camera');
@@ -54,7 +55,8 @@ async page=>{
  check(enlarged.overflow<=1&&enlarged.panelHeight>=60&&enlarged.contentOverflow==='visible','200% text readable '+JSON.stringify(enlarged));await page.screenshot({path:`.playwright-mcp/infocard-${new URL(base).port}-enlarged.png`});
  await page.evaluate(()=>document.documentElement.style.fontSize='');await page.setViewportSize({width:320,height:280});
  check(await page.locator('#info-panel').evaluate(n=>{n.scrollTop=n.scrollHeight;return n.scrollTop>0;}),'extreme viewport single scrolling fallback');
- await page.locator('#close-info').click();check(await page.locator('#selection').evaluate(n=>n===document.activeElement),'close returns to invoking selection');
+ const invoking=await page.locator('#controls-panel').isHidden()?'#controls-toggle':'#selection';
+ await page.locator('#close-info').click();check(await page.locator(invoking).evaluate(n=>n===document.activeElement),'close returns to invoking selection or dismissed toolbar trigger');
  await page.setViewportSize({width:1440,height:900});await year(1200);await select('sys_1000065');
  const short=await page.locator('#info-panel').boundingBox();check(short.height<720,'short system uses natural card height');
  await select('sys_1000001');

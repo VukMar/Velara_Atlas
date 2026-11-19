@@ -8,6 +8,10 @@
 
 ## Runtime responsibilities
 
+**Navigation amendment, 2026-11-19:** `app-shell.mjs` owns the four top triggers, Catalogue/Help native modal dialogs, a single reserved-space bottom region, focus/escape priorities and 200 ms reduced-motion-aware layout effects. `toolbar-activity.mjs` is a small DOM-independent 10,000 ms deadline owner with injected clock support and generation guards; it changes no history/camera state. The finite Vite viewer-input allowlist admits this one new module without relaxing other guards.
+
+Catalogue closes through a shell callback before invoking existing selection; InfoCard then captures the Catalogue trigger as its return target. Existing Timeline/Layer/Map controls retain IDs and event ownership. Navigation, remount/disposal and context loss reset shell tools. The root chart-stage observer still derives square size from available dimensions; the existing map observer synchronizes renderer/projection/picking, preserving valid camera state. No scene/camera or core/schema change is needed. `projected-labels.mjs` only contains the complete scale-caption box inside small charts, preserving the measurement arrow's projected span/angle and authored grid endpoints. See [current behavior](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19); older floating-panel descriptions below are checkpoint history.
+
 | Module | Responsibility |
 | --- | --- |
 | `src/core/history.mjs` | Pure v1.1/v1.2 historical selectors: names, knowledge/existence, InfoCards, systems, zones and eligible connections; no I/O or renderer dependency |

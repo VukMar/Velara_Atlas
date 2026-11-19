@@ -8,6 +8,7 @@ import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 import {AppState} from '../src/viewer/app-state.mjs';
 import {describeRecord} from '../src/viewer/infocard-model.mjs';
 import {createInfoCard} from '../src/viewer/infocard-view.mjs';
+import {createToolbarActivity,TOOLBAR_IDLE_MS} from '../src/viewer/toolbar-activity.mjs';
 import {LAYER_DEFAULTS,layerKeys} from '../src/viewer/layer-config.mjs';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createArchivalView} from '../src/viewer/archival-view.mjs';
@@ -21,6 +22,45 @@ const dataset=()=>readDemoSource().dataset;
 const card=(d,y,scope,id)=>{const view=resolveAtlas(d,y,scope);return describeRecord(view.records.find(r=>r.id===id),{yearAE:y,systemId:scope,view});};
 const fact=(model,label)=>model.facts.find(f=>f[0]===label)?.[1];
 const fallbackData=validateFallbackData(JSON.parse(fs.readFileSync(new URL('../public/content/nexus/fallback-data.json',import.meta.url),'utf8')));
+
+function toolbarHarness() {
+  let now=0,next=0;const jobs=new Map(),expired=[],life=new Lifetime();
+  const clock={set(fn,ms){const id=++next;jobs.set(id,{fn,at:now+ms});return id;},clear(id){jobs.delete(id);}};
+  const advance=ms=>{const end=now+ms;while(true){const due=[...jobs].filter(([,j])=>j.at<=end).sort((a,b)=>a[1].at-b[1].at)[0];if(!due)break;now=due[1].at;jobs.delete(due[0]);due[1].fn();}now=end;};
+  return {life,jobs,expired,advance,activity:createToolbarActivity({clock,onExpire:id=>expired.push(id)},life)};
+}
+
+test('toolbar outside opening uses exactly 10000 ms; pointer exit/reentry starts a full fresh deadline',()=>{
+  const h=toolbarHarness(),a=h.activity;assert.equal(TOOLBAR_IDLE_MS,10000);
+  a.open('history');h.advance(9999);assert.deepEqual(h.expired,[]);h.advance(1);assert.deepEqual(h.expired,['history']);
+  a.open('layers',{inside:true});h.advance(50000);assert.equal(h.jobs.size,0);
+  a.pointer(false);h.advance(9000);a.pointer(true);h.advance(20000);assert.equal(h.expired.length,1);
+  a.pointer(false);h.advance(9999);assert.equal(h.expired.length,1);h.advance(1);assert.equal(h.expired.at(-1),'layers');h.life.dispose();
+});
+
+test('keyboard focus, active input/slider and help pause suppress dismissal until released',()=>{
+  for(const hold of ['focus','busy','pause']){
+    const h=toolbarHarness(),a=h.activity;a.open('controls');h.advance(9000);a[hold](true);
+    h.advance(60000);assert.deepEqual(h.expired,[]);assert.equal(h.jobs.size,0);
+    a.interact();h.advance(20000);assert.deepEqual(h.expired,[]);
+    a[hold](false);h.advance(9999);assert.deepEqual(h.expired,[]);h.advance(1);assert.deepEqual(h.expired,['controls']);h.life.dispose();
+  }
+});
+
+test('completed touch interactions reset inactivity; focus and pointer protections compose',()=>{
+  const h=toolbarHarness(),a=h.activity;a.open('history');a.busy(true);h.advance(20000);a.interact();h.advance(20000);
+  assert.deepEqual(h.expired,[]);a.busy(false);h.advance(9000);a.interact();h.advance(9000);assert.deepEqual(h.expired,[]);
+  a.pointer(true);a.focus(true);a.pointer(false);h.advance(20000);assert.deepEqual(h.expired,[]);
+  a.focus(false);h.advance(10000);assert.deepEqual(h.expired,['history']);h.life.dispose();
+});
+
+test('replacement, toggle, disposal and remount invalidate every stale toolbar deadline',()=>{
+  const h=toolbarHarness(),a=h.activity;a.open('history');const stale=[...h.jobs.values()][0].fn;
+  a.open('layers');stale();assert.deepEqual(h.expired,[]);assert.equal(a.active,'layers');assert.equal(h.jobs.size,1);
+  a.close();h.advance(20000);assert.deepEqual(h.expired,[]);assert.equal(a.active,null);
+  a.open('controls');const disposed=[...h.jobs.values()][0].fn;h.life.dispose();h.life.dispose();disposed();h.advance(50000);assert.deepEqual(h.expired,[]);assert.equal(h.jobs.size,0);
+  const fresh=toolbarHarness();fresh.activity.open('history');fresh.advance(10000);assert.deepEqual(fresh.expired,['history']);fresh.life.dispose();
+});
 
 function infoHarness() {
   const original=globalThis.document;

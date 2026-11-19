@@ -8,7 +8,7 @@ async page=>{
   const imagePattern=/nexus-form.*\.png/,assetPattern=/\.png(?:\?|$)/,imageRoute=r=>r.continue();
   const contentURL=p=>p.evaluate(()=>performance.getEntriesByType('resource').find(r=>/\/nexus-content(?:\.mjs|-[^/]+\.js)/.test(r.name)).name);
   const helpers=p=>{
-    const panel=async id=>{if(!await p.locator('#'+id).evaluate(e=>e.open))await p.locator('#'+id+'>summary').click();};
+    const panel=async id=>{if(id!=='catalogue-panel'&&await p.locator('#catalogue-panel').evaluate(n=>n.open))await p.locator('#close-catalogue').click();const button=p.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
     const year=async y=>{await p.keyboard.press('Escape');await panel('timeline-panel');await p.locator('#year-input').fill(String(y));await p.locator('#year-input').press('Enter');};
     const open=async id=>{await p.keyboard.press('Escape');await panel('controls-panel');await p.locator('#selection').selectOption(id);await p.locator('#enter').click();};
     return {panel,year,open};
@@ -44,9 +44,9 @@ async page=>{
     check((await page.locator('#archival-portrait').getAttribute('src')).includes('nexus-form'),'front-facing archival portrait');
     check((await page.locator('#nexus-portrait').getAttribute('src')).includes('nexus-side-profile'),'ordinary InfoCard keeps side-profile');
     check(await page.locator('#archival-name').evaluate(e=>e===document.activeElement),'entry focuses heading');
-    check(await page.locator('.floating[open]').count()===0,'entry reveals notice without a source panel covering it');
+    check(await page.locator('[data-tool-panel]:not([hidden])').count()===0,'entry reveals notice without a source panel covering it');
     check(!await page.locator('#info-panel').evaluate(e=>e.open),'archival navigation never opens the ordinary InfoCard');
-    check(await page.locator('dialog').count()===2&&await page.locator('dialog#info-panel').count()===1&&
+    check(await page.locator('dialog').count()===4&&await page.locator('dialog#info-panel').count()===1&&
       await page.locator('dialog#opening-panel').evaluate(e=>!e.open)&&
       await page.locator('#archival-view').evaluate(e=>e.tagName==='SECTION'),'only the InfoCard and closed opening are dialogs; archival navigation stays nonmodal');
     check(await page.locator('#map-message').isHidden()&&await page.locator('#retry').isHidden(),'archival separate from status/retry');

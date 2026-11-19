@@ -8,7 +8,7 @@ async page => {
   const pageError=e=>errors.push(e.message);
   page.on('console',error);page.on('pageerror',pageError);
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
@@ -130,7 +130,7 @@ async page => {
     let highDPI;
     try {
       const mobile=await context.newPage();await mobile.goto(base);await enterAtlas(mobile);
-      await mobile.locator('#controls-panel > summary').click();await mobile.locator('#selection').selectOption('sys_0002');await mobile.locator('#enter').click();
+      await mobile.locator('#controls-toggle').click();await mobile.locator('#selection').selectOption('sys_0002');await mobile.locator('#enter').click();
       await mobile.waitForFunction(()=>[...document.querySelectorAll('.navigation-proxy')].every(n=>n.complete&&n.naturalWidth>0));
       highDPI=await mobile.locator('#labels [data-record-id="cb_0005"] img').evaluate(n=>({css:n.getBoundingClientRect().width,dpr:devicePixelRatio,
         canvas:document.querySelector('canvas').width,viewport:document.querySelector('canvas').clientWidth}));

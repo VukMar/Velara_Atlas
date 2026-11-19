@@ -6,12 +6,12 @@ async page=>{
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
   const onResponse=r=>{if(r.status()>=400)failures.push({url:r.url(),status:r.status()});if(/\.png(?:\?|$)/.test(r.url()))images.push({url:r.url(),status:r.status()});};
   const imagePattern=/\.png(?:\?|$)/,imageRoute=route=>route.continue();
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=()=>page.keyboard.press('Escape');
   const select=async id=>{await close();await panel('controls-panel');await page.locator('#selection').focus();await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
   const square=async()=>{await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));const b=await page.locator('#viewport').boundingBox();check(Math.abs(b.width-b.height)<1,'square chart');return b;};
   const card=async(id,label)=>{
-    const before=await square();await select(id);const after=await square();
+    await panel('controls-panel');const before=await square();await select(id);const after=await square();
     check(JSON.stringify(before)===JSON.stringify(after),'dialog independent of chart '+id);
     check(await page.locator('#close-info').evaluate(e=>e===document.activeElement),'close receives focus');
     await page.locator('#technical-tab').click();
@@ -28,7 +28,7 @@ async page=>{
   page.on('pageerror',onError);page.on('console',onConsole);page.on('response',onResponse);
   await page.route(imagePattern,imageRoute); // Disable cache for repeatable HTTP image checks.
   try {
-    await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
+    await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     await page.waitForFunction(()=>[...document.querySelectorAll('#mcr-insignia,#nexus-portrait')].every(e=>e.complete&&e.naturalWidth>0&&!e.hidden));
     check(await page.locator('#year').innerText()==='1200 A.E.','latest normal Demo');
@@ -74,7 +74,7 @@ async page=>{
       await fallback.route(/(?:mcr-insignia|nexus-side-profile).*\.png/,route=>route.request().resourceType()==='image'?route.abort():route.continue());await fallback.goto(base);await enterAtlas(fallback);
       await fallback.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
       await fallback.waitForFunction(()=>['mcr-insignia','nexus-portrait'].every(id=>document.getElementById(id).hidden));
-      await fallback.locator('#controls-panel>summary').click();await fallback.locator('#selection').focus();await fallback.locator('#selection').selectOption('sys_0005');
+      await fallback.locator('#controls-toggle').click();await fallback.locator('#selection').focus();await fallback.locator('#selection').selectOption('sys_0005');
       await fallback.locator('#technical-tab').click();check((await fallback.locator('#facts').innerText()).includes('sys_0005'),'image failure retains facts');
       await fallback.keyboard.press('Escape');check(await fallback.locator('#selection').evaluate(e=>e===document.activeElement),'image failure retains dismissal/focus');
     }finally{await fallback.close();}

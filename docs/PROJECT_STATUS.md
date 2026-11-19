@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized Holographic Transmission InfoCard and canonical 1.0.0 launch-candidate preparation, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized NEXUS Navigation & Responsive Control Bars for the 1.0.0 candidate, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -47,9 +47,13 @@ Production remains static and read-only with `publicDir: false`, exact inventory
 
 The subsequent creator task explicitly authorizes the Holographic Transmission InfoCard and staging repository version **1.0.0 as the canonical launch candidate**, with validation, commit/push and PR #4 updates. The centered card is bounded to 600 × 720 CSS pixels, retains a compact mobile NEXUS portrait, opens on Description and preserves Technical/Description selection across historical-year updates. See [current visual contract](NEXUS_VISUAL_IDENTITY.md#ordinary-infocard) and [candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19).
 
-Final creator visual acceptance remains pending. PR #4 remains unmerged; no Pages dispatch, tag or Release is authorized. The published website remains the October 27 noncanonical **0.5.0** release described above. A normal push starts verification only. The canonical public launch is not complete. Atlas Creator and further canonical content remain separately authorized.
+The creator has confirmed canonical Atlas/InfoCard visual inspection; final UI review now applies to the subsequent navigation refinement below. PR #4 remains unmerged; no Pages dispatch, tag or Release is authorized. The published website remains the October 27 noncanonical **0.5.0** release described above. A normal push starts verification only. The canonical public launch is not complete. Atlas Creator and further canonical content remain separately authorized.
 
 ## Verified baseline and limits
+
+### Current navigation refinement
+
+The subsequent creator task confirms canonical Atlas/InfoCard visual inspection and authorizes NEXUS Navigation & Responsive Control Bars implementation, tests/documentation, commit/push and PR #4 updates. The current interface uses four top utilities, a modal Catalogue, three exclusive reserved-space horizontal bottom toolbars with a protected 10-second timeout, and modal Map Controls Help. [Behavior](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) and [verification](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19). Final UI review remains pending for this refinement. Version remains **1.0.0 canonical launch candidate** by explicit creator instruction; no increment is warranted for this preparation refinement. The published **0.5.0** site, merge, tag/Release and deployment gates remain unchanged.
 
 At this audit's start, local `main` matched `origin/main` at `f0d8d140f6b8c61dc5c6585edf34c49aa485201f`. Its [post-merge CI run](https://github.com/VukMar/Velara_Atlas/actions/runs/40368118735) passed both Ubuntu and Windows Node 24 jobs, including tests, read-only connection freshness, validation, builds and release audits. These results supersede older reports that say hosted CI is pending. CI never regenerates navigation.
 

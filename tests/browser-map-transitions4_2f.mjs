@@ -30,7 +30,7 @@ async page=>{
           labels:[...document.querySelectorAll('#labels [data-record-id]')].map(e=>[e.dataset.recordId,e.style.left,e.style.top,e.hidden])}),
         act:({kind,id})=>api[kind](id)
       };
-      for(const p of document.querySelectorAll('.floating'))p.open=false;
+      for(const b of document.querySelectorAll('#utility-row button[aria-expanded="true"]')){if(b.id==='catalogue-toggle')document.getElementById('close-catalogue').click();else b.click();}
     },dev);
     const act=(kind,id)=>page.evaluate(action=>window.__transitionTest.act(action),{kind,id});
     const settle=()=>page.waitForFunction(()=>document.querySelector('.map-transition').hidden);
@@ -59,9 +59,9 @@ async page=>{
     const sector=await sample('sector');check(sector.ids.includes('sys_0001')&&!sector.ids.includes('cb_0007'),'immediate restored Sector');
     await page.locator('#labels [data-record-id="sys_0001"]').dblclick();
     check((await snap()).ids.includes('cb_0001'),'Sector marker double-click uses navigation');await act('sector');await settle();
-    await page.locator('#catalogue-panel>summary').click();await page.locator('#catalogue [data-id="sys_0002"]').dblclick();
-    check((await snap()).ids.includes('cb_0007'),'Catalogue double-click uses navigation');await act('sector');await settle();
-    await page.evaluate(()=>{for(const p of document.querySelectorAll('.floating'))p.open=false;});
+    await page.locator('#catalogue-toggle').click();await page.locator('#catalogue [data-id="sys_0002"]').click();await page.locator('#enter').click();
+    check((await snap()).ids.includes('cb_0007'),'Catalogue selection and accessible Enter System use navigation');await act('sector');await settle();
+    await page.evaluate(()=>{for(const b of document.querySelectorAll('#utility-row button[aria-expanded="true"]')){if(b.id==='catalogue-toggle')document.getElementById('close-catalogue').click();else b.click();}});
     // Collect reproducible mid-effect images without relying on host screenshot latency.
     const evidence=async(name,kind,id)=>{
       await page.screenshot({path:`.playwright-mcp/4.2f-${edition}-${name}-before.png`});

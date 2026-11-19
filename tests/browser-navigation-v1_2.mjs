@@ -10,7 +10,7 @@ async(page)=>{
   const read=async file=>(await page.request.get(new URL(file,root).href)).json();
   const sector=await read('sector.json'),graph=await read('connections.json');
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);};

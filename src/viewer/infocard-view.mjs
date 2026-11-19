@@ -81,6 +81,8 @@ export function createInfoCard({$,state,atlas,choose,navigate}, lifetime) {
     let target=returnFocus?.isConnected ? returnFocus : returnId ? document.querySelector(`[data-record-id="${CSS.escape(returnId)}"], #catalogue [data-id="${CSS.escape(returnId)}"]`) : null;
     const closed=target?.closest('details:not([open])');
     if(closed)target=closed.querySelector('summary');
+    const toolbar=target?.closest('[data-tool-panel]');
+    if(toolbar&&(toolbar.hidden||$('toolbar-region').hidden))target=document.querySelector(`[aria-controls="${toolbar.id}"]`);
     if(!target || target.hidden)target=atlas.renderer.domElement;
     target.focus({preventScroll:true});
   };

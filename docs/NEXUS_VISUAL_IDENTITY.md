@@ -1,5 +1,17 @@
 # Velara Atlas — NEXUS Visual Identity
 
+## Navigation presentation amendment — 2026-11-19
+
+The creator-approved navigation now uses a restrained version of the InfoCard's cyan radial glow and directional blue-black gradient in the existing compact application header, preserving insignia, branding, breadcrumb/year, units and audio. No new artwork, status decoration or animation is added there.
+
+A top utility row groups Catalogue/Map Controls left and Layers/History right. All four remain reachable at 320 px with full accessible names and ≥44 px targets. Catalogue becomes a centered 760 px maximum NEXUS archival-search modal with a persistent heading/filters and scrolling results, focus return and no timeout. Selection transitions to the existing InfoCard, whose portrait and 600 × 720 px bounds remain approved.
+
+History, Layers and Map Controls are mutually exclusive horizontal bottom toolbars that reserve real space beneath the square chart. Their 200 ms height/opacity effects coordinate chart refitting; reduced motion uses final states. Bars wrap/scroll responsively, preserve preferences/history/camera controls and never overlay chart annotations. The far-right question-mark action opens modal NEXUS chart guidance with no timeout.
+
+Toolbars alone dismiss after 10 seconds outside/inactive. Hover, keyboard focus, active pointer/slider/select/text editing and associated Help suppress dismissal; exit/completion resumes a full deadline. Trigger toggles, switching, navigation and disposal invalidate old deadlines. Close/Escape/focus restoration and hidden-control exclusion remain accessible. See the [full behavior contract](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) and [evidence](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19).
+
+This supersedes earlier floating utility panels and vertical History statements below. Original Checkpoint 3.6 and audiovisual records remain historical evidence. The canonical InfoCard has passed creator visual inspection; this surrounding-interface refinement awaits final UI review. Repository version remains 1.0.0 candidate; publication remains separately gated.
+
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
@@ -156,10 +168,11 @@ its sizing/fade/spin proposals with the creator-approved exact treatment.
 
 Selection opens a centered dismissible InfoCard; no card appears before selection.
 Its top-right close control and Escape clear selection, return focus appropriately
-and preserve the camera. Catalogue, controls, layers and vertical History are
-compact floating panels. The header retains location/year. Panels never reserve
-columns or move/resize the square chart. This replaces the original right-hand
-card and bottom timeline layout while preserving all historical content/actions.
+and preserve the camera. Under the current navigation amendment, Catalogue is
+modal and the other top utilities open reserved-space bottom toolbars. The header
+retains location/year. InfoCards never reserve space or resize the chart; toolbars
+explicitly reduce the chart stage while retaining square proportions and camera.
+The earlier floating-panel/vertical-History arrangement is historical.
 
 ### Ordinary InfoCard
 

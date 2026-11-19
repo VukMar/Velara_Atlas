@@ -8,11 +8,11 @@ async page=>{
     HTMLMediaElement.prototype.play=function(){if(this.src.includes('nexus-sfx-history-confirm'))window.__historyAudio.push({url:this.src,time:performance.now(),media:this});return original.call(this);};
   });
   await page.setViewportSize({width:1280,height:900});await page.goto(base);await enterAtlas(page);
-  await page.locator('#audio-toggle').click();await page.locator('#timeline-panel>summary').click();
-  const rect=await page.locator('#timeline').boundingBox(),x=rect.x+rect.width/2,y=f=>rect.y+rect.height*f;
+  await page.locator('#audio-toggle').click();await page.locator('#history-toggle').click();
+  const rect=await page.locator('#timeline').boundingBox(),y=rect.y+rect.height/2,x=f=>rect.x+rect.width*f;
   let mark=await page.evaluate(()=>window.__historyAudio.length),before=await page.locator('#year').innerText();
   const pointerBefore=before;
-  await page.mouse.move(x,y(.5));await page.mouse.down();await page.mouse.move(x,y(.3),{steps:8});
+  await page.mouse.move(x(.5),y);await page.mouse.down();await page.mouse.move(x(.3),y,{steps:8});
   const during=await page.locator('#year').innerText();check(during!==before,'pointer dragging still updates history immediately');
   check(await page.evaluate(()=>window.__historyAudio.length)===mark,'pointer drag is quiet until release');await page.mouse.up();
   check(await page.evaluate(()=>window.__historyAudio.length)===mark+1,'one real pointer release confirmation');
@@ -21,8 +21,8 @@ async page=>{
   const cdp=await page.context().newCDPSession(page);let touch;
   try{
     await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});mark=await page.evaluate(()=>window.__historyAudio.length);before=await page.locator('#year').innerText();
-    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x,y:y(.7)}]});
-    for(const f of [.65,.6,.55,.5])await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:1,x,y:y(f)}]});
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:x(.7),y}]});
+    for(const f of [.65,.6,.55,.5])await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:1,x:x(f),y}]});
     touch=await page.locator('#year').innerText();check(touch!==before,'native touch range updates history');
     check(await page.evaluate(()=>window.__historyAudio.length)===mark,'touch drag is quiet until release');
     await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});

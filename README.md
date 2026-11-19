@@ -4,7 +4,7 @@
 
 The repository now implements the canonical historical Velara Sector Atlas at `/Velara_Atlas/`: one interactive application with the original NEXUS first-entry modal and audio preferences. It contains 70 registered systems, seven historical Cantums and 234 approved descriptions under the existing v1.3 contract. Every system currently uses the archival fallback for unavailable interior charts; no interiors or routes were invented.
 
-The Holographic Transmission InfoCard and canonical launch candidate await final creator visual review in [PR #4](https://github.com/VukMar/Velara_Atlas/pull/4). They have not been deployed. The [published website](https://vukmar.github.io/Velara_Atlas/) remains the creator-approved October 27, 2026 **0.5.0 noncanonical pre-release**. Repository pushes perform verification only; merge and Pages deployment require separate authorization. [Deployment evidence](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
+The canonical Atlas and Holographic Transmission InfoCard have passed creator visual inspection. The subsequent navigation/control-bar refinement awaits final UI review in [PR #4](https://github.com/VukMar/Velara_Atlas/pull/4). The candidate has not been deployed. The [published website](https://vukmar.github.io/Velara_Atlas/) remains the creator-approved October 27, 2026 **0.5.0 noncanonical pre-release**. Repository pushes perform verification only; merge and Pages deployment require separate authorization. [Deployment evidence](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
 
 ## Run locally
 
@@ -31,6 +31,8 @@ Open **http://127.0.0.1:5173/Velara_Atlas/**. New visitors choose **Enter with a
 The old public `demo.html` route is retired. Historical Demo data and HTML are retained in [the archived fixture](tests/fixtures/archived-demo/README.md), excluded from production. Calibration, legacy v0.1 data and frozen versioned fixtures remain separate.
 
 ## Checks
+
+The top row opens Catalogue, Map Controls, Layers and History. Catalogue is a modal archival search; selecting a result transitions to its InfoCard. The other three utilities share one bottom toolbar, reserving space below the square chart. Their 10-second inactivity dismissal pauses for hover, keyboard focus, active editing/gestures and Map Controls Help. Use the far-right **?** for supported pointer, touch and keyboard controls. [Current interface contract](docs/VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19).
 
 ```sh
 npm test

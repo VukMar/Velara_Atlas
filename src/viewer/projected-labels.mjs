@@ -19,10 +19,21 @@ export class ProjectedLabels {
         annotation.arrow.setAttribute('width',String(width));
         annotation.arrow.style.transform=`translateX(-50%) rotate(${Math.atan2(dy,dx)}rad)`;
         annotation.arrow.firstChild.setAttribute('d',`M0 3 H${width} M${head} ${3-head} L0 3 L${head} ${3+head} M${width-head} ${3-head} L${width} 3 L${width-head} ${3+head}`);
-        e.style.width=`${Math.max(30,Math.min(160,width*.9))}px`;
+        // Reserved toolbars can make the chart smaller than a scale caption.
+        // Keep the full value legible without changing the projected cell span.
+        m.textMeasure.font=getComputedStyle(e).font;
+        const captionWidth=Math.ceil(m.textMeasure.measureText(e.firstChild.textContent).width)+2;
+        e.style.width=`${Math.min(m.width,Math.max(captionWidth,30,Math.min(160,width*.9)))}px`;
       }
       e.hidden=m.layerPreferences.grid === false || Math.abs(p.x)>1 || Math.abs(p.y)>1 || Math.abs(p.z)>1;
-      e.style.left=`${(p.x+1)/2*m.width}px`; e.style.top=`${(1-p.y)/2*m.height}px`;
+      const rawX=(p.x+1)/2*m.width,rawY=(1-p.y)/2*m.height;
+      let x=rawX,y=rawY;
+      if(annotation.widthEndpoints&&!e.hidden) {
+        const halfWidth=e.offsetWidth/2,halfHeight=e.offsetHeight/2;
+        x=Math.max(halfWidth,Math.min(m.width-halfWidth,x));y=Math.max(halfHeight,Math.min(m.height-halfHeight,y));
+        annotation.arrow.style.left=`calc(50% + ${rawX-x}px)`;
+      }
+      e.style.left=`${x}px`; e.style.top=`${y}px`;
     }
     const projections = m.anchors.map(a => a.position.clone().project(m.camera));
     const anchors = projections.map(p => ({x: (p.x + 1) / 2 * m.width, y: (1 - p.y) / 2 * m.height}));

@@ -4,7 +4,7 @@ async page=>{
  const check=(v,m)=>{if(!v)throw Error(m);};
  const error=e=>errors.push(e.message),consoleError=m=>{if(m.type()==='error')errors.push(m.text());},request=r=>requests.push(r.url()),failed=r=>failures.push(r.url()),response=r=>{if(r.status()>=400)failures.push(r.url());};
  page.on('pageerror',error);page.on('console',consoleError);page.on('request',request);page.on('requestfailed',failed);page.on('response',response);
- const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+'>summary').click();};
+ const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
  const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');};
  const select=async id=>{await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
  try{
@@ -42,7 +42,7 @@ async page=>{
    check(m.x>=0&&m.y>=0&&m.x+m.width<=width+1&&m.y+m.height<=height+1&&m.overflow<=1,'bounded long card');check(m.scrolls&&m.whiteSpace==='pre-line'&&m.separation>25,'paragraph separation and scrolling');
    await page.screenshot({path:'.playwright-mcp/canonical-'+new URL(base).port+'-'+width+'.png'});layouts.push(m);
   }
-  check(!requests.some(u=>/archived-demo|canonical-dataset-test|MCR_Worldbuilding|__calibration|demo\.html/.test(u)),'no retired/private requests');check(!errors.length&&!failures.length,'no unexpected JS/resource errors');
+  check(!requests.some(u=>/archived-demo|canonical-dataset-test|MCR_Worldbuilding|__calibration|demo\.html/.test(u)),'no retired/private requests');check(!errors.length&&!failures.length,'no unexpected JS/resource errors '+JSON.stringify({errors,failures}));
   const retired=await page.request.get(base+'demo.html');check(retired.status()===404,'Demo route retired');
   return {base,descriptionChecks:checks.length,checks,layouts,errors,failures,retiredDemoStatus:retired.status(),requests:requests.length};
  }finally{page.off('pageerror',error);page.off('console',consoleError);page.off('request',request);page.off('requestfailed',failed);page.off('response',response);await page.emulateMedia({reducedMotion:null});}

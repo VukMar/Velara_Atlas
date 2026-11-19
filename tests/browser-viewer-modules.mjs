@@ -4,7 +4,7 @@ async page => {
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[];
   const consoleError=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
   page.on('console',consoleError);page.on('pageerror',pageError);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const year=async value=>{await page.keyboard.press('Escape');await panel('timeline-panel');await page.locator('#year-input').fill(String(value));await page.locator('#year-input').press('Enter');};
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5177/Velara_Atlas/');await enterAtlas(page);

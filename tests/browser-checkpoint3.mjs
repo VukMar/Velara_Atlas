@@ -8,7 +8,7 @@ async(page)=>{
   const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
   const read=async f=>(await page.request.get(new URL(f,root).href)).json();
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);};

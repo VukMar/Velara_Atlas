@@ -40,7 +40,7 @@ The active canonical application is v1.3; the archived Demo remains an isolated 
 | [HISTORICAL_RESOLVER](HISTORICAL_RESOLVER.md) | Pure historical API, compatible versions and unknown-date semantics |
 | [SCHEMA_V1_2_NAVIGATION](SCHEMA_V1_2_NAVIGATION.md) | Shared v1.2/v1.3 authored links, lifetime pairs and derived gate positions |
 | [VIEWER_SPECIFICATION](VIEWER_SPECIFICATION.md) | Current map/history, interactions, archival/error states and audio behavior |
-| [LAYOUT_REVISION_3_6](LAYOUT_REVISION_3_6.md) | Approved square-map/floating-panel layout amendment |
+| [LAYOUT_REVISION_3_6](LAYOUT_REVISION_3_6.md) | Historical square-map/floating-panel amendment; [current top utilities and reserved toolbars](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) supersede utility placement |
 | [CHECKPOINT_4_CELESTIAL_SCALE_SPEC](CHECKPOINT_4_CELESTIAL_SCALE_SPEC.md) | CNU conversion, physical dimensions, proxies and inspection |
 | [ZONE_GEOMETRY_INTERACTION_SPEC](ZONE_GEOMETRY_INTERACTION_SPEC.md) | Zone intersection, clipping and picking |
 | [CARTOGRAPHIC_LABELING](CARTOGRAPHIC_LABELING.md) | Adaptive typography/caption rules |

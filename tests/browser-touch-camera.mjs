@@ -15,10 +15,14 @@ async(page)=>{
   };
   let nextId=100;
   const tap=async selector=>{
+    await p.waitForFunction(()=>!document.getElementById('toolbar-region').getAnimations().length);
     const box=await p.locator(selector).boundingBox();
     check(box!==null,'tap target exists: '+selector);
     await send('touchStart',[{id:nextId++,x:box.x+box.width/2,y:box.y+box.height/2}]);
     await send('touchEnd',[]);
+    // Raw CDP coordinates need the new 200 ms layout transition to settle.
+    await p.waitForFunction(()=>!document.getElementById('toolbar-region').getAnimations().length);
+    await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   };
   const snapshot=()=>p.evaluate(()=>{
     const m=window.__touchCamera;
@@ -26,8 +30,8 @@ async(page)=>{
       distance:m.camera.position.distanceTo(m.controls.target),zoom:m.camera.zoom,selected:m.selectedId,year:document.querySelector('#year').textContent,
       active:m.controls._pointers.length};
   });
-  const panel=async()=>{if(!await p.locator('#controls-panel').evaluate(n=>n.open))await tap('#controls-panel > summary');};
-  const hide=async()=>{if(await p.locator('#controls-panel').evaluate(n=>n.open))await tap('[data-close-panel="controls-panel"]');};
+  const panel=async()=>{if(!await p.locator('#controls-panel').evaluate(n=>!n.hidden))await tap('#controls-toggle');};
+  const hide=async()=>{if(await p.locator('#controls-panel').evaluate(n=>!n.hidden))await tap('#controls-toggle');};
   const center=async()=>{
     const b=await p.locator('canvas').boundingBox();
     return await p.locator('#info-panel').evaluate(n=>n.open)?{x:b.x+55,y:b.y+100}:{x:b.x+b.width*.4,y:b.y+b.height*.3};
@@ -74,8 +78,8 @@ async(page)=>{
     });
     await tap('#labels [data-record-id="sys_0001"]');await p.locator('#info-panel').waitFor({state:'visible'});
     await tap('#enter');await p.locator('#labels [data-record-id="cb_0001"]').waitFor();
-    await tap('#timeline-panel > summary');await p.locator('#year-input').fill('1199');await p.locator('#year-input').press('Enter');
-    await tap('[data-close-panel="timeline-panel"]');
+    await tap('#history-toggle');await p.locator('#year-input').fill('1199');await p.locator('#year-input').press('Enter');
+    await tap('#history-toggle');
     await panel();await tap('#zoom-in');await hide();
     let before=await snapshot();await pan();let after=await snapshot();
     check(distance(before.target,after.target)>1,'2D one-finger pan');
@@ -84,7 +88,7 @@ async(page)=>{
     check(near(before.azimuth,after.azimuth)&&near(before.polar,after.polar),'2D two fingers never rotate');
     before=after;await two({spread:15});after=await snapshot();check(after.zoom>before.zoom,'2D pinch zoom');
     await transition();await transition(true);
-    await panel();check(await p.locator('#controls-panel').evaluate(n=>n.open),'UI tap after 2D gestures');
+    await panel();check(await p.locator('#controls-panel').evaluate(n=>!n.hidden),'UI tap after 2D gestures');
     await tap('#mode');await hide();check((await snapshot()).mode==='perspective','touch switches to 3D');
     results.push('2D one-finger pan, two-finger zoom without rotation, post-gesture controls');
 

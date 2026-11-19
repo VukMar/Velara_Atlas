@@ -4,8 +4,8 @@ async page=>{
   const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173',errors=[],failed=[],audio=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());},request=r=>{if(r.resourceType()==='media'&&/\.mp3(?:\?|$)/.test(r.url()))audio.push(r.url());};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
-  const hide=()=>page.evaluate(()=>{for(const p of document.querySelectorAll('.floating'))p.open=false;});
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
+  const hide=()=>page.evaluate(()=>{for(const b of document.querySelectorAll('#utility-row button[aria-expanded="true"]')){if(b.id==='catalogue-toggle')document.getElementById('close-catalogue').click();else b.click();}});
   const settle=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
   const select=async id=>{await page.keyboard.press('Escape');await panel('controls-panel');await page.locator('#selection').selectOption(id);await hide();};
   const open=async id=>{if(await page.locator('#sector').isEnabled())await page.locator('#sector').click();await select(id);await page.locator('#enter').click();};

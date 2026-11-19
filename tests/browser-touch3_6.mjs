@@ -26,10 +26,10 @@ async(page) => {
     check(await p.locator('#info-panel').evaluate(n=>n.open),'touch opens object InfoCard');
     check((await state()).highlightedRoutes==='','touch release restores route styling');
     await tap('#close-info');check(await p.locator('#selection').inputValue()==='','touch close clears selection');
-    await tap('#timeline-panel > summary');
+    await tap('#history-toggle');
     await tap('#timeline');
-    check(await p.locator('#year').innerText()!=='1200 A.E.','touch vertical range changes year');
-    await tap('#latest');await tap('[data-close-panel="timeline-panel"]');
+    check(await p.locator('#year').innerText()!=='1200 A.E.','touch horizontal range changes year');
+    await tap('#latest');await tap('#history-toggle');
     await tap('#sector');
     await p.waitForFunction(()=>document.querySelector('#location').textContent==='DEMO SECTOR — NONCANONICAL',null,{timeout:3000});
     await tap('#labels [data-record-id="sys_0001"]');await p.locator('#info-panel').waitFor({state:'visible'});
