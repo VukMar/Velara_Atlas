@@ -8,7 +8,7 @@ async page => {
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.mouse.move(1,1);};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await close();};
-  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
+  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});await page.locator('#technical-tab').click();};
   const sector=async()=>{await close();await panel('controls-panel');await page.locator('#sector').click();await close();};
   const open=async id=>{await choose(id);await page.locator('#enter').click();await close();};
   const present=async id=>await page.locator(`#selection option[value="${id}"]`).count()===1;

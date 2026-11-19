@@ -163,10 +163,17 @@ card and bottom timeline layout while preserving all historical content/actions.
 
 ### Ordinary InfoCard
 
-- Primary focus: selected entity's historical title and approved six-field InfoCard data — affiliation, class, crew, population, armament, description; show only relevant populated fields or honest “not recorded” states.
-- Include a **small NEXUS side-profile PNG overlay** as the narrator/curator visual when its integration is separately authorized; the supplied asset is `public/assets/nexus/nexus-side-profile.png`. Suggested place: header-side or bottom/right protected margin, not underneath text. Portrait can fade into the panel with a turquoise edge accent.
-- Do not assume the front-facing `NEXUS Visual Form V2.png` is the desired side-view asset. Until the supplied side-profile is integrated, retain the existing NEXUS status label or omitted portrait without changing layout.
-- If there is insufficient width (phone layouts, text-heavy panels), reduce or hide the portrait before reducing text readability.
+**Creator-approved Holographic Transmission amendment, 2026-11-19.** This supersedes ordinary InfoCard portrait sizing/hiding in the historical 4.2A record below; that original 96/64 px approval remains checkpoint evidence. Opening and archival message portraits retain their separate contracts.
+
+- Center the floating dialog at `width: min(600px, calc(100vw - 24px))` and `max-height: min(720px, calc(100dvh - 48px))`. Short records can produce a shorter card. Selection never moves/resizes the map or changes its camera.
+- Persistent header: NEXUS / HISTORICAL ARCHIVE, resolved historical name, entity kind, selected A.E. year, Close and the approved side-profile. Fine cyan borders, a restrained gradient and soft illumination convey NEXUS presenting the archive. No new artwork, narration or decorative animation.
+- The unchanged `public/assets/nexus/nexus-side-profile.png` is contained at 144 px on desktop and 80 px at widths ≤600 px or heights ≤480 px; extremely short windows use 64 px. Preserve natural proportions and the entire image. Never hide it for density, long narrative, narrow width or short height. Actual image failure may collapse it through the existing shell handler.
+- Exactly two tabs: **Description** opens by default and contains the full resolved narrative, safely assigned with `textContent` and `white-space: pre-line`, including the established missing-description fallback. **Technical** contains every existing `describeRecord()` fact, destination information and the scale/inspection note. Do not invent or infer values.
+- Header → tabs → independently scrolling active panel → persistent actions. Focus Selection, Enter System and external destination buttons stay outside the normal content scroller. At extreme viewport sizes or enlarged text leaving less than 96 px for reading, one outer dialog scrollbar exposes all content and controls; competing inner scrolling is removed.
+- A new entity resets to Description and resets panel scroll. Historical refresh of the same identity preserves the selected tab, panel nodes, scroll where the replacement length allows, and focus. Heading/year, description and facts update synchronously; existing ineligible-selection clearing remains authoritative. Destination listeners are replaced and disposed without accumulation.
+- Native buttons with `tablist`, `tab`, `tabpanel`, `aria-selected`, `aria-controls` and `aria-labelledby`; one active tab in the Tab sequence. Left/Right wrap and automatically activate, Home/End select first/last, Enter/Space use native activation. Panels are focusable scroll regions; inactive panels use `hidden`. Visible focus, ≥44 px action/tab targets, existing Escape dismissal/focus return and reduced-motion behavior remain. Resize observers and listeners belong to the existing lifetime.
+
+Implementation and viewport evidence: [launch-candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Final creator visual acceptance remains pending.
 
 ### Direct NEXUS archival messages
 
@@ -206,7 +213,7 @@ See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, im
 
 **Desktop:** compact header and centered square chart; floating Catalogue, Map controls, Map layers and vertical History. The selected year stays visible when History is closed. Record selection opens a centered dismissible InfoCard. The system chart has restrained A–H/1–8 world-space labels and an H8 CNU cell-width annotation.
 
-**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible and reduce/hide any future portrait before reducing text readability. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
+**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible. Ordinary InfoCards retain the compact intact portrait under the current amendment above; archival/opening portraits keep their own responsive rules. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
 
 ## 11. Implementation order and acceptance criteria
 

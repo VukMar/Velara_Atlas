@@ -23,7 +23,7 @@ async(page)=>{
     for(const object of detail.objects) {
       await close();await page.locator(`#labels [data-record-id="${object.id}"]`).click();await page.locator('#info-panel').waitFor({state:'visible'});
       check(await page.locator('#selection').inputValue()===object.id,`${object.id} pointer-selectable`);selected++;
-      check((await page.locator('#facts').innerText()).includes('CNU'),`${object.id} XYZ units`);
+      await page.locator('#technical-tab').click();check((await page.locator('#facts').innerText()).includes('CNU'),`${object.id} XYZ units`);
       if(object.objectType==='short_range_gate') {check(await page.locator('#destinations p').count()===1,`${object.id} lifetime-exclusive local partner`);localEndpoints++;}
     }
     await close();await panel('controls-panel');await page.locator('#mode').click();
@@ -72,7 +72,7 @@ async(page)=>{
   for(const id of ['lnk_0007','lnk_0011'])check(await page.locator(`#selection option[value="${id}"]`).count()===1,`${id} inclusive local activation`);
   for(const [id,partner] of [['gat_0019','gat_0020'],['gat_0020','gat_0019']]) {
     await choose(id);check(await page.locator('#destinations p').count()===1,`${id} newly available exclusive destination`);
-    const destination=await page.locator('#destinations').innerText();
+    await page.locator('#technical-tab').click();const destination=await page.locator('#destinations').innerText();
     check(destination.includes(` / ${partner}`)&&destination.includes('bidirectional'),`${id} correct available partner and direction`);
   }
   await year(sector.timeline.defaultAE);await panel('controls-panel');await page.locator('#sector').click();

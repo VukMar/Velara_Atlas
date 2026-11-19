@@ -36,7 +36,7 @@ async page=>{
    await page.setViewportSize({width,height});const m=await page.locator('#info-panel').evaluate(n=>{
     const p=n.querySelector('#description'),r=n.getBoundingClientRect(),text=p.firstChild,i=text.textContent.indexOf('\n\n');let separation=null;
     if(i>0){const a=document.createRange(),b=document.createRange();a.setStart(text,i-1);a.setEnd(text,i);b.setStart(text,i+2);b.setEnd(text,i+3);separation=b.getBoundingClientRect().y-a.getBoundingClientRect().y;}
-    n.scrollTop=n.scrollHeight;const scrolls=n.scrollTop>0;n.scrollTop=0;
+    const content=n.querySelector('#description-panel');content.scrollTop=content.scrollHeight;const scrolls=content.scrollTop>0;content.scrollTop=0;
     return {viewport:[innerWidth,innerHeight],x:r.x,y:r.y,width:r.width,height:r.height,overflow:n.scrollWidth-n.clientWidth,scrolls,whiteSpace:getComputedStyle(p).whiteSpace,separation};
    });
    check(m.x>=0&&m.y>=0&&m.x+m.width<=width+1&&m.y+m.height<=height+1&&m.overflow<=1,'bounded long card');check(m.scrolls&&m.whiteSpace==='pre-line'&&m.separation>25,'paragraph separation and scrolling');

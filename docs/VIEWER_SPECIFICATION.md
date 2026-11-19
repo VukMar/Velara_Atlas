@@ -390,6 +390,12 @@ Panels and the InfoCard must fit narrow screens without clipping or shifting the
 
 ### InfoCard content
 
+**2026-11-19 Holographic Transmission amendment:** the ordinary InfoCard is a centered floating dialog bounded to 600 CSS px wide and 720 px high, with at least 12 px horizontal and approximately 24 px vertical margins. The persistent archival header displays resolved name, kind, selected year, Close and the original NEXUS side-profile (144 px desktop, 80 px narrow/short; 64 px at extreme heights). The portrait is never hidden for content density or viewport size. The existing image-failure fallback remains.
+
+Exactly two accessible tabs sit below it: **Description** (default for a new entity) and **Technical** (all existing model facts, destinations and the physical-scale note). Use full safe `textContent` narratives with `white-space: pre-line` and the existing missing-description fallback. Header, tabs and applicable Focus/Enter/destination actions persist while only the active panel scrolls normally. Short content does not fill the maximum height. Extremely short windows or enlarged text use a single outer scrollbar when persistent elements would leave less than 96 px of reading room, preserving access to every control.
+
+Historical refresh of the same entity retains the tab, reasonable panel scroll and focus while updating all values; another entity resets to Description. Existing eligibility clearing, synchronous resolver semantics, map/camera state, opening and audio ownership remain unchanged. Tab roles/relationships, roving focus, wrapping Left/Right, Home/End, native Enter/Space activation, hidden inactive panels, visible focus, ≥44 px controls, Escape/focus return and lifetime cleanup are required. See [current NEXUS design contract](NEXUS_VISUAL_IDENTITY.md#ordinary-infocard) and [verification evidence](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Earlier 96/64 px checkpoint records are historical.
+
 The six **approved universal fields**, from the data contract, are:
 
 `affiliation`, `class`, `crew`, `population`, `armament`, `description`.

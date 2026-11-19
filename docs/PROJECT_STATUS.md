@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized canonical integration, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized Holographic Transmission InfoCard and canonical 1.0.0 launch-candidate preparation, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -45,7 +45,9 @@ The existing NEXUS opening and single audio controller remain. The two-page teas
 
 Production remains static and read-only with `publicDir: false`, exact inventory-based imports, pinned media and complete output reachability. The single canonical HTML entry is `index.html`. [Integration report and verification](CANONICAL_APPLICATION_INTEGRATION.md).
 
-Creator visual acceptance of this integration is pending. PR #4 remains unmerged; no Pages dispatch, tag, Release or version bump is authorized. The published website remains the October 27 noncanonical 0.5.0 release described above. A normal push starts verification only. Version 1.0.0 remains reserved for the creator-approved canonical public launch. Atlas Creator and further canonical content remain separately authorized.
+The subsequent creator task explicitly authorizes the Holographic Transmission InfoCard and staging repository version **1.0.0 as the canonical launch candidate**, with validation, commit/push and PR #4 updates. The centered card is bounded to 600 × 720 CSS pixels, retains a compact mobile NEXUS portrait, opens on Description and preserves Technical/Description selection across historical-year updates. See [current visual contract](NEXUS_VISUAL_IDENTITY.md#ordinary-infocard) and [candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19).
+
+Final creator visual acceptance remains pending. PR #4 remains unmerged; no Pages dispatch, tag or Release is authorized. The published website remains the October 27 noncanonical **0.5.0** release described above. A normal push starts verification only. The canonical public launch is not complete. Atlas Creator and further canonical content remain separately authorized.
 
 ## Verified baseline and limits
 

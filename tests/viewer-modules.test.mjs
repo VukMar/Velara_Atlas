@@ -7,6 +7,7 @@ import {resolveAtlas,recordedYears} from '../src/core/cartography.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 import {AppState} from '../src/viewer/app-state.mjs';
 import {describeRecord} from '../src/viewer/infocard-model.mjs';
+import {createInfoCard} from '../src/viewer/infocard-view.mjs';
 import {LAYER_DEFAULTS,layerKeys} from '../src/viewer/layer-config.mjs';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createArchivalView} from '../src/viewer/archival-view.mjs';
@@ -20,6 +21,79 @@ const dataset=()=>readDemoSource().dataset;
 const card=(d,y,scope,id)=>{const view=resolveAtlas(d,y,scope);return describeRecord(view.records.find(r=>r.id===id),{yearAE:y,systemId:scope,view});};
 const fact=(model,label)=>model.facts.find(f=>f[0]===label)?.[1];
 const fallbackData=validateFallbackData(JSON.parse(fs.readFileSync(new URL('../public/content/nexus/fallback-data.json',import.meta.url),'utf8')));
+
+function infoHarness() {
+  const original=globalThis.document;
+  class Element extends EventTarget {
+    children=[];attributes={};dataset={};hidden=false;scrollTop=0;open=false;isConnected=true;listeners=0;
+    addEventListener(...args){super.addEventListener(...args);this.listeners++;}
+    removeEventListener(...args){super.removeEventListener(...args);this.listeners--;}
+    setAttribute(k,v){this.attributes[k]=v;}
+    append(...nodes){for(const n of nodes){n.parent=this;this.children.push(n);}}
+    replaceChildren(){this.children=[];}
+    contains(node){return node===this||this.children.some(n=>n.contains(node));}
+    focus(){globalThis.document.activeElement=this;}
+    closest(){return null;}
+    show(){this.open=true;this.shows=(this.shows??0)+1;}
+    close(){this.open=false;}
+  }
+  const ids=['info-panel','record-heading','selected-name','selected-kind','selected-year','description','facts','destinations','destination-actions','enter','focus','close-info','description-tab','technical-tab','description-panel','technical-panel'];
+  const nodes=new Map(ids.map(id=>[id,new Element()])), $=id=>nodes.get(id),life=new Lifetime(),invoker=new Element(),canvas=new Element(),navigations=[];
+  $('technical-panel').hidden=true;$('technical-panel').append($('facts'),$('destinations'));
+  $('info-panel').append(...ids.filter(id=>id!=='info-panel').map($));
+  globalThis.document={activeElement:invoker,createElement:()=>new Element()};
+  const state={yearAE:1200,systemId:null,view:resolveAtlas(dataset(),1200)},atlas={canFocus:()=>true,setHovered(){},focus(r){this.focused=r;},renderer:{domElement:canvas}};
+  let card;card=createInfoCard({$,state,atlas,navigate:id=>navigations.push(id),choose:r=>{state.selectedId=r?.id??null;card.render(r);}},life);
+  const render=(r,options)=>{state.selectedId=r?.id??null;card.render(r,options);};
+  return {$,state,atlas,life,card,render,invoker,navigations,restore(){life.dispose();if(original===undefined)delete globalThis.document;else globalThis.document=original;}};
+}
+
+test('InfoCard tabs retain complete text/facts, history focus/scroll and reset only for a new selection',()=>{
+  const h=infoHarness();
+  try {
+    const r=h.state.view.records.find(r=>r.entityType==='star_system');
+    h.render(r);assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert(h.$('technical-panel').hidden);
+    const text='TEST <unsafe> & punctuation.\n\nSecond paragraph.\nFinal line.';
+    h.render({...r,infoCard:{...r.infoCard,description:{text}}},{present:false});
+    assert.equal(h.$('description').textContent,text);assert.equal(h.$('description').children.length,0);
+    h.$('technical-tab').dispatchEvent(new Event('click'));h.$('technical-tab').focus();h.$('technical-panel').scrollTop=42;
+    h.state.yearAE=1175;h.render({...r,name:'TEST historical title'},{present:false});
+    assert.equal(h.$('technical-tab').attributes['aria-selected'],'true');assert(h.$('description-panel').hidden);
+    assert.equal(h.$('selected-year').textContent,'1175 A.E.');assert.equal(h.$('selected-name').textContent,'TEST historical title');
+    assert.equal(document.activeElement,h.$('technical-tab'));assert.equal(h.$('technical-panel').scrollTop,42);assert.equal(h.$('info-panel').shows,1);
+    assert.deepEqual(h.$('facts').children.map(n=>n.textContent),describeRecord({...r,name:'TEST historical title'},h.state).facts.flat());
+    h.$('description-tab').dispatchEvent(new Event('click'));h.state.yearAE=1174;h.render(r,{present:false});
+    assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert.equal(h.$('selected-year').textContent,'1174 A.E.');
+    h.$('technical-tab').dispatchEvent(new Event('click'));h.render({...r,id:'TEST_new',infoCard:{description:null}});
+    assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert.equal(h.$('description').textContent,'Description not recorded.');
+    assert.equal(h.$('technical-panel').scrollTop,0);
+    h.$('technical-panel').scrollTop=77; // Model a hidden browser box retaining its previous offset.
+    h.$('technical-tab').dispatchEvent(new Event('click'));assert.equal(h.$('technical-panel').scrollTop,0);
+    h.card.dismiss();assert(!h.$('info-panel').open);assert.equal(document.activeElement,h.invoker);
+  }finally{h.restore();}
+});
+
+test('InfoCard roving keyboard tabs and render/dispose cycles do not accumulate listeners or destinations',()=>{
+  const h=infoHarness();
+  try {
+    const r=h.state.view.records[0];h.render(r);
+    const key=(id,key)=>{const e=new Event('keydown',{cancelable:true});Object.defineProperty(e,'key',{value:key});h.$(id).dispatchEvent(e);assert(e.defaultPrevented);};
+    key('description-tab','ArrowRight');assert.equal(document.activeElement,h.$('technical-tab'));assert.equal(h.$('technical-tab').tabIndex,0);assert.equal(h.$('description-tab').tabIndex,-1);
+    key('technical-tab','ArrowLeft');assert.equal(document.activeElement,h.$('description-tab'));
+    key('description-tab','End');key('technical-tab','Home');
+    const listeners=['description-tab','technical-tab','enter','focus','close-info'].map(id=>h.$(id).listeners);
+    for(let i=0;i<40;i++)h.render(r,{present:false});
+    assert.deepEqual(['description-tab','technical-tab','enter','focus','close-info'].map(id=>h.$(id).listeners),listeners);
+    h.state.systemId='sys_0001';h.state.view=resolveAtlas(dataset(),1200,'sys_0001');
+    const gate=h.state.view.records.find(r=>r.entityType==='gate'&&describeRecord(r,h.state).destinations.some(d=>d.external));
+    assert(gate);h.render(gate);const old=h.$('destination-actions').children[0];assert(old);old.focus();
+    h.render(gate,{present:false});assert.equal(old.listeners,0);assert.equal(h.$('destination-actions').children.length,1);assert.equal(document.activeElement,h.$('destination-actions').children[0]);
+    old.dispatchEvent(new Event('click'));assert.equal(h.navigations.length,0);
+    h.$('destination-actions').children[0].dispatchEvent(new Event('click'));assert.equal(h.navigations.length,1);
+    h.life.dispose();assert.equal(h.$('technical-tab').listeners,0);assert.equal(h.$('destination-actions').children[0].listeners,0);
+    h.$('technical-tab').dispatchEvent(new Event('click'));assert.equal(h.$('description-tab').attributes['aria-selected'],'true');
+  }finally{h.restore();}
+});
 
 test('two reticles consume final anchor visibility, existing hover precedence and selection without owning state',()=>{
   const previous=globalThis.document;

@@ -18,6 +18,8 @@ Judge infrastructure by significance, not changed-file count. Minor numbers are 
 
 **1.0.0 is reserved for the creator-approved public launch of the first canonical MCR Velara Sector Atlas.** The noncanonical Demo and NEXUS landing page do not qualify. Only the creator can authorize this transition; elapsed time, engineering milestones and version-number progression cannot do so automatically. Canon migration and public deployment retain their separate approval gates.
 
+**Explicit creator decision, 2026-11-19:** stage repository version **1.0.0** in PR #4 as the first canonical launch candidate, alongside the approved Holographic Transmission InfoCard. This is the creator-authorized preparation for that reserved launch, not evidence that publication has occurred. Final visual acceptance, merge and manual Pages deployment remain separate. The published website remains the **0.5.0 noncanonical pre-release** until an approved deployment succeeds. No tag or GitHub Release is authorized by candidate preparation.
+
 ## After 1.0.0
 
 Follow standard Semantic Versioning:
