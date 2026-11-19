@@ -9,12 +9,13 @@ export function exists(file, io = fs) {
 }
 export function assertNoAuthoring(root, io = fs) {
   safeDatasetPath(root, 'sector.json', io);
-  safeDatasetPath(root, 'systems/sys_0000.json', io);
+  const systems=path.join(root,'systems');
+  if(exists(systems,io))safeDatasetPath(root, 'systems/sys_0000.json', io);
   for (const name of [AUTHORING_JOURNAL, AUTHORING_LOCK]) {
     if (exists(path.join(root, name), io)) throw new Error(`Pending system authoring recovery: ${name}; see docs/MANUAL_AUTHORING.md`);
   }
   for (const dir of [root, path.join(root, 'systems')]) {
-    if (io.readdirSync(dir).some(name => name.includes('.atlas-new-system-'))) {
+    if (exists(dir,io) && io.readdirSync(dir).some(name => name.includes('.atlas-new-system-'))) {
       throw new Error('Orphan system-authoring artifact; retain it and inspect docs/MANUAL_AUTHORING.md');
     }
   }

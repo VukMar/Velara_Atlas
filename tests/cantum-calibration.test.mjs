@@ -16,8 +16,8 @@ import {cantumField,resolveAtlas,territoryGroups} from '../src/core/cartography.
 import {territorialLabels,fieldComponents} from '../src/viewer/territorial-labels.mjs';
 import {influenceEnvelopes,envelopeHalfHeight} from '../src/viewer/influence-envelopes.mjs';
 import {chartGrid} from '../src/viewer/chart-layout.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
-import config,{demoInputAudit} from '../vite.config.mjs';
+import {readDemoSource} from './archived-demo.mjs';
+import config,{datasetInputAudit} from '../vite.config.mjs';
 
 const state=(radius=2.5,year=1200)=>{
   const d=calibrationDataset(radius),v=resolveAtlas(d,year),groups=territoryGroups(v,d.sector,d.presentation);
@@ -118,7 +118,7 @@ test('calibration identities obey discovery and transfer years, with no future n
 
 test('local preview fixtures remain rejected by the unchanged public input audit',()=>{
   assert.equal(config.publicDir,false);
-  const context={error(message){throw new Error(message);}},hook=demoInputAudit().generateBundle;
+  const context={error(message){throw new Error(message);}},hook=datasetInputAudit().generateBundle;
   for(const path of ['../tests/calibration/scenario.mjs','../tests/calibration/controller.mjs','../tests/calibration/scenarios/cantum-scale-baseline.json','../scripts/preview-cantum-calibration.mjs']) {
     const file=fileURLToPath(new URL(path,import.meta.url));
     assert.throws(()=>hook.call(context,{}, {chunk:{type:'chunk',modules:{[file]:{}}}}),/Unexpected input/);

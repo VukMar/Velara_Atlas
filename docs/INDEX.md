@@ -10,7 +10,7 @@ Start with [README](../README.md) to run the project, [PROJECT_STATUS](PROJECT_S
 - **Behavior:** the subject specifications below. A design document is not permission to implement its deferred ideas.
 - **Evidence:** dated implementation reports and completed roadmaps. Their original test counts, limitations and pending work describe their checkpoints, not current instructions.
 
-The active Demo is v1.3; v1.2 examples, frozen fixtures and legacy v0.1 Canon have separate contracts.
+The active canonical application is v1.3; the archived Demo remains an isolated regression input; v1.2 examples, frozen fixtures and legacy v0.1 Canon have separate contracts.
 
 ## Developer and authoring guides
 
@@ -21,14 +21,14 @@ The active Demo is v1.3; v1.2 examples, frozen fixtures and legacy v0.1 Canon ha
 | [LOCAL_DEVELOPMENT](LOCAL_DEVELOPMENT.md) | Environments, calibration/scenarios, ID Finder, focused/browser checks |
 | [ARCHITECTURE](ARCHITECTURE.md) | Implemented ownership, pure core, lifecycle and validated input/build boundary |
 | [REPOSITORY_STRUCTURE](REPOSITORY_STRUCTURE.md) | Directory ownership, generated files and publication surfaces |
-| [MANUAL_AUTHORING](MANUAL_AUTHORING.md) | Fixed-Demo CLI, registration, object/gate authoring and recovery |
+| [MANUAL_AUTHORING](MANUAL_AUTHORING.md) | Fixed-canonical CLI, registration, object/gate authoring and recovery |
 | [NAVIGATION_AUTHORING](NAVIGATION_AUTHORING.md) | Manual generation, read-only freshness and evidence-preserving recovery |
-| [DEMO_SHOWCASE](DEMO_SHOWCASE.md) | Normal-Demo walkthrough and future authorized feature-review policy |
+| [DEMO_SHOWCASE](DEMO_SHOWCASE.md) | Archived Demo walkthrough and fixture review policy |
 | [CONTENT_WORKFLOW](CONTENT_WORKFLOW.md) | Public disclosure, private-source review and manual release safeguards |
 | [PERFORMANCE_AND_RELEASE_READINESS](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security) | Local release checks and profiling operations; dated measurements remain historical |
 | [Examples entry point](../examples/README.md) / [v1.2 family guide](../examples/v1_2/README.md) | Noncanonical learning references; not runtime data |
 
-[PUBLIC_ENTRANCE](PUBLIC_ENTRANCE.md) is the 2026-10-26 active amendment for the homepage, separate Demo, shared first entry and two-page audits. The integration is complete and creator-approved, including manual visual/functional acceptance. [Verification and closeout evidence](PUBLIC_ENTRANCE_VERIFICATION.md) distinguish automated results and remaining coverage limits.
+[CANONICAL_APPLICATION_INTEGRATION](CANONICAL_APPLICATION_INTEGRATION.md) governs the current single-page canonical application. [PUBLIC_ENTRANCE](PUBLIC_ENTRANCE.md) is the superseded 2026-10-26 amendment for the homepage, separate Demo, shared first entry and two-page audits. The integration is complete and creator-approved, including manual visual/functional acceptance. [Verification and closeout evidence](PUBLIC_ENTRANCE_VERIFICATION.md) distinguish automated results and remaining coverage limits.
 
 ## Technical rules
 

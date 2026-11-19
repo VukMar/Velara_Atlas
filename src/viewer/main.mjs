@@ -1,5 +1,5 @@
 import './style.css';
-import {loadDemoDataset} from './demo-data.mjs';
+import {loadAtlasDataset} from './atlas-data.mjs';
 import {AtlasMap} from './map-scene.mjs';
 import {assertSquareMap} from './chart-layout.mjs';
 import {AppState} from './app-state.mjs';
@@ -42,7 +42,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
     const {view,returned,selected,selectionCleared}=state.resolve();
     if(returned)notice('The previous system is not known at this year. Returned to Sector View.');
     timeline.render();
-    $('location').textContent=view.system ? view.system.name??view.system.id : 'Demo Sector';$('sector').disabled=!state.systemId;
+    $('location').textContent=view.system ? view.system.name??view.system.id : dataset.sector.title;$('sector').disabled=!state.systemId;
     const groups=state.groups();
     atlas.setMap(view.map,view.markers,view.positionKey,returned?state.camera('sector'):saved,
       {contextId:state.scope,zones:view.zones,routes:view.routes,groups,cantums:view.cantums,presentation:dataset.presentation});
@@ -115,18 +115,18 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
 
 export async function start() {
   const generation=++startup;
-  application?.dispose();application=null;$('retry').hidden=true;message('Loading public demonstration records…');
+  application?.dispose();application=null;$('retry').hidden=true;message('Loading Atlas records…');
   try {
     // The content module statically imports two exact JSON files. Catch import/validation
     // failures here as technical startup errors, including missing/malformed JSON.
-    const [dataset,content,{voiceURLs},{interfaceURLs}]=await Promise.all([loadDemoDataset(),import('./nexus-content.mjs'),import('./voice-assets.mjs'),import('./interface-assets.mjs')]);
+    const [dataset,content,{voiceURLs},{interfaceURLs}]=await Promise.all([loadAtlasDataset(),import('./nexus-content.mjs'),import('./voice-assets.mjs'),import('./interface-assets.mjs')]);
     if(rootLifetime.disposed||generation!==startup)return;
     audio??=createAudioController({button:$('audio-toggle'),urls:voiceURLs,interfaceURLs},rootLifetime);
     application=mount(dataset,content);
   } catch(error) {
     if(rootLifetime.disposed||generation!==startup)return;
     audio?.suspend();
-    message(`Technical error loading the demo or starting WebGL. ${error.message} Retry, or inspect the browser console.`);
+    message(`Technical error loading the Atlas or starting WebGL. ${error.message} Retry, or inspect the browser console.`);
     $('retry').hidden=false;console.error('Atlas initialization failed:',error);
   }
 }

@@ -1,6 +1,8 @@
 # Velara Atlas — Source lore, JSON and public release workflow
 
-**Status:** Manual canonical extraction/release safeguards; no automated canonical publisher exists. Demo-only v1.2/v1.3 generation/validation and the local read-only viewer are implemented. This workflow does not authorize reading private lore or migrating canonical records without a specific task.
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
+**Status:** Manual canonical extraction/release safeguards; no automated canonical publisher exists. Canonical v1.3 production validation and isolated synthetic regression coverage and the local read-only viewer are implemented. This workflow does not authorize reading private lore or migrating canonical records without a specific task.
 
 ## Principle: three states, two timelines
 
@@ -45,12 +47,11 @@ redirected to canonical data as part of this workflow.
 ## Release checklist and local Demo dry run
 
 Completed, creator-approved Architecture Phase 6 adds `npm run release:check`:
-fixed NONCANONICAL Demo validation, read-only navigation freshness, static build
+fixed canonical validation, read-only navigation freshness, static build
 and disclosure/resource audits. Follow with `npm run preview -- --port 4173 --strictPort`
-at `http://127.0.0.1:4173/Velara_Atlas/` (NEXUS homepage) and `http://127.0.0.1:4173/Velara_Atlas/demo.html` (noncanonical map), and the browser walkthrough in
+at `http://127.0.0.1:4173/Velara_Atlas/` (canonical Atlas), and the browser walkthrough in
 [performance and release readiness](PERFORMANCE_AND_RELEASE_READINESS.md).
-This local simulation does not deploy, generate navigation, promote fixtures or
-authorize Canon publication. The read-only Ubuntu/Windows CI workflow verifies
+This local check does not deploy, generate navigation, promote fixtures or authorize further content disclosure. The read-only Ubuntu/Windows CI workflow verifies
 supported commands without publishing or writing the repository. The current
 architecture optimization roadmap is complete; all later work is separately gated.
 The human content review below remains required.

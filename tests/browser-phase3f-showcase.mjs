@@ -1,7 +1,7 @@
 /** Integrated acceptance against the ordinary Demo, not a fixture server. */
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[],politics=[],navigation=[],factions=[];
+  const base='http://127.0.0.1:5177/Velara_Atlas/',errors=[],politics=[],navigation=[],factions=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());},onPageError=e=>errors.push(e.message);
   page.on('console',onError);page.on('pageerror',onPageError);
@@ -20,7 +20,7 @@ async page => {
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
-    const preload=await page.evaluate(async()=>{const d=await(await import('./demo-data.mjs')).loadDemoDataset();return {details:d.detailFiles.size,factions:d.factionFiles.size,radius:d.presentation.territoryOverlay.radiusLY};});
+    const preload=await page.evaluate(async()=>{const d=await(await import('./atlas-data.mjs')).loadAtlasDataset();return {details:d.detailFiles.size,factions:d.factionFiles.size,radius:d.presentation.territoryOverlay.radiusLY};});
     check(preload.details===4&&preload.factions===2&&preload.radius===24,'registered full Demo eagerly loaded');
     await page.evaluate(async()=>{const {AtlasMap}=await import('./map-scene.mjs'),render=AtlasMap.prototype.render;AtlasMap.prototype.render=function(){window.__phase3fMap=this;return render.call(this);};});
     await panel('controls-panel');await page.locator('#mode').click();await close();

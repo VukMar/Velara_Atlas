@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {inspectAuthoring, planNewSystem, applyNewSystem, recoverNewSystem} from './system-authoring.mjs';
 
 export const HELP = `Usage: npm run atlas:new-system -- [options]
-No options / --suggest: validate Demo and suggest an unused ID (no reservation).
+No options / --suggest: validate Canonical and suggest an unused ID (no reservation).
 --help                         Show this help
 --size-x N --size-y N --size-z N Required positive CNU chart sizes; X must equal Z
 --id sys_XXXX                  Optional explicit unused permanent ID
@@ -16,7 +16,7 @@ No options / --suggest: validate Demo and suggest an unused ID (no reservation).
 --cantum can_XXXX --cantum-from-ae N  Optional administrative membership
 --apply                        Write the previewed operation; default is read-only
 --recover [--apply]             Preview / apply verified rollback of a stopped operation
-Only the configured NONCANONICAL Demo can be written. No Canon/root/URL option.
+Only the configured canonical dataset can be written. No arbitrary root/URL option.
 Missing history stays null. Chart origin/unit/projection are technical conventions.
 See docs/MANUAL_AUTHORING.md for objects, navigation, validation and recovery.`;
 

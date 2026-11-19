@@ -1,98 +1,47 @@
-/** Run against either local Vite or audited preview. Fresh contexts isolate Visitor state. */
+/** Canonical first-entry regression. Run at both 5173 and 4173. */
 async page=>{
-  const base=new URL('/Velara_Atlas/',page.url()).href,browser=page.context().browser(),results=[];
-  const check=(ok,message)=>{if(!ok)throw Error(message);};
-  const keys=['velara-atlas:audio-enabled:v1','velara-atlas:first-entry-completed:v1','velara-atlas:first-entry-migration:v1'];
-  async function visitor(options={},setup=async()=>{},run) {
-    const context=await browser.newContext({viewport:{width:1280,height:900},...options}),p=await context.newPage(),errors=[];
-    p.on('pageerror',e=>errors.push(e.message));
-    await p.addInitScript(()=>{
-      window.__plays=[];window.__media=[];window.__webgl=0;
-      const play=HTMLMediaElement.prototype.play;
-      HTMLMediaElement.prototype.play=function(){window.__plays.push(this.src);window.__media.push(this);return play.call(this);};
-      const get=HTMLCanvasElement.prototype.getContext;
-      HTMLCanvasElement.prototype.getContext=function(kind,...args){if(kind.startsWith('webgl'))window.__webgl++;return get.call(this,kind,...args);};
-    });
-    try{await setup(p);await run(p);check(!errors.length,'uncaught errors: '+errors.join(';'));}catch(error){throw Error(error.message+'; completed='+results.join(',')+'; URL='+p.url()+'; body='+(await p.locator('body').innerText()).slice(-900));}finally{await context.close();}
-  }
-  const welcome=p=>p.locator('#opening-panel[open]').waitFor({state:'visible'});
-  const teaser=p=>p.locator('#demo-link').waitFor({state:'visible'});
-  const choice=async(p,name)=>{await welcome(p);await p.getByRole('button',{name,exact:true}).click();await teaser(p);};
-  const state=p=>p.evaluate(keys=>keys.map(k=>localStorage.getItem(k)),keys);
-  const noMap=async p=>{
-    check(await p.evaluate(()=>!window.__webgl&&!document.querySelector('canvas')),'no WebGL/canvas on landing');
-    const urls=await p.evaluate(()=>performance.getEntriesByType('resource').map(r=>r.name));
-    check(!urls.some(u=>/three|demo-data|datasets|history\.mjs|map-scene|assets\/demo-|sys_\d|fac_\d|calibration/.test(u)),'no renderer/data preload: '+urls.join(','));
-  };
-  for(const audio of [false,true])await visitor({},async()=>{},async p=>{
-    await p.goto(base);await welcome(p);await noMap(p);
-    check(await p.locator('#opening-name').evaluate(e=>e===document.activeElement),'initial reading focus');
-    await p.keyboard.press('Tab');check(await p.locator('#opening-audio').evaluate(e=>e===document.activeElement),'keyboard reaches audio');
-    await p.keyboard.press('Tab');check(await p.locator('#opening-silent').evaluate(e=>e===document.activeElement),'keyboard reaches silent');
-    await choice(p,audio?'Enter with audio':'Enter silently');
-    check(await p.locator('#demo-link').evaluate(e=>e===document.activeElement),'focus moves to primary link');
-    check(JSON.stringify(await state(p))===JSON.stringify([String(audio),'true','true']),'shared keys recorded');
-    check(await p.evaluate(audio=>window.__plays.length===(audio?1:0)&&window.__plays.every(s=>s.includes('nexus-enter-with-audio')),audio),'only approved acknowledgment on explicit audio entry');
-    if(audio){await p.locator('#audio-toggle').click();check(await p.evaluate(()=>window.__media.every(m=>m.paused&&!m.getAttribute('src'))),'mute releases speech');await p.locator('#audio-toggle').click();}
-    await p.reload();await teaser(p);check(!await p.locator('#opening-panel').evaluate(e=>e.open),'return bypasses welcome');
-    check(await p.evaluate(()=>window.__plays.length===0),'return does not autoplay');
-    check(await p.locator('#audio-toggle').getAttribute('aria-pressed')===String(audio),'return preference');
-    await p.locator('#demo-link').click();await p.locator('#viewport>canvas').waitFor();
-    await p.waitForFunction(()=>!document.querySelector('#audio-toggle').disabled);
-    check(new URL(p.url()).pathname==='/Velara_Atlas/demo.html','base-safe normal link');
-    check(!await p.locator('#opening-panel').evaluate(e=>e.open),'no repeated welcome in Demo');
-    check(await p.evaluate(()=>!window.__plays.length),'Demo navigation never replays speech');
-    check(await p.locator('#audio-toggle').getAttribute('aria-pressed')===String(audio),'Demo shares preference');
-    await p.getByRole('link',{name:'Homepage',exact:true}).click();await teaser(p);await noMap(p);
-    check(new URL(p.url()).pathname==='/Velara_Atlas/','Demo return to homepage');
-    check(await p.evaluate(()=>!window.__plays.length),'homepage return stays silent');
-    results.push(audio?'audio/shared navigation/return':'silent/shared navigation/return');
-  });
-  await visitor({},async()=>{},async p=>{
-    await p.goto(base);await welcome(p);await p.keyboard.press('Escape');await teaser(p);
-    check((await state(p))[0]==='false','Escape persists silent completion');results.push('Escape');
-  });
-  await visitor({},async()=>{},async p=>{
-    await p.goto(base+'demo.html');await welcome(p);
-    check(await p.locator('#viewport>canvas').count()===1,'direct Demo welcome only after real chart startup');
-    await p.getByRole('button',{name:'Enter silently',exact:true}).click();
-    check(await p.locator('#viewport>canvas').evaluate(e=>e===document.activeElement),'direct Demo focus');
-    await p.getByRole('link',{name:'Homepage',exact:true}).click();await teaser(p);results.push('fresh direct Demo');
-  });
-  await visitor({},async p=>{
-    await p.addInitScript(()=>{Storage.prototype.getItem=function(){throw Error('denied');};Storage.prototype.setItem=function(){throw Error('denied');};});
-  },async p=>{await p.goto(base);await choice(p,'Enter silently');await p.reload();await welcome(p);results.push('storage denial');});
-  await visitor({},async p=>{
-    await p.addInitScript(()=>{HTMLMediaElement.prototype.play=function(){window.__plays.push(this.src);window.__media.push(this);return Promise.reject(Error('media denied'));};});
-  },async p=>{await p.goto(base);await choice(p,'Enter with audio');await p.waitForFunction(()=>window.__media.every(m=>!m.getAttribute('src')));results.push('media rejection');});
-  await visitor({},async p=>{await p.route('**/nexus-form*.png*',route=>route.request().resourceType()==='image'?route.abort():route.continue());},async p=>{
-    await p.goto(base);await welcome(p);await p.locator('#opening-portrait').waitFor({state:'hidden'});
-    await choice(p,'Enter silently');await p.locator('#landing-portrait').waitFor({state:'hidden'});results.push('missing portrait');
-  });
-  await visitor({},async()=>{},async p=>{
-    await p.goto(base);await choice(p,'Enter with audio');
-    await p.evaluate(()=>dispatchEvent(new PageTransitionEvent('pagehide')));
-    check(await p.evaluate(()=>window.__media.every(m=>m.paused&&!m.getAttribute('src'))),'pagehide releases acknowledgment');results.push('pagehide cleanup');
-  });
-  await visitor({},async p=>{
-    await p.route('**/*opening-content*.mjs',route=>route.abort());await p.route('**/*opening-content*.js',route=>route.abort());
-  },async p=>{
-    await p.goto(base);await p.locator('#landing-retry').waitFor({state:'visible'});
-    check(!await p.locator('#opening-panel').evaluate(e=>e.open),'failed welcome startup never signals connection');
-    check(await p.locator('#landing').isHidden(),'failed startup keeps teaser hidden');
-    await p.unrouteAll();await p.locator('#landing-retry').click();await welcome(p);results.push('content failure/retry');
-  });
-  for(const [width,height] of [[390,844],[320,568],[844,390]])await visitor({viewport:{width,height},reducedMotion:'reduce'},async()=>{},async p=>{
-    await p.goto(base);await welcome(p);
-    check(await p.locator('#opening-panel').evaluate(e=>e.getAnimations().length===0),'reduced-motion welcome');
-    await p.locator('#opening-silent').scrollIntoViewIfNeeded();await choice(p,'Enter silently');
-    check(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no horizontal overflow');
-    await p.locator('#demo-link').scrollIntoViewIfNeeded();check(await p.locator('#demo-link').isVisible(),'mobile action reachable');
-    await p.screenshot({path:'.playwright-mcp/entrance-'+new URL(base).port+'-'+width+'.png',fullPage:true});results.push('responsive '+width+'x'+height);
-  });
-  await visitor({},async()=>{},async p=>{
-    await p.goto(base);await welcome(p);await p.screenshot({path:'.playwright-mcp/entrance-'+new URL(base).port+'-welcome.png',fullPage:true});
-    await choice(p,'Enter silently');await p.screenshot({path:'.playwright-mcp/entrance-'+new URL(base).port+'-desktop.png',fullPage:true});
-  });
-  return {base,passed:results};
+ const base=new URL('/Velara_Atlas/',page.url()).href,browser=page.context().browser(),passed=[];
+ const check=(v,m)=>{if(!v)throw Error(m);};
+ const ready=p=>p.waitForFunction(()=>document.querySelector('#viewport>canvas')&&!document.querySelector('#audio-toggle').disabled);
+ const welcome=p=>p.locator('#opening-panel[open]').waitFor({state:'visible'});
+ async function visitor(options,setup,run,expectedFailures=false){
+  const context=await browser.newContext({viewport:{width:1440,height:1000},...options}),p=await context.newPage(),errors=[],failures=[];
+  p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  p.on('response',r=>{if(r.status()>=400)failures.push(r.url());});
+  // Reload/mute deliberately releases active media; its canceled transfer is expected.
+  p.on('requestfailed',r=>{if(!(r.failure()?.errorText==='net::ERR_ABORTED'&&r.url().endsWith('.mp3')))failures.push(r.url());});
+  await p.addInitScript(()=>{window.__plays=[];const play=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){window.__plays.push(this.src);return play.call(this);};});
+  try{await setup(p);await run(p);if(!expectedFailures)check(!errors.length&&!failures.length,'unexpected errors/resources: '+errors.concat(failures).join(';'));}finally{await context.close();}
+ }
+ for(const audio of [false,true])await visitor({},async()=>{},async p=>{
+  await p.goto(base);await welcome(p);await ready(p);
+  check(await p.locator('#viewport>canvas').count()===1,'one renderer');check(await p.locator('#selection option').count()===78,'77 canonical records');
+  check(await p.locator('#opening-name').evaluate(n=>n===document.activeElement),'reading focus');
+  await p.keyboard.press('Tab');check(await p.locator('#opening-audio').evaluate(n=>n===document.activeElement),'audio keyboard action');
+  await p.keyboard.press('Tab');check(await p.locator('#opening-silent').evaluate(n=>n===document.activeElement),'silent keyboard action');
+  await p.getByRole('button',{name:audio?'Enter with audio':'Enter silently',exact:true}).click();
+  check(!await p.locator('#opening-panel').evaluate(n=>n.open),'entry closes modal');check(await p.locator('#viewport>canvas').evaluate(n=>n===document.activeElement),'chart focus');
+  check(await p.evaluate(audio=>localStorage.getItem('velara-atlas:audio-enabled:v1')===String(audio)&&localStorage.getItem('velara-atlas:first-entry-completed:v1')==='true'&&localStorage.getItem('velara-atlas:first-entry-migration:v1')==='true',audio),'preserved preferences');
+  check(await p.evaluate(audio=>window.__plays.filter(s=>s.includes('nexus-enter-with-audio')).length===(audio?1:0),audio),'single gesture acknowledgment');
+  if(!audio)check(await p.evaluate(()=>!window.__plays.length),'silent entry has no audio');
+  await p.reload();await ready(p);check(!await p.locator('#opening-panel').evaluate(n=>n.open),'return bypass');
+  check(await p.locator('#audio-toggle').getAttribute('aria-pressed')===String(audio),'stored preference');
+  check(await p.evaluate(()=>!window.__plays.some(s=>s.includes('nexus-enter-with-audio'))),'no second acknowledgment');
+  check(!await p.locator('a[href*="demo.html"],#demo-link,.demo-badge,.home-link').count(),'retired presentation absent');
+  await p.locator('#audio-toggle').click();check(await p.locator('#audio-toggle').getAttribute('aria-pressed')===String(!audio),'header audio toggle');passed.push(audio?'audio and return':'silent and return');
+ });
+ await visitor({},async()=>{},async p=>{await p.goto(base);await welcome(p);await p.keyboard.press('Escape');check(await p.evaluate(()=>localStorage.getItem('velara-atlas:audio-enabled:v1')==='false'&&!window.__plays.length),'Escape silent');passed.push('Escape');});
+ await visitor({},async p=>{await p.addInitScript(()=>{Storage.prototype.getItem=Storage.prototype.setItem=function(){throw Error('denied');};});},async p=>{await p.goto(base);await welcome(p);await p.locator('#opening-silent').click();await ready(p);await p.reload();await welcome(p);passed.push('storage denial');});
+ await visitor({},async p=>{await p.addInitScript(()=>{HTMLMediaElement.prototype.play=function(){return Promise.reject(Error('media denied'));};});},async p=>{await p.goto(base);await welcome(p);await p.locator('#opening-audio').click();await ready(p);check(!await p.locator('#opening-panel').evaluate(n=>n.open),'media rejection remains usable');passed.push('media rejection');});
+ await visitor({},async p=>{await p.route('**/nexus-form*.png*',r=>r.request().resourceType()==='image'?r.abort():r.continue());},async p=>{await p.goto(base);await welcome(p);await p.locator('#opening-silent').click();await ready(p);passed.push('missing portrait');},true);
+ await visitor({},async p=>{await p.route('**/*nexus-content*.js*',r=>r.abort());await p.route('**/*nexus-content*.mjs*',r=>r.abort());},async p=>{
+  await p.goto(base);await p.locator('#retry').waitFor({state:'visible'});check(!await p.locator('#opening-panel').evaluate(n=>n.open),'failure never signals ready');
+  await p.unrouteAll();await p.locator('#retry').click();await welcome(p);passed.push('load failure and Retry');
+ },true);
+ for(const [width,height]of [[390,844],[320,568],[844,390]])await visitor({viewport:{width,height},reducedMotion:'reduce'},async()=>{},async p=>{
+  await p.goto(base);await welcome(p);check(await p.locator('#opening-panel').evaluate(n=>!n.getAnimations().length),'reduced motion');
+  await p.locator('#opening-silent').scrollIntoViewIfNeeded();await p.locator('#opening-silent').click();await ready(p);
+  check(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'responsive bounds');passed.push('responsive '+width+'x'+height);
+ });
+ return {base,passed};
 }

@@ -1,11 +1,11 @@
 /** Demo MCP historical/fallback suite, adapted to Checkpoint 3.6 overlays. */
 async(page)=>{
   const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',results=[];
+  const base='http://127.0.0.1:5177/Velara_Atlas/',results=[];
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
-  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
   const read=async f=>(await page.request.get(new URL(f,root).href)).json();
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
@@ -20,13 +20,13 @@ async(page)=>{
   await year(550);await choose('sta_0001');check((await page.locator('#facts').innerText()).includes('85'),'crew changes');
   await year(159);check(await page.locator('#selection option[value="zon_0001"]').count()===0,'nebula unknown');
   await year(160);await choose('zon_0001');check((await page.locator('#facts').innerText()).includes('160'),'nebula known');
-  await year(99);check(await page.locator('#location').innerText()==='Demo Sector','unknown parent returns to sector');
+  await year(99);check(await page.locator('#location').innerText()==='DEMO SECTOR — NONCANONICAL','unknown parent returns to sector');
   results.push('chronological search, population/crew, system-only nebula and parent clearing');
   await year(1200);await panel('layers-panel');
   const toggle=page.getByRole('checkbox',{name:'Cantum influence / approximate chart overlay',exact:true});
   const before=await page.locator('#viewport').getAttribute('data-markers');await toggle.uncheck();await toggle.check();
   check(await page.locator('#viewport').getAttribute('data-markers')===before,'influence toggle preserves markers');
-  const sectorPattern=/public\/datasets\/demo\/sector\.json/,detailPattern=/public\/datasets\/demo\/systems\/sys_0001\.json/,connectionsPattern=/public\/datasets\/demo\/connections\.json/;
+  const sectorPattern=/tests\/fixtures\/archived-demo\/dataset\/sector\.json/,detailPattern=/tests\/fixtures\/archived-demo\/dataset\/systems\/sys_0001\.json/,connectionsPattern=/tests\/fixtures\/archived-demo\/dataset\/connections\.json/;
   const serve=d=>route=>route.fulfill({status:200,contentType:'text/javascript',body:`export default ${JSON.stringify(d)};`});
   const sector=await read('sector.json');sector.systems[1].publicDetailPath=null;sector.systems[1].positionLY=null;
   await page.route(sectorPattern,serve(sector));await page.goto(base);await enterAtlas(page);await page.locator('#selection option[value="sys_0002"]').waitFor({state:'attached'});

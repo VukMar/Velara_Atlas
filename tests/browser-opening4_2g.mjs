@@ -1,6 +1,6 @@
 /** Normal Demo / audited preview. Inspect the real opening, never bypass it. */
 async page=>{
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
+  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173',edition=dev?'demo':'production';
   const check=(ok,message)=>{if(!ok)throw Error(message);},requests=[],mediaRequests=[],errors=[],failures=[];
   const request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failures.push(r.url());};
   page.on('request',request);page.on('pageerror',error);page.on('response',response);
@@ -85,7 +85,7 @@ async page=>{
     check(await page.evaluate(()=>window.__openingEvidence.animations.length===0),'reduced motion has no appearance animation');await enter('silent');
     await page.emulateMedia({reducedMotion:'no-preference'});await fresh();await wait();
     check(await page.evaluate(()=>window.__openingEvidence.animations.some(a=>a.duration===240)),'normal motion uses 240ms appearance');
-    await page.emulateMedia({reducedMotion:'reduce'});check(await page.locator('#opening-panel').evaluate(e=>e.getAnimations().length===0),'live media change cancels decoration');await page.locator('#opening-silent').click();
+    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#opening-panel').getAnimations().length===0);check(await page.locator('#opening-panel').evaluate(e=>e.getAnimations().length===0),'live media change cancels decoration');await page.locator('#opening-silent').click();
     // Real Chromium touch activation of both choices, each with clean first-entry storage.
     const cdp=await page.context().newCDPSession(page);
     try{

@@ -1,7 +1,7 @@
 /** Chromium MCP entry point. Requires isolated tests/preview-governance.mjs on 5175. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5175/Velara_Atlas/demo.html',errors=[],snapshots=[];
+  const base='http://127.0.0.1:5175/Velara_Atlas/',errors=[],snapshots=[];
   const check=(v,message)=>{if(!v)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());},pageError=e=>errors.push(e.message);
   page.on('console',error);page.on('pageerror',pageError);
@@ -19,7 +19,7 @@ async page=>{
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_9901"]').waitFor({state:'attached'});
-    const preload=await page.evaluate(async()=>{const {loadDemoDataset}=await import('./demo-data.mjs');const d=await loadDemoDataset();return {version:d.sector.schemaVersion,factions:d.factionFiles.size,details:d.detailFiles.size};});
+    const preload=await page.evaluate(async()=>{const {loadAtlasDataset}=await import('./atlas-data.mjs');const d=await loadAtlasDataset();return {version:d.sector.schemaVersion,factions:d.factionFiles.size,details:d.detailFiles.size};});
     check(preload.version==='1.3.0'&&preload.factions===2&&preload.details===1,'complete v1.3 faction/detail preload');
     await page.evaluate(async()=>{const {AtlasMap}=await import('./map-scene.mjs'),render=AtlasMap.prototype.render;AtlasMap.prototype.render=function(){window.__governanceMap=this;return render.call(this);};});
     await panel('controls-panel');await page.locator('#mode').click();await close();

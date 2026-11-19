@@ -1,6 +1,6 @@
 /** Normal Demo / audited preview. Real native media; no perceived-mix certification. */
 async page=>{
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
+  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173',edition=dev?'demo':'production';
   const keys=['velara-atlas:audio-enabled:v1','velara-atlas:first-entry-completed:v1','velara-atlas:first-entry-migration:v1'];
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[],requests=[],pairs=[],layouts=[];
   const onError=e=>errors.push(e.message),onRequest=r=>{if(r.resourceType()==='media')requests.push(r.url());};

@@ -1,3 +1,4 @@
+import {DEMO_ROOT as archivedDatasetRoot} from './archived-demo.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -7,9 +8,9 @@ import {build,normalizePath} from 'vite';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createAudioController,AUDIO_STORAGE_KEY,ENTRY_STORAGE_KEY,ENTRY_MIGRATION_KEY} from '../src/viewer/audio-controller.mjs';
 import {AUDIO_PINS,audioFiles,approvedAudioSources,verifyAudioSource,audioAssetAudit} from '../scripts/audio-assets.mjs';
-import {createDemoConfig,demoInputAudit} from '../vite.config.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
-import {DEMO_ROOT} from '../scripts/demo-files.mjs';
+import {createAtlasConfig,datasetInputAudit} from '../vite.config.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
+import {DEMO_ROOT} from './archived-demo.mjs';
 
 function harness({saved=null,records={},readError=false,writeError=false,accessError=false,playError=false}={}) {
   class Button extends EventTarget {disabled=true;attrs={};setAttribute(k,v){this.attrs[k]=v;}}
@@ -129,13 +130,13 @@ test('MP3 plugin verifies load/final bytes, actual module completeness and exact
   const p=audioAssetAudit({io}),ctx={addWatchFile(){},error(m){throw Error(m);}};p.buildStart.call(ctx);assert.equal(p.load(path.resolve('unapproved.mp3')),undefined);
   assert.throws(()=>p.writeBundle.call(ctx,{},{}),/missing from build/);changed=true;
   for(const run of [()=>p.load(audioFiles[0]),()=>p.generateBundle(),()=>p.writeBundle.call(ctx,{}, {})])assert.throws(run,/Changed or unapproved/);
-  const config=createDemoConfig();assert(audioFiles.every(f=>config.server.fs.allow.includes(f)));assert.equal(config.publicDir,false);assert.equal(config.build.assetsInlineLimit,0);
-  assert.throws(()=>demoInputAudit().generateBundle.call(ctx,{}, {x:{type:'chunk',modules:{[path.resolve('public/assets/nexus/unapproved.mp3')]:{}}}}),/Unexpected input/);
+  const config=createAtlasConfig({datasetRoot:archivedDatasetRoot});assert(audioFiles.every(f=>config.server.fs.allow.includes(f)));assert.equal(config.publicDir,false);assert.equal(config.build.assetsInlineLimit,0);
+  assert.throws(()=>datasetInputAudit().generateBundle.call(ctx,{}, {x:{type:'chunk',modules:{[path.resolve('public/assets/nexus/unapproved.mp3')]:{}}}}),/Unexpected input/);
 });
 test('real build preserves eight exact MP3s; rejects missing/corrupt/renamed/duplicate/unreferenced/unsupported outputs',async t=>{
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-audio-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));fs.rmSync(top,{recursive:true,force:true});});
-  const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
-  const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert.equal(audit().audioCount,8);assert.equal(audit().svgCount,16);assert.equal(audit().pngCount,3);
+  const config=createAtlasConfig({datasetRoot:archivedDatasetRoot});await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
+  const audit=()=>auditAtlasBuild(top,{datasetRoot:DEMO_ROOT});assert.equal(audit().audioCount,8);assert.equal(audit().svgCount,16);assert.equal(audit().pngCount,3);
   const names=fs.readdirSync(path.join(top,'assets'));
   for(const [stem,bytes]of approvedAudioSources()){
     const name=names.find(n=>n.startsWith(stem+'-')&&n.endsWith('.mp3')),file=path.join(top,'assets',name);assert(fs.readFileSync(file).equals(bytes));

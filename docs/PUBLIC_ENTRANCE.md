@@ -1,5 +1,7 @@
 # NEXUS Public Entrance Integration — Complete and Creator-Approved (2026-10-26)
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 The creator completed manual visual and functional testing and explicitly approved the implementation. Automated verification and its remaining coverage limits are recorded separately in [PUBLIC_ENTRANCE_VERIFICATION](PUBLIC_ENTRANCE_VERIFICATION.md). This amendment extends the approved Checkpoint 4.2G-I behavior; those completed records remain historical evidence.
 
 ## Website and content boundary

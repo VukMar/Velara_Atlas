@@ -1,14 +1,14 @@
 /** MCP entry point: documented review workflow and observed read-only traffic. */
 async(page)=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/demo.html',page.url()),requests=[];
+  const base=new URL('/Velara_Atlas/',page.url()),requests=[];
   const observe=request=>requests.push({url:request.url(),method:request.method()});
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   page.on('request',observe);
   try {
     await page.setViewportSize({width:1280,height:900});await page.goto(base.href);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0003"]').waitFor({state:'attached'});
-    check(await page.locator('header .demo-badge').innerText()==='NONCANONICAL DEMONSTRATION','public demo disclosure');
+    check((await page.locator('#location').innerText()).includes('NONCANONICAL'),'explicit archived fixture identity');
     check(!await page.locator('#info-panel').evaluate(n=>n.open),'documented initial no-selection state');
     for(const title of ['Catalogue','Map controls','Map layers','History']) {
       const panel=page.locator('details').filter({has:page.getByText(title,{exact:true})});
@@ -20,7 +20,7 @@ async(page)=>{
     check(await page.locator('#year-input').getAttribute('min')==='0'&&await page.locator('#year-input').getAttribute('max')==='1200','documented demo range');
     await page.getByRole('button',{name:'Reset to latest',exact:true}).click();
     await page.locator('[data-close-panel="timeline-panel"]').click();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
     const systems=sector.systems.filter(s=>s.publicDetailPath!==null);
     for(const system of systems) {

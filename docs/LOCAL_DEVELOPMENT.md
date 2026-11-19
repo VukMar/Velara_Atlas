@@ -1,24 +1,23 @@
 # Local development and verification
 
-Use [README](../README.md) for first setup and [PROJECT_STATUS](PROJECT_STATUS.md) for current approval gates. This is an operating guide, not authorization to change Demo data, add scenarios or publish. Commands run from the repository root. Node 24 matches CI.
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
-NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual/functional acceptance; see [public entrance ownership and routes](PUBLIC_ENTRANCE.md) and [verification limits](PUBLIC_ENTRANCE_VERIFICATION.md). Run `tests/browser-public-entrance.mjs` against both 5173 and 4173 for homepage and cross-page checks.
+Use [README](../README.md) for first setup and [PROJECT_STATUS](PROJECT_STATUS.md) for current approval gates. This is an operating guide, not authorization to change canonical data, add scenarios or publish. Commands run from the repository root. Node 24 matches CI.
 
-## Local Development and future Canon
+NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual/functional acceptance; see [public entrance ownership and routes](PUBLIC_ENTRANCE.md) and [verification limits](PUBLIC_ENTRANCE_VERIFICATION.md). Run `tests/browser-public-entrance.mjs` against both 5173 and 4173 for canonical first-entry and returning-visitor checks.
+
+## Canonical application and isolated development
 
 | Command | Environment and URL |
 | --- | --- |
 | `npm run dev` | Synthetic Development/calibration: `http://127.0.0.1:5174/Velara_Atlas/__calibration/` |
-| `npm run demo` | Validates then serves the homepage at `/Velara_Atlas/` and the noncanonical Atlas: `http://127.0.0.1:5173/Velara_Atlas/demo.html` |
+| `npm run atlas` / `npm run demo` | Validate and serve Canonical at `http://127.0.0.1:5173/Velara_Atlas/`; `demo` is a compatibility alias |
+| `node tests/preview-archived-demo.mjs` | Explicit NONCANONICAL fixture at `http://127.0.0.1:5177/Velara_Atlas/` |
 | `npm run history:demo` | Legacy console chronology (`tests/demo.mjs`), no server |
 | `npm run preview:calibration` | Compatibility alias for `npm run dev`, using the same server and port |
-| `npm run build` / `npm run preview` | Audited two-page output / homepage preview at `http://127.0.0.1:4173/Velara_Atlas/` |
+| `npm run build` / `npm run preview` | Audited single-page canonical output / preview at `http://127.0.0.1:4173/Velara_Atlas/` |
 
-Run Development and Demo in separate terminals. The compatibility command is an
-alternative name for Development, not a second server to launch on the same port.
-Both bind to loopback. Canon is a future approved-MCR environment: there is no
-Canon launch command or fallback to noncanonical data. Protected legacy
-`public/data/` remains unchanged and outside the Demo.
+Run Canonical and Development/calibration in separate terminals. The calibration alias selects the same 5174 server, not another application. All previews bind to loopback. There is no runtime dataset selector or synthetic fallback. Protected legacy `public/data/` remains unchanged and excluded.
 
 The original baseline calibration source remains
 [`tests/calibration/scenarios/cantum-scale-baseline.json`](../tests/calibration/scenarios/cantum-scale-baseline.json).
@@ -60,26 +59,24 @@ boundaries, alongside the existing field/nameplate/geometry assertions.
 With both browser servers running, use Playwright MCP's
 `browser_run_code_unsafe` with `filename: "tests/browser-cantum-calibration.mjs"`
 for all nine radius/camera combinations, history/transfer, input, mobile and
-resource checks. Graphical suites `tests/browser-*.mjs` target the Demo on 5173;
-run them with the `demo.html` page selected (for example navigation, celestial, layout,
-labeling, zones and touch suites). They are Playwright callback files, not Node
+resource checks. `tests/browser-public-entrance.mjs` and `tests/browser-release-readiness.mjs` target Canonical at 5173 and production preview 4173. Generic interior/navigation/zone/camera suites target the explicit archived fixture on 5177 at `/Velara_Atlas/`; specialized previews keep their own ports. Never run synthetic-identity assertions against Canonical. They are Playwright callback files, not Node
 CLI tests; no Playwright dependency is added to the project. Historical reports
 retain their original command names and results.
 
 
-## Registered Demo systems and loading
+## Registered canonical systems and loading
 
-The sector-derived inventory supplies eager imports, HTTP admission and production checks. See [validated dataset inventory](ARCHITECTURE.md#validated-dataset-inventory) for ownership and [manual authoring](MANUAL_AUTHORING.md) for registration. After authorized registration changes, restart Demo. Generate navigation manually only when needed, then run `connections:check`, validation, tests/build and review the diff. Unregistered files never become publication inputs.
+The sector-derived inventory supplies eager imports, HTTP admission and production checks. See [validated dataset inventory](ARCHITECTURE.md#validated-dataset-inventory) for ownership and [manual authoring](MANUAL_AUTHORING.md) for registration. After authorized registration changes, restart Atlas. Generate navigation manually only when needed, then run `connections:check`, validation, tests/build and review the diff. Unregistered files never become publication inputs.
 
 ## Governance test preview
 
 Run `node tests/preview-governance.mjs` for the isolated, loopback-only test viewer
-at `http://127.0.0.1:5175/Velara_Atlas/demo.html`, then execute the MCP entry point
+at `http://127.0.0.1:5175/Velara_Atlas/`, then execute the MCP entry point
 `tests/browser-governing-influence.mjs`. It derives TEST A/B/C governance and
 factions from the existing v1.3 fixture, adds rendering-only statuses/positions,
-and removes its temporary dataset on Ctrl+C. It does not edit the live Demo or
+and removes its temporary dataset on Ctrl+C. It does not edit the canonical application or
 create a new public dataset selector. All other browser suites continue using
-Demo 5173 and calibration 5174. See the
+archived-fixture 5177 and calibration 5174. See the
 [contract and focused tests](DATA_MODEL_V1_3_PROPOSAL.md).
 
 
@@ -87,18 +84,18 @@ Demo 5173 and calibration 5174. See the
 
 ```text
 npm run idfind -- cb
-npm run idfind -- all --demo
+npm run idfind -- all --canonical
 npm run idfind -- sys --public
 ```
 
 Supported prefixes: `cb`, `gat`, `sta`, `jhl`, `sys`, `lnk`, `can`, `zon`, `sec`, `fac`,
-or `all` for a table. The default scope is `--demo`. The scanner reads only the
+or `all` for a table. The default scope is `--canonical`; `--demo` explicitly selects the archived fixture. The scanner reads only the
 chosen dataset's sector/Cantum/connection registries and direct `systems/*.json`
 files, including systems not yet indexed. References and presentation settings
 do not count as definitions. Catalogue/detail system IDs and authored/generated
 link pairs count once; generated-only link IDs remain used. It does not run the
 navigation generator or check graph freshness (`connections:check` does that).
-The active v1.3 Demo registers two NONCANONICAL TEST factions. A loaded v1.3 context
+The archived v1.3 Demo registers two TEST factions; Canonical currently has no faction detail records. A loaded v1.3 context
 enables bounded faction registry/file diagnostics; unregistered faction files
 remain collision diagnostics, never viewer/build inputs. No CLI root selector
 is added. See [the isolated fixture and checks](../tests/fixtures/v1_3/README.md).
@@ -182,4 +179,4 @@ explicit creator authorization. See the readiness guide for historical Phase 6 e
 
 ## Local release checks and profiling
 
-`npm run release:check` builds and audits the fixed NEXUS homepage plus NONCANONICAL Demo; it does not generate navigation or deploy. Use [the release checklist](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security). `npm run benchmark -- all 3` writes ignored local measurements; run benchmarks without concurrent tests. Browser callbacks require the existing MCP harness and are not part of `npm test`. Historical timing/device results are evidence for their recorded environments, not current performance guarantees.
+`npm run release:check` builds and audits the fixed single-page canonical Atlas; it does not generate navigation or deploy. Use [the release checklist](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security). `npm run benchmark -- all 3` writes ignored local measurements; run benchmarks without concurrent tests. Browser callbacks require the existing MCP harness and are not part of `npm test`. Historical timing/device results are evidence for their recorded environments, not current performance guarantees.

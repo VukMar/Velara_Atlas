@@ -1,12 +1,12 @@
 /** Demo MCP suite: expectations come from the current public demo, not frozen dates. */
 async(page)=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html';
+  const base='http://127.0.0.1:5177/Velara_Atlas/';
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
-  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
   const read=async file=>(await page.request.get(new URL(file,root).href)).json();
   const sector=await read('sector.json'),graph=await read('connections.json');
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};

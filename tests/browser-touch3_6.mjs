@@ -1,7 +1,7 @@
 /** Playwright MCP filename entry point; Chromium touch emulation, not hardware. */
 async(page) => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href;
+  const base=new URL('/Velara_Atlas/',page.url()).href;
   const context=await page.context().browser().newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const p=await context.newPage(),errors=[];p.on('pageerror',error=>errors.push(error.message));
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -31,7 +31,7 @@ async(page) => {
     check(await p.locator('#year').innerText()!=='1200 A.E.','touch vertical range changes year');
     await tap('#latest');await tap('[data-close-panel="timeline-panel"]');
     await tap('#sector');
-    await p.waitForFunction(()=>document.querySelector('#location').textContent==='Demo Sector',null,{timeout:3000});
+    await p.waitForFunction(()=>document.querySelector('#location').textContent==='DEMO SECTOR — NONCANONICAL',null,{timeout:3000});
     await tap('#labels [data-record-id="sys_0001"]');await p.locator('#info-panel').waitFor({state:'visible'});
     await tap('#enter');await p.locator('#labels [data-record-id="gat_0001"]').waitFor();
     const box=await p.locator('canvas').boundingBox();
@@ -52,7 +52,7 @@ async(page) => {
     await p.evaluate(()=>{window.postGestureTrace=[];for(const type of ['pointerdown','pointerup','touchstart','touchend','click'])document.addEventListener(type,e=>window.postGestureTrace.push({type,target:e.target.id,primary:e.isPrimary,touches:e.touches?.length,prevented:e.defaultPrevented}),{capture:true});});
     try {
       await tap('#sector');
-      await p.waitForFunction(()=>document.querySelector('#location').textContent==='Demo Sector',null,{timeout:1500});
+      await p.waitForFunction(()=>document.querySelector('#location').textContent==='DEMO SECTOR — NONCANONICAL',null,{timeout:1500});
     } catch(error) {postGestureTap={passed:false,message:'Post-gesture Sector tap did not activate: '+error.message,events:await p.evaluate(()=>window.postGestureTrace)};}
     check(postGestureTap.passed,postGestureTap.message);
     return {touch:'tap selection, close, vertical range, back navigation, two-finger pinch and bounded pan passed',pageErrors:errors,

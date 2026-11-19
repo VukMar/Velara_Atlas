@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateEntityRelationships} from './entity-relations.mjs';
-import {readDatasetSource} from './demo-files.mjs';
+import {readDatasetSource} from './dataset-files.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 
 export function readDataset(root) {
@@ -148,7 +148,7 @@ export function validateRelationships(dataset) {
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  const location=path.resolve(process.argv[2]??path.join(path.dirname(fileURLToPath(import.meta.url)),'../public/datasets/demo'));
+  const location=path.resolve(process.argv[2]??path.join(path.dirname(fileURLToPath(import.meta.url)),'../public/datasets/canonical'));
   const errors=validateRelationships(readDataset(location));
   if(errors.length){errors.forEach(error=>console.error('FAIL',error));process.exitCode=1;}
   else console.log('PASS relational data validation');

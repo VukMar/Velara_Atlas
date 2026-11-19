@@ -1,7 +1,7 @@
 /** Playwright MCP callback: normal Demo or audited production preview at /Velara_Atlas/. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,errors=[],failures=[],images=[],layouts=[];
+  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],failures=[],images=[],layouts=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);};
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
   const onResponse=r=>{if(r.status()>=400)failures.push({url:r.url(),status:r.status()});if(/\.png(?:\?|$)/.test(r.url()))images.push({url:r.url(),status:r.status()});};
@@ -47,8 +47,8 @@ async page=>{
     // Responsive checks retain the existing Demo station's richer historical facts.
     for(const [width,height] of [[390,844],[320,740],[844,390]]) {
       await close();await page.setViewportSize({width,height});await card('sta_0003',width===390?'station-mobile':null);
-      const layout=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,logo:document.querySelector('#mcr-insignia').getBoundingClientRect().toJSON(),portraitVisible:document.querySelector('#nexus-portrait').checkVisibility(),title:document.querySelector('.brand strong').getBoundingClientRect().toJSON(),badge:document.querySelector('.demo-badge').getBoundingClientRect().toJSON()}));
-      check(layout.scroll<=width&&layout.title.right<layout.badge.x,'header fits without overlap '+width);
+      const layout=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,logo:document.querySelector('#mcr-insignia').getBoundingClientRect().toJSON(),portraitVisible:document.querySelector('#nexus-portrait').checkVisibility(),title:document.querySelector('.brand strong').getBoundingClientRect().toJSON(),audio:document.querySelector('#audio-toggle').getBoundingClientRect().toJSON()}));
+      check(layout.scroll<=width&&layout.title.right<layout.audio.x,'header fits without overlap '+width);
       if(width<=360||height<=600)check(!layout.portraitVisible,'portrait yields space');
       layouts.push(layout);
       await page.locator('#info-panel').evaluate(e=>e.scrollTop=e.scrollHeight);await page.locator('#close-info').click();

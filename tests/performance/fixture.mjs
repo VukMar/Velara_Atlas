@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import {readDemoSource} from '../../scripts/demo-files.mjs';
+import {readDemoSource} from '../archived-demo.mjs';
 import {generateNavigation} from '../../scripts/navigation.mjs';
 export const TIERS=Object.freeze({baseline:5,medium:100,large:400,extended:1000});
 export const SEED=6302026;
@@ -44,7 +44,7 @@ export function datasetFiles(d) {
 }
 export function performanceSandbox(options) {
   const dataset=performanceDataset(options),top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-performance-'));
-  const root=path.join(top,'public/datasets/demo');
+  const root=path.join(top,'tests/fixtures/archived-demo/dataset');
   const cleanup=()=>{
     if(path.dirname(top)!==fs.realpathSync(os.tmpdir())||!path.basename(top).startsWith('velara-performance-')||fs.lstatSync(top).isSymbolicLink())throw new Error('Unsafe performance cleanup root');
     fs.rmSync(top,{recursive:true,force:true});

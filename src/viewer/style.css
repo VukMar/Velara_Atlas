@@ -5,7 +5,6 @@ body { margin:0; height:100dvh; display:flex; flex-direction:column; overflow:hi
 header { flex:none; padding:.55rem .8rem; display:flex; gap:.65rem; flex-wrap:wrap; align-items:center; border-bottom:1px solid #234052; background:#081722; }
 .brand { display:inline-flex; flex:none; align-items:center; gap:.6rem; letter-spacing:.1em; font-size:.95rem; white-space:nowrap; }
 #mcr-insignia { display:block; flex:none; width:32px; height:32px; object-fit:contain; }
-.demo-badge { color:#e6ba7b; font-size:.65rem; letter-spacing:.04em; }
 nav { display:flex; align-items:center; gap:.5rem; min-width:0; }
 #location { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:35vw; font-size:.9rem; }
 nav button { white-space:nowrap; flex-shrink:0; }
@@ -144,12 +143,12 @@ h2 { font-size:1rem; margin:0 0 .9rem; }
 dl { font-size:.9rem; }
 dt { color:#94b2c2; margin-top:.85rem; }
 dd { margin:.2rem 0 0; white-space:pre-line; font-family:ui-monospace,Consolas,monospace; }
-#description { line-height:1.6; font-size:.95rem; }
+#description { line-height:1.6; font-size:.95rem; white-space:pre-line; }
 #destinations { font-size:.85rem; line-height:1.5; }
 footer { flex:none; text-align:center; padding:.3rem .5rem; color:#94b2c2; font-size:.7rem; border-top:1px solid #17394a; }
 @media(max-width:600px) {
   header { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:.4rem; padding:.4rem .5rem; }
-  .brand { font-size:.8rem; } .demo-badge { font-size:.55rem; }
+  .brand { font-size:.8rem; }
   #mcr-insignia { width:24px; height:24px; } .brand { gap:.4rem; }
   #nexus-portrait { width:64px; height:64px; }
   nav { grid-row:2; min-width:0; } #location { flex:1; max-width:none; } #year { grid-row:2; font-size:.8rem; } #units { display:none; }
@@ -163,6 +162,3 @@ footer { flex:none; text-align:center; padding:.3rem .5rem; color:#94b2c2; font-
 .map-label[data-icon-fallback="primitive"]::after { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) rotate(45deg); width:calc(var(--display-diameter) * .7); height:calc(var(--display-diameter) * .7); border:2px solid #94b2c2; opacity:var(--proxy-opacity); pointer-events:none; }
 
 /* A ready archive's welcome, separate from chart status and ordinary InfoCards. */
-
-.home-link { color:#94b2c2; font-size:.75rem; padding:.5rem; }
-.home-link:focus-visible { outline:2px solid #00d6ff; outline-offset:2px; }

@@ -1,8 +1,10 @@
 # Velara Atlas — Implemented architecture
 
-> **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
-**Scope:** Implemented module ownership, data flow and security boundaries. The active viewer uses v1.3 NONCANONICAL Demo data; legacy v0.1, versioned fixtures and Development/calibration stay separate. [PROJECT_STATUS](PROJECT_STATUS.md) owns current completion and authorization. Dated implementation/closeout sections below preserve their original scope; later approved amendments govern behavior.
+> **Historical 2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
+
+**Scope:** Implemented module ownership, data flow and security boundaries. The active viewer uses the approved v1.3 canonical data; legacy v0.1, versioned fixtures and Development/calibration stay separate. [PROJECT_STATUS](PROJECT_STATUS.md) owns current completion and authorization. Dated implementation/closeout sections below preserve their original scope; later approved amendments govern behavior.
 
 ## Runtime responsibilities
 
@@ -13,7 +15,7 @@
 | `src/core/zone-geometry.mjs` | Pure zone validation/intersection, concave footprint clipping, projected membership, clipped ray intervals, witnesses, overlap ordering and bounded particles; shared by validator and viewer |
 | `src/viewer/zone-layers.mjs` | Clipped system-zone footprints, bounded approximate 3D cloud slices/particles, mode switching and subtle hover/selection emphasis |
 | `src/viewer/zone-outline.mjs` | Pointer-transparent 2D SVG hover/focus contours, constant CSS stroke, solid authored boundaries and dashed chart-clipping edges; no hit testing |
-| `src/viewer/demo-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
+| `src/viewer/atlas-data.mjs` | Validated virtual-module registry imports and generated detail callbacks; eagerly preloads every registered released detail for endpoint eligibility |
 | `src/viewer/main.mjs` | Validated loader and application composition, selection/navigation callbacks, historical refresh and technical-error/retry boundary |
 | `src/viewer/opening-view.mjs`, `nexus-opening-config.mjs` | Ready-only native welcome, completion predicate/entry callbacks, focus/image/motion lifecycle and exact three-string UI-content validation; no history, camera or audio owner |
 | `src/viewer/audio-controller.mjs`, `voice-assets.mjs` | Root-lifetime first-entry/global-audio preferences, safe migration/storage, accessible header state and one cancelable speech element; exactly two static recording URLs |
@@ -33,9 +35,9 @@
 | `src/viewer/influence-compositor.mjs` | Non-pickable envelope geometry in a private scene, half-float accumulation and one capped chart-layer composite; target/resource lifecycle |
 | `src/viewer/chart-layout.mjs` | Square-map validation, full-chart fit, bounded 2D pan/zoom; 8×8 sector grid on `map.planeY` with an unnumbered ly scale, and absolute-zero system grid with A–H/1–8 and H8 CNU scale |
 | `src/viewer/cartographic-layers.mjs` | Routes/direction arrows, three zone shapes, cached Cantum texture, explicit drawing order and disposal |
-| `src/viewer/index.html`, `landing.mjs`, `landing.css` | NEXUS public welcome/teaser, static background and normal Demo link; no Atlas renderer or dataset initialization |
+| `src/viewer/index.html`, `main.mjs`, `style.css` | Single canonical interactive Atlas with the original ready-only NEXUS opening, map, timeline, catalogue and InfoCards |
 | `src/viewer/opening-content.mjs`, `entry-voice.mjs`, `opening.css` | Shared validated approved welcome, original artwork/acknowledgment URLs and unchanged opening styles |
-| `src/viewer/demo.html`, `main.mjs`, `style.css` | Existing noncanonical interactive Atlas, compact header, centered square stage, floating panels and record dialog; Homepage link |
+| `tests/fixtures/archived-demo/` | Retained historical noncanonical data and HTML/landing sources; isolated regression input, excluded from production |
 | `src/timeline/resolve.mjs` | Separate legacy v0.1 resolver, used by legacy tests and console demo; not imported into the viewer |
 
 The app is vanilla JavaScript ES modules, Three.js and Vite. The public viewer
@@ -43,8 +45,8 @@ has no write endpoint, authentication, live AI lore generation or backend.
 
 ## Data flow and historical semantics
 
-1. The Demo loader reads the validated sector-derived noncanonical inventory
-   from `public/datasets/demo/` (currently five registries, four detail files and two registered faction files).
+1. The Atlas loader reads the validated sector-derived canonical inventory
+   from `public/datasets/canonical/` (five registries; zero released interior charts or faction files).
 2. Historical selectors resolve the chosen nonnegative integer A.E. year.
 3. Cartography derives eligible records, route strokes and influence contributors.
 4. The scene renders XYZ; the interface displays the same resolved records.
@@ -68,14 +70,14 @@ and hiding it in the UI.
 | Module | Responsibility |
 | --- | --- |
 | `scripts/dataset-inventory.mjs` | Validated sector-derived registration paths, deterministic ordering and shared filesystem guard |
-| `scripts/demo-files.mjs` | Registered raw authoring reads, stable system/file association and position-value-span rewrites preserving unrelated bytes |
+| `scripts/dataset-files.mjs` | Registered raw authoring reads, stable system/file association and position-value-span rewrites preserving unrelated bytes |
 | `scripts/navigation.mjs` | Nonmutating v1.2/v1.3 declaration-to-graph/XYZ compiler; lifetime exclusivity and navigation-boundary checks |
 | `scripts/connections.mjs` | Manual generator or read-only freshness check; staged validated writes, backups and recovery journal |
 | `scripts/atlas-validation.mjs` | Offline strict Ajv Draft 2020-12 validation for v1.1, v1.2 and v1.3; separate authoring/release validators |
 | `scripts/check-relations.mjs` | Cross-file identity, intervals, references, bounds, endpoint types/cardinality and presentation constraints |
-| `scripts/validate-demo.mjs` | Current demo release schema + relations + read-only generated-artifact freshness |
+| `scripts/validate-atlas.mjs` | Current canonical release schema + relations + read-only generated-artifact freshness |
 | `scripts/idfind.mjs` | Read-only dataset-scoped ID inventory and next-ID suggestions |
-| `scripts/audit-demo-build.mjs` | Selected-dataset identities, resource reachability/completeness, extensions, exact SVGs, base paths and forbidden-reference checks |
+| `scripts/audit-atlas-build.mjs` | Selected-dataset identities, resource reachability/completeness, extensions, exact SVGs, base paths and forbidden-reference checks |
 
 System-object declarations are the authoring source of truth; generated,
 Git-tracked `connections.json` is the runtime index. Only the manual
@@ -100,7 +102,7 @@ local asset-reference completeness/reachability, exact approved SVGs and forbidd
 references. These are layered checks, not a general secret-content detector.
 See [readiness evidence and limitations](PERFORMANCE_AND_RELEASE_READINESS.md).
 
-`scripts/dataset-inventory.mjs` owns the selected trusted Demo root. It validates
+`scripts/dataset-inventory.mjs` owns the selected trusted canonical root. It validates
 `sector.systems[]` before consuming detail declarations: IDs are unique, each
 released path is exactly `systems/<matching-id>.json`, and null entries are
 intentionally archival. Sector references select Cantums and connections;
@@ -109,28 +111,28 @@ optional in legacy v1.2). Registered faction paths/IDs are validated before read
 Filesystem guards reject traversal, absolute paths, alternate separators,
 unsupported names/directories and symlink/reparse redirection of roots or files.
 Missing details fail. Root/IO injection is internal test support, with no arbitrary
-root/URL CLI or runtime selection. Only Demo is configured for the viewer.
+root/URL CLI or runtime selection. Only Canonical is configured for production.
 
-`readDemoSource()` retains exact original text and validates records with the
+`readDatasetSource()` retains exact original text and validates records with the
 existing Ajv definitions. It accepts authoring-stage null derived positions and a
 missing generated graph solely so the explicit writer can generate release data.
 Release validation and Vite reuse `checkConnections()` for strict structure,
 relationships and freshness; a missing/stale graph, bad references or recovery
 journal blocks startup/build. No implicit generation or repair occurs.
 
-Vite's narrow `virtual:velara-demo-dataset` module generates imports solely from
-the validated inventory. `demo-data.mjs` still eagerly calls every callback at
+Vite's narrow `virtual:velara-atlas-dataset` module generates imports solely from
+the validated inventory. `atlas-data.mjs` still eagerly calls every callback at
 initialization and retains complete detail/faction Maps for v1.3; there is no
 lazy fetch/cache architecture. Vite transforms the exact JSON text that passed validation. The
 same snapshot supplies the filesystem and build module allowlists; changed
-registrations require a Demo restart, while other JSON edits revalidate. Only
+registrations require an Atlas restart, while other JSON edits revalidate. Only
 the named virtual module and two specific Vite helpers get virtual-ID admission.
 
 The navigation writer's raw text, file association, concurrency/transaction and
 recovery interfaces remain intact. ID Finder shares the filesystem guard but
 retains its separate read-only diagnostic scan of direct unregistered system
 files and legacy `--public` scope. Diagnostic visibility confers no publication
-admission. See [authoring steps](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
+admission. See [authoring steps](LOCAL_DEVELOPMENT.md#registered-canonical-systems-and-loading).
 `tests/dataset-inventory.test.mjs` covers unsafe declarations, a temporary extra
 system through the real loader/full build, and new-file navigation generation.
 That Phase 3B checkpoint preserved the Demo, fixtures, schema and historical
@@ -153,7 +155,7 @@ cleanup remain in the established components; no separate same-color fields or
 new territory algorithm is introduced.
 
 The validated Vite module eagerly loads registered system and faction files;
-only the existing Demo root is configured. The pure resolver is explicitly
+the canonical root is configured for production. The pure resolver is explicitly
 admitted. Isolated v1.3 fixtures, calibration and unregistered files remain
 excluded. Navigation generation emits the source version and preserves existing
 geometry/chronology/writer recovery. See the [contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md).
@@ -343,12 +345,12 @@ The tools and test-only scenarios remain excluded by the unchanged build allowli
 There is no editor endpoint or new runtime dependency. See
 [MANUAL_AUTHORING](MANUAL_AUTHORING.md) for scope, recovery limits and tests.
 
-## Living Demo integration policy
+## Representative fixture integration policy
 
 Authorized significant viewer-facing features pass automated tests, gain a curated
-noncanonical example in the normal Demo when needed, then undergo creator visual
+noncanonical example in an explicit isolated fixture when needed, then undergo creator visual
 review/corrections and explicit approval before separately authorized closeout.
-Nonvisual work needs no filler data. The Demo never imports TEST scenarios or
+Nonvisual work needs no filler data. Production never imports TEST scenarios or
 calibration fixtures; its own registered JSON remains authoritative. Phase 3F
 adds only curated data/integration checks, preserving runtime module boundaries.
 See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differences.

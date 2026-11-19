@@ -6,9 +6,10 @@ import {createServer} from 'vite';
 import {readDataset} from '../scripts/check-relations.mjs';
 import {resolveCatalogue, resolveSystem} from '../src/core/history.mjs';
 import {createMarker, fitCamera, markerHitSize} from '../src/viewer/map-scene.mjs';
-import config, {demoInputAudit} from '../vite.config.mjs';
+import config, {datasetInputAudit,createAtlasConfig} from '../vite.config.mjs';
+import {DEMO_ROOT} from './archived-demo.mjs';
 
-const load = () => readDataset(fileURLToPath(new URL('../public/datasets/demo/', import.meta.url)));
+const load = () => readDataset(fileURLToPath(new URL('../tests/fixtures/archived-demo/dataset/', import.meta.url)));
 
 test('prototype meshes preserve every demo XYZ and permanent identity without mutating resolved data', () => {
   const d = load(), year = d.sector.timeline.defaultAE;
@@ -83,13 +84,13 @@ test('nearby planet/moon hit areas do not cover each other at default and narrow
 test('demo build permits only viewer/core, explicit demo JSON and package modules', () => {
   assert.equal(config.publicDir, false);
   assert.equal(config.base, '/Velara_Atlas/');
-  const hook = demoInputAudit().generateBundle;
+  const hook = datasetInputAudit({root:DEMO_ROOT}).generateBundle;
   const bundle = ids => ({chunk: {type: 'chunk', modules: Object.fromEntries(ids.map(id => [id, {}]))}});
   const path = relative => fileURLToPath(new URL(relative, import.meta.url));
   const context = {error(message) { throw new Error(message); }};
   assert.doesNotThrow(() => hook.call(context, {}, bundle([
     path('../src/viewer/main.mjs'), path('../src/core/history.mjs'), path('../src/core/cartography.mjs'), path('../src/core/zone-geometry.mjs'),
-    ...['sector.json', 'cantums.json', 'connections.json', 'presentation.json', 'systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'].map(f => path('../public/datasets/demo/' + f))
+    ...['sector.json', 'cantums.json', 'connections.json', 'presentation.json', 'systems/sys_0001.json', 'systems/sys_0002.json', 'systems/sys_0003.json'].map(f => path('../tests/fixtures/archived-demo/dataset/' + f))
   ])));
   for (const file of ['../public/data/political.json', '../private/fixture.json', './fixtures/legacy_examples/cantum_b.json', '../src/timeline/resolve.mjs']) {
     assert.throws(() => hook.call(context, {}, bundle([path(file)])), /Unexpected input/);
@@ -97,13 +98,14 @@ test('demo build permits only viewer/core, explicit demo JSON and package module
 });
 
 test('actual Vite demo loader opens released systems, preserves archival fallback and rejects other paths', async () => {
-  const server = await createServer({logLevel: 'silent', server: {middlewareMode: true, hmr: false}});
+  const fixtureConfig=createAtlasConfig({datasetRoot:DEMO_ROOT});
+  const server = await createServer({...fixtureConfig,configFile:false,logLevel: 'silent', server: {...fixtureConfig.server,middlewareMode: true, hmr: false}});
   try {
-    const {demoSector, loadDemoDetail} = await server.ssrLoadModule('/demo-data.mjs');
-    const before = structuredClone(demoSector);
-    for (const system of demoSector.systems) {
-      const detail = await loadDemoDetail(system);
-      const result = resolveSystem(system, demoSector.timeline.defaultAE, detail);
+    const {atlasSector, loadAtlasDetail} = await server.ssrLoadModule('/atlas-data.mjs');
+    const before = structuredClone(atlasSector);
+    for (const system of atlasSector.systems) {
+      const detail = await loadAtlasDetail(system);
+      const result = resolveSystem(system, atlasSector.timeline.defaultAE, detail);
       if (system.publicDetailPath === null) {
         assert.equal(detail, null);
         assert.equal(result.state, 'archival_fallback');
@@ -114,10 +116,10 @@ test('actual Vite demo loader opens released systems, preserves archival fallbac
       assert.equal(result.detail.map.unit, 'CNU');
       assert.deepEqual(result.detail.objects.map(o => o.id), detail.objects.map(o => o.id));
     }
-    await assert.rejects(loadDemoDetail({...demoSector.systems[0], publicDetailPath: '../public/data/sector.json'}), /allowlist/);
-    await assert.rejects(loadDemoDetail({...demoSector.systems[0], id: 'sys_9999'}), /ID/);
-    assert.equal(await loadDemoDetail({...demoSector.systems[0], publicDetailPath: null}), null);
-    assert.deepEqual(demoSector, before);
+    await assert.rejects(loadAtlasDetail({...atlasSector.systems[0], publicDetailPath: '../public/data/sector.json'}), /allowlist/);
+    await assert.rejects(loadAtlasDetail({...atlasSector.systems[0], id: 'sys_9999'}), /ID/);
+    assert.equal(await loadAtlasDetail({...atlasSector.systems[0], publicDetailPath: null}), null);
+    assert.deepEqual(atlasSector, before);
   } finally {
     await server.close();
   }

@@ -64,7 +64,7 @@ async(page)=>{
     check(!await p.locator('#info-panel').evaluate(n=>n.open),'gesture transitions do not select objects');
   };
   try {
-    await p.goto('http://127.0.0.1:5173/Velara_Atlas/demo.html');await enterAtlas(p);await p.bringToFront();
+    await p.goto('http://127.0.0.1:5177/Velara_Atlas/');await enterAtlas(p);await p.bringToFront();
     await p.locator('#labels [data-record-id="sys_0001"]').waitFor();
     // Observe the real existing scene, without replacing controls or handlers.
     await p.evaluate(async()=>{
@@ -119,7 +119,7 @@ async(page)=>{
     await panel();await tap('#mode');await hide();
     check((await snapshot()).selected==='cb_0001','return to 2D preserves selected object');
     await tap('#close-info');await tap('#sector');
-    await p.waitForFunction(()=>document.querySelector('#location').textContent==='Demo Sector');
+    await p.waitForFunction(()=>document.querySelector('#location').textContent==='DEMO SECTOR — NONCANONICAL');
     check((await snapshot()).year==='1199 A.E.','gestures preserve historical year');
     const square=await p.locator('#viewport').boundingBox();check(Math.abs(square.width-square.height)<1,'square viewport preserved');
     check(errors.length===0,errors.join('\n'));

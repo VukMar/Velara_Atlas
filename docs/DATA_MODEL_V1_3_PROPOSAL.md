@@ -1,8 +1,9 @@
 # v1.3 entities, historical governance and influence — accepted Phase 3D contract
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 **Status:** Phase 3D is complete and creator-approved. Its implementation and
-completion documentation are committed together. The active NONCANONICAL Demo
-uses this accepted v1.3 contract. Introduced as an isolated Phase 3C proposal,
+completion documentation are committed together. The active canonical Atlas and archived NONCANONICAL Demo use this accepted v1.3 contract. Introduced as an isolated Phase 3C proposal,
 this document retains its filename for link continuity and its design history.
 Current completion and future gates are recorded in [PROJECT_STATUS](PROJECT_STATUS.md). Test records and the provisional 24-ly Demo radius introduce no MCR canon.
 

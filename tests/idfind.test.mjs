@@ -16,7 +16,7 @@ const fixture = () => ({
   'systems/sys_0001.json': system('sys_0001',[body('cb_0002'),body('gat_0003','gate')])
 });
 function memory(files, scope = 'demo') {
-  const base=path.join(repositoryRoot,scope==='demo'?'public/datasets/demo':'public/data');
+  const base=path.join(repositoryRoot,scope==='demo'?'tests/fixtures/archived-demo/dataset':'public/data');
   const data=new Map(Object.entries(files).map(([name,value])=>[path.join(base,name),typeof value==='string'?value:JSON.stringify(value)]));
   const directories=new Set([base]);
   for(const file of data.keys())for(let dir=path.dirname(file);dir.startsWith(base);dir=path.dirname(dir))directories.add(dir);
@@ -39,8 +39,8 @@ function memory(files, scope = 'demo') {
 }
 const row=(result,prefix)=>result.rows.find(r=>r.prefix===prefix);
 
-test('arguments support every prefix, either scope order and demo default; reject invalid/ambiguous input before reading',()=>{
-  for(const p of [...PREFIXES,'all'])assert.deepEqual(parseArguments([p]),{prefix:p,scope:'demo'});
+test('arguments support every prefix, either scope order and canonical default; reject invalid/ambiguous input before reading',()=>{
+  for(const p of [...PREFIXES,'all'])assert.deepEqual(parseArguments([p]),{prefix:p,scope:'canonical'});
   assert.deepEqual(parseArguments(['--public','gat']),{prefix:'gat',scope:'public'});
   assert.deepEqual(parseArguments(['gat','--demo']),{prefix:'gat',scope:'demo'});
   for(const args of [[],['bad'],['cb','sys'],['all','--demo','--public'],['cb','--private']])assert.throws(()=>parseArguments(args));
@@ -80,7 +80,7 @@ test('actual duplicate object, catalogue, detail, authored link and generated li
     if(variant==='detail')f['systems/another.json']=system('sys_0001');
     if(variant==='authored-link') {s.objects[0].navigation={localLinks:[{id:'lnk_0001'}]};s.objects[1].interstellarConnection={id:'lnk_0001'};f['connections.json'].connections=[{id:'lnk_0001'}];}
     if(variant==='generated-link')f['connections.json'].connections=[{id:'lnk_0001'},{id:'lnk_0001'}];
-    const m=memory(f),r=runIdFinder(['all'],m.options);
+    const m=memory(f),r=runIdFinder(['all','--demo'],m.options);
     assert.equal(r.exitCode,1,variant);assert.match(r.output,/Duplicate definition .*: .*\/id, .*\/id/);assert.match(r.output,/withheld/);
   }
 });
@@ -90,13 +90,13 @@ test('malformed IDs, wrong prefixes, missing IDs and malformed JSON are explicit
     const f=fixture();f['systems/sys_0001.json'].objects[0].id=id;
     const r=scanDataset(memory(f).options);assert.match(r.errors.join('\n'),/Malformed cb ID.*objects\/0\/id/);
   }
-  const f=fixture();f['connections.json']='{broken';const r=runIdFinder(['lnk'],memory(f).options);
+  const f=fixture();f['connections.json']='{broken';const r=runIdFinder(['lnk','--demo'],memory(f).options);
   assert.equal(r.exitCode,1);assert.match(r.output,/connections.json: malformed JSON/);assert.match(r.output,/withheld/);
 });
 
 test('missing registries/details and mismatched detail identities produce incomplete inventory diagnostics',()=>{
   for(const file of ['sector.json','cantums.json','connections.json','systems/sys_0001.json']) {
-    const f=fixture();delete f[file];const r=runIdFinder(['cb'],memory(f).options);
+    const f=fixture();delete f[file];const r=runIdFinder(['cb','--demo'],memory(f).options);
     assert.equal(r.exitCode,1);assert.ok(r.output.includes('Missing dataset file: '+file));assert.match(r.output,/withheld/);
   }
   const f=fixture();f['systems/sys_0001.json'].id='sys_0002';
@@ -127,7 +127,7 @@ test('numbered public datasets use their own independent maxima',()=>{
   const m=memory(f,'public'),r=runIdFinder(['cb','--public'],m.options);
   assert.equal(r.exitCode,0);assert.match(r.output,/cb_0077\s+cb_0078/);
   assert.ok(m.reads.every(p=>p.startsWith(m.base)));
-  assert.equal(row(scanDataset(),'cb').highest,'cb_0016');
+  assert.equal(row(scanDataset({scope:'demo'}),'cb').highest,'cb_0016');
 });
 
 test('scanner ignores unrelated examples, metadata, presentation references and nested folders; rejects escaping paths/symlinks',()=>{
@@ -145,7 +145,7 @@ test('scanner ignores unrelated examples, metadata, presentation references and 
 });
 
 test('actual author-editable demo inventory scans cleanly with all supported prefixes',()=>{
-  const r=scanDataset();assert.deepEqual(r.errors,[]);assert.equal(r.files.length,10);
+  const r=scanDataset({scope: 'demo'});assert.deepEqual(r.errors,[]);assert.equal(r.files.length,10);
   assert.deepEqual(r.rows.map(v=>v.prefix),PREFIXES);
   for(const row of r.rows.filter(row=>row.prefix!=='fac')) assert.match(row.highest,new RegExp(`^${row.prefix}_[0-9]{4,}$`));
   assert.deepEqual(row(r,'fac'),{prefix:'fac',highest:'fac_0002',next:'fac_0003'});
@@ -153,10 +153,10 @@ test('actual author-editable demo inventory scans cleanly with all supported pre
 
 test('standalone CLI returns nonzero for bad prefix and succeeds independently of cwd without altering scanned files',()=>{
   const script=fileURLToPath(new URL('../scripts/idfind.mjs',import.meta.url));
-  const root=fileURLToPath(new URL('../',import.meta.url)),r=scanDataset();
-  const capture=()=>r.files.map(file=>fs.readFileSync(path.join(root,'public/datasets/demo',file),'utf8'));
+  const root=fileURLToPath(new URL('../',import.meta.url)),r=scanDataset({scope: 'demo'});
+  const capture=()=>r.files.map(file=>fs.readFileSync(path.join(root,'tests/fixtures/archived-demo/dataset',file),'utf8'));
   const before=capture();
-  const ok=spawnSync(process.execPath,[script,'all'],{cwd:path.join(root,'scripts'),encoding:'utf8'});
+  const ok=spawnSync(process.execPath,[script,'all','--demo'],{cwd:path.join(root,'scripts'),encoding:'utf8'});
   const links=r.rows.find(row=>row.prefix==='lnk');
   assert.equal(ok.status,0,ok.stderr);assert.ok(ok.stdout.includes(links.highest) && ok.stdout.includes(links.next));assert.deepEqual(capture(),before);
   const bad=spawnSync(process.execPath,[script,'nope'],{encoding:'utf8'});

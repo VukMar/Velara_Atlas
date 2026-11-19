@@ -5,7 +5,7 @@ import {influenceEnvelopes,envelopeHalfHeight} from '../src/viewer/influence-env
 import {InfluenceCompositor,compositeInfluence} from '../src/viewer/influence-compositor.mjs';
 import {disposeTree,influencePixels} from '../src/viewer/cartographic-layers.mjs';
 import {cantumField,resolveAtlas,territoryGroups} from '../src/core/cartography.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 
 const map={origin:{x:0,y:0,z:0},size:{x:160,y:60,z:160},unit:'ly',planeY:0};
 const fixture=(points,radius=18,id='test')=>({groups:[{id,color:'#638FBD',radius,points:points.map(([x,y,z],i)=>({id:`s${id}${i}`,x,z}))}],

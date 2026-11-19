@@ -1,10 +1,10 @@
 /** Finite local performance tier, temporary validated data; never a public selector. */
 import {createServer} from 'vite';
-import {createDemoConfig} from '../vite.config.mjs';
+import {createAtlasConfig} from '../vite.config.mjs';
 import {performanceSandbox,TIERS} from './performance/fixture.mjs';
 const tier=process.argv[2]??'medium';
 if(process.argv.length>3||!Object.hasOwn(TIERS,tier))throw new Error('Usage: node tests/preview-performance.mjs [baseline|medium|large|extended]');
-const fixture=performanceSandbox({tier}),config=createDemoConfig({datasetRoot:fixture.root});
+const fixture=performanceSandbox({tier}),config=createAtlasConfig({datasetRoot:fixture.root});
 let server;
 try {
   // A separate cache prevents concurrent ordinary Demo/fixture optimization conflicts.

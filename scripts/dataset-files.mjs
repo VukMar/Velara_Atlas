@@ -1,12 +1,11 @@
-/** Raw registered authoring inputs; CLI selection remains fixed to Demo. */
+/** Raw registered authoring inputs; CLI selection remains fixed to Canonical. */
 import fs from 'node:fs';
 import {datasetInventory,safeDatasetPath,parseDatasetJSON} from './dataset-inventory.mjs';
 import {recordErrors} from './atlas-validation.mjs';
-export {DEMO_ROOT,safePath,datasetInventory} from './dataset-inventory.mjs';
+export {CANONICAL_ROOT,safePath,datasetInventory} from './dataset-inventory.mjs';
 
-export function readDemoSource(root,io=fs) {return readDatasetSource(root,io);}
 
-/** Shared version-aware raw loader; CLI dataset selection remains fixed to Demo. */
+/** Shared version-aware raw loader; CLI dataset selection remains fixed to Canonical. */
 export function readDatasetSource(root, io = fs, options = {}) {
   const inventory=datasetInventory(root,io,options), texts=new Map([['sector.json',inventory.sectorText]]);
   const read=(name,kind,optional=false)=>{

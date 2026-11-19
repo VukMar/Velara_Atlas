@@ -2,9 +2,9 @@
 export function createTimeline({$,state,notice,onChange,onCommit=()=>{}}, lifetime) {
   const {startAE,defaultAE}=state.dataset.sector.timeline;
   for(const input of [$('timeline'),$('year-input')]) {input.min=startAE;input.max=defaultAE;}
-  $('range-label').textContent=`Demo range ${startAE}–${defaultAE} A.E.`;
+  $('range-label').textContent=`Atlas range ${startAE}–${defaultAE} A.E.`;
   function change(value) {
-    if(!state.changeYear(value)) {$('year-input').setAttribute('aria-invalid','true');notice('Enter a whole year within the demonstration range.');return false;}
+    if(!state.changeYear(value)) {$('year-input').setAttribute('aria-invalid','true');notice('Enter a whole year within the Atlas range.');return false;}
     $('year-input').removeAttribute('aria-invalid');notice('');onChange();
     return true;
   }

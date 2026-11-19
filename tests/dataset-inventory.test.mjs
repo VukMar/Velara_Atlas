@@ -4,22 +4,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {build,createServer,normalizePath} from 'vite';
-import {datasetInventory,safePath,safeDatasetPath,DEMO_ROOT} from '../scripts/dataset-inventory.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {datasetInventory,safePath,safeDatasetPath,DEMO_ROOT} from './archived-demo.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {checkConnections,runConnections,RECOVERY_FILE} from '../scripts/connections.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {resolveAtlas} from '../src/core/cartography.mjs';
 import {scanDataset} from '../scripts/idfind.mjs';
-import {createDemoConfig,demoInputAudit,auditRegisteredModules,DEMO_VIRTUAL_ID} from '../vite.config.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {createAtlasConfig,datasetInputAudit,auditRegisteredModules,DATASET_VIRTUAL_ID} from '../vite.config.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
 import {viteSandbox} from './vite-sandbox.mjs';
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const write=(root,name,value)=>fs.writeFileSync(path.join(root,name),JSON.stringify(value,null,2)+'\n');
 function sandbox(t) {
   const {top,cleanup}=viteSandbox('velara-inventory-');
-  const root=path.join(top,'public/datasets/demo');fs.mkdirSync(path.join(root,'systems'),{recursive:true});
+  const root=path.join(top,'tests/fixtures/archived-demo/dataset');fs.mkdirSync(path.join(root,'systems'),{recursive:true});
   for(const [name,text] of readDemoSource().texts){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.writeFileSync(path.join(root,name),text);}
   t.after(cleanup);
   return {top,root};
@@ -36,7 +36,7 @@ function addSystem(root,id='sys_0042',suffix='9901') {
   return system;
 }
 const change=(root,file,fn)=>{const value=read(path.join(root,file));fn(value);write(root,file,value);};
-const publish=root=>{const plugin=demoInputAudit({root});plugin.buildStart();return plugin;};
+const publish=root=>{const plugin=datasetInputAudit({root});plugin.buildStart();return plugin;};
 
 test('module completeness accepts Windows drive case only and still requires every exact registered file',()=>{
   const inventory={root:'c:/TEST/dataset',files:['sector.json','systems/sys_0042.json']};
@@ -109,7 +109,7 @@ test('additional registered system works through validation, navigation writer a
   const inventory=datasetInventory(root);assert(inventory.files.includes('systems/sys_0042.json'));assert(!inventory.files.includes('systems/sys_0099.json'));
   const source=readDemoSource(root);assert.equal(source.dataset.detailFiles.size,5);assert.deepEqual(checkConnections(source).errors,[]);
   assert.deepEqual(runConnections({root}),['PASS already current; no files written']);assert.doesNotThrow(()=>runConnections({root,check:true}));
-  const ids=scanDataset({repositoryRoot:top});assert.deepEqual(ids.errors,[]);assert(ids.files.includes('systems/sys_0042.json'));assert(ids.files.includes('systems/sys_0099.json'));
+  const ids=scanDataset({repositoryRoot:top,scope:'demo'});assert.deepEqual(ids.errors,[]);assert(ids.files.includes('systems/sys_0042.json'));assert(ids.files.includes('systems/sys_0099.json'));
   assert.throws(()=>safePath(root,'systems/sys_0099.json'),/registered.*allowlist/);
 });
 
@@ -142,9 +142,9 @@ test('navigation generation discovers new registered gate files and preserves un
 test('one validated mapping owns eager browser loading, HTTP admission and a complete additional-system build',async t=>{
   const {root,top}=sandbox(t);const system=addSystem(root);
   const orphan=read(path.join(root,'systems/sys_0042.json'));orphan.id='sys_0099';orphan.objects[0].infoCard.description[0].text='UNREGISTERED_INVENTORY_SENTINEL';write(root,'systems/sys_0099.json',orphan);
-  const codeFiles=['../src/viewer/demo-data.mjs','../scripts/demo-files.mjs','../vite.config.mjs'].map(f=>fileURLToPath(new URL(f,import.meta.url)));
+  const codeFiles=['../src/viewer/atlas-data.mjs','./archived-demo.mjs','../vite.config.mjs'].map(f=>fileURLToPath(new URL(f,import.meta.url)));
   const before=codeFiles.map(f=>fs.readFileSync(f));
-  const config=createDemoConfig({datasetRoot:root});
+  const config=createAtlasConfig({datasetRoot:root});
   const server=await createServer({...config,configFile:false,logLevel:'silent',optimizeDeps:{noDiscovery:true,include:[]},server:{...config.server,port:0,strictPort:false,hmr:false}});
   try {
     await server.listen();const base=`http://127.0.0.1:${server.httpServer.address().port}/Velara_Atlas/`;
@@ -155,24 +155,24 @@ test('one validated mapping owns eager browser loading, HTTP admission and a com
       if(status===200){assert.match(response.headers.get('content-type'),/application\/json/);assert.equal(body,fs.readFileSync(name,'utf8'));}
       else assert(!body.includes('UNREGISTERED_INVENTORY_SENTINEL'));
     }
-    const {loadDemoDataset,loadDemoDetail}=await server.ssrLoadModule('/demo-data.mjs');const data=await loadDemoDataset();
+    const {loadAtlasDataset,loadAtlasDetail}=await server.ssrLoadModule('/atlas-data.mjs');const data=await loadAtlasDataset();
     assert.equal(data.detailFiles.size,5);assert.equal(data.detailFiles.get(system.id).objects.length,2);
-    assert.equal((await loadDemoDetail(system)).id,system.id);
-    assert.equal(await loadDemoDetail(data.sector.systems.find(s=>s.publicDetailPath===null)),null);
+    assert.equal((await loadAtlasDetail(system)).id,system.id);
+    assert.equal(await loadAtlasDetail(data.sector.systems.find(s=>s.publicDetailPath===null)),null);
     assert.equal(resolveAtlas(data,1200,system.id).markers.length,2);
-    await assert.rejects(loadDemoDetail({...system,publicDetailPath:'systems/sys_0099.json'}),/allowlist/);
-    await assert.rejects(loadDemoDetail({...system,id:'sys_0099'}),/ID/);
+    await assert.rejects(loadAtlasDetail({...system,publicDetailPath:'systems/sys_0099.json'}),/allowlist/);
+    await assert.rejects(loadAtlasDetail({...system,id:'sys_0099'}),/ID/);
   } finally {await server.close();}
-  const plugin=demoInputAudit({root}),context={error(message){throw new Error(message);}};
+  const plugin=datasetInputAudit({root}),context={error(message){throw new Error(message);}};
   const bundle=id=>({chunk:{type:'chunk',modules:{[id]:{}}}});
   assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(path.join(root,'systems/sys_0042.json'))));
   // Vite realpaths may uppercase a drive supplied in lowercase by os.tmpdir().
   const alternateDrive=id=>id.replace(/^([a-z]):/i,(_,drive)=>drive===drive.toUpperCase()?drive.toLowerCase()+':':drive.toUpperCase()+':');
   assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(alternateDrive(path.join(root,'systems/sys_0042.json')))));
   for(const id of [path.join(root,'systems/sys_0099.json'),'\0unapproved-virtual-module',fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url))])assert.throws(()=>plugin.generateBundle.call(context,{},bundle(id)),/Unexpected input/);
-  assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(DEMO_VIRTUAL_ID)));
-  const outDir=path.join(top,'dist');await build({...createDemoConfig({datasetRoot:root}),configFile:false,logLevel:'silent',build:{...config.build,outDir}});
-  assert(auditDemoBuild(outDir).files>=21);
+  assert.doesNotThrow(()=>plugin.generateBundle.call(context,{},bundle(DATASET_VIRTUAL_ID)));
+  const outDir=path.join(top,'dist');await build({...createAtlasConfig({datasetRoot:root}),configFile:false,logLevel:'silent',build:{...config.build,outDir}});
+  assert(auditAtlasBuild(outDir).files>=21);
   const js=fs.readdirSync(path.join(outDir,'assets')).filter(f=>f.endsWith('.js')).map(f=>fs.readFileSync(path.join(outDir,'assets',f),'utf8')).join('\n');
   assert(js.includes('SYNTHETIC_REGISTERED_INVENTORY_SENTINEL'));assert(!js.includes('UNREGISTERED_INVENTORY_SENTINEL'));
   codeFiles.forEach((f,i)=>assert.deepEqual(fs.readFileSync(f),before[i]));
@@ -180,6 +180,6 @@ test('one validated mapping owns eager browser loading, HTTP admission and a com
 
 test('registration changes require restart; no changed inventory is silently consumed',t=>{
   const {root}=sandbox(t);const plugin=publish(root);addSystem(root);
-  assert.throws(()=>plugin.load(DEMO_VIRTUAL_ID),/restart the Demo server/);
+  assert.throws(()=>plugin.load(DATASET_VIRTUAL_ID),/restart the Atlas server/);
   assert.doesNotThrow(()=>publish(root));
 });

@@ -1,5 +1,7 @@
 # Manual GitHub Pages deployment
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 **Checkpoint 5 — First Public Deployment — Complete and Creator-Approved (2026-10-27).** Velara Atlas v0.5.0 is now an operational noncanonical public pre-release on GitHub Pages. The creator configured Pages, manually deployed the approved site, tested the live website and confirmed acceptance. Further deployments require separate authorization; this task documents the existing release and does not deploy it again. [VERSIONING_POLICY](VERSIONING_POLICY.md) distinguishes repository and published versions; no increment is appropriate for this documentation-only closeout.
 
 ## First successful public deployment - 2026-10-27
@@ -35,11 +37,11 @@ on:
 
 Ordinary pushes run verification, not Pages deployment. Only a successful separately authorized manual deployment replaces the currently published website.
 
-Both jobs require `refs/heads/main`; selecting another branch skips them without uploading or deploying. The build checks out the dispatch's exact `github.sha`, installs Node 24 and locked dependencies, then runs connection freshness, all tests and `release:check`. That last command builds and audits both pages once. Any failure or tracked-file change blocks upload. Only the audited `dist/` directory becomes the `github-pages` artifact.
+Both jobs require `refs/heads/main`; selecting another branch skips them without uploading or deploying. The build checks out the dispatch's exact `github.sha`, installs Node 24 and locked dependencies, then runs connection freshness, all tests and `release:check`. That last command builds and audits the canonical single page once. Any failure or tracked-file change blocks upload. Only the audited `dist/` directory becomes the `github-pages` artifact.
 
 The build token has only `contents: read`; the separate deployment job needs a successful build and has only `pages: write` and `id-token: write`. It uses the `github-pages` environment and reports the deployed URL. Configure Pages has `enablement: false`: it reads existing settings and does not enable Pages automatically. All actions use full upstream SHA pins. The `github-pages` concurrency group serializes runs with `cancel-in-progress: false`, preserving a running deployment; GitHub may replace an older pending run with a newer pending run.
 
-`dist/` stays ignored because it is generated, audited output, rebuilt from the selected commit and lockfile on the runner. Never commit it, upload the source repository, create a gh-pages branch or add a personal token. The original `/Velara_Atlas/` base, npm scripts, dataset/asset admission, read-only viewer and two-page architecture are unchanged.
+`dist/` stays ignored because it is generated, audited output, rebuilt from the selected commit and lockfile on the runner. Never commit it, upload the source repository, create a gh-pages branch or add a personal token. The original `/Velara_Atlas/` base, npm scripts, dataset/asset admission, read-only viewer are preserved; the canonical single-page architecture supersedes the former two-page application.
 
 ## Creator setup and release procedure
 
@@ -48,7 +50,7 @@ Initial GitHub Pages configuration is complete for the published site. Retain th
 1. For separately approved setup/configuration changes, in **Settings > Pages > Build and deployment > Source**, select **GitHub Actions**. Do not select a branch publishing source. Check that repository Actions policy permits the pinned official actions. Configure the `github-pages` environment's deployment branch rule for main; add required reviewers if available and desired.
 2. Approve the exact main commit to publish. Under **Actions > Deploy Velara Atlas to GitHub Pages > Run workflow**, select **main** and trigger it deliberately. A push or pull request alone cannot start this workflow.
 3. Inspect both jobs' logs: checkout SHA, tests, release-audit inventory, tracked-diff guard, Pages artifact and deployment outcome. If any required step fails, investigate it before another manual attempt; do not bypass audits. The environment/deployment result exposes the Pages URL.
-4. After each authorized deployment, verify the [live NEXUS homepage](https://vukmar.github.io/Velara_Atlas/) and [noncanonical Demo](https://vukmar.github.io/Velara_Atlas/demo.html): welcome/returning-Visitor rules, shared audio preference, Demo navigation/disclosure, original media, mobile layout and browser/network errors. Record acceptance against that deployment's exact SHA, independently of automatic CI.
+4. After each authorized deployment, verify the canonical Atlas root: welcome/returning-Visitor rules, saved audio preference, canonical history/InfoCards and archival fallback, original media, mobile layout and browser/network errors. Record acceptance against that deployment's exact SHA, independently of automatic CI.
 
 ## Identify or restore a release
 
@@ -60,7 +62,7 @@ To redeploy an earlier approved version, obtain separate approval, open its orig
 
 The workflow follows GitHub's [Pages custom workflow requirements](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages). GitHub documents that [reruns retain the original SHA/ref](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs). Pins were checked against official releases: [configure-pages v6.0.0](https://github.com/actions/configure-pages/releases/tag/v6.0.0), [upload-pages-artifact v5.0.0](https://github.com/actions/upload-pages-artifact/releases/tag/v5.0.0), [deploy-pages v5.0.1](https://github.com/actions/deploy-pages/releases/tag/v5.0.1); checkout/setup-node reuse the existing verification workflow's v6 pins.
 
-The first manual public deployment and creator live acceptance are complete as recorded above; read-only metadata verifies the successful deployment path for that release. This documentation-only closeout authorizes a normal commit/push to main, which cannot dispatch Pages. The initial public-launch objective of Checkpoint 5 is complete. Future deployments, Canon migration/integration and Atlas Creator remain separately authorized; no new infrastructure work starts automatically. Historical pre-deployment verification records below retain their original boundaries.
+The first manual public deployment and creator live acceptance are complete as recorded above; read-only metadata verifies the successful deployment path for that release. This documentation-only closeout authorizes a normal commit/push to main, which cannot dispatch Pages. The initial public-launch objective of Checkpoint 5 is complete. Future deployments, further canonical content and Atlas Creator remain separately authorized; no new infrastructure work starts automatically. Historical pre-deployment verification records below retain their original boundaries.
 
 
 ## Initial implementation verification - 2026-10-27

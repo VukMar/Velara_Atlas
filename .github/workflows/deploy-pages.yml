@@ -33,7 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run connections:check
       - run: npm test
-      # This command builds both pages and audits the actual production output.
+      # This command builds the canonical page and audits the actual production output.
       - run: npm run release:check
       - name: Reject tracked-file changes
         run: |

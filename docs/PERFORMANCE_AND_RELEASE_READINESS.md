@@ -1,5 +1,7 @@
 # Performance and local release readiness
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 > **2026-10-27 first public release:** Checkpoint 5 is complete and creator-approved. The [deployment evidence and live URLs](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27) supersede earlier present-tense deployment/hosted-CI limitations for that verified release. Dated reports below retain their original scope; device, accessibility, non-Chromium and scaling limitations are not waived. Ordinary pushes never deploy.
 
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
@@ -261,10 +263,10 @@ npm run release:check
 npm run preview -- --port 4173 --strictPort
 # http://127.0.0.1:4173/Velara_Atlas/
 # Homepage: tests/browser-public-entrance.mjs against both 5173 and 4173.
-# Map: /Velara_Atlas/demo.html; tests/browser-release-readiness.mjs in the MCP harness.
+# Map: /Velara_Atlas/index.html; tests/browser-release-readiness.mjs in the MCP harness.
 ```
 
-The fixed two-page dry run checks release schemas, references and graph freshness,
+The fixed single-page dry run checks release schemas, references and graph freshness,
 builds, audits actual inputs/output, checks static resource references and base
 paths, reports bytes/file types and exits nonzero on deterministic failure.
 It never generates navigation or repairs authored records. The Vite preview is

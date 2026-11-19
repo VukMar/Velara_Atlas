@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {recordErrors} from './atlas-validation.mjs';
 
-export const DEMO_ROOT=fileURLToPath(new URL('../public/datasets/demo/',import.meta.url));
+export const CANONICAL_ROOT=fileURLToPath(new URL('../public/datasets/canonical/',import.meta.url));
 const detailPattern=/^systems\/sys_[0-9]{4,}\.json$/;
 const registryPattern=/^(?:sector|cantums|presentation|connections)\.json$/;
 
@@ -34,7 +34,7 @@ export function parseDatasetJSON(text,name) {
 
 /** Validate the catalogue BEFORE admitting detail paths. Deterministic inventory
  * preserves catalogue order in the sector, sorting only technical file entries. */
-export function datasetInventory(root=DEMO_ROOT,io=fs,{versions=['1.2.0','1.3.0']}={}) {
+export function datasetInventory(root=CANONICAL_ROOT,io=fs,{versions=['1.2.0','1.3.0']}={}) {
   const sectorText=io.readFileSync(safeDatasetPath(root,'sector.json',io),'utf8');
   const sector=parseDatasetJSON(sectorText,'sector.json');
   const version=sector?.schemaVersion;
@@ -75,7 +75,7 @@ export function datasetInventory(root=DEMO_ROOT,io=fs,{versions=['1.2.0','1.3.0'
     // The explicit authoring command may recreate a missing generated graph.
     if(name!==sector.connectionsPath&&!io.existsSync(file))throw new Error(`Missing registered dataset file: ${name}`);
   }
-  return {datasetId:'demo',root:path.resolve(root),files,systemFiles,systems,sector,sectorText,...(version==='1.3.0'?{factions}:{})};
+  return {datasetId:path.resolve(root)===path.resolve(CANONICAL_ROOT)?'canonical':'isolated',root:path.resolve(root),files,systemFiles,systems,sector,sectorText,...(version==='1.3.0'?{factions}:{})};
 }
 
 /** Authorize a write/read against the current registered inventory, including a

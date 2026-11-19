@@ -1,5 +1,8 @@
 # Repository structure and ownership
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
+
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
 
 This page describes current directory ownership and publication boundaries. [PROJECT_STATUS](PROJECT_STATUS.md) owns completion/authorization; [ARCHITECTURE](ARCHITECTURE.md) describes module interfaces, and [INDEX](INDEX.md) maps documentation authority.
@@ -32,15 +35,13 @@ Velara_Atlas/
   src/
     core/                         Pure modern history/cartography/geometry
     timeline/resolve.mjs           Independent legacy v0.1 resolver
-    viewer/                       index.html/landing.mjs: NEXUS homepage; demo.html/main.mjs: read-only Atlas
+    viewer/                       index.html/main.mjs: canonical interactive Atlas
   public/
-    datasets/demo/                Registered v1.3 NONCANONICAL Demo JSON
+    datasets/canonical/           Five approved v1.3 production JSON files
       sector.json                 Sole system registration source
       cantums.json / factions.json Political records / faction registration
-      presentation.json           Noncanonical presentation values
+      presentation.json           Approved canonical presentation values
       connections.json            Generated tracked runtime index
-      systems/                    Four released system-detail files
-      factions/                   Two registered TEST faction files
     content/nexus/                Two approved universal UI JSON scripts
     assets/
       icons/                      Fourteen navigation SVGs and one TEST Cantum sigil
@@ -53,8 +54,8 @@ Velara_Atlas/
     browser-*.mjs                 Browser/MCP callbacks, separate from npm test
     calibration/                  Finite synthetic Development/scenario registry
     performance/                  Seeded test-only workloads and sampling probes
-    fixtures/                     Separate legacy/v1.1/v1.2/v1.3 regression inputs
-  dist/                           Ignored audited homepage + Demo output
+    fixtures/                     Archived Demo, approved hashes, legacy/v1.1/v1.2/v1.3 inputs
+  dist/                           Ignored audited canonical index.html + assets
   .playwright-mcp/                 Ignored local reports/screenshots/test output
   node_modules/                   Ignored dependencies
 ```
@@ -63,7 +64,7 @@ This is an ownership summary, not a complete file listing. There is no graphical
 
 ## Authoring and generated ownership
 
-The Demo's `sector.systems[]` and faction registry declare the only admitted detail paths. The validated inventory drives offline reads, eager browser imports, HTTP admission and build checks; files are not discovered by scanning directories. Restart Demo after registration changes. See [inventory ownership](ARCHITECTURE.md#validated-dataset-inventory) and [manual authoring](MANUAL_AUTHORING.md).
+The canonical sector's `systems[]` and faction registry declare the only admitted detail paths. The validated inventory drives offline reads, eager browser imports, HTTP admission and build checks; files are not discovered by scanning directories. Restart Atlas after registration changes. See [inventory ownership](ARCHITECTURE.md#validated-dataset-inventory) and [manual authoring](MANUAL_AUTHORING.md).
 
 System-object declarations own navigation. Only the offline `connections` command writes `connections.json` and eligible `boundary_derived` gate positions. New gates begin with null position. Checks/build/CI never repair data; pending journals, backups and stages are preserved for recovery. See [NAVIGATION_AUTHORING](NAVIGATION_AUTHORING.md).
 
@@ -75,7 +76,7 @@ Frozen fixtures are independent snapshots. Matching IDs across datasets are not 
 
 | Path | Role | Browser production input |
 | --- | --- | --- |
-| `public/datasets/demo/` | Eleven registered v1.3 noncanonical JSON files | Exact validated inventory, bundled statically |
+| `public/datasets/canonical/` | Five registered v1.3 canonical JSON files | Exact validated inventory, bundled statically |
 | `public/content/nexus/` | Universal fallback/opening UI scripts | Exactly two validated modules |
 | `public/assets/` | Approved original media | Exactly sixteen SVGs, three PNGs and eight MP3s; pinned source/output rules |
 | `public/data/` | Protected legacy Canon | Excluded |

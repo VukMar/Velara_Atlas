@@ -2,14 +2,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {viteSandbox} from './vite-sandbox.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {planNewSystem, applyNewSystem} from '../scripts/system-authoring.mjs';
 import {runConnections} from '../scripts/connections.mjs';
 
 export const chart = {size: {x: 100000, y: 10000, z: 100000}};
 export function authoringSandbox() {
   const {top, cleanup} = viteSandbox('velara-authoring-');
-  const root = path.join(top, 'public/datasets/demo');
+  const root = path.join(top, 'tests/fixtures/archived-demo/dataset');
   for (const [name, text] of readDemoSource().texts) {
     const file = path.join(root, name); fs.mkdirSync(path.dirname(file), {recursive: true}); fs.writeFileSync(file, text);
   }

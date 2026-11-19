@@ -2,7 +2,7 @@
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[],results=[];
+  const base='http://127.0.0.1:5177/Velara_Atlas/',errors=[],results=[];
   let expectedFailure=false;
   const error=message=>{if(message.type()==='error'&&!expectedFailure)errors.push(message.text());};
   const pageError=e=>errors.push(e.message);
@@ -47,7 +47,7 @@ async page => {
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0004"]').waitFor({state:'attached'});await hook();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
     let inspected=0;
     for(const system of sector.systems.filter(s=>s.publicDetailPath!==null)) {

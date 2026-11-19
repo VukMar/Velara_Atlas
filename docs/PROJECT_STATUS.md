@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized scope updated 2026-10-27; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized canonical integration, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -37,19 +37,15 @@ The initial public-launch objective is complete: GitHub Pages is configured usin
 
 GitHub independently reports successful build and deploy jobs in [manual deployment run 40587944992](https://github.com/VukMar/Velara_Atlas/actions/runs/40587944992), publishing commit `77d2ab0ea484770eb6e40f6d0ac5aaa581d74209`. Package metadata at that exact commit records 0.5.0; the deployment log reports the [live homepage](https://vukmar.github.io/Velara_Atlas/). The [Demo](https://vukmar.github.io/Velara_Atlas/demo.html), evidence sources, creator-confirmed scope and remaining coverage limits are documented in the [deployment record](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27). This documentation-closeout commit is distinct from the published commit and is not deployed by an ordinary push.
 
-## Next direction - creator-led canonical worldbuilding
+## Canonical application integration — implemented, creator review pending
 
-The next workstream is development and approval of the actual MCR Velara Sector's lore, followed by canonical dataset planning, separately authorized integration and a future creator-approved canonical public release. See [Stages A-D in the roadmap](DEVELOPMENT_ROADMAP.md#future-canonical-direction---not-current-authorization). These stages grant no implementation or disclosure authority. Canon migration, Atlas Creator, replacement of the public Demo and further deployments remain separately gated. Version 1.0.0 is reserved for the first approved canonical public launch; the local authoring CLI exists, while a graphical editor does not.
+The 2026-11-19 task authorizes promotion of the approved PR #4 candidate, root application integration, Demo archival, paragraph rendering, tests/documentation and commit/push to the existing PR. `index.html` now runs the canonical Atlas from `public/datasets/canonical/`: 70 systems, seven historical Cantums, 199 system descriptions and 35 Cantum descriptions. The five JSON files are byte-identical to approved revision `fa53a770eb848f45031dce4da7787dc2a26c7bb5`; unrelated dates, coordinates and histories are preserved.
 
-## Implemented product and environment boundaries
+The existing NEXUS opening and single audio controller remain. The two-page teaser/Demo arrangement is superseded in the repository. The Demo is retained under `tests/fixtures/archived-demo/` for isolated regressions, never as a production fallback. Calibration and protected legacy v0.1 data remain separate. No individual canonical system interiors or physical routes are added.
 
-The read-only NEXUS viewer loads only the v1.3 NONCANONICAL Demo: four released system charts, one archival-only system and two TEST factions. Implemented capabilities include historical navigation/InfoCards, routes and catalogue/search, physical celestial models/proxies, 2D/3D cameras, zones, approximate governing-Cantum influence, original NEXUS artwork, targeting, motion and approved audio.
+Production remains static and read-only with `publicDir: false`, exact inventory-based imports, pinned media and complete output reachability. The single canonical HTML entry is `index.html`. [Integration report and verification](CANONICAL_APPLICATION_INTEGRATION.md).
 
-Development/calibration uses separate finite registered synthetic scenarios with replayable presets. Protected legacy v0.1 Canon, frozen v1.1/v1.2 fixtures and v1.2 examples remain separate. There is no public dataset selector or automatic Canon migration.
-
-The Demo uses a provisional shared 24-ly influence radius; frozen v1.2 and calibration radii remain unchanged. No canonical radius or new worldbuilding facts are established by this page.
-
-Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. There is no backend or write endpoint. The audited two-page site is live on GitHub Pages. Future publication still requires a successful authorized manual dispatch; a repository push or passing verification does not change the published website.
+Creator visual acceptance of this integration is pending. PR #4 remains unmerged; no Pages dispatch, tag, Release or version bump is authorized. The published website remains the October 27 noncanonical 0.5.0 release described above. A normal push starts verification only. Version 1.0.0 remains reserved for the creator-approved canonical public launch. Atlas Creator and further canonical content remain separately authorized.
 
 ## Verified baseline and limits
 

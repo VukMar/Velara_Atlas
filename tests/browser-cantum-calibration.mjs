@@ -20,7 +20,7 @@ async page=>{
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);
     await page.waitForFunction(()=>window.calibration?.map.cantumNameplates.anchors.length===3);
-    const absent=await page.request.get('http://127.0.0.1:5173/Velara_Atlas/__calibration/');
+    const absent=await page.request.get('http://127.0.0.1:5177/Velara_Atlas/__calibration/');
     check(!(await absent.text()).includes('NONCANONICAL · LOCAL CALIBRATION'),'graphical Demo does not install calibration');
     const unexpected=await page.request.get(base+'not-approved.mjs');check(unexpected.status()===404,'preview has an explicit file inventory');
     for(const radius of ['2','2.5','3']) {

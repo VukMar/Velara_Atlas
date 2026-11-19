@@ -1,5 +1,7 @@
 # Living NONCANONICAL Demo showcase
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 Phase 3F implementation and the normal graphical Demo showcase are complete and
 creator-approved. Overall Architecture Phase 3, including 3A-3F, is complete.
 Implementation and completion documentation are committed together. Architecture Phase 4

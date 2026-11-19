@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {EventDispatcher,Vector2,Vector3,Ray,TOUCH} from 'three';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {resolveAtlas,recordedYears} from '../src/core/cartography.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 import {AppState} from '../src/viewer/app-state.mjs';

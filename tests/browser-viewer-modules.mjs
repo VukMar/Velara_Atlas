@@ -7,7 +7,7 @@ async page => {
   const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+' > summary').click();};
   const year=async value=>{await page.keyboard.press('Escape');await panel('timeline-panel');await page.locator('#year-input').fill(String(value));await page.locator('#year-input').press('Enter');};
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5173/Velara_Atlas/demo.html');await enterAtlas(page);
+    await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5177/Velara_Atlas/');await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
     await panel('controls-panel');await page.locator('#selection').focus();await page.locator('#selection').selectOption('sys_0005');
     check(await page.locator('#close-info').evaluate(e=>e===document.activeElement),'InfoCard takes focus');
@@ -15,7 +15,7 @@ async page => {
     await page.locator('#selection').selectOption('sys_0005');await page.locator('#enter').click();await page.keyboard.press('Escape');
     await year(352);await page.keyboard.press('Escape');await panel('controls-panel');await page.locator('#selection').selectOption('gat_0022');
     await year(350);check(await page.locator('#selection').inputValue()==='','historically absent gate selection cleared');
-    await year(299);check(await page.locator('#location').innerText()==='Demo Sector','historically unavailable system returns to sector');
+    await year(299);check(await page.locator('#location').innerText()==='DEMO SECTOR — NONCANONICAL','historically unavailable system returns to sector');
     await page.locator('#year-input').fill('1201');await page.locator('#year-input').press('Enter');check(await page.locator('#year-input').getAttribute('aria-invalid')==='true','invalid numeric year rejected');
     await page.locator('#latest').click();check(await page.locator('#year-input').getAttribute('aria-invalid')===null,'valid year clears error');
     const lifecycle=await page.evaluate(async()=>{
@@ -50,12 +50,12 @@ async page => {
       } finally {prototype.addEventListener=add;prototype.removeEventListener=remove;}
     });
     const configuration=await page.evaluate(async()=>{
-      const [{AtlasMap},{loadDemoDataset},{AppState}]=await Promise.all([import('./map-scene.mjs'),import('./demo-data.mjs'),import('./app-state.mjs')]);
+      const [{AtlasMap},{loadAtlasDataset},{AppState}]=await Promise.all([import('./map-scene.mjs'),import('./atlas-data.mjs'),import('./app-state.mjs')]);
       const container=document.createElement('div'),labels=document.createElement('div');
       Object.assign(container.style,{position:'fixed',left:'-10000px',width:'200px',height:'200px'});container.append(labels);document.body.append(container);
       let map;
       try {
-        const d=await loadDemoDataset(),v=new AppState(d).resolve().view;
+        const d=await loadAtlasDataset(),v=new AppState(d).resolve().view;
         map=new AtlasMap(container,labels,()=>{},()=>{},{visual:{backgroundColor:0x123456,selectionColor:0xaabbcc,hoverColor:0xabcdef,routeOpacity:.5}});
         map.setMap(v.map,v.markers,v.positionKey,null,{routes:v.routes});map.resize();
         if(map.scene.background.getHex()!==0x123456||map.routeLines.some(l=>l.material.opacity!==.5))throw Error('injected initial presentation not applied');

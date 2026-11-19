@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Velara Atlas — a welcome from NEXUS.">
+  <link rel="icon" href="data:,"><title>Velara Atlas — NEXUS</title>
+</head>
+<body>
+  <header class="landing-header"><button id="audio-toggle" type="button" aria-pressed="false" disabled>Audio: Off</button></header>
+  <main id="landing" hidden aria-labelledby="teaser-identity">
+    <div class="opening-brand">
+      <img id="landing-insignia" width="48" height="48" alt="Maric Cosmic Records">
+      <div><p class="connection-status">NEXUS // CONNECTION ESTABLISHED</p><h1 id="teaser-identity">VELARA ATLAS</h1></div>
+    </div>
+    <div class="opening-layout">
+      <div class="opening-art"><img id="landing-portrait" width="2752" height="1536" alt="" aria-hidden="true"></div>
+      <div class="opening-copy">
+        <div class="teaser-message">
+          <p><strong>Oh. You've found me.</strong></p>
+          <p>How delightfully curious.</p>
+          <p>Yes, the archive exists.<br>Yes, I could show you.</p>
+          <p><strong>But where would be the fun in that?</strong></p>
+          <p>Patience, Visitor.<br>Everything will be revealed in due time.</p>
+          <p><em>My time, naturally.</em></p>
+        </div>
+        <p class="invitation">I suppose I could let you examine a simulation. Try not to mistake it for the real thing.</p>
+        <a id="demo-link" class="primary-link" href="./demo.html">Indulge your curiosity</a>
+        <p class="disclosure">NONCANONICAL DEMONSTRATION — FICTIONAL TEST RECORDS</p>
+      </div>
+    </div>
+  </main>
+  <p id="landing-status" role="status">Preparing NEXUS welcome…</p><button id="landing-retry" hidden>Retry loading welcome</button>
+  <dialog id="opening-panel" aria-labelledby="opening-title opening-name" aria-describedby="opening-message opening-note">
+    <div class="opening-brand">
+      <img id="opening-insignia" width="48" height="48" alt="Maric Cosmic Records">
+      <div><p id="opening-title"></p><h1 id="opening-name" tabindex="-1" autofocus></h1></div>
+    </div>
+    <div class="opening-layout">
+      <div class="opening-art"><img id="opening-portrait" width="2752" height="1536" alt="" aria-hidden="true"></div>
+      <div class="opening-copy">
+        <p id="opening-message"></p>
+        <div class="opening-actions"><button id="opening-audio" type="button">Enter with audio</button><button id="opening-silent" type="button">Enter silently</button></div>
+        <p id="opening-note">Audio-enabled entry activates NEXUS speech. You can change this setting in the header.</p>
+        <p class="opening-escape">Escape enters silently.</p>
+      </div>
+    </div>
+  </dialog>
+  <noscript>This welcome requires JavaScript. The simulation is at demo.html.</noscript>
+  <script type="module" src="./landing.mjs"></script>
+</body></html>

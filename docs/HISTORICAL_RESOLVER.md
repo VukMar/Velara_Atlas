@@ -1,5 +1,7 @@
 # Modern historical resolver — v1.1/v1.2 runtime API
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 `src/core/history.mjs` resolves released v1.1 and compatible v1.2 runtime records;
 v1.2 navigation declarations are handled offline and require no resolver change.
 It has no imports,

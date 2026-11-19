@@ -2,7 +2,7 @@
  * Added positions/status/sigils below are test setup, never active Demo facts. */
 import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
-import {readDatasetSource} from '../scripts/demo-files.mjs';
+import {readDatasetSource} from './archived-demo.mjs';
 
 export function governanceDataset() {
   const {dataset:d}=readDatasetSource(fileURLToPath(new URL('./fixtures/v1_3/',import.meta.url)),fs,{versions:['1.3.0']});

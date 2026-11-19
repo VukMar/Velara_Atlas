@@ -1,5 +1,7 @@
 # Noncanonical v1.2/v1.3 navigation workflow
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 The creator-approved [navigation specification](SCHEMA_V1_2_NAVIGATION.md)
 supersedes the v1.1 short-range branching rule. System object declarations are
 the **authoring source of truth**. `connections.json` is the **generated,

@@ -1,5 +1,8 @@
 # Canonical candidate description migration
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
+
 Local validation completed 2026-11-19. After reviewing the candidate in the Atlas, the creator approved the migration and authorized its commit and push to existing PR #4. This approval covers public Git disclosure of the imported descriptions and this technical document. Merge and website deployment remain separately gated.
 
 The one-time import replaces only `systems[].infoCard.description` in `canonical-dataset-test/sector.json` and `cantums[].infoCard.description` in `canonical-dataset-test/cantums.json`, using the approved JSON objects without rewriting their text.
@@ -33,7 +36,7 @@ Shumdom remains visible from 760 with no description until 776; Morluk remains v
 
 The first sandboxed test run exited 1 with 43 temporary-path access failures; rerunning with the required filesystem access passed all 371 tests. Local checks used Node 20.5.1/npm 9.8.0; no new Node 24 or hosted-CI run is claimed. The ordinary commands do not validate this candidate; the separate candidate checks above do.
 
-Chromium verified 87 open-InfoCard cases using the original viewer and a byte-identical isolated candidate. Year changes in both directions preserved the selected entity and exact description. No browser errors occurred. Long descriptions scroll without horizontal overflow at 1440×1000 and 390×844. Existing `#description` styling uses `white-space: normal`, so paragraph breaks collapse visually even though dataset and DOM strings preserve them. This presentation defect is reported for separate review; no UI change is included. Mobile-size browser emulation is not physical-device or cross-browser certification.
+Chromium verified 87 open-InfoCard cases using the original viewer and a byte-identical isolated candidate. Year changes in both directions preserved the selected entity and exact description. No browser errors occurred. Long descriptions scroll without horizontal overflow at 1440×1000 and 390×844. Existing `#description` styling uses `white-space: normal`, so paragraph breaks collapse visually even though dataset and DOM strings preserve them. This was the migration-stage presentation finding. The later application integration fixes it narrowly with text-only `white-space: pre-line`; see the integration report. Mobile-size browser emulation is not physical-device or cross-browser certification.
 
 The normal-Demo browser smoke check also passed: five original system IDs, four detail files, two factions and the unchanged 24-ly radius, with zero browser errors. The NEXUS landing page created no renderer canvas.
 

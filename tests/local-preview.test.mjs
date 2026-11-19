@@ -8,7 +8,7 @@ import {validateManifest,registration,loadPreviewScenario,validatePreviewScenari
 import {VIEWER_DEFAULTS,createVisualConfig} from '../src/viewer/visual-config.mjs';
 import {calibrationDataset} from './calibration/scenario.mjs';
 import {cantumField} from '../src/core/cartography.mjs';
-import {demoInputAudit} from '../vite.config.mjs';
+import {datasetInputAudit} from '../vite.config.mjs';
 import {startCalibrationPreview,CALIBRATION_PATH,readPreviewResource} from '../scripts/preview-cantum-calibration.mjs';
 
 const read=path=>JSON.parse(fs.readFileSync(new URL('./calibration/'+path,import.meta.url),'utf8'));
@@ -105,7 +105,7 @@ test('diagnostics derive actual historical contributors and optional rendered/re
   }
 });
 test('new preview registry and utilities are rejected by unchanged production source admission',()=>{
-  const hook=demoInputAudit().generateBundle,context={error(message){throw new Error(message);}};
+  const hook=datasetInputAudit().generateBundle,context={error(message){throw new Error(message);}};
   for(const file of ['calibration/preview.mjs','calibration/scenarios/preview-manifest.json','calibration/scenarios/island-elevation.json']) {
     const path=fileURLToPath(new URL('./'+file,import.meta.url));assert.throws(()=>hook.call(context,{}, {chunk:{type:'chunk',modules:{[path]:{}}}}),/Unexpected input/);
   }

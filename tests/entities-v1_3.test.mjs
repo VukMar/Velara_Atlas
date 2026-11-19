@@ -4,13 +4,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {readDatasetSource, readDemoSource} from '../scripts/demo-files.mjs';
-import {datasetInventory, safeDatasetPath} from '../scripts/dataset-inventory.mjs';
+import {readDatasetSource, readDemoSource} from './archived-demo.mjs';
+import {datasetInventory, safeDatasetPath} from './archived-demo.mjs';
 import {recordErrors, structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {generateNavigation} from '../scripts/navigation.mjs';
 import {scanDataset, parseArguments} from '../scripts/idfind.mjs';
-import {demoInputAudit, createDemoConfig} from '../vite.config.mjs';
+import {datasetInputAudit, createAtlasConfig} from '../vite.config.mjs';
 import {atYear, resolveInfoCard} from '../src/core/history.mjs';
 import {createEntityIndex, resolveEntityReference, resolveAffiliation, resolveInfoCardPresentation, resolveGoverningCantum} from '../src/core/infocard-resolver.mjs';
 
@@ -48,7 +48,7 @@ test('isolated v1.3 inventory and complete records validate; active Demo support
   assert.equal(inventory.files.length,8);assert.equal(dataset.factionFiles.size,2);assert.equal(dataset.detailFiles.size,1);
   assert.deepEqual(inventory.factions.map(f=>f.id),['fac_9901','fac_9902']);
   assert.equal(dataset.sector.systems[1].publicDetailPath,null);
-  assert.deepEqual(allErrors(readDemoSource(ROOT).dataset),[]);assert.doesNotThrow(()=>createDemoConfig({datasetRoot:ROOT}));
+  assert.deepEqual(allErrors(readDemoSource(ROOT).dataset),[]);assert.doesNotThrow(()=>createAtlasConfig({datasetRoot:ROOT}));
   assert.equal(readDemoSource().dataset.sector.schemaVersion,'1.3.0');
   assert.equal(createEntityIndex(readDemoSource().dataset).size,4);
   const legacy=structuredClone(readDemoSource().dataset);legacy.sector.schemaVersion='1.2.0';
@@ -248,7 +248,7 @@ test('malformed faction identities, JSON and registry mirrors withhold ID sugges
 
 test('repeat JSON loads are independent; isolated fixtures stay rejected while the pure resolver is explicitly admitted',()=>{
   const d=source();faction(d).nameHistory[0].name='MUTATED';assert.equal(faction(source()).nameHistory[0].name,'TEST Intelligence Office');
-  const plugin=demoInputAudit(),context={error(message){throw new Error(message);}};
+  const plugin=datasetInputAudit(),context={error(message){throw new Error(message);}};
   for(const id of [path.join(ROOT,'factions.json'),path.join(ROOT,'factions/fac_9901.json') ])
     assert.throws(()=>plugin.generateBundle.call(context,{}, {chunk:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
   assert(datasetInventory().files.includes('factions.json'));

@@ -1,6 +1,6 @@
 /** Real Chromium MP3 loading/decoding plus isolated denial/failure probes. No speaker/fidelity claim. */
 async page=>{
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production',key='velara-atlas:audio-enabled:v1';
+  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173',edition=dev?'demo':'production',key='velara-atlas:audio-enabled:v1';
   const completed='velara-atlas:first-entry-completed:v1',migration='velara-atlas:first-entry-migration:v1',keys=[key,completed,migration];
   const ready=()=>page.waitForFunction(()=>!document.querySelector('#audio-toggle').disabled&&document.querySelector('#viewport').dataset.markers!==undefined);
   const clear=()=>page.evaluate(keys=>keys.forEach(k=>localStorage.removeItem(k)),keys);

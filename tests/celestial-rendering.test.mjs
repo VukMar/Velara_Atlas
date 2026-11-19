@@ -11,8 +11,8 @@ import {ICONS,categoryIcon,iconCandidates} from '../src/viewer/icon-registry.mjs
 import {ICON_PATHS} from '../src/viewer/icon-manifest.mjs';
 import {approvedIconSources,validateIconSource,iconFiles} from '../scripts/svg-assets.mjs';
 import {disposeTree} from '../src/viewer/cartographic-layers.mjs';
-import {demoInputAudit} from '../vite.config.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {datasetInputAudit} from '../vite.config.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 const body=(extras={})=>({id:'cb_9000',entityType:'celestial_body',objectType:'planet',position:{x:0,y:0,z:0},physicalDiameterKm:600000,...extras});
 const camera=perspective=>{
   const c=perspective?new PerspectiveCamera(45,1,.01,10000):new OrthographicCamera(-100,100,100,-100,.01,10000);
@@ -142,7 +142,7 @@ test('all fourteen original icons are safe, explicit and classification-driven; 
   for(const malicious of ['<script/>','<foreignObject/>','<image href="remote"/>','<path onclick="alert(1)"/>','<path fill="url(remote)"/>']) {
     assert.throws(()=>validateIconSource(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${malicious}</svg>`));
   }
-  const hook=demoInputAudit().generateBundle,context={error(message){throw new Error(message);}};
+  const hook=datasetInputAudit().generateBundle,context={error(message){throw new Error(message);}};
   const bundle=path=>({asset:{type:'chunk',modules:{[path]:{}}}});
   for(const file of iconFiles)assert.doesNotThrow(()=>hook.call(context,{},bundle(file)));
   assert.throws(()=>hook.call(context,{},bundle(iconFiles[0].replace('star.svg','secret.svg'))),/Unexpected input/);
