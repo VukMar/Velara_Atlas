@@ -476,6 +476,19 @@ Stage 4 provides registered sigil-only identities for eligible smaller islands.
 This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
 
+## Final Cantum compositing polish - 2026-11-20
+
+The creator approves the existing world-space geometry, elevation, camera behavior
+and zoom crossfade. The subsequent polish changes only ordinary draw priority
+(names 1.5 to 4.5, after markers at 4) and maximum text opacity (.46 to .82).
+Depth testing remains enabled and text depth writing disabled; ordinary markers
+keep depth writing, preserving foreground occlusion and translucent overlap.
+Reticles/interactive captions stay above decoration. Fit, textures/filtering, UVs,
+world dimensions, XYZ, influence geometry/alpha and 1.15x-1.50x thresholds are
+unchanged. [Current contract](CARTOGRAPHIC_LABELING.md#final-visual-hierarchy-polish---2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing review
+remains pending; no version, merge or publication change is authorized.
+
 ## World-space typography and coordinated visibility - 2026-11-20
 
 The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
@@ -492,7 +505,7 @@ viewport; perspective foreshortening is natural. Component-local contributor
 IDs own highest-star elevation, with additional whole-box envelope clearance.
 Meshes are nonpickable, depth tested and disposed by their map owner.
 
-One smoothstep crossfades Cantum opacity .46 to zero and passive sector system
+One smoothstep crossfades Cantum opacity .82 to zero and passive sector system
 captions zero to one between 1.15x and 1.50x overview zoom. Hover/focus/selection
 stay full strength. Object Names off hides passive captions; Cantum Names off or
 no eligible full names bypasses suppression. Influence fill and System View

@@ -1,4 +1,196 @@
-# World-anchored Cantum typography - PR #5 review record
+# Final Cantum visual hierarchy polish - PR #5 review record
+
+The subsequent creator task visually approves the world-space size, safe fit,
+placement, fixed horizontal/+Y orientation, component elevation, camera behavior
+and 1.15x-1.50x crossfade at **62c4927a69aaf370fe07d5d615007f2553bfbc3f**.
+This revision is compositing/contrast only, on the same
+`refine/cantum-adaptive-nameplates` / draft PR #5. Parent PR #4 remains
+`e1ae55c1ea65477b003278bc49f2090fa662172f`. Final compositing approval is pending.
+Version stays **1.0.0 candidate** as requested; no increment for this polish.
+
+## Exact implementation and depth rationale
+
+Only two production values change:
+
+- `src/viewer/cartographic-layers.mjs`: `layerOrder.cantumNames` **1.5 -> 4.5**.
+  Grid 0, influence 1, zones 2, routes 3 and ordinary markers 4 stay unchanged.
+- `src/viewer/territorial-labels.mjs`: maximum Cantum opacity **.46 -> .82**.
+  The existing smoothstep still starts at 1.15x and ends at 1.50x; system-caption
+  opacity is untouched. At 1.325x, Cantum/system opacities are now **.41/.50**.
+
+Ordinary sector marker materials are transparent but write depth. Name materials
+already have `transparent: true`, normal blending, `depthTest: true`,
+`depthWrite: false`, front faces and upward-facing world planes. Originally the
+names drew before markers without writing depth, allowing dots to replace their
+strokes. Drawing names at 4.5 lets each approved elevated plane blend over the
+lower marker pixels while still testing their depth. Unrelated foreground
+geometry remains in front and occludes text. No global depth change, special
+render pass, stencil, extra material or marker suppression is introduced.
+
+The selected maximum **.82** is within the requested .80-.85 range and improves
+same-color glyph contrast without white tint, opaque backing, extra glow or a
+thicker outline. The existing restrained dark shadow is sufficient. CanvasTexture
+filtering (linear magnification, trilinear mip minification), DPR handling, source
+font, UV mapping, raster bounds, caching and disposal are unchanged. Influence
+clouds keep soft Gaussian fields, colors, geometry and .16/.22 alpha caps behind
+stars; no separate influence adjustment was needed.
+
+## Matched actual-renderer comparisons
+
+All captures use the same silent-entry canonical Atlas, 1200 A.E., camera, layers,
+viewport and renderer settings for each before/after pair. The Drevnasel detail is
+a crop of the actual 1x view, avoiding any altered zoom/fade or artificial rescale.
+The 3D camera is switched through the real Map Controls button; orbit uses the
+same fixed azimuth change. No screenshot is recolored or painted.
+
+| Case | Starting 62c4927 | Refined |
+| --- | --- | --- |
+| Desktop 1440x1000 | [Before](review/cantum-polish/before-overview.png) | [After](review/cantum-polish/after-overview.png) |
+| Drevnasel overlaps | [Before](review/cantum-polish/before-drevnasel-detail.png) | [After](review/cantum-polish/after-drevnasel-detail.png) |
+| Mobile 390x844 | [Before](review/cantum-polish/before-390x844.png) | [After](review/cantum-polish/after-390x844.png) |
+| Small mobile 320x568 | [Before](review/cantum-polish/before-320x568.png) | [After](review/cantum-polish/after-320x568.png) |
+| Landscape 844x390 | [Before](review/cantum-polish/before-844x390.png) | [After](review/cantum-polish/after-844x390.png) |
+| Standard perspective | [Before](review/cantum-polish/before-perspective.png) | [After](review/cantum-polish/after-perspective.png) |
+| Orbit | [Before](review/cantum-polish/before-orbit.png) | [After](review/cantum-polish/after-orbit.png) |
+| Fade start 1.15x | [Before](review/cantum-polish/before-zoom-1_15.png) | [After](review/cantum-polish/after-zoom-1_15.png) |
+| Midpoint 1.325x | [Before](review/cantum-polish/before-zoom-1_325.png) | [After](review/cantum-polish/after-zoom-1_325.png) |
+| Complete 1.50x | [Before](review/cantum-polish/before-zoom-1_5.png) | [After](review/cantum-polish/after-zoom-1_5.png) |
+| Portrait, renderer DPR=2 | [Before](review/cantum-polish/before-390x844-dpr2.png) | [After](review/cantum-polish/after-390x844-dpr2.png) |
+
+Desktop and perspective retain the same six names and broad Drevnasel lettering;
+stronger tint and translucent over-dot compositing make strokes more continuous.
+Portrait gains clarity without changing geographic proportions. Small/short charts
+still produce small type, especially compact Gornebes; this is a remaining natural
+limit, not a reason to reinstate a CSS minimum or change the approved fade.
+Mobile/reticle/interaction checks retain all stars. The fully transitioned 1.50x
+PNG is byte-identical before/after; unchanged system captions dominate that view.
+No responsive threshold adjustment was made.
+
+## Pixel, geometry and interaction evidence
+
+`tests/browser-cantum-composition.mjs` renders a bounded isolated GPU target using
+clones of the real Drevnasel texture/material/plane and real gold marker material/
+sphere. It does not modify the application map. At a solid glyph-interior sample,
+the old draw sequence is `name, star` and the result is the full star RGB
+**[202,166,92]**. The new sequence is `star, name`; text alone is **[20,98,142]**
+and their composite is **[57,129,159]**, retaining about **18.5%** normalized RGB
+contribution from the underlying gold dot. Moving the unrelated marker in front
+of the plane yields the unchanged full star RGB, proving retained depth occlusion.
+These are GPU render-target values, not edited screenshot colors.
+
+`tests/browser-cantum-polish.mjs` compares each current view against the captured
+starting world-space fingerprint: full labels, X/Z, both elevations, scales,
+quaternions and raster dimensions all match exactly in every required camera,
+zoom, viewport and DPR case. All **70** visible canonical marker centers resolve
+to their original entities through the real picker. Hovered and selected reticles
+both remain visible above the canvas; interactive captions retain full strength
+even with Object Names off. The existing independent toggles, historical-name
+filtering, navigation and resource regressions are rerun separately below.
+
+## Validation, resources and preservation
+
+Node **24.22.3**: `npm ci`, `npm test` (**388 passed, zero failures/skips**),
+`npm run validate`, `npm run connections:check`, `npm run build`,
+`npm run release:check`, and `git diff --check` pass. The audited build retains
+33 admitted files and all exact pinned 16 SVG / 3 PNG / 8 MP3 originals; review
+PNGs are documentation only. Existing Vite large-chunk advice and two moderate
+npm dependency advisories remain, with no dependency or lockfile changes.
+
+[Canonical preservation evidence](review/cantum-polish/preservation.json): all
+five JSON files match both the starting commit and parent PR #4 **byte for byte**,
+including all **234 dated descriptions**. Source owners for name rendering, marker
+sizing, System View models, camera, scene layers, projected captions, influence
+and reticles remain unchanged. The only fitting-module edit is the opacity
+constant; Gaussian components, maximum rectangle/marker scoring, registered sigil
+fallback, world geometry and historical inputs are unchanged.
+
+Four full fixture remounts and repeated timeline/political transitions check
+resource/listener stability and stale callbacks. Detailed timing and final browser
+results are recorded in the current evidence summary below. No new texture,
+geometry, material, draw pass or persistent listener is required by this polish.
+Timing observations are local software-WebGL samples, not physical-device or
+cross-browser performance certification.
+
+## Final browser and resource results
+
+[Current machine-readable evidence](review/cantum-polish/results.json),
+[before capture/fingerprints](review/cantum-polish/before.json) and
+[after capture/fingerprints](review/cantum-polish/after.json) record 14 distinct
+browser callbacks, all with no unexpected page/console errors:
+
+| Scope | Passed browser callbacks |
+| --- | --- |
+| Canonical dev | `browser-cantum-polish`, `browser-adaptive-nameplates`, `browser-control-bars` |
+| Isolated archived fixture | `browser-phase3f-showcase`, `browser-cantum-sigils`, `browser-island-identities`, `browser-labeling`, `browser-influence-envelopes`, `browser-grid-zero`, `browser-viewer-modules` |
+| Isolated governance | `browser-governing-influence` |
+| Isolated calibration | `browser-cantum-calibration` (2 / 2.5 / 3 ly x top/perspective/low angle, pointer/touch/double click/keyboard, DPR=2, history/transfer, mobile) |
+| Production preview | `browser-world-production`, `browser-release-readiness`, `browser-control-bars` |
+
+The previously unverified governance and Phase 3F callbacks both pass. Governance
+needed only an explicit Technical-tab click in its test adapter to match the
+current Description-first InfoCard. No production interface change was required.
+Political-transition counts are stable; all four full fixture remounts retain
+11 geometries, 3 textures and 228 tracked listeners, with zero stale selections
+or renders. Names/Object Names preferences, interactive caption overrides,
+selection/hover reticles, historical names, navigation, influence alpha, absolute
+grid elevation, invisible hit targets, media/entry and 10-second toolbars retain
+their regression coverage.
+
+The matched warm canonical sample has **79 main-scene draw calls, 80 geometries
+and 8 textures in both versions** after perspective/return and the bounded GPU
+test. Normal initial top overview remains 73 geometries / 7 textures. No new
+render pass/resource is introduced. With requestAnimationFrame pacing, a GPU
+finish before/after each frame, five warmups and 30 samples, before median/p95
+was **4.7 / 35.0 ms**, after **5.1 / 32.5 ms**. These single local software-WebGL
+runs show variable tail latency and are observations rather than a performance
+promise, hardware benchmark or absolute heap/GPU leak certification.
+
+The starting screenshots were captured with the two original `62c4927` source
+files. A refresh used those original files to exercise the real camera button
+and paced timing, restoring the final files automatically before the after run.
+The final production diff remains only the two presentation values and their
+explanatory comment. The final candidate SHA is reported in PR #5 and delivery;
+working-tree/remote verification is part of closeout. Final creator visual review
+is pending. Neither PR is merged, parent PR #4 is untouched, and no deployment,
+tag or Release is performed. Version remains 1.0.0.
+
+Remaining limits: 320px and short landscape charts naturally make compact names
+small; low-angle foreshortening and unrelated foreground occlusion are preserved.
+Dense overlapping information can still occur at the fade midpoint, governed by
+the approved transition and collision rules. Only local Chrome emulated viewports
+and renderer DPR=2 were checked; physical phones, other browser engines and
+screen readers were not certified. No threshold or font-size exception was added.
+
+## Current changed-file inventory and reproduction
+
+- Production: `src/viewer/cartographic-layers.mjs`, `territorial-labels.mjs`.
+- Tests: `tests/labeling.test.mjs`, `browser-adaptive-nameplates.mjs`,
+  `browser-governing-influence.mjs` (explicit Technical tab selection for the
+  current InfoCard), plus `browser-cantum-composition.mjs` and
+  `browser-cantum-polish.mjs`.
+- Active instructions/docs: `AGENTS.md`, `docs/ARCHITECTURE.md`,
+  `CARTOGRAPHIC_LABELING.md`, `CANTUM_TERRITORY_RENDERING.md`,
+  `NEXUS_VISUAL_IDENTITY.md`, `VIEWER_SPECIFICATION.md`, `PROJECT_STATUS.md`
+  and this PR #5 record.
+- Review evidence: `docs/review/cantum-polish/` (11 matched PNG pairs,
+  starting/final view and compositing JSON, preservation and regression summary).
+
+Run Node 24 checks, then `npm run atlas`. Execute
+`tests/browser-cantum-polish.mjs` with the existing local Playwright callback
+harness; it defaults to the final after comparison. `CANTUM_POLISH_PHASE=before`
+is used only with the two original starting source files from `62c4927` to capture
+the baseline. The full geometry remains fixed. Existing regressions run against
+Canonical, the explicit archived/governance/calibration fixtures and production
+preview one active development configuration at a time. Prior world-space review
+PNGs below remain frozen and are not overwritten by the current regression runs.
+
+Both PRs remain unmerged, PR #5 remains draft, and the parent branch is untouched.
+No deployment, tag, Release or version change. Stop for creator final visual review.
+
+---
+
+## Previous world-space review record at 62c4927
+
 
 The subsequent 2026-11-20 creator request revises the existing draft PR #5 from
 `bd8d2dafab722b0a98b2beb9c1f6c39589e27717` on

@@ -1,0 +1,5079 @@
+{
+  "startingSHA": "62c4927a69aaf370fe07d5d615007f2553bfbc3f",
+  "phase": "after",
+  "views": {
+    "overview": {
+      "mode": "top",
+      "zoom": 1,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 200.86681743840063,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 123.81891181951,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 123.84584044487337,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 147.4212978063204,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 88.47543066686819,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 123.84178466577679,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 7,
+      "geometries": 73,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "zoom-1_15": {
+      "mode": "top",
+      "zoom": 1.15,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 230.99684005416069,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 142.39174859243653,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 142.4227165116044,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 169.53449247726846,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 101.74674526689843,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 142.4180523656433,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 7,
+      "geometries": 73,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "zoom-1_325": {
+      "mode": "top",
+      "zoom": 1.325,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 266.1485331058808,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 164.0600581608508,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 164.09573858945723,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 195.33321959337454,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 117.22994563360038,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 164.09036468215425,
+          "visible": true,
+          "opacity": 0.40999999999999986,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 7,
+      "geometries": 73,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [
+        {
+          "id": "sys_1000001",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000002",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000003",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000004",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000005",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000006",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000007",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000008",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000014",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000019",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000020",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000027",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000028",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000029",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000030",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000031",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000032",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000039",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000009",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000010",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000012",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000013",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000036",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000017",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000018",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000023",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000025",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000057",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000058",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000062",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000068",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000069",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000021",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000022",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000024",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000026",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000041",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000045",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000051",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000053",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000033",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000040",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000044",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000049",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000055",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000056",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000063",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000042",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000048",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000061",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000034",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000038",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000046",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000050",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000054",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000060",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000064",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000066",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000035",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000037",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000043",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000047",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000052",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000059",
+          "opacity": 0.5
+        },
+        {
+          "id": "sys_1000067",
+          "opacity": 0.5
+        }
+      ],
+      "markers": 68
+    },
+    "zoom-1_5": {
+      "mode": "top",
+      "zoom": 1.5,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 301.30022615760095,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 185.72836772926505,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 185.7687606673101,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 221.13194670948067,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 132.71314600030232,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 185.76267699866523,
+          "visible": false,
+          "opacity": 0,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 7,
+      "geometries": 73,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [
+        {
+          "id": "sys_1000001",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000002",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000003",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000004",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000005",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000006",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000007",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000008",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000014",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000019",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000020",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000027",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000028",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000029",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000031",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000032",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000039",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000012",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000013",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000015",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000017",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000018",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000023",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000025",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000062",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000068",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000069",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000021",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000022",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000024",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000026",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000041",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000045",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000051",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000053",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000033",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000040",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000044",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000049",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000055",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000056",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000063",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000042",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000048",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000061",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000034",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000038",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000046",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000050",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000054",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000060",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000064",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000066",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000035",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000037",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000043",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000047",
+          "opacity": 1
+        },
+        {
+          "id": "sys_1000052",
+          "opacity": 1
+        }
+      ],
+      "markers": 63
+    },
+    "perspective": {
+      "mode": "perspective",
+      "zoom": 0.7692307692307693,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            4.38,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 154.7177183824555,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.85,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 90.74991772601798,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            5.39,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 94.91376357355593,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            2.02,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 119.02802353335797,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.859999999999999,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 76.39466659465205,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            5.319999999999999,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 103.82048987699386,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "orbit": {
+      "mode": "perspective",
+      "zoom": 0.7692307692307693,
+      "width": 839,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            4.38,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 159.83593872526652,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.85,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 85.49096324284801,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            5.39,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 88.32021790611412,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            2.02,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 125.12383142992431,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.859999999999999,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 76.17787211580908,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            5.319999999999999,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 105.70811056492477,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "390x844": {
+      "mode": "top",
+      "zoom": 1,
+      "width": 372,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 89.06133025874259,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.899446003406105,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.911385751481404,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 65.3643894921945,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 39.22867724442785,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.90958747993917,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "320x568": {
+      "mode": "top",
+      "zoom": 1,
+      "width": 302,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 72.30247779069963,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 44.56890508878668,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 44.578598110073614,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 53.06463878129769,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 31.846936902734438,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 44.577138222961366,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "844x390": {
+      "mode": "top",
+      "zoom": 1,
+      "width": 229,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.82538878831197,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 33.79562670639785,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 33.802976712605485,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 40.237755897076724,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 24.148836260682735,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 33.80186971211309,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    },
+    "390x844-dpr2": {
+      "mode": "top",
+      "zoom": 1,
+      "width": 372,
+      "selected": null,
+      "names": [
+        {
+          "label": {
+            "id": "can_1000001:0",
+            "cantumId": "can_1000001",
+            "name": "Drevnasel",
+            "color": "#57B8D9",
+            "x": 7.08984375,
+            "z": -7.51953125,
+            "angle": 0,
+            "width": 13.167669796319469,
+            "height": 3.4790185546875,
+            "cellIndex": 5968,
+            "horizontalSpace": 14.630744218132744,
+            "maximumHeight": 3.4790185546875,
+            "contributorIds": [
+              "sys_1000001",
+              "sys_1000002",
+              "sys_1000003",
+              "sys_1000004",
+              "sys_1000005",
+              "sys_1000006",
+              "sys_1000007",
+              "sys_1000008",
+              "sys_1000019",
+              "sys_1000039"
+            ],
+            "boundaryClearance": 5.5859375,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 329.34375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Drevnasel",
+          "position": [
+            7.08984375,
+            3.78,
+            -7.51953125
+          ],
+          "topY": 3.78,
+          "perspectiveY": 4.38,
+          "scale": [
+            13.167669796319469,
+            3.4790185546875,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 89.06133025874259,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            989,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000002:0",
+            "cantumId": "can_1000002",
+            "name": "Visshum",
+            "color": "#D88962",
+            "x": -15.68359375,
+            "z": -16.97265625,
+            "angle": 0,
+            "width": 8.116853575772412,
+            "height": 2.5102880859375,
+            "cellIndex": 3099,
+            "horizontalSpace": 9.01872619530268,
+            "maximumHeight": 2.7060644531249998,
+            "contributorIds": [
+              "sys_1000009",
+              "sys_1000010",
+              "sys_1000011",
+              "sys_1000012",
+              "sys_1000013",
+              "sys_1000036"
+            ],
+            "boundaryClearance": 4.7265625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 281.359375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Visshum",
+          "position": [
+            -15.68359375,
+            3.25,
+            -16.97265625
+          ],
+          "topY": 3.25,
+          "perspectiveY": 3.85,
+          "scale": [
+            8.116853575772412,
+            2.5102880859375,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.899446003406105,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            845,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000003:0",
+            "cantumId": "can_1000003",
+            "name": "Okeanberg",
+            "color": "#72BC89",
+            "x": -10.09765625,
+            "z": -10.09765625,
+            "angle": 0,
+            "width": 8.118618861106123,
+            "height": 1.9374609374999998,
+            "cellIndex": 5160,
+            "horizontalSpace": 9.020687623451247,
+            "maximumHeight": 1.9374609374999998,
+            "contributorIds": [
+              "sys_1000017",
+              "sys_1000018",
+              "sys_1000023",
+              "sys_1000024",
+              "sys_1000025",
+              "sys_1000041",
+              "sys_1000045",
+              "sys_1000051",
+              "sys_1000053"
+            ],
+            "boundaryClearance": 5.15625,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 364.625,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Okeanberg",
+          "position": [
+            -10.09765625,
+            4.79,
+            -10.09765625
+          ],
+          "topY": 4.79,
+          "perspectiveY": 5.39,
+          "scale": [
+            8.118618861106123,
+            1.9374609374999998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.911385751481404,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            1094,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000005:0",
+            "cantumId": "can_1000005",
+            "name": "Vodravan",
+            "color": "#D97FA1",
+            "x": 14.39453125,
+            "z": 0.21484375,
+            "angle": 0,
+            "width": 9.664089844276068,
+            "height": 2.6785107421874996,
+            "cellIndex": 8289,
+            "horizontalSpace": 10.737877604751187,
+            "maximumHeight": 2.6785107421874996,
+            "contributorIds": [
+              "sys_1000035",
+              "sys_1000037",
+              "sys_1000043",
+              "sys_1000047",
+              "sys_1000059"
+            ],
+            "boundaryClearance": 2.578125,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 313.953125,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Vodravan",
+          "position": [
+            14.39453125,
+            1.42,
+            0.21484375
+          ],
+          "topY": 1.42,
+          "perspectiveY": 2.02,
+          "scale": [
+            9.664089844276068,
+            2.6785107421874996,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 65.3643894921945,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            942,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000006:0",
+            "cantumId": "can_1000006",
+            "name": "Gornebes",
+            "color": "#799DE5",
+            "x": 4.51171875,
+            "z": 6.66015625,
+            "angle": 0,
+            "width": 5.799938839901968,
+            "height": 1.5821630859374998,
+            "cellIndex": 10186,
+            "horizontalSpace": 6.444376488779964,
+            "maximumHeight": 1.79244140625,
+            "contributorIds": [
+              "sys_1000034",
+              "sys_1000038",
+              "sys_1000046",
+              "sys_1000050",
+              "sys_1000054",
+              "sys_1000066"
+            ],
+            "boundaryClearance": 3.8671875,
+            "markerOverlap": true,
+            "symbolOverlap": false,
+            "referencePixels": {
+              "width": 318.984375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Gornebes",
+          "position": [
+            4.51171875,
+            5.26,
+            6.66015625
+          ],
+          "topY": 5.26,
+          "perspectiveY": 5.859999999999999,
+          "scale": [
+            5.799938839901968,
+            1.5821630859374998,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 39.22867724442785,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            957,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        },
+        {
+          "label": {
+            "id": "can_1000007:0",
+            "cantumId": "can_1000007",
+            "name": "Zaklun",
+            "color": "#E0C36B",
+            "x": -2.79296875,
+            "z": 3.22265625,
+            "angle": 0,
+            "width": 8.118352987625416,
+            "height": 3.0816650390625,
+            "cellIndex": 9145,
+            "horizontalSpace": 9.020392208472684,
+            "maximumHeight": 3.0816650390625,
+            "contributorIds": [
+              "sys_1000033",
+              "sys_1000040",
+              "sys_1000044",
+              "sys_1000049",
+              "sys_1000055",
+              "sys_1000063"
+            ],
+            "boundaryClearance": 6.015625,
+            "markerOverlap": true,
+            "symbolOverlap": true,
+            "referencePixels": {
+              "width": 229.234375,
+              "height": 87.015625,
+              "fontSize": 64,
+              "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+              "fontWeight": "600",
+              "letterSpacing": "3.84px"
+            },
+            "variant": "name-with-optional-sigil"
+          },
+          "text": "Zaklun",
+          "position": [
+            -2.79296875,
+            4.72,
+            3.22265625
+          ],
+          "topY": 4.72,
+          "perspectiveY": 5.319999999999999,
+          "scale": [
+            8.118352987625416,
+            3.0816650390625,
+            1
+          ],
+          "rotation": [
+            -0.7071067811865475,
+            0,
+            0,
+            0.7071067811865476
+          ],
+          "pixels": 54.90958747993917,
+          "visible": true,
+          "opacity": 0.82,
+          "image": 0,
+          "failed": false,
+          "dimensions": [
+            688,
+            262
+          ],
+          "depthTest": true,
+          "decorative": true
+        }
+      ],
+      "textures": 8,
+      "geometries": 80,
+      "roots": 1,
+      "dom": 0,
+      "resources": 6,
+      "hasNames": true,
+      "captions": [],
+      "markers": 70
+    }
+  },
+  "composition": {
+    "text": {
+      "pixel": [
+        20,
+        98,
+        142,
+        255
+      ],
+      "order": [
+        "name"
+      ]
+    },
+    "marker": {
+      "pixel": [
+        202,
+        166,
+        92,
+        255
+      ],
+      "order": [
+        "star"
+      ]
+    },
+    "both": {
+      "pixel": [
+        57,
+        129,
+        159,
+        255
+      ],
+      "order": [
+        "star",
+        "name"
+      ]
+    },
+    "foreground": {
+      "pixel": [
+        202,
+        166,
+        92,
+        255
+      ],
+      "order": [
+        "star",
+        "name"
+      ]
+    },
+    "foregroundOnly": {
+      "pixel": [
+        202,
+        166,
+        92,
+        255
+      ],
+      "order": [
+        "star"
+      ]
+    },
+    "starShare": 0.18478260869565216,
+    "nameOrder": 4.5,
+    "markerOrder": 4,
+    "opacity": 0.82,
+    "depthTest": true,
+    "depthWrite": false,
+    "markerDepthWrite": true,
+    "filtering": 1008,
+    "textureSize": [
+      989,
+      262
+    ]
+  },
+  "interaction": {
+    "picks": [
+      {
+        "id": "sys_1000001",
+        "picked": "sys_1000001"
+      },
+      {
+        "id": "sys_1000002",
+        "picked": "sys_1000002"
+      },
+      {
+        "id": "sys_1000003",
+        "picked": "sys_1000003"
+      },
+      {
+        "id": "sys_1000004",
+        "picked": "sys_1000004"
+      },
+      {
+        "id": "sys_1000005",
+        "picked": "sys_1000005"
+      },
+      {
+        "id": "sys_1000006",
+        "picked": "sys_1000006"
+      },
+      {
+        "id": "sys_1000007",
+        "picked": "sys_1000007"
+      },
+      {
+        "id": "sys_1000008",
+        "picked": "sys_1000008"
+      },
+      {
+        "id": "sys_1000014",
+        "picked": "sys_1000014"
+      },
+      {
+        "id": "sys_1000019",
+        "picked": "sys_1000019"
+      },
+      {
+        "id": "sys_1000020",
+        "picked": "sys_1000020"
+      },
+      {
+        "id": "sys_1000027",
+        "picked": "sys_1000027"
+      },
+      {
+        "id": "sys_1000028",
+        "picked": "sys_1000028"
+      },
+      {
+        "id": "sys_1000029",
+        "picked": "sys_1000029"
+      },
+      {
+        "id": "sys_1000030",
+        "picked": "sys_1000030"
+      },
+      {
+        "id": "sys_1000031",
+        "picked": "sys_1000031"
+      },
+      {
+        "id": "sys_1000032",
+        "picked": "sys_1000032"
+      },
+      {
+        "id": "sys_1000039",
+        "picked": "sys_1000039"
+      },
+      {
+        "id": "sys_1000009",
+        "picked": "sys_1000009"
+      },
+      {
+        "id": "sys_1000010",
+        "picked": "sys_1000010"
+      },
+      {
+        "id": "sys_1000011",
+        "picked": "sys_1000011"
+      },
+      {
+        "id": "sys_1000012",
+        "picked": "sys_1000012"
+      },
+      {
+        "id": "sys_1000013",
+        "picked": "sys_1000013"
+      },
+      {
+        "id": "sys_1000015",
+        "picked": "sys_1000015"
+      },
+      {
+        "id": "sys_1000016",
+        "picked": "sys_1000016"
+      },
+      {
+        "id": "sys_1000036",
+        "picked": "sys_1000036"
+      },
+      {
+        "id": "sys_1000017",
+        "picked": "sys_1000017"
+      },
+      {
+        "id": "sys_1000018",
+        "picked": "sys_1000018"
+      },
+      {
+        "id": "sys_1000023",
+        "picked": "sys_1000023"
+      },
+      {
+        "id": "sys_1000025",
+        "picked": "sys_1000025"
+      },
+      {
+        "id": "sys_1000057",
+        "picked": "sys_1000057"
+      },
+      {
+        "id": "sys_1000058",
+        "picked": "sys_1000058"
+      },
+      {
+        "id": "sys_1000062",
+        "picked": "sys_1000062"
+      },
+      {
+        "id": "sys_1000068",
+        "picked": "sys_1000068"
+      },
+      {
+        "id": "sys_1000069",
+        "picked": "sys_1000069"
+      },
+      {
+        "id": "sys_1000021",
+        "picked": "sys_1000021"
+      },
+      {
+        "id": "sys_1000022",
+        "picked": "sys_1000022"
+      },
+      {
+        "id": "sys_1000024",
+        "picked": "sys_1000024"
+      },
+      {
+        "id": "sys_1000026",
+        "picked": "sys_1000026"
+      },
+      {
+        "id": "sys_1000041",
+        "picked": "sys_1000041"
+      },
+      {
+        "id": "sys_1000045",
+        "picked": "sys_1000045"
+      },
+      {
+        "id": "sys_1000051",
+        "picked": "sys_1000051"
+      },
+      {
+        "id": "sys_1000053",
+        "picked": "sys_1000053"
+      },
+      {
+        "id": "sys_1000033",
+        "picked": "sys_1000033"
+      },
+      {
+        "id": "sys_1000040",
+        "picked": "sys_1000040"
+      },
+      {
+        "id": "sys_1000044",
+        "picked": "sys_1000044"
+      },
+      {
+        "id": "sys_1000049",
+        "picked": "sys_1000049"
+      },
+      {
+        "id": "sys_1000055",
+        "picked": "sys_1000055"
+      },
+      {
+        "id": "sys_1000056",
+        "picked": "sys_1000056"
+      },
+      {
+        "id": "sys_1000063",
+        "picked": "sys_1000063"
+      },
+      {
+        "id": "sys_1000042",
+        "picked": "sys_1000042"
+      },
+      {
+        "id": "sys_1000048",
+        "picked": "sys_1000048"
+      },
+      {
+        "id": "sys_1000061",
+        "picked": "sys_1000061"
+      },
+      {
+        "id": "sys_1000034",
+        "picked": "sys_1000034"
+      },
+      {
+        "id": "sys_1000038",
+        "picked": "sys_1000038"
+      },
+      {
+        "id": "sys_1000046",
+        "picked": "sys_1000046"
+      },
+      {
+        "id": "sys_1000050",
+        "picked": "sys_1000050"
+      },
+      {
+        "id": "sys_1000054",
+        "picked": "sys_1000054"
+      },
+      {
+        "id": "sys_1000060",
+        "picked": "sys_1000060"
+      },
+      {
+        "id": "sys_1000064",
+        "picked": "sys_1000064"
+      },
+      {
+        "id": "sys_1000066",
+        "picked": "sys_1000066"
+      },
+      {
+        "id": "sys_1000035",
+        "picked": "sys_1000035"
+      },
+      {
+        "id": "sys_1000037",
+        "picked": "sys_1000037"
+      },
+      {
+        "id": "sys_1000043",
+        "picked": "sys_1000043"
+      },
+      {
+        "id": "sys_1000047",
+        "picked": "sys_1000047"
+      },
+      {
+        "id": "sys_1000052",
+        "picked": "sys_1000052"
+      },
+      {
+        "id": "sys_1000059",
+        "picked": "sys_1000059"
+      },
+      {
+        "id": "sys_1000065",
+        "picked": "sys_1000065"
+      },
+      {
+        "id": "sys_1000067",
+        "picked": "sys_1000067"
+      },
+      {
+        "id": "sys_1000070",
+        "picked": "sys_1000070"
+      }
+    ],
+    "reticles": [
+      {
+        "id": "sys_1000001",
+        "visible": true
+      },
+      {
+        "id": "sys_1000002",
+        "visible": true
+      }
+    ],
+    "captions": [
+      {
+        "id": "sys_1000001",
+        "opacity": 1
+      },
+      {
+        "id": "sys_1000002",
+        "opacity": 1
+      }
+    ],
+    "focus": true,
+    "reticleZ": "3"
+  },
+  "timing": {
+    "method": "RAF paced; gl.finish; 5 warmups + 30 samples",
+    "medianMs": 5.099999999627471,
+    "p95Ms": 32.5,
+    "calls": 79,
+    "textures": 8,
+    "geometries": 80
+  },
+  "shots": [
+    "docs/review/cantum-polish/after-overview.png",
+    "docs/review/cantum-polish/after-drevnasel-detail.png",
+    "docs/review/cantum-polish/after-zoom-1_15.png",
+    "docs/review/cantum-polish/after-zoom-1_325.png",
+    "docs/review/cantum-polish/after-zoom-1_5.png",
+    "docs/review/cantum-polish/after-perspective.png",
+    "docs/review/cantum-polish/after-orbit.png",
+    "docs/review/cantum-polish/after-390x844.png",
+    "docs/review/cantum-polish/after-320x568.png",
+    "docs/review/cantum-polish/after-844x390.png",
+    "docs/review/cantum-polish/after-390x844-dpr2.png"
+  ],
+  "errors": []
+}

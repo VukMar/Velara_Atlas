@@ -187,6 +187,10 @@ light-year scale on `map.planeY`, with nine lines per axis. The existing project
 measurement arrow and per-map grid toggle are shared with System View. Influence
 meshes retain their separate presentation plane and explicit ordering above the
 grid. The current PR #5 world-space amendment supersedes Stage 1 DOM nameplates.
+The subsequent final hierarchy polish keeps this ownership and geometry unchanged:
+name order 4.5 follows ordinary marker order 4, with .82 overview opacity, retained
+depth testing/no text depth write and unchanged marker depth writing. Foreground
+occlusion remains spatial; reticles/captions retain their DOM precedence.
 `CantumNameplates` owns bounded CanvasTextures/materials shared by Cantum/variant,
 a shared unit-plane geometry, component-local star/envelope elevation and guarded
 image handlers. It detaches and disposes these resources before generic scene

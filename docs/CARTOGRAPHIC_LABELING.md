@@ -9,6 +9,27 @@ Cantum Stages 1-4 are now implemented; final artistic refinement remains deferre
 **Baseline:** Existing square chart and 8×8 system grid, floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.  
 **Design authorities:** `docs/VIEWER_SPECIFICATION.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/DATA_MODEL.md`, and `AGENTS.md`. This specification adds only the labeling behavior approved in the conversation; it does not supersede unrelated requirements.
 
+## Final visual hierarchy polish - 2026-11-20
+
+The creator approved the world-space size, placement, fixed horizontal orientation,
+component elevation, camera behavior and 1.15x-1.50x crossfade at `62c4927`.
+The subsequent task authorizes compositing/contrast polish only. Ordinary sector
+markers remain at render order 4; geographic lettering moves from 1.5 to **4.5**,
+after routes (3) and markers. Names retain `transparent: true`, `depthTest: true`,
+`depthWrite: false` and normal alpha blending. Marker depth writing is unchanged,
+so unrelated foreground geometry still occludes names. The approved elevated
+planes blend over lower stars without becoming an X-ray overlay. Hover/selected
+reticles and interactive captions remain above WebGL decoration.
+
+Overview Cantum opacity is now **.82** (previously .46), retaining Cantum colors
+and the existing restrained glyph shadow. No texture, filter, UV, source-font,
+world-size, fit, position, orientation, elevation or lifecycle changes. At the
+1.325x midpoint Cantum opacity is .41 and passive system opacity stays .50;
+1.15x/1.50x thresholds are unchanged on every viewport. No influence adjustment:
+soft Gaussian boundaries and .16/.22 alpha caps remain. See
+[matched screenshots, GPU compositing and regressions](CANTUM_NAMEPLATE_REFINEMENT.md).
+Final creator compositing approval remains pending; version stays 1.0.0 candidate.
+
 ## World-space typography and coordinated visibility - 2026-11-20
 
 The subsequent creator request revises draft PR #5 from starting SHA
@@ -24,8 +45,9 @@ abbreviate or stretch glyphs. Camera movement and viewport resizing change only
 projection and opacity, never the saved anchor, aspect ratio or world dimensions.
 Perspective naturally foreshortens the lettering; there is no tilt compensation.
 Decorative meshes have no entity identity or raycast target. Ordinary depth
-testing remains enabled, depth writing is disabled, and existing marker/route/
-reticle priorities and accessible Catalogue/Selection alternatives remain.
+testing remains enabled and depth writing is disabled. Lettering follows ordinary
+markers/routes; interactive reticles/captions and accessible Catalogue/Selection
+alternatives retain their existing precedence.
 
 Actual browser shaping measures complete resolved names, available system-font
 fallbacks, weight 600, .06em tracking, .08em padding, and an optional registered
@@ -56,9 +78,9 @@ samples. These elevations are computed during map replacement, not camera frames
 a remote same-Cantum island does not supply the local star maximum.
 
 One smoothstep coordinates the hierarchy: at 1.00x and through 1.15x, Cantum
-opacity is .46 and passive sector system-caption opacity is zero. Between 1.15x
+opacity is .82 and passive sector system-caption opacity is zero. Between 1.15x
 and 1.50x, let `t = smoothstep((zoom - 1.15) / .35)`; Cantum opacity is
-`.46 * (1 - t)` and passive system opacity is `t`. At 1.325x they are .23/.50;
+`.82 * (1 - t)` and passive system opacity is `t`. At 1.325x they are .41/.50;
 at and above 1.50x they are 0/1. Hover, keyboard focus and selection retain
 full-strength captions, including with Object Names off. Object Names off hides
 all passive captions. Cantum Names off, or no eligible full-name resources,

@@ -5,6 +5,7 @@ import {readDataset} from '../scripts/check-relations.mjs';
 import {resolveAtlas,territoryGroups,cantumField} from '../src/core/cartography.mjs';
 import {territorialLabels,fieldComponents,territorialOpacity,territorialAnchorY,labelHierarchy} from '../src/viewer/territorial-labels.mjs';
 import {createNameplateMesh,nameplateElevations} from '../src/viewer/cantum-nameplates.mjs';
+import {layerOrder} from '../src/viewer/cartographic-layers.mjs';
 import {OrthographicCamera,PerspectiveCamera,Vector3,PlaneGeometry,MeshBasicMaterial} from 'three';
 import {layoutCaptions,captionRank} from '../src/viewer/caption-layout.mjs';
 import {nameplateShapeCases} from './nameplate-shapes.mjs';
@@ -193,6 +194,7 @@ test('world planes face +Y with nonmirrored map orientation; camera and viewport
   for(const [x,y,z] of [[0,120,200],[0,5,200],[150,5,140]]){perspective.position.set(x,y,z);perspective.lookAt(0,0,0);perspective.updateMatrixWorld();}
   assert.ok(mesh.quaternion.equals(orientation));assert.deepEqual(mesh.scale,size);
   assert.equal(mesh.userData.entity,undefined);assert.equal(mesh.raycast(),undefined);
+  assert.equal(mesh.renderOrder,4.5);assert.ok(mesh.renderOrder>layerOrder.marker&&mesh.renderOrder>layerOrder.route);
   geometry.dispose();material.dispose();
 });
 
@@ -206,9 +208,9 @@ test('all variants track component-local stars and clear their envelope across t
 });
 
 test('one smooth crossfade uses exact 1.15 to 1.50 defaults with interactive and layer exceptions',()=>{
-  assert.deepEqual(labelHierarchy(1),{cantum:.46,systems:0});
-  assert.deepEqual(labelHierarchy(1.15),{cantum:.46,systems:0});
-  const mid=labelHierarchy(1.325);assert.ok(Math.abs(mid.systems-.5)<1e-10&&Math.abs(mid.cantum-.23)<1e-10);
+  assert.deepEqual(labelHierarchy(1),{cantum:.82,systems:0});
+  assert.deepEqual(labelHierarchy(1.15),{cantum:.82,systems:0});
+  const mid=labelHierarchy(1.325);assert.ok(Math.abs(mid.systems-.5)<1e-10&&Math.abs(mid.cantum-.41)<1e-10);
   assert.deepEqual(labelHierarchy(1.5),{cantum:0,systems:1});
   assert.deepEqual(labelHierarchy(2),{cantum:0,systems:1});
   assert.deepEqual(labelHierarchy(1,false),{cantum:0,systems:1});

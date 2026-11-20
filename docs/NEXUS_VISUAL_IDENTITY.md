@@ -77,17 +77,18 @@ These hex values are implementation starting points sampled approximately from t
 
 ## 5. Map visual layers and 2D/3D behavior
 
-Draw order back → front (preserve the earlier Milestone 3 contract):
+Draw order back → front (current sector typography amendment):
 
 1. Near-black map / restrained starfield and background.
 2. Coordinate grid and reference guides.
-3. Metaball-like Cantum influence regions (sector only), soft and nearly transparent.
-   Stage 1 Cantum names use a decorative projected DOM overlay; marker captions,
-   targeting and grid annotations remain above it, with no opaque nameplate panel.
+3. Cantum influence clouds, retaining soft boundaries and .16/.22 alpha limits.
 4. Nav routes (short-range in systems; Jump Gate and Jump Hole routes in sector view).
-5. Spatial objects (2D icons in top-down; appropriate physical/simple 3D rendering in perspective).
-6. Historical names, spatial labels and visible coordinate readouts.
-7. Hover/selection targeting and direct interface overlays.
+5. Ordinary spatial objects (2D icons or physical/simple 3D rendering).
+6. Sector Cantum geographic lettering at render order 4.5, after ordinary markers
+   at 4, with .82 overview opacity; historical captions/readouts retain their DOM
+   layer. Lettering remains depth tested without depth writing, so foreground
+   geometry occludes it and lower stars show through its translucent glyphs.
+7. Hover/selection targeting and direct interactive identification/interface overlays.
 
 **Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
 adds restrained, spaced system-font Cantum names per sufficiently large connected

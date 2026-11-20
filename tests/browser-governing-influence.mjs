@@ -8,7 +8,7 @@ async page=>{
   const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.mouse.move(1,1);};
   const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await close();};
-  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
+  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});await page.locator('#technical-tab').click();};
   const facts=()=>page.locator('#facts').innerText();
   const state=()=>page.evaluate(()=>{const m=window.__governanceMap;return {
     groups:m.influenceEnvelopes?.data.map(e=>({id:e.id,contributors:e.contributors,halfHeight:e.halfHeight,vertices:e.positions.length/3,

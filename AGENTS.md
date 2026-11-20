@@ -23,6 +23,16 @@ updates. Creator visual review, both merges and all publication remain gated;
 version stays 1.0.0. Preserve canonical JSON, all descriptions, field geometry,
 assets, audio, cameras and navigation. See the current PR #5 review record.
 
+The subsequent Final Cantum Visual Hierarchy Polish request approves the current
+world size, fit, placement/orientation, per-component elevation, camera behavior
+and zoom crossfade at `62c4927`. Only visual compositing/contrast is authorized:
+lettering after ordinary markers, .82 overview opacity, retained depth behavior,
+matched screenshots, full/regression/governance/Phase 3F checks and commit/push/
+update of the same draft PR #5. Preserve all approved geography, resource ownership,
+1.15x-1.50x thresholds, influence appearance and protected application/data/assets.
+Final creator compositing review remains pending. Version stays 1.0.0; no merge,
+parent PR #4 modification, deployment, tag or Release.
+
 ## Read by task
 
 Start with [README](README.md) for setup and [INDEX](docs/INDEX.md) for document authority. Follow [VERSIONING_POLICY](docs/VERSIONING_POLICY.md): evaluate version impact at each milestone closeout/release, recommend an increment or none with a brief reason, and obtain approval before changing versions unless the creator already specified the new version.

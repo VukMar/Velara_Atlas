@@ -33,7 +33,7 @@ async page=>{
     for(const z of [1.15,1.325,1.5,1.8]) {
       await zoom(z);const s=await state();transitions.push({zoom:z,cantum:s.names[0].opacity,passive:s.captions[0]?.opacity??0,shown:s.captions.length});
       check(sameGeometry(initial,s),'zoom never changes fitted dimensions, anchors, components or orientation');
-      if(z===1.325)check(Math.abs(s.names[0].opacity-.23)<1e-9&&s.captions.some(c=>Math.abs(c.opacity-.5)<1e-9),'smoothstep midpoint');
+      if(z===1.325)check(Math.abs(s.names[0].opacity-.41)<1e-9&&s.captions.some(c=>Math.abs(c.opacity-.5)<1e-9),'smoothstep midpoint');
       if(z>=1.5)check(s.names.every(n=>!n.visible)&&s.captions.some(c=>c.opacity===1),'system captions fully visible after crossfade');
       await shot(`zoom-${String(z).replace('.','_')}`);
     }

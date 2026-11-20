@@ -179,6 +179,6 @@ export function territorialAnchorY(group, systems, map) {
 export function labelHierarchy(zoom, active=true) {
   if(!active)return {cantum:0,systems:1};
   const fade=clamp((zoom-1.15)/.35,0,1),systems=fade*fade*(3-2*fade);
-  return {cantum:.46*(1-systems),systems};
+  return {cantum:.82*(1-systems),systems};
 }
 export const territorialOpacity=zoom=>labelHierarchy(zoom).cantum;
