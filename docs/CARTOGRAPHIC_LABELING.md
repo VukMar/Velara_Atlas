@@ -9,65 +9,82 @@ Cantum Stages 1-4 are now implemented; final artistic refinement remains deferre
 **Baseline:** Existing square chart and 8×8 system grid, floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.  
 **Design authorities:** `docs/VIEWER_SPECIFICATION.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/DATA_MODEL.md`, and `AGENTS.md`. This specification adds only the labeling behavior approved in the conversation; it does not supersede unrelated requirements.
 
-## Adaptive horizontal fitting refinement — 2026-11-20
+## World-space typography and coordinated visibility - 2026-11-20
 
-The creator-authorized refinement supersedes the principal-axis angle and
-geometry-derived font sizing in the original placement rules below. Every
-fitting rectangle is horizontal, matching the existing camera-facing DOM text.
-The Gaussian field, thresholds, 128×128 sampling, four-neighbor components and
-24-cell minimum are preserved.
+The subsequent creator request revises draft PR #5 from starting SHA
+`bd8d2dafab722b0a98b2beb9c1f6c39589e27717`. This is the current presentation
+contract; it supersedes the earlier 14-24 CSS-pixel clamp, camera-facing DOM
+plates, screen-space edge containment and 1x-5x zoom-only fade. Historical
+Stage 1-4 and initial PR #5 reports retain their original evidence.
 
-At each resolved map update, hidden DOM probes measure the complete current name
-using the actual `.cantum-nameplate` typography at a fixed 768 CSS-pixel overview
-(the existing clamp gives 20.736px). Browser shaping, Unicode fallback fonts,
-letter spacing, CSS padding, line height, registered sigil width and flex gap all
-participate. Measurements round upward to 1/64 CSS px. A sigil-sized placeholder
-requires no duplicate asset request. Probes are removed immediately; there are
-no font downloads, GPU text resources or per-frame measurements.
+Visible names use locally generated CanvasTextures on fixed Three.js X/Z planes.
+Their normal is +Y; texture top points toward -Z, so the standard top and
+perspective cameras read unmirrored text. They never billboard, bend, wrap,
+abbreviate or stretch glyphs. Camera movement and viewport resizing change only
+projection and opacity, never the saved anchor, aspect ratio or world dimensions.
+Perspective naturally foreshortens the lettering; there is no tilt compensation.
+Decorative meshes have no entity identity or raycast target. Ordinary depth
+testing remains enabled, depth writing is disabled, and existing marker/route/
+reticle priorities and accessible Catalogue/Selection alternatives remain.
 
-Map span / 768 converts that complete box into geographic eligibility dimensions.
-One sampled cell of padding on every side protects against sampling uncertainty.
-For every candidate at or above the existing inner threshold, intersect horizontal
-row runs across the entire padded height. This tests the full rectangle within
-one component, including concavities, rather than only its center scanline. All
-eligible cells compete; the former deepest-64 shortlist cannot exclude broad lobes.
-Full names consider all eligible positioned systems, including unassociated ones;
-the original sigil-only fallback retains its contributor-marker policy.
-Fitting candidates clear of the existing conservative 15px system-marker budget
-rank first. Within that class, rank usable horizontal space, interior depth,
-rectangle-to-marker clearance and field-weighted-center proximity; sampled cell
-index resolves ties. Where the 15px budget is impossible, prefer avoiding the
-existing 4px visible symbol before ranking fitting space. If no full-name candidate
-fits, the existing registered sigil-only policy runs unchanged, otherwise omit the
-identity.
+Actual browser shaping measures complete resolved names, available system-font
+fallbacks, weight 600, .06em tracking, .08em padding, and an optional registered
+1em sigil with .35em gap at a 64px **source** font. These source pixels define
+texture proportions, not displayed size. The unchanged 128x128 Gaussian mask,
+four-neighbor components, inner threshold and 24-cell eligibility minimum feed a
+12-iteration monotonic maximum-rectangle search at every eligible cell. Row-run
+intersection tests the entire padded rectangle within the same component, never
+bridging holes or disconnected islands. One sampled cell protects each edge;
+a further 90% proportional safety scale keeps lettering away from the contour.
 
-Anchors and eligibility are independent of pan, zoom, camera rotation and viewport
-resize. The bounded eight-input cache remains. Display retains the unchanged
-14–24px clamp, weight 600, font family, letter spacing, colors, shadow, sigil
-styling, horizontal projection, containment, pointer transparency and zoom fading.
-No migration, dataset change, radius decision or version increment is involved;
-the repository stays **1.0.0 canonical launch candidate** as requested.
+Presentation-only upper bounds are 60% of the chart span in width and 12% in
+height before the safety scale. Candidates within 85% of the largest safe height
+compete on the existing 15px reference marker budget, then the 4px visible-symbol
+budget, usable size, interior depth, clearance and field-weighted balance, with
+stable cell-index ties. This prevents marker avoidance from shrinking broad
+regions back into small annotations. The minimum practical source-font equivalent
+is 14px on a 768px reference chart, an eligibility floor rather than a display
+clamp. Where a full name cannot fit, the registered 24/768-span sigil-only rule
+remains; otherwise omit it. Multiple qualifying components still receive separate
+identities. Overlapping Cantums are neither partitioned nor politically redefined.
 
-This reference-overview fit is deliberately not a guarantee of screen-space
-territory containment at every mobile size, tilt or zoom. Edge containment may
-move the displayed box relative to its projected anchor, as before. Dense regions
-can still overlap system markers when no clear interior alternative exists;
-separate overlapping Cantums are not partitioned or merged. Platform system fonts
-can change measured widths. Narrow, poorly resolved and very long-name components
-remain omitted or sigil-only. [Comparison and review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+Every variant stores its component's contributing system IDs. Top mode uses the
+highest historically eligible local contributor Y plus the existing modest
+chart-relative clearance. Perspective additionally clears the envelope half-height
+and actual envelope extrema beneath the whole fitted rectangle, including edge
+samples. These elevations are computed during map replacement, not camera frames;
+a remote same-Cantum island does not supply the local star maximum.
+
+One smoothstep coordinates the hierarchy: at 1.00x and through 1.15x, Cantum
+opacity is .46 and passive sector system-caption opacity is zero. Between 1.15x
+and 1.50x, let `t = smoothstep((zoom - 1.15) / .35)`; Cantum opacity is
+`.46 * (1 - t)` and passive system opacity is `t`. At 1.325x they are .23/.50;
+at and above 1.50x they are 0/1. Hover, keyboard focus and selection retain
+full-strength captions, including with Object Names off. Object Names off hides
+all passive captions. Cantum Names off, or no eligible full-name resources,
+bypasses passive suppression. System View captions are unaffected. Collision,
+layer and historical filtering remain authoritative; markers never crossfade.
+Influence fill remains independently controlled.
+
+Topology/fit retains the bounded eight-input cache and is independent of camera
+and viewport. Each resolved map owns one shared unit-plane geometry and at most
+one texture/material per Cantum/variant, reused by its components. Each raster is
+bounded to 2048x512, generated at up to 3x source resolution with filtered mipmaps.
+Textures, materials, geometry and guarded detached image handlers are released on
+history replacement, map navigation and teardown before generic scene disposal.
+There are no font downloads, dependencies, public data/schema changes or new
+runtime assets. Platform font metrics can vary; very long names may be omitted,
+and low-angle/mobile text can naturally become small or foreshortened. Review
+screenshots and limits are in [the PR #5 record](CANTUM_NAMEPLATE_REFINEMENT.md).
 
 ## 1. Why two different label systems
 
-**Stage 1 amendment:** camera-facing nameplates now supersede this document's
-original floor-mounted glyph rendering, world-space glyph sizing and tilt fades.
-The geographic field/component fitting and all object-caption rules remain in
-force. See [the current viewer contract](VIEWER_SPECIFICATION.md#cartographic-typography-and-adaptive-captions--implemented-refinement)
-and [Stage 1 results](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md). The original geometric
-metrics below now select eligible components and stable X/Z anchors only.
+**Current amendment:** the world-space contract above supersedes Stage 1's
+camera-facing renderer. Field/component and object-caption rules remain in force.
 
 The Sector View should convey political/geographic identity at wide zoom without turning into a crowded set of interface overlays. The System View should make the names of stars, planets, moons, stations, short-range gates, Jump Gates and Jump Holes easier to associate with their markers. The implementation has two coordinated, technically independent layers:
 
-- **Cantum names** use stable geographic X/Z anchors in Sector View, displayed as horizontal camera-facing DOM nameplates at bounded readable CSS sizes. They have no hit targets or new selection identities.
+- **Cantum names** use stable geographic X/Z anchors in Sector View, rendered as fixed upward-facing X/Z texture planes sized to each component. They have no hit targets or new selection identities.
 - **Object captions** are projected **screen-space typography** beneath each object's visible marker/sprite; font sizes remain approximately constant in CSS pixels while the caption follows the object's actual XYZ position. Use in Sector and System views with adaptive decluttering.
 
 Both layers use names resolved for the current A.E. year. Do not modify underlying data, invent names/dates, change system coordinates, or expose unreleased objects. Support UTF-8 text and the browser's available fonts.
@@ -81,7 +98,7 @@ Both layers use names resolved for the current A.E. year. Do not modify underlyi
 - Sample a bounded, deterministic per-Cantum visibility/field mask in X/Z (e.g., 128×128 or equivalent). Find connected components conservatively (four-neighbor flood fill, or geometry with equivalent conservative connectivity). Reject subthreshold noise and too-small components. Do not merge regions solely because cells touch diagonally.
 - Do **not** derive component connectivity from the final blended RGBA influence texture, since it combines different Cantums and loses territorial identity. Reuse/extract a pure per-Cantum field calculation where practical, without changing the existing opacity/color/merging algorithm or its protected caps.
 - For each surviving component, find an interior label anchor where the field is high enough, reasonably far from the contour and with room for the *entire* current name. Prefer positions away from dense system markers/route junctions. Use deterministic tie-breaks and avoid jumps/flicker from minor camera changes.
-- Derive general orientation from the component's dominant X/Z axis (e.g., weighted PCA of its contributing region). Keep readable, upright lettering; constrain excessive rotations and fall back to horizontal for near-circular components or unstable axes. Straight, gently angled labels only in this iteration; no curved text.
+- Keep every complete name straight and horizontal in X/Z, facing +Y; no curved baseline or camera-facing rotation.
 - Use spaced, restrained typography and subtle Cantum-linked color. Names should be perceptible but visually subordinate to individual system markers, route strokes and hover targeting. Avoid bright glow, text boxes, thick outlines and unsupported font downloads.
 - Derive text width and world-space height from region geometry (not arbitrary fixed CSS positioning). Fit the complete name inside the component with padding and a minimum practical legibility threshold. Reduce size or **omit the region label** when it cannot fit. Never truncate, abbreviate, invent a nickname or wrap the name across multiple lines to force it to fit.
 - One Cantum may produce multiple separate labels if its component(s) qualify; tiny holdings may produce none. At the early historical years, if the Cantum is not eligible, has no resolved name, or has no contributing positioned systems, show no territorial text. Do not suggest that historic administrative Cantums were sovereign states.
@@ -89,12 +106,9 @@ Both layers use names resolved for the current A.E. year. Do not modify underlyi
 
 ### Zoom and viewpoint
 
-- At the overview scale (fit zoom), regional letters should be readable enough to identify a sizable region, **without demanding prominence in tiny regions**.
-- At mid zoom, gently reduce their opacity; at close zoom, fade to zero so system marker captions take precedence. Use continuous transitions and a small hysteresis/deadband for any discrete thresholds to prevent flicker.
-- Preserve fixed X/Z placement while projecting its provisional elevated anchor each render. Nameplates use 14–24 CSS pixels based on viewport width; zoom moves the anchor and controls the existing gradual fade, without stretching glyphs.
-- Keep text horizontal in 3D, with no foreshortening or camera-tilt cutoff. Hide anchors outside the camera frustum/behind the camera. Never place territorial text in System View.
-- The isolated provisional Y helper uses highest eligible contributor elevation plus modest chart-relative clearance. Top-down shading keeps its flat surface; perspective uses Stage 3 envelopes and
-local surface heights under [the current Cantum contract](CANTUM_TERRITORY_RENDERING.md). The decorative DOM overlay sits below object captions/targeting and grid annotations; it never intercepts clicks, taps, drags or route picking.
+Use the current world-space elevation, projection and 1.15x-1.50x coordinated
+crossfade contract above. No Cantum identities appear in System View. World
+lettering remains fixed to its component; screen edges never relocate it.
 
 ## 3. Adaptive object labels
 
@@ -136,11 +150,10 @@ Add pure Node tests and browser tests in the existing suites as appropriate; pre
 
 **Region/chronology:** Two systems in the same continuous influence component produce one regional name; multiple disconnected sufficiently large components produce one each; a tiny disconnected island produces none. Distinct Cantums never merge region names because their fills overlap. A missing/unknown Cantum name or a noneligible historical Cantum produces no label. Changing the historical year updates the text from resolved nameHistory and revises component membership at exact boundaries; no future-name leakage. The actual demo's second Cantum starts no earlier than its effective historical year; a tiny one-system region may have no displayed name if it cannot fit.
 
-**World anchoring:** Field fitting fixes each component's X/Z anchor. Current
-camera-facing DOM plates use bounded CSS typography and gradual zoom fade;
-perspective plates use local envelope heights. Low-angle projection keeps labels
-horizontal, with no camera-tilt cutoff. No Cantum identities appear in System View.
-See the Stage 1-4 amendments in the linked current viewer/Cantum contracts.
+**World anchoring:** fixed X/Z dimensions/orientation, +Y plane normals,
+component-specific star/envelope clearance, proportional viewport scaling,
+natural perspective foreshortening and no camera-facing rotation. See the current
+amendment and PR #5 review evidence.
 
 **Caption behavior:** At wide zoom show the important labels; as zoom increases more lower-priority labels become eligible without overlapping. Caption text stays approximately the same CSS-pixel size at different zoom levels and remains centered **beneath** its marker. Collision winners are stable. Hover/focus/selection overrides passive declutter. Unplaced or historically unreleased objects never leak names; hiding marker layers hides their captions. Numeric and non-Latin name characters are handled safely.
 

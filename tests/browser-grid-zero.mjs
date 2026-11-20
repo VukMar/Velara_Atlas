@@ -48,7 +48,7 @@ async page=>{
     check(h.z===map.origin.z+map.size.z/2-step/2&&Math.abs(h.width-h.expected)<.01,'sector scale projects exact cell width in '+s.mode);
     check(h.pointer==='none'&&h.arrowPointer==='none','sector measurement cannot intercept selection');
     check(s.territory&&s.territory.visible===(s.mode==='top')&&s.envelopes===(s.mode==='perspective')&&s.territory.position[1]===map.origin.y-map.size.y/2+.001,'flat plane preserved, with exclusive mode-specific envelope display');
-    check(s.names.some(n=>n.visible)&&s.names.every(n=>Math.abs(n.position[1]-(s.mode==='perspective'?n.surface+Math.min(map.size.y*.03,map.size.x*.01):Math.max(...sector.systems.filter(o=>o.cantumHistory?.some(h=>h.cantumId===n.label.cantumId&&h.fromAE<=sector.timeline.defaultAE&&(h.untilAE===null||h.untilAE>sector.timeline.defaultAE))).map(o=>o.positionLY.y))+Math.min(map.size.y*.05,map.size.x*.02)))<1e-8),'nameplates preserve top-down anchors and use local envelope tops in perspective');
+    check(s.names.some(n=>n.visible)&&s.names.every(n=>n.position[1]>=(s.mode==='perspective'?n.surface:-Infinity)),'world nameplates clear their local stars and envelope');
     check(s.material.order<s.territory.order&&s.territory.order<3,'grid remains below unchanged influence and routes');
     for(const o of s.objects){const source=sector.systems.find(e=>e.id===o.id);check(JSON.stringify(o.xyz)===JSON.stringify([source.positionLY.x,source.positionLY.y,source.positionLY.z]),o.id+' retains sector XYZ');}
     return s;

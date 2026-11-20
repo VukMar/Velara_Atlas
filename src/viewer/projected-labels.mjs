@@ -2,12 +2,15 @@ import * as THREE from 'three';
 import {layoutCaptions} from './caption-layout.mjs';
 import {physicalRadius,projectedDiameter,representation,projectedVisible} from './celestial-scale.mjs';
 import {sectorMarkerWorldRadius} from './sector-markers.mjs';
+import {labelHierarchy} from './territorial-labels.mjs';
 
 /** Projection/caption coordination only; existing layout and physical math stay authoritative. */
 export class ProjectedLabels {
   constructor(host,hitSize) {this.host=host;this.hitSize=hitSize;}
   update() {
     const m=this.host;
+    const hierarchy=labelHierarchy(m.map ? m.map.size.x/m.viewSpan() : 1,
+      Boolean(m.map?.unit==='ly'&&m.layerPreferences.cantumNames!==false&&m.cantumNameplates?.hasNames));
     for(const annotation of m.gridAnchors) {
       const p=annotation.position.clone().project(m.camera), e=annotation.element;
       if(annotation.widthEndpoints) {
@@ -89,6 +92,7 @@ export class ProjectedLabels {
       }
       const id = anchor.entity.id;
       const interaction=m.hoverSources.focus === id ? 4 : [m.hoverSources.pointer,m.hoverSources.touch].includes(id) ? 3 : m.selectedId === id ? 2 : 0;
+      anchor.text.style.opacity=String(!interaction&&m.map?.unit==='ly'&&anchor.entity.entityType==='star_system'?hierarchy.systems:1);
       const captionRadius=interaction ? Math.min(anchor.radius,Math.max(0,m.height-anchors[index].y-anchor.metrics.height-8)) : anchor.radius;
       button.style.setProperty('--caption-offset', `${captionRadius + 4}px`);
       candidates.push({id, entity:anchor.entity, ...anchors[index], ...anchor.metrics, radius:anchor.radius, captionRadius, depth:projected.z,
@@ -111,6 +115,7 @@ export class ProjectedLabels {
     }
     const layout = layoutCaptions(candidates, {width:m.width, height:m.height,
       zoom:m.map ? m.map.size.x / m.viewSpan() : 1, passive:m.layerPreferences.objectNames !== false,
+      systemOpacity:hierarchy.systems,
       obstacles, eligible:m.captionEligibility});
     m.captionEligibility = layout.eligible;
     for (const a of m.anchors) a.button.dataset.caption = String(layout.shown.has(a.entity.id));

@@ -1,4 +1,176 @@
-# Adaptive horizontal Cantum nameplate refinement
+# World-anchored Cantum typography - PR #5 review record
+
+The subsequent 2026-11-20 creator request revises the existing draft PR #5 from
+`bd8d2dafab722b0a98b2beb9c1f6c39589e27717` on
+`refine/cantum-adaptive-nameplates`. Parent PR #4 stays at
+`e1ae55c1ea65477b003278bc49f2090fa662172f`. The original horizontal-fit report
+below is retained as historical evidence; its appearance-preservation statements
+are superseded by this revision. Final creator visual approval is pending.
+Version remains **1.0.0 canonical launch candidate**, as explicitly requested;
+no increment is warranted for this same candidate's presentation refinement.
+
+## Verified browser closeout
+
+[Machine-readable current evidence](review/cantum-world/results.json) records:
+
+| Browser callback | Result |
+| --- | --- |
+| `browser-adaptive-nameplates` | Canonical 1200, exact transition/midpoint, hover/focus/selection, independent toggles, history, all 70 marker centers, fixed dimensions at 390x844 / 320x568 / 844x390, perspective/orbit/low angle: PASS |
+| `browser-cantum-sigils` | Unicode shaping/sigil gap, shared raster, registered image paint, full-name/sigil-only failures and exactly one disposal per shared texture/material/geometry: PASS |
+| `browser-island-identities` | Full-name plus detached fallback, local negative/positive elevations, zoom/tilt/orbit, failed/null/unknown identities and lifecycle: PASS |
+| `browser-labeling` | Object caption sizes/collisions, hover/focus/selection, independent per-view layers, navigation, historical names, sparse/minor captions, 300-object dense memory fixture: PASS |
+| `browser-influence-envelopes` | Unchanged field colors/flat texture, front/back .22 alpha cap, history, layer independence, disposal and DPR: PASS |
+| `browser-grid-zero` | Sector scale, all real archived system grids at absolute Y=0, authored XYZ and navigation/layer preferences: PASS |
+| `browser-viewer-modules` | Four full remounts: each 11 geometries / 3 textures / 228 tracked listeners; no stale selections/renders: PASS |
+| `browser-cantum-calibration` | All 2 / 2.5 / 3 ly radii in top/perspective/10-degree modes, actual full names plus detached sigil, null-sigil transfer, pointer/touch/double-click/keyboard, DPR=2, mobile and resource rebuilds: PASS |
+| `browser-world-production` | Built-bundle overview/1.4x/close hierarchy, interaction override, perspective and mobile portrait/landscape: PASS |
+| `browser-release-readiness` | Production canonical narratives, history boundaries, InfoCards, archival navigation, mobile layout, retired Demo 404 and public requests: PASS |
+
+All these callbacks reported no unexpected console/page errors. Calibration and
+archived synthetic fixtures ran separately from Canonical. Governance/Phase 3F
+browser adapters were updated to read world resources; those two specialized UI
+callbacks were not rerun in this revision. Their Node regressions remain in the
+388-test pass. `npm ci` completed with two moderate dependency advisories; the
+dependency manifests/lockfile are unchanged. No dependency upgrade is part of this
+presentation request.
+
+The existing PR #5 remains open and draft, targeting PR #4's branch. The final
+candidate SHA is identified in the PR description and delivery. Neither PR is
+merged; no parent update, Pages dispatch, tag or Release was performed. Stop for
+creator world-space typography review.
+
+## Current rendering and fitting
+
+See the authoritative [world-space contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20).
+Original browser-generated CanvasTextures use available system fonts, Unicode
+shaping and complete name/sigil metrics. One shared unit plane lies on X/Z,
+facing +Y, with north at -Z. It never billboards, rotates toward a camera,
+wraps, truncates or stretches glyphs. Camera and viewport changes preserve the
+saved dimensions and topology. Depth testing is enabled, depth writing disabled,
+and decorative raycasting is disabled. Markers/routes/reticles retain their
+existing owners, order and interaction targets.
+
+The original Gaussian field, thresholds, 128x128 grid, four-neighbor components
+and 24-cell minimum are unchanged. For each eligible interior cell, a bounded
+12-step search finds the largest full proportional rectangle whose padded row
+runs remain inside that component. Apply one-cell padding and a 90% size margin.
+Among candidates within 85% of the largest height, prefer marker/symbol clearance,
+size, interior depth and field-weighted balance. The upper limits are 60% chart
+width and 12% chart height before the 90% safety scale; neither limit binds the
+six canonical 1200 A.E. names. The 14/768 reference-font floor gates impractical
+full names; it is not a displayed font cap. Registered sigil-only fallbacks and
+multiple-component identities remain supported without geographic bridges.
+
+All variants store component-specific contributing system IDs. Each plane clears
+its local highest eligible star Y plus modest chart-relative clearance. Perspective
+also clears its envelope half-height and actual whole-box envelope extrema/edge
+samples. This is computed once per resolved replacement, with no camera-frame
+sampling or remote-island highest-star substitution.
+
+The coordinated smoothstep starts at **1.15x**, completes at **1.50x**, and yields
+Cantum/passive-system opacities **.46/0** at overview, **.23/.50** at **1.325x**,
+and **0/1** at 1.50x and beyond. Hover, focus and selection stay full strength,
+including with Object Names off. Cantum Names off or no eligible full names
+bypasses passive suppression. Object Names off hides passive captions at every
+zoom. System View captions, collision rules and influence visibility are separate.
+
+## Canonical before/after and visual review
+
+Screenshots are captured from the real silent-entry Atlas at 1200 A.E. in local
+Chrome with reduced motion, not mockups. The task text described a handwritten
+reference but did not include that image attachment; comparisons therefore use
+the captured starting PR #5 render and the requested broad, straight scale.
+
+| Cantum | Starting fitted width (ly) | World width x height (ly) | Full-name contributors |
+| --- | ---: | ---: | ---: |
+| Drevnasel | 7.403 | 13.168 x 3.479 | 10 |
+| Visshum | 6.290 | 8.117 x 2.510 | 6 |
+| Okeanberg | 8.221 | 8.119 x 1.937 | 9 |
+| Vodravan | 7.046 | 9.664 x 2.679 | 5 |
+| Gornebes | 7.163 | 5.800 x 1.582 | 6 |
+| Zaklun | 5.081 | 8.118 x 3.082 | 6 |
+
+All six receive complete names. No canonical 1200 component uses a sigil-only
+fallback; canonical records have no registered sigils. Rekdolin has zero eligible
+positioned contributors, so no invented territory/nameplane is added. Drevnasel
+is 1.78 times its prior fitted width and 2.27 times Gornebes's current width.
+Compact Okeanberg/Gornebes are constrained by their actual regions rather than
+a universal font cap. At overview the passive caption clutter is removed while
+all 70 marker centers remain pickable. At the midpoint, both information levels
+are dimmed; close zoom restores passive system names through the existing layout.
+
+| Review | Screenshots |
+| --- | --- |
+| Starting PR #5 | [Overview](review/cantum-world/before-overview-bd8d2da.png), [perspective](review/cantum-world/before-perspective-bd8d2da.png) |
+| World overview | [1200 A.E.](review/cantum-world/overview-1200.png) |
+| Crossfade | [1.15x](review/cantum-world/zoom-1_15.png), [1.325x](review/cantum-world/zoom-1_325.png), [1.50x](review/cantum-world/zoom-1_5.png), [1.80x](review/cantum-world/zoom-1_8.png) |
+| Perspective | [Standard](review/cantum-world/perspective-1200.png), [orbited](review/cantum-world/orbit-1200.png), [10-degree angle](review/cantum-world/low-angle-1200.png) |
+| Mobile | [390x844](review/cantum-world/mobile-390x844.png), [320x568](review/cantum-world/mobile-320x568.png), [844x390](review/cantum-world/mobile-844x390.png) |
+| History | [299](review/cantum-world/history-299.png), [360](review/cantum-world/history-360.png), [800](review/cantum-world/history-800.png) |
+| Production preview | [Perspective](review/cantum-world/production-perspective.png), [portrait](review/cantum-world/production-390x844.png), [landscape](review/cantum-world/production-844x390.png) |
+
+Desktop top/perspective/orbit screenshots show fixed geographic orientation and
+natural foreshortening without mirrored text. Portrait/landscape preserve the
+same territory proportions. Short landscape produces small geographic text as
+the square chart shrinks; this is expected, not a minimum-CSS-size promise.
+Dense markers can still cross letters where all near-maximal rectangles overlap
+stars; actual symbols and interactive captions retain precedence. Different
+Cantums' overlapping fields are not repartitioned. Low angles can flatten or
+naturally clip text. Available platform fonts may change metrics. Only emulated
+Chrome sizes are covered; physical phones, other engines and screen readers
+were not exercised. Creator visual scale/transition-speed review remains open.
+
+## Resource ownership and checks
+
+One geometry per resolved map; at most one raster/material per Cantum/variant,
+shared across its disconnected components. Rasters are bounded to 2048x512 at
+up to 3x source resolution, with filtered mipmaps for minification. The six
+canonical name rasters total approximately 7.35 MiB including mip levels
+(excluding driver overhead). At top overview the renderer reports 73 geometries
+and 7 textures, including existing chart resources. Repeated history changes
+stay within the warmed perspective allocation budget. System/archival navigation
+clears all text resources; remount/disposal checks exercise handler cancellation
+and exact once-only texture/material/geometry disposal. No downloaded font,
+new dependency or runtime artwork is introduced. Review PNGs are documentation
+only and absent from the audited build.
+
+Node **24.22.3** validation: `npm ci`; `npm test` (**388/388**); `npm run validate`;
+`npm run connections:check`; `npm run build`; `npm run release:check`; and
+`git diff --check`. The audited build contains 33 files, the same exact admitted
+16 SVG / 3 PNG / 8 MP3 assets, no archived Demo or private/source-map references,
+and the verified canonical dataset. Vite retains its advisory for a chunk over
+500 kB. Browser-specific results and the final commit are recorded in the PR
+closeout below.
+
+All five canonical JSON files are byte-identical to starting `bd8d2da`; the
+234 description records and their text are unchanged. SHA-256 pins remain those
+in the historical table below. Core/resolver/schema, coordinates, influence
+geometry/compositing, assets/audio, camera controls and publication workflows
+have no changes. No merge, deployment, tag or Release is authorized or performed.
+
+## Current modified-file inventory
+
+- Renderer: `src/viewer/territorial-labels.mjs`, `cantum-nameplates.mjs`,
+  `projected-labels.mjs`, `caption-layout.mjs`, `scene-layers.mjs`, `map-scene.mjs`,
+  `style.css`.
+- Node coverage: `tests/labeling.test.mjs`, `phase3f-integration.test.mjs`
+  (the latter accepts a full identity when maximum world fitting now permits it).
+- Browser coverage: `tests/browser-adaptive-nameplates.mjs`,
+  `browser-world-state.mjs`, `browser-world-production.mjs`,
+  `browser-labeling.mjs`, `browser-island-identities.mjs`,
+  `browser-cantum-sigils.mjs`, `browser-cantum-calibration.mjs`,
+  `browser-grid-zero.mjs`, `browser-influence-envelopes.mjs`,
+  `browser-governing-influence.mjs`, `browser-phase3f-showcase.mjs`.
+- Active instructions/docs: `AGENTS.md`, `docs/ARCHITECTURE.md`,
+  `CARTOGRAPHIC_LABELING.md`, `CANTUM_TERRITORY_RENDERING.md`,
+  `NEXUS_VISUAL_IDENTITY.md`, `VIEWER_SPECIFICATION.md`, `PROJECT_STATUS.md`,
+  this record and the reproduction notes in `LOCAL_DEVELOPMENT.md`.
+- Evidence: `docs/review/cantum-world/*.png` and current browser result JSON.
+
+---
+
+## Historical report: initial adaptive horizontal fitting at bd8d2da
+
 
 The 2026-11-20 creator task refines geographic fitting while retaining the existing
 nameplate appearance. Creator visual approval is pending. This work is isolated

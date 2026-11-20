@@ -1,156 +1,96 @@
-/** Real canonical renderer plus memory-only shape/typography comparisons.
- * Execute through the existing Playwright callback runner from repository root.
- */
+/** Canonical 1200 A.E. world typography and crossfade; local Chrome callback.
+ * No synthetic records are installed into the canonical application. */
 async page=>{
   const {pathToFileURL}=await import('node:url');
-  const {execFileSync}=await import('node:child_process');
   const {enterAtlas}=await import(pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const {nameplateShapeCases}=await import(pathToFileURL(process.cwd()+'/tests/nameplate-shapes.mjs').href);
+  const {instrumentMap,worldState}=await import(pathToFileURL(process.cwd()+'/tests/browser-world-state.mjs').href);
   const {readDataset}=await import(pathToFileURL(process.cwd()+'/scripts/check-relations.mjs').href);
-  const {resolveAtlas,territoryGroups}=await import(pathToFileURL(process.cwd()+'/src/core/cartography.mjs').href);
-  const {calibrationDataset,CALIBRATION_RADII}=await import(pathToFileURL(process.cwd()+'/tests/calibration/scenario.mjs').href);
-  const baseline='e1ae55c1ea65477b003278bc49f2090fa662172f';
-  const source=execFileSync('git',['show',baseline+':src/viewer/territorial-labels.mjs'],{encoding:'utf8'});
-  const d=readDataset(process.cwd()+'/public/datasets/canonical/');
-  const historical=[0,299,300,344,345,359,360,699,700,799,800,999,1000,1174,1175,1199,1200].map(year=>{
-    const v=resolveAtlas(d,year);
-    return {shape:`canonical-${year}`,groups:territoryGroups(v,d.sector,d.presentation),cantums:v.cantums,map:v.map,presentation:d.presentation,
-      markers:v.markers.filter(s=>s.positionLY).map(s=>({x:s.positionLY.x,z:s.positionLY.z}))};
-  });
-  const calibration=CALIBRATION_RADII.map(radius=>{
-    const d=calibrationDataset(radius),v=resolveAtlas(d,1200);
-    return {shape:`calibration-${radius}`,groups:territoryGroups(v,d.sector,d.presentation),cantums:v.cantums,map:v.map,presentation:d.presentation,
-      markers:v.markers.filter(s=>s.positionLY).map(s=>({x:s.positionLY.x,z:s.positionLY.z}))};
-  });
-  const check=(ok,message)=>{if(!ok)throw new Error(message);},errors=[];
-  const onError=e=>errors.push(e.message);page.on('pageerror',onError);
-  const consoleError=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',consoleError);
+  const {resolveAtlas}=await import(pathToFileURL(process.cwd()+'/src/core/cartography.mjs').href);
+  const dataset=readDataset(process.cwd()+'/public/datasets/canonical/');
+  const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],shots=[],history=[];
+  const error=e=>errors.push(e.message),consoleError=m=>{if(m.type()==='error')errors.push(m.text());};
+  page.on('pageerror',error);page.on('console',consoleError);
+  const state=()=>worldState(page,'__worldMap');
   const panel=async id=>{const b=page.locator(`[aria-controls="${id}"]`).first();if(await b.getAttribute('aria-expanded')!=='true')await b.click();};
   const hide=async()=>{await page.keyboard.press('Escape');await page.mouse.move(2,2);};
-  const screenshot=async path=>{
-    await page.evaluate(()=>window.__adaptiveMap?.render());
-    await page.waitForTimeout(200);await page.screenshot({path});
+  const toggle=async(name,value)=>{await panel('layers-panel');await page.getByRole('checkbox',{name,exact:true}).setChecked(value);await hide();};
+  const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await hide();};
+  const shot=async name=>{
+    await page.evaluate(()=>window.__worldMap.render());await page.waitForTimeout(150);
+    const path=`docs/review/cantum-world/${name}.png`;await page.screenshot({path});shots.push(path);
   };
-  const year=async(y,dismiss=true)=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');if(dismiss)await hide();};
+  const zoom=async z=>page.evaluate(z=>{const m=window.__worldMap;m.camera.zoom=z;m.camera.updateProjectionMatrix();m.render();},z);
+  const sameGeometry=(a,b)=>JSON.stringify(a.names.map(n=>[n.label,n.scale,n.rotation]))===JSON.stringify(b.names.map(n=>[n.label,n.scale,n.rotation]));
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto('http://127.0.0.1:5173/Velara_Atlas/');await enterAtlas(page);
-    const comparison=await page.evaluate(async({source,shapes,historical})=>{
-      const resource=part=>performance.getEntriesByType('resource').find(r=>r.name.includes(part)).name;
-      const {territorialLabels,fieldComponents}=await import(resource('/territorial-labels.mjs'));
-      const {cantumField}=await import(resource('/cartography.mjs'));
-      const {measureNameplates}=await import(resource('/cantum-nameplates.mjs'));
-      const {territorialLabels:old}=await import('data:text/javascript;base64,'+btoa(source.replace("'../core/cartography.mjs'",JSON.stringify(resource('/cartography.mjs')))));
-      const root=document.querySelector('.cantum-nameplates'),canvas=document.createElement('canvas').getContext('2d');
-      // Independently compare the placeholder measurement with a real image box,
-      // shaped Unicode text and additional CSS padding. No fixture reaches data.
-      const fixture=document.createElement('div'),style=document.createElement('style');
-      fixture.className='measurement-fixture';document.body.append(fixture);
-      style.textContent='.measurement-fixture .cantum-nameplate {padding:3px 7px}';document.head.append(style);
-      try {
-        const name='試験領域 Ελληνικά e\u0301',record={id:'test',name,statusRecord:{},sigil:'test-cantum-a'};
-        const measured=measureNameplates(fixture,[record]).test,plain=measureNameplates(fixture,[{...record,sigil:null}]).test;
-        const element=document.createElement('span'),image=document.createElement('img');
-        element.className='cantum-nameplate';element.style.fontSize='20.736px';element.textContent=name;
-        image.className='cantum-sigil';image.src=(await import(resource('/sigil-registry.mjs'))).sigilURL('test-cantum-a');element.prepend(image);fixture.append(element);
-        await image.decode();const actual=element.getBoundingClientRect(),css=getComputedStyle(element);
-        if(Math.abs(actual.width-measured.width)>1/32||Math.abs(actual.height-measured.height)>1/32||
-          Math.abs(measured.width-plain.width-image.getBoundingClientRect().width-parseFloat(css.gap))>1/32||
-          element.textContent!==name||fixture.querySelectorAll('.cantum-nameplate').length!==1)
-          throw Error('complete Unicode box, CSS padding, sigil and gap measurement');
-      } finally {fixture.remove();style.remove();}
-      const inputs=shapes;
-      const result=[];
-      for(const c of [...inputs,...historical]) {
-        const metrics=measureNameplates(root,c.cantums),aspects={};
-        canvas.font='500 64px system-ui, sans-serif';
-        for(const n of c.cantums.filter(n=>n.statusRecord&&n.name)) {
-          const glyphs=[...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(n.name)].map(s=>s.segment);
-          aspects[n.id]=Math.ceil(glyphs.reduce((s,g)=>s+canvas.measureText(g).width,0)+Math.max(0,glyphs.length-1)*6+16)/88;
-        }
-        const sigils=c.cantums.filter(n=>n.sigil==='test-cantum-a').map(n=>n.id);
-        const started=performance.now(),after=territorialLabels(c.groups,c.cantums,c.map,c.presentation,metrics,128,sigils,c.markers??null),placementMs=performance.now()-started;
-        const beforeStarted=performance.now(),before=old(c.groups,c.cantums,c.map,c.presentation,aspects,128,sigils),beforeMs=performance.now()-beforeStarted;
-        const diagnose=l=>{
-          const group=c.groups.find(g=>g.id===l.cantumId),step=c.map.size.x/128,span=c.map.size.x,loX=c.map.origin.x-span/2,loZ=c.map.origin.z-span/2;
-          const field=Float64Array.from({length:128**2},(_,i)=>cantumField(group,loX+(i%128+.5)*step,loZ+(Math.floor(i/128)+.5)*step));
-          const {owner}=fieldComponents(field.map(f=>f>(c.presentation?.territoryOverlay?.fieldThresholdStart??.35)?1:0),128);
-          const x=Math.floor((l.x-loX)/step),z=Math.floor((l.z-loZ)/step),component=owner[z*128+x];
-          const px=l.variant==='sigil-only'?{width:24,height:24}:metrics[l.cantumId];
-          const width=px.width*span/768,height=px.height*span/768;
-          let half=Infinity;
-          for(let row=Math.floor((l.z-height/2-step-loZ)/step);row<=Math.floor((l.z+height/2+step-loZ)/step);row++) {
-            if(row<0||row>=128||owner[row*128+x]!==component){half=-Infinity;break;}
-            let a=x,b=x;while(a>0&&owner[row*128+a-1]===component)a--;while(b<127&&owner[row*128+b+1]===component)b++;
-            half=Math.min(half,(x-a+.5)*step,(b-x+.5)*step);
-          }
-          const horizontalSpace=Math.max(0,2*(half-step));
-          const clearance=(c.markers??c.groups.flatMap(g=>g.points)).reduce((nearest,p)=>Math.min(nearest,Math.hypot(Math.max(0,Math.abs(p.x-l.x)-width/2),Math.max(0,Math.abs(p.z-l.z)-height/2))),Infinity);
-          const markerOverlap=clearance<span*15/768,symbolOverlap=clearance<span*4/768;
-          let boundaryClearance=Infinity;
-          for(let i=0;i<owner.length;i++)if(owner[i]!==component)boundaryClearance=Math.min(boundaryClearance,Math.hypot(loX+(i%128+.5)*step-l.x,loZ+(Math.floor(i/128)+.5)*step-l.z)-step/Math.SQRT2);
-          return {id:l.id,variant:l.variant,anchor:[l.x,l.z],horizontalSpace,pixels:px,world:[width,height],fittingWorld:[l.width,l.height],boundaryClearance,markerOverlap,symbolOverlap,horizontalFit:horizontalSpace>=width,angle:l.angle};
-        };
-        result.push({shape:c.shape,span:c.map.size.x,placementMs,beforeMs,completePixels:metrics,before:before.map(diagnose),after:after.map(diagnose)});
-      }
-      return result;
-    },{source,shapes:nameplateShapeCases(),historical:[...historical,...calibration]});
-    for(const c of comparison)for(const l of c.after)check(l.horizontalFit,`${c.shape}: complete horizontal box fits`);
-    for(const c of comparison)for(const l of c.before.filter(l=>l.variant==='name-with-optional-sigil'&&l.horizontalFit)) {
-      const next=c.after.find(n=>n.id===l.id&&n.variant==='name-with-optional-sigil');
-      check(next,`${c.shape}: previously valid full name retained`);
-      check(l.symbolOverlap||!next.symbolOverlap,`${c.shape}: previously clear visible markers stay clear`);
+    await instrumentMap(page,'__worldMap');await panel('controls-panel');await page.locator('#reset').click();await hide();
+    const initial=await state();check(initial.names.length===6&&initial.captions.length===0,'six canonical full names and no passive overview captions');
+    check(initial.names.every(n=>n.visible&&n.depthTest&&n.decorative&&n.label.variant==='name-with-optional-sigil'),'map decoration with ordinary depth testing');
+    check(initial.names.every(n=>n.dimensions[0]<=2048&&n.dimensions[1]<=512)&&initial.dom===0,'bounded textures, no retained measurement nodes');
+    check(initial.names.find(n=>n.text==='Drevnasel').label.width>initial.names.find(n=>n.text==='Gornebes').label.width*2,'large region has substantially broader lettering');
+    await shot('overview-1200');
+    const transitions=[];
+    for(const z of [1.15,1.325,1.5,1.8]) {
+      await zoom(z);const s=await state();transitions.push({zoom:z,cantum:s.names[0].opacity,passive:s.captions[0]?.opacity??0,shown:s.captions.length});
+      check(sameGeometry(initial,s),'zoom never changes fitted dimensions, anchors, components or orientation');
+      if(z===1.325)check(Math.abs(s.names[0].opacity-.23)<1e-9&&s.captions.some(c=>Math.abs(c.opacity-.5)<1e-9),'smoothstep midpoint');
+      if(z>=1.5)check(s.names.every(n=>!n.visible)&&s.captions.some(c=>c.opacity===1),'system captions fully visible after crossfade');
+      await shot(`zoom-${String(z).replace('.','_')}`);
     }
-    // Capture the real map owner without a production hook.
-    await page.evaluate(async()=>{
-      const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;
-      const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;
-      AtlasMap.prototype.render=function(){window.__adaptiveMap=this;return render.call(this);};
-    });
-    await panel('controls-panel');await hide();
-    const state=()=>page.evaluate(()=>{
-      const m=window.__adaptiveMap;
-      return {anchors:m.cantumNameplates.anchors.map(a=>({id:a.label.id,x:a.label.x,z:a.label.z,text:a.element.textContent,opacity:a.opacity,
-        font:getComputedStyle(a.element).fontSize,visible:a.visible,transform:getComputedStyle(a.element).transform,pointer:getComputedStyle(a.element).pointerEvents})),
-        roots:document.querySelectorAll('.cantum-nameplates').length,nodes:document.querySelectorAll('.cantum-nameplate').length,textures:m.renderer.info.memory.textures};
-    });
-    const initial=await state();check(initial.anchors.length>0,'canonical names at 1200');
-    await screenshot('.playwright-mcp/cantum-after-desktop.png');
-    await panel('controls-panel');await page.locator('#zoom-in').click();await hide();
-    const zoomed=await state();check(zoomed.anchors.every((a,i)=>a.x===initial.anchors[i].x&&a.z===initial.anchors[i].z&&a.font===initial.anchors[i].font&&a.opacity<initial.anchors[i].opacity),'zoom retains anchors/font with existing fade');
-    await panel('controls-panel');await page.locator('#reset').click();await page.locator('#mode').click();await page.locator('#tilt').fill('10');await page.locator('#tilt').dispatchEvent('input');await hide();
-    await page.evaluate(()=>{const m=window.__adaptiveMap,v=m.camera.position.clone().sub(m.controls.target);v.applyAxisAngle(v.clone().set(0,1,0),.3);m.camera.position.copy(m.controls.target).add(v);m.controls.update();m.render();});
-    const perspective=await state();check(perspective.anchors.some(a=>a.visible)&&perspective.anchors.every((a,i)=>a.x===initial.anchors[i].x&&a.z===initial.anchors[i].z&&a.font===initial.anchors[i].font&&a.opacity===initial.anchors[i].opacity&&/^matrix\(1, 0, 0, 1,/.test(a.transform)),'tilt/orbit retain horizontal camera-facing typography');
-    await screenshot('.playwright-mcp/cantum-after-perspective.png');
-    for(const name of ['Cantum Names','Cantum influence / approximate chart overlay']) {
-      await panel('layers-panel');await page.getByRole('checkbox',{name,exact:true}).setChecked(false);await hide();
-      check((await state()).anchors.some(a=>a.visible)===(name!=='Cantum Names'),'independent name/influence toggles');
-      await panel('layers-panel');await page.getByRole('checkbox',{name,exact:true}).setChecked(true);await hide();
+    await zoom(1);
+    const marker=page.locator('#labels [data-record-id="sys_1000001"]');
+    for(const objectNames of [true,false]) {
+      await toggle('Object Names',objectNames);await marker.hover();
+      check((await state()).captions.some(c=>c.id==='sys_1000001'&&c.opacity===1),'hover overrides passive crossfade and Object Names');
+      await marker.focus();check((await state()).captions.some(c=>c.id==='sys_1000001'&&c.opacity===1),'keyboard focus override');
+      await page.mouse.move(2,2);await page.locator('#viewport > canvas').focus();
     }
+    await toggle('Cantum Names',false);check((await state()).captions.length===0,'Object Names off suppresses passive names even when Cantum Names off');
+    await toggle('Object Names',true);check((await state()).captions.length>0,'Cantum Names off bypasses suppression');
+    await toggle('Cantum Names',true);await toggle('Cantum influence / approximate chart overlay',false);
+    check((await state()).names.some(n=>n.visible)&&(await state()).captions.length===0,'influence remains independent');
+    await toggle('Cantum influence / approximate chart overlay',true);
+    await marker.click();await page.locator('#info-panel').waitFor({state:'visible'});
+    check((await state()).captions.some(c=>c.id==='sys_1000001'&&c.opacity===1),'selected system override while InfoCard open');
+    await hide();await page.locator('#viewport > canvas').focus();
+    await page.evaluate(()=>window.__worldMap.setSelected('sys_1000001'));
+    check((await state()).captions.some(c=>c.id==='sys_1000001'&&c.opacity===1),'selected system remains identified');
+    await page.evaluate(()=>{const m=window.__worldMap;m.setSelected(null);m.setHovered(null,'focus');});
     await panel('controls-panel');await page.locator('#mode').click();await hide();
-    const history=[];
+    const perspective=await state();check(sameGeometry(initial,perspective),'switching camera retains fixed X/Z planes and dimensions');
+    check(perspective.names.every(n=>n.position[1]===n.perspectiveY&&n.position[1]>=n.topY),'each plane clears its own local stars and envelope');
+    await shot('perspective-1200');
+    await page.evaluate(()=>{const m=window.__worldMap,v=m.camera.position.clone().sub(m.controls.target);v.applyAxisAngle(v.clone().set(0,1,0),.55);m.camera.position.copy(m.controls.target).add(v);m.controls.update();m.render();});
+    const orbited=await state();check(sameGeometry(perspective,orbited),'orbit cannot billboard text');
+    check(orbited.names.some((n,i)=>Math.abs(n.pixels-perspective.names[i].pixels)>1),'world projection changes naturally on orbit');await shot('orbit-1200');
+    await panel('controls-panel');await page.locator('#tilt').fill('10');await page.locator('#tilt').dispatchEvent('input');await hide();await shot('low-angle-1200');
+    await panel('controls-panel');await page.locator('#mode').click();await page.locator('#reset').click();await hide();
+    const memory=await state();
     for(const y of [299,344,345,359,360,700,800,1000,1174,1175,1199,1200,299,1200,299,1200]) {
-      await year(y);const s=await state();history.push({year:y,names:s.anchors.map(a=>a.text)});
-      const allowed=historical.find(c=>c.shape===`canonical-${y}`).cantums.filter(c=>c.statusRecord).map(c=>c.name);
-      check(s.anchors.every(a=>allowed.includes(a.text)),`resolved names only at ${y}`);
-      check(s.roots===1&&s.nodes===s.anchors.length&&s.textures<=initial.textures,'no stale DOM/texture growth');
+      await year(y);const s=await state();history.push({year:y,names:s.names.map(n=>n.text),textures:s.textures,geometries:s.geometries});
+      check(s.roots===1&&s.dom===0&&s.resources===new Set(s.names.map(n=>`${n.label.cantumId}:${n.label.variant}`)).size,'map replacement owns all generated resources');
+      const allowed=resolveAtlas(dataset,y).cantums.filter(c=>c.statusRecord).map(c=>c.name);
+      check(s.names.every(n=>allowed.includes(n.label.name)),`only historically resolved names at ${y}`);
+      if(y===1200)check(s.textures<=memory.textures&&s.geometries<=memory.geometries,'stable GPU counts after repeated timeline changes');
+      if([299,360,800].includes(y))await shot(`history-${y}`);
     }
-    await year(359);await panel('controls-panel');await page.locator('#selection').selectOption('can_1000002');
-    check(await page.locator('#selected-name').textContent()==='Cantum','recorded earlier Cantum name');
-    await year(360,false);check(await page.locator('#selected-name').textContent()==='Visshum','exclusive Cantum rename boundary');
-    await hide();await year(1200);
+    // Null eligible names must never blank the passive map. Temporarily hide
+    // presentation identity only; canonical records remain untouched.
+    const noNames=await page.evaluate(()=>{const m=window.__worldMap;m.cantumNameplates.clear();m.render();return m.anchors.filter(a=>a.button.dataset.caption==='true').length;});
+    check(noNames>0,'no eligible name resources means no passive suppression');await year(1199);await year(1200);
     for(const size of [{width:390,height:844},{width:320,height:568},{width:844,height:390}]) {
       await page.setViewportSize(size);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-      const s=await state();check(s.anchors.every((a,i)=>a.x===initial.anchors[i].x&&a.z===initial.anchors[i].z&&+a.font.slice(0,-2)>=14&&a.pointer==='none'),'responsive fixed anchors/readability/input transparency');
-      check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'no page overflow');
-      await screenshot(`.playwright-mcp/cantum-after-${size.width}x${size.height}.png`);
+      const s=await state();check(sameGeometry(initial,s),'viewport resize never recomputes geographic dimensions');
+      check(s.names.every((n,i)=>Math.abs(n.pixels/s.width-initial.names[i].pixels/initial.width)<1e-8),'lettering scales in proportion to square chart');
+      check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'no mobile page overflow');await shot(`mobile-${size.width}x${size.height}`);
     }
-    await page.setViewportSize({width:1440,height:1000});
-    await panel('catalogue-panel');await page.locator('#catalogue-panel [data-id]').first().click();
-    await page.locator('#info-panel').waitFor({state:'visible'});await hide();
-    await panel('controls-panel');await page.locator('#selection').selectOption('sys_1000001');await page.locator('#enter').click();await hide();
-    check((await state()).nodes===0,'System View clears territorial names');
-    await page.locator('#archival-return').click();await hide();check((await state()).nodes===initial.nodes,'Sector return restores labels');
+    await page.setViewportSize({width:1440,height:1000});await panel('controls-panel');await page.locator('#selection').selectOption('sys_1000001');await page.locator('#enter').click();await hide();
+    check((await state()).names.length===0&&(await state()).resources===0,'System View owns no Cantum text resources');
+    await page.locator('#archival-return').click();await hide();check((await state()).names.length===6,'canonical sector navigation restores full labels');
+    // All marker centers still resolve through the existing picker.
+    const picking=await page.evaluate(()=>{const m=window.__worldMap,r=m.renderer.domElement.getBoundingClientRect();return m.anchors.filter(a=>!a.button.hidden&&a.entity.entityType==='star_system').map(a=>({id:a.entity.id,picked:m.pick({clientX:r.left+a.screen.x,clientY:r.top+a.screen.y})?.id}));});
+    check(picking.every(p=>p.id===p.picked),'decoration never steals system picking');
     check(errors.length===0,errors.join('\n'));
-    return {baseline,comparison,history,responsiveSizes:3,canonicalInteractions:'passed',cameraFadeAndLifecycle:'passed',consoleErrors:errors};
-  } finally {page.off('pageerror',onError);page.off('console',consoleError);}
+    return {baseline:'bd8d2dafab722b0a98b2beb9c1f6c39589e27717',initial,transitions,history,picking:picking.length,shots,consoleErrors:errors};
+  } finally {page.off('pageerror',error);page.off('console',consoleError);}
 }

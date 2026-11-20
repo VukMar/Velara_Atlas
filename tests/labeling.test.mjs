@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 import {readDataset} from '../scripts/check-relations.mjs';
 import {resolveAtlas,territoryGroups,cantumField} from '../src/core/cartography.mjs';
-import {territorialLabels,fieldComponents,territorialOpacity,territorialAnchorY} from '../src/viewer/territorial-labels.mjs';
-import {nameplateProjection,containNameplate} from '../src/viewer/cantum-nameplates.mjs';
-import {OrthographicCamera,PerspectiveCamera,Vector3} from 'three';
+import {territorialLabels,fieldComponents,territorialOpacity,territorialAnchorY,labelHierarchy} from '../src/viewer/territorial-labels.mjs';
+import {createNameplateMesh,nameplateElevations} from '../src/viewer/cantum-nameplates.mjs';
+import {OrthographicCamera,PerspectiveCamera,Vector3,PlaneGeometry,MeshBasicMaterial} from 'three';
 import {layoutCaptions,captionRank} from '../src/viewer/caption-layout.mjs';
 import {nameplateShapeCases} from './nameplate-shapes.mjs';
 
@@ -56,10 +56,12 @@ test('horizontal full-box fitting covers synthetic lobes, concavities, narrownes
     if(c.shape==='disconnected')assert.equal(result.length,2);
     if(c.shape==='small-sigil')assert.equal(result[0]?.variant,'sigil-only');
     if(c.shape==='broad-lobe')assert.ok(result[0].z>25,'usable broad lobe beats deep narrow stem');
-    if(c.shape==='dense')assert.equal(result[0].markerOverlap,false,'avoid dense interior markers where possible');
+    if(c.shape==='disconnected')assert.ok(result.every(l=>!l.markerOverlap),'clear alternatives among near-maximal rectangles are preferred');
     for(const l of result.filter(l=>l.variant==='name-with-optional-sigil')) {
       assert.equal(l.angle,0);assert.equal(l.name,c.cantums[0].name);
-      assert.equal(l.width,170*200/768);assert.equal(l.height,25*200/768);
+      assert.ok(Math.abs(l.width/l.height-170/25)<1e-10);
+      assert.ok(l.height>=l.maximumHeight*.85&&l.height<=l.maximumHeight);
+      assert.ok(l.width<=200*.60*.90&&l.height<=200*.12*.90);
       assert.ok(l.horizontalSpace>=l.width);
       // The one-cell mask margin protects the actual box between sample centers.
       const step=200/128;
@@ -70,18 +72,37 @@ test('horizontal full-box fitting covers synthetic lobes, concavities, narrownes
   }
 });
 
-test('complete measured boxes, including optional sigils and spacing, control eligibility without resizing',()=>{
+test('complete measured boxes determine proportional maximal dimensions, including sigils and spacing',()=>{
   const c=nameplateShapeCases().find(c=>c.shape==='wide');
   const place=metric=>territorialLabels(c.groups,c.cantums,c.map,null,{test:metric});
   const short=place({width:100,height:25}),full=place({width:340,height:25});
-  assert.ok(short.length&&full.length);assert.equal(full[0].width/short[0].width,3.4);
-  assert.equal(place({width:100,height:400}).length,0,'vertical clearance required');
+  assert.ok(short.length&&full.length);assert.ok(full[0].width>short[0].width);
+  assert.equal(full[0].width/full[0].height,340/25);
+  assert.equal(place({width:100,height:400}).length,0,'impractically tall boxes are not forced below the legibility floor');
   for(const metric of [{width:NaN,height:25},{width:Infinity,height:25},{width:0,height:25},{width:100,height:-1}])assert.deepEqual(place(metric),[]);
-  assert.ok(short[0].markerOverlap===false,'an unobstructed alternative is preferred');
+  assert.ok(short[0].height>=short[0].maximumHeight*.85,'clearance does not reduce geographic prominence to a tiny label');
   const otherMarkers=[...c.groups[0].points,{x:short[0].x,z:short[0].z}];
   const avoiding=territorialLabels(c.groups,c.cantums,c.map,null,{test:{width:100,height:25}},128,[],otherMarkers);
-  assert.notDeepEqual([avoiding[0].x,avoiding[0].z],[short[0].x,short[0].z],'eligible unassociated system markers participate');
-  assert.equal(avoiding[0].markerOverlap,false);
+  assert.ok(avoiding[0].height>=avoiding[0].maximumHeight*.85);
+  const sparse=nameplateShapeCases().find(c=>c.shape==='disconnected');
+  const regular=territorialLabels(sparse.groups,sparse.cantums,sparse.map,null,{test:{width:100,height:25}});
+  const blocked=territorialLabels(sparse.groups,sparse.cantums,sparse.map,null,{test:{width:100,height:25}},128,[],[...sparse.groups[0].points,{x:regular[0].x,z:regular[0].z}]);
+  assert.notDeepEqual([blocked[0].x,blocked[0].z],[regular[0].x,regular[0].z],'unassociated marker changes the balanced fitting choice');
+});
+
+test('largest practical rectangle approaches an independent circular-field bound and preserves proportional scale',()=>{
+  const g=group([[0,0]],26),metric={width:160,height:40,fontSize:32};
+  const l=territorialLabels([g],cantums,map,null,{test:metric})[0];
+  const radius=26*Math.sqrt(-Math.log(.35)/Math.LN2),aspect=4;
+  const analyticalHeight=2*radius/Math.sqrt(aspect*aspect+1);
+  assert.ok(l.height>analyticalHeight*.65,'sampling, padding, safety and balanced clearance remain near the geometric maximum');
+  assert.ok(l.height<analyticalHeight*.91);
+  assert.equal(l.width/l.height,aspect);
+  // A 60% enlargement exceeds the actual Gaussian boundary, independently of
+  // the fitter's cached score or its reported maximum.
+  assert.ok([[-1,-1],[-1,1],[1,-1],[1,1]].some(([x,z])=>cantumField(g,l.x+x*l.width*.8,l.z+z*l.height*.8)<=.35));
+  const same=territorialLabels([g],cantums,map,null,{test:{width:320,height:80,fontSize:64}})[0];
+  assert.equal(l.width,same.width);assert.equal(l.height,same.height);
 });
 
 test('real historical inputs update names, discovery, membership and eligible Cantums without future leakage',()=>{
@@ -151,26 +172,51 @@ test('provisional nameplate height uses only eligible contributor elevations and
   assert.equal(territorialLabels([g],cantums,m,null).length,2,'existing detached components remain independently eligible');
 });
 
-test('nameplates project exact anchors with screen-space size, zoom fade and no camera-tilt fade',()=>{
-  const p=new Vector3(20,8,30),before=p.clone();
-  const top=new OrthographicCamera(-100,100,100,-100,.1,1000);
-  top.position.set(0,200,0);top.up.set(0,0,-1);top.lookAt(0,0,0);top.updateMatrixWorld();
-  const a=nameplateProjection(p,top,400,400,1);
-  assert.ok(Math.abs(a.x-240)<1e-8&&Math.abs(a.y-260)<1e-8);assert.ok(a.visible);
-  top.zoom=2;top.updateProjectionMatrix();
-  const close=nameplateProjection(p,top,400,400,2);
-  assert.ok(Math.abs(close.x-280)<1e-8);assert.equal(close.font,a.font);assert.ok(close.opacity<a.opacity);
+test('world planes face +Y with nonmirrored map orientation; camera and viewport cannot resize or billboard them',()=>{
+  const geometry=new PlaneGeometry(1,1),material=new MeshBasicMaterial();
+  const mesh=createNameplateMesh({x:20,z:30,width:40,height:8},geometry,material);
+  mesh.position.y=8;mesh.updateMatrixWorld();
+  const normal=new Vector3(0,0,1).applyQuaternion(mesh.quaternion);
+  assert.ok(normal.distanceTo(new Vector3(0,1,0))<1e-10);
+  assert.ok(new Vector3(0,1,0).applyQuaternion(mesh.quaternion).z<0,'texture top points toward chart north');
+  const orientation=mesh.quaternion.clone(),size=mesh.scale.clone();
+  const camera=new OrthographicCamera(-100,100,100,-100,.1,1000);
+  camera.position.set(0,200,0);camera.up.set(0,0,-1);camera.lookAt(0,0,0);camera.updateMatrixWorld();
+  const projectedWidth=width=>{
+    const a=mesh.localToWorld(new Vector3(-.5,0,0)).project(camera),b=mesh.localToWorld(new Vector3(.5,0,0)).project(camera);
+    return (b.x-a.x)*width/2;
+  };
+  assert.ok(Math.abs(projectedWidth(400)-80)<1e-10);
+  assert.ok(Math.abs(projectedWidth(800)-160)<1e-10,'chart and lettering resize proportionally');
+  camera.zoom=1.2;camera.updateProjectionMatrix();assert.ok(Math.abs(projectedWidth(400)-96)<1e-10,'zoom scales the world lettering');
   const perspective=new PerspectiveCamera(45,1,.1,1000);
-  for(const [x,y,z] of [[0,120,200],[0,5,200],[150,5,140]]) {
-    perspective.position.set(x,y,z);perspective.lookAt(0,0,0);perspective.updateMatrixWorld();
-    const projected=nameplateProjection(p,perspective,400,400,1);
-    assert.ok(projected.visible);assert.equal(projected.font,a.font);assert.equal(projected.opacity,a.opacity);
-  }
-  assert.equal(nameplateProjection(new Vector3(0,0,500),perspective,400,400,1).visible,false);
-  assert.equal(nameplateProjection(p,perspective,400,400,5).visible,false);
-  for(let zoom=1;zoom<5;zoom+=.01)assert.ok(territorialOpacity(zoom)>=territorialOpacity(zoom+.01));
-  assert.deepEqual(p,before);
-  const edge={x:10,y:20};
-  assert.deepEqual(containNameplate(edge,320,320,150,24),{x:79,y:20});
-  assert.deepEqual(edge,{x:10,y:20},'edge containment leaves the projected anchor unchanged');
+  for(const [x,y,z] of [[0,120,200],[0,5,200],[150,5,140]]){perspective.position.set(x,y,z);perspective.lookAt(0,0,0);perspective.updateMatrixWorld();}
+  assert.ok(mesh.quaternion.equals(orientation));assert.deepEqual(mesh.scale,size);
+  assert.equal(mesh.userData.entity,undefined);assert.equal(mesh.raycast(),undefined);
+  geometry.dispose();material.dispose();
+});
+
+test('all variants track component-local stars and clear their envelope across the full rectangle',()=>{
+  const g={id:'test',points:[{id:'low',x:-65,z:0},{id:'high',x:65,z:0}]};
+  const systems=[{id:'low',cantumId:'test',positionLY:{x:-65,y:-7,z:0}},{id:'high',cantumId:'test',positionLY:{x:65,y:18,z:0}}];
+  const low={x:-65,z:0,width:20,height:5,contributorIds:['low']};
+  const envelope={halfHeight:3,positions:new Float32Array([-60,-3,0,65,21,0]),sample:()=>({upper:-4})};
+  assert.deepEqual(nameplateElevations(low,g,systems,map,envelope),{top:-5,perspective:-1.8});
+  assert.deepEqual(nameplateElevations({...low,x:65,contributorIds:['high']},g,systems,map,envelope),{top:20,perspective:23});
+});
+
+test('one smooth crossfade uses exact 1.15 to 1.50 defaults with interactive and layer exceptions',()=>{
+  assert.deepEqual(labelHierarchy(1),{cantum:.46,systems:0});
+  assert.deepEqual(labelHierarchy(1.15),{cantum:.46,systems:0});
+  const mid=labelHierarchy(1.325);assert.ok(Math.abs(mid.systems-.5)<1e-10&&Math.abs(mid.cantum-.23)<1e-10);
+  assert.deepEqual(labelHierarchy(1.5),{cantum:0,systems:1});
+  assert.deepEqual(labelHierarchy(2),{cantum:0,systems:1});
+  assert.deepEqual(labelHierarchy(1,false),{cantum:0,systems:1});
+  for(let z=1;z<2;z+=.01)assert.ok(labelHierarchy(z).systems<=labelHierarchy(z+.01).systems);
+  const system={...candidate('sys'),entity:{entityType:'star_system'}};
+  assert.equal(layout([system],{systemOpacity:0}).shown.size,0);
+  for(const interaction of [2,3,4])assert.equal(layout([{...system,interaction}],{systemOpacity:0,passive:false}).shown.size,1);
+  assert.equal(layout([system],{systemOpacity:.5}).shown.size,1);
+  assert.equal(layout([system],{systemOpacity:1,passive:false}).shown.size,0);
+  assert.equal(layout([candidate('planet')],{systemOpacity:0}).shown.size,1,'System View is unaffected');
 });

@@ -222,6 +222,31 @@ are independent. Stage 4 identity rules below leave these envelopes unchanged;
 Stage 5 polish remains deferred.
 See [Stage 3 results](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
 
+## World-space typography and coordinated visibility - 2026-11-20
+
+The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
+Stage 1's 14-24px DOM clamp, camera-facing projection/containment, prior
+perspective heights and 1x-5x fade. Use the current
+[world-space typography contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20)
+and [PR #5 review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
+Locally generated bounded CanvasTextures face +Y on fixed X/Z planes. Their
+complete proportional box is maximally fitted within each unchanged Gaussian
+component with one-cell padding, 90% safety scale, presentation size bounds and
+marker-aware balanced scoring. World dimensions never depend on camera or
+viewport; perspective foreshortening is natural. Component-local contributor
+IDs own highest-star elevation, with additional whole-box envelope clearance.
+Meshes are nonpickable, depth tested and disposed by their map owner.
+
+One smoothstep crossfades Cantum opacity .46 to zero and passive sector system
+captions zero to one between 1.15x and 1.50x overview zoom. Hover/focus/selection
+stay full strength. Object Names off hides passive captions; Cantum Names off or
+no eligible full names bypasses suppression. Influence fill and System View
+caption rules remain independent. No data, schema, field or version migration.
+
+> The following Stage 1-4/initial fitting descriptions retain their implementation
+> history; the current amendment above supersedes their typography, height and fade rules.
+
 ## Adaptive horizontal nameplate fitting — 2026-11-20
 
 The creator-authorized refinement changes only full-name geographic fitting and

@@ -91,16 +91,17 @@ Draw order back → front (preserve the earlier Milestone 3 contract):
 
 **Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
 adds restrained, spaced system-font Cantum names per sufficiently large connected
-influence component. Historical names and memberships remain authoritative. Text
-uses the existing fitted geography for X/Z anchors; small or unnamed regions have
-none. Stage 1 displays horizontal camera-facing nameplates at bounded 14–24 CSS
-pixels, with Cantum-specific tint, weight 600 and restrained shadow. The provisional
-height is highest eligible contributor Y plus modest clearance, independently of
-the unchanged flat influence surface. Names fade at close zoom, remain readable
-at low camera tilt and never receive pointer events. Their
-Cantum-linked tint is independent of NEXUS interface colors and influence opacity
-caps. The **Cantum Names** control is sector-only and independent of shading.
+influence component. Historical names and memberships remain authoritative. Text uses fixed upward-facing X/Z planes sized to each connected component from
+complete browser-shaped text metrics. CanvasTextures retain weight 600, available
+system fonts, Cantum tint and restrained shadow. Component-local eligible stars
+and the envelope determine height; pan, zoom, orbit and viewport resizing cannot
+change the dimensions or orientation. Perspective naturally foreshortens the
+lettering. A smooth 1.15x-1.50x crossfade hands passive identification to sector
+system captions, with hover/focus/selection always fully identified. Influence
+and names remain independent. This supersedes Stage 1's camera-facing 14-24px
+contract; [current algorithm and review](CANTUM_NAMEPLATE_REFINEMENT.md).
 
+**Historical Stage 2 sizing (superseded by world-space proportional sizing):**
 **Cantum Visual Patch Stage 2:** an optional sigil may sit beside a complete
 name inside the existing decorative nameplate. The approved demonstration SVG
 `cantums/test-cantum-a.svg` uses original cyan/blue geometry and is explicitly

@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized isolated adaptive horizontal Cantum nameplate refinement for the 1.0.0 candidate, 2026-11-20; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized isolated world-anchored Cantum typography and adaptive visibility refinement for the 1.0.0 candidate, 2026-11-20; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -60,7 +60,10 @@ documentation, commit/push and a **draft stacked PR** from
 The verified parent PR #4 HEAD is `e1ae55c1ea65477b003278bc49f2090fa662172f`.
 The refinement remains isolated pending creator visual approval; it does not
 authorize updating the parent branch, merging either PR, deployment, tag or Release.
-Canonical data and existing typography/fading remain protected. Version stays
+The subsequent creator revision explicitly supersedes the old DOM clamp, billboarding
+and zoom-only fade with world-space region sizing and coordinated 1.15x-1.50x
+caption visibility. Same branch/draft PR #5; creator visual review remains pending.
+Canonical data and protected cartographic behavior remain unchanged. Version stays
 **1.0.0 canonical launch candidate** by explicit request; no increment is warranted
 for this preparation refinement. [Algorithm, comparisons and validation](CANTUM_NAMEPLATE_REFINEMENT.md).
 

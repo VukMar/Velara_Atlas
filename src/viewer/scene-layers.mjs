@@ -57,7 +57,7 @@ export class SceneLayers {
       m.influenceEnvelopes=new InfluenceCompositor(envelopes,extras.presentation);
       m.scene.add(m.influenceEnvelopes.display);
     }
-    m.cantumNameplates.setMap(map,extras.groups ?? [],extras.cantums ?? [],entities,extras.presentation);
+    m.cantumNameplates.setMap(map,extras.groups ?? [],extras.cantums ?? [],entities,extras.presentation,envelopes);
     for (const zone of extras.zones ?? []) {
       const group=createZone(zone,positionKey==='position'?map:null);
       if(!group)continue;
@@ -114,6 +114,8 @@ export class SceneLayers {
     m.influenceEnvelopes?.dispose();m.influenceEnvelopes=null;m.flatInfluence=null;
     m.inspection = null;
     clearTimeout(m.selectTimer);
+    // Shared text resources have their own owner; detach before generic disposal.
+    m.cantumNameplates.clear();
     for (const item of [...m.scene.children]) {
       m.scene.remove(item);
       disposeTree(item);
@@ -123,7 +125,6 @@ export class SceneLayers {
     m.zoneGroups = [];
     m.zoneTooltip.hidden=true;
     m.zoneOutline.clear();
-    m.cantumNameplates.clear();
     for (const anchor of m.anchors) anchor.proxy?.dispose();
     m.anchors = [];
     m.captionEligibility.clear();

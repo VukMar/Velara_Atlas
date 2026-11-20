@@ -190,3 +190,25 @@ explicit creator authorization. See the readiness guide for historical Phase 6 e
 ## Local release checks and profiling
 
 `npm run release:check` builds and audits the fixed single-page canonical Atlas; it does not generate navigation or deploy. Use [the release checklist](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security). `npm run benchmark -- all 3` writes ignored local measurements; run benchmarks without concurrent tests. Browser callbacks require the existing MCP harness and are not part of `npm test`. Historical timing/device results are evidence for their recorded environments, not current performance guarantees.
+
+
+## PR #5 world typography review
+
+After the required Node 24 checks, run one preview configuration at a time;
+configuration changes and test-created Vite servers share the optimization cache.
+`npm run atlas` serves Canonical at 5173. Execute the existing browser callback
+`tests/browser-adaptive-nameplates.mjs` through the local Playwright callback
+harness. It captures committed review PNGs under `docs/review/cantum-world/`,
+checks fixed world size/orientation, the exact crossfade, interaction exceptions,
+three viewport sizes, history resources and all 70 marker centers. The two
+`before-*-bd8d2da.png` files were captured before editing the starting PR #5 and
+are not overwritten by that callback.
+
+Use `tests/preview-archived-demo.mjs` at 5177 for the separate historical regression
+callbacks (`browser-labeling`, `browser-island-identities`, `browser-cantum-sigils`,
+`browser-influence-envelopes`, `browser-viewer-modules`). Synthetic records remain
+in the isolated fixtures or page memory. Run calibration callbacks only with the
+explicit calibration preview. After `npm run build`, `npm run preview -- --port
+4173 --strictPort` serves the real production bundle; run
+`tests/browser-world-production.mjs` and the ordinary canonical release callback.
+These checks do not imply deployment or creator visual approval.

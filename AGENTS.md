@@ -14,6 +14,15 @@ The subsequent NEXUS Navigation & Responsive Control Bars request approves the i
 
 For viewer-facing work, implement only the authorized scope, run checks, use Canonical for integration review and an explicit isolated synthetic fixture when generic object coverage is needed, and stop for creator visual review. Corrections, explicit approval and separately authorized commit/push follow. Documentation and nonvisual maintenance need no filler entities. See [DEMO_SHOWCASE](docs/DEMO_SHOWCASE.md#feature-to-review-policy).
 
+The subsequent World-Anchored Cantum Typography request continues only branch
+`refine/cantum-adaptive-nameplates` / draft PR #5 from `bd8d2da`. It supersedes
+Cantum DOM 14-24px sizing, camera-facing orientation and old zoom-only fade with
+component-fitted +Y-facing world planes and a coordinated 1.15x-1.50x caption
+crossfade. It authorizes scoped code/tests/docs/screenshots and commit/push/PR #5
+updates. Creator visual review, both merges and all publication remain gated;
+version stays 1.0.0. Preserve canonical JSON, all descriptions, field geometry,
+assets, audio, cameras and navigation. See the current PR #5 review record.
+
 ## Read by task
 
 Start with [README](README.md) for setup and [INDEX](docs/INDEX.md) for document authority. Follow [VERSIONING_POLICY](docs/VERSIONING_POLICY.md): evaluate version impact at each milestone closeout/release, recommend an increment or none with a brief reason, and obtain approval before changing versions unless the creator already specified the new version.

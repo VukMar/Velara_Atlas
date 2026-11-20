@@ -14,7 +14,7 @@ async page=>{
     groups:m.influenceEnvelopes?.data.map(e=>({id:e.id,contributors:e.contributors,halfHeight:e.halfHeight,vertices:e.positions.length/3,
       centers:e.contributors.map(id=>{const s=m.entities.find(s=>s.id===id);return s?e.sample(s.positionLY.x,s.positionLY.z)?.center:null;})}))??[],
     plates:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,name:a.label.name,variant:a.label.variant,y:a.position.y,
-      image:a.element.querySelectorAll('img').length,top:m.influenceEnvelopes?.data.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z)?.upper})),
+      image:Number(!!a.resource.image&&!a.resource.failed),top:m.influenceEnvelopes?.data.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z)?.upper})),
     geometries:m.renderer.info.memory.geometries,textures:m.renderer.info.memory.textures};});
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
