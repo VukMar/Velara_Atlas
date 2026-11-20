@@ -465,12 +465,54 @@ independent systems. Sector Cantum lettering uses currently resolved names and
 `territoryGroups` contributors. A cached 128×128 per-Cantum Gaussian field mask
 uses the overlay's visibility threshold and four-neighbor components. Each
 sufficiently large component can receive one complete name; disconnected holdings
-never gain a forced bridge or shared spanning name. Weighted principal axes,
-interior clearance and padded rectangle fitting determine fixed X/Z positions,
-world dimensions and upright angles bounded to ±30°. Unnamed regions are omitted;
+never gain a forced bridge or shared spanning name. Horizontal full-box fitting,
+usable row spans, marker/interior clearance and center proximity determine fixed
+X/Z anchors. The complete rendered typography is measured at a fixed 768px overview,
+including optional sigil and gap, with one sampled cell of geographic padding on
+every side. All eligible interior candidates compete with deterministic ties.
+This 2026-11-20 refinement supersedes the old principal-axis fit; no rotated box
+can qualify horizontal text. Unnamed regions are omitted;
 Stage 4 provides registered sigil-only identities for eligible smaller islands.
 This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
+
+## Final Cantum compositing polish - 2026-11-20
+
+The creator approves the existing world-space geometry, elevation, camera behavior
+and zoom crossfade. The subsequent polish changes only ordinary draw priority
+(names 1.5 to 4.5, after markers at 4) and maximum text opacity (.46 to .82).
+Depth testing remains enabled and text depth writing disabled; ordinary markers
+keep depth writing, preserving foreground occlusion and translucent overlap.
+Reticles/interactive captions stay above decoration. Fit, textures/filtering, UVs,
+world dimensions, XYZ, influence geometry/alpha and 1.15x-1.50x thresholds are
+unchanged. [Current contract](CARTOGRAPHIC_LABELING.md#final-visual-hierarchy-polish---2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing review
+remains pending; no version, merge or publication change is authorized.
+
+## World-space typography and coordinated visibility - 2026-11-20
+
+The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
+Stage 1's 14-24px DOM clamp, camera-facing projection/containment, prior
+perspective heights and 1x-5x fade. Use the current
+[world-space typography contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20)
+and [PR #5 review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
+Locally generated bounded CanvasTextures face +Y on fixed X/Z planes. Their
+complete proportional box is maximally fitted within each unchanged Gaussian
+component with one-cell padding, 90% safety scale, presentation size bounds and
+marker-aware balanced scoring. World dimensions never depend on camera or
+viewport; perspective foreshortening is natural. Component-local contributor
+IDs own highest-star elevation, with additional whole-box envelope clearance.
+Meshes are nonpickable, depth tested and disposed by their map owner.
+
+One smoothstep crossfades Cantum opacity .82 to zero and passive sector system
+captions zero to one between 1.15x and 1.50x overview zoom. Hover/focus/selection
+stay full strength. Object Names off hides passive captions; Cantum Names off or
+no eligible full names bypasses suppression. Influence fill and System View
+caption rules remain independent. No data, schema, field or version migration.
+
+> The following Stage 1-4/initial fitting descriptions retain their implementation
+> history; the current amendment above supersedes their typography, height and fade rules.
 
 **Cantum Visual Patch Stage 1:** projected DOM nameplates replace floor-mounted
 CanvasTexture meshes. The accepted component fitting still determines eligibility
@@ -521,9 +563,10 @@ surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independen
 of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
 and [Stage 3 evidence](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
-**Stage 4 island identities:** the original full-name fitting pass remains first
-and unchanged. An island that cannot fit its complete resolved name may display
-only its approved registered sigil; null/omitted/unknown sigils produce no marker.
+**Stage 4 island identities:** the full-name fitting pass remains first, using
+the horizontal refinement above. An island that cannot fit its complete resolved
+name may display only its approved registered sigil; null/omitted/unknown sigils
+produce no marker.
 No abbreviations, generic emblems or island selection entities are introduced.
 At least 24 sampled cells and an interior square accommodating a 24px sigil on a
 fixed 768px overview, padded by one field cell on every side, are required.

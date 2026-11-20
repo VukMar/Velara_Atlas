@@ -94,7 +94,7 @@ export class AtlasMap {
     this.labelsById = new Map();
     this.captionEligibility = new Set();
     this.textMeasure = document.createElement('canvas').getContext('2d');
-    this.cantumNameplates = new CantumNameplates(container,this.textMeasure,()=>this.render());
+    this.cantumNameplates = new CantumNameplates(this.scene,container,()=>this.render());
     this.overlayChanged = this.lifetime.guard(() => this.render());
     this.lifetime.listen(document,'toggle',this.overlayChanged,true);
     this.overlayObserver = new MutationObserver(this.overlayChanged);

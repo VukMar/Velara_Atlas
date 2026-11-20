@@ -186,19 +186,28 @@ Sector grid standardization places its transparent lines and single bottom-right
 light-year scale on `map.planeY`, with nine lines per axis. The existing projected
 measurement arrow and per-map grid toggle are shared with System View. Influence
 meshes retain their separate presentation plane and explicit ordering above the
-grid. Cantum Visual Patch Stage 1 replaces text meshes with horizontally readable
-DOM nameplates, using the existing component X/Z anchors and highest eligible
-contributor Y plus modest clearance. Projection/fade updates share the event-driven
-render path; the nameplate overlay owns no GPU textures, and removes its image
-error listeners on rebuild/disposal. Authored XYZ,
-chart extents, camera framing, political calculations and system-grid behavior
-do not change. See [the Stage 1 report](archive/reports/CANTUM_NAMEPLATES_STAGE1_RESULTS.md).
+grid. The current PR #5 world-space amendment supersedes Stage 1 DOM nameplates.
+The subsequent final hierarchy polish keeps this ownership and geometry unchanged:
+name order 4.5 follows ordinary marker order 4, with .82 overview opacity, retained
+depth testing/no text depth write and unchanged marker depth writing. Foreground
+occlusion remains spatial; reticles/captions retain their DOM precedence.
+`CantumNameplates` owns bounded CanvasTextures/materials shared by Cantum/variant,
+a shared unit-plane geometry, component-local star/envelope elevation and guarded
+image handlers. It detaches and disposes these resources before generic scene
+cleanup. Stable X/Z fits come from `territorialLabels`; rendering changes only
+mode-specific elevation, opacity and clipping. The coordinated 1.15x-1.50x
+crossfade passes passive sector-system opacity into the existing caption layout;
+interactive captions override it. Authored XYZ, chart extents, camera framing,
+political calculations and system-grid behavior do not change. See the
+[current contract](CARTOGRAPHIC_LABELING.md) and
+[PR #5 evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Historical Stage 1 evidence
+remains in its original report.
 
 Stage 3 supersedes the always-flat perspective presentation. `AtlasMap` retains
 the original flat mesh for top-down and shows only the envelope composite in
 perspective. Geometry is generated from resolved contributor groups at map/year
-updates and cached independently of camera movement. Perspective nameplates sample
-their local envelope top; top-down full-name heights and fitting remain intact.
+updates and cached independently of camera movement. World-space nameplanes clear their component-local stars and the envelope
+under the fitted rectangle; camera movement does not recompute their height.
 The event-driven render path rasterizes only envelope meshes into a half-float
 target, then displays one normal-blended chart layer with total alpha capped at
 .22. This bounds overlaps/front/back coverage without additive visible effects.
@@ -212,9 +221,9 @@ the pure placement helper; asset URLs remain the closed registry's responsibilit
 A camera-independent reference-overview square with one-cell padding and minimum
 cell count determines small-island eligibility. Interior anchors prefer marker
 clearance; perspective height sampling stays local to that anchor. Classification
-is cached on map/year inputs and never recalculated on camera movement. The DOM
-overlay removes failed sigil-only images and their entire empty anchors, while
-full-name failures retain text. No influence geometry/compositor module changes.
+is cached on map/year inputs and never recalculated on camera movement. The world
+text owner removes failed sigil-only meshes/resources, while full-name failures
+retain their text raster without the sigil slot. No influence geometry/compositor module changes.
 See [Stage 4 policy](CANTUM_TERRITORY_RENDERING.md#stage-4-detached-island-identities).
 Stage 5 refinement remains deferred.
 

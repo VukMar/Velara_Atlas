@@ -1,0 +1,4153 @@
+{
+  "startingSHA": "62c4927a69aaf370fe07d5d615007f2553bfbc3f",
+  "node": "24.22.3",
+  "browser": "Installed Chrome, headless SwiftShader software WebGL, reduced motion",
+  "commands": {
+    "npm ci": "PASS; two moderate dependency advisories; manifests unchanged",
+    "npm test": "388 pass; 0 fail/skip",
+    "npm run validate": "PASS",
+    "npm run connections:check": "PASS read-only",
+    "npm run build": "PASS; 33 audited files; 5600994 bytes",
+    "npm run release:check": "PASS",
+    "git diff --check": "PASS"
+  },
+  "summary": {
+    "uniqueBrowserCallbacks": 14,
+    "unchangedGeometryEveryRequiredView": true,
+    "allCanonicalMarkerCentersPickable": 70,
+    "fullyTransitionedPNGIdentical": true,
+    "fullyTransitionedPNGSHA256": "ca558862a615a3980149cb4531bb5b064115be2744700bbaecc611ae73488245",
+    "beforeTiming": {
+      "method": "RAF paced; gl.finish; 5 warmups + 30 samples",
+      "medianMs": 4.700000001117587,
+      "p95Ms": 35,
+      "calls": 79,
+      "textures": 8,
+      "geometries": 80
+    },
+    "afterTiming": {
+      "method": "RAF paced; gl.finish; 5 warmups + 30 samples",
+      "medianMs": 5.099999999627471,
+      "p95Ms": 32.5,
+      "calls": 79,
+      "textures": 8,
+      "geometries": 80
+    },
+    "compositeStarContribution": 0.18478260869565216
+  },
+  "regression": {
+    "browser-adaptive-nameplates": {
+      "baseline": "bd8d2dafab722b0a98b2beb9c1f6c39589e27717",
+      "initial": {
+        "mode": "top",
+        "zoom": 1,
+        "width": 839,
+        "selected": null,
+        "names": [
+          {
+            "label": {
+              "id": "can_1000001:0",
+              "cantumId": "can_1000001",
+              "name": "Drevnasel",
+              "color": "#57B8D9",
+              "x": 7.08984375,
+              "z": -7.51953125,
+              "angle": 0,
+              "width": 13.167669796319469,
+              "height": 3.4790185546875,
+              "cellIndex": 5968,
+              "horizontalSpace": 14.630744218132744,
+              "maximumHeight": 3.4790185546875,
+              "contributorIds": [
+                "sys_1000001",
+                "sys_1000002",
+                "sys_1000003",
+                "sys_1000004",
+                "sys_1000005",
+                "sys_1000006",
+                "sys_1000007",
+                "sys_1000008",
+                "sys_1000019",
+                "sys_1000039"
+              ],
+              "boundaryClearance": 5.5859375,
+              "markerOverlap": true,
+              "symbolOverlap": true,
+              "referencePixels": {
+                "width": 329.34375,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Drevnasel",
+            "position": [
+              7.08984375,
+              3.78,
+              -7.51953125
+            ],
+            "topY": 3.78,
+            "perspectiveY": 4.38,
+            "scale": [
+              13.167669796319469,
+              3.4790185546875,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 200.86681743840063,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              989,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          },
+          {
+            "label": {
+              "id": "can_1000002:0",
+              "cantumId": "can_1000002",
+              "name": "Visshum",
+              "color": "#D88962",
+              "x": -15.68359375,
+              "z": -16.97265625,
+              "angle": 0,
+              "width": 8.116853575772412,
+              "height": 2.5102880859375,
+              "cellIndex": 3099,
+              "horizontalSpace": 9.01872619530268,
+              "maximumHeight": 2.7060644531249998,
+              "contributorIds": [
+                "sys_1000009",
+                "sys_1000010",
+                "sys_1000011",
+                "sys_1000012",
+                "sys_1000013",
+                "sys_1000036"
+              ],
+              "boundaryClearance": 4.7265625,
+              "markerOverlap": true,
+              "symbolOverlap": true,
+              "referencePixels": {
+                "width": 281.359375,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Visshum",
+            "position": [
+              -15.68359375,
+              3.25,
+              -16.97265625
+            ],
+            "topY": 3.25,
+            "perspectiveY": 3.85,
+            "scale": [
+              8.116853575772412,
+              2.5102880859375,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 123.81891181951,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              845,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          },
+          {
+            "label": {
+              "id": "can_1000003:0",
+              "cantumId": "can_1000003",
+              "name": "Okeanberg",
+              "color": "#72BC89",
+              "x": -10.09765625,
+              "z": -10.09765625,
+              "angle": 0,
+              "width": 8.118618861106123,
+              "height": 1.9374609374999998,
+              "cellIndex": 5160,
+              "horizontalSpace": 9.020687623451247,
+              "maximumHeight": 1.9374609374999998,
+              "contributorIds": [
+                "sys_1000017",
+                "sys_1000018",
+                "sys_1000023",
+                "sys_1000024",
+                "sys_1000025",
+                "sys_1000041",
+                "sys_1000045",
+                "sys_1000051",
+                "sys_1000053"
+              ],
+              "boundaryClearance": 5.15625,
+              "markerOverlap": true,
+              "symbolOverlap": false,
+              "referencePixels": {
+                "width": 364.625,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Okeanberg",
+            "position": [
+              -10.09765625,
+              4.79,
+              -10.09765625
+            ],
+            "topY": 4.79,
+            "perspectiveY": 5.39,
+            "scale": [
+              8.118618861106123,
+              1.9374609374999998,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 123.84584044487337,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              1094,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          },
+          {
+            "label": {
+              "id": "can_1000005:0",
+              "cantumId": "can_1000005",
+              "name": "Vodravan",
+              "color": "#D97FA1",
+              "x": 14.39453125,
+              "z": 0.21484375,
+              "angle": 0,
+              "width": 9.664089844276068,
+              "height": 2.6785107421874996,
+              "cellIndex": 8289,
+              "horizontalSpace": 10.737877604751187,
+              "maximumHeight": 2.6785107421874996,
+              "contributorIds": [
+                "sys_1000035",
+                "sys_1000037",
+                "sys_1000043",
+                "sys_1000047",
+                "sys_1000059"
+              ],
+              "boundaryClearance": 2.578125,
+              "markerOverlap": true,
+              "symbolOverlap": true,
+              "referencePixels": {
+                "width": 313.953125,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Vodravan",
+            "position": [
+              14.39453125,
+              1.42,
+              0.21484375
+            ],
+            "topY": 1.42,
+            "perspectiveY": 2.02,
+            "scale": [
+              9.664089844276068,
+              2.6785107421874996,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 147.4212978063204,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              942,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          },
+          {
+            "label": {
+              "id": "can_1000006:0",
+              "cantumId": "can_1000006",
+              "name": "Gornebes",
+              "color": "#799DE5",
+              "x": 4.51171875,
+              "z": 6.66015625,
+              "angle": 0,
+              "width": 5.799938839901968,
+              "height": 1.5821630859374998,
+              "cellIndex": 10186,
+              "horizontalSpace": 6.444376488779964,
+              "maximumHeight": 1.79244140625,
+              "contributorIds": [
+                "sys_1000034",
+                "sys_1000038",
+                "sys_1000046",
+                "sys_1000050",
+                "sys_1000054",
+                "sys_1000066"
+              ],
+              "boundaryClearance": 3.8671875,
+              "markerOverlap": true,
+              "symbolOverlap": false,
+              "referencePixels": {
+                "width": 318.984375,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Gornebes",
+            "position": [
+              4.51171875,
+              5.26,
+              6.66015625
+            ],
+            "topY": 5.26,
+            "perspectiveY": 5.859999999999999,
+            "scale": [
+              5.799938839901968,
+              1.5821630859374998,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 88.47543066686819,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              957,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          },
+          {
+            "label": {
+              "id": "can_1000007:0",
+              "cantumId": "can_1000007",
+              "name": "Zaklun",
+              "color": "#E0C36B",
+              "x": -2.79296875,
+              "z": 3.22265625,
+              "angle": 0,
+              "width": 8.118352987625416,
+              "height": 3.0816650390625,
+              "cellIndex": 9145,
+              "horizontalSpace": 9.020392208472684,
+              "maximumHeight": 3.0816650390625,
+              "contributorIds": [
+                "sys_1000033",
+                "sys_1000040",
+                "sys_1000044",
+                "sys_1000049",
+                "sys_1000055",
+                "sys_1000063"
+              ],
+              "boundaryClearance": 6.015625,
+              "markerOverlap": true,
+              "symbolOverlap": true,
+              "referencePixels": {
+                "width": 229.234375,
+                "height": 87.015625,
+                "fontSize": 64,
+                "fontFamily": "system-ui, \"Segoe UI\", sans-serif",
+                "fontWeight": "600",
+                "letterSpacing": "3.84px"
+              },
+              "variant": "name-with-optional-sigil"
+            },
+            "text": "Zaklun",
+            "position": [
+              -2.79296875,
+              4.72,
+              3.22265625
+            ],
+            "topY": 4.72,
+            "perspectiveY": 5.319999999999999,
+            "scale": [
+              8.118352987625416,
+              3.0816650390625,
+              1
+            ],
+            "rotation": [
+              -0.7071067811865475,
+              0,
+              0,
+              0.7071067811865476
+            ],
+            "pixels": 123.84178466577679,
+            "visible": true,
+            "opacity": 0.82,
+            "image": 0,
+            "failed": false,
+            "dimensions": [
+              688,
+              262
+            ],
+            "depthTest": true,
+            "decorative": true
+          }
+        ],
+        "textures": 7,
+        "geometries": 73,
+        "roots": 1,
+        "dom": 0,
+        "resources": 6,
+        "hasNames": true,
+        "captions": [],
+        "markers": 70
+      },
+      "transitions": [
+        {
+          "zoom": 1.15,
+          "cantum": 0.82,
+          "passive": 0,
+          "shown": 0
+        },
+        {
+          "zoom": 1.325,
+          "cantum": 0.40999999999999986,
+          "passive": 0.5,
+          "shown": 65
+        },
+        {
+          "zoom": 1.5,
+          "cantum": 0,
+          "passive": 1,
+          "shown": 58
+        },
+        {
+          "zoom": 1.8,
+          "cantum": 0,
+          "passive": 1,
+          "shown": 48
+        }
+      ],
+      "history": [
+        {
+          "year": 299,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 11
+        },
+        {
+          "year": 344,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 12
+        },
+        {
+          "year": 345,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 12
+        },
+        {
+          "year": 359,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 12
+        },
+        {
+          "year": 360,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 12
+        },
+        {
+          "year": 700,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 39
+        },
+        {
+          "year": 800,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 46
+        },
+        {
+          "year": 1000,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Rekdolin"
+          ],
+          "textures": 5,
+          "geometries": 61
+        },
+        {
+          "year": 1174,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Visshum",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 6,
+          "geometries": 70
+        },
+        {
+          "year": 1175,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 7,
+          "geometries": 70
+        },
+        {
+          "year": 1199,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 7,
+          "geometries": 73
+        },
+        {
+          "year": 1200,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 7,
+          "geometries": 73
+        },
+        {
+          "year": 299,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 11
+        },
+        {
+          "year": 1200,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 7,
+          "geometries": 73
+        },
+        {
+          "year": 299,
+          "names": [
+            "Drevnasel"
+          ],
+          "textures": 2,
+          "geometries": 11
+        },
+        {
+          "year": 1200,
+          "names": [
+            "Drevnasel",
+            "Visshum",
+            "Okeanberg",
+            "Vodravan",
+            "Gornebes",
+            "Zaklun"
+          ],
+          "textures": 7,
+          "geometries": 73
+        }
+      ],
+      "picking": 70,
+      "shots": [
+        "docs/review/cantum-world/overview-1200.png",
+        "docs/review/cantum-world/zoom-1_15.png",
+        "docs/review/cantum-world/zoom-1_325.png",
+        "docs/review/cantum-world/zoom-1_5.png",
+        "docs/review/cantum-world/zoom-1_8.png",
+        "docs/review/cantum-world/perspective-1200.png",
+        "docs/review/cantum-world/orbit-1200.png",
+        "docs/review/cantum-world/low-angle-1200.png",
+        "docs/review/cantum-world/history-299.png",
+        "docs/review/cantum-world/history-360.png",
+        "docs/review/cantum-world/history-800.png",
+        "docs/review/cantum-world/history-299.png",
+        "docs/review/cantum-world/history-299.png",
+        "docs/review/cantum-world/mobile-390x844.png",
+        "docs/review/cantum-world/mobile-320x568.png",
+        "docs/review/cantum-world/mobile-844x390.png"
+      ],
+      "consoleErrors": []
+    },
+    "browser-control-bars": {
+      "base": "http://127.0.0.1:5173/Velara_Atlas/",
+      "layouts": [
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 554.5,
+            "y": 125.109375,
+            "w": 811,
+            "h": 811
+          },
+          "bar": {
+            "x": 0,
+            "y": 944.25,
+            "w": 1920,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 827.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 544,
+            "y": 125.203125,
+            "w": 832,
+            "h": 832
+          },
+          "bar": {
+            "x": 0,
+            "y": 965.4375,
+            "w": 1920,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 848.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 542,
+            "y": 125,
+            "w": 836,
+            "h": 836
+          },
+          "bar": {
+            "x": 0,
+            "y": 969.03125,
+            "w": 1920,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 852.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 404.5,
+            "y": 125.109375,
+            "w": 631,
+            "h": 631
+          },
+          "bar": {
+            "x": 0,
+            "y": 764.25,
+            "w": 1440,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 647.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 394,
+            "y": 125.203125,
+            "w": 652,
+            "h": 652
+          },
+          "bar": {
+            "x": 0,
+            "y": 785.4375,
+            "w": 1440,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 668.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 392,
+            "y": 125,
+            "w": 656,
+            "h": 656
+          },
+          "bar": {
+            "x": 0,
+            "y": 789.03125,
+            "w": 1440,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 672.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 414.5,
+            "y": 125.109375,
+            "w": 451,
+            "h": 451
+          },
+          "bar": {
+            "x": 0,
+            "y": 584.25,
+            "w": 1280,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 467.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 404,
+            "y": 125.203125,
+            "w": 472,
+            "h": 472
+          },
+          "bar": {
+            "x": 0,
+            "y": 605.4375,
+            "w": 1280,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 488.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 402,
+            "y": 125,
+            "w": 476,
+            "h": 476
+          },
+          "bar": {
+            "x": 0,
+            "y": 609.03125,
+            "w": 1280,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 492.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 8,
+            "y": 214.921875,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 645.078125,
+            "w": 390,
+            "h": 173.328125
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 486.3125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 8,
+            "y": 182.3125,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 579.875,
+            "w": 390,
+            "h": 238.53125
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 421.109375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 8,
+            "y": 236.90625,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 689.046875,
+            "w": 390,
+            "h": 129.359375
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 530.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 64,
+            "y": 169.3125,
+            "w": 192,
+            "h": 192
+          },
+          "bar": {
+            "x": 0,
+            "y": 369.078125,
+            "w": 320,
+            "h": 173.328125
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 207.53125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 97.5,
+            "y": 169.46875,
+            "w": 125,
+            "h": 125
+          },
+          "bar": {
+            "x": 0,
+            "y": 302.40625,
+            "w": 320,
+            "h": 240
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 140.859375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 67.5,
+            "y": 169.59375,
+            "w": 185,
+            "h": 185
+          },
+          "bar": {
+            "x": 0,
+            "y": 362.65625,
+            "w": 320,
+            "h": 179.75
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 201.109375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 361.5,
+            "y": 125.109375,
+            "w": 121,
+            "h": 121
+          },
+          "bar": {
+            "x": 0,
+            "y": 254.25,
+            "w": 844,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 137.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 366,
+            "y": 124.96875,
+            "w": 112,
+            "h": 112
+          },
+          "bar": {
+            "x": 0,
+            "y": 244.96875,
+            "w": 844,
+            "h": 119.4375
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 128
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 349,
+            "y": 125,
+            "w": 146,
+            "h": 146
+          },
+          "bar": {
+            "x": 0,
+            "y": 279.03125,
+            "w": 844,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 162.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        }
+      ],
+      "timers": "exact deadline, hover/reentry, keyboard/input, touch, help suspension, switch generations and no Catalogue timeout passed",
+      "touch": "Chromium touch drag/deadline, Catalogue selection and Help passed",
+      "errors": []
+    },
+    "browser-phase3f-showcase": {
+      "preload": {
+        "details": 4,
+        "factions": 2,
+        "radius": 24
+      },
+      "politics": [
+        {
+          "year": 799,
+          "mode": "perspective",
+          "flat": false,
+          "envelope": true,
+          "groups": [
+            {
+              "id": "can_0001",
+              "contributors": [
+                "sys_0001",
+                "sys_0002",
+                "sys_0005"
+              ],
+              "halfHeight": 3
+            },
+            {
+              "id": "can_0002",
+              "contributors": [
+                "sys_0003"
+              ],
+              "halfHeight": 3
+            }
+          ],
+          "labels": [
+            {
+              "id": "can_0001",
+              "text": "Test Cantum",
+              "sigil": true,
+              "visible": true
+            },
+            {
+              "id": "can_0002",
+              "text": "TEST Second Cantum",
+              "sigil": false,
+              "visible": true
+            }
+          ],
+          "memory": {
+            "geometries": 12,
+            "textures": 3
+          }
+        },
+        {
+          "year": 800,
+          "mode": "perspective",
+          "flat": false,
+          "envelope": true,
+          "groups": [
+            {
+              "id": "can_0001",
+              "contributors": [
+                "sys_0001",
+                "sys_0002",
+                "sys_0003",
+                "sys_0005"
+              ],
+              "halfHeight": 3
+            }
+          ],
+          "labels": [
+            {
+              "id": "can_0001",
+              "text": "Test Cantum",
+              "sigil": true,
+              "visible": true
+            }
+          ],
+          "memory": {
+            "geometries": 11,
+            "textures": 2
+          }
+        },
+        {
+          "year": 999,
+          "mode": "perspective",
+          "flat": false,
+          "envelope": true,
+          "groups": [
+            {
+              "id": "can_0001",
+              "contributors": [
+                "sys_0001",
+                "sys_0002",
+                "sys_0003",
+                "sys_0005"
+              ],
+              "halfHeight": 3
+            }
+          ],
+          "labels": [
+            {
+              "id": "can_0001",
+              "text": "Test Cantum",
+              "sigil": true,
+              "visible": true
+            }
+          ],
+          "memory": {
+            "geometries": 12,
+            "textures": 2
+          }
+        },
+        {
+          "year": 1000,
+          "mode": "perspective",
+          "flat": false,
+          "envelope": true,
+          "groups": [
+            {
+              "id": "can_0001",
+              "contributors": [
+                "sys_0001",
+                "sys_0002",
+                "sys_0005"
+              ],
+              "halfHeight": 3
+            },
+            {
+              "id": "can_0002",
+              "contributors": [
+                "sys_0003"
+              ],
+              "halfHeight": 3
+            }
+          ],
+          "labels": [
+            {
+              "id": "can_0001",
+              "text": "Test Cantum",
+              "sigil": true,
+              "visible": true
+            },
+            {
+              "id": "can_0002",
+              "text": "TEST Second Cantum",
+              "sigil": false,
+              "visible": true
+            }
+          ],
+          "memory": {
+            "geometries": 13,
+            "textures": 3
+          }
+        }
+      ],
+      "navigation": [
+        {
+          "year": 300,
+          "gateA": false,
+          "gateB": false,
+          "link": false
+        },
+        {
+          "year": 349,
+          "gateA": false,
+          "gateB": false,
+          "link": false
+        },
+        {
+          "year": 350,
+          "gateA": true,
+          "gateB": false,
+          "link": false
+        },
+        {
+          "year": 352,
+          "gateA": true,
+          "gateB": true,
+          "link": false
+        },
+        {
+          "year": 353,
+          "gateA": true,
+          "gateB": true,
+          "link": true
+        }
+      ],
+      "factions": [
+        {
+          "year": 300,
+          "name": "Not recorded",
+          "legal": null,
+          "institution": null
+        },
+        {
+          "year": 499,
+          "name": "TEST Intelligence Office",
+          "legal": "lawful",
+          "institution": "Test Cantum"
+        },
+        {
+          "year": 500,
+          "name": "TEST Cantum A Intelligence Office",
+          "legal": "lawful",
+          "institution": "Test Cantum"
+        },
+        {
+          "year": 899,
+          "name": "TEST Cantum A Intelligence Office",
+          "legal": "lawful",
+          "institution": "Independent"
+        },
+        {
+          "year": 900,
+          "name": "TEST Cantum A Intelligence Office",
+          "legal": "unlawful",
+          "institution": "Independent"
+        }
+      ],
+      "resources": "stable",
+      "archival": "passed",
+      "mobile": 2,
+      "consoleErrors": []
+    },
+    "browser-cantum-sigils": {
+      "unicodeMeasurement": "passed",
+      "sharedResources": "passed",
+      "disposeEvents": {
+        "texture": 1,
+        "material": 1,
+        "geometry": 1
+      },
+      "registeredLoad": "passed",
+      "failedAndAbsentFallbacks": "passed"
+    },
+    "browser-island-identities": {
+      "identities": [
+        "name-with-optional-sigil",
+        "sigil-only"
+      ],
+      "cameraTilts": 3,
+      "mobileSizes": 2,
+      "lifecycle": {
+        "stale": true,
+        "noEmpty": true,
+        "fullName": true,
+        "counts": [
+          1,
+          1,
+          1
+        ],
+        "long": true,
+        "unique": true,
+        "invalid": true
+      },
+      "consoleErrors": [],
+      "screenshots": [
+        ".playwright-mcp/stage4-islands-top.png",
+        ".playwright-mcp/stage4-islands-perspective.png"
+      ]
+    },
+    "browser-labeling": {
+      "worldSpaceNameplates": "passed",
+      "stableAnchorsAndZoomFade": "passed",
+      "lowTiltAndOrbit": "passed",
+      "captionSizingAndCollisions": "passed",
+      "independentPreferences": "passed",
+      "historyAndDisposal": "passed",
+      "islands": {
+        "count": 2,
+        "ys": [
+          -5,
+          8
+        ],
+        "replaced": true,
+        "unknown": 0,
+        "ineligible": 0,
+        "system": 0,
+        "disposed": true
+      },
+      "mobileSizes": 3,
+      "progressive": {
+        "wide": 0,
+        "close": 2
+      },
+      "dense": {
+        "milliseconds": 297.3999999985099,
+        "medianRenderMilliseconds": 12.900000000372529,
+        "maxRenderMilliseconds": 78.79999999888241,
+        "markers": 300,
+        "focused": "true"
+      },
+      "consoleErrors": []
+    },
+    "browser-influence-envelopes": {
+      "dualPresentation": "passed",
+      "geometryReuse": "passed",
+      "history": [
+        {
+          "year": 99,
+          "contributors": 0
+        },
+        {
+          "year": 100,
+          "contributors": 0
+        },
+        {
+          "year": 210,
+          "contributors": 1
+        },
+        {
+          "year": 299,
+          "contributors": 1
+        },
+        {
+          "year": 300,
+          "contributors": 2
+        },
+        {
+          "year": 329,
+          "contributors": 2
+        },
+        {
+          "year": 330,
+          "contributors": 3
+        },
+        {
+          "year": 600,
+          "contributors": 3
+        },
+        {
+          "year": 699,
+          "contributors": 3
+        },
+        {
+          "year": 700,
+          "contributors": 4
+        },
+        {
+          "year": 1200,
+          "contributors": 4
+        }
+      ],
+      "gpuAlpha": {
+        "maxAlpha": 56,
+        "nonzero": 1686,
+        "sides": [
+          812,
+          874
+        ]
+      },
+      "dpr": {
+        "ratio": 2,
+        "target": [
+          1678,
+          1678
+        ],
+        "buffer": [
+          1678,
+          1678
+        ]
+      },
+      "layerControls": "passed",
+      "nameplatesAndSigils": "passed",
+      "resourceCleanup": "passed",
+      "mobileSizes": 2,
+      "consoleErrors": []
+    },
+    "browser-grid-zero": {
+      "releasedSystems": 4,
+      "objectsAbove": 23,
+      "objectsBelow": 14,
+      "zeroPlaneAndH8": "passed",
+      "bothCameraModesAndPreferences": "passed",
+      "sectorReferenceScaleAndCantums": "passed",
+      "consoleErrors": []
+    },
+    "browser-viewer-modules": {
+      "focusReturn": "passed",
+      "timelineAndSelection": "passed",
+      "lifecycle": {
+        "samples": [
+          {
+            "memory": {
+              "geometries": 11,
+              "textures": 3
+            },
+            "listeners": 228,
+            "canvases": 1
+          },
+          {
+            "memory": {
+              "geometries": 11,
+              "textures": 3
+            },
+            "listeners": 228,
+            "canvases": 1
+          },
+          {
+            "memory": {
+              "geometries": 11,
+              "textures": 3
+            },
+            "listeners": 228,
+            "canvases": 1
+          },
+          {
+            "memory": {
+              "geometries": 11,
+              "textures": 3
+            },
+            "listeners": 228,
+            "canvases": 1
+          }
+        ],
+        "staleSelections": 0,
+        "staleRenders": 0
+      },
+      "configuration": "closed configuration applied and isolated",
+      "consoleErrors": []
+    },
+    "browser-governing-influence": {
+      "preload": {
+        "version": "1.3.0",
+        "factions": 2,
+        "details": 1
+      },
+      "snapshots": [
+        {
+          "year": 799,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 11040,
+              "centers": [
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9902",
+              "contributors": [
+                "sys_9901"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                8
+              ]
+            },
+            {
+              "id": "can_9903",
+              "contributors": [
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 7.4,
+              "image": 1,
+              "top": 4.4
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 11,
+          "textures": 2
+        },
+        {
+          "year": 800,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9901",
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 17328,
+              "centers": [
+                8,
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9903",
+              "contributors": [
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 13.4,
+              "image": 1,
+              "top": 4.412332075034136
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 10,
+          "textures": 2
+        },
+        {
+          "year": 849,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9901",
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 17328,
+              "centers": [
+                8,
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9903",
+              "contributors": [
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 13.4,
+              "image": 1,
+              "top": 4.412332075034136
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 10,
+          "textures": 2
+        },
+        {
+          "year": 850,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9901",
+                "sys_9902",
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 21600,
+              "centers": [
+                8,
+                -4,
+                2,
+                -3
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 13.4,
+              "image": 1,
+              "top": 10.232814655316842
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 9,
+          "textures": 2
+        },
+        {
+          "year": 999,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9901",
+                "sys_9902",
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 21600,
+              "centers": [
+                8,
+                -4,
+                2,
+                -3
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 13.4,
+              "image": 1,
+              "top": 10.232814655316842
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 9,
+          "textures": 2
+        },
+        {
+          "year": 1000,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 11040,
+              "centers": [
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9902",
+              "contributors": [
+                "sys_9901",
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 9888,
+              "centers": [
+                8,
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 7.4,
+              "image": 1,
+              "top": 4.4
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 10,
+          "textures": 2
+        },
+        {
+          "year": 1099,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 11040,
+              "centers": [
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9902",
+              "contributors": [
+                "sys_9901",
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 9888,
+              "centers": [
+                8,
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 7.4,
+              "image": 1,
+              "top": 4.4
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 10,
+          "textures": 2
+        },
+        {
+          "year": 1100,
+          "groups": [
+            {
+              "id": "can_9901",
+              "contributors": [
+                "sys_9903",
+                "sys_9905"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 11040,
+              "centers": [
+                2,
+                -3
+              ]
+            },
+            {
+              "id": "can_9902",
+              "contributors": [
+                "sys_9901"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                8
+              ]
+            },
+            {
+              "id": "can_9903",
+              "contributors": [
+                "sys_9902"
+              ],
+              "halfHeight": 2.4,
+              "vertices": 5520,
+              "centers": [
+                -4
+              ]
+            }
+          ],
+          "plates": [
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 7.4,
+              "image": 1,
+              "top": 4.4
+            },
+            {
+              "id": "can_9901",
+              "name": "TEST Cantum A",
+              "variant": "sigil-only",
+              "y": 2.4,
+              "image": 1,
+              "top": -0.6000000000000001
+            }
+          ],
+          "geometries": 11,
+          "textures": 2
+        }
+      ],
+      "infoCards": "passed",
+      "historicalFactions": "passed",
+      "resourceReuse": "passed",
+      "mobile": 2,
+      "consoleErrors": []
+    },
+    "browser-cantum-calibration": {
+      "radii": [
+        {
+          "radius": 2,
+          "halfHeight": 0.6,
+          "identities": [
+            "sigil-only",
+            "name-with-optional-sigil",
+            "name-with-optional-sigil"
+          ]
+        },
+        {
+          "radius": 2.5,
+          "halfHeight": 0.75,
+          "identities": [
+            "sigil-only",
+            "name-with-optional-sigil",
+            "name-with-optional-sigil"
+          ]
+        },
+        {
+          "radius": 3,
+          "halfHeight": 0.8999999999999999,
+          "identities": [
+            "sigil-only",
+            "name-with-optional-sigil",
+            "name-with-optional-sigil"
+          ]
+        }
+      ],
+      "pickingTouchDoubleClickAndKeyboard": "passed",
+      "nullSigilAndIndependentMembership": "passed",
+      "historyAndTransfer": "passed",
+      "resourceReuse": "passed",
+      "mobile": 2,
+      "highDPI": "passed",
+      "screenshots": [
+        ".playwright-mcp/calibration-2-top.png",
+        ".playwright-mcp/calibration-2-perspective.png",
+        ".playwright-mcp/calibration-2-low.png",
+        ".playwright-mcp/calibration-2_5-top.png",
+        ".playwright-mcp/calibration-2_5-perspective.png",
+        ".playwright-mcp/calibration-2_5-low.png",
+        ".playwright-mcp/calibration-3-top.png",
+        ".playwright-mcp/calibration-3-perspective.png",
+        ".playwright-mcp/calibration-3-low.png"
+      ],
+      "consoleErrors": []
+    }
+  },
+  "production": {
+    "browser-world-production": {
+      "states": [
+        {
+          "names": 6,
+          "passive": [],
+          "roots": 1,
+          "probes": 0
+        },
+        {
+          "names": 6,
+          "passive": [
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749,
+            0.801749
+          ],
+          "roots": 1,
+          "probes": 0
+        },
+        {
+          "names": 0,
+          "passive": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "roots": 1,
+          "probes": 0
+        }
+      ],
+      "mobile": 2,
+      "consoleErrors": []
+    },
+    "browser-release-readiness": {
+      "base": "http://127.0.0.1:4173/Velara_Atlas/",
+      "descriptionChecks": 44,
+      "checks": [
+        {
+          "id": "sys_1000001",
+          "year": 1200,
+          "length": 734
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1175,
+          "length": 734
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1174,
+          "length": 509
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1138,
+          "length": 534
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1137,
+          "length": 534
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1000,
+          "length": 534
+        },
+        {
+          "id": "sys_1000001",
+          "year": 970,
+          "length": 534
+        },
+        {
+          "id": "sys_1000001",
+          "year": 969,
+          "length": 534
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1174,
+          "length": 509
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1175,
+          "length": 734
+        },
+        {
+          "id": "sys_1000001",
+          "year": 1200,
+          "length": 734
+        },
+        {
+          "id": "can_1000002",
+          "year": 1200,
+          "length": 2381
+        },
+        {
+          "id": "can_1000002",
+          "year": 1175,
+          "length": 2381
+        },
+        {
+          "id": "can_1000002",
+          "year": 1174,
+          "length": 1459
+        },
+        {
+          "id": "can_1000002",
+          "year": 1138,
+          "length": 1459
+        },
+        {
+          "id": "can_1000002",
+          "year": 1137,
+          "length": 1063
+        },
+        {
+          "id": "can_1000002",
+          "year": 1000,
+          "length": 1063
+        },
+        {
+          "id": "can_1000002",
+          "year": 970,
+          "length": 1063
+        },
+        {
+          "id": "can_1000002",
+          "year": 969,
+          "length": 1063
+        },
+        {
+          "id": "can_1000002",
+          "year": 1174,
+          "length": 1459
+        },
+        {
+          "id": "can_1000002",
+          "year": 1175,
+          "length": 2381
+        },
+        {
+          "id": "can_1000002",
+          "year": 1200,
+          "length": 2381
+        },
+        {
+          "id": "can_1000003",
+          "year": 1200,
+          "length": 2947
+        },
+        {
+          "id": "can_1000003",
+          "year": 1175,
+          "length": 2947
+        },
+        {
+          "id": "can_1000003",
+          "year": 1174,
+          "length": 1350
+        },
+        {
+          "id": "can_1000003",
+          "year": 1138,
+          "length": 1350
+        },
+        {
+          "id": "can_1000003",
+          "year": 1137,
+          "length": 1434
+        },
+        {
+          "id": "can_1000003",
+          "year": 1000,
+          "length": 1404
+        },
+        {
+          "id": "can_1000003",
+          "year": 970,
+          "length": 1404
+        },
+        {
+          "id": "can_1000003",
+          "year": 969,
+          "length": 776
+        },
+        {
+          "id": "can_1000003",
+          "year": 1174,
+          "length": 1350
+        },
+        {
+          "id": "can_1000003",
+          "year": 1175,
+          "length": 2947
+        },
+        {
+          "id": "can_1000003",
+          "year": 1200,
+          "length": 2947
+        },
+        {
+          "id": "can_1000004",
+          "year": 1200,
+          "length": 3443
+        },
+        {
+          "id": "can_1000004",
+          "year": 1175,
+          "length": 3443
+        },
+        {
+          "id": "can_1000004",
+          "year": 1174,
+          "length": 1668
+        },
+        {
+          "id": "can_1000004",
+          "year": 1138,
+          "length": 1668
+        },
+        {
+          "id": "can_1000004",
+          "year": 1137,
+          "length": 1449
+        },
+        {
+          "id": "can_1000004",
+          "year": 1000,
+          "length": 1359
+        },
+        {
+          "id": "can_1000004",
+          "year": 970,
+          "length": 1383
+        },
+        {
+          "id": "can_1000004",
+          "year": 969,
+          "length": 804
+        },
+        {
+          "id": "can_1000004",
+          "year": 1174,
+          "length": 1668
+        },
+        {
+          "id": "can_1000004",
+          "year": 1175,
+          "length": 3443
+        },
+        {
+          "id": "can_1000004",
+          "year": 1200,
+          "length": 3443
+        }
+      ],
+      "layouts": [
+        {
+          "viewport": [
+            1440,
+            1000
+          ],
+          "x": 420,
+          "y": 140,
+          "width": 600,
+          "height": 720,
+          "overflow": 0,
+          "scrolls": true,
+          "whiteSpace": "pre-line",
+          "separation": 51.6875
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "x": 12,
+          "y": 62,
+          "width": 366,
+          "height": 720,
+          "overflow": 0,
+          "scrolls": true,
+          "whiteSpace": "pre-line",
+          "separation": 51.6875
+        },
+        {
+          "viewport": [
+            320,
+            740
+          ],
+          "x": 12,
+          "y": 24,
+          "width": 296,
+          "height": 692,
+          "overflow": 0,
+          "scrolls": true,
+          "whiteSpace": "pre-line",
+          "separation": 51.6875
+        }
+      ],
+      "errors": [],
+      "failures": [],
+      "retiredDemoStatus": 404,
+      "requests": 10
+    },
+    "browser-control-bars": {
+      "base": "http://127.0.0.1:4173/Velara_Atlas/",
+      "layouts": [
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 554.5,
+            "y": 125.109375,
+            "w": 811,
+            "h": 811
+          },
+          "bar": {
+            "x": 0,
+            "y": 944.25,
+            "w": 1920,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 827.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 544,
+            "y": 125.203125,
+            "w": 832,
+            "h": 832
+          },
+          "bar": {
+            "x": 0,
+            "y": 965.4375,
+            "w": 1920,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 848.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1920,
+            1080
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 542,
+            "y": 125,
+            "w": 836,
+            "h": 836
+          },
+          "bar": {
+            "x": 0,
+            "y": 969.03125,
+            "w": 1920,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 1054.40625,
+            "w": 1920,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1920,
+            "h": 852.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1770.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1840.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 404.5,
+            "y": 125.109375,
+            "w": 631,
+            "h": 631
+          },
+          "bar": {
+            "x": 0,
+            "y": 764.25,
+            "w": 1440,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 647.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 394,
+            "y": 125.203125,
+            "w": 652,
+            "h": 652
+          },
+          "bar": {
+            "x": 0,
+            "y": 785.4375,
+            "w": 1440,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 668.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 392,
+            "y": 125,
+            "w": 656,
+            "h": 656
+          },
+          "bar": {
+            "x": 0,
+            "y": 789.03125,
+            "w": 1440,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 874.40625,
+            "w": 1440,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1440,
+            "h": 672.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1290.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1360.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 414.5,
+            "y": 125.109375,
+            "w": 451,
+            "h": 451
+          },
+          "bar": {
+            "x": 0,
+            "y": 584.25,
+            "w": 1280,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 467.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 404,
+            "y": 125.203125,
+            "w": 472,
+            "h": 472
+          },
+          "bar": {
+            "x": 0,
+            "y": 605.4375,
+            "w": 1280,
+            "h": 88.96875
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 488.46875
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            1280,
+            720
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 402,
+            "y": 125,
+            "w": 476,
+            "h": 476
+          },
+          "bar": {
+            "x": 0,
+            "y": 609.03125,
+            "w": 1280,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 694.40625,
+            "w": 1280,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 1280,
+            "h": 492.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 1130.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 1200.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 8,
+            "y": 214.921875,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 645.078125,
+            "w": 390,
+            "h": 173.328125
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 486.3125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 8,
+            "y": 182.3125,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 579.875,
+            "w": 390,
+            "h": 238.53125
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 421.109375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 8,
+            "y": 236.90625,
+            "w": 374,
+            "h": 374
+          },
+          "bar": {
+            "x": 0,
+            "y": 689.046875,
+            "w": 390,
+            "h": 129.359375
+          },
+          "footer": {
+            "x": 0,
+            "y": 818.40625,
+            "w": 390,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 158.765625,
+            "w": 390,
+            "h": 530.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 101.6875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            },
+            {
+              "x": 197,
+              "y": 108.96875,
+              "w": 91.296875,
+              "h": 44
+            },
+            {
+              "x": 292.296875,
+              "y": 108.96875,
+              "w": 91.3125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 64,
+            "y": 169.3125,
+            "w": 192,
+            "h": 192
+          },
+          "bar": {
+            "x": 0,
+            "y": 369.078125,
+            "w": 320,
+            "h": 173.328125
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 207.53125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 97.5,
+            "y": 169.46875,
+            "w": 125,
+            "h": 125
+          },
+          "bar": {
+            "x": 0,
+            "y": 302.40625,
+            "w": 320,
+            "h": 240
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 140.859375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            320,
+            568
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 67.5,
+            "y": 169.59375,
+            "w": 185,
+            "h": 185
+          },
+          "bar": {
+            "x": 0,
+            "y": 362.65625,
+            "w": 320,
+            "h": 179.75
+          },
+          "footer": {
+            "x": 0,
+            "y": 542.40625,
+            "w": 320,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 161.546875,
+            "w": 320,
+            "h": 201.109375
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 6.390625,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 84.1875,
+              "y": 108.96875,
+              "w": 73.8125,
+              "h": 46.78125
+            },
+            {
+              "x": 162,
+              "y": 110.359375,
+              "w": 73.796875,
+              "h": 44
+            },
+            {
+              "x": 239.796875,
+              "y": 110.359375,
+              "w": 73.8125,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "timeline-panel",
+          "chart": {
+            "x": 361.5,
+            "y": 125.109375,
+            "w": 121,
+            "h": 121
+          },
+          "bar": {
+            "x": 0,
+            "y": 254.25,
+            "w": 844,
+            "h": 110.15625
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 137.28125
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "layers-panel",
+          "chart": {
+            "x": 366,
+            "y": 124.96875,
+            "w": 112,
+            "h": 112
+          },
+          "bar": {
+            "x": 0,
+            "y": 244.96875,
+            "w": 844,
+            "h": 119.4375
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 128
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "id": "controls-panel",
+          "chart": {
+            "x": 349,
+            "y": 125,
+            "w": 146,
+            "h": 146
+          },
+          "bar": {
+            "x": 0,
+            "y": 279.03125,
+            "w": 844,
+            "h": 85.375
+          },
+          "footer": {
+            "x": 0,
+            "y": 364.40625,
+            "w": 844,
+            "h": 25.59375
+          },
+          "stage": {
+            "x": 0,
+            "y": 116.96875,
+            "w": 844,
+            "h": 162.0625
+          },
+          "overflow": 0,
+          "buttons": [
+            {
+              "x": 12.796875,
+              "y": 65.578125,
+              "w": 85.328125,
+              "h": 44
+            },
+            {
+              "x": 106.125,
+              "y": 65.578125,
+              "w": 105.6875,
+              "h": 44
+            },
+            {
+              "x": 694.328125,
+              "y": 65.578125,
+              "w": 61.890625,
+              "h": 44
+            },
+            {
+              "x": 764.21875,
+              "y": 65.578125,
+              "w": 66.984375,
+              "h": 44
+            }
+          ],
+          "visible": 1
+        }
+      ],
+      "timers": "exact deadline, hover/reentry, keyboard/input, touch, help suspension, switch generations and no Catalogue timeout passed",
+      "touch": "Chromium touch drag/deadline, Catalogue selection and Help passed",
+      "errors": []
+    }
+  },
+  "preservation": {
+    "startingSHA": "62c4927a69aaf370fe07d5d615007f2553bfbc3f",
+    "parentSHA": "e1ae55c1ea65477b003278bc49f2090fa662172f",
+    "files": [
+      {
+        "file": "cantums.json",
+        "sha256": "a5519e3735d47a091a5e47de63f2b88d680aa3413c218190b58b4d1c5a0b0c5c",
+        "byteIdenticalToBoth": true
+      },
+      {
+        "file": "connections.json",
+        "sha256": "217779677717f8a86e7684230de849f0305cb090abceb882cbb68eb594db0809",
+        "byteIdenticalToBoth": true
+      },
+      {
+        "file": "factions.json",
+        "sha256": "2f17c91597a35d61d4a40d62e93bc44f0fb32e3e4aefcde946a47df64dccce36",
+        "byteIdenticalToBoth": true
+      },
+      {
+        "file": "presentation.json",
+        "sha256": "4165d339ba486e381af34643ce0fe530df2a7d27b2e440e230678cc88e82d5a7",
+        "byteIdenticalToBoth": true
+      },
+      {
+        "file": "sector.json",
+        "sha256": "5d0244e429daec57a5f876bc363ad11dbc5998b9e88be41b7b35cefc04201b3c",
+        "byteIdenticalToBoth": true
+      }
+    ],
+    "descriptions": 234,
+    "version": "1.0.0",
+    "unchangedRenderingSources": [
+      "cantum-nameplates.mjs",
+      "celestial-model.mjs",
+      "scene-layers.mjs",
+      "projected-labels.mjs",
+      "sector-markers.mjs",
+      "camera-controller.mjs",
+      "influence-envelopes.mjs",
+      "influence-compositor.mjs",
+      "target-reticle.mjs"
+    ]
+  }
+}

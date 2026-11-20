@@ -77,30 +77,32 @@ These hex values are implementation starting points sampled approximately from t
 
 ## 5. Map visual layers and 2D/3D behavior
 
-Draw order back → front (preserve the earlier Milestone 3 contract):
+Draw order back → front (current sector typography amendment):
 
 1. Near-black map / restrained starfield and background.
 2. Coordinate grid and reference guides.
-3. Metaball-like Cantum influence regions (sector only), soft and nearly transparent.
-   Stage 1 Cantum names use a decorative projected DOM overlay; marker captions,
-   targeting and grid annotations remain above it, with no opaque nameplate panel.
+3. Cantum influence clouds, retaining soft boundaries and .16/.22 alpha limits.
 4. Nav routes (short-range in systems; Jump Gate and Jump Hole routes in sector view).
-5. Spatial objects (2D icons in top-down; appropriate physical/simple 3D rendering in perspective).
-6. Historical names, spatial labels and visible coordinate readouts.
-7. Hover/selection targeting and direct interface overlays.
+5. Ordinary spatial objects (2D icons or physical/simple 3D rendering).
+6. Sector Cantum geographic lettering at render order 4.5, after ordinary markers
+   at 4, with .82 overview opacity; historical captions/readouts retain their DOM
+   layer. Lettering remains depth tested without depth writing, so foreground
+   geometry occludes it and lower stars show through its translucent glyphs.
+7. Hover/selection targeting and direct interactive identification/interface overlays.
 
 **Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
 adds restrained, spaced system-font Cantum names per sufficiently large connected
-influence component. Historical names and memberships remain authoritative. Text
-uses the existing fitted geography for X/Z anchors; small or unnamed regions have
-none. Stage 1 displays horizontal camera-facing nameplates at bounded 14–24 CSS
-pixels, with Cantum-specific tint, weight 600 and restrained shadow. The provisional
-height is highest eligible contributor Y plus modest clearance, independently of
-the unchanged flat influence surface. Names fade at close zoom, remain readable
-at low camera tilt and never receive pointer events. Their
-Cantum-linked tint is independent of NEXUS interface colors and influence opacity
-caps. The **Cantum Names** control is sector-only and independent of shading.
+influence component. Historical names and memberships remain authoritative. Text uses fixed upward-facing X/Z planes sized to each connected component from
+complete browser-shaped text metrics. CanvasTextures retain weight 600, available
+system fonts, Cantum tint and restrained shadow. Component-local eligible stars
+and the envelope determine height; pan, zoom, orbit and viewport resizing cannot
+change the dimensions or orientation. Perspective naturally foreshortens the
+lettering. A smooth 1.15x-1.50x crossfade hands passive identification to sector
+system captions, with hover/focus/selection always fully identified. Influence
+and names remain independent. This supersedes Stage 1's camera-facing 14-24px
+contract; [current algorithm and review](CANTUM_NAMEPLATE_REFINEMENT.md).
 
+**Historical Stage 2 sizing (superseded by world-space proportional sizing):**
 **Cantum Visual Patch Stage 2:** an optional sigil may sit beside a complete
 name inside the existing decorative nameplate. The approved demonstration SVG
 `cantums/test-cantum-a.svg` uses original cyan/blue geometry and is explicitly

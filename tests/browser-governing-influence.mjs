@@ -8,13 +8,13 @@ async page=>{
   const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.mouse.move(1,1);};
   const year=async y=>{await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await close();};
-  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
+  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});await page.locator('#technical-tab').click();};
   const facts=()=>page.locator('#facts').innerText();
   const state=()=>page.evaluate(()=>{const m=window.__governanceMap;return {
     groups:m.influenceEnvelopes?.data.map(e=>({id:e.id,contributors:e.contributors,halfHeight:e.halfHeight,vertices:e.positions.length/3,
       centers:e.contributors.map(id=>{const s=m.entities.find(s=>s.id===id);return s?e.sample(s.positionLY.x,s.positionLY.z)?.center:null;})}))??[],
     plates:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,name:a.label.name,variant:a.label.variant,y:a.position.y,
-      image:a.element.querySelectorAll('img').length,top:m.influenceEnvelopes?.data.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z)?.upper})),
+      image:Number(!!a.resource.image&&!a.resource.failed),top:m.influenceEnvelopes?.data.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z)?.upper})),
     geometries:m.renderer.info.memory.geometries,textures:m.renderer.info.memory.textures};});
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);

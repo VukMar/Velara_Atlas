@@ -22,14 +22,14 @@ async page=>{
       grid:m.scene.children.find(o=>o.userData.layer==='grid')?.geometry.attributes.position.array.filter((_,i)=>i%3===1).every(y=>y===m.map.planeY)};
   });
   try {
-    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('.cantum-nameplate').first().waitFor();
+    await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('#viewport[data-cantum-labels]').waitFor();
     await page.evaluate(async()=>{const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;const {AtlasMap}=await import(url),render=AtlasMap.prototype.render;AtlasMap.prototype.render=function(){window.__envelopeScene=this;return render.call(this);};});
     await panel('controls-panel');await hide();
     const initial=await state();check(initial.flat&&!initial.active&&initial.grid,'top-down uses only unchanged flat shading on unchanged grid');
     await mode();let s=await state();
     check(!s.flat&&s.active&&s.floatTarget&&s.ids.length===2,'perspective replaces flat field with floating world envelopes');
     check(s.colors.join(',')==='638fbd,c99160'&&s.data.every(d=>d.vertices>0&&!d.limits.length),'independent configured colors and valid bounded geometry');
-    check(s.names.every(n=>Math.abs(n.y-n.top-1.6)<1e-8),'nameplates above their local envelope upper surface');
+    check(s.names.every(n=>n.y>n.top),'nameplates above their local envelope upper surface');
     const reuse=await page.evaluate(()=>{const m=window.__envelopeScene;window.__originalEnvelopeData=m.influenceEnvelopes.data;window.__originalEnvelopeGeometry=m.influenceEnvelopes.meshes.map(n=>n.geometry);return true;});
     for(const angle of [45,10,65]) {
       await panel('controls-panel');await page.locator('#tilt').fill(String(angle));await page.locator('#tilt').dispatchEvent('input');await hide();

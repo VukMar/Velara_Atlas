@@ -15,7 +15,7 @@ async page => {
   const state=()=>page.evaluate(()=>{const m=window.__phase3fMap;return {
     mode:m.mode,flat:m.flatInfluence?.visible??false,envelope:m.influenceEnvelopes?.display.visible??false,
     groups:m.influenceEnvelopes?.data.map(e=>({id:e.id,contributors:e.contributors,halfHeight:e.halfHeight}))??[],
-    labels:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,text:a.element.textContent,sigil:!!a.element.querySelector('img'),visible:a.visible})),
+    labels:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,text:(a.label.variant==='sigil-only'?'':a.label.name),sigil:!!a.resource.image&&!a.resource.failed,visible:a.visible})),
     memory:{...m.renderer.info.memory}};});
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);

@@ -31,7 +31,7 @@ class RectIndex {
   }
 }
 
-export function layoutCaptions(candidates, {width, height, zoom = 1, passive = true, obstacles = [], eligible = new Set()} = {}) {
+export function layoutCaptions(candidates, {width, height, zoom = 1, passive = true, systemOpacity = 1, obstacles = [], eligible = new Set()} = {}) {
   const occupied = new RectIndex(), captions = new RectIndex(), shown = new Set(), nextEligible = new Set();
   obstacles.forEach(r => occupied.add(r));
   candidates.filter(c => c.visible && c.marker).forEach(c => occupied.add({id: c.id, x:c.x, y:c.y, depth:c.depth,
@@ -43,7 +43,8 @@ export function layoutCaptions(candidates, {width, height, zoom = 1, passive = t
     // Important labels are eligible at full fit; minor types have a zoom deadband.
     const allowed = c.zoom === 1 || zoom >= threshold;
     if (allowed) nextEligible.add(c.id);
-    if (!c.visible || (!c.interaction && (!passive || !c.marker || !allowed || occupied.occludes(c)))) continue;
+    if (!c.visible || (!c.interaction && (!passive || !c.marker || !allowed ||
+      c.entity.entityType==='star_system'&&systemOpacity<=0 || occupied.occludes(c)))) continue;
     const rect = {id: c.id, left: c.x - c.width / 2 - 3, right: c.x + c.width / 2 + 3,
       top: c.y + (c.captionRadius ?? c.radius) + 4, bottom: c.y + (c.captionRadius ?? c.radius) + 4 + c.height};
     // Interaction feedback can cover passive obstacles, but never another higher-priority caption.

@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized NEXUS Navigation & Responsive Control Bars for the 1.0.0 candidate, 2026-11-19; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized final Cantum visual hierarchy polish for the 1.0.0 candidate, 2026-11-20; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -50,6 +50,35 @@ The subsequent creator task explicitly authorizes the Holographic Transmission I
 The creator has confirmed canonical Atlas/InfoCard visual inspection; final UI review now applies to the subsequent navigation refinement below. PR #4 remains unmerged; no Pages dispatch, tag or Release is authorized. The published website remains the October 27 noncanonical **0.5.0** release described above. A normal push starts verification only. The canonical public launch is not complete. Atlas Creator and further canonical content remain separately authorized.
 
 ## Verified baseline and limits
+
+### Final Cantum hierarchy polish - 2026-11-20
+
+The creator visually approved the world-space name size/placement/orientation,
+component elevation, camera behavior and zoom crossfade at PR #5 HEAD `62c4927`.
+The subsequent task authorizes only rendering priority, opacity/contrast, matched
+screenshots, full checks (including governance/Phase 3F browser callbacks), docs
+and commit/push/update of the same draft PR #5. Names use order 4.5 after markers
+at 4 and .82 overview opacity while preserving spatial depth tests. No geographic
+or influence-field recalculation, data or version migration. Final compositing
+review remains pending. Both merges, parent changes and publication stay gated.
+
+### Isolated Cantum nameplate refinement — 2026-11-20
+
+The subsequent creator task authorizes adaptive horizontal Cantum nameplate
+fitting, complete rendered-box measurement, focused synthetic/browser tests,
+documentation, commit/push and a **draft stacked PR** from
+`refine/cantum-adaptive-nameplates` into `review/canonical-velara-cantum-migration`.
+The verified parent PR #4 HEAD is `e1ae55c1ea65477b003278bc49f2090fa662172f`.
+The world-space geometry/camera/crossfade is now creator-approved; final
+compositing review remains pending under the task above. This does not
+authorize updating the parent branch, merging either PR, deployment, tag or Release.
+The subsequent creator revision explicitly supersedes the old DOM clamp, billboarding
+and zoom-only fade with world-space region sizing and coordinated 1.15x-1.50x
+caption visibility. Same branch/draft PR #5; only the final compositing review
+remains pending.
+Canonical data and protected cartographic behavior remain unchanged. Version stays
+**1.0.0 canonical launch candidate** by explicit request; no increment is warranted
+for this preparation refinement. [Algorithm, comparisons and validation](CANTUM_NAMEPLATE_REFINEMENT.md).
 
 ### Current navigation refinement
 

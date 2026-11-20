@@ -81,7 +81,8 @@ test('one safely authored isolated system integrates names, legality, independen
     const envelopes=influenceEnvelopes(g,v.systems,v.map,d.presentation,48);
     assert.equal(envelopes.length,count);assert(envelopes.every(e=>e.halfHeight===3&&e.positions.length));
     const names=territorialLabels(g,v.cantums,v.map,d.presentation,{'can_0001':6,'can_0002':8},128,['can_0001']);
-    assert(names.some(n=>n.variant==='sigil-only'&&n.contributorIds.includes('sys_9901')), 'detached contribution retains political sigil');
+    assert(names.some(n=>n.contributorIds.includes('sys_9901')&&['sigil-only','name-with-optional-sigil'].includes(n.variant)),
+      'detached contribution retains its registered identity; maximal world fitting may now admit its full name');
     if(count===1)assert(names.every(n=>n.cantumId==='can_0001'));
   }
   const v=resolveAtlas(d,900);
