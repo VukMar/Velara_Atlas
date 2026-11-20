@@ -44,6 +44,8 @@ Observed November 20, 2026, **23:18-23:19 UTC** (November 21 locally). Environme
 
 ### Documentation-closeout regression boundary
 
+> Historical initial finding at `cfc08de466057da1c76b836e1f2af7faefb85403`: the separately authorized PR #7 follow-up corrects the test description and assertion to require the published-release heading while preserving every other check. The paragraph below retains the original finding; current correction verification is recorded in the PR description.
+
 The README now identifies the published release instead of the former candidate. `tests/canonical-integration.test.mjs:27` still asserts `/Repository version 1\.0\.0 — canonical launch candidate/`. That assertion is obsolete after publication and needs a separately scoped test-only correction. Application/test files remain unchanged in this documentation task; no claim is made that the post-edit full suite passes. The 388 passing tests above belong to the verified deployed artifact.
 
 This closeout keeps version **1.0.0**, creates no subsequent software release, tag or GitHub Release, and performs no merge or deployment. Its documentation commit is distinct from the published SHA. Future content, protected legacy migration, deferred Cantum Stage 5 and Atlas Creator remain separately gated.

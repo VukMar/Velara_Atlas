@@ -18,13 +18,13 @@ import {scanDataset} from '../scripts/idfind.mjs';
 const source=()=>readDatasetSource();
 const approved=JSON.parse(fs.readFileSync(new URL('./fixtures/canonical-approved/sha256.json',import.meta.url),'utf8'));
 
-test('canonical launch candidate version metadata and root dependency declarations agree',()=>{
+test('published canonical release metadata and root dependency declarations agree',()=>{
   const read=name=>JSON.parse(fs.readFileSync(new URL('../'+name,import.meta.url),'utf8'));
   const pkg=read('package.json'),lock=read('package-lock.json');
   assert.equal(pkg.version,'1.0.0');assert.equal(lock.version,pkg.version);assert.equal(lock.packages[''].version,pkg.version);
   assert.deepEqual(lock.packages[''].dependencies,pkg.dependencies);assert.deepEqual(lock.packages[''].devDependencies,pkg.devDependencies);
   const readme=fs.readFileSync(new URL('../README.md',import.meta.url),'utf8');
-  assert.match(readme,/Repository version 1\.0\.0 — canonical launch candidate/);assert.match(readme,/0\.5\.0 noncanonical pre-release/);
+  assert.match(readme,/Repository version 1\.0\.0 — first canonical public release/);assert.match(readme,/0\.5\.0 noncanonical pre-release/);
 });
 
 test('production promotes exactly the five approved candidate byte snapshots',()=>{
