@@ -6,6 +6,8 @@ Use [README](../README.md) for first setup and [PROJECT_STATUS](PROJECT_STATUS.m
 
 NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual/functional acceptance; see [public entrance ownership and routes](PUBLIC_ENTRANCE.md) and [verification limits](PUBLIC_ENTRANCE_VERIFICATION.md). Run `tests/browser-public-entrance.mjs` against both 5173 and 4173 for canonical first-entry and returning-visitor checks.
 
+<a id="local-development-and-future-canon"></a>
+
 ## Canonical application and isolated development
 
 | Command | Environment and URL |
@@ -63,6 +65,8 @@ resource checks. `tests/browser-public-entrance.mjs` and `tests/browser-release-
 CLI tests; no Playwright dependency is added to the project. Historical reports
 retain their original command names and results.
 
+
+<a id="registered-demo-systems-and-loading"></a>
 
 ## Registered canonical systems and loading
 
@@ -193,6 +197,8 @@ explicit creator authorization. See the readiness guide for historical Phase 6 e
 
 
 ## PR #5 world typography review
+
+> Historical capture procedure: PR #5 is merged and the result creator-accepted. These callbacks can overwrite tracked PNG/JSON review evidence in `docs/review/cantum-world/` (and the polish callback in `docs/review/cantum-polish/`). Run capture procedures only under an explicitly authorized evidence-refresh scope; preserve the original checkpoint captures. This documentation task performs no browser capture. [Current status](PROJECT_STATUS.md) owns approval/publication gates.
 
 After the required Node 24 checks, run one preview configuration at a time;
 configuration changes and test-created Vite servers share the optimization cache.

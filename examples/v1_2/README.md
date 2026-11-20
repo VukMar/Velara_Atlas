@@ -71,7 +71,7 @@ Positions and histories are immutable from viewer interactions.
 - **`sec_`**: a complete `sector` file requires `schemaVersion`, `id`, `entityType`,
   `title`, `map`, `timeline`, `infoCard`, `cantumsPath`, `connectionsPath`, `systems`
   and `nexusPresentation`. `zones` and nullable `presentationPath` are optional.
-  Inspect [the actual sector](../../public/datasets/demo/sector.json), not a copied registry.
+  Inspect [the actual sector](../../tests/fixtures/archived-demo/dataset/sector.json), not a copied registry.
 - **`sys_` sector entry** (`sectorSystem`): required `id`, `entityType`,
   `discoveredAE`, `colonizedAE`, `positionLY`, `nameHistory`, `cantumHistory`,
   `publicDetailPath`, `infoCard`; optional `knownByAE` and nullable `controlHistory`.
@@ -91,7 +91,7 @@ Positions and histories are immutable from viewer interactions.
   registry identifier, never a URL/path; omitted/null means none. These objects
   belong in a `cantumsFile` envelope requiring `schemaVersion` and `cantums`.
   Membership is authored in system `cantumHistory`, independently from naming,
-  control and InfoCard affiliation. See [the real registry](../../public/datasets/demo/cantums.json).
+  control and InfoCard affiliation. See [the real registry](../../tests/fixtures/archived-demo/dataset/cantums.json).
 
 Presentation is separate from history. Its Cantum-keyed colors and existing
 24/18-ly `radiusLY` values are demonstration settings, not canonical territory.
@@ -115,9 +115,9 @@ Star/planet/moon/planetoid/asteroid records are present in the live demo. Comet 
 `other` are schema-supported and use the implemented generic small-body/proxy
 path; no new comet/other browser or visual verification is claimed here. Adapt
 supported fields on an approved record rather than copying a new enum-only file.
-See [System A](../../public/datasets/demo/systems/sys_0001.json),
-[System B](../../public/datasets/demo/systems/sys_0002.json) and
-[System C](../../public/datasets/demo/systems/sys_0003.json) for working variations.
+See [System A](../../tests/fixtures/archived-demo/dataset/systems/sys_0001.json),
+[System B](../../tests/fixtures/archived-demo/dataset/systems/sys_0002.json) and
+[System C](../../tests/fixtures/archived-demo/dataset/systems/sys_0003.json) for working variations.
 
 ## Stations: sta_
 
@@ -152,7 +152,7 @@ Create the corresponding gate records and define the navigation relationships
 on the relevant anchor objects. Each link requires two dedicated physical gates,
 matching anchors and valid boundaries. Complete those declarations before running
 the generator: a derived gate absent from authored links is currently rejected.
-In an authorized working-demo authoring session, run:
+Only in a separately authorized canonical navigation authoring session, run:
 
 ```bash
 npm run connections
@@ -163,8 +163,7 @@ The first command calculates gate XYZ from the authored navigation relationships
 writes those positions into the corresponding system JSON records, and generates
 or updates the central `connections.json`. **After generation, release data has
 calculated XYZ, not null.** `connections:check` verifies both results without
-rewriting data. The CLI targets `public/datasets/demo/`, not this example library;
-these commands were not run in writing mode for Phase 2.2.
+rewriting data. The public CLI now targets `public/datasets/canonical/`, not this example library or the archived Demo. Generation can modify canonical graph/position records and needs explicit creator authorization. Synthetic examples grant no permission to write Canonical. These commands were not run in writing mode for Phase 2.2.
 
 The `gateAuthoring` / `systemAuthoring` validation stage accepts the initial null;
 `gate` / `systemDetail` requires generated finite XYZ. Retain both schema stages.
@@ -270,7 +269,7 @@ The generated `connection` form adds `linkType`, `transportType` and two endpoin
 (each `systemId`, `objectId`), retaining ID, direction and interval. `direction`
 is `bidirectional`, `a_to_b` or `b_to_a`; transports are `short_range_gate`,
 `jump_gate`, `jump_hole`. A `connectionsFile` envelope has `schemaVersion` and
-`connections`. Inspect [the actual generated registry](../../public/datasets/demo/connections.json)
+`connections`. Inspect [the actual generated registry](../../tests/fixtures/archived-demo/dataset/connections.json)
 as output; never hand-maintain it. No copied graph or declaration-only JSON file
 is needed in this library.
 
@@ -287,7 +286,7 @@ Use installed Ajv Draft 2020-12 in strict mode with the definitions listed in th
 catalogue. Complete files use their current wrappers; do not add unsupported
 `schemaVersion` properties to object snippets. Shape validity does not establish
 cross-file IDs, map bounds, nonoverlapping histories, correct local/interstellar
-partners or generated freshness. Use [the real demo](../../public/datasets/demo/sector.json)
+partners or generated freshness. Use [the real demo](../../tests/fixtures/archived-demo/dataset/sector.json)
 and [navigation authoring](../../docs/NAVIGATION_AUTHORING.md) for a full dataset.
 
 All ten examples and the geometry/navigation fragments are schema-checked during

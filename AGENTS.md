@@ -4,34 +4,17 @@ Read this file before editing. Follow the current creator request; documentation
 
 ## Status and authorization
 
-[PROJECT_STATUS](docs/PROJECT_STATUS.md) is the single current-status authority.
-Checkpoint 4, including integrated creator acceptance, Architecture Phases 1-6 and NEXUS Public Entrance Integration (2026-10-26) are complete and creator-approved.
-The canonical application integration is implemented for creator review in PR #4 under the explicit 2026-11-19 task. `src/viewer/index.html` is the single interactive canonical Atlas; `public/datasets/canonical/` is its active v1.3 dataset. The former teaser and Demo are archived in `tests/fixtures/archived-demo/`, never production inputs. Preserve the original NEXUS first-entry and audio ownership, `/Velara_Atlas/` base, calibrated fixtures and pinned assets. See [integration](docs/CANONICAL_APPLICATION_INTEGRATION.md).
-Cantum Visual Stage 5 remains deferred. Checkpoint 5's first noncanonical public release (0.5.0, 2026-10-27) remains the published website until separately authorized deployment. The subsequent 2026-11-19 creator task authorizes the Holographic Transmission InfoCard, repository version 1.0.0 canonical launch candidate, validation, commit/push and updating existing PR #4. Final creator visual review remains pending; merge, Pages dispatch, tag and Release remain unauthorized. Preserve all five canonical JSON files and the engine/schema/assets. Canonical content changes, graphical Atlas Creator and all future publication remain separately gated.
-Do not automatically advance milestones or treat an old task/closeout as current permission.
+[PROJECT_STATUS](docs/PROJECT_STATUS.md) is the single current-status authority. Original Checkpoint 4, Architecture Phases 1-6 and NEXUS Public Entrance Integration are complete and creator-approved.
 
-The subsequent NEXUS Navigation & Responsive Control Bars request approves the inspected canonical Atlas/InfoCard and authorizes top utilities, modal Catalogue/Help, exclusive reserved-space bottom toolbars, 10-second inactivity logic, responsive caption containment, validation/docs and commit/push to PR #4. It supersedes floating-panel/vertical-History layout rules. Version stays 1.0.0 candidate; final surrounding-interface review, merge and deployment remain separate. Preserve dataset, core/schema, map geometry, camera algorithms, artwork and audio systems.
+Canonical Atlas integration, the Holographic Transmission InfoCard, NEXUS navigation/control bars and world-anchored Cantum typography with final compositing polish are implemented, creator-accepted and merged through PRs #4 and #5 into `main` at `bc4c529664fce1df4dab4117bb3f0794a41f5531`. Repository version stays **1.0.0 canonical launch candidate**. The current authorized work is the approved pre-deployment documentation reconciliation on `docs/1.0-predeployment-reconciliation`, including checks, commit/push and an open documentation-only PR to main. Do not merge, dispatch Pages, tag or publish a Release.
 
-For viewer-facing work, implement only the authorized scope, run checks, use Canonical for integration review and an explicit isolated synthetic fixture when generic object coverage is needed, and stop for creator visual review. Corrections, explicit approval and separately authorized commit/push follow. Documentation and nonvisual maintenance need no filler entities. See [DEMO_SHOWCASE](docs/DEMO_SHOWCASE.md#feature-to-review-policy).
+`src/viewer/index.html` is the single interactive canonical Atlas; `public/datasets/canonical/` is its active v1.3 dataset. The former teaser and Demo are archived in `tests/fixtures/archived-demo/`, never production inputs. Preserve original NEXUS first-entry/audio ownership, `/Velara_Atlas/`, all five canonical JSON files, descriptions, engine/schema, map geometry, cameras, navigation and pinned assets. See [integration](docs/CANONICAL_APPLICATION_INTEGRATION.md) and [Cantum implementation evidence](docs/CANTUM_NAMEPLATE_REFINEMENT.md).
 
-The subsequent World-Anchored Cantum Typography request continues only branch
-`refine/cantum-adaptive-nameplates` / draft PR #5 from `bd8d2da`. It supersedes
-Cantum DOM 14-24px sizing, camera-facing orientation and old zoom-only fade with
-component-fitted +Y-facing world planes and a coordinated 1.15x-1.50x caption
-crossfade. It authorizes scoped code/tests/docs/screenshots and commit/push/PR #5
-updates. Creator visual review, both merges and all publication remain gated;
-version stays 1.0.0. Preserve canonical JSON, all descriptions, field geometry,
-assets, audio, cameras and navigation. See the current PR #5 review record.
+The current interface uses four top utilities, modal Catalogue/Help, exclusive reserved-space bottom toolbars and protected 10-second inactivity dismissal. Cantum names use component-fitted +Y-facing world planes, order 4.5 after ordinary markers at 4, .82 overview opacity, retained depth tests and the 1.15x-1.50x caption crossfade. Historical floating-panel/vertical-History, DOM 14-24px and camera-facing nameplate rules are superseded.
 
-The subsequent Final Cantum Visual Hierarchy Polish request approves the current
-world size, fit, placement/orientation, per-component elevation, camera behavior
-and zoom crossfade at `62c4927`. Only visual compositing/contrast is authorized:
-lettering after ordinary markers, .82 overview opacity, retained depth behavior,
-matched screenshots, full/regression/governance/Phase 3F checks and commit/push/
-update of the same draft PR #5. Preserve all approved geography, resource ownership,
-1.15x-1.50x thresholds, influence appearance and protected application/data/assets.
-Final creator compositing review remains pending. Version stays 1.0.0; no merge,
-parent PR #4 modification, deployment, tag or Release.
+The latest verified published website remains the October 27, 2026 **0.5.0 noncanonical pre-release** until a successful separately authorized manual deployment is recorded. Cantum Visual Stage 5 remains deferred. Future canonical expansion, protected legacy migration and graphical Atlas Creator remain separately gated. Do not advance old roadmap concepts automatically; dated task/closeout records preserve evidence, not current permission.
+
+For future authorized viewer-facing work, use Canonical for integration review and an explicit isolated synthetic fixture when generic object coverage is needed, then stop for creator visual review. Corrections, explicit approval and separately authorized commit/push follow. Documentation and nonvisual maintenance need no filler entities. See [review policy](docs/DEMO_SHOWCASE.md#feature-to-review-policy).
 
 ## Read by task
 

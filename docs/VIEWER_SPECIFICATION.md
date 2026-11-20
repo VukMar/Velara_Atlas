@@ -486,12 +486,13 @@ keep depth writing, preserving foreground occlusion and translucent overlap.
 Reticles/interactive captions stay above decoration. Fit, textures/filtering, UVs,
 world dimensions, XYZ, influence geometry/alpha and 1.15x-1.50x thresholds are
 unchanged. [Current contract](CARTOGRAPHIC_LABELING.md#final-visual-hierarchy-polish---2026-11-20)
-and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing review
-remains pending; no version, merge or publication change is authorized.
+and [dated review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing is
+creator-accepted and merged through PRs #5/#4. Version stays 1.0.0;
+[current status](PROJECT_STATUS.md) distinguishes acceptance from publication.
 
 ## World-space typography and coordinated visibility - 2026-11-20
 
-The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
+The implemented creator revision in merged PR #5 started from `bd8d2da` and supersedes
 Stage 1's 14-24px DOM clamp, camera-facing projection/containment, prior
 perspective heights and 1x-5x fade. Use the current
 [world-space typography contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20)

@@ -1,4 +1,4 @@
-# Noncanonical v1.2/v1.3 navigation workflow
+# Canonical navigation authoring and v1.2/v1.3 compatibility
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
@@ -7,17 +7,19 @@ supersedes the v1.1 short-range branching rule. System object declarations are
 the **authoring source of truth**. `connections.json` is the **generated,
 Git-tracked runtime index**. The read-only viewer uses the same graph shape and
 ordinary stored XYZ. Historical semantics remain compatible with the pure modern
-resolver; the current viewer layout follows Checkpoint 3.6. This guide authorizes no future milestone or canonical migration; see [PROJECT_STATUS](PROJECT_STATUS.md).
+resolver; the current viewer layout follows the [navigation/control-bar amendment](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19). This guide authorizes no future milestone or canonical migration; see [PROJECT_STATUS](PROJECT_STATUS.md).
+
+**Canonical command boundary:** `connections.mjs` defaults to `public/datasets/canonical/`; the CLI has no root selector. `npm run connections:check` is read-only. `npm run connections` may rewrite registered canonical connection/derived-position records and requires separate creator authorization, as do recovery writes. The archived Demo and synthetic examples are regression inputs, not the default CLI target or permission to write Canonical. Legacy Demo labels in tools do not identify their actual root. No generator, authoring or recovery operation is authorized by this documentation task.
 
 ```text
-Edit system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
+Edit separately approved canonical system JSON -> npm run connections -> npm run connections:check -> npm test -> npm run build -> review git diff -> commit/push manually
 ```
 
 No command commits, pushes or deploys. Track both the graph and affected system
 JSON together. Do not hand-edit the generated graph. Builds/dev startup run only
 validation and the read-only freshness check; they never repair stale files.
 
-## Approved normal-Demo chronology
+## Historical approved Demo chronology
 
 The completed Phase 3F showcase adds only `lnk_0012` in `sys_0005`: physical gates
 `gat_0021` / `gat_0022` are constructed at 350 / 352 A.E.; their bidirectional
@@ -27,7 +29,7 @@ See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for the ordinary viewer walkthrough.
 
 ## Authoring and release contracts
 
-`schemas/atlas-v1_3.schema.json` defines the active Demo's v1.3.0 envelopes.
+`schemas/atlas-v1_3.schema.json` defines the active canonical and archived Demo v1.3.0 envelopes.
 `schemas/atlas.schema.json` and its wrappers retain v1.2.0 for frozen/reference
 records. Navigation authoring and geometry are shared across these versions. **Creator-confirmed creation rule:** every NEW short-range gate starts
 with `position: null` and `positionMode: "boundary_derived"`. The author never
@@ -81,7 +83,7 @@ it stays unverified, without reading or inventing unreleased object details.
 `scripts/connections.mjs` is the manual offline writer/check command. It accepts
 only `--check`; no custom directory, URL, private folder or arbitrary data path
 is accepted by the CLI. `scripts/dataset-inventory.mjs` derives registered paths
-from the validated sector beneath `public/datasets/demo/`; `demo-files.mjs`
+from the validated sector beneath `public/datasets/canonical/`; `dataset-files.mjs`
 retains exact raw text and system-to-file associations for the writer. Only
 `systems/<matching-system-id>.json` declarations are admitted; null is archival.
 Unregistered files are not writer targets. Symlink/reparse paths are refused. The IO root argument
@@ -96,7 +98,7 @@ CNU, models orbits, or changes moon-relative placement.
 
 The writer may replace only:
 
-- `public/datasets/demo/connections.json`: complete source-version v1.2/v1.3 registry, sorted by
+- `public/datasets/canonical/connections.json`: complete source-version v1.2/v1.3 registry, sorted by
   permanent link ID, deterministic two-space JSON and final LF.
 - `position` value spans of explicitly derived short-range gates in the
   allowlisted system files. Other fields, unrelated positions, histories,
@@ -116,7 +118,7 @@ again. Inputs are checked for concurrent edits before replacement. Every
 replacement is verified with a fresh read and freshness validation before
 backups are cleaned up. Multi-file replacement **is not atomic**.
 
-The writer creates `public/datasets/demo/.connections-recovery.json` exclusively
+The writer creates `public/datasets/canonical/.connections-recovery.json` exclusively
 as its lock/journal, recording approved relative targets, stage/backup paths and
 SHA-256 hashes. Temporary files end in `.connections-<uuid>.tmp` and `.bak`.
 These recovery artifacts are ignored by Git and excluded by the build allowlist;
@@ -128,18 +130,18 @@ For interruption, failed rollback or cleanup:
 
 1. Stop other generator processes and retain all journal/stage/backup files.
    Inspect the journal locally; targets must be `connections.json` or one of the
-   registered system details declared by the sector, all within `public/datasets/demo/`.
+   registered system details declared by the sector, all within `public/datasets/canonical/`.
 2. Compare each target and backup with `previousSHA256`/`nextSHA256`. A backup
    may be absent if interruption preceded backup creation. Do not overwrite a
    concurrently edited file: compare and preserve it separately first.
 3. To restore a prior artifact, copy its **verified** backup to that exact target.
    For `previousMissing: true`, remove a newly created target only after checking
-   that its current hash matches `nextSHA256`. Never bulk-delete the demo folder.
-   Recover absent backups from the secured Checkpoint 3 commit only after review;
+   that its current hash matches `nextSHA256`. Never bulk-delete the canonical folder.
+   Recover absent backups only from the reviewed checkpoint for that exact transaction;
    do not blindly replace newly authored system declarations with an older file.
 4. Once files are inspected/restored, remove only the transaction's exact staged,
    backup and journal files. Run `npm run connections:check`; if authored inputs
-   intentionally changed, run the manual generator, then check/test/build and
+   intentionally changed and generation is separately authorized, run the manual generator, then check/test/build and
    review Git diff. A failed check must not be ignored for publication.
 
 Tests inject staging, replacement and rollback failures, including the retained
@@ -187,14 +189,13 @@ The old schema's `$id` is preserved in `atlas-v1_1.schema.json`; the v1.2 schema
 has a distinct `$id`. Main wrappers reference the current v1.2 definitions.
 Frozen v1.1 tests retain their original branching and historical regression
 expectations. Navigation safety/migration regressions use the fixed v1.2 snapshot;
-strict release/freshness and viewer/browser checks also exercise the live demo. Canonical
+strict release/freshness checks select Canonical, while generic interior/navigation browser checks select the isolated archived Demo. Canonical
 v0.1 history and its resolver remain unchanged. The historical resolver ignores
 authoring declarations and needs no adapter or new history interpretation.
 
-The current MCP suites `tests/browser-checkpoint3.mjs` and
-`tests/browser-navigation-v1_2.mjs` require the graphical Demo server (`npm run demo`, port 5173) because they inspect or
-intercept its public demo modules. `tests/browser-layout3_6.mjs` and
-`tests/browser-touch3_6.mjs` support the graphical Demo or production preview under
+The synthetic MCP suites `tests/browser-checkpoint3.mjs`,
+`tests/browser-navigation-v1_2.mjs`, `tests/browser-layout3_6.mjs` and
+`tests/browser-touch3_6.mjs` use the explicit archived fixture (`node tests/preview-archived-demo.mjs`, port 5177) under
 `/Velara_Atlas/`. They are MCP entry points, not automatically discovered Node
 tests. See [current verification and limits](archive/reports/REPOSITORY_AUDIT_3_6.md).
 The [original implementation report](archive/reports/NAVIGATION_V1_2_RESULTS.md) remains historical
@@ -219,7 +220,7 @@ an explicit 350/352/353 A.E. TEST gate chronology. Authoring drafts, schema-vali
 inputs and navigation-current releases are different stages.
 
 A pending `.new-system-recovery.json`, recovery lock or orphan authoring artifact
-blocks navigation commands and Demo startup/build. It is a different operation
+blocks navigation commands and canonical startup/build. It is a different operation
 from this guide's `.connections-recovery.json`; neither journal format nor the
 navigation recovery procedure changed. Finish creator-reviewed authoring recovery
 before running generation. Never delete evidence merely to bypass these guards.

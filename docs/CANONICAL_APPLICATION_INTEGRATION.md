@@ -1,5 +1,9 @@
 # Canonical application integration — creator review
 
+> **Post-merge status - 2026-11-20:** This implementation is creator-accepted and included in main at `bc4c529664fce1df4dab4117bb3f0794a41f5531`. PR #5 merged into PR #4's branch at `707b0cf2cbd3b6a4eb9311fd47250e7bb3a75bbf`; PR #4 then merged into main. The final Cantum implementation is `3d77c43be42cb785aceaa7d1bfde9f8aade3c7e8`. Repository version is 1.0.0; public 1.0.0 deployment remains unrecorded. [PROJECT_STATUS](PROJECT_STATUS.md) owns current gates.
+>
+> **Dated implementation evidence below:** review gates, branch states, test results, SHAs, screenshots and limitations describe their original checkpoints. Pending-review/unmerged statements are historical and do not reopen completed approvals.
+
 > The integration verification below records the completed baseline at `67b730130c516e5e15fba3dd366612ae1ca3ad77`. Its whole-card scrolling and retained 0.5.0 repository version are superseded by the subsequent creator-approved [Holographic InfoCard and 1.0.0 candidate](#holographic-infocard-and-100-candidate--2026-11-19) amendment. Publication remains separately gated.
 
 Implemented under the creator's 2026-11-19 task on `review/canonical-velara-cantum-migration`, in [PR #4](https://github.com/VukMar/Velara_Atlas/pull/4). Starting revision: `fa53a770eb848f45031dce4da7787dc2a26c7bb5`. Implementation, validation, commit/push and PR reconciliation are authorized. Creator visual acceptance, merge and website deployment remain separate. The published website is still the October 27 noncanonical 0.5.0 release.

@@ -1,4 +1,4 @@
-# Safe local manual authoring (v1.3 NONCANONICAL Demo)
+# Safe local manual authoring (canonical v1.3)
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
@@ -8,6 +8,12 @@ creator-approved. Architecture Phases 4 and 5 are complete and creator-approved.
 Phase 6 verification and closeout are complete and creator-approved. This guide grants no publication or deployment approval. The viewer
 stays read-only. Canon under `public/data/`, calibration, schemas and frozen fixtures
 are not authoring targets. A graphical Atlas Creator is not implemented.
+
+## Canonical command boundary
+
+The public CLI has no dataset/root/path/URL selector and defaults to `public/datasets/canonical/`. Suggestions and creation previews are read-only: they create no files, locks or ID reservations. `--apply` can modify canonical data; `--recover --apply` can roll it back. Each write needs explicit creator authorization. This documentation reconciliation authorizes no authoring, generation or recovery operation.
+
+The archived Demo is an isolated regression fixture, never the normal CLI target. Synthetic examples do not authorize canonical writes. Some runtime messages still say "NONCANONICAL Demo" or "Restart Demo"; those legacy labels do not change the fixed canonical root. Source inspection: `dataset-inventory.mjs`, `system-authoring.mjs` and `atlas-new-system.mjs`.
 
 ## Create an empty system
 
@@ -27,15 +33,13 @@ are required in CNU; X and Z must be equal for the current viewer. Origin
 technical chart conventions, not astronomical facts. Sector positions use ly;
 local object positions use CNU (1 CNU = 10,000 km); Y is elevation.
 
-Repeat the preview with `--apply` to create the detail and append its registration:
+Only under separately approved canonical authoring scope, repeat the reviewed preview with `--apply` to create the detail and append its registration:
 
 ```bash
 npm run atlas:new-system -- --size-x 100000 --size-y 10000 --size-z 100000 --apply
 ```
 
-Only run that command when you intend to modify the active Demo. Review the diff
-before any commit. The CLI has no dataset/root/path/URL selector and cannot target
-Canon. A service-level root/IO argument exists solely for controlled tests.
+That command writes Canonical. Review the exact plan and diff before any separately authorized commit. A service-level root/IO argument exists solely for controlled tests; the public CLI cannot select the archived Demo.
 
 ID Finder supplies the next `sys_` identity using BigInt suffix comparison.
 `--id sys_XXXX` selects an explicit unused identity, including a free gap.
@@ -80,7 +84,7 @@ does not change the graph or run generation. Existing sector bytes/order are
 preserved around one insertion; new JSON uses two spaces and a final LF.
 
 The sector-derived inventory discovers the registered detail automatically.
-**Restart `npm run demo` after registration** to regenerate its trusted import
+**Restart `npm run atlas` after authorized registration** to regenerate its trusted import
 mapping. The viewer still eagerly preloads all released details. Unregistered
 files remain collision diagnostics, not published records. Unknown discovery,
 name or position can prevent historical display; no visibility rules are bypassed.
@@ -91,8 +95,8 @@ Use `npm run idfind -- all` (or `cb`, `sta`, `gat`, `jhl`, `zon`, `lnk`) before
 issuing permanent IDs; never reuse them. Edit the system's `objects[]` or
 `zones[]` using the [actual v1.3 schema](../schemas/atlas-v1_3.schema.json).
 The [v1.2 entity-family references](../examples/v1_2/README.md) remain useful for
-shared shapes; their complete envelopes stay v1.2. The active
-[working Demo](../public/datasets/demo/sector.json) illustrates v1.3 references.
+shared shapes; their complete envelopes stay v1.2. The
+[archived Demo](../tests/fixtures/archived-demo/dataset/sector.json) illustrates synthetic v1.3 references.
 Do not copy sample IDs or example histories into your system as defaults.
 
 | Family / definition | Manual authoring requirements |
@@ -149,7 +153,7 @@ distinct; this helper creates no political transition.
    into real records without approval. The target anchor needs its own boundary;
    do not duplicate the same link declaration on it. A missing physical partner
    is not a complete route. Lifetime repointing is prohibited.
-5. After completing the records, run the existing explicit offline generator:
+5. After completing separately authorized canonical records, explicitly run the offline writer and subsequent checks:
 
    ```bash
    npm run connections
@@ -160,21 +164,21 @@ distinct; this helper creates no political transition.
    git diff --check
    ```
 
-Only `connections` calculates the gate XYZ and writes them and the central graph.
+Only `connections` calculates derived gate XYZ and writes eligible registered canonical positions and `connections.json`; it requires separate creator authorization.
 `connections:check` is read-only. Review both changed system records and the
 generated registry. See [NAVIGATION_AUTHORING](NAVIGATION_AUTHORING.md) for all
 eligibility, chronology, dedicated-pair, interstellar, geometry and recovery rules.
 
 An incomplete editing draft is not a release. A schema-valid `systemAuthoring`
 record may have null derived positions yet still fail relationships or freshness.
-A publishable Demo passes release `systemDetail`, full relationships and generated
+A publishable canonical dataset passes release `systemDetail`, full relationships and generated
 navigation checks. The new-system command itself always leaves a valid dataset.
 The TEST integration in `tests/authoring-scenario.mjs` exercises this entire
-sequence on a temporary copy, never the live Demo.
+sequence on a temporary synthetic copy, never the canonical dataset.
 
 ## Safety and explicit recovery
 
-Stop the Demo server and avoid concurrent editors/generation while applying.
+Stop the canonical Atlas server and avoid concurrent editors/generation while applying an authorized operation.
 The service snapshots all registered inputs plus ID Finder's collision inputs,
 checks directory contents, validates before writing, and rechecks inputs and
 destinations before installation. Symlink/junction/reparse paths are rejected.
@@ -192,13 +196,13 @@ Cleanup failures report validated outputs with pending evidence instead of
 claiming rollback. The journal is temporary recovery evidence, not another
 registry. Neither authoring evidence nor these tools enter the production build.
 
-Pending authoring state blocks new creation, navigation commands and Demo
+Pending authoring state beneath the canonical root blocks new creation, navigation commands and canonical
 startup/build. The navigation writer keeps its separate, unchanged
 `.connections-recovery.json` contract; neither operation repairs the other's
 state. Do not discard either journal or backup.
 
 After a stopped authoring process, first preserve copies of all evidence and
-inspect the journal and current files. Then:
+inspect the journal and current files. Preview recovery without writing; use the second command only after separate authorization for the verified canonical rollback:
 
 ```bash
 npm run atlas:new-system -- --recover
@@ -220,7 +224,7 @@ is separate in `scripts/atlas-new-system.mjs`. They have no Three.js/DOM depende
 and expose no browser endpoint. Future approved Creator work can reuse these
 rules without introducing a second data store.
 
-## Test without changing the live Demo
+## Test with isolated synthetic fixtures
 
 ```bash
 node --test tests/system-authoring.test.mjs
@@ -232,5 +236,5 @@ injection, recovery, registration, eager loading and an audited build. The secon
 serves only a temporary TEST dataset at `http://127.0.0.1:5176/Velara_Atlas/`;
 stop with Ctrl+C for cleanup. Run `tests/browser-system-authoring.mjs` through the
 existing Chromium/MCP harness for discovery, gate chronology and navigation.
-Existing Demo (5173), Development/calibration (5174) and governance fixture
-(5175) retain their separate workflows. No public CLI test-root selector exists.
+Canonical Atlas (5173), archived Demo (5177), Development/calibration (5174) and governance fixture
+(5175) retain separate workflows. No public CLI test-root selector exists.

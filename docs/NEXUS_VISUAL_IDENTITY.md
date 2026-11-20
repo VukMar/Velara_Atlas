@@ -10,7 +10,7 @@ History, Layers and Map Controls are mutually exclusive horizontal bottom toolba
 
 Toolbars alone dismiss after 10 seconds outside/inactive. Hover, keyboard focus, active pointer/slider/select/text editing and associated Help suppress dismissal; exit/completion resumes a full deadline. Trigger toggles, switching, navigation and disposal invalidate old deadlines. Close/Escape/focus restoration and hidden-control exclusion remain accessible. See the [full behavior contract](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) and [evidence](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19).
 
-This supersedes earlier floating utility panels and vertical History statements below. Original Checkpoint 3.6 and audiovisual records remain historical evidence. The canonical InfoCard has passed creator visual inspection; this surrounding-interface refinement awaits final UI review. Repository version remains 1.0.0 candidate; publication remains separately gated.
+This supersedes earlier floating utility panels and vertical History statements below. Original Checkpoint 3.6 and audiovisual records remain historical evidence. The canonical InfoCard and surrounding-interface refinement are creator-accepted and merged. Repository version remains 1.0.0 candidate; [publication remains separately gated](PROJECT_STATUS.md).
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
@@ -188,7 +188,7 @@ The earlier floating-panel/vertical-History arrangement is historical.
 - A new entity resets to Description and resets panel scroll. Historical refresh of the same identity preserves the selected tab, panel nodes, scroll where the replacement length allows, and focus. Heading/year, description and facts update synchronously; existing ineligible-selection clearing remains authoritative. Destination listeners are replaced and disposed without accumulation.
 - Native buttons with `tablist`, `tab`, `tabpanel`, `aria-selected`, `aria-controls` and `aria-labelledby`; one active tab in the Tab sequence. Left/Right wrap and automatically activate, Home/End select first/last, Enter/Space use native activation. Panels are focusable scroll regions; inactive panels use `hidden`. Visible focus, ≥44 px action/tab targets, existing Escape dismissal/focus return and reduced-motion behavior remain. Resize observers and listeners belong to the existing lifetime.
 
-Implementation and viewport evidence: [launch-candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Final creator visual acceptance remains pending.
+Implementation and viewport evidence: [launch-candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Creator visual acceptance is complete; see [current status](PROJECT_STATUS.md) for publication gates.
 
 ### Direct NEXUS archival messages
 
@@ -226,9 +226,9 @@ See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, im
 
 ## 10. Responsive layout
 
-**Desktop:** compact header and centered square chart; floating Catalogue, Map controls, Map layers and vertical History. The selected year stays visible when History is closed. Record selection opens a centered dismissible InfoCard. The system chart has restrained A–H/1–8 world-space labels and an H8 CNU cell-width annotation.
+**Desktop:** four top utilities (Catalogue, Map Controls, Layers and History), modal Catalogue and three mutually exclusive horizontal bottom toolbars. Active toolbars reserve space below the responsive square chart and dismiss after the protected 10-second inactivity interval; Map Controls Help is modal. The selected year stays visible when History is closed. Record selection opens a centered dismissible InfoCard. The system chart has restrained A–H/1–8 world-space labels and an H8 CNU cell-width annotation.
 
-**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible. Ordinary InfoCards retain the compact intact portrait under the current amendment above; archival/opening portraits keep their own responsive rules. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
+**Narrow/mobile:** fit the complete default square without page overflow. Catalogue, Help and the InfoCard remain bounded/scrollable overlays. Bottom toolbars reserve space and resize the square chart through the existing observers; chart aspect ratio and valid camera state are preserved. Keep close/focus controls accessible. Ordinary InfoCards retain the compact intact portrait under the current amendment above; archival/opening portraits keep their own responsive rules. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
 
 ## 11. Implementation order and acceptance criteria
 

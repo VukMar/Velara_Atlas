@@ -2,10 +2,10 @@
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
-**Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
+**Scope:** Author-approved structural contracts for the active canonical v1.3 dataset, separate archived noncanonical Demo and frozen versioned examples/fixtures. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
 The [v1.3 faction/governance contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md)
-govern the active NONCANONICAL Demo under completed, creator-approved Phase 3D.
+govern the active canonical Atlas and archived NONCANONICAL Demo; Phase 3D introduced the contract in the historical Demo.
 `schemas/atlas-v1_3.schema.json` adds `fac_`, explicit dated Cantum governance and
 one required universal radius. The base spatial/history/navigation conventions
 below remain applicable. `atlas.schema.json`, its wrappers and `examples/v1_2/`
@@ -25,8 +25,8 @@ Modern v1.2 (`atlas.schema.json`) and v1.3 sector schemas retain
 `nexusPresentation` as an **optional deprecated** compatibility property. Its old
 `fallbackTitle`/`fallbackText` values are ignored by the viewer; future worlds need
 neither. Frozen v1.1/v1.2/v1.3 fixtures may retain their authored values, and the
-frozen v1.1 contract is unchanged. Only the obsolete UI-copy object is removed
-from the active NONCANONICAL Demo sector. System identity, history, coordinates,
+frozen v1.1 contract is unchanged. At the historical 4.2B checkpoint, only the obsolete UI-copy object was removed
+from the then-active NONCANONICAL Demo sector. System identity, history, coordinates,
 discovery and publication fields are unchanged. The selected system name and
 A.E. year still come from the resolved historical view.
 
@@ -35,7 +35,7 @@ Later milestones, Canon migration and historical-data changes remain separately 
 
 ## Identity and naming
 
-All entities have stable, globally unique IDs within a dataset. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link; `zon_0001` spatial zone. At least four digits; never reuse or rename an issued ID. Counters span the dataset, not each system. Frozen test snapshots are independent datasets, not duplicate production definitions. `npm run idfind -- all` provides read-only demo suggestions; it never reserves IDs.
+All entities have stable, globally unique IDs within a dataset. The prefix is a type discriminator, **not** a discovery order: `sec_0001` sector; `can_0001` Cantum; `sys_0001` star system; `cb_0001` celestial body (star, planet, moon, asteroid, planetoid, etc.); `sta_0001` station; `gat_0001` gate; `jhl_0001` Jump Hole; `lnk_0001` navigational link; `zon_0001` spatial zone. At least four digits; never reuse or rename an issued ID. Counters span the dataset, not each system. Frozen test snapshots are independent datasets, not duplicate production definitions. `npm run idfind -- all` provides read-only canonical suggestions; it never reserves IDs.
 
 `nameHistory` holds dated names. A survey name can appear before a colonization name. A system's current name and its permanent ID are separate. The `cantumHistory` field represents regional administration; `controlHistory` is reserved for political control. Neither should be inferred from another.
 
@@ -64,10 +64,10 @@ and null to `can_0002`; it adds no political facts.
 | `systems/sys_XXXX.json` | Per-system CNU map and `objects[]` (celestial bodies, stations, gates and Jump Holes) |
 | `connections.json` | Generated, Git-tracked runtime graph; authoring declarations live in system objects |
 
-Each current noncanonical demo file's schemaVersion is 1.2.0. Frozen v1.1 regression fixtures live under `tests/fixtures/v1_1/`, with `schemas/atlas-v1_1.schema.json`; historical semantics are unchanged. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
+The active canonical dataset and archived Demo use schemaVersion 1.3.0. Frozen v1.2 examples/fixtures retain 1.2.0. Frozen v1.1 regression fixtures live under `tests/fixtures/v1_1/`, with `schemas/atlas-v1_1.schema.json`; historical semantics are unchanged. Individual objects are identified by `entityType` and sometimes `objectType`; their `infoCard.class` is human-readable metadata, not the object-type discriminator.
 
 The original accepted v1.2 scenarios are also frozen in `tests/fixtures/v1_2/`;
-the current `public/datasets/demo/` remains author-editable. Current learning
+the former Demo is preserved at `tests/fixtures/archived-demo/dataset/`, outside production admission and the normal CLI target. Current learning
 references live in `examples/v1_2/`; legacy regression inputs are preserved in
 `tests/fixtures/legacy_examples/`, and obsolete proposal shapes are archived in
 `docs/archive/json-proposals/`. See [the focused v1.2 family guide](../examples/v1_2/README.md), including
@@ -75,12 +75,12 @@ compact file envelopes, snippets and the authoring-versus-generated distinction.
 
 The sector file's system list is the **catalogue index**. `publicDetailPath: null` means a visible, discovered system opens a NEXUS archival fallback. A non-null path points to a released detail file. Do not publish empty, secret or unreleased object records merely to conceal them behind UI flags.
 
-The current Demo inventory derives from this catalogue and the sector's registry
+The current canonical inventory derives from this catalogue and the sector's registry
 paths, not from scanning the directory or maintaining a second system list.
 Released paths must be `systems/<matching-system-id>.json`; malformed, missing,
 escaping or symlinked declarations fail validation. A valid file left unregistered
 does not enter the viewer/build. All released details preload eagerly. Adding an
-approved system is a JSON operation; restart Demo after registration changes and
+approved system is a separately authorized JSON operation; restart Atlas after registration changes and
 run the generation/check/validation workflow in [local development](LOCAL_DEVELOPMENT.md#registered-demo-systems-and-loading).
 The same inventory now supports v1.2 and v1.3; only v1.3 admits its registered faction files.
 No unregistered files enter the viewer, and full eager preload remains.
@@ -177,7 +177,7 @@ Structural JSON Schema Draft 2020-12 checks types, enums, required fields, ID pa
 
 This schema defines spatial-zone geometry and public presentation settings. It does **not** define exact Cantum border polygons, orbital simulation, private publication manifests or detailed polity entities. Unsupported extensions require a versioned approval; do not invent ad hoc keys.
 
-The demonstration data in `public/datasets/demo` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. No 43 real systems are included here.
+The archived demonstration data in `tests/fixtures/archived-demo/dataset/` is **not canon**. Its system names, coordinates, years, populations and equipment exist only to exercise code. The active canonical dataset is separate: 70 systems, seven historical Cantums and 234 dated descriptions; see [integration](CANONICAL_APPLICATION_INTEGRATION.md).
 
 ## v1.1 extension note
 

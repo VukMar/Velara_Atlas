@@ -32,8 +32,8 @@ Catalogue closes through a shell callback before invoking existing selection; In
 | `src/viewer/icon-manifest.mjs`, `icon-registry.mjs`, `navigation-proxy.mjs` | Fourteen explicitly bundled SVGs, safe category/fallback resolution and one screen-facing image per existing object button |
 | `src/viewer/inspection-camera.mjs` | Radius-based local camera framing, clipping and center/surface constraints; Reset returns to normal navigation |
 | `src/viewer/caption-layout.mjs` | Pure screen-space priority, zoom deadband, marker/annotation/panel collision and occlusion calculations |
-| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, preserved full-name fitting, centralized sigil-only island eligibility/interior placement, bounded cache, zoom fade and provisional heights |
-| `src/viewer/cantum-nameplates.mjs` | Camera-projected decorative full-name/sigil-only DOM plates; secure registry availability, local heights, screen-space typography, visibility and image/listener cleanup |
+| `src/viewer/territorial-labels.mjs` | Pure per-Cantum field components, preserved full-name fitting, centralized sigil-only island eligibility/interior placement, bounded cache, geographic maximum-safe-fit sizing, contributor IDs and coordinated caption crossfade |
+| `src/viewer/cantum-nameplates.mjs` | Map-owned CanvasTexture resources and nonpickable fixed +Y-facing X/Z name planes; component-local elevations, projection visibility, opacity and guarded texture/material/geometry/image disposal |
 | `src/viewer/sigil-registry.mjs` | Closed static URL mapping for the single noncanonical Cantum sigil; optional image lifecycle with text-only failure behavior |
 | `src/viewer/influence-envelopes.mjs` | Pure bounded X/Z field triangulation, contributor-Y centerline, clipped rounded surfaces and eight-input mesh-data cache |
 | `src/viewer/influence-compositor.mjs` | Non-pickable envelope geometry in a private scene, half-float accumulation and one capped chart-layer composite; target/resource lifecycle |
@@ -235,8 +235,9 @@ the same visible 4px radius; existing invisible picking targets remain independe
 The envelope half-height clamp becomes `.5–3` ly; the X/Z field, geometry technique,
 local Y centerline and compositor are unchanged. No physical size/minimum changes.
 `npm run dev` and its compatibility alias `preview:calibration` serve the
-loopback-only Development preview on 5174; `demo` serves the graphical showcase
-on 5173 and `history:demo` retains the terminal demonstration. Canon has no launcher.
+loopback-only Development preview on 5174; `atlas` and compatibility alias `demo`
+serve Canonical on 5173. The archived Demo uses its explicit fixture preview on
+5177; `history:demo` retains the separate legacy terminal demonstration.
 The finite `tests/calibration/scenarios/preview-manifest.json` maps stable IDs to
 exact local JSON resources and complete preset descriptions. The original
 `cantum-scale-baseline.json` remains unchanged. `island-elevation.json` is a separate
@@ -304,7 +305,7 @@ The older baseline asset counts/exclusions below remain historical context.
 Vite roots the app in `src/viewer/`, uses `/Velara_Atlas/` as its base,
 disables `publicDir` and source maps, and writes `dist/`. Development binds
 to loopback with filesystem restrictions. The input audit allows viewer code,
-the modern core modules, exact inventory-derived Demo JSON, dependencies and
+the modern core modules, exact inventory-derived canonical JSON, dependencies and
 the narrowly named virtual mapping/Vite helpers.
 Phase 3 added fourteen explicit navigation icon paths; Stage 2 adds exactly one
 separate Cantum demonstration sigil path. `sigil-registry.mjs` resolves only
@@ -312,7 +313,7 @@ separate Cantum demonstration sigil path. `sigil-registry.mjs` resolves only
 Null/unknown/failed images leave full-name text intact; Stage 4 sigil-only
 failures remove the whole empty plate. Rebuild/disposal
 removes image error listeners; failure requests a normal render for containment.
-Existing NEXUS PNGs remain excluded. `scripts/svg-assets.mjs` validates the narrow SVG
+The earlier Stage 2 exclusion of NEXUS PNGs is historical: the current registry admits three exact PNGs and eight MP3s alongside sixteen SVGs. `scripts/svg-assets.mjs` validates the narrow SVG
 profile. The output audit checks HTML/JS/CSS plus exact approved SVG bytes/names
 with no duplicates, base-relative assets and the unchanged forbidden references.
 
@@ -324,13 +325,13 @@ general canonical publication pipeline.
 
 ## Future work and remaining limits
 
-GitHub Pages deployment, arbitrary dataset selection/runtime validation,
-a canonical release pipeline and any local editor need separate
-authorization. Canonical v0.1 IDs/history require the
+The canonical static build and manual Pages workflow are implemented. Dispatching
+Pages, arbitrary dataset selection/runtime validation and any local editor need
+separate authorization; see [current status](PROJECT_STATUS.md). Canonical v0.1 IDs/history require the
 [migration safeguards](LEGACY_MIGRATION_PLAN.md). Private RTF remains external;
 no private source extraction or publication tool is implemented.
 
-The data contract has no latest-published-year field: this demo uses
+The data contract has no latest-published-year field: the viewer uses
 `timeline.startAE` through `defaultAE`. Exact event markers beyond conservative
 record jumps, final assets, full accessibility, cross-browser/touch-hardware QA
 and large-atlas performance remain future work. See
@@ -342,7 +343,7 @@ the browser and boundary verification performed for this path migration.
 
 ## Local manual system authoring (completed Phase 3E)
 
-The CLI `scripts/atlas-new-system.mjs` exposes only the selected Demo. Reusable
+The CLI `scripts/atlas-new-system.mjs` is fixed to `public/datasets/canonical/`. Preview is read-only; creation/recovery writes require separate creator authorization. Legacy Demo messages do not identify its actual target. Reusable
 Node-only planning, record construction, complete validation and apply/recovery
 operations live in `scripts/system-authoring.mjs`. ID allocation reuses ID Finder's
 BigInt inventory, including unregistered and archival identities. Strict v1.3
@@ -352,7 +353,7 @@ An exclusive authoring journal, verified staging and sector backup make the
 sector append/new detail operation recoverable. New detail installation is
 exclusive; unrelated sector bytes stay intact. Input hashes and filesystem guards
 reject stale plans/concurrent changes. `scripts/authoring-guard.mjs` prevents
-navigation generation and Demo startup/build from consuming pending authoring
+navigation generation and canonical startup/build from consuming pending authoring
 state. Navigation keeps its existing independent journal format and algorithm.
 The tools and test-only scenarios remain excluded by the unchanged build allowlist.
 There is no editor endpoint or new runtime dependency. See
@@ -371,8 +372,7 @@ See [DEMO_SHOWCASE](DEMO_SHOWCASE.md) for normal-viewer inspection and differenc
 ## Phase 4 viewer module ownership
 
 Architecture Phase 4 is complete and creator-approved. Its implementation and
-completion documentation are committed together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. The current
-NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
+completion documentation are committed together. Phase 5 is complete and creator-approved; Phase 6 is complete and creator-approved. The current architecture optimization roadmap is complete; subsequent development, Canon migration, Atlas Creator and deployment require separate authorization. The Phase 4 checkpoint preserved the then-active NONCANONICAL Demo, HTML/CSS and algorithms; current shell ownership below includes the subsequent canonical navigation amendment.
 
 | Owner | Responsibility and boundary |
 | --- | --- |
@@ -382,7 +382,7 @@ NONCANONICAL Demo, HTML/CSS and algorithms are preserved.
 | `infocard-view.mjs` | Safe text DOM, dialog actions, destination listeners, focus capture/return and dismissal. No historical inference or data HTML. |
 | `timeline-view.mjs` | Slider/numeric input, bounds/errors, previous/next exact event and latest; requests refresh without reloading. |
 | `layer-config.mjs`, `layer-view.mjs` | One frozen definition of supported layer keys/defaults/labels; independent per-map visibility. Visibility never changes historical eligibility. |
-| `app-shell.mjs` | Square stage sizing, floating-panel mutual exclusion/closing and Escape dispatch. |
+| `app-shell.mjs` | Square-chart sizing, modal Catalogue/Help, exclusive reserved-space bottom toolbars, inactivity integration, focus return and Escape dispatch; `toolbar-activity.mjs` owns the 10-second deadline. |
 | `camera-controller.mjs` | Camera/OrbitControls, framing, constraints, modes, inspection, snapshots and disposal; completed 4.2E owns one cancelable 550ms Focus RAF operation and local reduced-motion/input lifetime. Preserves inspection endpoints and ordinary chart math. |
 | `map-interaction.mjs` | Canvas/label inputs, drag-versus-click, delayed selection, pointer/focus/touch hover, one marker/route/zone picker and zone emphasis/tooltip. |
 | `scene-layers.mjs` | Per-map grid, influence, envelopes, zones, routes, meshes, labels/proxies, visibility and rebuild/disposal. Uses existing geometry/compositor/nameplate modules. |
