@@ -222,6 +222,24 @@ are independent. Stage 4 identity rules below leave these envelopes unchanged;
 Stage 5 polish remains deferred.
 See [Stage 3 results](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
 
+## Adaptive horizontal nameplate fitting — 2026-11-20
+
+The creator-authorized refinement changes only full-name geographic fitting and
+complete-nameplate measurement. It supersedes the original full-name metrics and
+deepest-64 candidate shortlist described in Stage 4 below. Horizontal row-run
+intersection tests every eligible interior candidate against the complete measured
+DOM box at a deterministic 768px overview, with one field cell of padding per side.
+Marker clearance, usable width, interior depth and center proximity rank stable
+anchors. Registered sigil width and text gap participate in full-name measurement.
+
+The field equation, thresholds, 128×128 sampling, four-neighbor components,
+24-cell minimum, all shading/envelope geometry and Stage 4 sigil-only fallback
+remain unchanged. Actual display still uses the approved 14–24px typography and
+zoom-only fade. No radius, political ownership, coordinates or canonical data are
+changed. This does not advance Stage 5 or authorize integration/publication.
+See [the current fitting contract](CARTOGRAPHIC_LABELING.md#adaptive-horizontal-fitting-refinement--2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
 ## Stage 4 detached-island identities
 
 Stages 1–3 are creator-approved. Stage 4 extends the existing `territorialLabels()`

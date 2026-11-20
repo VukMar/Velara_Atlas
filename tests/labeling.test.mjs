@@ -7,6 +7,7 @@ import {territorialLabels,fieldComponents,territorialOpacity,territorialAnchorY}
 import {nameplateProjection,containNameplate} from '../src/viewer/cantum-nameplates.mjs';
 import {OrthographicCamera,PerspectiveCamera,Vector3} from 'three';
 import {layoutCaptions,captionRank} from '../src/viewer/caption-layout.mjs';
+import {nameplateShapeCases} from './nameplate-shapes.mjs';
 
 const map={origin:{x:0,y:0,z:0},size:{x:200,y:40,z:200},unit:'ly'};
 const cantums=[{id:'test',name:'TEST REGION',statusRecord:{}}];
@@ -28,7 +29,7 @@ test('complete names fit conservatively inside their own component; upright orie
   assert.ok(result.length);
   assert.strictEqual(labels(groups),result);
   for(const l of result) {
-    assert.equal(l.name,'TEST REGION');assert.ok(Math.abs(l.angle)<=Math.PI/6);
+    assert.equal(l.name,'TEST REGION');assert.equal(l.angle,0);
     for(let v=-.5;v<=.5;v+=.1)for(let u=-.5;u<=.5;u+=.1) {
       const x=l.x+u*l.width*Math.cos(l.angle)-v*l.height*Math.sin(l.angle);
       const z=l.z+u*l.width*Math.sin(l.angle)+v*l.height*Math.cos(l.angle);
@@ -40,6 +41,47 @@ test('complete names fit conservatively inside their own component; upright orie
   assert.equal(territorialLabels(groups,[{...cantums[0],name:'A'.repeat(400)}],map,null).length,0);
   assert.equal(labels([group([[0,0]])])[0].angle,0);
   assert.ok(territorialLabels(groups,[{...cantums[0],name:'試験 123'}],map,null).every(l=>l.name==='試験 123'));
+});
+
+test('horizontal full-box fitting covers synthetic lobes, concavities, narrowness and disconnected regions',()=>{
+  const metrics={test:{width:170,height:25}},cases=nameplateShapeCases();
+  for(const c of cases) {
+    const before=structuredClone(c),sigils=c.sigil?['test']:[];
+    const measurements=c.shape==='long-name'?{test:{width:3000,height:25}}:metrics;
+    const result=territorialLabels(c.groups,c.cantums,c.map,null,measurements,128,sigils);
+    assert.deepEqual(c,before,c.shape);
+    assert.strictEqual(result,territorialLabels(c.groups,c.cantums,c.map,null,measurements,128,sigils));
+    if(['wide','tall-with-shoulder','crescent','L-shaped','broad-lobe','disconnected','dense','unicode'].includes(c.shape))assert.ok(result.length,c.shape);
+    if(['tall-narrow','diagonal','tiny','long-name'].includes(c.shape))assert.equal(result.length,0,c.shape);
+    if(c.shape==='disconnected')assert.equal(result.length,2);
+    if(c.shape==='small-sigil')assert.equal(result[0]?.variant,'sigil-only');
+    if(c.shape==='broad-lobe')assert.ok(result[0].z>25,'usable broad lobe beats deep narrow stem');
+    if(c.shape==='dense')assert.equal(result[0].markerOverlap,false,'avoid dense interior markers where possible');
+    for(const l of result.filter(l=>l.variant==='name-with-optional-sigil')) {
+      assert.equal(l.angle,0);assert.equal(l.name,c.cantums[0].name);
+      assert.equal(l.width,170*200/768);assert.equal(l.height,25*200/768);
+      assert.ok(l.horizontalSpace>=l.width);
+      // The one-cell mask margin protects the actual box between sample centers.
+      const step=200/128;
+      for(let z=-l.height/2;z<=l.height/2;z+=step/3)
+        for(let x=-l.width/2;x<=l.width/2;x+=step/3)
+          assert.ok(cantumField(c.groups[0],l.x+x,l.z+z)>.35,`${c.shape}: padded horizontal box`);
+    }
+  }
+});
+
+test('complete measured boxes, including optional sigils and spacing, control eligibility without resizing',()=>{
+  const c=nameplateShapeCases().find(c=>c.shape==='wide');
+  const place=metric=>territorialLabels(c.groups,c.cantums,c.map,null,{test:metric});
+  const short=place({width:100,height:25}),full=place({width:340,height:25});
+  assert.ok(short.length&&full.length);assert.equal(full[0].width/short[0].width,3.4);
+  assert.equal(place({width:100,height:400}).length,0,'vertical clearance required');
+  for(const metric of [{width:NaN,height:25},{width:Infinity,height:25},{width:0,height:25},{width:100,height:-1}])assert.deepEqual(place(metric),[]);
+  assert.ok(short[0].markerOverlap===false,'an unobstructed alternative is preferred');
+  const otherMarkers=[...c.groups[0].points,{x:short[0].x,z:short[0].z}];
+  const avoiding=territorialLabels(c.groups,c.cantums,c.map,null,{test:{width:100,height:25}},128,[],otherMarkers);
+  assert.notDeepEqual([avoiding[0].x,avoiding[0].z],[short[0].x,short[0].z],'eligible unassociated system markers participate');
+  assert.equal(avoiding[0].markerOverlap,false);
 });
 
 test('real historical inputs update names, discovery, membership and eligible Cantums without future leakage',()=>{

@@ -111,6 +111,16 @@ dependencies, build assets, documentation or private folders are traversed.
 
 ## Named local preview scenarios
 
+**2026-11-20 horizontal nameplate refinement:** the original calibration geography,
+histories, radii and assets remain unchanged. Complete measured horizontal boxes
+now determine identity eligibility at the fixed reference overview. At 2 ly,
+Calibration A's main cluster and outpost use registered sigil-only identities;
+Calibration B is omitted because its complete name cannot fit and it has no sigil.
+At the default 2.5 ly, A still uses two sigils while B has its full name. At 3 ly,
+A's main full name plus sigil and B's full name fit; A's outpost stays sigil-only.
+These measured results supersede the earlier assumption that every radius shows
+the same full-name variants. [Comparison and review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
 Run `npm run dev` (or its alias `npm run preview:calibration`, not both) and open
 **http://127.0.0.1:5174/Velara_Atlas/__calibration/**. The ordinary `npm run demo` on 5173 and its v1.3 data/24-ly radius are unchanged.
 

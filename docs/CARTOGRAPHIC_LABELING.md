@@ -9,6 +9,53 @@ Cantum Stages 1-4 are now implemented; final artistic refinement remains deferre
 **Baseline:** Existing square chart and 8×8 system grid, floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.  
 **Design authorities:** `docs/VIEWER_SPECIFICATION.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/DATA_MODEL.md`, and `AGENTS.md`. This specification adds only the labeling behavior approved in the conversation; it does not supersede unrelated requirements.
 
+## Adaptive horizontal fitting refinement — 2026-11-20
+
+The creator-authorized refinement supersedes the principal-axis angle and
+geometry-derived font sizing in the original placement rules below. Every
+fitting rectangle is horizontal, matching the existing camera-facing DOM text.
+The Gaussian field, thresholds, 128×128 sampling, four-neighbor components and
+24-cell minimum are preserved.
+
+At each resolved map update, hidden DOM probes measure the complete current name
+using the actual `.cantum-nameplate` typography at a fixed 768 CSS-pixel overview
+(the existing clamp gives 20.736px). Browser shaping, Unicode fallback fonts,
+letter spacing, CSS padding, line height, registered sigil width and flex gap all
+participate. Measurements round upward to 1/64 CSS px. A sigil-sized placeholder
+requires no duplicate asset request. Probes are removed immediately; there are
+no font downloads, GPU text resources or per-frame measurements.
+
+Map span / 768 converts that complete box into geographic eligibility dimensions.
+One sampled cell of padding on every side protects against sampling uncertainty.
+For every candidate at or above the existing inner threshold, intersect horizontal
+row runs across the entire padded height. This tests the full rectangle within
+one component, including concavities, rather than only its center scanline. All
+eligible cells compete; the former deepest-64 shortlist cannot exclude broad lobes.
+Full names consider all eligible positioned systems, including unassociated ones;
+the original sigil-only fallback retains its contributor-marker policy.
+Fitting candidates clear of the existing conservative 15px system-marker budget
+rank first. Within that class, rank usable horizontal space, interior depth,
+rectangle-to-marker clearance and field-weighted-center proximity; sampled cell
+index resolves ties. Where the 15px budget is impossible, prefer avoiding the
+existing 4px visible symbol before ranking fitting space. If no full-name candidate
+fits, the existing registered sigil-only policy runs unchanged, otherwise omit the
+identity.
+
+Anchors and eligibility are independent of pan, zoom, camera rotation and viewport
+resize. The bounded eight-input cache remains. Display retains the unchanged
+14–24px clamp, weight 600, font family, letter spacing, colors, shadow, sigil
+styling, horizontal projection, containment, pointer transparency and zoom fading.
+No migration, dataset change, radius decision or version increment is involved;
+the repository stays **1.0.0 canonical launch candidate** as requested.
+
+This reference-overview fit is deliberately not a guarantee of screen-space
+territory containment at every mobile size, tilt or zoom. Edge containment may
+move the displayed box relative to its projected anchor, as before. Dense regions
+can still overlap system markers when no clear interior alternative exists;
+separate overlapping Cantums are not partitioned or merged. Platform system fonts
+can change measured widths. Narrow, poorly resolved and very long-name components
+remain omitted or sigil-only. [Comparison and review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
 ## 1. Why two different label systems
 
 **Stage 1 amendment:** camera-facing nameplates now supersede this document's

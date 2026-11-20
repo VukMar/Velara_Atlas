@@ -14,14 +14,15 @@ async page=>{
   const loaded=async()=>{await page.waitForFunction(()=>{const i=document.querySelector('.cantum-sigil');return i?.complete&&i.naturalWidth>0;});};
   const snapshot=()=>plate('can_0001').evaluate(n=>{
     const i=n.querySelector('img'),s=getComputedStyle(n),r=n.getBoundingClientRect();
-    return {text:n.textContent,hidden:n.hidden,opacity:+s.opacity,transform:s.transform,rect:r.toJSON(),
+    return {text:n.textContent,hidden:n.hidden,opacity:+s.opacity,transform:s.transform,font:parseFloat(s.fontSize),rect:r.toJSON(),
       image:i&&{src:i.src,width:i.getBoundingClientRect().width,height:i.getBoundingClientRect().height,pointer:getComputedStyle(i).pointerEvents,opacity:getComputedStyle(i).opacity,parent:i.parentElement===n}};
   });
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await loaded();await hide();
     let s=await snapshot();
     check(s.text==='Test Cantum'&&s.image?.parent,'A sigil and resolved name share one plate');
-    check(s.image.width===24&&s.image.height===24&&s.image.pointer==='none','desktop decorative 24px sigil');
+    const sized=s=>Math.abs(s.image.width-Math.max(18,Math.min(24,s.font)))<.032&&s.image.width===s.image.height;
+    check(sized(s)&&s.image.pointer==='none','desktop decorative sigil follows existing CSS clamp');
     check(new URL(s.image.src).pathname.startsWith('/Velara_Atlas/')&&s.image.src.includes('test-cantum-a'),'deployment-base-safe explicit asset URL');
     check(await plate('can_0002').innerText()==='TEST Second Cantum'&&await plate('can_0002').locator('img').count()===0,'B is name-only with no image slot');
     check(await page.locator('.cantum-sigil').count()===1,'one approved demo sigil');
@@ -33,7 +34,7 @@ async page=>{
     await toggle('Cantum Names',false);check(await plate('can_0001').isHidden()&&await plate('can_0002').isHidden(),'names switch hides complete groups');
     await toggle('Cantum Names',true);await toggle('Cantum influence / approximate chart overlay',true);
     await panel('controls-panel');await page.locator('#mode').click();await page.locator('#tilt').fill('10');await page.locator('#tilt').dispatchEvent('input');await hide();
-    s=await snapshot();check(!s.hidden&&s.image.width===24&&/^matrix\(1, 0, 0, 1,/.test(s.transform),'sigil and name upright at low perspective angle');
+    s=await snapshot();check(!s.hidden&&sized(s)&&/^matrix\(1, 0, 0, 1,/.test(s.transform),'sigil and name upright at low perspective angle');
     check(await plate('can_0002').isVisible()&&await plate('can_0002').locator('img').count()===0,'B remains text-only in perspective');
     await year(699);check(await plate('can_0002').count()===0&&await page.locator('.cantum-sigil').count()===1,'no future second Cantum plate');
     await year(1200);await loaded();

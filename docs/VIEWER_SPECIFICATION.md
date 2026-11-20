@@ -465,9 +465,13 @@ independent systems. Sector Cantum lettering uses currently resolved names and
 `territoryGroups` contributors. A cached 128×128 per-Cantum Gaussian field mask
 uses the overlay's visibility threshold and four-neighbor components. Each
 sufficiently large component can receive one complete name; disconnected holdings
-never gain a forced bridge or shared spanning name. Weighted principal axes,
-interior clearance and padded rectangle fitting determine fixed X/Z positions,
-world dimensions and upright angles bounded to ±30°. Unnamed regions are omitted;
+never gain a forced bridge or shared spanning name. Horizontal full-box fitting,
+usable row spans, marker/interior clearance and center proximity determine fixed
+X/Z anchors. The complete rendered typography is measured at a fixed 768px overview,
+including optional sigil and gap, with one sampled cell of geographic padding on
+every side. All eligible interior candidates compete with deterministic ties.
+This 2026-11-20 refinement supersedes the old principal-axis fit; no rotated box
+can qualify horizontal text. Unnamed regions are omitted;
 Stage 4 provides registered sigil-only identities for eligible smaller islands.
 This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
@@ -521,9 +525,10 @@ surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independen
 of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
 and [Stage 3 evidence](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
-**Stage 4 island identities:** the original full-name fitting pass remains first
-and unchanged. An island that cannot fit its complete resolved name may display
-only its approved registered sigil; null/omitted/unknown sigils produce no marker.
+**Stage 4 island identities:** the full-name fitting pass remains first, using
+the horizontal refinement above. An island that cannot fit its complete resolved
+name may display only its approved registered sigil; null/omitted/unknown sigils
+produce no marker.
 No abbreviations, generic emblems or island selection entities are introduced.
 At least 24 sampled cells and an interior square accommodating a 24px sigil on a
 fixed 768px overview, padded by one field cell on every side, are required.

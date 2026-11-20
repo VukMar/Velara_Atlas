@@ -13,7 +13,7 @@ const fixture=()=>({groups:[{id:'test',color:'#638FBD',radius:7,points:[
 const place=(f,aspects={test:5})=>territorialLabels(f.groups,f.cantums,map,null,aspects,128,
   f.cantums.filter(c=>sigilURL(c.sigil)).map(c=>c.id));
 
-test('full-name pass is preserved exactly; a detached outpost gets one registered sigil-only identity',()=>{
+test('registered fallback leaves fitting full names unchanged; a detached outpost gets one sigil-only identity',()=>{
   const f=fixture(),before=structuredClone(f),all=place(f);
   const old=territorialLabels(f.groups,f.cantums,map,null,{test:5});
   assert.deepEqual(all.filter(l=>l.variant==='name-with-optional-sigil'),old);
