@@ -1,10 +1,60 @@
 # Manual GitHub Pages deployment
 
-> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical release is now historical; the canonical publication record below owns the current deployed version.
+
+## First Canonical Public Deployment — Velara Atlas 1.0.0 — 2026-11-20 UTC
+
+The first canonical Atlas 1.0.0 publication is independently verified from the exact manual deployment run, its two job logs, artifact metadata and package metadata at the published SHA. The accepted implementation was merged in PRs #4/#5; pre-deployment documentation reconciliation was completed in PR #6. [PROJECT_STATUS](PROJECT_STATUS.md) owns current milestone and authorization status.
+
+| Publication evidence | Verified value and source |
+| --- | --- |
+| Workflow / run | Deploy Velara Atlas to GitHub Pages; [44833559920](https://github.com/VukMar/Velara_Atlas/actions/runs/44833559920), attempt **1**, `workflow_dispatch`, branch `main`, completed `success` |
+| Exact published commit | [`e6689347b8d1e6a9313c9bb6f8b5ee2ede96ff19`](https://github.com/VukMar/Velara_Atlas/commit/e6689347b8d1e6a9313c9bb6f8b5ee2ede96ff19), from this run's `head_sha` and deployment log |
+| Published package version | **1.0.0**, read from [package.json at that SHA](https://github.com/VukMar/Velara_Atlas/blob/e6689347b8d1e6a9313c9bb6f8b5ee2ede96ff19/package.json) |
+| Workflow start | **2026-11-20T23:01:00Z** |
+| Deployment success reported | **2026-11-20T23:02:05Z**; deploy log line at `23:02:05.3284988Z`: `Reported success!` |
+| Workflow completion | **2026-11-20T23:02:07Z**, distinct from deployment-success reporting |
+| Serbia-local publication date | November 21, 2026, shortly after midnight (00:02 CET); authoritative timestamps above use UTC |
+| Build job | [136624241181](https://github.com/VukMar/Velara_Atlas/actions/runs/44833559920/job/136624241181), completed `success` |
+| Deploy job | [136624613272](https://github.com/VukMar/Velara_Atlas/actions/runs/44833559920/job/136624613272), completed `success` |
+| Audited Pages artifact | `github-pages`, ID **14676474077**, [artifact from this run](https://github.com/VukMar/Velara_Atlas/actions/runs/44833559920/artifacts/14676474077); compressed size 4,806,420 bytes; digest `sha256:83a9eb41d0f93f04efd99a2da3430dfce7b2dd3d46637a29af5801fab889710b` |
+| Public URL | [Velara Atlas](https://vukmar.github.io/Velara_Atlas/); deploy log reports `Evaluated environment url: https://vukmar.github.io/Velara_Atlas/` |
+
+The build job used **Node 24.22.3**. Its successful steps include locked dependency installation (`npm ci`), read-only `connections:check`, **388/388 tests with zero failures**, `release:check`, both tracked-diff guards and upload of only audited `dist/`. The release audit verified 33 website files / **5,600,994 bytes**, all sixteen pinned SVGs, three PNGs and eight MP3s, base-relative assets and the selected canonical dataset, with no archived Demo/private/source-map references. The deploy job found the run's single named artifact and published that artifact for the exact SHA above. These results come from this manual publication run, not an unrelated CI run. Artifact download availability is retention-limited; the ID/digest preserve its recorded identity.
+
+### Independent live-site verification and acceptance limits
+
+Observed November 20, 2026, **23:18-23:19 UTC** (November 21 locally). Environment: Windows, installed headless **Chrome 157.0.8103.79**, SwiftShader software WebGL and reduced motion. Desktop viewport 1440x1000; separate touch-emulated 390x844 and 844x390 contexts. Playwright connector transport was unavailable; the existing local Playwright/Chrome installation completed these read-only checks without adding dependencies or changing the website.
+
+| Intended live check | Result and evidence |
+| --- | --- |
+| Canonical Atlas at public root | **Verified:** HTTP 200, rendered sector canvas and 70 system markers at 1200 A.E. |
+| NEXUS first entry | **Verified for silent entry:** native welcome displayed, Enter silently opened the chart. Enter with audio was **not performed** in these live checks. |
+| Returning Visitor and audio preferences | **Verified:** reload skipped the completed welcome and retained silent preference; Audio On persisted after another real reload, then was muted. Physical speaker output/fidelity was **not tested**. |
+| Canonical Catalogue | **Verified:** 77 records at 1200 A.E. (70 systems and seven Cantums), modal opened and sampled records were selectable. |
+| History updates visible records | **Verified:** 900 A.E. reduced the Catalogue to 57 records and the Drevnasel InfoCard displayed 900 A.E.; Latest restored 1200. |
+| Description / Technical InfoCards | **Verified:** Drevnasel Description (1,698 characters) and Technical facts (229 characters) displayed; tabs switched. |
+| Cantum lettering / influence | **Verified:** actual overview screenshot visually inspected; six geographic names and colored influence fields rendered at 1200 A.E., matching the viewport's six-name count. |
+| Map controls and bottom toolbars | **Verified:** top/perspective mode switch, modal Help and mutually exclusive Controls/Layers/History toolbars. The full inactivity/gesture regression matrix was **not repeated**. |
+| System archival fallback | **Verified for Putluk:** Enter System opened the named NEXUS archival view; Return to Sector restored the map. Every system was **not individually entered**. |
+| Mobile/responsive layout | **Verified in emulation:** 390x844 and 844x390 had square charts and no document overflow; Catalogue selection and the bounded Putluk Description card worked. Portrait/landscape screenshots were visually inspected. Physical mobile devices were **not tested**. |
+| Runtime / missing resources | **Verified within these sessions:** no observed page errors, error-level console messages or HTTP responses >=400. This is bounded session coverage, not a universal guarantee. |
+
+**Acceptance boundary:** the creator confirmed that the merged application worked as intended **before deployment**. That implementation acceptance is distinct from the workflow evidence and independent live checks above. Creator post-deployment public acceptance has **not been supplied for this closeout**. Physical-device interaction, Firefox/Safari, screen readers, speaker fidelity and hardware/GPU/performance certification were not performed. Preserve these limits; successful publication does not certify every environment.
+
+### Documentation-closeout regression boundary
+
+The README now identifies the published release instead of the former candidate. `tests/canonical-integration.test.mjs:27` still asserts `/Repository version 1\.0\.0 — canonical launch candidate/`. That assertion is obsolete after publication and needs a separately scoped test-only correction. Application/test files remain unchanged in this documentation task; no claim is made that the post-edit full suite passes. The 388 passing tests above belong to the verified deployed artifact.
+
+This closeout keeps version **1.0.0**, creates no subsequent software release, tag or GitHub Release, and performs no merge or deployment. Its documentation commit is distinct from the published SHA. Future content, protected legacy migration, deferred Cantum Stage 5 and Atlas Creator remain separately gated.
+
+> **Historical October 27 closeout summary:** the following paragraph records the earlier noncanonical pre-release, not the latest published version.
 
 **Checkpoint 5 — First Public Deployment — Complete and Creator-Approved (2026-10-27).** Velara Atlas v0.5.0 is now an operational noncanonical public pre-release on GitHub Pages. The creator configured Pages, manually deployed the approved site, tested the live website and confirmed acceptance. Further deployments require separate authorization; this task documents the existing release and does not deploy it again. [VERSIONING_POLICY](VERSIONING_POLICY.md) distinguishes repository and published versions; no increment is appropriate for this documentation-only closeout.
 
 ## Canonical 1.0.0 pre-deployment reconciliation - 2026-11-20
+
+> Historical preparation record, superseded by the canonical deployment above. The then-current 0.5.0 publication statements and prospective checklist below preserve their pre-deployment context; they are not current publication status.
 
 PRs #4/#5 are merged and the creator accepts the canonical application. Repository metadata remains 1.0.0; [PROJECT_STATUS](PROJECT_STATUS.md) owns current approval gates. The latest verified successful Pages run is still October 27's `40587944992`, publishing 0.5.0 at `77d2ab0ea484770eb6e40f6d0ac5aaa581d74209`. No 1.0.0 deployment is recorded here. Documentation reconciliation is followed by creator review/merge, inspection of the resulting main commit and separate manual deployment authorization.
 

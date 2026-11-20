@@ -1,10 +1,10 @@
 # Velara Atlas
 
-**Repository version 1.0.0 — canonical launch candidate** · [Versioning policy](docs/VERSIONING_POLICY.md)
+**Repository version 1.0.0 — first canonical public release** · [Versioning policy](docs/VERSIONING_POLICY.md)
 
 The repository now implements the canonical historical Velara Sector Atlas at `/Velara_Atlas/`: one interactive application with the original NEXUS first-entry modal and audio preferences. It contains 70 registered systems, seven historical Cantums and 234 approved descriptions under the existing v1.3 contract. Every system currently uses the archival fallback for unavailable interior charts; no interiors or routes were invented.
 
-The canonical Atlas 1.0.0, InfoCard, navigation/control bars and world-anchored Cantum typography are merged through [PR #4](https://github.com/VukMar/Velara_Atlas/pull/4) and [PR #5](https://github.com/VukMar/Velara_Atlas/pull/5) and accepted by the creator. Documentation reconciliation does not authorize further product changes. The next publication gate is a separately authorized manual GitHub Pages deployment; future canonical content, Atlas Creator, tags and GitHub Releases remain separately authorized. The [published website](https://vukmar.github.io/Velara_Atlas/) remains the creator-approved October 27, 2026 **0.5.0 noncanonical pre-release** until a successful authorized deployment is verified. Ordinary pushes run verification and do not publish. [Current status](docs/PROJECT_STATUS.md) and [deployment evidence](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
+[Velara Atlas 1.0.0 is publicly deployed](https://vukmar.github.io/Velara_Atlas/) as the first canonical Atlas release. The canonical application, InfoCards, navigation/control bars and world-anchored Cantum typography were creator-accepted before publication; pre-deployment documentation reconciliation is complete through PR #6. The approved manual Pages workflow published commit `e6689347b8d1e6a9313c9bb6f8b5ee2ede96ff19` on November 20, 2026 at 23:02:05 UTC (November 21 in Serbia). The October 27 **0.5.0 noncanonical pre-release** is the earlier publication. [Deployment evidence and independent live-check coverage](docs/GITHUB_PAGES_DEPLOYMENT.md#first-canonical-public-deployment--velara-atlas-100--2026-11-20-utc) distinguish workflow success, pre-publication creator acceptance and the limits of post-deployment verification. Ordinary pushes do not publish or authorize further product changes; future content, Atlas Creator, deployment, tags and Releases remain separately authorized. [Current status](docs/PROJECT_STATUS.md).
 
 ## Run locally
 
@@ -45,7 +45,7 @@ git diff --check
 
 Production validation and read-only connection freshness select `public/datasets/canonical/`. Generic engine tests explicitly use isolated synthetic or archived fixtures; canonical integration tests pin all five production file hashes to the approved candidate. Builds retain `publicDir: false`, exact input admission, complete registered imports, resource reachability and pinned media integrity. No arbitrary dataset selector, runtime JSON fetching, writable endpoint or editor exists.
 
-Only the explicitly invoked `npm run connections` writer changes navigation output; startup, tests, builds and CI never repair it. [Navigation and recovery](docs/NAVIGATION_AUTHORING.md). The creator explicitly authorized staging repository version 1.0.0 for the canonical launch candidate. This does not complete the public launch or authorize a tag, Release or deployment.
+Only the explicitly invoked `npm run connections` writer changes navigation output; startup, tests, builds and CI never repair it. [Navigation and recovery](docs/NAVIGATION_AUTHORING.md). The first canonical public deployment is recorded at version 1.0.0. This documentation closeout introduces no subsequent software release and authorizes no further content changes, tag, GitHub Release or deployment.
 
 ## Documentation
 
