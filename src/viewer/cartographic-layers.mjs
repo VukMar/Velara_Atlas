@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import {routePoints, sampleInfluence, zoneParticles} from '../core/cartography.mjs';
 import {createClippedZone} from './zone-layers.mjs';
 
-export const layerOrder = {grid: 0, territory: 1, cantumNames: 1.5, zone: 2, route: 3, marker: 4};
+// Lettering blends over ordinary dots/routes while retaining foreground depth tests.
+export const layerOrder = {grid: 0, territory: 1, cantumNames: 4.5, zone: 2, route: 3, marker: 4};
 const vector = p => new THREE.Vector3(p.x, p.y, p.z);
 const fieldCache = new Map();
 

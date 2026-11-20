@@ -1,5 +1,19 @@
 # Velara Atlas — NEXUS Visual Identity
 
+## Navigation presentation amendment — 2026-11-19
+
+The creator-approved navigation now uses a restrained version of the InfoCard's cyan radial glow and directional blue-black gradient in the existing compact application header, preserving insignia, branding, breadcrumb/year, units and audio. No new artwork, status decoration or animation is added there.
+
+A top utility row groups Catalogue/Map Controls left and Layers/History right. All four remain reachable at 320 px with full accessible names and ≥44 px targets. Catalogue becomes a centered 760 px maximum NEXUS archival-search modal with a persistent heading/filters and scrolling results, focus return and no timeout. Selection transitions to the existing InfoCard, whose portrait and 600 × 720 px bounds remain approved.
+
+History, Layers and Map Controls are mutually exclusive horizontal bottom toolbars that reserve real space beneath the square chart. Their 200 ms height/opacity effects coordinate chart refitting; reduced motion uses final states. Bars wrap/scroll responsively, preserve preferences/history/camera controls and never overlay chart annotations. The far-right question-mark action opens modal NEXUS chart guidance with no timeout.
+
+Toolbars alone dismiss after 10 seconds outside/inactive. Hover, keyboard focus, active pointer/slider/select/text editing and associated Help suppress dismissal; exit/completion resumes a full deadline. Trigger toggles, switching, navigation and disposal invalidate old deadlines. Close/Escape/focus restoration and hidden-control exclusion remain accessible. See the [full behavior contract](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) and [evidence](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19).
+
+This supersedes earlier floating utility panels and vertical History statements below. Original Checkpoint 3.6 and audiovisual records remain historical evidence. The canonical InfoCard has passed creator visual inspection; this surrounding-interface refinement awaits final UI review. Repository version remains 1.0.0 candidate; publication remains separately gated.
+
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
 
 **Version:** 1.0.0 · **Milestone:** 5 — Approved creative direction · **Date:** 2026-10-15  
@@ -63,30 +77,32 @@ These hex values are implementation starting points sampled approximately from t
 
 ## 5. Map visual layers and 2D/3D behavior
 
-Draw order back → front (preserve the earlier Milestone 3 contract):
+Draw order back → front (current sector typography amendment):
 
 1. Near-black map / restrained starfield and background.
 2. Coordinate grid and reference guides.
-3. Metaball-like Cantum influence regions (sector only), soft and nearly transparent.
-   Stage 1 Cantum names use a decorative projected DOM overlay; marker captions,
-   targeting and grid annotations remain above it, with no opaque nameplate panel.
+3. Cantum influence clouds, retaining soft boundaries and .16/.22 alpha limits.
 4. Nav routes (short-range in systems; Jump Gate and Jump Hole routes in sector view).
-5. Spatial objects (2D icons in top-down; appropriate physical/simple 3D rendering in perspective).
-6. Historical names, spatial labels and visible coordinate readouts.
-7. Hover/selection targeting and direct interface overlays.
+5. Ordinary spatial objects (2D icons or physical/simple 3D rendering).
+6. Sector Cantum geographic lettering at render order 4.5, after ordinary markers
+   at 4, with .82 overview opacity; historical captions/readouts retain their DOM
+   layer. Lettering remains depth tested without depth writing, so foreground
+   geometry occludes it and lower stars show through its translucent glyphs.
+7. Hover/selection targeting and direct interactive identification/interface overlays.
 
 **Implemented cartographic typography:** [Cartographic labeling](CARTOGRAPHIC_LABELING.md)
 adds restrained, spaced system-font Cantum names per sufficiently large connected
-influence component. Historical names and memberships remain authoritative. Text
-uses the existing fitted geography for X/Z anchors; small or unnamed regions have
-none. Stage 1 displays horizontal camera-facing nameplates at bounded 14–24 CSS
-pixels, with Cantum-specific tint, weight 600 and restrained shadow. The provisional
-height is highest eligible contributor Y plus modest clearance, independently of
-the unchanged flat influence surface. Names fade at close zoom, remain readable
-at low camera tilt and never receive pointer events. Their
-Cantum-linked tint is independent of NEXUS interface colors and influence opacity
-caps. The **Cantum Names** control is sector-only and independent of shading.
+influence component. Historical names and memberships remain authoritative. Text uses fixed upward-facing X/Z planes sized to each connected component from
+complete browser-shaped text metrics. CanvasTextures retain weight 600, available
+system fonts, Cantum tint and restrained shadow. Component-local eligible stars
+and the envelope determine height; pan, zoom, orbit and viewport resizing cannot
+change the dimensions or orientation. Perspective naturally foreshortens the
+lettering. A smooth 1.15x-1.50x crossfade hands passive identification to sector
+system captions, with hover/focus/selection always fully identified. Influence
+and names remain independent. This supersedes Stage 1's camera-facing 14-24px
+contract; [current algorithm and review](CANTUM_NAMEPLATE_REFINEMENT.md).
 
+**Historical Stage 2 sizing (superseded by world-space proportional sizing):**
 **Cantum Visual Patch Stage 2:** an optional sigil may sit beside a complete
 name inside the existing decorative nameplate. The approved demonstration SVG
 `cantums/test-cantum-a.svg` uses original cyan/blue geometry and is explicitly
@@ -154,17 +170,25 @@ its sizing/fade/spin proposals with the creator-approved exact treatment.
 
 Selection opens a centered dismissible InfoCard; no card appears before selection.
 Its top-right close control and Escape clear selection, return focus appropriately
-and preserve the camera. Catalogue, controls, layers and vertical History are
-compact floating panels. The header retains location/year. Panels never reserve
-columns or move/resize the square chart. This replaces the original right-hand
-card and bottom timeline layout while preserving all historical content/actions.
+and preserve the camera. Under the current navigation amendment, Catalogue is
+modal and the other top utilities open reserved-space bottom toolbars. The header
+retains location/year. InfoCards never reserve space or resize the chart; toolbars
+explicitly reduce the chart stage while retaining square proportions and camera.
+The earlier floating-panel/vertical-History arrangement is historical.
 
 ### Ordinary InfoCard
 
-- Primary focus: selected entity's historical title and approved six-field InfoCard data — affiliation, class, crew, population, armament, description; show only relevant populated fields or honest “not recorded” states.
-- Include a **small NEXUS side-profile PNG overlay** as the narrator/curator visual when its integration is separately authorized; the supplied asset is `public/assets/nexus/nexus-side-profile.png`. Suggested place: header-side or bottom/right protected margin, not underneath text. Portrait can fade into the panel with a turquoise edge accent.
-- Do not assume the front-facing `NEXUS Visual Form V2.png` is the desired side-view asset. Until the supplied side-profile is integrated, retain the existing NEXUS status label or omitted portrait without changing layout.
-- If there is insufficient width (phone layouts, text-heavy panels), reduce or hide the portrait before reducing text readability.
+**Creator-approved Holographic Transmission amendment, 2026-11-19.** This supersedes ordinary InfoCard portrait sizing/hiding in the historical 4.2A record below; that original 96/64 px approval remains checkpoint evidence. Opening and archival message portraits retain their separate contracts.
+
+- Center the floating dialog at `width: min(600px, calc(100vw - 24px))` and `max-height: min(720px, calc(100dvh - 48px))`. Short records can produce a shorter card. Selection never moves/resizes the map or changes its camera.
+- Persistent header: NEXUS / HISTORICAL ARCHIVE, resolved historical name, entity kind, selected A.E. year, Close and the approved side-profile. Fine cyan borders, a restrained gradient and soft illumination convey NEXUS presenting the archive. No new artwork, narration or decorative animation.
+- The unchanged `public/assets/nexus/nexus-side-profile.png` is contained at 144 px on desktop and 80 px at widths ≤600 px or heights ≤480 px; extremely short windows use 64 px. Preserve natural proportions and the entire image. Never hide it for density, long narrative, narrow width or short height. Actual image failure may collapse it through the existing shell handler.
+- Exactly two tabs: **Description** opens by default and contains the full resolved narrative, safely assigned with `textContent` and `white-space: pre-line`, including the established missing-description fallback. **Technical** contains every existing `describeRecord()` fact, destination information and the scale/inspection note. Do not invent or infer values.
+- Header → tabs → independently scrolling active panel → persistent actions. Focus Selection, Enter System and external destination buttons stay outside the normal content scroller. At extreme viewport sizes or enlarged text leaving less than 96 px for reading, one outer dialog scrollbar exposes all content and controls; competing inner scrolling is removed.
+- A new entity resets to Description and resets panel scroll. Historical refresh of the same identity preserves the selected tab, panel nodes, scroll where the replacement length allows, and focus. Heading/year, description and facts update synchronously; existing ineligible-selection clearing remains authoritative. Destination listeners are replaced and disposed without accumulation.
+- Native buttons with `tablist`, `tab`, `tabpanel`, `aria-selected`, `aria-controls` and `aria-labelledby`; one active tab in the Tab sequence. Left/Right wrap and automatically activate, Home/End select first/last, Enter/Space use native activation. Panels are focusable scroll regions; inactive panels use `hidden`. Visible focus, ≥44 px action/tab targets, existing Escape dismissal/focus return and reduced-motion behavior remain. Resize observers and listeners belong to the existing lifetime.
+
+Implementation and viewport evidence: [launch-candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Final creator visual acceptance remains pending.
 
 ### Direct NEXUS archival messages
 
@@ -204,7 +228,7 @@ See [VISUAL_ASSET_POLICY.md](VISUAL_ASSET_POLICY.md) for the category matrix, im
 
 **Desktop:** compact header and centered square chart; floating Catalogue, Map controls, Map layers and vertical History. The selected year stays visible when History is closed. Record selection opens a centered dismissible InfoCard. The system chart has restrained A–H/1–8 world-space labels and an H8 CNU cell-width annotation.
 
-**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible and reduce/hide any future portrait before reducing text readability. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
+**Narrow/mobile:** fit the complete default square without page overflow. Panels and the InfoCard remain bounded/scrollable overlays; opening them never changes chart dimensions or center. Keep close/focus controls accessible. Ordinary InfoCards retain the compact intact portrait under the current amendment above; archival/opening portraits keep their own responsive rules. The same square viewport applies to perspective. See [layout behavior](VIEWER_SPECIFICATION.md) and [revision rationale](LAYOUT_REVISION_3_6.md).
 
 ## 11. Implementation order and acceptance criteria
 

@@ -11,21 +11,21 @@ const objectPrefixes = {celestial_body: 'cb', gate: 'gat', station: 'sta', jump_
 export function parseArguments(args) {
   let prefix, scope;
   for (const arg of args) {
-    if (arg === '--demo' || arg === '--public') {
-      if (scope) throw new Error('Choose exactly one dataset scope: --demo or --public');
+    if (arg === '--canonical' || arg === '--demo' || arg === '--public') {
+      if (scope) throw new Error('Choose exactly one dataset scope: --canonical, --demo or --public');
       scope = arg.slice(2);
     } else if (arg.startsWith('-')) throw new Error(`Unsupported option: ${arg}`);
     else if (prefix) throw new Error(`Unexpected argument: ${arg}`);
     else prefix = arg;
   }
   if (!PREFIXES.includes(prefix) && prefix !== 'all') throw new Error(`Unsupported prefix: ${prefix ?? '(missing)'}. Use ${[...PREFIXES, 'all'].join(', ')}`);
-  return {prefix, scope: scope ?? 'demo'};
+  return {prefix, scope: scope ?? 'canonical'};
 }
 
 /** No recursion or arbitrary registry paths. io/root injection is for tests. */
-export function scanDataset({scope = 'demo', repositoryRoot = repo, io = fs, datasetRoot} = {}) {
-  if (!['demo', 'public'].includes(scope)) throw new Error(`Unsupported dataset scope: ${scope}`);
-  const base = datasetRoot ? path.resolve(datasetRoot) : path.resolve(repositoryRoot, scope === 'demo' ? 'public/datasets/demo' : 'public/data');
+export function scanDataset({scope = 'canonical', repositoryRoot = repo, io = fs, datasetRoot} = {}) {
+  if (!['canonical', 'demo', 'public'].includes(scope)) throw new Error(`Unsupported dataset scope: ${scope}`);
+  const base = datasetRoot ? path.resolve(datasetRoot) : path.resolve(repositoryRoot, scope === 'demo' ? 'tests/fixtures/archived-demo/dataset' : scope === 'canonical' ? 'public/datasets/canonical' : 'public/data');
   const files = new Map(), errors = [], notes = [], legacy = [];
   const definitions = new Map(PREFIXES.map(p => [p, new Map()]));
   let version='1.2.0';
@@ -187,5 +187,5 @@ export function runIdFinder(args, options = {}) {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try { const result = runIdFinder(process.argv.slice(2)); console.log(result.output); process.exitCode = result.exitCode; }
-  catch (e) { console.error(`ID Finder: ${e.message}\nUsage: npm run idfind -- <prefix|all> [--demo|--public]`); process.exitCode = 2; }
+  catch (e) { console.error(`ID Finder: ${e.message}\nUsage: npm run idfind -- <prefix|all> [--canonical|--demo|--public]`); process.exitCode = 2; }
 }

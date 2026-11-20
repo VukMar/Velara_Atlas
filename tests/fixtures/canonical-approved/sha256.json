@@ -1,0 +1,10 @@
+{
+  "revision": "fa53a770eb848f45031dce4da7787dc2a26c7bb5",
+  "files": {
+    "sector.json": "5d0244e429daec57a5f876bc363ad11dbc5998b9e88be41b7b35cefc04201b3c",
+    "cantums.json": "a5519e3735d47a091a5e47de63f2b88d680aa3413c218190b58b4d1c5a0b0c5c",
+    "connections.json": "217779677717f8a86e7684230de849f0305cb090abceb882cbb68eb594db0809",
+    "factions.json": "2f17c91597a35d61d4a40d62e93bc44f0fb32e3e4aefcde946a47df64dccce36",
+    "presentation.json": "4165d339ba486e381af34643ce0fe530df2a7d27b2e440e230678cc88e82d5a7"
+  }
+}

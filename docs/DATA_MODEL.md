@@ -1,5 +1,7 @@
 # Velara Atlas — JSON Data Contract: active v1.3 and v1.2 compatibility
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 **Scope:** Author-approved structural schema and **noncanonical demonstration records only**. This document supersedes the structural conventions in the archived `archive/design/DATA_MODEL_DRAFT.md` v0.2 but **does not automatically migrate** the old v0.1 political history, `sector.json`, or `src/timeline/resolve.mjs`. Those require a separate migration and regression tests.
 
 The [v1.3 faction/governance contract and migration crosswalk](DATA_MODEL_V1_3_PROPOSAL.md)

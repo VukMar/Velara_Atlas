@@ -1,5 +1,7 @@
 # Checkpoint 3.6 — Layout and interaction revision
 
+> **Historical checkpoint:** the creator-approved [2026-11-19 navigation amendment](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) supersedes floating utility panels and vertical History with top triggers, modal Catalogue and reserved-space bottom toolbars. Original rationale and acceptance evidence below are retained.
+
 This creator-requested revision records the rationale and implementation details
 behind the current [viewer behavior contract](VIEWER_SPECIFICATION.md). It supersedes the permanent left/right columns,
 bottom timeline and persistent right InfoCard in Viewer Specification §§7/8

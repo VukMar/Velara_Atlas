@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
-import {readDemoSource, datasetInventory, safePath, rewritePositions} from '../scripts/demo-files.mjs';
+import {readDemoSource, datasetInventory, safePath, rewritePositions} from './archived-demo.mjs';
 import {generateNavigation, navigationMismatches, boundaryPositions} from '../scripts/navigation.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {runConnections, RECOVERY_FILE} from '../scripts/connections.mjs';

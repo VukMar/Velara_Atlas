@@ -1,14 +1,12 @@
 /** Playwright MCP filename entry point, valid on Demo and production preview. */
 async(page) => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href;
+  const base=new URL('/Velara_Atlas/',page.url()).href;
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const results=[];
   const state=()=>page.locator('#viewport').evaluate(n=>({...n.dataset}));
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
-  const panel=async id=>{
-    if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();
-  };
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const year=async y=>{
@@ -40,7 +38,7 @@ async(page) => {
     check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth||document.documentElement.scrollHeight>innerHeight+1),'no page overflow');
     return v;
   };
-  await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
+  await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   check(!await page.locator('#info-panel').evaluate(n=>n.open),'no initial InfoCard');
   check(await page.locator('#grid-labels [data-cell="H8"]').count()===0,'Sector View has no system-cell designation');
@@ -48,24 +46,26 @@ async(page) => {
   check(await page.locator('#grid-labels [data-kind="column"], #grid-labels [data-kind="row"]').count()===0,'sector grid remains unnumbered');
   const initial=await square();
   for(const id of ['catalogue-panel','timeline-panel','controls-panel','layers-panel']) {
-    await panel(id);const now=await square();check(JSON.stringify(now)===JSON.stringify(initial),`${id} does not shift/resize chart`);
-    await page.locator(`[data-close-panel="${id}"]`).click();
-    check(await page.locator('#'+id+' > summary').evaluate(n=>n===document.activeElement),'panel close returns focus');
+    await panel(id);const now=await square();
+    if(id==='catalogue-panel')check(JSON.stringify(now)===JSON.stringify(initial),'Catalogue leaves chart layout intact');
+    else check(now.width<=initial.width&&await page.locator('#toolbar-region').evaluate(n=>document.querySelector('#viewport').getBoundingClientRect().bottom<=n.getBoundingClientRect().top),'toolbar reserves unobstructed chart space');
+    if(id==='catalogue-panel')await page.locator('#close-catalogue').click();else await page.locator(`[aria-controls="${id}"]`).click();
+    check(await page.locator(`[aria-controls="${id}"]`).evaluate(n=>n===document.activeElement),'close returns trigger focus');
   }
   await panel('timeline-panel');
-  check(await page.locator('#timeline').evaluate(n=>getComputedStyle(n).writingMode.startsWith('vertical')),'timeline is vertical');
-  await page.locator('#timeline').focus();await page.keyboard.press('ArrowDown');
-  check(await page.locator('#year').innerText()==='1199 A.E.','vertical range keyboard changes continuous year');
+  check(await page.locator('#timeline').evaluate(n=>getComputedStyle(n).writingMode==='horizontal-tb'),'timeline is horizontal');
+  await page.locator('#timeline').focus();await page.keyboard.press('ArrowLeft');
+  check(await page.locator('#year').innerText()==='1199 A.E.','horizontal range keyboard changes continuous year');
   await page.locator('#year-input').fill('1198');await page.locator('#year-input').press('Enter');
   check(await page.locator('#year').innerText()==='1198 A.E.','numeric year stays continuous');
   await page.locator('#previous').click();const previous=await page.locator('#year').innerText();
   check(previous!=='1198 A.E.','previous exact public record');await year(0);await page.locator('#next').click();
   check(await page.locator('#year').innerText()!=='0 A.E.','next exact public record');
-  await page.locator('#latest').click();await page.locator('[data-close-panel="timeline-panel"]').click();
+  await page.locator('#latest').click();await page.locator('#history-toggle').click();
   check(await page.locator('#year').isVisible()&&await page.locator('#year').innerText()==='1200 A.E.','closed timeline keeps year in header');
   await year(99);check((await state()).markers==='0','historical filtering still applies');await year(1200);
   await page.keyboard.press('Escape');
-  results.push('stationary square chart, floating panels, no initial popup, vertical timeline keyboard/numeric/record controls and year filtering');
+  results.push('reserved-space square chart, Catalogue dialog, no initial popup, horizontal timeline keyboard/numeric/record controls and year filtering');
 
   const a=page.locator('#labels [data-record-id="sys_0001"]');
   await a.click();await page.locator('#info-panel').waitFor({state:'visible'});
@@ -83,14 +83,14 @@ async(page) => {
   check(await page.locator('#grid-labels [data-kind="row"]').allTextContents().then(v=>v.join('')==='12345678'),'rows 1-8');
   check(await page.locator('#grid-labels [data-cell="H8"]').innerText()==='12.5K CNU','H8 sector measurement');
   await measurement();
-  await panel('controls-panel');await page.locator('#zoom-in').click();await page.locator('[data-close-panel="controls-panel"]').click();
+  await panel('controls-panel');await page.locator('#zoom-in').click();await page.locator('#controls-toggle').click();
   await page.locator('canvas').focus();
   for(const key of ['ArrowRight','ArrowRight','ArrowRight','ArrowDown','ArrowDown','ArrowDown'])await page.keyboard.press(key);
   await measurement();await page.keyboard.press('ArrowLeft');await measurement();
-  await panel('controls-panel');await page.locator('#reset').click();await page.locator('[data-close-panel="controls-panel"]').click();
+  await panel('controls-panel');await page.locator('#reset').click();await page.locator('#controls-toggle').click();
   await panel('controls-panel');
   await page.locator('#zoom-out').click();check((await state()).zoom==='1','cannot zoom out beyond full map');
-  await page.locator('#zoom-in').click();await page.locator('[data-close-panel="controls-panel"]').click();
+  await page.locator('#zoom-in').click();await page.locator('#controls-toggle').click();
   const chart=await page.locator('canvas').boundingBox();
   await page.mouse.move(chart.x+chart.width*.25,chart.y+chart.height*.3);await page.mouse.wheel(0,-600);
   await page.waitForFunction(()=>+document.querySelector('#viewport').dataset.zoom>1.4,null,{timeout:5000});
@@ -100,7 +100,7 @@ async(page) => {
   for(const key of ['maxX','maxZ'])check(+(await state())[key]<=50000,`${key} cursor clamp`);
   await panel('controls-panel');await page.locator('#reset').click();
   const reset=await state();check(reset.zoom==='1'&&reset.minX==='-50000'&&reset.maxZ==='50000','Reset full-map framing');
-  await page.locator('[data-close-panel="controls-panel"]').click();
+  await page.locator('#controls-toggle').click();
   results.push('InfoCard centering/close/focus/selection, double-click, 8×8 grid, H8 scale and real wheel/drag constraints');
 
   const gate=page.locator('#labels [data-record-id="gat_0001"]');
@@ -125,13 +125,13 @@ async(page) => {
   await panel('controls-panel');await page.locator('#zoom-in').click();const top=await state();await page.locator('#mode').click();
   check((await state()).mode==='perspective','perspective works');await square();
   await page.locator('#tilt').fill('35');await page.locator('#tilt').dispatchEvent('input');
-  const projection=await page.locator('#labels [data-record-id="cb_0001"]').getAttribute('style');
+  const projection=await page.evaluate(async()=>(await import('./main.mjs')).application.atlas.getView());
   await year(1199);await page.locator('#sector').click();await open('sys_0001');
   check((await state()).mode==='perspective','perspective mode retained across historical/map navigation');
-  check(await page.locator('#labels [data-record-id="cb_0001"]').getAttribute('style')===projection,'perspective projection restored');
+  check(JSON.stringify(await page.evaluate(async()=>(await import('./main.mjs')).application.atlas.getView()))===JSON.stringify(projection),'perspective camera restored independently of toolbar layout');
   await panel('controls-panel');await page.locator('#mode').click();
   check((await state()).zoom===top.zoom,'top-down zoom restored from 3D');
-  await page.locator('#reset').click();await page.locator('[data-close-panel="controls-panel"]').click();
+  await page.locator('#reset').click();await page.locator('#controls-toggle').click();
   await page.locator('#sector').click();check(!await page.locator('#info-panel').evaluate(n=>n.open),'back does not open an unwanted InfoCard');
   results.push('transient gate hover, keyboard focus, independent selected targeting, active-link filtering and square perspective/restoration');
 
@@ -141,7 +141,7 @@ async(page) => {
     check(await scale.isVisible()&&await scale.innerText()==='20 ly','sector measurement visible on mobile');
     check(await scale.evaluate(n=>{const r=n.getBoundingClientRect(),c=document.querySelector('canvas').getBoundingClientRect();return r.left>=c.left&&r.right<=c.right&&r.top>=c.top&&r.bottom<=c.bottom;}),'sector scale text stays within mobile chart');
     const before=await page.locator('#viewport').boundingBox();await panel('timeline-panel');await square();
-    check(JSON.stringify(await page.locator('#viewport').boundingBox())===JSON.stringify(before),'narrow overlay does not move map');
+    check((await page.locator('#viewport').boundingBox()).width<=before.width,'narrow toolbar only shrinks chart when height limits it');
     await page.keyboard.press('Escape');await open('sys_0002');await square();await measurement();
     await choose('cb_0006');const box=await page.locator('#info-panel').boundingBox();
     check(box.x>=0&&box.y>=0&&box.x+box.width<=size.width+1&&box.y+box.height<=size.height+1,'popup fits narrow screen');

@@ -1,26 +1,26 @@
 /** Integrated acceptance against the ordinary Demo, not a fixture server. */
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[],politics=[],navigation=[],factions=[];
+  const base='http://127.0.0.1:5177/Velara_Atlas/',errors=[],politics=[],navigation=[],factions=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());},onPageError=e=>errors.push(e.message);
   page.on('console',onError);page.on('pageerror',onPageError);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.mouse.move(1,1);};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await close();};
-  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
+  const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});await page.locator('#technical-tab').click();};
   const sector=async()=>{await close();await panel('controls-panel');await page.locator('#sector').click();await close();};
   const open=async id=>{await choose(id);await page.locator('#enter').click();await close();};
   const present=async id=>await page.locator(`#selection option[value="${id}"]`).count()===1;
   const state=()=>page.evaluate(()=>{const m=window.__phase3fMap;return {
     mode:m.mode,flat:m.flatInfluence?.visible??false,envelope:m.influenceEnvelopes?.display.visible??false,
     groups:m.influenceEnvelopes?.data.map(e=>({id:e.id,contributors:e.contributors,halfHeight:e.halfHeight}))??[],
-    labels:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,text:a.element.textContent,sigil:!!a.element.querySelector('img'),visible:a.visible})),
+    labels:m.cantumNameplates.anchors.map(a=>({id:a.label.cantumId,text:(a.label.variant==='sigil-only'?'':a.label.name),sigil:!!a.resource.image&&!a.resource.failed,visible:a.visible})),
     memory:{...m.renderer.info.memory}};});
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#selection option[value="sys_0005"]').waitFor({state:'attached'});
-    const preload=await page.evaluate(async()=>{const d=await(await import('./demo-data.mjs')).loadDemoDataset();return {details:d.detailFiles.size,factions:d.factionFiles.size,radius:d.presentation.territoryOverlay.radiusLY};});
+    const preload=await page.evaluate(async()=>{const d=await(await import('./atlas-data.mjs')).loadAtlasDataset();return {details:d.detailFiles.size,factions:d.factionFiles.size,radius:d.presentation.territoryOverlay.radiusLY};});
     check(preload.details===4&&preload.factions===2&&preload.radius===24,'registered full Demo eagerly loaded');
     await page.evaluate(async()=>{const {AtlasMap}=await import('./map-scene.mjs'),render=AtlasMap.prototype.render;AtlasMap.prototype.render=function(){window.__phase3fMap=this;return render.call(this);};});
     await panel('controls-panel');await page.locator('#mode').click();await close();

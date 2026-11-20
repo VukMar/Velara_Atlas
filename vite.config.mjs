@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {defineConfig,normalizePath} from 'vite';
 import {checkConnections,RECOVERY_FILE} from './scripts/connections.mjs';
 import {assertNoAuthoring} from './scripts/authoring-guard.mjs';
-import {readDemoSource,DEMO_ROOT,datasetInventory} from './scripts/demo-files.mjs';
+import {readDatasetSource,CANONICAL_ROOT,datasetInventory} from './scripts/dataset-files.mjs';
 import {safeDatasetPath} from './scripts/dataset-inventory.mjs';
 import {assertSquareMap} from './src/viewer/chart-layout.mjs';
 import {svgFiles,approvedSVGSources} from './scripts/svg-assets.mjs';
@@ -19,8 +19,9 @@ const local=relative=>fileURLToPath(new URL(relative,import.meta.url));
 const approvedIcons=new Set(svgFiles.map(modulePath));
 const approvedBranding=new Set(pngFiles.map(modulePath));
 const approvedAudio=new Set(audioFiles.map(modulePath));
-const virtualName='virtual:velara-demo-dataset';
-export const DEMO_VIRTUAL_ID='\0velara-demo-dataset';
+const virtualName='virtual:velara-atlas-dataset';
+export const DATASET_VIRTUAL_ID='\0velara-atlas-dataset';
+const viewerInputs=new Set(["app-shell.mjs", "app-state.mjs", "archival-view.mjs", "atlas-data.mjs", "audio-controller.mjs", "camera-controller.mjs", "cantum-nameplates.mjs", "caption-layout.mjs", "cartographic-layers.mjs", "catalogue-view.mjs", "celestial-model.mjs", "celestial-scale.mjs", "chart-layout.mjs", "entry-voice.mjs", "icon-manifest.mjs", "icon-registry.mjs", "index.html", "influence-compositor.mjs", "influence-envelopes.mjs", "infocard-model.mjs", "infocard-view.mjs", "inspection-camera.mjs", "interface-assets.mjs", "interface-audio.mjs", "layer-config.mjs", "layer-view.mjs", "lifetime.mjs", "main.mjs", "map-interaction.mjs", "map-scene.mjs", "map-transition.mjs", "navigation-proxy.mjs", "nexus-content.mjs", "nexus-fallback-config.mjs", "nexus-opening-config.mjs", "opening-content.mjs", "opening-view.mjs", "opening.css", "projected-labels.mjs", "scene-layers.mjs", "sector-markers.mjs", "sigil-registry.mjs", "style.css", "target-reticle.mjs", "territorial-labels.mjs", "timeline-view.mjs", "toolbar-activity.mjs", "visual-config.mjs", "voice-assets.mjs", "zone-layers.mjs", "zone-outline.mjs"].map(name=>modulePath(local('src/viewer/'+name))));
 const viteHelpers=new Set(['\0vite/preload-helper.js','\0vite/modulepreload-polyfill.js']);
 
 /** Actual build completeness, in addition to per-module admission. */
@@ -31,26 +32,9 @@ export function auditRegisteredModules(bundle,inventory) {
   return inventory.files.length;
 }
 
-/** Landing entry closure is deliberately smaller than the Demo admission boundary. */
-export function auditLandingModules(bundle) {
-  const allowed=new Set(['index.html','landing.mjs','landing.css','opening.css','lifetime.mjs','opening-view.mjs','audio-controller.mjs',
-    'interface-audio.mjs','opening-content.mjs','nexus-opening-config.mjs','entry-voice.mjs'].map(name=>modulePath(local('src/viewer/'+name))));
-  for(const file of [NEXUS_OPENING_FILE,...pngFiles.filter(file=>/[/\\](?:nexus-form|mcr-insignia)\.png$/.test(file)),...audioFiles.filter(file=>file.endsWith('nexus-enter-with-audio.mp3'))])allowed.add(modulePath(file));
-  const entry=Object.values(bundle).find(o=>o.type==='chunk'&&o.isEntry&&modulePath(o.facadeModuleId??'')===modulePath(local('src/viewer/index.html')));
-  if(!entry)throw new Error('Landing HTML entry missing from build');
-  const seen=new Set(),visit=chunk=>{
-    if(seen.has(chunk.fileName))return;seen.add(chunk.fileName);
-    for(const raw of Object.keys(chunk.modules)) {
-      const id=modulePath(raw.split('?')[0]);
-      if(!allowed.has(id)&&!viteHelpers.has(id))throw new Error('Unexpected landing input: '+id);
-    }
-    for(const name of [...chunk.imports,...chunk.dynamicImports])if(bundle[name]?.type==='chunk')visit(bundle[name]);
-  };visit(entry);
-}
-
 /** The same registered snapshot owns imports, JSON serving and build admission.
  * Root injection supports isolated integration tests, not public dataset selection. */
-export function demoInputAudit({root=DEMO_ROOT}={}) {
+export function datasetInputAudit({root=CANONICAL_ROOT}={}) {
   const inventory=datasetInventory(root);
   const admitted=new Map(inventory.files.map(name=>[modulePath(path.join(inventory.root,name)),name]));
   let snapshot=null,production=false,dirty=false;
@@ -72,21 +56,23 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
       if(unchanged){dirty=false;return snapshot;}
       if(production)throw new Error('Dataset changed during build; retry after authoring completes');
     }
-    const source=readDemoSource(inventory.root);
-    if(JSON.stringify(source.inventory.files)!==JSON.stringify(inventory.files)||JSON.stringify(source.inventory.systems)!==JSON.stringify(inventory.systems))throw new Error('Dataset registrations changed; restart the Demo server to validate its new inventory');
+    const source=readDatasetSource(inventory.root);
+    if(JSON.stringify(source.inventory.files)!==JSON.stringify(inventory.files)||JSON.stringify(source.inventory.systems)!==JSON.stringify(inventory.systems))throw new Error('Dataset registrations changed; restart the Atlas server to validate its new inventory');
     const {errors}=checkConnections(source);if(errors.length)throw new Error(errors.join('\n'));
     for(const container of [source.dataset.sector,...source.dataset.detailFiles.values()])assertSquareMap(container.map);
     snapshot=source;dirty=false;return source;
   };
   return {
-    name:'explicit-demo-inputs',
+    name:'explicit-atlas-inputs',
     configResolved(config){production=config.command==='build';},
+    configureServer(server){server.middlewares.use((req,res,next)=>{if(req.url?.split('?')[0]==='/Velara_Atlas/demo.html'){res.statusCode=404;res.end('Not found');return;}next();});},
+    configurePreviewServer(server){server.middlewares.use((req,res,next)=>{if(req.url?.split('?')[0]==='/Velara_Atlas/demo.html'){res.statusCode=404;res.end('Not found');return;}next();});},
     watchChange(){dirty=true;},
     buildStart(){snapshot=null;approvedSVGSources();approvedPNGSources();approvedReticleSource();verifiedSource();},
-    resolveId(id){if(id===virtualName)return DEMO_VIRTUAL_ID;},
+    resolveId(id){if(id===virtualName)return DATASET_VIRTUAL_ID;},
     load(id){
       if(modulePath(id.split('?')[0])===modulePath(RETICLE_FILE))approvedReticleSource();
-      if(id===DEMO_VIRTUAL_ID) {
+      if(id===DATASET_VIRTUAL_ID) {
         verifiedSource();
         const specifier=name=>JSON.stringify(normalizePath(path.join(inventory.root,name)));
         const s=inventory.sector;
@@ -106,7 +92,7 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
       if(name)return verifiedSource(name).texts.get(name);
     },
     writeBundle(_options,bundle){
-      try{verifiedSource();auditRegisteredModules(bundle,inventory);auditLandingModules(bundle);}catch(error){this.error(error.message);}
+      try{verifiedSource();auditRegisteredModules(bundle,inventory);}catch(error){this.error(error.message);}
     },
     generateBundle(_options,bundle){
       approvedReticleSource();
@@ -114,27 +100,27 @@ export function demoInputAudit({root=DEMO_ROOT}={}) {
         if(output.type!=='chunk')continue;
         for(const raw of Object.keys(output.modules)) {
           const id=modulePath(raw.split('?')[0]);
-          if(id===DEMO_VIRTUAL_ID||viteHelpers.has(id)||id.startsWith(modulePath(local('node_modules/')))||
-            id.startsWith(modulePath(local('src/viewer/')))||
+          if(id===DATASET_VIRTUAL_ID||viteHelpers.has(id)||id.startsWith(modulePath(local('node_modules/')))||
+            viewerInputs.has(id)||
             ['src/core/history.mjs','src/core/cartography.mjs','src/core/zone-geometry.mjs','src/core/infocard-resolver.mjs'].some(file=>id===modulePath(local(file)))||admitted.has(id)||approvedIcons.has(id)||approvedBranding.has(id)||approvedAudio.has(id)||id===modulePath(NEXUS_FALLBACK_FILE)||id===modulePath(NEXUS_OPENING_FILE)||id===modulePath(RETICLE_FILE))continue;
-          this.error(`Unexpected input in demo build: ${id}`);
+          this.error(`Unexpected input in Atlas build: ${id}`);
         }
       }
     }
   };
 }
 
-/** Production selects only Demo. Alternate roots are explicitly injected by tests. */
-export function createDemoConfig({datasetRoot=DEMO_ROOT}={}) {
+/** Production selects only Canonical. Alternate roots are explicitly injected by tests. */
+export function createAtlasConfig({datasetRoot=CANONICAL_ROOT}={}) {
   const inventory=datasetInventory(datasetRoot);
   return defineConfig({
     root:local('src/viewer/'),base:'/Velara_Atlas/',publicDir:false,
-    plugins:[demoInputAudit({root:datasetRoot}),nexusContentAudit(),audioAssetAudit()],
+    plugins:[datasetInputAudit({root:datasetRoot}),nexusContentAudit(),audioAssetAudit()],
     server:{host:'127.0.0.1',fs:{strict:true,
       allow:[...['src/viewer/','src/core/','node_modules/'].map(local),...inventory.files.map(name=>path.join(inventory.root,name)),...svgFiles,...pngFiles,...audioFiles,NEXUS_FALLBACK_FILE,NEXUS_OPENING_FILE,RETICLE_FILE],
       deny:['**/.git/**','**/.env*','**/private/**','**/secrets/**','**/*.rtf','**/public/data/**']}},
     preview:{host:'127.0.0.1'},
-    build:{outDir:local('dist/'),emptyOutDir:true,sourcemap:false,assetsInlineLimit:0,rollupOptions:{input:{index:local('src/viewer/index.html'),demo:local('src/viewer/demo.html')}}}
+    build:{outDir:local('dist/'),emptyOutDir:true,sourcemap:false,assetsInlineLimit:0,rollupOptions:{input:{index:local('src/viewer/index.html')}}}
   });
 }
-export default createDemoConfig();
+export default createAtlasConfig();

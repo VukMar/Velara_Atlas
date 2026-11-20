@@ -1,6 +1,6 @@
 /** Normal Demo / audited preview. Real native media; no perceived-mix certification. */
 async page=>{
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173',edition=dev?'demo':'production';
+  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173',edition=dev?'demo':'production';
   const keys=['velara-atlas:audio-enabled:v1','velara-atlas:first-entry-completed:v1','velara-atlas:first-entry-migration:v1'];
   const check=(value,message)=>{if(!value)throw Error(message);},errors=[],requests=[],pairs=[],layouts=[];
   const onError=e=>errors.push(e.message),onRequest=r=>{if(r.resourceType()==='media')requests.push(r.url());};
@@ -24,7 +24,7 @@ async page=>{
   const quiet=()=>page.waitForFunction(()=>window.__sounds.created.filter(r=>r.url?.includes('nexus-sfx-')).every(r=>r.media.paused));
   const mark=()=>page.evaluate(()=>window.__sounds.plays.length);
   const since=async index=>page.evaluate(index=>window.__sounds.plays.slice(index).map(r=>({...r,name:r.url.split('/').at(-1)})),index);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close=async()=>{await page.keyboard.press('Escape');await page.keyboard.press('Escape');};
   const select=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);};
   const year=async value=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(value));await page.locator('#year-input').press('Enter');await close();};
@@ -108,7 +108,7 @@ async page=>{
     const cdp=await page.context().newCDPSession(page);
     try{
       await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});await quiet();index=await mark();
-      const box=await page.locator('#controls-panel>summary').boundingBox();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await quiet();
+      const box=await page.locator('#controls-toggle').boundingBox();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await quiet();
       check((await since(index)).filter(p=>p.url.includes('button-click')).length===1,'touch summary activation is exactly one click');
     }finally{await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await cdp.detach();}
     // Explicitly simulated visibility: headless tab focus is not device certification.
@@ -143,7 +143,7 @@ async page=>{
         await p.addInitScript(instrumentation);await p.addInitScript(keys=>{localStorage.setItem(keys[0],'true');localStorage.setItem(keys[1],'true');localStorage.setItem(keys[2],'true');},keys);
         if(mode==='denied')await p.addInitScript(()=>{HTMLMediaElement.prototype.play=function(){return Promise.reject(new DOMException('TEST denied','NotAllowedError'));};});
         else await p.route(/nexus-(?:sfx-|ambience-).*\.mp3(?:\?|$)/,route=>route.request().resourceType()==='media'?route.fulfill({status:mode==='missing'?404:200,contentType:'audio/mpeg',body:'TEST invalid'}):route.continue());
-        await p.goto(base);await p.waitForFunction(()=>!document.querySelector('#audio-toggle').disabled);await p.locator('#controls-panel>summary').click();await p.locator('#selection').selectOption('sys_0001');await p.locator('#enter').click();
+        await p.goto(base);await p.waitForFunction(()=>!document.querySelector('#audio-toggle').disabled);await p.locator('#controls-toggle').click();await p.locator('#selection').selectOption('sys_0001');await p.locator('#enter').click();
         check(await p.locator('#location').innerText()==='Test System A','failed interface media preserves navigation '+mode);
         await p.locator('#audio-toggle').click();check(await p.evaluate(()=>window.__sounds.created.every(r=>r.media.paused)),'failed resources still mute '+mode);failures.push(mode);
       }finally{await p.close();}

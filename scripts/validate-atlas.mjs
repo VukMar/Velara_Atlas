@@ -1,12 +1,12 @@
 /** Strict generated/release validation plus read-only artifact freshness. */
-import {readDemoSource} from './demo-files.mjs';
+import {readDatasetSource} from './dataset-files.mjs';
 import {structuralErrors} from './atlas-validation.mjs';
 import {validateRelationships} from './check-relations.mjs';
 import {runConnections} from './connections.mjs';
 
 try {
-  if (process.argv.length > 2) throw new Error('Demo validation accepts only the fixed public-safe demo allowlist');
-  const {dataset} = readDemoSource();
+  if (process.argv.length > 2) throw new Error('Atlas validation accepts only the fixed registered canonical allowlist');
+  const {dataset} = readDatasetSource();
   const shapeErrors = structuralErrors(dataset);
   if (shapeErrors.length) throw new Error(shapeErrors.join('\n'));
   const errors = validateRelationships(dataset);

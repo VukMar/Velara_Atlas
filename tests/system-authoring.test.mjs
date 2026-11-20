@@ -6,15 +6,15 @@ import {build, createServer} from 'vite';
 import {inspectAuthoring, systemRecords, appendSystem, planNewSystem, applyNewSystem, recoverNewSystem} from '../scripts/system-authoring.mjs';
 import {runNewSystem, parseNewSystemArguments} from '../scripts/atlas-new-system.mjs';
 import {AUTHORING_JOURNAL, AUTHORING_LOCK} from '../scripts/authoring-guard.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
-import {datasetInventory} from '../scripts/dataset-inventory.mjs';
+import {readDemoSource} from './archived-demo.mjs';
+import {datasetInventory} from './archived-demo.mjs';
 import {checkConnections, runConnections, RECOVERY_FILE} from '../scripts/connections.mjs';
 import {scanDataset} from '../scripts/idfind.mjs';
 import {recordErrors, structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {resolveAtlas} from '../src/core/cartography.mjs';
-import {createDemoConfig, demoInputAudit} from '../vite.config.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {createAtlasConfig, datasetInputAudit} from '../vite.config.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
 import {authoringSandbox, populateAuthoringScenario, chart} from './authoring-scenario.mjs';
 
 const sandbox = t => { const s = authoringSandbox(); t.after(s.cleanup); return s; };
@@ -155,7 +155,7 @@ test('cleanup failure retains evidence; explicit read-only recovery and rollback
   const io = {...fs, unlinkSync(file) { if (!fired && String(file).endsWith('.bak')) { fired = true; throw new Error('cleanup denied'); } return fs.unlinkSync(file); }};
   assert.throws(() => applyNewSystem(p, {io}), /Outputs validated.*cleanup/);
   assert.throws(() => planNewSystem(chart, {root}), /Pending/); assert.throws(() => runConnections({root}), /Pending/);
-  assert.throws(() => demoInputAudit({root}).buildStart(), /Pending/);
+  assert.throws(() => datasetInputAudit({root}).buildStart(), /Pending/);
   const pending = snapshots(root); assert.match(recoverNewSystem({root}).message, /PREVIEW/); assert.deepEqual(snapshots(root), pending);
   assert.match(recoverNewSystem({root, apply: true}).message, /restored and validated/); assert.deepEqual(snapshots(root), before);
 });
@@ -227,15 +227,15 @@ test('new visible system and independent gate chronology use the existing genera
   assert.equal(source.dataset.connections.connections.find(c => c.id === 'lnk_9901').fromAE, 353);
   assert(detail.objects.filter(o => o.entityType === 'gate').every(o => Number.isFinite(o.position.x)));
   const before = snapshots(root); runConnections({root, check: true}); runConnections({root}); assert.deepEqual(snapshots(root), before);
-  const config = createDemoConfig({datasetRoot: root});
+  const config = createAtlasConfig({datasetRoot: root});
   const server = await createServer({...config, configFile: false, logLevel: 'silent', optimizeDeps: {noDiscovery: true, include: []}, server: {...config.server, port: 0, hmr: false}});
   try {
-    const {loadDemoDataset, loadDemoDetail} = await server.ssrLoadModule('/demo-data.mjs');
-    const data = await loadDemoDataset(); assert.equal(data.detailFiles.size, 5); assert.equal((await loadDemoDetail(system)).id, system.id);
+    const {loadAtlasDataset, loadAtlasDetail} = await server.ssrLoadModule('/atlas-data.mjs');
+    const data = await loadAtlasDataset(); assert.equal(data.detailFiles.size, 5); assert.equal((await loadAtlasDetail(system)).id, system.id);
     assert.equal(resolveAtlas(data, 353, system.id).markers.length, detail.objects.length);
   } finally { await server.close(); }
   const outDir = path.join(top, 'dist'); await build({...config, configFile: false, logLevel: 'silent', build: {...config.build, outDir}});
-  assert(auditDemoBuild(outDir).files >= 21);
+  assert(auditAtlasBuild(outDir).files >= 21);
   const js = fs.readdirSync(path.join(outDir, 'assets')).filter(n => n.endsWith('.js')).map(n => fs.readFileSync(path.join(outDir, 'assets', n), 'utf8')).join('\n');
   assert(js.includes('TEST MANUAL AUTHORING')); assert(!js.includes('.new-system-recovery')); assert(!js.includes('cantum-scale-baseline'));
 });

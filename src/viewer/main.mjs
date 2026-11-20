@@ -1,5 +1,5 @@
 import './style.css';
-import {loadDemoDataset} from './demo-data.mjs';
+import {loadAtlasDataset} from './atlas-data.mjs';
 import {AtlasMap} from './map-scene.mjs';
 import {assertSquareMap} from './chart-layout.mjs';
 import {AppState} from './app-state.mjs';
@@ -27,6 +27,7 @@ const entrySession={choice:null};
 /** Composition only: history belongs to core/state, presentation to the UI owners. */
 function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL}) {
   const lifetime=new Lifetime(),state=new AppState(dataset);
+  lifetime.add(()=>shell.reset());
   let atlas,info,catalogue,layers,timeline,archival,transition,opening,contextLost=false;
   function choose(record,options) {
     const changed=record&&record.id!==state.selectedId;
@@ -42,7 +43,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
     const {view,returned,selected,selectionCleared}=state.resolve();
     if(returned)notice('The previous system is not known at this year. Returned to Sector View.');
     timeline.render();
-    $('location').textContent=view.system ? view.system.name??view.system.id : 'Demo Sector';$('sector').disabled=!state.systemId;
+    $('location').textContent=view.system ? view.system.name??view.system.id : dataset.sector.title;$('sector').disabled=!state.systemId;
     const groups=state.groups();
     atlas.setMap(view.map,view.markers,view.positionKey,returned?state.camera('sector'):saved,
       {contextId:state.scope,zones:view.zones,routes:view.routes,groups,cantums:view.cantums,presentation:dataset.presentation});
@@ -62,12 +63,12 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
   function navigate(id) {
     audio.stop();
     const previousScope=state.scope;
+    shell.closeTools({immediate:true});
     transition.cancel();
     state.saveCamera(atlas.getView());state.navigate(id);catalogue.reset();notice('');refresh(false);
     if(contextLost)$('retry').focus({preventScroll:true});
     else if(archival.focus()) {
-      // A navigation destination must not land behind its source floating panel.
-      for(const panel of document.querySelectorAll('.floating[open]'))panel.open=false;
+      // The archival destination owns focus after leaving the controls.
     } else atlas.renderer.domElement.focus({preventScroll:true});
     // History, scene replacement and saved-camera restoration have already committed.
     if(!contextLost&&previousScope!==state.scope)transition.reveal();
@@ -84,7 +85,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
     lifetime.add(()=>atlas.dispose());
     lifetime.add(()=>audio.suspend());
     transition=createMapTransition({viewport:$('viewport'),inputs:[$('chart-stage'),$('info-panel')]},lifetime);
-    const context={$,state,atlas,choose,navigate};
+    const context={$,state,atlas,choose,navigate,closeCatalogue:()=>shell.closeCatalogue()};
     archival=createArchivalView({$,navigate,portraitURL:archivalPortraitURL,config:fallbackData},lifetime);
     opening=createOpeningView({$,config:openingData,portraitURL:archivalPortraitURL,insigniaURL,session:entrySession,
       isCompleted:()=>audio.entryCompleted,onChoice:choice=>audio.completeEntry(choice),onEntered:choice=>{if(choice==='audio')audio.speak('entry');},
@@ -100,6 +101,7 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
     lifetime.listen($('tilt'),'input',()=>atlas.setTilt($('tilt').valueAsNumber));
     lifetime.listen(atlas.renderer.domElement,'webglcontextlost',event=>{
       audio.suspend();
+      shell.reset();
       transition.cancel();
       const openingHadFocus=opening.visible;opening.hide();
       event.preventDefault();contextLost=true;const hadFocus=archival.containsFocus();archival.hide();
@@ -115,18 +117,18 @@ function mount(dataset,{fallbackData,archivalPortraitURL,openingData,insigniaURL
 
 export async function start() {
   const generation=++startup;
-  application?.dispose();application=null;$('retry').hidden=true;message('Loading public demonstration records…');
+  application?.dispose();application=null;$('retry').hidden=true;message('Loading Atlas records…');
   try {
     // The content module statically imports two exact JSON files. Catch import/validation
     // failures here as technical startup errors, including missing/malformed JSON.
-    const [dataset,content,{voiceURLs},{interfaceURLs}]=await Promise.all([loadDemoDataset(),import('./nexus-content.mjs'),import('./voice-assets.mjs'),import('./interface-assets.mjs')]);
+    const [dataset,content,{voiceURLs},{interfaceURLs}]=await Promise.all([loadAtlasDataset(),import('./nexus-content.mjs'),import('./voice-assets.mjs'),import('./interface-assets.mjs')]);
     if(rootLifetime.disposed||generation!==startup)return;
     audio??=createAudioController({button:$('audio-toggle'),urls:voiceURLs,interfaceURLs},rootLifetime);
     application=mount(dataset,content);
   } catch(error) {
     if(rootLifetime.disposed||generation!==startup)return;
     audio?.suspend();
-    message(`Technical error loading the demo or starting WebGL. ${error.message} Retry, or inspect the browser console.`);
+    message(`Technical error loading the Atlas or starting WebGL. ${error.message} Retry, or inspect the browser console.`);
     $('retry').hidden=false;console.error('Atlas initialization failed:',error);
   }
 }
@@ -136,6 +138,6 @@ rootLifetime.listen($('retry'),'click',()=>location.reload());
 rootLifetime.listen(window,'pagehide',()=>audio?.suspend());
 rootLifetime.listen(window,'pageshow',()=>{if(application&&$('retry').hidden)audio?.ready();});
 // Stage/retry layout must exist even when loading or square-map validation fails.
-installShell($,rootLifetime,()=>application?.dismissInfo());
+const shell=installShell($,rootLifetime,()=>application?.dismissInfo());
 if(import.meta.hot)import.meta.hot.dispose(dispose);
 start();

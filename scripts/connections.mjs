@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {randomUUID, createHash} from 'node:crypto';
-import {DEMO_ROOT, readDemoSource, safePath, rewritePositions} from './demo-files.mjs';
+import {CANONICAL_ROOT, readDatasetSource, safePath, rewritePositions} from './dataset-files.mjs';
 import {generateNavigation, navigationMismatches} from './navigation.mjs';
 import {structuralErrors} from './atlas-validation.mjs';
 import {assertNoAuthoring} from './authoring-guard.mjs';
@@ -45,7 +45,7 @@ function validateStaged(source, changes) {
 }
 
 /** Multi-file replacement with verified backups, not a filesystem transaction.
- * io injection supports failure tests; the CLI always uses Node fs and DEMO_ROOT.
+ * io injection supports failure tests; the CLI always uses Node fs and CANONICAL_ROOT.
  */
 export function writeConnections(source, plan, io = fs) {
   assertNoAuthoring(source.root, io);
@@ -84,7 +84,7 @@ export function writeConnections(source, plan, io = fs) {
       if (current !== r.old) throw new Error(`${r.name}: changed while generating`);
       io.renameSync(r.stage, r.target); replaced.push(r);
     }
-    const verified = checkConnections(readDemoSource(root, io));
+    const verified = checkConnections(readDatasetSource(root, io));
     if (verified.errors.length) throw new Error(verified.errors.join('\n'));
   } catch (e) {
     const failures = [];
@@ -109,10 +109,10 @@ export function writeConnections(source, plan, io = fs) {
   return records.map(r => r.name);
 }
 
-export function runConnections({check = false, root = DEMO_ROOT, io = fs} = {}) {
+export function runConnections({check = false, root = CANONICAL_ROOT, io = fs} = {}) {
   assertNoAuthoring(root, io);
   if (io.existsSync(path.join(root, RECOVERY_FILE))) throw new Error(`Pending recovery: ${RECOVERY_FILE}; inspect docs/NAVIGATION_AUTHORING.md`);
-  const source = readDemoSource(root, io);
+  const source = readDatasetSource(root, io);
   if (check) {
     const {errors} = checkConnections(source);
     if (errors.length) throw new Error(errors.join('\n'));

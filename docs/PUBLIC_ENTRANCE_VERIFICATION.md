@@ -1,5 +1,7 @@
 # Public entrance implementation verification
 
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 Local implementation and creator acceptance completed on 2026-10-26. The creator reports completed manual visual and functional testing and explicitly approves the implementation. This authorized documentation closeout records the approved work in one local commit; no push, merge or deployment is authorized or performed. Branch: `main`, initially clean. No data migration, schema, Canon, original artwork, recording, npm script or dependency changes.
 
 The working architecture is described in [PUBLIC_ENTRANCE](PUBLIC_ENTRANCE.md). Both pages reuse the unchanged opening view and audio controller; one controller owns the existing three persistence keys and speech per page. Homepage passes only the original acknowledgment URL and no interface sound URLs. Demo keeps the complete original soundscape and validated-ready opening.

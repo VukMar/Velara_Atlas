@@ -2,38 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Velara Atlas — a welcome from NEXUS.">
-  <link rel="icon" href="data:,"><title>Velara Atlas — NEXUS</title>
+  <meta name="description" content="Canonical historical Velara Sector Atlas.">
+  <link rel="icon" href="data:,"><title>Velara Atlas — Velara Sector</title>
 </head>
 <body>
-  <header class="landing-header"><button id="audio-toggle" type="button" aria-pressed="false" disabled>Audio: Off</button></header>
-  <main id="landing" hidden aria-labelledby="teaser-identity">
-    <div class="opening-brand">
-      <img id="landing-insignia" width="48" height="48" alt="Maric Cosmic Records">
-      <div><p class="connection-status">NEXUS // CONNECTION ESTABLISHED</p><h1 id="teaser-identity">VELARA ATLAS</h1></div>
-    </div>
-    <div class="opening-layout">
-      <div class="opening-art"><img id="landing-portrait" width="2752" height="1536" alt="" aria-hidden="true"></div>
-      <div class="opening-copy">
-        <div class="teaser-message">
-          <p><strong>Oh. You've found me.</strong></p>
-          <p>How delightfully curious.</p>
-          <p>Yes, the archive exists.<br>Yes, I could show you.</p>
-          <p><strong>But where would be the fun in that?</strong></p>
-          <p>Patience, Visitor.<br>Everything will be revealed in due time.</p>
-          <p><em>My time, naturally.</em></p>
+  <header>
+    <span class="brand"><img id="mcr-insignia" width="32" height="32" alt="Maric Cosmic Records"> <strong>VELARA ATLAS</strong></span>
+    <nav aria-label="Map navigation"><button id="sector" disabled>Sector View</button><span aria-hidden="true">/</span><strong id="location">Velara Sector</strong></nav>
+    <span id="year">1200 A.E.</span><span id="units">ly · X/Z top-down</span>
+    <button id="audio-toggle" type="button" aria-pressed="false" disabled>Audio: Off</button>
+  </header>
+  <nav id="utility-row" aria-label="Atlas utilities">
+    <button id="catalogue-toggle" aria-controls="catalogue-panel" aria-expanded="false" aria-haspopup="dialog">Catalogue</button>
+    <button id="controls-toggle" aria-controls="controls-panel" aria-expanded="false">Map Controls</button>
+    <button id="layers-toggle" aria-controls="layers-panel" aria-expanded="false">Layers</button>
+    <button id="history-toggle" aria-controls="timeline-panel" aria-expanded="false">History</button>
+  </nav>
+  <main id="atlas-layout">
+  <section id="chart-stage" aria-label="Atlas chart">
+    <section id="viewport" aria-label="Atlas map"><div id="labels" aria-label="Map labels"></div>
+      <div id="map-status"><p id="map-message" role="status">Preparing Atlas map…</p><button id="retry" hidden>Retry loading Atlas</button></div>
+      <section id="archival-view" aria-labelledby="archival-label archival-name" aria-describedby="archival-status archival-explanation" hidden>
+        <div class="archival-card">
+          <p id="archival-label"></p>
+          <div class="archival-layout">
+            <div class="archival-record">
+              <h2 id="archival-name" tabindex="-1"></h2><p id="archival-year"></p>
+              <h3 id="archival-status"></h3>
+              <p id="archival-explanation"></p>
+              <button id="archival-return">Return to Sector</button>
+            </div>
+            <img id="archival-portrait" width="2752" height="1536" alt="" aria-hidden="true">
+          </div>
         </div>
-        <p class="invitation">I suppose I could let you examine a simulation. Try not to mistake it for the real thing.</p>
-        <a id="demo-link" class="primary-link" href="./demo.html">Indulge your curiosity</a>
-        <p class="disclosure">NONCANONICAL DEMONSTRATION — FICTIONAL TEST RECORDS</p>
+      </section>
+    </section>
+    <p id="notice" role="status"></p>
+  </section>
+  <section id="toolbar-region" aria-label="Map tools" hidden>
+    <section id="controls-panel" data-tool-panel aria-label="Map Controls" hidden>
+      <div class="controls-row">
+        <div class="toolbar"><button id="reset">Reset view</button><button id="zoom-in" aria-label="Zoom in">+</button>
+          <button id="zoom-out" aria-label="Zoom out">−</button><button id="mode">Switch to 3D</button></div>
+        <label id="tilt-control" hidden>Camera elevation <input id="tilt" type="range" min="10" max="80" value="53" aria-label="Camera elevation"></label>
+        <label class="selection-control">Select a mapped record<select id="selection" aria-label="Select mapped entity"><option value="">Select an entity…</option></select></label>
+        <button id="map-help" aria-label="Map controls help" aria-haspopup="dialog" aria-controls="help-panel">?</button>
       </div>
-    </div>
+    </section>
+    <section id="layers-panel" data-tool-panel aria-label="Layers" hidden>
+      <div id="layers"></div><p class="muted">Solid: gates · Dashed: Jump Holes. Influence shading is approximate, not a legal border.</p>
+    </section>
+    <section id="timeline-panel" data-tool-panel aria-label="History" hidden>
+      <div class="timeline-controls">
+        <label class="year-slider">A.E. year<input id="timeline" type="range" min="0" max="1200" step="1" value="1200"></label>
+        <label class="year-input-label">Year<input id="year-input" type="number" min="0" max="1200" step="1" value="1200"></label>
+        <div class="year-actions"><button id="previous" aria-label="Previous exact record">Previous</button><button id="next" aria-label="Next exact record">Next</button><button id="latest" aria-label="Reset to latest">Latest</button></div>
+      </div>
+      <p class="muted"><span id="range-label"></span> · Record jumps omit qualified dates; confirmed-known-by is not an exact discovery.</p>
+    </section>
+  </section>
   </main>
-  <p id="landing-status" role="status">Preparing NEXUS welcome…</p><button id="landing-retry" hidden>Retry loading welcome</button>
+  <dialog id="catalogue-panel" class="archive-dialog" aria-labelledby="catalogue-title">
+    <div class="archive-heading"><div><p class="eyebrow">NEXUS / HISTORICAL ARCHIVE</p><h2 id="catalogue-title">Catalogue</h2></div><button id="close-catalogue" class="panel-close" aria-label="Close catalogue">×</button></div>
+    <div class="catalogue-filters">
+      <label>Search current-year records<input id="search" type="search" autocomplete="off" autofocus></label>
+      <label>Record type<select id="category"><option value="all">All records</option>
+        <option value="star_system">Systems</option><option value="cantum">Cantums</option><option value="celestial_body">Celestial bodies</option>
+        <option value="station">Stations</option><option value="gate">Gates</option><option value="jump_hole">Jump Holes</option>
+        <option value="spatial_zone">Spatial zones</option><option value="connection">Connections</option></select></label>
+    </div>
+    <p id="result-count" role="status"></p><div id="catalogue-results" tabindex="0" aria-label="Catalogue results"><ul id="catalogue" aria-label="Historical catalogue"></ul></div>
+  </dialog>
+  <dialog id="help-panel" class="archive-dialog" aria-labelledby="help-title">
+    <div class="archive-heading"><div><p class="eyebrow">NEXUS / CHART GUIDANCE</p><h2 id="help-title">Map controls</h2></div><button id="close-help" class="panel-close" aria-label="Close map controls help">×</button></div>
+    <div class="help-content" tabindex="0">
+      <p>Drag with the primary pointer button to pan. Use the mouse wheel or trackpad scroll to zoom. In 3D, right-drag to orbit.</p>
+      <p>On touchscreens, drag one finger to pan. Pinch with two fingers to zoom; in 3D, move two fingers to orbit.</p>
+      <p>Select a marker, mapped record or Catalogue result to read its InfoCard. Double-click a system on the map, or use Enter System in its InfoCard, to enter it. Double-click another mapped object or use Focus Selection to inspect it.</p>
+      <p>Focus the chart and use arrow keys to pan, + or − to zoom. Map Controls provides zoom buttons, 2D/3D switching and camera elevation in 3D.</p>
+      <p>Reset View returns to the chart framing. Focus Selection inspects the selected object where available. Escape closes the active InfoCard, dialog or toolbar.</p>
+    </div>
+  </dialog>
+  <dialog id="info-panel" aria-labelledby="selected-name" aria-describedby="selected-kind">
+    <div id="record-heading">
+      <div><p class="eyebrow">NEXUS / HISTORICAL ARCHIVE</p><h1 id="selected-name"></h1><p id="selected-kind"></p><p id="selected-year"></p></div>
+      <img id="nexus-portrait" width="144" height="144" alt="" aria-hidden="true">
+      <button id="close-info" class="panel-close" aria-label="Close NEXUS InfoCard">×</button>
+    </div>
+    <div id="info-tabs" role="tablist" aria-label="Archive record content">
+      <button id="description-tab" role="tab" aria-selected="true" aria-controls="description-panel" tabindex="0">Description</button>
+      <button id="technical-tab" role="tab" aria-selected="false" aria-controls="technical-panel" tabindex="-1">Technical</button>
+    </div>
+    <section id="description-panel" class="info-content" role="tabpanel" aria-labelledby="description-tab" tabindex="0"><p id="description"></p></section>
+    <section id="technical-panel" class="info-content" role="tabpanel" aria-labelledby="technical-tab" tabindex="0" hidden>
+      <dl id="facts"></dl><div id="destinations"></div>
+      <p class="muted">1 CNU = 10,000 km. Distant icons are navigational symbols; known-size celestial models use authored physical diameters. Focus Selection inspects a body; Reset View returns to the chart. No orbital simulation is implied.</p>
+    </section>
+    <div id="info-actions"><div class="toolbar"><button id="enter" hidden>Enter system</button><button id="focus" disabled>Focus selection</button></div><div id="destination-actions"></div></div>
+  </dialog>
   <dialog id="opening-panel" aria-labelledby="opening-title opening-name" aria-describedby="opening-message opening-note">
     <div class="opening-brand">
       <img id="opening-insignia" width="48" height="48" alt="Maric Cosmic Records">
       <div><p id="opening-title"></p><h1 id="opening-name" tabindex="-1" autofocus></h1></div>
+
     </div>
     <div class="opening-layout">
       <div class="opening-art"><img id="opening-portrait" width="2752" height="1536" alt="" aria-hidden="true"></div>
@@ -45,6 +116,6 @@
       </div>
     </div>
   </dialog>
-  <noscript>This welcome requires JavaScript. The simulation is at demo.html.</noscript>
-  <script type="module" src="./landing.mjs"></script>
+  <footer>Read-only historical Atlas · Hover/focus routes to highlight</footer>
+  <noscript>This Atlas requires JavaScript and WebGL.</noscript><script type="module" src="./main.mjs"></script>
 </body></html>

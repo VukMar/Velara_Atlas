@@ -1,14 +1,14 @@
 /** MCP callback against the normal Demo or audited production preview. No source records are written. */
 async page=>{
   const {enterAtlas,retryAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,isDev=new URL(base).port==='5173';
+  const base=new URL('/Velara_Atlas/',page.url()).href,isDev=new URL(base).port!=='4173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failures=[],images=[],layouts=[];
   const onError=e=>errors.push(e.message),onConsole=m=>{if(m.type()==='error')errors.push(m.text());};
   const onResponse=r=>{if(r.status()>=400)failures.push(r.url());if(r.request().resourceType()==='image'&&/\.png(?:\?|$)/.test(r.url()))images.push({url:r.url(),status:r.status()});};
   const imagePattern=/nexus-form.*\.png/,assetPattern=/\.png(?:\?|$)/,imageRoute=r=>r.continue();
   const contentURL=p=>p.evaluate(()=>performance.getEntriesByType('resource').find(r=>/\/nexus-content(?:\.mjs|-[^/]+\.js)/.test(r.name)).name);
   const helpers=p=>{
-    const panel=async id=>{if(!await p.locator('#'+id).evaluate(e=>e.open))await p.locator('#'+id+'>summary').click();};
+    const panel=async id=>{if(id!=='catalogue-panel'&&await p.locator('#catalogue-panel').evaluate(n=>n.open))await p.locator('#close-catalogue').click();const button=p.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
     const year=async y=>{await p.keyboard.press('Escape');await panel('timeline-panel');await p.locator('#year-input').fill(String(y));await p.locator('#year-input').press('Enter');};
     const open=async id=>{await p.keyboard.press('Escape');await panel('controls-panel');await p.locator('#selection').selectOption(id);await p.locator('#enter').click();};
     return {panel,year,open};
@@ -44,9 +44,9 @@ async page=>{
     check((await page.locator('#archival-portrait').getAttribute('src')).includes('nexus-form'),'front-facing archival portrait');
     check((await page.locator('#nexus-portrait').getAttribute('src')).includes('nexus-side-profile'),'ordinary InfoCard keeps side-profile');
     check(await page.locator('#archival-name').evaluate(e=>e===document.activeElement),'entry focuses heading');
-    check(await page.locator('.floating[open]').count()===0,'entry reveals notice without a source panel covering it');
+    check(await page.locator('[data-tool-panel]:not([hidden])').count()===0,'entry reveals notice without a source panel covering it');
     check(!await page.locator('#info-panel').evaluate(e=>e.open),'archival navigation never opens the ordinary InfoCard');
-    check(await page.locator('dialog').count()===2&&await page.locator('dialog#info-panel').count()===1&&
+    check(await page.locator('dialog').count()===4&&await page.locator('dialog#info-panel').count()===1&&
       await page.locator('dialog#opening-panel').evaluate(e=>!e.open)&&
       await page.locator('#archival-view').evaluate(e=>e.tagName==='SECTION'),'only the InfoCard and closed opening are dialogs; archival navigation stays nonmodal');
     check(await page.locator('#map-message').isHidden()&&await page.locator('#retry').isHidden(),'archival separate from status/retry');
@@ -82,14 +82,14 @@ async page=>{
       const b=await page.locator('#archival-return').boundingBox(),point={x:b.x+b.width/2,y:b.y+b.height/2};
       await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await page.waitForTimeout(35);
       await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-      await page.locator('#archival-view').waitFor({state:'hidden'});check(await page.locator('#location').innerText()==='Demo Sector','touch Return restores Sector');
+      await page.locator('#archival-view').waitFor({state:'hidden'});check(await page.locator('#location').innerText()==='DEMO SECTOR — NONCANONICAL','touch Return restores Sector');
     }finally{await touch.send('Emulation.setTouchEmulationEnabled',{enabled:false});await touch.detach();}
     await page.setViewportSize({width:1280,height:900});
     for(const id of ['sys_0001','sys_0002','sys_0003','sys_0005']) {
       await open(id);check(await page.locator('#archival-view').isHidden()&&+(await page.locator('#viewport').getAttribute('data-markers'))>0,'released chart '+id);await page.locator('#sector').click();
     }
     await open('sys_0004');await panel('catalogue-panel');check(await page.locator('#catalogue-panel').evaluate(e=>e.open),'Catalogue available in fallback');
-    await year(899);check(await page.locator('#archival-view').isHidden(),'historical disappearance hides notice');check(await page.locator('#location').innerText()==='Demo Sector','historical disappearance returns to Sector');
+    await year(899);check(await page.locator('#archival-view').isHidden(),'historical disappearance hides notice');check(await page.locator('#location').innerText()==='DEMO SECTOR — NONCANONICAL','historical disappearance returns to Sector');
     check(await page.locator('#archival-name').textContent()===''&&await page.locator('#selection option[value="sys_0004"]').count()===0,'no stale/future name');
     await year(1200);await page.keyboard.press('Escape');
     check(!errors.length&&!failures.length,'normal UI console/resources '+JSON.stringify({errors,failures}));
@@ -107,7 +107,7 @@ async page=>{
       check(await isolated.locator('#archival-view').isHidden()&&await isolated.locator('#retry').isVisible(),'context loss replaces prior archival notice');
       await helpers(isolated).year(900);check(await isolated.locator('#archival-view').isHidden(),'history cannot replace technical error with archival state');
       await retryAtlas(isolated);await wait(isolated);check(await isolated.locator('#archival-view').isHidden(),'context retry restores clean startup');
-      const detail=isDev?/public\/datasets\/demo\/systems\/sys_0001\.json/:/\/assets\/sys_0001-[^/]+\.js/;
+      const detail=isDev?/tests\/fixtures\/archived-demo\/dataset\/systems\/sys_0001\.json/:/\/assets\/sys_0001-[^/]+\.js/;
       for(const response of [{status:404,body:'TEST missing registered detail'},{status:200,body:'export default { malformed'},{status:200,body:'export default {id:"TEST_INVALID_DETAIL"};'}]) {
         await isolated.route(detail,r=>r.fulfill({...response,contentType:'text/javascript'}));await isolated.reload();await enterAtlas(isolated);await isolated.locator('#retry').waitFor({state:'visible'});
         check((await isolated.locator('#map-message').innerText()).includes('Technical error'),'registered load failure is technical');check(await isolated.locator('#archival-view').isHidden(),'load failure not archival');

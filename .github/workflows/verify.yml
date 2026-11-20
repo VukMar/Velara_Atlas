@@ -1,4 +1,4 @@
-name: Verify noncanonical Atlas
+name: Verify canonical Atlas
 on:
   pull_request:
   push:

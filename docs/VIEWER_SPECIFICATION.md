@@ -1,5 +1,23 @@
 # Velara Atlas — Viewer Specification
 
+## Current navigation and control bars — 2026-11-19
+
+This creator-approved amendment supersedes Checkpoint 3.6's floating utility panels and vertical History. Earlier checkpoint sections below remain historical. The approved 600 × 720 px InfoCard and NEXUS opening/audio contracts continue unchanged.
+
+The compact main header retains its contents with a low-opacity cyan radial glow over a directional blue-black gradient. A normal-layout utility row follows: Catalogue and Map Controls on the left, Layers and History on the right. Narrow screens share the row across all four, preserving full accessible names, ≥44 px targets, focus indicators and `aria-controls`/`aria-expanded`. No duplicate corner controls remain.
+
+Catalogue is a native modal archival-search dialog, maximum 760 px wide with 12 px horizontal/24 px vertical margins. Search autofocuses; historical eligibility, entity filters, order/counts and empty states remain core-owned. Results normally scroll independently; short/enlarged-text layouts permit one outer scrollbar. Close/Escape return to the trigger. A result closes Catalogue before opening its InfoCard; Enter System/Focus Selection provide accessible equivalents to Catalogue double-click. Map double-click remains unchanged. Native modality prevents map interaction. Catalogue has no timeout.
+
+Only one of three nonmodal bottom tool regions is active. Clicking its trigger closes it; another replaces it. Horizontal History retains live slider, numeric year, Previous/Next exact record and Latest, including qualified-date and audio-commit rules. Layers remains context-derived with retained preferences and the influence/legal-border qualification. Map Controls retains Reset, zoom, 2D/3D, elevation, mapped selection and far-right Help. Controls wrap or scroll within a bounded bar on narrow/short screens. Help is a separate modal instructional dialog with Close/Escape, focus return and no timeout.
+
+The active toolbar reserves layout space **below** `chart-stage` and **above** the footer. The shell retains `max(1, min(stage.clientWidth, stage.clientHeight) - 16)` sizing through its existing observer and renderer resize/picking path. Both square dimensions shrink only when height limits them. Toolbars never overlay the chart/annotations/markers. Closing restores available space without Reset View or historical changes; mode, tilt, valid pan/zoom and selection remain. A 128 px minimum stage and recoverable vertical scrolling at extreme/enlarged dimensions protect usable controls.
+
+Only the three toolbars have a **10,000 ms** inactivity deadline. Opening outside starts it; hover cancels; exit starts a full deadline; re-entry cancels again. Keyboard focus inside suppresses dismissal, and leaving resumes unless hovered. Pointer sequences protect touch/slider dragging until completion. Text input editing stays protected until blur; native select operation stays protected until commit/blur. Completed interactions restart the deadline. Touch button/range focus alone is not continuing keyboard editing. Help suspends the underlying deadline and resumes normal rules on dismissal. Catalogue, InfoCard and first-entry never time out.
+
+Generation checks invalidate replaced/disposed deadlines. Navigation, remount/disposal and context loss reset tools; hidden controls cannot retain focus. Keyboard activation moves directly to the first enabled bar control, avoiding a trip through map markers; Escape returns to its trigger. Touch never inherits a sticky CSS hover as continuing pointer presence. Height/opacity animate for **200 ms**, allowing the chart to refit as space changes; reduced motion applies final states immediately. Escape prioritizes first-entry ownership, Help/Catalogue, InfoCard, then toolbar. Timers, observers, handlers and animations use existing lifetime cleanup. [Implementation and verification](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19).
+
+> **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
 
 **Document status:** Approved Milestone 3 functional specification  
@@ -388,6 +406,12 @@ Panels and the InfoCard must fit narrow screens without clipping or shifting the
 
 ### InfoCard content
 
+**2026-11-19 Holographic Transmission amendment:** the ordinary InfoCard is a centered floating dialog bounded to 600 CSS px wide and 720 px high, with at least 12 px horizontal and approximately 24 px vertical margins. The persistent archival header displays resolved name, kind, selected year, Close and the original NEXUS side-profile (144 px desktop, 80 px narrow/short; 64 px at extreme heights). The portrait is never hidden for content density or viewport size. The existing image-failure fallback remains.
+
+Exactly two accessible tabs sit below it: **Description** (default for a new entity) and **Technical** (all existing model facts, destinations and the physical-scale note). Use full safe `textContent` narratives with `white-space: pre-line` and the existing missing-description fallback. Header, tabs and applicable Focus/Enter/destination actions persist while only the active panel scrolls normally. Short content does not fill the maximum height. Extremely short windows or enlarged text use a single outer scrollbar when persistent elements would leave less than 96 px of reading room, preserving access to every control.
+
+Historical refresh of the same entity retains the tab, reasonable panel scroll and focus while updating all values; another entity resets to Description. Existing eligibility clearing, synchronous resolver semantics, map/camera state, opening and audio ownership remain unchanged. Tab roles/relationships, roving focus, wrapping Left/Right, Home/End, native Enter/Space activation, hidden inactive panels, visible focus, ≥44 px controls, Escape/focus return and lifetime cleanup are required. See [current NEXUS design contract](NEXUS_VISUAL_IDENTITY.md#ordinary-infocard) and [verification evidence](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19). Earlier 96/64 px checkpoint records are historical.
+
 The six **approved universal fields**, from the data contract, are:
 
 `affiliation`, `class`, `crew`, `population`, `armament`, `description`.
@@ -441,12 +465,54 @@ independent systems. Sector Cantum lettering uses currently resolved names and
 `territoryGroups` contributors. A cached 128×128 per-Cantum Gaussian field mask
 uses the overlay's visibility threshold and four-neighbor components. Each
 sufficiently large component can receive one complete name; disconnected holdings
-never gain a forced bridge or shared spanning name. Weighted principal axes,
-interior clearance and padded rectangle fitting determine fixed X/Z positions,
-world dimensions and upright angles bounded to ±30°. Unnamed regions are omitted;
+never gain a forced bridge or shared spanning name. Horizontal full-box fitting,
+usable row spans, marker/interior clearance and center proximity determine fixed
+X/Z anchors. The complete rendered typography is measured at a fixed 768px overview,
+including optional sigil and gap, with one sampled cell of geographic padding on
+every side. All eligible interior candidates compete with deterministic ties.
+This 2026-11-20 refinement supersedes the old principal-axis fit; no rotated box
+can qualify horizontal text. Unnamed regions are omitted;
 Stage 4 provides registered sigil-only identities for eligible smaller islands.
 This represents approximate influence geography, not legal borders
 or a claim of historical sovereignty.
+
+## Final Cantum compositing polish - 2026-11-20
+
+The creator approves the existing world-space geometry, elevation, camera behavior
+and zoom crossfade. The subsequent polish changes only ordinary draw priority
+(names 1.5 to 4.5, after markers at 4) and maximum text opacity (.46 to .82).
+Depth testing remains enabled and text depth writing disabled; ordinary markers
+keep depth writing, preserving foreground occlusion and translucent overlap.
+Reticles/interactive captions stay above decoration. Fit, textures/filtering, UVs,
+world dimensions, XYZ, influence geometry/alpha and 1.15x-1.50x thresholds are
+unchanged. [Current contract](CARTOGRAPHIC_LABELING.md#final-visual-hierarchy-polish---2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing review
+remains pending; no version, merge or publication change is authorized.
+
+## World-space typography and coordinated visibility - 2026-11-20
+
+The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
+Stage 1's 14-24px DOM clamp, camera-facing projection/containment, prior
+perspective heights and 1x-5x fade. Use the current
+[world-space typography contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20)
+and [PR #5 review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
+Locally generated bounded CanvasTextures face +Y on fixed X/Z planes. Their
+complete proportional box is maximally fitted within each unchanged Gaussian
+component with one-cell padding, 90% safety scale, presentation size bounds and
+marker-aware balanced scoring. World dimensions never depend on camera or
+viewport; perspective foreshortening is natural. Component-local contributor
+IDs own highest-star elevation, with additional whole-box envelope clearance.
+Meshes are nonpickable, depth tested and disposed by their map owner.
+
+One smoothstep crossfades Cantum opacity .82 to zero and passive sector system
+captions zero to one between 1.15x and 1.50x overview zoom. Hover/focus/selection
+stay full strength. Object Names off hides passive captions; Cantum Names off or
+no eligible full names bypasses suppression. Influence fill and System View
+caption rules remain independent. No data, schema, field or version migration.
+
+> The following Stage 1-4/initial fitting descriptions retain their implementation
+> history; the current amendment above supersedes their typography, height and fade rules.
 
 **Cantum Visual Patch Stage 1:** projected DOM nameplates replace floor-mounted
 CanvasTexture meshes. The accepted component fitting still determines eligibility
@@ -497,9 +563,10 @@ surface by `min(map.size.y * .03, map.size.x * .01)` ly. Names remain independen
 of Influence. See [geometry, tolerance and limits](CANTUM_TERRITORY_RENDERING.md#stage-3-dual-presentation-and-bounded-envelope-geometry)
 and [Stage 3 evidence](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md).
 
-**Stage 4 island identities:** the original full-name fitting pass remains first
-and unchanged. An island that cannot fit its complete resolved name may display
-only its approved registered sigil; null/omitted/unknown sigils produce no marker.
+**Stage 4 island identities:** the full-name fitting pass remains first, using
+the horizontal refinement above. An island that cannot fit its complete resolved
+name may display only its approved registered sigil; null/omitted/unknown sigils
+produce no marker.
 No abbreviations, generic emblems or island selection entities are introduced.
 At least 24 sampled cells and an interior square accommodating a 24px sigil on a
 fixed 768px overview, padded by one field cell on every side, are required.

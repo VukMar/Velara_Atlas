@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {approvedSVGSources,svgFiles} from './svg-assets.mjs';
-import {readDemoSource,DEMO_ROOT} from './demo-files.mjs';
+import {readDatasetSource,CANONICAL_ROOT} from './dataset-files.mjs';
 import {approvedPNGSources} from './png-assets.mjs';
 import {approvedAudioSources,AUDIO_PINS} from './audio-assets.mjs';
 import {approvedReticleSource} from './ui-reticle-asset.mjs';
@@ -16,9 +16,9 @@ function list(directory) {
     return entry.isDirectory() ? list(full) : [full];
   });
 }
-export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root)===path.resolve(defaultRoot)?DEMO_ROOT:null}={}) {
+export function auditAtlasBuild(root = defaultRoot,{datasetRoot=path.resolve(root)===path.resolve(defaultRoot)?CANONICAL_ROOT:null}={}) {
   const files = list(root);
-  const selected=datasetRoot?readDemoSource(datasetRoot):null;
+  const selected=datasetRoot?readDatasetSource(datasetRoot):null;
   const ids=text=>[...text.matchAll(/\b(?:sec|sys|can|fac|cb|sta|gat|jhl|lnk|zon)_[0-9]{4,}\b/g)].map(m=>m[0]);
   const allowedIds=selected?new Set(ids([...selected.texts.values()].join('\n'))):null;
   const relative=new Map(files.map(file=>[path.relative(root,file).replaceAll('\\','/'),file]));
@@ -30,7 +30,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   const reticle=approvedReticleSource();let emittedReticle=false;
   for (const file of files) {
     const name = path.relative(root, file).replaceAll('\\', '/');
-    if (!['index.html','demo.html'].includes(name) && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png|mp3)$/.test(name)) {
+    if (name!=='index.html' && !/^assets\/[A-Za-z0-9_.-]+\.(?:js|css|svg|png|mp3)$/.test(name)) {
       throw new Error(`Unexpected distributable file: ${name}`);
     }
     const bytes=fs.statSync(file).size,extension=path.extname(name);totalBytes+=bytes;bytesByType[extension]=(bytesByType[extension]??0)+bytes;
@@ -57,7 +57,7 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
         emittedSVG.add(text);
       }
     }
-    for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=', 'VELARA_PERFORMANCE_ONLY','velara-local-previews','velara-cantum-calibration','preview-manifest.json']) {
+    for (const forbidden of ['sys_foundation', 'cantum_a', 'public/data/', 'political.json', '.local-references/', 'sourceMappingURL=', 'VELARA_PERFORMANCE_ONLY','velara-local-previews','velara-cantum-calibration','preview-manifest.json','tests/fixtures/','archived-demo','canonical-dataset-test/','MCR_Worldbuilding','landing.mjs','Indulge your curiosity']) {
       if (text.includes(forbidden)) throw new Error(`Unexpected canonical/private/source-map reference in ${name}`);
     }
     if(allowedIds&&ids(text).some(id=>!allowedIds.has(id)))throw new Error(`Unregistered dataset identity in ${name}`);
@@ -76,33 +76,26 @@ export function auditDemoBuild(root = defaultRoot,{datasetRoot=path.resolve(root
   if (!emittedReticle) throw new Error('Approved UI reticle SVG inventory is incomplete');
   if (emittedPNG.size !== approvedPNG.size) throw new Error('Approved PNG inventory is incomplete');
   if(emittedAudio.size!==approvedAudio.size)throw new Error('Approved MP3 inventory is incomplete');
-  for(const page of ['index.html','demo.html']) {
-    if(!relative.has(page))throw new Error(`Required HTML entry missing: ${page}`);
-    const html=fs.readFileSync(relative.get(page),'utf8');
-    if(!html.includes(page==='demo.html'?'NONCANONICAL DEMONSTRATION':'NONCANONICAL DEMONSTRATION — FICTIONAL TEST RECORDS'))throw new Error(`Demo disclosure missing in ${page}`);
-    const navigation=page==='index.html'?'./demo.html':'./';
-    if(!html.includes(`href="${navigation}"`))throw new Error(`Required page navigation missing in ${page}`);
-    for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
-      if(url==='data:,'||url===navigation)continue;
-      if(!url.startsWith('/Velara_Atlas/assets/'))throw new Error(`Unexpected asset URL: ${url}`);
-      if(!relative.has(url.slice('/Velara_Atlas/'.length)))throw new Error('Missing build asset');
-    }
+  const page='index.html';
+  if(!relative.has(page))throw new Error('Required HTML entry missing: index.html');
+  const html=fs.readFileSync(relative.get(page),'utf8');
+  for(const marker of ['id="chart-stage"','id="opening-audio"','id="opening-silent"']) {
+    if(!html.includes(marker))throw new Error('Canonical application shell missing: '+marker);
+  }
+  if(/NONCANONICAL DEMONSTRATION|Indulge your curiosity|demo\.html|landing\.mjs/.test(html))throw new Error('Retired Demo/teaser in production HTML');
+  for(const [,url]of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+    if(url==='data:,')continue;
+    if(!url.startsWith('/Velara_Atlas/assets/'))throw new Error(`Unexpected asset URL: ${url}`);
+    if(!relative.has(url.slice('/Velara_Atlas/'.length)))throw new Error('Missing build asset');
   }
   const reachable=start=>{
     const seen=new Set(),visit=name=>{if(seen.has(name))return;seen.add(name);for(const next of edges.get(name)??[])visit(next);};visit(start);return seen;
   };
-  const landing=reachable('index.html'),demo=reachable('demo.html'),seen=new Set([...landing,...demo]);
+  const seen=reachable('index.html');
   for(const name of relative.keys())if((allowedIds||name.endsWith('.png')||name.endsWith('.mp3')||name.startsWith('assets/nexus-reticle-'))&&!seen.has(name))throw new Error(`Unreferenced distributable file: ${name}`);
-  // Independent output check; source-module closure is also enforced by Vite.
-  for(const name of landing) {
-    if(/\.(?:svg|png|mp3)$/.test(name)&&!/^assets\/(?:mcr-insignia|nexus-form|nexus-enter-with-audio)-[A-Za-z0-9_-]+\.(?:png|mp3)$/.test(name))throw new Error(`Unexpected landing media: ${name}`);
-    if(!/\.(js|css)$/.test(name))continue;
-    const text=fs.readFileSync(relative.get(name),'utf8');
-    if(ids(text).length||/WebGLRenderer|THREE\.REVISION|virtual:velara-demo-dataset|VELARA_PERFORMANCE_ONLY/.test(text))throw new Error(`Demo/renderer input reachable from landing: ${name}`);
-  }
   const svgCount=emittedSVG.size+Number(emittedReticle);
-  return {pages:2,landingFiles:landing.size,files:files.length,svgCount,pngCount:emittedPNG.size,audioCount:emittedAudio.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS two-page build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs and ${emittedAudio.size} exact approved MP3s, base-relative assets, no canonical data or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
+  return {pages:1,reachableFiles:seen.size,files:files.length,svgCount,pngCount:emittedPNG.size,audioCount:emittedAudio.size,totalBytes,bytesByType,datasetVerified:!!selected,message:`PASS single-page Atlas build audit: ${files.length} files; HTML/JS/CSS plus ${svgCount} exact approved SVGs and ${emittedPNG.size} exact approved PNGs and ${emittedAudio.size} exact approved MP3s, base-relative assets, no archived Demo or private/source-map references; ${totalBytes} bytes; selected dataset ${selected?'verified':'not supplied (structural audit only)'}`};
 
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(auditDemoBuild().message);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(auditAtlasBuild().message);

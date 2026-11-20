@@ -8,7 +8,7 @@ import {build, createServer, normalizePath} from 'vite';
 import {fileURLToPath} from 'node:url';
 import {authoringSandbox, chart} from './authoring-scenario.mjs';
 import {planNewSystem, applyNewSystem} from '../scripts/system-authoring.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {scanDataset} from '../scripts/idfind.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
@@ -17,8 +17,8 @@ import {resolveAtlas, territoryGroups, cantumField, searchRecords, recordedYears
 import {influenceEnvelopes} from '../src/viewer/influence-envelopes.mjs';
 import {territorialLabels} from '../src/viewer/territorial-labels.mjs';
 import {createInfluence, disposeTree} from '../src/viewer/cartographic-layers.mjs';
-import {createDemoConfig} from '../vite.config.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {createAtlasConfig} from '../vite.config.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
 
 const write = (root, name, record) => fs.writeFileSync(path.join(root, name), JSON.stringify(record, null, 2) + '\n');
 function integrated(t) {
@@ -81,7 +81,8 @@ test('one safely authored isolated system integrates names, legality, independen
     const envelopes=influenceEnvelopes(g,v.systems,v.map,d.presentation,48);
     assert.equal(envelopes.length,count);assert(envelopes.every(e=>e.halfHeight===3&&e.positions.length));
     const names=territorialLabels(g,v.cantums,v.map,d.presentation,{'can_0001':6,'can_0002':8},128,['can_0001']);
-    assert(names.some(n=>n.variant==='sigil-only'&&n.contributorIds.includes('sys_9901')), 'detached contribution retains political sigil');
+    assert(names.some(n=>n.contributorIds.includes('sys_9901')&&['sigil-only','name-with-optional-sigil'].includes(n.variant)),
+      'detached contribution retains its registered identity; maximal world fitting may now admit its full name');
     if(count===1)assert(names.every(n=>n.cantumId==='can_0001'));
   }
   const v=resolveAtlas(d,900);
@@ -114,20 +115,20 @@ test('integrated registered inventory eagerly loads and builds while unregistere
   write(root,'systems/sys_9998.json',{schemaVersion:'1.3.0',id:'sys_9998',entityType:'system_detail',map:chart,objects:[],note:'UNREGISTERED_PHASE3F_SENTINEL'});
   assert(!source.inventory.files.includes('systems/sys_9998.json'));
   const ids=scanDataset({datasetRoot:root});assert(ids.usedIds.includes('sys_9901'));
-  const config=createDemoConfig({datasetRoot:root}), server=await createServer({...config,configFile:false,logLevel:'silent',optimizeDeps:{noDiscovery:true,include:[]},server:{...config.server,port:0,hmr:false}});
+  const config=createAtlasConfig({datasetRoot:root}), server=await createServer({...config,configFile:false,logLevel:'silent',optimizeDeps:{noDiscovery:true,include:[]},server:{...config.server,port:0,hmr:false}});
   try {
     await server.listen();const base=`http://127.0.0.1:${server.httpServer.address().port}/Velara_Atlas/`;
     for(const file of [path.join(root,'systems/sys_9998.json'),fileURLToPath(new URL('./calibration/scenarios/cantum-scale-baseline.json',import.meta.url)),fileURLToPath(new URL('../public/data/sector.json',import.meta.url))]){
       const response=await fetch(base+'@fs/'+normalizePath(file),{headers:{connection:'close'}}),body=await response.text();
       assert.equal(response.status,403,file);assert(!body.includes('UNREGISTERED_PHASE3F_SENTINEL'));
     }
-    const {loadDemoDataset,loadDemoDetail}=await server.ssrLoadModule('/demo-data.mjs'), d=await loadDemoDataset();
+    const {loadAtlasDataset,loadAtlasDetail}=await server.ssrLoadModule('/atlas-data.mjs'), d=await loadAtlasDataset();
     assert.equal(d.detailFiles.size,5);assert.equal(d.factionFiles.size,2);
-    assert.equal((await loadDemoDetail(d.sector.systems.find(s=>s.id==='sys_9901'))).objects.length,5);
-    assert.equal(await loadDemoDetail(d.sector.systems.find(s=>s.id==='sys_0004')),null);
+    assert.equal((await loadAtlasDetail(d.sector.systems.find(s=>s.id==='sys_9901'))).objects.length,5);
+    assert.equal(await loadAtlasDetail(d.sector.systems.find(s=>s.id==='sys_0004')),null);
   } finally {await server.close();}
   const outDir=path.join(top,'dist');await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir}});
-  assert(auditDemoBuild(outDir).files>=23);
+  assert(auditAtlasBuild(outDir).files>=23);
   const code=fs.readdirSync(path.join(outDir,'assets')).filter(n=>n.endsWith('.js')).map(n=>fs.readFileSync(path.join(outDir,'assets',n),'utf8')).join('\n');
   assert(code.includes('TEST Integrated Authoring'));assert(code.includes('TEST Cantum A Intelligence Office'));
   for(const forbidden of ['UNREGISTERED_PHASE3F_SENTINEL','cantum-scale-baseline','.new-system-recovery'])assert(!code.includes(forbidden));
@@ -135,7 +136,7 @@ test('integrated registered inventory eagerly loads and builds while unregistere
 
 test('original Demo facts are preserved outside the explicitly approved additions', () => {
   const originalDetails = {"systems/sys_0001.json": "a7ffecc175bc2f18a639315ec0103ff4b0a1f52a6f57c9ee4cc0bf31b7c9651e", "systems/sys_0002.json": "2924a7b77f300758d0b6ed689092dcf51e0abce495e83b1a72b1267d59612698", "systems/sys_0003.json": "059cc174fb18a8e3c5422b2152a30e8388631668316fc02903c273391c5945a4"};
-  for(const [name,digest] of Object.entries(originalDetails))assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../public/datasets/demo/'+name,import.meta.url))).digest('hex'),digest);
+  for(const [name,digest] of Object.entries(originalDetails))assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../tests/fixtures/archived-demo/dataset/'+name,import.meta.url))).digest('hex'),digest);
   const d=readDemoSource().dataset, hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
   assert.equal(hash(d.sector.systems.slice(0,4)), "158cf350ec2728d79d0bcdcca24fd27db6983e7019830280fb57adfb4a175d71");
   const c=structuredClone(d.cantums);c.cantums[1].infoCard.affiliation=[{fromAE:700,untilAE:null,entityId:null,datePrecision:'exact'}];

@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "1.3.0",
+  "cantums": [
+    {
+      "id": "can_1000001",
+      "entityType": "cantum",
+      "letter": "A",
+      "nameHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 1201,
+          "name": "Drevnasel",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 0,
+          "untilAE": 345,
+          "status": "founding_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 345,
+          "untilAE": 1167,
+          "status": "central_cantum_of_the_continuance",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 0,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 0,
+            "untilAE": 345,
+            "datePrecision": "exact",
+            "text": "Drevnasel is the founding region of humanity's civilization in the Velara Sector. Its people descended from those who escaped the wars of Old Earth aboard the sleeper vessel The Continuance.\n\nThe establishment of the first permanent settlement in 0 A.E. marked the beginning of a new civilization. From this foundation, Drevnasel developed the institutions, industry and technological capabilities needed to sustain its population and eventually extend human settlement beyond its original home."
+          },
+          {
+            "fromAE": 345,
+            "untilAE": 745,
+            "datePrecision": "exact",
+            "text": "Founded in 0 A.E. by the survivors of the sleeper vessel The Continuance, Drevnasel became the foundation of humanity's new civilization in the Velara Sector. Centuries of development allowed it to establish colonies and extend its influence across increasingly distant regions.\n\nIn 345 A.E., the establishment of a second subordinate Cantum marked the beginning of a unified multi-Cantum state, officially named The Continuance in honor of the Exodus vessel. Drevnasel retained its own regional government while also serving as the seat of central authority over the growing civilization."
+          },
+          {
+            "fromAE": 745,
+            "untilAE": 930,
+            "datePrecision": "exact",
+            "text": "Drevnasel originated with the survivors of the Exodus vessel The Continuance, who established humanity's first permanent settlement in the Velara Sector in 0 A.E. As expansion progressed, its government established a unified civilization bearing the vessel's name in 345 A.E.\n\nSuccessive regional foundations gradually expanded the Continuance until the establishment of Zaklun in 745 A.E. completed its planned seven-Cantum structure.\n\nDrevnasel served as the capital Cantum and seat of central government, exercising authority over Visshum, Okeanberg, Rekdolin, Vodravan, Gornebes and Zaklun. Each subordinate Cantum managed its regional development within the shared constitutional framework of a single sovereign state."
+          },
+          {
+            "fromAE": 930,
+            "untilAE": 1000,
+            "datePrecision": "exact",
+            "text": "Drevnasel was founded by humanity's Exodus survivors in 0 A.E. and later became the central authority of the Continuance, a unified interstellar state named after their original sleeper vessel. By 745 A.E., the civilization had grown to seven Cantums, with Drevnasel as its governing centre.\n\nDuring the High Age, differences in regional development increasingly challenged this unity. Following the death of a widely respected president around 900 A.E., his elected successor introduced a lawful reform directing additional development resources toward the three youngest Cantums.\n\nThe resulting disagreements intensified demands for independence, particularly in Visshum. In 930 A.E., Visshum peacefully negotiated sovereignty, becoming the first Cantum to leave the Continuance. Drevnasel retained central authority over the remaining union, but its centuries of political unity had begun to unravel."
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1125,
+            "datePrecision": "exact",
+            "text": "Founded by the survivors of Old Earth's Exodus, Drevnasel became the centre of the Continuance, the unified civilization established in 345 A.E. and expanded to seven Cantums by 745 A.E.\n\nPolitical disagreements grew after the development reforms of 902 A.E. Visshum peacefully gained independence in 930, followed by Okeanberg around 970. Okeanberg's separation included territorial concessions taken from Rekdolin, which Drevnasel sought to compensate through a transfer of regional administration.\n\nRekdolin subsequently negotiated independence in 1000 A.E., ending the automatic support and protection previously provided by the central government.\n\nWith the three older subordinate Cantums separated, the remaining Continuance consisted of Drevnasel, Zaklun, Gornebes and Vodravan. Drevnasel retained its central government and considerable industrial strength, although its political authority now extended over a much smaller union."
+          },
+          {
+            "fromAE": 1125,
+            "untilAE": 1153,
+            "datePrecision": "exact",
+            "text": "Drevnasel was founded by humanity's Exodus survivors and became the governing centre of the Continuance, a unified state established in 345 A.E. that eventually encompassed seven Cantums.\n\nIts political unity weakened after the development reforms of 902 A.E. Visshum gained independence in 930, followed by Okeanberg around 970 and Rekdolin in 1000. Their separations left Drevnasel governing the remaining union with Zaklun, Gornebes and Vodravan.\n\nThe fragmentation eventually gave way to armed conflict. Okeanberg conquered Rekdolin in 1008, prompting Drevnasel to impose sanctions against its former constituent. In 1105, war broke out between Okeanberg and the remaining Continuance, beginning along Zaklun's frontier before expanding into Drevnasel's territory.\n\nThe prolonged conflict ended in 1125 A.E. with Drevnasel accepting territorial concessions and securing citizenship protections for qualifying inhabitants of the ceded territories. The Continuance survived, but relations with its former Cantums had been profoundly altered."
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": 1167,
+            "datePrecision": "exact",
+            "text": "Established by humanity's Exodus survivors, Drevnasel became the capital and central authority of the Continuance, a civilization that grew to seven Cantums before political disagreements began its gradual dissolution.\n\nVisshum gained independence in 930 A.E., Okeanberg around 970, and Rekdolin in 1000. Okeanberg later conquered Rekdolin, provoking sanctions and a prolonged war with the remaining Continuance that ended in 1125 with Drevnasel making territorial concessions.\n\nVisshum subsequently conquered Okeanberg and occupied territories previously belonging to Rekdolin, establishing imperial military control over much of the former Continuance frontier. Drevnasel responded by closing its frontier with imperial-controlled territory.\n\nMeanwhile, Gornebes obtained independence in 1146, followed by Vodravan in 1153. Only Drevnasel and Zaklun remained within the original Continuance. Although its central authority had greatly diminished, Drevnasel retained its established government and substantial technological and industrial capabilities."
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Drevnasel originated with the survivors of the Exodus vessel The Continuance, later becoming the capital of the unified state bearing that name. Established in 345 A.E., the political union expanded to seven Cantums before disputes over regional authority began its decline.\n\nVisshum separated in 930 A.E., Okeanberg around 970 and Rekdolin in 1000. Okeanberg's subsequent conquest of Rekdolin led to sanctions and a prolonged war with the remaining Continuance, ending in 1125. Visshum later defeated Okeanberg and occupied extensive former Cantum territories.\n\nGornebes and Vodravan peacefully gained independence in 1146 and 1153, followed by Zaklun in 1167. Zaklun's departure ended the unified Continuance, although Drevnasel retained its sovereign government.\n\nRelations with Visshum had already deteriorated into hostility. Following the assassination of Visshum's imperial heir in 1166, the Emperor accused Drevnasel of responsibility, which its government denied. The resulting persecution of Drevnasel citizens culminated in the Bergovar Betrayal of 1167, a staged massacre of civilians and their receiving military escorts.\n\nDrevnasel responded by mobilizing its armed forces against the Empire."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Drevnasel is the founding Cantum of humanity's civilization in the Velara Sector, established by survivors of Old Earth's wars who arrived aboard the sleeper vessel The Continuance. In 345 A.E., the civilization adopted the vessel's name for its unified political state, with Drevnasel serving as its capital and central government. By 745 A.E., the Continuance encompassed seven Cantums.\n\nIts unity gradually fractured following disputes over regional authority and development policy. Visshum became independent in 930, Okeanberg around 970 and Rekdolin in 1000. Okeanberg subsequently conquered Rekdolin, and its later war with the remaining Continuance ended in 1125 with Drevnasel accepting territorial concessions. Visshum then defeated Okeanberg and occupied extensive former Cantum territories.\n\nGornebes gained independence in 1146, Vodravan in 1153 and Zaklun in 1167, ending the Continuance as a unified state. Drevnasel retained its sovereign government but no longer ruled the other Cantums.\n\nFollowing Visshum's persecution of Drevnasel citizens and the Bergovar Betrayal, Drevnasel led the Final Inter-Cantum War of 1168–1175, supported by the independent Cantums of Zaklun, Gornebes and Vodravan.\n\nThe war ended with Visshum's surrender, Okeanberg's restoration as a sovereign Cantum and Rekdolin's formal abolition. The subsequent settlement established neutral inter-Cantum borders and excluded three devastated former Rekdolin systems from sovereign claims.\n\nDrevnasel remains a powerful industrial and political state, but the old Continuance was never restored. The Velara Sector now consists of six independent Cantums, bound by shared history rather than a common government."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000002",
+      "entityType": "cantum",
+      "letter": "B",
+      "nameHistory": [
+        {
+          "fromAE": 345,
+          "untilAE": 360,
+          "name": "Cantum",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 360,
+          "untilAE": 1201,
+          "name": "Visshum",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 345,
+          "untilAE": 930,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 930,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 345,
+            "untilAE": 930,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 930,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 345,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 345,
+            "untilAE": 360,
+            "datePrecision": "exact",
+            "text": "The region initially designated Cantum was established in 345 A.E. as the first subordinate regional government beyond Drevnasel. Its foundation followed a distant colonization programme undertaken by the descendants of humanity's Exodus from Old Earth.\n\nThe new administration was responsible for developing its own territory while remaining under Drevnasel's central authority. Its establishment also marked the beginning of a unified multi-Cantum civilization named The Continuance, honoring the sleeper vessel that had carried humanity's founders to the Velara Sector."
+          },
+          {
+            "fromAE": 360,
+            "untilAE": 931,
+            "datePrecision": "exact",
+            "text": "Established in 345 A.E. as the first subordinate Cantum beyond Drevnasel, Visshum received its permanent regional name in 360 A.E. The united civilization, known as The Continuance, had taken its name from the sleeper vessel that brought humanity's original settlers from Old Earth.\n\nVisshum's government was responsible for managing regional expansion, resources and development within the unified state. Over the following centuries, its growing population, industry and institutions transformed the region from a distant colonial foundation into an increasingly capable Cantum.\n\nIts political identity developed within the Continuance's common constitutional framework, under the central authority exercised by Drevnasel. The adoption of the Visshum name recognized an established regional administration rather than creating a new government or granting independence."
+          },
+          {
+            "fromAE": 931,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Visshum began as the first subordinate Cantum of the Continuance in 345 A.E., receiving its permanent name in 360. Established under Drevnasel's central authority, it developed into one of the civilization's most capable industrial and political regions.\n\nFollowing a change in central leadership, the development reforms of 902 A.E. redirected resources toward the three youngest Cantums. Visshum experienced the greatest reduction in central support, strengthening demands for greater control over its own affairs.\n\nIn 930 A.E., Visshum peacefully negotiated independence from the Continuance, becoming the first Cantum to establish its own sovereignty. The following year, a majority supported transforming the new state into a hereditary Empire, with the leader of the independence movement becoming its first Emperor.\n\nAlthough opposition to these political changes existed, neither independence nor the establishment of the Empire resulted in civil war. Visshum retained relations with its former partners while developing as an independent sovereign power."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Visshum was established in 345 A.E. as the first subordinate Cantum of the Continuance, a unified civilization governed from Drevnasel. After centuries of regional development, disagreements over central resource allocation contributed to its peaceful independence in 930 A.E. A majority subsequently supported hereditary imperial government, establishing the Visshum Empire in 931.\n\nAs the other former Cantums became involved in territorial disputes and warfare, Visshum remained outside their earlier conflicts while strengthening its economy, industry and military capabilities. Okeanberg's conquest of Rekdolin and subsequent war with the remaining Continuance created a new balance of power across the sector.\n\nIn 1126 A.E., Visshum invaded Okeanberg, beginning a prolonged campaign that established imperial military occupation over Okeanberg's territory and extensive former Rekdolin holdings. By 1138, the conquest was complete, transforming Visshum from an independent regional Empire into a dominant occupying power.\n\nThe expansion also brought Visshum into direct confrontation with Drevnasel. Imperial occupation extended into territories whose civilian protections had been established under an earlier peace agreement, prompting Drevnasel to close its frontier with the Empire.\n\nVisshum's military dominance came at the cost of administering conquered populations with different histories, loyalties and relationships to the former Continuance."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Visshum was founded in 345 A.E. as the first subordinate Cantum of the Continuance, humanity's unified civilization in the Velara Sector, governed from Drevnasel. The civilization had been named after the sleeper vessel that carried its founders from Old Earth. Visshum received its permanent regional name in 360 A.E. and developed into one of the Continuance's most powerful industrial and political regions.\n\nDisagreements over central development policy, particularly the reforms of 902 A.E., strengthened the movement for sovereignty. In 930 A.E., Visshum peacefully became the first Cantum to leave the Continuance. A majority supported the establishment of a hereditary Empire in 931, placing the former independence leader at the head of its founding dynasty.\n\nVisshum's growing military and economic power eventually enabled territorial expansion. In 1126 A.E., it invaded Okeanberg, completing its conquest by 1138 and imposing imperial occupation over Okeanberg and territories previously belonging to Rekdolin.\n\nUnder later imperial leadership, relations with Drevnasel deteriorated into open hostility. Following the assassination of the imperial heir in 1166, the Emperor accused Drevnasel of responsibility and ordered widespread persecution of its citizens. The campaign culminated in the Bergovar Betrayal of 1167, a staged massacre that triggered Drevnasel's military mobilization.\n\nThe resulting Final Inter-Cantum War lasted from 1168 to 1175. Drevnasel, supported by the sovereign Cantums of Zaklun, Gornebes and Vodravan, defeated Visshum's old imperial government and ended its occupation of the conquered territories. Okeanberg regained sovereignty, while Rekdolin was formally abolished.\n\nVisshum surrendered in 1175 but was not annexed or deprived of its own sovereignty. Following the end of the war, its citizens selected a replacement ruling dynasty, which assumed power in 1175 A.E. and rejected the expansionist and persecutory policies of its predecessor.\n\nAs one of the six surviving sovereign Cantums, Visshum participates in the postwar political order, including the agreed neutral border arrangements and the treaty excluding three devastated former Rekdolin systems from sovereign territorial claims. Its relationship with the other Cantums now rests upon diplomacy and negotiated arrangements rather than the authority of a common government."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000003",
+      "entityType": "cantum",
+      "letter": "C",
+      "nameHistory": [
+        {
+          "fromAE": 480,
+          "untilAE": 1201,
+          "name": "Okeanberg",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 480,
+          "untilAE": 970,
+          "status": "constituent_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 970,
+          "untilAE": 1138,
+          "status": "sovereign_cantum",
+          "datePrecision": "circa"
+        },
+        {
+          "fromAE": 1138,
+          "untilAE": 1175,
+          "status": "historical_cantum_under_imperial_occupation",
+          "datePrecision": "confirmed_by"
+        },
+        {
+          "fromAE": 1175,
+          "untilAE": 1201,
+          "status": "restored_sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 480,
+            "untilAE": 970,
+            "entityId": "can_1000001",
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1138,
+            "entityId": null,
+            "datePrecision": "circa"
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "entityId": "can_1000002",
+            "datePrecision": "confirmed_by"
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 480,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 480,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "Okeanberg was established in 480 A.E. as the third Cantum of the Continuance, humanity's unified interstellar civilization founded by the descendants of the Exodus from Old Earth.\n\nIts creation followed a centrally authorized expansion programme supported by Visshum, the first subordinate Cantum established beyond Drevnasel. Although Visshum assisted in founding the new region, Okeanberg received its own government, subordinate directly to the Continuance's central authority in Drevnasel.\n\nThe new administration assumed responsibility for developing its territory, resources and institutions within the shared political structure. As its communities and capabilities grew, Okeanberg became an increasingly important regional government within the expanding civilization."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1008,
+            "datePrecision": "circa",
+            "text": "Established in 480 A.E. as the third Cantum of the Continuance, Okeanberg developed under Drevnasel's central authority, with early assistance from Visshum. Over the following centuries, its expanding institutions and economy gave the region increasing influence within the unified civilization.\n\nDisagreements with Rekdolin over the recognition of scientific discoveries and territorial development became a persistent source of tension. Drevnasel's administrative rulings favored Rekdolin's officially registered claims in important disputes, leaving Okeanberg dissatisfied with the outcome.\n\nThe development reforms of 902 A.E. further strained relations between the older Cantums and the central government. Following Visshum's peaceful independence in 930, Okeanberg pursued sovereignty together with territorial concessions intended to resolve its longstanding grievances.\n\nAround 970 A.E., Okeanberg peacefully gained independence from the Continuance. The negotiated settlement transferred three territories previously administered by Rekdolin to the newly sovereign Cantum. Drevnasel compensated Rekdolin through a separate transfer of regional administration, preserving peace but leaving significant disagreements over the settlement's fairness.\n\nOkeanberg emerged as an independent state with expanded territory, while its relationships with Drevnasel and Rekdolin were fundamentally altered."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1125,
+            "datePrecision": "exact",
+            "text": "Okeanberg originated in 480 A.E. as the third subordinate Cantum of the Continuance, the unified civilization governed from Drevnasel. Its development was accompanied by growing disagreements with neighboring Rekdolin over scientific discoveries and territorial rights.\n\nFollowing Visshum's independence in 930 A.E., Okeanberg negotiated its own sovereignty around 970. The agreement granted it three territories formerly administered by Rekdolin, while Drevnasel sought to compensate the disadvantaged Cantum. The compromise preserved peace but failed to eliminate Okeanberg's territorial ambitions or Rekdolin's resentment.\n\nRekdolin subsequently became independent in 1000 A.E., losing the automatic military protection previously provided by the Continuance.\n\nIn 1004 A.E., Okeanberg invaded its former neighbor, beginning a prolonged inter-Cantum war. Rekdolin was defeated in 1008 and its remaining territory annexed, bringing its brief sovereign existence to an end.\n\nThe conquest greatly enlarged Okeanberg's territory and established it as an expansionist regional power. Drevnasel had declined direct military intervention on Rekdolin's behalf, but its refusal did not constitute approval of the annexation."
+          },
+          {
+            "fromAE": 1125,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Founded in 480 A.E. as the third Cantum of the Continuance, Okeanberg gradually developed into a powerful regional administration. Disputes over territorial development contributed to its negotiated independence around 970 A.E., accompanied by the transfer of three territories previously administered by Rekdolin.\n\nAfter Rekdolin became independent in 1000, Okeanberg invaded its former neighbor in 1004 and completed its conquest in 1008. Drevnasel declined military intervention but condemned the annexation, imposing sanctions and severe restrictions on official relations in 1009.\n\nHostility eventually developed into the Okeanberg–Continuance War of 1105–1125. The conflict began along Zaklun's frontier before escalating into a major offensive against Drevnasel in 1113. Despite initial military successes, Okeanberg faced sustained resistance and counteroffensives from the remaining Continuance.\n\nThe prolonged war ended through negotiation in 1125 A.E. Drevnasel agreed to cede Bergovar and Belput to Okeanberg, expanding the sovereign territory of its former constituent. Qualifying Continuance citizens living in the ceded systems retained their citizenship and protected entry rights to Drevnasel-controlled territory.\n\nThe peace established a new political relationship between Okeanberg and Drevnasel, distinguishing Okeanberg's territorial sovereignty from the citizenship protections retained by affected inhabitants."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Okeanberg was established in 480 A.E. as the third Cantum of the Continuance, governed from Drevnasel. Longstanding territorial disputes contributed to its peaceful independence around 970, when it also received three territories formerly administered by Rekdolin.\n\nOkeanberg subsequently invaded sovereign Rekdolin in 1004 and completed its annexation in 1008. The conquest provoked sanctions from Drevnasel and eventually led to the Okeanberg–Continuance War of 1105–1125. That conflict ended with Okeanberg acquiring additional territory from Drevnasel under a negotiated peace settlement, while qualifying Continuance citizens retained specific legal protections.\n\nOkeanberg's territorial expansion and prolonged warfare had imposed considerable demands upon its military and economy. In 1126 A.E., Visshum, the first Cantum to have separated from the Continuance, launched an invasion against Okeanberg.\n\nThe campaign continued until 1138, by which time Visshum had defeated Okeanberg's independent government and conquered its territory, including the regions previously acquired from Rekdolin and Drevnasel.\n\nOkeanberg consequently lost its sovereign government and came under imperial military occupation. Its established Cantum identity and the historical ties of its population endured despite the destruction of its political independence."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Okeanberg was founded in 480 A.E. as the third Cantum of the Continuance, humanity's unified civilization established under Drevnasel's central authority and named after the sleeper vessel that carried its founders from Old Earth. Its regional development was initially supported by Visshum, but Okeanberg possessed its own subordinate government within the common state.\n\nAs the Cantums developed, disagreements emerged between Okeanberg and Rekdolin over scientific discoveries, territorial recognition and expansion opportunities. Following Visshum's independence in 930, Okeanberg negotiated its own sovereignty around 970 A.E., obtaining three territories previously administered by Rekdolin as part of the settlement.\n\nRekdolin subsequently became independent in 1000, but Okeanberg invaded in 1004 and annexed its remaining territory in 1008. The conquest provoked sanctions from Drevnasel and contributed to a prolonged war between Okeanberg and the remaining Continuance from 1105 to 1125. The war ended through negotiation, with Okeanberg gaining additional territory while protected citizenship rights were preserved for qualifying inhabitants of the ceded regions.\n\nIn 1126 A.E., Visshum invaded Okeanberg, completing its conquest by 1138. Okeanberg's government was defeated, and its territories came under imperial occupation. Its sovereign existence ended, although its regional identity and population survived under foreign rule.\n\nFollowing Visshum's persecution of Drevnasel citizens and the Bergovar Betrayal, Drevnasel launched the Final Inter-Cantum War in 1168, supported by the sovereign Cantums of Zaklun, Gornebes and Vodravan. The campaign gradually liberated former Okeanberg territories from imperial control, but liberation did not immediately restore Okeanberg's government. The affected territories remained outside Cantum administration until the final settlement.\n\nVisshum surrendered in 1175 A.E., and Okeanberg's sovereignty was restored under its own government. The settlement reorganized its territory, incorporating certain surviving former Rekdolin regions while returning other territories to Drevnasel or placing them outside sovereign administration. Rekdolin itself was formally abolished rather than restored as a separate Cantum.\n\nOkeanberg became one of six sovereign Cantums in the postwar political order. Its relationship with Drevnasel remained marked by substantial political influence from the founding Cantum, but Okeanberg was neither annexed nor returned to subordinate status. It retained its own sovereign government.\n\nThe postwar arrangements also established neutral international borders and a treaty excluding three devastated former Rekdolin territories from sovereign claims. Okeanberg participates in these agreements alongside the other independent Cantums, while reconstruction and renewed diplomatic and economic relations continue to shape its recovery from decades of conflict."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000004",
+      "entityType": "cantum",
+      "letter": "D",
+      "nameHistory": [
+        {
+          "fromAE": 548,
+          "untilAE": 1201,
+          "name": "Rekdolin",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 548,
+          "untilAE": 1000,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1000,
+          "untilAE": 1008,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1008,
+          "untilAE": 1201,
+          "status": "historical_cantum_without_sovereign_government",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 548,
+            "untilAE": 1000,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1008,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 548,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 548,
+            "untilAE": 970,
+            "datePrecision": "exact",
+            "text": "Rekdolin was established in 548 A.E. as the fourth Cantum of the Continuance, humanity's unified interstellar civilization descended from the survivors of Old Earth's Exodus.\n\nIts foundation formed part of Drevnasel's effort to distribute responsibility for regional expansion across the growing civilization. The new administration was established around Putnasel, with responsibility for developing its territory, resources and institutions under the central government's authority.\n\nAlongside Visshum and Okeanberg, Rekdolin became one of the Continuance's established regional governments. Its growing communities and productive capabilities contributed to the civilization's continued expansion, while its subordinate administration remained part of a single sovereign state governed from Drevnasel."
+          },
+          {
+            "fromAE": 970,
+            "untilAE": 1000,
+            "datePrecision": "circa",
+            "text": "Rekdolin was established in 548 A.E. as the fourth subordinate Cantum of the Continuance, the unified civilization governed from Drevnasel. Over the following centuries, it developed its own regional economy, institutions and expanding territory.\n\nDuring the High Age, disagreements emerged between Rekdolin and neighboring Okeanberg over scientific discoveries and territorial recognition. Drevnasel upheld Rekdolin's officially registered claims in important disputes, but these rulings failed to resolve Okeanberg's dissatisfaction.\n\nFollowing Visshum's peaceful independence in 930 A.E., Okeanberg pursued its own sovereignty while demanding territorial concessions. Around 970 A.E., Drevnasel negotiated a settlement granting Okeanberg independence and transferring three established Rekdolin territories to the newly sovereign Cantum.\n\nTo compensate Rekdolin, Drevnasel transferred an established territory from its own regional administration. Rekdolin consequently retained five of its original territories and acquired one from Drevnasel, leaving it with six administered systems.\n\nAlthough the compromise preserved peace, Rekdolin regarded the losses as deeply unfair. Its relationship with the central government deteriorated as the consequences of the territorial settlement raised doubts about whether remaining within the Continuance adequately protected its interests."
+          },
+          {
+            "fromAE": 1000,
+            "untilAE": 1008,
+            "datePrecision": "exact",
+            "text": "Rekdolin was founded in 548 A.E. as the fourth Cantum of the Continuance, a unified interstellar civilization governed from Drevnasel. As its territory developed, disagreements with Okeanberg over scientific discoveries and regional expansion became a persistent source of political tension.\n\nAround 970 A.E., Okeanberg gained independence from the Continuance through a settlement that transferred three Rekdolin territories to the newly sovereign Cantum. Drevnasel compensated Rekdolin through a separate territorial transfer, but the agreement left Rekdolin with substantial grievances against both governments.\n\nIn 1000 A.E., Rekdolin peacefully negotiated its own independence from Drevnasel, becoming a sovereign Cantum after more than four centuries of subordinate administration.\n\nIndependence also ended the automatic financial, material and military protection obligations previously provided by the Continuance. Future assistance would depend upon separate agreements or commercial arrangements between sovereign governments.\n\nRekdolin retained its own government and six administered systems, but entered independence in a comparatively vulnerable position beside its more powerful neighbor, Okeanberg. Its sovereignty offered political autonomy without the guarantees of security previously associated with membership in the unified civilization."
+          },
+          {
+            "fromAE": 1008,
+            "untilAE": 1138,
+            "datePrecision": "exact",
+            "text": "Rekdolin was established in 548 A.E. as the fourth Cantum of the Continuance, under the central authority of Drevnasel. Centuries of development were accompanied by growing territorial disputes with Okeanberg, whose competing claims contributed to a negotiated settlement around 970 A.E.\n\nThe agreement granted Okeanberg independence and transferred three territories previously administered by Rekdolin. Although Drevnasel provided compensation from its own territory, Rekdolin regarded the settlement as deeply unfair and subsequently negotiated independence in 1000 A.E.\n\nIts new sovereignty ended the automatic support and military protection previously provided by the Continuance. In 1004 A.E., Okeanberg invaded Rekdolin, beginning the first major inter-Cantum war since humanity's Exodus.\n\nAfter several years of fighting, Rekdolin was defeated in 1008 A.E. Its independent government lost sovereignty, and the six territories it administered were annexed by Okeanberg.\n\nDrevnasel had declined military intervention, maintaining that Rekdolin's independence had ended its automatic defense obligations. This refusal did not constitute approval of Okeanberg's conquest.\n\nRekdolin's brief sovereign existence ended after only eight years. Nevertheless, its people, settlements and regional traditions survived under Okeanberg's authority. The annexation extinguished the Cantum's political independence without erasing its historical identity."
+          },
+          {
+            "fromAE": 1138,
+            "untilAE": 1175,
+            "datePrecision": "confirmed_by",
+            "text": "Established in 548 A.E. as the fourth Cantum of the Continuance, Rekdolin developed under Drevnasel's central government before territorial disputes with neighboring Okeanberg weakened its position within the unified civilization.\n\nAround 970 A.E., Okeanberg peacefully gained independence through a settlement that transferred three Rekdolin territories to its government. Drevnasel compensated Rekdolin, but the loss of established territory created lasting resentment.\n\nRekdolin subsequently obtained independence in 1000 A.E., ending the automatic support and protection previously provided by the Continuance. Okeanberg invaded in 1004 and completed its conquest in 1008, annexing Rekdolin's remaining territory and ending its sovereignty after only eight years.\n\nThe conquest provoked sanctions from Drevnasel and contributed to the Okeanberg–Continuance War of 1105–1125. Although the war ended through negotiation, it did not restore Rekdolin's independence. Its former territory remained under Okeanberg's authority.\n\nIn 1126 A.E., the Visshum Empire invaded Okeanberg. By 1138, Visshum had defeated Okeanberg's government and established military occupation across its conquered territories, including the former Cantum of Rekdolin.\n\nRekdolin thus experienced a second conquest without regaining its own government between occupations. Its communities had passed from subordinate administration to brief sovereignty, annexation and imperial rule within less than two centuries.\n\nAlthough its political institutions no longer exercised authority, Rekdolin remained a distinct historical and cultural identity among populations living under foreign government."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Rekdolin was established in 548 A.E. as the fourth Cantum of the Continuance, humanity's unified interstellar civilization governed from Drevnasel and named after the sleeper vessel that carried its founders from Old Earth.\n\nFor centuries, Rekdolin developed as a subordinate regional government. Disagreements with neighboring Okeanberg over scientific discoveries and territorial recognition eventually contributed to a negotiated settlement around 970 A.E. Okeanberg gained independence and received three territories previously administered by Rekdolin, while Drevnasel provided compensation from its own region.\n\nThe settlement left Rekdolin deeply dissatisfied. In 1000 A.E., it peacefully negotiated independence from the Continuance, gaining sovereignty but losing the automatic support and protection previously provided by the central government.\n\nOnly four years later, Okeanberg invaded. The resulting war ended in 1008 with Rekdolin's defeat and annexation. Its sovereign government ceased to exist after just eight years of independence, although its people and historical identity survived under Okeanberg's authority.\n\nDrevnasel imposed sanctions against Okeanberg, and the resulting hostility contributed to the Okeanberg–Continuance War of 1105–1125. The peace settlement that concluded that conflict did not restore Rekdolin. In 1126, Visshum invaded Okeanberg, completing its conquest by 1138 and placing the former Rekdolin territories under imperial military occupation.\n\nThe occupation brought further suffering and political instability. In 1166 A.E., Visshum's imperial heir was assassinated during a public appearance in Rekdolin's former capital, Putnasel. The Emperor blamed Drevnasel, whose government denied responsibility. The ensuing persecution of Drevnasel citizens culminated in the Bergovar Betrayal of 1167, triggering Drevnasel's military mobilization.\n\nThe Final Inter-Cantum War of 1168–1175 gradually ended Visshum's occupation. During its retreat, imperial forces deliberately destroyed infrastructure across three former Rekdolin territories, leaving extensive devastation and displacement. Their withdrawal did not reestablish a Rekdolin government.\n\nFollowing Visshum's surrender in 1175 A.E., Rekdolin was formally abolished as a political entity. Its surviving territory was divided under the postwar settlement: two systems became affiliated with restored Okeanberg, one returned to Drevnasel, and three devastated systems remained individually unclaimed under the Pustosh Treaty. These latter territories received the separate designations Pustosh-7, Pustosh-11 and Pustosh-13, with sovereign claims prohibited under the agreement.\n\nRekdolin did not become one of the six sovereign Cantums established by the postwar settlement. Its former territories were neither reunited under a new regional government nor collectively administered as a successor state.\n\nNevertheless, Rekdolin's historical and cultural identity endured. Displaced survivors and their descendants preserved their heritage across the surviving Cantums, obtaining political citizenship in their respective host states rather than possessing a separate sovereign Rekdolinian citizenship.\n\nIn 1200 A.E., Rekdolin remains a historical Cantum without independent political authority: a civilization whose government disappeared, but whose people and identity survived centuries of territorial conflict, conquest and displacement."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000005",
+      "entityType": "cantum",
+      "letter": "G",
+      "nameHistory": [
+        {
+          "fromAE": 725,
+          "untilAE": 1201,
+          "name": "Vodravan",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 725,
+          "untilAE": 1153,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1153,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 725,
+            "untilAE": 1153,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 725,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 725,
+            "untilAE": 1153,
+            "datePrecision": "exact",
+            "text": "Vodravan was established in 725 A.E. as the fifth Cantum of the Continuance, humanity's unified interstellar civilization governed from Drevnasel.\n\nIts foundation followed a centrally authorized sleeper expedition sent to establish a new region beyond the existing settled territories. The founding environment offered fertile land and substantial freshwater resources, providing a strong basis for agricultural development and long-term population support.\n\nFollowing the establishment of a permanent community, the completion of an approved connection to the Continuance's interstellar network activated Vodravan's regional government and made its name official.\n\nVodravan became the first of the three youngest planned Cantums to achieve formal administrative status. Its government assumed responsibility for regional expansion, agriculture, resources and infrastructure while remaining subordinate to Drevnasel's central authority."
+          },
+          {
+            "fromAE": 1153,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Established in 725 A.E. as the fifth Cantum of the Continuance, Vodravan was the first of the three youngest regions to achieve formal administration. Its founding expedition established a permanent community in an environment well suited to agriculture and freshwater development.\n\nVodravan expanded its productive capabilities and institutions under Drevnasel's central authority. The Development Redistribution Reform of 902 A.E. directed additional resources toward Vodravan, Zaklun and Gornebes, supporting their continued growth while creating political disagreements with the older Cantums.\n\nAs Visshum, Okeanberg and Rekdolin separated from the Continuance, Vodravan remained within the unified state alongside Drevnasel and the other younger regions.\n\nGornebes peacefully gained independence in 1146, demonstrating that the younger Cantums could obtain sovereignty while preserving their economic and diplomatic relationships with Drevnasel.\n\nIn 1153 A.E., Vodravan followed through its own negotiated independence. The transition occurred without an independence war and did not end established commercial or diplomatic cooperation with Drevnasel.\n\nVodravan retained its regional government and economic foundations while assuming full sovereign responsibility for its territory. Following its separation, only Drevnasel and Zaklun remained within the original Continuance."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Vodravan was established in 725 A.E. as the fifth Cantum of the Continuance, the unified civilization founded by descendants of the Exodus from Old Earth. It was the first of three distant colonial regions to establish a formal subordinate government, developing from a settlement supported by agricultural opportunities and extensive freshwater resources.\n\nUnder Drevnasel's central authority, Vodravan developed its own regional institutions, productive economy and infrastructure. Its agricultural and freshwater programmes benefited from additional development support under the reforms of 902 A.E., which favored the three youngest Cantums.\n\nAs the older regions separated from the Continuance, Vodravan remained within the unified civilization alongside Drevnasel, Gornebes and Zaklun. The independence of Gornebes in 1146 established a precedent for its own peaceful transition.\n\nIn 1153 A.E., Vodravan negotiated sovereignty with Drevnasel, gaining independent political authority without military conflict. Established diplomatic and commercial relations continued between the two governments.\n\nZaklun's independence in 1167 subsequently ended the Continuance as a unified multi-Cantum state. Despite their separate governments, the three younger Cantums retained important relationships with Drevnasel.\n\nDuring the Final Inter-Cantum War of 1168–1175, Vodravan supported Drevnasel alongside Zaklun and Gornebes, contributing to the wider effort against Visshum's imperial occupation and assisting those affected by the conflict. Their cooperation did not restore central political authority over the independent Cantums.\n\nFollowing Visshum's defeat in 1175, Vodravan retained its sovereignty within the six-Cantum postwar order. New neutral border arrangements regulated its official international connections with Drevnasel and Gornebes, with designated crossings outside direct Cantum administration.\n\nVodravan also became a signatory to the Pustosh Treaty, joining the other sovereign Cantums in excluding three devastated former Rekdolin territories from sovereign territorial claims.\n\nVodravan remains an independent Cantum whose agricultural and freshwater economy continues to underpin its development, while diplomacy, commerce and shared historical ties connect it with the other states of the Velara Sector."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000006",
+      "entityType": "cantum",
+      "letter": "F",
+      "nameHistory": [
+        {
+          "fromAE": 730,
+          "untilAE": 1201,
+          "name": "Gornebes",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 730,
+          "untilAE": 1146,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1146,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 730,
+            "untilAE": 1146,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1146,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 730,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 730,
+            "untilAE": 1146,
+            "datePrecision": "exact",
+            "text": "Gornebes was established in 730 A.E. as the sixth Cantum of the Continuance, humanity's unified interstellar civilization governed from Drevnasel.\n\nIts foundation resulted from one of three major distant colonization expeditions organized to expand the civilization beyond its established territories. The region's founding environment offered substantial mineral resources and industrial development opportunities, although permanent habitation required considerable infrastructure and engineering work.\n\nAfter its settlers established a permanent community and completed the approved connection to the existing Continuance network, Gornebes received its formal regional government and official name.\n\nAs a subordinate Cantum, Gornebes assumed responsibility for developing its resources, industry, infrastructure and future colonies while remaining under Drevnasel's central authority."
+          },
+          {
+            "fromAE": 1146,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Founded in 730 A.E. as the sixth Cantum of the Continuance, Gornebes developed from a distant colonial settlement into an increasingly capable industrial and resource-producing region. Its administration initially operated under Drevnasel's central government within the unified civilization.\n\nThe Development Redistribution Reform of 902 A.E. directed additional resources toward Gornebes and the other two youngest Cantums. This support contributed to the development of their industries and infrastructure, although the reform also intensified disagreements among the older regions.\n\nAs Visshum, Okeanberg and Rekdolin gained independence, the Continuance gradually lost its original political unity. Gornebes nevertheless remained within the central state alongside Drevnasel, Zaklun and Vodravan during the period of territorial conflicts involving the older Cantums.\n\nBy the middle of the twelfth century, Gornebes possessed the institutions and economic capabilities necessary to govern independently.\n\nIn 1146 A.E., Gornebes peacefully negotiated sovereignty with Drevnasel. Its transition did not involve an independence war, and established diplomatic and commercial relationships continued between the two governments.\n\nGornebes became an independent Cantum while retaining the industrial and economic traditions developed during its centuries within the Continuance."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Gornebes was established in 730 A.E. as the sixth Cantum of the Continuance, the unified interstellar civilization descended from humanity's Exodus from Old Earth. Its founding expedition established an enduring community whose mineral resources and industrial potential shaped the region's subsequent development.\n\nFor centuries, Gornebes remained subordinate to Drevnasel's central authority while developing its own economy, infrastructure and regional institutions. The Development Redistribution Reform of 902 A.E. provided additional central support for its industrial and resource capabilities as part of a wider effort to accelerate development in the three youngest Cantums.\n\nThe gradual separation of Visshum, Okeanberg and Rekdolin weakened the unified civilization. Gornebes remained within the Continuance during these earlier political changes, but its growing regional capabilities made independent government increasingly practical.\n\nIn 1146 A.E., Gornebes peacefully negotiated sovereignty with Drevnasel. Commercial and diplomatic relations continued, allowing cooperation between the two regions despite the end of their common constitutional authority.\n\nVodravan followed Gornebes into independence in 1153, and Zaklun's separation in 1167 ended the unified Continuance. The three younger Cantums nevertheless maintained relationships with Drevnasel rooted in their shared history.\n\nDuring the Final Inter-Cantum War of 1168–1175, independent Gornebes supported Drevnasel's struggle against Visshum's imperial government. Together with Zaklun and Vodravan, it contributed resources, assistance and relief to the wider war effort without surrendering its sovereignty or rejoining a unified state.\n\nFollowing Visshum's defeat in 1175, Gornebes remained one of six independent Cantums. The postwar settlement established neutral official border arrangements governing its relations with Drevnasel, Zaklun and Vodravan, without placing the designated crossings under either neighboring government's direct territorial administration.\n\nGornebes also participated in the Pustosh Treaty, agreeing with the other sovereign Cantums to exclude three devastated former Rekdolin territories from sovereign claims.\n\nGornebes continues as an independent industrial and political region, maintaining diplomatic and economic relationships with the other Cantums while preserving the institutions developed throughout its history."
+          }
+        ]
+      }
+    },
+    {
+      "id": "can_1000007",
+      "entityType": "cantum",
+      "letter": "E",
+      "nameHistory": [
+        {
+          "fromAE": 745,
+          "untilAE": 1201,
+          "name": "Zaklun",
+          "kind": "official_name",
+          "datePrecision": "exact"
+        }
+      ],
+      "statusHistory": [
+        {
+          "fromAE": 745,
+          "untilAE": 1167,
+          "status": "constituent_cantum",
+          "datePrecision": "exact"
+        },
+        {
+          "fromAE": 1167,
+          "untilAE": 1201,
+          "status": "sovereign_cantum",
+          "datePrecision": "exact"
+        }
+      ],
+      "infoCard": {
+        "affiliation": [
+          {
+            "fromAE": 745,
+            "untilAE": 1167,
+            "entityId": "can_1000001",
+            "datePrecision": "exact"
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1201,
+            "entityId": null,
+            "datePrecision": "exact"
+          }
+        ],
+        "class": [
+          {
+            "fromAE": 745,
+            "untilAE": 1201,
+            "code": "historical_cantum",
+            "label": "Historical Cantum",
+            "datePrecision": "exact"
+          }
+        ],
+        "crew": null,
+        "population": null,
+        "armament": null,
+        "description": [
+          {
+            "fromAE": 745,
+            "untilAE": 1167,
+            "datePrecision": "exact",
+            "text": "Zaklun was established in 745 A.E. as the seventh and final Cantum of the Continuance, humanity's unified interstellar civilization descended from the survivors of Old Earth's Exodus.\n\nIts foundation followed a distant colonization expedition authorized by Drevnasel's central government. The settlers faced particularly demanding conditions, requiring extensive scientific, engineering and habitation work before a permanent regional administration could be established.\n\nThe completion of an approved artificial connection with the existing Continuance network activated Zaklun's government and made its regional name official. The new Cantum assumed responsibility for its own exploration, infrastructure and development while remaining subordinate to Drevnasel's central authority.\n\nZaklun's establishment completed the planned seven-Cantum political structure, marking a major milestone in the expansion of the unified civilization."
+          },
+          {
+            "fromAE": 1167,
+            "untilAE": 1175,
+            "datePrecision": "exact",
+            "text": "Established in 745 A.E. as the seventh and final Cantum of the Continuance, Zaklun completed the civilization's planned regional structure. Its founding followed a difficult colonization expedition, with its government assuming authority after establishing a connection to the existing interstellar network.\n\nZaklun developed a strong scientific and technological emphasis, particularly in supporting habitation and exploration under challenging environmental conditions. The Development Redistribution Reform of 902 A.E. directed additional central resources toward Zaklun, Gornebes and Vodravan, accelerating their development while contributing to political disagreements with the older Cantums.\n\nAs the Continuance gradually fragmented, Zaklun remained under Drevnasel's central protection. During the Okeanberg–Continuance War of 1105–1125, Zaklun's frontier became an early target of military incursions. Drevnasel redirected forces to its defense, and the war ended without permanent territorial loss for Zaklun.\n\nFollowing Gornebes's independence in 1146 and Vodravan's in 1153, Zaklun became the final subordinate Cantum remaining alongside Drevnasel. Close family and political relationships between their leaderships helped preserve this arrangement.\n\nA change in Zaklun's leadership weakened that alignment. In 1167 A.E., Zaklun peacefully negotiated independence, ending the Continuance as a unified multi-Cantum state.\n\nZaklun retained friendly diplomatic and economic relations with Drevnasel, but now exercised sovereignty through its own government."
+          },
+          {
+            "fromAE": 1175,
+            "untilAE": null,
+            "datePrecision": "exact",
+            "text": "Zaklun was established in 745 A.E. as the seventh and final Cantum of the Continuance, the unified civilization founded by humanity's descendants from Old Earth. Its government emerged from a distant colonial expedition whose settlement and connection to the established interstellar network completed the planned seven-Cantum structure.\n\nThe region developed substantial scientific, engineering and habitation capabilities. Its growth benefited from the Development Redistribution Reform of 902 A.E., which directed additional central assistance toward the three youngest Cantums.\n\nWhile Visshum, Okeanberg and Rekdolin separated from the Continuance, Zaklun remained under Drevnasel's central authority. During the Okeanberg–Continuance War of 1105–1125, it faced frontier incursions but suffered no permanent territorial loss. Drevnasel's defense of Zaklun reinforced their relationship during a period of growing political fragmentation.\n\nGornebes gained independence in 1146, followed by Vodravan in 1153. Zaklun remained the final subordinate Cantum, largely through close family and political ties between its leadership and that of Drevnasel. Following a leadership change, Zaklun peacefully negotiated independence in 1167, bringing the unified Continuance to an end.\n\nDespite the dissolution, relations with Drevnasel remained friendly. When the Final Inter-Cantum War began in 1168, Zaklun supported Drevnasel alongside the independent Cantums of Gornebes and Vodravan. Their cooperation contributed to the defeat of Visshum's old imperial government in 1175 without restoring the former political union.\n\nThe postwar settlement preserved Zaklun's sovereignty and established neutral international border arrangements governing its relations with Drevnasel, Gornebes and Okeanberg. These designated crossings remained outside the direct territorial administration of the neighboring Cantums.\n\nZaklun also joined the six sovereign Cantums in the Pustosh Treaty, which excluded three devastated former Rekdolin territories from sovereign claims.\n\nZaklun remains an independent Cantum, maintaining its established scientific and developmental traditions while participating in the diplomatic and economic relationships of the postwar Velara Sector."
+          }
+        ]
+      }
+    }
+  ]
+}

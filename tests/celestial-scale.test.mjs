@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 
 // Mutate fresh in-memory copies only; the accepted v1.2 snapshot stays frozen.

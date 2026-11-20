@@ -4,7 +4,7 @@ import {endpointDestinations} from '../core/cartography.mjs';
 export function describeRecord(record, {yearAE, view, systemId}) {
   const facts = [], fact = (label,value) => facts.push([label,value]);
   const result = {name:record ? record.name ?? record.id : 'Select a record',
-    kind:record ? (record.objectType ?? record.entityType).replaceAll('_',' ') : 'Read-only noncanonical chart',
+    kind:record ? (record.objectType ?? record.entityType).replaceAll('_',' ') : 'Read-only historical chart',
     description:record?.infoCard?.description?.text ?? (record ? 'Description not recorded.' : 'Choose a marker, route or catalogue entry.'),
     enter:record?.entityType === 'star_system', facts, destinations:[]};
   if (!record) return result;

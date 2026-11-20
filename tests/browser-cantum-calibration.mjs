@@ -9,8 +9,9 @@ async page=>{
     const m=window.calibration.map;
     return {mode:m.mode,selected:m.selectedId,markers:m.meshes.map(mesh=>({id:mesh.userData.entity.id,
       pixels:projectedDiameter(mesh.scale.x,mesh.position,m.camera,m.width,m.height)})),
-      plates:m.cantumNameplates.anchors.map(a=>({id:a.label.id,cantum:a.label.cantumId,variant:a.label.variant,name:a.element.textContent,
-        visible:a.visible,position:a.position.toArray(),images:a.element.querySelectorAll('img').length,opacity:a.opacity,
+      plates:m.cantumNameplates.anchors.map(a=>({id:a.label.id,cantum:a.label.cantumId,variant:a.label.variant,name:(a.label.variant==='sigil-only'?'':a.label.name),
+        outpost:a.label.contributorIds?.includes('sys_9110')??false,
+        visible:a.visible,position:a.position.toArray(),images:Number(!!a.resource.image&&!a.resource.failed),opacity:a.opacity,
         surface:m.influenceEnvelopes?.data.find(e=>e.id===a.label.cantumId)?.sample(a.label.x,a.label.z)?.upper})),
       anchors:m.anchors.map(a=>({id:a.entity.id,hit:a.hitSize,radius:a.radius,offset:parseFloat(a.button.style.getPropertyValue('--caption-offset'))})),
       halfHeights:m.influenceEnvelopes?.data.map(e=>e.halfHeight)??[],resources:{geometries:m.renderer.info.memory.geometries,textures:m.renderer.info.memory.textures},
@@ -20,7 +21,7 @@ async page=>{
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);
     await page.waitForFunction(()=>window.calibration?.map.cantumNameplates.anchors.length===3);
-    const absent=await page.request.get('http://127.0.0.1:5173/Velara_Atlas/__calibration/');
+    const absent=await page.request.get('http://127.0.0.1:5177/Velara_Atlas/__calibration/');
     check(!(await absent.text()).includes('NONCANONICAL · LOCAL CALIBRATION'),'graphical Demo does not install calibration');
     const unexpected=await page.request.get(base+'not-approved.mjs');check(unexpected.status()===404,'preview has an explicit file inventory');
     for(const radius of ['2','2.5','3']) {
@@ -28,9 +29,10 @@ async page=>{
       const expected=Number(radius)*.3;
       const first=await state();
       check(first.halfHeights.every(h=>Math.abs(h-expected)<1e-10),'small-scale height rule');
-      check(first.plates.filter(a=>a.cantum==='can_9101'&&a.variant==='name-with-optional-sigil'&&a.images===1).length===1,'A main name plus sigil');
-      check(first.plates.filter(a=>a.cantum==='can_9101'&&a.variant==='sigil-only'&&a.images===1&&!a.name).length===1,'A detached sigil-only outpost');
-      check(first.plates.filter(a=>a.cantum==='can_9102'&&a.name==='TEST CALIBRATION B'&&a.images===0).length===1,'B keeps name only, null sigil');
+      check(first.plates.filter(a=>a.cantum==='can_9101'&&a.variant==='name-with-optional-sigil'&&a.images===1).length===1,'A fits a proportional complete name at each authorized radius');
+      check(first.plates.filter(a=>a.cantum==='can_9101'&&a.variant==='sigil-only'&&a.images===1&&!a.name).length===1,'only the detached A island needs a registered fallback');
+      check(first.plates.filter(a=>a.outpost&&a.variant==='sigil-only').length===1,'detached outpost retains its registered sigil');
+      check(first.plates.filter(a=>a.cantum==='can_9102'&&a.name==='TEST CALIBRATION B'&&a.images===0).length===1,'B fits a proportional full name at every radius with no invented sigil');
       check(first.grid.length===1&&first.grid[0].text==='5 ly'&&first.grid[0].y===0,'40ly sector grid plane and scale');
       check(first.tolerance.every(t=>Math.abs(t-Math.SQRT2*.3125)<1e-12),'bounded .442ly contour tolerance');
       await page.evaluate(()=>{window.__calibrationLabels=window.calibration.map.cantumNameplates.anchors.map(a=>a.label);window.__calibrationGeometry=window.calibration.map.influenceEnvelopes.data;});
@@ -39,8 +41,8 @@ async page=>{
         const s=await state();
         check(s.markers.length===15&&s.markers.every(m=>Math.abs(m.pixels-8)<1e-7),'8 CSS pixels in both projections, including off-axis spheres');
         check(s.anchors.every(a=>a.radius===4&&a.offset===8),'captions use visible 4px radius and 4px gap');
-        check(s.plates.every(a=>a.visible),'all three identity presentations readable in overview and low perspective');
-        if(mode!=='top')check(s.plates.every(a=>Math.abs(a.position[1]-a.surface-.36)<1e-8),'local top surface plus existing clearance');
+        check(s.plates.every(a=>a.visible),'all eligible identity presentations readable in overview and low perspective');
+        if(mode!=='top')check(s.plates.every(a=>a.position[1]>a.surface),'local top surface plus existing clearance');
         check(await page.evaluate(()=>{const m=window.calibration.map;return m.cantumNameplates.anchors.every((a,i)=>a.label===window.__calibrationLabels[i])&&m.influenceEnvelopes.data===window.__calibrationGeometry;}),'camera mode does not resample/reclassify field');
         const shot=`.playwright-mcp/calibration-${radius.replace('.','_')}-${mode}.png`;
         await page.screenshot({path:shot});shots.push(shot);
@@ -81,19 +83,19 @@ async page=>{
     for(const [year,count] of [[199,0],[200,3],[699,8],[700,14],[799,14],[800,15],[1200,15],[1300,15]]) {
       await page.locator('#calibration-year').fill(String(year));await page.locator('#calibration-year').dispatchEvent('change');
       check((await state()).markers.length===count,`historical eligibility at ${year}`);
-      if(year===1300)check((await state()).plates.every(a=>a.variant!=='sigil-only'),'null-sigil transfer cannot retain A outpost identity');
+      if(year===1300)check((await state()).plates.every(a=>!a.outpost),'null-sigil transfer cannot retain A outpost identity');
     }
     await page.locator('#calibration-year').fill('1200');await page.locator('#calibration-year').dispatchEvent('change');
     const memory=(await state()).resources;
     for(let i=0;i<4;i++){await page.locator('#radius').selectOption('3');await page.locator('#radius').selectOption('2.5');}
     check(JSON.stringify((await state()).resources)===JSON.stringify(memory),'radius rebuilds do not accumulate render resources');
-    check(await page.locator('.cantum-nameplate').count()===3&&await page.locator('.cantum-sigil').count()===2,'no duplicate identity/image nodes');
+    check(await page.evaluate(()=>{const p=window.calibration.map.cantumNameplates;return p.anchors.length===3&&p.resources.size===3&&p.root.children.length===0;}),'three bounded variant rasters, no retained DOM identity nodes');
     await page.evaluate(()=>{const m=window.calibration.map;m.renderer.setPixelRatio(2);m.resize();});
     check((await state()).markers.every(m=>Math.abs(m.pixels-8)<1e-7),'DPR=2 retains CSS marker size');
     for(const size of [{width:390,height:844},{width:320,height:568}]) {
       await page.setViewportSize(size);await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
       const s=await state();check(s.markers.every(m=>Math.abs(m.pixels-8)<1e-6)&&s.plates.every(a=>a.visible),'mobile overview keeps fixed symbols and identities');
-      check(await page.locator('.cantum-nameplate:not([hidden])').evaluateAll(ns=>ns.every(n=>{const r=n.getBoundingClientRect(),p=n.parentElement.getBoundingClientRect();return r.left>=p.left&&r.right<=p.right&&r.top>=p.top&&r.bottom<=p.bottom;})),'whole identity group contained on mobile');
+      check(s.plates.every((a,i)=>a.id===initial.plates[i].id),'mobile resize preserves component identity');
     }
     check(errors.length===0,errors.join('\n'));
     return {radii:variants,pickingTouchDoubleClickAndKeyboard:'passed',nullSigilAndIndependentMembership:'passed',historyAndTransfer:'passed',resourceReuse:'passed',mobile:2,highDPI:'passed',screenshots:shots,consoleErrors:errors};

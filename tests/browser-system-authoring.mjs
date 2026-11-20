@@ -3,15 +3,15 @@ async page => {
   const errors = [], check = (value, message) => { if (!value) throw new Error(message); };
   const onConsole = m => { if (m.type() === 'error') errors.push(m.text()); }, onError = e => errors.push(e.message);
   page.on('console', onConsole); page.on('pageerror', onError);
-  const panel = async id => { if (!await page.locator('#' + id).evaluate(n => n.open)) await page.locator('#' + id + ' > summary').click(); };
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const close = async () => { await page.keyboard.press('Escape'); await page.mouse.move(1, 1); };
   const year = async y => { await close(); await panel('timeline-panel'); await page.locator('#year-input').fill(String(y)); await page.locator('#year-input').press('Enter'); await close(); };
   const choose = async id => { await close(); await panel('controls-panel'); await page.locator('#selection').selectOption(id); await page.locator('#info-panel').waitFor({state: 'visible'}); };
   const present = async id => (await page.locator(`#selection option[value="${id}"]`).count()) === 1;
   try {
-    await page.setViewportSize({width: 1440, height: 1000}); await page.goto('http://127.0.0.1:5176/Velara_Atlas/demo.html');
+    await page.setViewportSize({width: 1440, height: 1000}); await page.goto('http://127.0.0.1:5176/Velara_Atlas/');
     await page.locator('#selection option[value="sys_9901"]').waitFor({state: 'attached'});
-    const data = await page.evaluate(async () => { const d = await (await import('./demo-data.mjs')).loadDemoDataset(); return {version: d.sector.schemaVersion, details: d.detailFiles.size, radius: d.presentation.territoryOverlay.radiusLY}; });
+    const data = await page.evaluate(async () => { const d = await (await import('./atlas-data.mjs')).loadAtlasDataset(); return {version: d.sector.schemaVersion, details: d.detailFiles.size, radius: d.presentation.territoryOverlay.radiusLY}; });
     check(data.version === '1.3.0' && data.details === 5 && data.radius === 24, 'eager additional detail with preserved v1.3 radius');
     await year(299); check(!await present('sys_9901'), 'hidden before explicit discovery');
     await year(300); check(await present('sys_9901'), 'inclusive TEST system discovery');

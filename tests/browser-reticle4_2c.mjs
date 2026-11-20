@@ -2,12 +2,12 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,dev=new URL(base).port==='5173';
+  const base=new URL('/Velara_Atlas/',page.url()).href,dev=new URL(base).port!=='4173';
   const check=(ok,message)=>{if(!ok)throw Error(message);},errors=[],failed=[],resources=[];
   const error=e=>errors.push(e.message),response=r=>{if(r.status()>=400)failed.push(r.url());if(/nexus-reticle.*\.svg/.test(r.url()))resources.push({url:r.url(),status:r.status()});};
   const label=id=>page.locator(`#labels [data-record-id="${id}"]`),hover=page.locator('.target-hover'),gold=page.locator('.target-selected');
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
-  const closePanels=()=>page.evaluate(()=>{for(const e of document.querySelectorAll('.floating'))e.open=false;});
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
+  const closePanels=()=>page.evaluate(()=>{for(const b of document.querySelectorAll('#utility-row button[aria-expanded="true"]')){if(b.id==='catalogue-toggle')document.getElementById('close-catalogue').click();else b.click();}});
   const select=async id=>{await panel('controls-panel');await page.locator('#selection').selectOption(id);await closePanels();};
   const open=async id=>{await select(id);await page.locator('#enter').click();};
   const focus=async id=>{await select(id);await page.locator('#focus').click();await settled();};

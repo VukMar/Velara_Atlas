@@ -1,78 +1,54 @@
 # Velara Atlas
 
-**Velara Atlas v0.5.0 — Public Pre-release** · [Versioning policy](docs/VERSIONING_POLICY.md)
+**Repository version 1.0.0 — canonical launch candidate** · [Versioning policy](docs/VERSIONING_POLICY.md)
 
-[Live NEXUS homepage](https://vukmar.github.io/Velara_Atlas/) · [Noncanonical interactive Demo](https://vukmar.github.io/Velara_Atlas/demo.html)
+The repository now implements the canonical historical Velara Sector Atlas at `/Velara_Atlas/`: one interactive application with the original NEXUS first-entry modal and audio preferences. It contains 70 registered systems, seven historical Cantums and 234 approved descriptions under the existing v1.3 contract. Every system currently uses the archival fallback for unavailable interior charts; no interiors or routes were invented.
 
-First published October 27, 2026 on GitHub Pages. This is a noncanonical public preview; the future canonical MCR Velara Sector Atlas requires separate creator approval. [Published commit, deployment run and creator acceptance](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
+The canonical Atlas and Holographic Transmission InfoCard have passed creator visual inspection. The subsequent navigation/control-bar refinement awaits final UI review in [PR #4](https://github.com/VukMar/Velara_Atlas/pull/4). The candidate has not been deployed. The [published website](https://vukmar.github.io/Velara_Atlas/) remains the creator-approved October 27, 2026 **0.5.0 noncanonical pre-release**. Repository pushes perform verification only; merge and Pages deployment require separate authorization. [Deployment evidence](docs/GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27).
 
-A historical, interactive atlas for the fictional MCR / The New World setting, presented through NEXUS. The local viewer uses vanilla JavaScript, Three.js and Vite.
+## Run locally
 
-**Checkpoint 4 is complete and creator-approved, including final integrated acceptance.** The Architecture Optimization Roadmap (Phases 1-6) is complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 (first public deployment) is complete and creator-approved. Canon development/integration, Atlas Creator and future public deployments remain separately gated. See [current project status](docs/PROJECT_STATUS.md).
+Use Node.js 24 LTS, matching CI, from the repository root:
 
-The [public entrance amendment](docs/PUBLIC_ENTRANCE.md) describes the two-page structure. The homepage is temporary presentation, reserved for the future canonical Atlas; the Demo remains explicitly noncanonical. Canonical population/migration, Demo retirement/archival and public deployment need separate approval. NEXUS Public Entrance Integration is complete and creator-approved (2026-10-26), including manual visual and functional acceptance. Automated checks and their limits are recorded in the [verification report](docs/PUBLIC_ENTRANCE_VERIFICATION.md).
-
-## What works now
-
-The read-only NONCANONICAL Demo contains four released system charts, one archival-only system and two TEST factions. It supports historical names and InfoCards, catalogue/search, local and interstellar routes, 2D/3D cameras, physical celestial models, spatial zones and approximate Cantum influence. NEXUS artwork, targeting, Focus/chart transitions, first-entry preferences, voice and interface audio are implemented. Follow the [Demo walkthrough](docs/DEMO_SHOWCASE.md).
-
-Development/calibration is a separate synthetic preview with named scenarios and replayable presets. Legacy v0.1 records remain protected under `public/data/`; there is no Canon launcher or graphical editor. The [manual GitHub Pages workflow](docs/GITHUB_PAGES_DEPLOYMENT.md) is reviewed and approved; it never deploys on push or pull request. The first public release is live and creator-approved. Ordinary pushes do not update the website; each later deployment requires separate authorization and manual dispatch.
-
-## Setup and run
-
-Use **Node.js 24 LTS**, matching the Ubuntu/Windows CI matrix, and run from the repository root:
-
-```bash
+```sh
 npm ci
-npm run demo
+npm run atlas
 ```
 
-Open **http://127.0.0.1:5173/Velara_Atlas/** for the NEXUS welcome and teaser. Choose **Indulge your curiosity** to open the interactive simulation at **http://127.0.0.1:5173/Velara_Atlas/demo.html**. First entry and audio preference are shared by both pages; returning visits never autoplay the welcome. Use Map controls, History, Catalogue and Map layers to explore. Select a marker and choose Enter system, or double-click it; Sector View returns to the overview. Stop the server with Ctrl+C.
+Open **http://127.0.0.1:5173/Velara_Atlas/**. New visitors choose **Enter with audio** or **Enter silently**; returning visitors keep their existing completion and audio preferences. Use Catalogue to select a system or Cantum. Its InfoCard opens on **Description**; **Technical** contains all recorded facts. The header, NEXUS portrait, tabs and actions stay visible while the active content scrolls. Changing History updates the selected year and record while retaining the tab; selecting another record resets to Description. Map controls provide top-down/perspective views, pan, zoom and Focus. Entering a system opens its NEXUS archival fallback until an interior chart is published.
 
-| Command | Purpose |
+| Command | Scope |
 | --- | --- |
-| `npm run demo` | Validate and serve the NEXUS homepage and separate NONCANONICAL Demo on 5173 |
-| `npm run dev` | Synthetic Development/calibration on 5174 at `/Velara_Atlas/__calibration/` |
-| `npm run preview:calibration` | Alias for Development; do not run both on the same port |
-| `npm run build` | Validate, build `dist/` and audit the output |
-| `npm run preview` | Preview that build on 4173 at `/Velara_Atlas/` |
-| `npm run history:demo` | Separate legacy console chronology; no browser server |
+| `npm run atlas` | Validate and serve the canonical application on 5173 |
+| `npm run demo` | Compatibility alias for `npm run atlas`; uses Canonical |
+| `npm run dev` / `npm run preview:calibration` | Separate synthetic calibration on 5174 at `/Velara_Atlas/__calibration/` |
+| `npm run build` | Validate Canonical, build the single-page site and audit `dist/` |
+| `npm run preview` | Serve the built canonical site on 4173 |
+| `npm run release:check` | Local canonical build and resource/disclosure audit; no deployment |
+| `node tests/preview-archived-demo.mjs` | Explicit NONCANONICAL regression fixture on 5177 at `/Velara_Atlas/` |
+| `npm run history:demo` | Protected legacy console chronology |
 
-Detailed controls, scenario formats, browser callbacks and diagnostics are in [local development](docs/LOCAL_DEVELOPMENT.md).
+The old public `demo.html` route is retired. Historical Demo data and HTML are retained in [the archived fixture](tests/fixtures/archived-demo/README.md), excluded from production. Calibration, legacy v0.1 data and frozen versioned fixtures remain separate.
 
 ## Checks
 
-```bash
-npm run connections:check
+The top row opens Catalogue, Map Controls, Layers and History. Catalogue is a modal archival search; selecting a result transitions to its InfoCard. The other three utilities share one bottom toolbar, reserving space below the square chart. Their 10-second inactivity dismissal pauses for hover, keyboard focus, active editing/gestures and Map Controls Help. Use the far-right **?** for supported pointer, touch and keyboard controls. [Current interface contract](docs/VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19).
+
+```sh
 npm test
 npm run validate
+npm run connections:check
 npm run build
-npm run history:demo
-npm run idfind -- all
 npm run release:check
 git diff --check
 ```
 
-CI runs the repository checks on Ubuntu and Windows with Node 24. Navigation checks are read-only: after an authorized navigation edit, run `npm run connections` manually, review the generated diff, then run the checks above. Do not use generation as CI repair. See [navigation authoring and recovery](docs/NAVIGATION_AUTHORING.md).
+Production validation and read-only connection freshness select `public/datasets/canonical/`. Generic engine tests explicitly use isolated synthetic or archived fixtures; canonical integration tests pin all five production file hashes to the approved candidate. Builds retain `publicDir: false`, exact input admission, complete registered imports, resource reachability and pinned media integrity. No arbitrary dataset selector, runtime JSON fetching, writable endpoint or editor exists.
 
-`npm run release:check` performs a local audited two-page build; it does not publish. Vite keeps `publicDir: false`, exact dataset/asset admission and production disclosure checks. The `/Velara_Atlas/` base supports the live repository-subpath URLs; local build success and ordinary pushes do not replace the published site.
+Only the explicitly invoked `npm run connections` writer changes navigation output; startup, tests, builds and CI never repair it. [Navigation and recovery](docs/NAVIGATION_AUTHORING.md). The creator explicitly authorized staging repository version 1.0.0 for the canonical launch candidate. This does not complete the public launch or authorize a tag, Release or deployment.
 
-## Documentation and authoring
+## Documentation
 
-Start with the [documentation index](docs/INDEX.md), which separates current specifications, operating guides and historical evidence.
+Start with [INDEX](docs/INDEX.md), [current status](docs/PROJECT_STATUS.md), [integration and validation](docs/CANONICAL_APPLICATION_INTEGRATION.md), [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), [local development](docs/LOCAL_DEVELOPMENT.md) and [AGENTS](AGENTS.md). Completed checkpoint and public-release records remain historical evidence.
 
-- [Project status and approval gates](docs/PROJECT_STATUS.md)
-- [Architecture and module ownership](docs/ARCHITECTURE.md)
-- [Repository structure and publication boundaries](docs/REPOSITORY_STRUCTURE.md)
-- [Active data model](docs/DATA_MODEL.md), [accepted v1.3 contract](docs/DATA_MODEL_V1_3_PROPOSAL.md) and [v1.2 examples](examples/README.md)
-- [Safe local manual authoring](docs/MANUAL_AUTHORING.md) and [ID Finder](docs/LOCAL_DEVELOPMENT.md#id-finder-read-only-authoring-utility)
-- [Content/disclosure workflow](docs/CONTENT_WORKFLOW.md) and [Canon migration safeguards](docs/LEGACY_MIGRATION_PLAN.md)
-- [Codex working instructions](AGENTS.md)
-
-Do not invent canon or commit private lore, unreleased records or source documents anywhere in public Git. Historical visibility and editorial publication are separate decisions.
-
-## Attribution and licensing
-
-Velara, the Continuance setting, NEXUS and associated MCR worldbuilding belong to their respective creator(s). A public software/content license has not been selected; public visibility does not grant reuse rights. Design inspiration grants no permission to use third-party game artwork.
-
-This is a fictional setting; the atlas does not chart real astronomical positions.
+Velara, the Continuance setting, NEXUS and associated MCR worldbuilding belong to their creator(s). A public software/content license has not been selected; visibility does not grant reuse rights. This is a fictional setting. Private lore, unpublished source notes and extraction caches must remain outside public Git.

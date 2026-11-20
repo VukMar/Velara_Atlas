@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {readDemoSource, DEMO_ROOT, datasetInventory} from '../scripts/demo-files.mjs';
+import {readDemoSource, DEMO_ROOT, datasetInventory} from './archived-demo.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
 import {generateNavigation, navigationMismatches} from '../scripts/navigation.mjs';

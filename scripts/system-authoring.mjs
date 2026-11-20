@@ -2,8 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID, createHash} from 'node:crypto';
-import {DEMO_ROOT, safeDatasetPath} from './dataset-inventory.mjs';
-import {readDemoSource} from './demo-files.mjs';
+import {CANONICAL_ROOT, safeDatasetPath} from './dataset-inventory.mjs';
+import {readDatasetSource} from './dataset-files.mjs';
 import {scanDataset} from './idfind.mjs';
 import {recordErrors, structuralErrors} from './atlas-validation.mjs';
 import {validateRelationships} from './check-relations.mjs';
@@ -35,10 +35,10 @@ function validateDataset(source) {
 }
 
 /** Read-only diagnostics reuse ID Finder, including archival and unregistered identities. */
-export function inspectAuthoring({root = DEMO_ROOT, io = fs} = {}) {
+export function inspectAuthoring({root = CANONICAL_ROOT, io = fs} = {}) {
   root = path.resolve(root);
   safe(root, 'sector.json', io); assertNoAuthoring(root, io); navigationIdle(root, io);
-  const source = readDemoSource(root, io); validateDataset(source);
+  const source = readDatasetSource(root, io); validateDataset(source);
   const ids = scanDataset({datasetRoot: root, io}); fail(ids.errors);
   return {source, ids, nextId: ids.rows.find(row => row.prefix === 'sys').next};
 }
@@ -112,7 +112,7 @@ function assertInputs(root, inputs, listing, io, allowSector) {
   if (listing && JSON.stringify(io.readdirSync(path.join(root, 'systems')).filter(n => !n.includes('.atlas-new-system-')).sort()) !== JSON.stringify(listing)) throw new Error('Systems directory changed since preflight');
 }
 export function planNewSystem(input, options = {}) {
-  const {root = DEMO_ROOT, io = fs} = options;
+  const {root = CANONICAL_ROOT, io = fs} = options;
   const {source, ids, nextId} = inspectAuthoring({root, io});
   const id = input.id ?? nextId;
   if (ids.usedIds.includes(id)) throw new Error(`${id} already owns a permanent identity; suggested alternative: ${nextId}`);
@@ -230,7 +230,7 @@ export function applyNewSystem(plan, {io = fs} = {}) {
     assertInputs(root, inputs, null, io);
     recoveryState(root, j, io);
     io.renameSync(artifacts[1][0], safe(root, 'sector.json', io));
-    validateDataset(readDemoSource(root, io));
+    validateDataset(readDatasetSource(root, io));
     if (current(root, 'sector.json', io) !== after || current(root, name, io) !== detail) throw new Error('Final byte verification failed');
   } catch (e) {
     try { rollback(root, j, io); }
@@ -243,7 +243,7 @@ export function applyNewSystem(plan, {io = fs} = {}) {
 }
 
 /** Explicit rollback only. Preview never creates a lock or removes evidence. */
-export function recoverNewSystem({root = DEMO_ROOT, io = fs, apply = false} = {}) {
+export function recoverNewSystem({root = CANONICAL_ROOT, io = fs, apply = false} = {}) {
   root = path.resolve(root); navigationIdle(root, io);
   if (exists(path.join(root, AUTHORING_LOCK), io)) throw new Error('Pending recovery lock; preserve evidence and confirm no recovery process is active');
   const journal = statePath(root, AUTHORING_JOURNAL, io), raw = io.readFileSync(journal, 'utf8');
@@ -265,7 +265,7 @@ export function recoverNewSystem({root = DEMO_ROOT, io = fs, apply = false} = {}
   try {
     if (io.readFileSync(journal, 'utf8') !== raw) throw new Error('Journal changed during recovery');
     rollback(root, j, io);
-    validateDataset(readDemoSource(root, io));
+    validateDataset(readDatasetSource(root, io));
     return {message: 'Original dataset restored and validated; authoring evidence removed.'};
   } finally {
     if (io.readFileSync(lock, 'utf8') === token) io.unlinkSync(lock);

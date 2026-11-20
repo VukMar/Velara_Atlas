@@ -1,3 +1,4 @@
+import {DEMO_ROOT as archivedDatasetRoot} from './archived-demo.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,9 +9,9 @@ import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createOpeningView,OPENING_APPEAR_MS} from '../src/viewer/opening-view.mjs';
 import {validateOpeningData} from '../src/viewer/nexus-opening-config.mjs';
 import {readOpeningSource,readFallbackSource,NEXUS_OPENING_FILE,NEXUS_FALLBACK_FILE,nexusContentAudit} from '../scripts/nexus-content.mjs';
-import {createDemoConfig,demoInputAudit} from '../vite.config.mjs';
-import {readDemoSource,DEMO_ROOT} from '../scripts/demo-files.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {createAtlasConfig,datasetInputAudit} from '../vite.config.mjs';
+import {readDemoSource,DEMO_ROOT} from './archived-demo.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
 
 const source=readOpeningSource();
 function harness(config=source.data,session={choice:null},motion=new EventTarget()) {
@@ -97,7 +98,7 @@ test('opening input admission rejects missing/malformed/redirected source and un
   assert.equal(plugin.load(path.resolve('public/content/nexus/extra.json')),undefined);
   const onlyFallback={chunk:{type:'chunk',modules:{[NEXUS_FALLBACK_FILE]:{}}}};
   assert.throws(()=>plugin.writeBundle.call(ctx,{},onlyFallback),/opening configuration missing from build/);
-  assert.throws(()=>demoInputAudit().generateBundle.call(ctx,{}, {chunk:{type:'chunk',modules:{[path.resolve('public/content/nexus/extra.json')]:{}}}}),/Unexpected input/);
+  assert.throws(()=>datasetInputAudit().generateBundle.call(ctx,{}, {chunk:{type:'chunk',modules:{[path.resolve('public/content/nexus/extra.json')]:{}}}}),/Unexpected input/);
 });
 
 test('opening build snapshot rejects changed bytes at load and final publication',()=>{
@@ -109,10 +110,10 @@ test('opening build snapshot rejects changed bytes at load and final publication
 
 test('editing only opening JSON values reaches the real audited build with unchanged worlds and assets',async t=>{
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'velara-opening-'));t.after(()=>{assert.equal(path.dirname(root),fs.realpathSync(os.tmpdir()));fs.rmSync(root,{recursive:true,force:true});});
-  const worlds=readDemoSource().texts,fallback=readFallbackSource().text,changed={title:'TEST opening title',subtitle:'TEST opening subtitle',message:'TEST opening message'},config=createDemoConfig();
+  const worlds=readDemoSource().texts,fallback=readFallbackSource().text,changed={title:'TEST opening title',subtitle:'TEST opening subtitle',message:'TEST opening message'},config=createAtlasConfig({datasetRoot:archivedDatasetRoot});
   const input={name:'test-only-opening-json',enforce:'pre',load(id){if(normalizePath(id.split('?')[0])===normalizePath(NEXUS_OPENING_FILE))return JSON.stringify(changed);}};
   const outDir=path.join(root,'dist');await build({...config,configFile:false,logLevel:'silent',plugins:[input,...config.plugins],build:{...config.build,outDir}});
   const js=fs.readdirSync(path.join(outDir,'assets')).filter(n=>n.endsWith('.js')).map(n=>fs.readFileSync(path.join(outDir,'assets',n),'utf8')).join('\n');
-  for(const value of Object.values(changed))assert(js.includes(value));const audit=auditDemoBuild(outDir,{datasetRoot:DEMO_ROOT});assert.equal(audit.pngCount,3);assert.equal(audit.svgCount,16);
+  for(const value of Object.values(changed))assert(js.includes(value));const audit=auditAtlasBuild(outDir,{datasetRoot:DEMO_ROOT});assert.equal(audit.pngCount,3);assert.equal(audit.svgCount,16);
   assert.equal(readOpeningSource().text,source.text);assert.equal(readFallbackSource().text,fallback);assert.deepEqual(readDemoSource().texts,worlds);
 });

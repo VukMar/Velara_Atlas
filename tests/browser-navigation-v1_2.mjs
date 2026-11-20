@@ -1,16 +1,16 @@
 /** Demo MCP suite: expectations come from the current public demo, not frozen dates. */
 async(page)=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html';
+  const base='http://127.0.0.1:5177/Velara_Atlas/';
   const check=(ok,msg)=>{if(!ok)throw new Error(msg);};
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
   await page.locator('#selection option[value="sys_0001"]').waitFor({state:'attached'});
   const fallback=await page.evaluate(async()=>(await import('./nexus-content.mjs')).fallbackData);
-  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('public/datasets/demo/sector.json')).name);
+  const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(e=>e.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
   const read=async file=>(await page.request.get(new URL(file,root).href)).json();
   const sector=await read('sector.json'),graph=await read('connections.json');
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#info-panel').waitFor({state:'visible'});};
   const open=async id=>{await choose(id);await page.locator('#enter').click();};
   const year=async y=>{await close();await panel('timeline-panel');await page.locator('#year-input').fill(String(y));await page.locator('#year-input').press('Enter');await page.waitForFunction(y=>document.querySelector('#year').textContent===`${y} A.E.`,y);};
@@ -23,7 +23,7 @@ async(page)=>{
     for(const object of detail.objects) {
       await close();await page.locator(`#labels [data-record-id="${object.id}"]`).click();await page.locator('#info-panel').waitFor({state:'visible'});
       check(await page.locator('#selection').inputValue()===object.id,`${object.id} pointer-selectable`);selected++;
-      check((await page.locator('#facts').innerText()).includes('CNU'),`${object.id} XYZ units`);
+      await page.locator('#technical-tab').click();check((await page.locator('#facts').innerText()).includes('CNU'),`${object.id} XYZ units`);
       if(object.objectType==='short_range_gate') {check(await page.locator('#destinations p').count()===1,`${object.id} lifetime-exclusive local partner`);localEndpoints++;}
     }
     await close();await panel('controls-panel');await page.locator('#mode').click();
@@ -72,7 +72,7 @@ async(page)=>{
   for(const id of ['lnk_0007','lnk_0011'])check(await page.locator(`#selection option[value="${id}"]`).count()===1,`${id} inclusive local activation`);
   for(const [id,partner] of [['gat_0019','gat_0020'],['gat_0020','gat_0019']]) {
     await choose(id);check(await page.locator('#destinations p').count()===1,`${id} newly available exclusive destination`);
-    const destination=await page.locator('#destinations').innerText();
+    await page.locator('#technical-tab').click();const destination=await page.locator('#destinations').innerText();
     check(destination.includes(` / ${partner}`)&&destination.includes('bidirectional'),`${id} correct available partner and direction`);
   }
   await year(sector.timeline.defaultAE);await panel('controls-panel');await page.locator('#sector').click();

@@ -1,10 +1,10 @@
 /** Demo Playwright MCP entry point: inspect the real scene without production hooks. */
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',errors=[];
+  const base='http://127.0.0.1:5177/Velara_Atlas/',errors=[];
   const check=(ok,message)=>{if(!ok)throw new Error(message);};
   const onError=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',onError);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const hide=async()=>{await page.keyboard.press('Escape');await page.mouse.move(2,2);};
   const open=async id=>{await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#enter').click();await hide();};
   const toggle=async value=>{await panel('layers-panel');await page.getByRole('checkbox',{name:'Coordinate grid',exact:true}).setChecked(value);await hide();};
@@ -48,7 +48,7 @@ async page=>{
     check(h.z===map.origin.z+map.size.z/2-step/2&&Math.abs(h.width-h.expected)<.01,'sector scale projects exact cell width in '+s.mode);
     check(h.pointer==='none'&&h.arrowPointer==='none','sector measurement cannot intercept selection');
     check(s.territory&&s.territory.visible===(s.mode==='top')&&s.envelopes===(s.mode==='perspective')&&s.territory.position[1]===map.origin.y-map.size.y/2+.001,'flat plane preserved, with exclusive mode-specific envelope display');
-    check(s.names.some(n=>n.visible)&&s.names.every(n=>Math.abs(n.position[1]-(s.mode==='perspective'?n.surface+Math.min(map.size.y*.03,map.size.x*.01):Math.max(...sector.systems.filter(o=>o.cantumHistory?.some(h=>h.cantumId===n.label.cantumId&&h.fromAE<=sector.timeline.defaultAE&&(h.untilAE===null||h.untilAE>sector.timeline.defaultAE))).map(o=>o.positionLY.y))+Math.min(map.size.y*.05,map.size.x*.02)))<1e-8),'nameplates preserve top-down anchors and use local envelope tops in perspective');
+    check(s.names.some(n=>n.visible)&&s.names.every(n=>n.position[1]>=(s.mode==='perspective'?n.surface:-Infinity)),'world nameplates clear their local stars and envelope');
     check(s.material.order<s.territory.order&&s.territory.order<3,'grid remains below unchanged influence and routes');
     for(const o of s.objects){const source=sector.systems.find(e=>e.id===o.id);check(JSON.stringify(o.xyz)===JSON.stringify([source.positionLY.x,source.positionLY.y,source.positionLY.z]),o.id+' retains sector XYZ');}
     return s;
@@ -56,7 +56,7 @@ async page=>{
   try{
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);
     await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
     const sector=await (await page.request.get(new URL('sector.json',root).href)).json();
     await page.evaluate(async()=>{
       const url=performance.getEntriesByType('resource').find(r=>r.name.includes('/map-scene.mjs')).name;

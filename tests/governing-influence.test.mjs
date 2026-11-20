@@ -10,7 +10,7 @@ import {influenceEnvelopes,envelopeHalfHeight} from '../src/viewer/influence-env
 import {territorialLabels,territorialAnchorY} from '../src/viewer/territorial-labels.mjs';
 import {structuralErrors,recordErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {generateNavigation,navigationMismatches} from '../scripts/navigation.mjs';
 import {runConnections,checkConnections,RECOVERY_FILE} from '../scripts/connections.mjs';
 

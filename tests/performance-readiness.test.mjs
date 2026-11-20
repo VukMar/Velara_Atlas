@@ -1,3 +1,4 @@
+import {DEMO_ROOT as archivedDatasetRoot} from './archived-demo.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -9,13 +10,13 @@ import {samplingReport} from './performance/sampling.mjs';
 import {statistics,benchmarkTier} from '../scripts/benchmark-atlas.mjs';
 import {structuralErrors} from '../scripts/atlas-validation.mjs';
 import {validateRelationships} from '../scripts/check-relations.mjs';
-import {readDemoSource,DEMO_ROOT} from '../scripts/demo-files.mjs';
+import {readDemoSource,DEMO_ROOT} from './archived-demo.mjs';
 import {checkConnections,RECOVERY_FILE} from '../scripts/connections.mjs';
 import {resolveAtlas,territoryGroups} from '../src/core/cartography.mjs';
-import {auditDemoBuild} from '../scripts/audit-demo-build.mjs';
+import {auditAtlasBuild} from '../scripts/audit-atlas-build.mjs';
 import {RETICLE_FILE,RETICLE_SHA256,verifyReticleSource,approvedReticleSource} from '../scripts/ui-reticle-asset.mjs';
 import {validateIconSource} from '../scripts/svg-assets.mjs';
-import {createDemoConfig,demoInputAudit,auditRegisteredModules,auditLandingModules} from '../vite.config.mjs';
+import {createAtlasConfig,datasetInputAudit,auditRegisteredModules} from '../vite.config.mjs';
 import {releaseCheck} from '../scripts/release-check.mjs';
 import {approvedPNGSources,pngFiles} from '../scripts/png-assets.mjs';
 import {audioFiles} from '../scripts/audio-assets.mjs';
@@ -32,13 +33,13 @@ test('exact universal-content admission rejects malformed, missing, redirected a
   assert.equal(plugin.load(normalizePath(NEXUS_FALLBACK_FILE)),original.text);
   assert.equal(plugin.load(path.resolve('public/content/nexus/unapproved.json')),undefined);
   assert.throws(()=>plugin.writeBundle.call(context,{},{}),/configuration missing from build/);
-  const reject={error(message){throw Error(message);}},audit=demoInputAudit();
+  const reject={error(message){throw Error(message);}},audit=datasetInputAudit();
   assert.throws(()=>audit.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[normalizePath(path.resolve('public/content/nexus/unapproved.json'))]:{}}}}),/Unexpected input/);
 });
 
 test('editing only universal JSON values reaches a real Vite build without changing worlds or JavaScript',async t=>{
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-nexus-config-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));fs.rmSync(top,{recursive:true,force:true});});
-  const source=readFallbackSource(),demo=readDemoSource().texts,config=createDemoConfig();
+  const source=readFallbackSource(),demo=readDemoSource().texts,config=createAtlasConfig({datasetRoot:archivedDatasetRoot});
   const changed=Object.fromEntries(Object.keys(source.data).map(key=>[key,`TEST Universal ${key} next build`]));
   const fixture=path.join(top,'fallback-data.json');fs.writeFileSync(fixture,JSON.stringify(changed));
   // Test-only input substitution at the exact original module ID. Exercise Vite's
@@ -47,7 +48,7 @@ test('editing only universal JSON values reaches a real Vite build without chang
   const outDir=path.join(top,'dist');await build({...config,configFile:false,logLevel:'silent',plugins:[input,...config.plugins],build:{...config.build,outDir}});
   const js=fs.readdirSync(path.join(outDir,'assets')).filter(name=>name.endsWith('.js')).map(name=>fs.readFileSync(path.join(outDir,'assets',name),'utf8')).join('\n');
   for(const value of Object.values(changed))assert(js.includes(value),'changed universal JSON field reaches output');
-  assert.equal(auditDemoBuild(outDir,{datasetRoot:DEMO_ROOT}).pngCount,3);
+  assert.equal(auditAtlasBuild(outDir,{datasetRoot:DEMO_ROOT}).pngCount,3);
   assert.equal(readFallbackSource().text,source.text);assert.deepEqual(readDemoSource().texts,demo);
 });
 
@@ -94,7 +95,7 @@ test('timing summaries and fidelity probes expose limitations without changing c
   for(const single of r.filter(s=>s.analyticSingleArea!==null))assert(Math.abs(single.reference.area-single.analyticSingleArea)/single.analyticSingleArea<.05,'reference checked against analytic Gaussian disk');
 });
 test('validated Vite snapshot detects byte edits, recovery and mid-build changes',t=>{
-  const f=performanceSandbox({tier:'baseline'});t.after(f.cleanup);const plugin=demoInputAudit({root:f.root});plugin.buildStart();
+  const f=performanceSandbox({tier:'baseline'});t.after(f.cleanup);const plugin=datasetInputAudit({root:f.root});plugin.buildStart();
   const name='systems/sys_0005.json',file=path.join(f.root,name),original=fs.readFileSync(file,'utf8');
   assert.equal(plugin.load(normalizePath(file)),original);
   const times=fs.statSync(file);fs.writeFileSync(file,'{bad');fs.utimesSync(file,times.atime,times.mtime);
@@ -106,8 +107,8 @@ test('validated Vite snapshot detects byte edits, recovery and mid-build changes
 });
 test('actual build includes every registered module and rejects output disclosure/failure cases',async t=>{
   const top=fs.mkdtempSync(path.join(os.tmpdir(),'velara-release-test-'));t.after(()=>{assert.equal(path.dirname(top),fs.realpathSync(os.tmpdir()));assert(!fs.lstatSync(top).isSymbolicLink());fs.rmSync(top,{recursive:true,force:true});});
-  const config=createDemoConfig();await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
-  const audit=()=>auditDemoBuild(top,{datasetRoot:DEMO_ROOT});assert(audit().datasetVerified);
+  const config=createAtlasConfig({datasetRoot:archivedDatasetRoot});await build({...config,configFile:false,logLevel:'silent',build:{...config.build,outDir:top}});
+  const audit=()=>auditAtlasBuild(top,{datasetRoot:DEMO_ROOT});assert(audit().datasetVerified);
   assert.equal(config.publicDir,false);assert.equal(audit().pngCount,3);assert.equal(audit().svgCount,16);
   assert(pngFiles.every(file=>config.server.fs.allow.includes(file)));
   assert.deepEqual(config.server.fs.allow.filter(file=>/reticle/.test(file)),[RETICLE_FILE]);
@@ -148,7 +149,7 @@ test('actual build includes every registered module and rejects output disclosur
   for(const suffix of ['webp','jpg','mp3','wav']) {
     const extra=path.join(top,'assets','unapproved.'+suffix);fs.writeFileSync(extra,'TEST');assert.throws(audit,suffix==='mp3'?/Unexpected MP3/:/Unexpected distributable/);fs.unlinkSync(extra);
   }
-  const plugin=demoInputAudit(),reject={error(message){throw Error(message);}};
+  const plugin=datasetInputAudit(),reject={error(message){throw Error(message);}};
   for(const name of ['nexus/unapproved.png','ui/unapproved.svg','nexus/unapproved.mp3']) {
     const id=normalizePath(path.resolve('public/assets',name));
     assert.throws(()=>plugin.generateBundle.call(reject,{}, {extra:{type:'chunk',modules:{[id]:{}}}}),/Unexpected input/);
@@ -157,31 +158,26 @@ test('actual build includes every registered module and rejects output disclosur
   assert.equal(auditRegisteredModules({x:{type:'chunk',modules}},inventory),inventory.files.length);
   delete modules[Object.keys(modules)[0]];assert.throws(()=>auditRegisteredModules({x:{type:'chunk',modules}},inventory),/missing from build/);
   const extra=path.join(top,'assets/unregistered.js');fs.writeFileSync(extra,'const x=1;');assert.throws(audit,/Unreferenced/);fs.unlinkSync(extra);
-  const main=fs.readdirSync(path.join(top,'assets')).find(n=>/^demo-.*\.js$/.test(n)),file=path.join(top,'assets',main),text=fs.readFileSync(file,'utf8');
+  const main=fs.readdirSync(path.join(top,'assets')).find(n=>/^index-.*\.js$/.test(n)),file=path.join(top,'assets',main),text=fs.readFileSync(file,'utf8');
   for(const [suffix,pattern] of [[';const x="sys_99999999";',/Unregistered/],[';import("./absent.js");',/Missing build resource/],[';import("https://example.invalid/x.js");',/external/],[';const x="VELARA_PERFORMANCE_ONLY";',/Unexpected/],['\n//# sourceMappingURL=x.map',/source-map/]]) {
     fs.writeFileSync(file,text+suffix);assert.throws(audit,pattern);fs.writeFileSync(file,text);
   }
-  for(const name of ['index.html','demo.html']) {
-    const file=path.join(top,name),text=fs.readFileSync(file,'utf8');
-    fs.unlinkSync(file);assert.throws(audit,/Required HTML entry missing/);fs.writeFileSync(file,text);
-    fs.writeFileSync(file,text.replaceAll('NONCANONICAL DEMONSTRATION','REMOVED'));assert.throws(audit,/disclosure missing/);fs.writeFileSync(file,text);
-    const href=name==='index.html'?'./demo.html':'./';
-    fs.writeFileSync(file,text.replace(`href="${href}"`,'href="./wrong.html"'));assert.throws(audit,/navigation missing/);fs.writeFileSync(file,text);
+  const pageFile=path.join(top,'index.html'),pageText=fs.readFileSync(pageFile,'utf8');
+  fs.unlinkSync(pageFile);assert.throws(audit,/Required HTML entry missing/);fs.writeFileSync(pageFile,pageText);
+  fs.writeFileSync(pageFile,pageText.replace('id="chart-stage"','id="removed"'));assert.throws(audit,/application shell missing/);fs.writeFileSync(pageFile,pageText);
+  for(const retired of ['NONCANONICAL DEMONSTRATION','Indulge your curiosity','demo.html']) {
+    fs.writeFileSync(pageFile,pageText+'<!--'+retired+'-->');assert.throws(audit,/Retired Demo|Unexpected.*reference/);fs.writeFileSync(pageFile,pageText);
   }
-  const fallback=outputs.find(name=>name.startsWith('nexus-fallback-message-')&&name.endsWith('.mp3'));
-  fs.writeFileSync(htmlFile,html+`<audio src="/Velara_Atlas/assets/${fallback}"></audio>`);assert.throws(audit,/Unexpected landing media/);fs.writeFileSync(htmlFile,html);
+  const retiredPage=path.join(top,'demo.html');fs.writeFileSync(retiredPage,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(retiredPage);
   const third=path.join(top,'extra.html');fs.writeFileSync(third,'TEST');assert.throws(audit,/Unexpected distributable/);fs.unlinkSync(third);
   assert(audit().datasetVerified);
   await assert.rejects(()=>releaseCheck({buildSite:async()=>{throw Error('injected build failure');}}),/injected build failure/);
 });
 
 
-test('landing closure rejects renderer, dataset and fallback imports through shared/dynamic chunks',()=>{
-  const module=file=>path.resolve(file),entry={type:'chunk',fileName:'index.js',isEntry:true,facadeModuleId:module('src/viewer/index.html'),modules:{[module('src/viewer/landing.mjs')]:{}},imports:[],dynamicImports:[]};
-  assert.doesNotThrow(()=>auditLandingModules({'index.js':entry}));
-  for(const forbidden of ['node_modules/three/build/three.module.js','src/viewer/main.mjs','src/viewer/demo-data.mjs','public/datasets/demo/sector.json','tests/calibration/controller.mjs','src/core/history.mjs','src/viewer/voice-assets.mjs']) {
-    const extra={type:'chunk',fileName:'extra.js',modules:{[module(forbidden)]:{}},imports:[],dynamicImports:[]};
-    for(const edge of ['imports','dynamicImports'])assert.throws(()=>auditLandingModules({'index.js':{...entry,[edge]:['extra.js']},'extra.js':extra}),/Unexpected landing input/);
+test('canonical source admission excludes retired landing and archived fixture modules',()=>{
+  const plugin=datasetInputAudit(),reject={error(message){throw Error(message);}};
+  for(const file of ['src/viewer/landing.mjs','src/viewer/demo.html','tests/fixtures/archived-demo/dataset/sector.json','tests/calibration/controller.mjs','public/data/sector.json']) {
+    assert.throws(()=>plugin.generateBundle.call(reject,{}, {x:{type:'chunk',modules:{[path.resolve(file)]:{}}}}),/Unexpected input/);
   }
-  assert.throws(()=>auditLandingModules({}),/Landing HTML entry missing/);
 });

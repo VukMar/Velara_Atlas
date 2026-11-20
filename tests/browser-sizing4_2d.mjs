@@ -2,11 +2,11 @@
 async page=>{
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base=new URL('/Velara_Atlas/demo.html',page.url()).href,errors=[],requests=[],mediaRequests=[],failed=[];
+  const base=new URL('/Velara_Atlas/',page.url()).href,errors=[],requests=[],mediaRequests=[],failed=[];
   const check=(ok,message)=>{if(!ok)throw Error(message);},error=e=>errors.push(e.message),request=r=>{requests.push(r.url());if(r.resourceType()==='media')mediaRequests.push(r.url());},response=r=>{if(r.status()>=400)failed.push(r.url());};
   const expected={star:42,gas:36,planet:30,moon:24,small:21,structure:18,short_range_gate:15};
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(e=>e.open))await page.locator('#'+id+'>summary').click();};
-  const closePanels=()=>page.evaluate(()=>{for(const e of document.querySelectorAll('.floating'))e.open=false;});
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
+  const closePanels=()=>page.evaluate(()=>{for(const b of document.querySelectorAll('#utility-row button[aria-expanded="true"]')){if(b.id==='catalogue-toggle')document.getElementById('close-catalogue').click();else b.click();}});
   const open=async id=>{await page.keyboard.press('Escape');await panel('controls-panel');await page.locator('#selection').selectOption(id);await page.locator('#enter').click();if(await page.locator('#reset').isEnabled()){await panel('controls-panel');await page.locator('#reset').click();}await closePanels();};
   page.on('pageerror',error);page.on('request',request);page.on('response',response);
   try {

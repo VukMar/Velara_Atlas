@@ -222,6 +222,62 @@ are independent. Stage 4 identity rules below leave these envelopes unchanged;
 Stage 5 polish remains deferred.
 See [Stage 3 results](archive/reports/CANTUM_ENVELOPES_STAGE3_RESULTS.md) for evidence and limits.
 
+## Final Cantum compositing polish - 2026-11-20
+
+The creator approves the existing world-space geometry, elevation, camera behavior
+and zoom crossfade. The subsequent polish changes only ordinary draw priority
+(names 1.5 to 4.5, after markers at 4) and maximum text opacity (.46 to .82).
+Depth testing remains enabled and text depth writing disabled; ordinary markers
+keep depth writing, preserving foreground occlusion and translucent overlap.
+Reticles/interactive captions stay above decoration. Fit, textures/filtering, UVs,
+world dimensions, XYZ, influence geometry/alpha and 1.15x-1.50x thresholds are
+unchanged. [Current contract](CARTOGRAPHIC_LABELING.md#final-visual-hierarchy-polish---2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md). Final compositing review
+remains pending; no version, merge or publication change is authorized.
+
+## World-space typography and coordinated visibility - 2026-11-20
+
+The subsequent creator task revises draft PR #5 from `bd8d2da` and supersedes
+Stage 1's 14-24px DOM clamp, camera-facing projection/containment, prior
+perspective heights and 1x-5x fade. Use the current
+[world-space typography contract](CARTOGRAPHIC_LABELING.md#world-space-typography-and-coordinated-visibility---2026-11-20)
+and [PR #5 review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
+Locally generated bounded CanvasTextures face +Y on fixed X/Z planes. Their
+complete proportional box is maximally fitted within each unchanged Gaussian
+component with one-cell padding, 90% safety scale, presentation size bounds and
+marker-aware balanced scoring. World dimensions never depend on camera or
+viewport; perspective foreshortening is natural. Component-local contributor
+IDs own highest-star elevation, with additional whole-box envelope clearance.
+Meshes are nonpickable, depth tested and disposed by their map owner.
+
+One smoothstep crossfades Cantum opacity .82 to zero and passive sector system
+captions zero to one between 1.15x and 1.50x overview zoom. Hover/focus/selection
+stay full strength. Object Names off hides passive captions; Cantum Names off or
+no eligible full names bypasses suppression. Influence fill and System View
+caption rules remain independent. No data, schema, field or version migration.
+
+> The following Stage 1-4/initial fitting descriptions retain their implementation
+> history; the current amendment above supersedes their typography, height and fade rules.
+
+## Adaptive horizontal nameplate fitting — 2026-11-20
+
+The creator-authorized refinement changes only full-name geographic fitting and
+complete-nameplate measurement. It supersedes the original full-name metrics and
+deepest-64 candidate shortlist described in Stage 4 below. Horizontal row-run
+intersection tests every eligible interior candidate against the complete measured
+DOM box at a deterministic 768px overview, with one field cell of padding per side.
+Marker clearance, usable width, interior depth and center proximity rank stable
+anchors. Registered sigil width and text gap participate in full-name measurement.
+
+The field equation, thresholds, 128×128 sampling, four-neighbor components,
+24-cell minimum, all shading/envelope geometry and Stage 4 sigil-only fallback
+remain unchanged. Actual display still uses the approved 14–24px typography and
+zoom-only fade. No radius, political ownership, coordinates or canonical data are
+changed. This does not advance Stage 5 or authorize integration/publication.
+See [the current fitting contract](CARTOGRAPHIC_LABELING.md#adaptive-horizontal-fitting-refinement--2026-11-20)
+and [review evidence](CANTUM_NAMEPLATE_REFINEMENT.md).
+
 ## Stage 4 detached-island identities
 
 Stages 1–3 are creator-approved. Stage 4 extends the existing `territorialLabels()`

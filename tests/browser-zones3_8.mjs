@@ -2,10 +2,10 @@
 async page => {
   const {enterAtlas}=await import((await import('node:url')).pathToFileURL(process.cwd()+'/tests/browser-enter-atlas.mjs').href);
   const settled=()=>page.waitForFunction(()=>document.querySelector('#viewport').dataset.focusMoving!=='true');
-  const base='http://127.0.0.1:5173/Velara_Atlas/demo.html',pattern=/public\/datasets\/demo\/systems\/sys_0001\.json/;
+  const base='http://127.0.0.1:5177/Velara_Atlas/',pattern=/tests\/fixtures\/archived-demo\/dataset\/systems\/sys_0001\.json/;
   const errors=[],check=(ok,message)=>{if(!ok)throw new Error(message);};
   const error=m=>{if(m.type()==='error')errors.push(m.text());};page.on('console',error);
-  const panel=async id=>{if(!await page.locator('#'+id).evaluate(n=>n.open))await page.locator('#'+id+' > summary').click();};
+  const panel=async id=>{if(id!=='catalogue-panel'&&await page.locator('#catalogue-panel').evaluate(n=>n.open))await page.locator('#close-catalogue').click();const button=page.locator('[aria-controls="'+id+'"]').first();if(await button.getAttribute('aria-expanded')!=='true')await button.click();};
   const hide=async()=>{await page.keyboard.press('Escape');await page.mouse.move(2,2);};
   const close=async()=>{if(await page.locator('#info-panel').evaluate(n=>n.open))await page.locator('#close-info').click();};
   const choose=async id=>{await close();await panel('controls-panel');await page.locator('#selection').selectOption(id);};
@@ -25,7 +25,7 @@ async page => {
   let detail;
   try {
     await page.setViewportSize({width:1440,height:1000});await page.goto(base);await enterAtlas(page);await page.locator('#labels [data-record-id="sys_0001"]').waitFor();
-    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('public/datasets/demo/sector.json')).name);
+    const root=await page.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.includes('tests/fixtures/archived-demo/dataset/sector.json')).name);
     detail=await (await page.request.get(new URL('systems/sys_0001.json',root).href)).json();
     const source=structuredClone(detail.zones[0]);
     const zone=(id,name,geometry,position,fromAE=160)=>({...structuredClone(source),id,nameHistory:[{fromAE,untilAE:null,name,kind:'noncanonical_demo'}],discoveredAE:fromAE,position,geometry});
@@ -134,12 +134,12 @@ async page => {
       check(await p.locator('#selection').inputValue()==='zon_9901','touch selects visible giant zone');await tapControl('#close-info');
       await send('touchStart',[{id:2,...c}]);for(const d of [10,20,30])await send('touchMove',[{id:2,x:c.x+d,y:c.y+d}]);await send('touchEnd',[]);
       check(!await p.locator('#info-panel').evaluate(n=>n.open),'zone drag never opens InfoCard');
-      await tapControl('#controls-panel > summary');await tapControl('#mode');await tapControl('[data-close-panel="controls-panel"]');
+      await tapControl('#controls-toggle');await tapControl('#mode');await tapControl('#controls-toggle');
       await send('touchStart',[{id:3,x:c.x-20,y:c.y},{id:4,x:c.x+20,y:c.y}]);
       for(const d of [4,8,12])await send('touchMove',[{id:3,x:c.x-20-d,y:c.y+d},{id:4,x:c.x+20+2*d,y:c.y+d}]);
       await send('touchEnd',[]);
       check(!await p.locator('#info-panel').evaluate(n=>n.open),'pinch/orbit inside giant zone never selects');
-      await tapControl('#controls-panel > summary');check(await p.locator('#controls-panel').evaluate(n=>n.open),'UI works after zone gestures');
+      await tapControl('#controls-toggle');check(await p.locator('#controls-panel').evaluate(n=>!n.hidden),'UI works after zone gestures');
     } finally {await context.close();}
     check(errors.length===0,errors.join('\n'));
     return {zones:4,offMapAndGiant:'passed',objectRoutePriority:'passed',overlapAndLayers:'passed',historyFocusAndTooltip:'passed',inside3D:'passed',outline2D:'solid/dashed clipping, keyboard, priority, 1/4/16x constant stroke passed',mobileLayouts:2,touchTapDragPinchOrbit:'passed',consoleErrors:errors};

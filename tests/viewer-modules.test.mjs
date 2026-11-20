@@ -2,11 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {EventDispatcher,Vector2,Vector3,Ray,TOUCH} from 'three';
-import {readDemoSource} from '../scripts/demo-files.mjs';
+import {readDemoSource} from './archived-demo.mjs';
 import {resolveAtlas,recordedYears} from '../src/core/cartography.mjs';
 import {zoneIntersection} from '../src/core/zone-geometry.mjs';
 import {AppState} from '../src/viewer/app-state.mjs';
 import {describeRecord} from '../src/viewer/infocard-model.mjs';
+import {createInfoCard} from '../src/viewer/infocard-view.mjs';
+import {createToolbarActivity,TOOLBAR_IDLE_MS} from '../src/viewer/toolbar-activity.mjs';
 import {LAYER_DEFAULTS,layerKeys} from '../src/viewer/layer-config.mjs';
 import {Lifetime} from '../src/viewer/lifetime.mjs';
 import {createArchivalView} from '../src/viewer/archival-view.mjs';
@@ -20,6 +22,118 @@ const dataset=()=>readDemoSource().dataset;
 const card=(d,y,scope,id)=>{const view=resolveAtlas(d,y,scope);return describeRecord(view.records.find(r=>r.id===id),{yearAE:y,systemId:scope,view});};
 const fact=(model,label)=>model.facts.find(f=>f[0]===label)?.[1];
 const fallbackData=validateFallbackData(JSON.parse(fs.readFileSync(new URL('../public/content/nexus/fallback-data.json',import.meta.url),'utf8')));
+
+function toolbarHarness() {
+  let now=0,next=0;const jobs=new Map(),expired=[],life=new Lifetime();
+  const clock={set(fn,ms){const id=++next;jobs.set(id,{fn,at:now+ms});return id;},clear(id){jobs.delete(id);}};
+  const advance=ms=>{const end=now+ms;while(true){const due=[...jobs].filter(([,j])=>j.at<=end).sort((a,b)=>a[1].at-b[1].at)[0];if(!due)break;now=due[1].at;jobs.delete(due[0]);due[1].fn();}now=end;};
+  return {life,jobs,expired,advance,activity:createToolbarActivity({clock,onExpire:id=>expired.push(id)},life)};
+}
+
+test('toolbar outside opening uses exactly 10000 ms; pointer exit/reentry starts a full fresh deadline',()=>{
+  const h=toolbarHarness(),a=h.activity;assert.equal(TOOLBAR_IDLE_MS,10000);
+  a.open('history');h.advance(9999);assert.deepEqual(h.expired,[]);h.advance(1);assert.deepEqual(h.expired,['history']);
+  a.open('layers',{inside:true});h.advance(50000);assert.equal(h.jobs.size,0);
+  a.pointer(false);h.advance(9000);a.pointer(true);h.advance(20000);assert.equal(h.expired.length,1);
+  a.pointer(false);h.advance(9999);assert.equal(h.expired.length,1);h.advance(1);assert.equal(h.expired.at(-1),'layers');h.life.dispose();
+});
+
+test('keyboard focus, active input/slider and help pause suppress dismissal until released',()=>{
+  for(const hold of ['focus','busy','pause']){
+    const h=toolbarHarness(),a=h.activity;a.open('controls');h.advance(9000);a[hold](true);
+    h.advance(60000);assert.deepEqual(h.expired,[]);assert.equal(h.jobs.size,0);
+    a.interact();h.advance(20000);assert.deepEqual(h.expired,[]);
+    a[hold](false);h.advance(9999);assert.deepEqual(h.expired,[]);h.advance(1);assert.deepEqual(h.expired,['controls']);h.life.dispose();
+  }
+});
+
+test('completed touch interactions reset inactivity; focus and pointer protections compose',()=>{
+  const h=toolbarHarness(),a=h.activity;a.open('history');a.busy(true);h.advance(20000);a.interact();h.advance(20000);
+  assert.deepEqual(h.expired,[]);a.busy(false);h.advance(9000);a.interact();h.advance(9000);assert.deepEqual(h.expired,[]);
+  a.pointer(true);a.focus(true);a.pointer(false);h.advance(20000);assert.deepEqual(h.expired,[]);
+  a.focus(false);h.advance(10000);assert.deepEqual(h.expired,['history']);h.life.dispose();
+});
+
+test('replacement, toggle, disposal and remount invalidate every stale toolbar deadline',()=>{
+  const h=toolbarHarness(),a=h.activity;a.open('history');const stale=[...h.jobs.values()][0].fn;
+  a.open('layers');stale();assert.deepEqual(h.expired,[]);assert.equal(a.active,'layers');assert.equal(h.jobs.size,1);
+  a.close();h.advance(20000);assert.deepEqual(h.expired,[]);assert.equal(a.active,null);
+  a.open('controls');const disposed=[...h.jobs.values()][0].fn;h.life.dispose();h.life.dispose();disposed();h.advance(50000);assert.deepEqual(h.expired,[]);assert.equal(h.jobs.size,0);
+  const fresh=toolbarHarness();fresh.activity.open('history');fresh.advance(10000);assert.deepEqual(fresh.expired,['history']);fresh.life.dispose();
+});
+
+function infoHarness() {
+  const original=globalThis.document;
+  class Element extends EventTarget {
+    children=[];attributes={};dataset={};hidden=false;scrollTop=0;open=false;isConnected=true;listeners=0;
+    addEventListener(...args){super.addEventListener(...args);this.listeners++;}
+    removeEventListener(...args){super.removeEventListener(...args);this.listeners--;}
+    setAttribute(k,v){this.attributes[k]=v;}
+    append(...nodes){for(const n of nodes){n.parent=this;this.children.push(n);}}
+    replaceChildren(){this.children=[];}
+    contains(node){return node===this||this.children.some(n=>n.contains(node));}
+    focus(){globalThis.document.activeElement=this;}
+    closest(){return null;}
+    show(){this.open=true;this.shows=(this.shows??0)+1;}
+    close(){this.open=false;}
+  }
+  const ids=['info-panel','record-heading','selected-name','selected-kind','selected-year','description','facts','destinations','destination-actions','enter','focus','close-info','description-tab','technical-tab','description-panel','technical-panel'];
+  const nodes=new Map(ids.map(id=>[id,new Element()])), $=id=>nodes.get(id),life=new Lifetime(),invoker=new Element(),canvas=new Element(),navigations=[];
+  $('technical-panel').hidden=true;$('technical-panel').append($('facts'),$('destinations'));
+  $('info-panel').append(...ids.filter(id=>id!=='info-panel').map($));
+  globalThis.document={activeElement:invoker,createElement:()=>new Element()};
+  const state={yearAE:1200,systemId:null,view:resolveAtlas(dataset(),1200)},atlas={canFocus:()=>true,setHovered(){},focus(r){this.focused=r;},renderer:{domElement:canvas}};
+  let card;card=createInfoCard({$,state,atlas,navigate:id=>navigations.push(id),choose:r=>{state.selectedId=r?.id??null;card.render(r);}},life);
+  const render=(r,options)=>{state.selectedId=r?.id??null;card.render(r,options);};
+  return {$,state,atlas,life,card,render,invoker,navigations,restore(){life.dispose();if(original===undefined)delete globalThis.document;else globalThis.document=original;}};
+}
+
+test('InfoCard tabs retain complete text/facts, history focus/scroll and reset only for a new selection',()=>{
+  const h=infoHarness();
+  try {
+    const r=h.state.view.records.find(r=>r.entityType==='star_system');
+    h.render(r);assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert(h.$('technical-panel').hidden);
+    const text='TEST <unsafe> & punctuation.\n\nSecond paragraph.\nFinal line.';
+    h.render({...r,infoCard:{...r.infoCard,description:{text}}},{present:false});
+    assert.equal(h.$('description').textContent,text);assert.equal(h.$('description').children.length,0);
+    h.$('technical-tab').dispatchEvent(new Event('click'));h.$('technical-tab').focus();h.$('technical-panel').scrollTop=42;
+    h.state.yearAE=1175;h.render({...r,name:'TEST historical title'},{present:false});
+    assert.equal(h.$('technical-tab').attributes['aria-selected'],'true');assert(h.$('description-panel').hidden);
+    assert.equal(h.$('selected-year').textContent,'1175 A.E.');assert.equal(h.$('selected-name').textContent,'TEST historical title');
+    assert.equal(document.activeElement,h.$('technical-tab'));assert.equal(h.$('technical-panel').scrollTop,42);assert.equal(h.$('info-panel').shows,1);
+    assert.deepEqual(h.$('facts').children.map(n=>n.textContent),describeRecord({...r,name:'TEST historical title'},h.state).facts.flat());
+    h.$('description-tab').dispatchEvent(new Event('click'));h.state.yearAE=1174;h.render(r,{present:false});
+    assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert.equal(h.$('selected-year').textContent,'1174 A.E.');
+    h.$('technical-tab').dispatchEvent(new Event('click'));h.render({...r,id:'TEST_new',infoCard:{description:null}});
+    assert.equal(h.$('description-tab').attributes['aria-selected'],'true');assert.equal(h.$('description').textContent,'Description not recorded.');
+    assert.equal(h.$('technical-panel').scrollTop,0);
+    h.$('technical-panel').scrollTop=77; // Model a hidden browser box retaining its previous offset.
+    h.$('technical-tab').dispatchEvent(new Event('click'));assert.equal(h.$('technical-panel').scrollTop,0);
+    h.card.dismiss();assert(!h.$('info-panel').open);assert.equal(document.activeElement,h.invoker);
+  }finally{h.restore();}
+});
+
+test('InfoCard roving keyboard tabs and render/dispose cycles do not accumulate listeners or destinations',()=>{
+  const h=infoHarness();
+  try {
+    const r=h.state.view.records[0];h.render(r);
+    const key=(id,key)=>{const e=new Event('keydown',{cancelable:true});Object.defineProperty(e,'key',{value:key});h.$(id).dispatchEvent(e);assert(e.defaultPrevented);};
+    key('description-tab','ArrowRight');assert.equal(document.activeElement,h.$('technical-tab'));assert.equal(h.$('technical-tab').tabIndex,0);assert.equal(h.$('description-tab').tabIndex,-1);
+    key('technical-tab','ArrowLeft');assert.equal(document.activeElement,h.$('description-tab'));
+    key('description-tab','End');key('technical-tab','Home');
+    const listeners=['description-tab','technical-tab','enter','focus','close-info'].map(id=>h.$(id).listeners);
+    for(let i=0;i<40;i++)h.render(r,{present:false});
+    assert.deepEqual(['description-tab','technical-tab','enter','focus','close-info'].map(id=>h.$(id).listeners),listeners);
+    h.state.systemId='sys_0001';h.state.view=resolveAtlas(dataset(),1200,'sys_0001');
+    const gate=h.state.view.records.find(r=>r.entityType==='gate'&&describeRecord(r,h.state).destinations.some(d=>d.external));
+    assert(gate);h.render(gate);const old=h.$('destination-actions').children[0];assert(old);old.focus();
+    h.render(gate,{present:false});assert.equal(old.listeners,0);assert.equal(h.$('destination-actions').children.length,1);assert.equal(document.activeElement,h.$('destination-actions').children[0]);
+    old.dispatchEvent(new Event('click'));assert.equal(h.navigations.length,0);
+    h.$('destination-actions').children[0].dispatchEvent(new Event('click'));assert.equal(h.navigations.length,1);
+    h.life.dispose();assert.equal(h.$('technical-tab').listeners,0);assert.equal(h.$('destination-actions').children[0].listeners,0);
+    h.$('technical-tab').dispatchEvent(new Event('click'));assert.equal(h.$('description-tab').attributes['aria-selected'],'true');
+  }finally{h.restore();}
+});
 
 test('two reticles consume final anchor visibility, existing hover precedence and selection without owning state',()=>{
   const previous=globalThis.document;

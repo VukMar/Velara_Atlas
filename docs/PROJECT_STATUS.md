@@ -1,6 +1,6 @@
 # Project status
 
-**Current authority: creator-authorized scope updated 2026-10-27; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
+**Current authority: creator-authorized final Cantum visual hierarchy polish for the 1.0.0 candidate, 2026-11-20; completed approvals retain their dates.** This page owns project completion and authorization status. Subject specifications and versioned schemas own technical rules; historical reports record their original checkpoints. Read [INDEX](INDEX.md) for navigation and [AGENTS](../AGENTS.md) for working constraints.
 
 ## Completed and approved
 
@@ -37,21 +37,52 @@ The initial public-launch objective is complete: GitHub Pages is configured usin
 
 GitHub independently reports successful build and deploy jobs in [manual deployment run 40587944992](https://github.com/VukMar/Velara_Atlas/actions/runs/40587944992), publishing commit `77d2ab0ea484770eb6e40f6d0ac5aaa581d74209`. Package metadata at that exact commit records 0.5.0; the deployment log reports the [live homepage](https://vukmar.github.io/Velara_Atlas/). The [Demo](https://vukmar.github.io/Velara_Atlas/demo.html), evidence sources, creator-confirmed scope and remaining coverage limits are documented in the [deployment record](GITHUB_PAGES_DEPLOYMENT.md#first-successful-public-deployment---2026-10-27). This documentation-closeout commit is distinct from the published commit and is not deployed by an ordinary push.
 
-## Next direction - creator-led canonical worldbuilding
+## Canonical application integration — implemented, creator review pending
 
-The next workstream is development and approval of the actual MCR Velara Sector's lore, followed by canonical dataset planning, separately authorized integration and a future creator-approved canonical public release. See [Stages A-D in the roadmap](DEVELOPMENT_ROADMAP.md#future-canonical-direction---not-current-authorization). These stages grant no implementation or disclosure authority. Canon migration, Atlas Creator, replacement of the public Demo and further deployments remain separately gated. Version 1.0.0 is reserved for the first approved canonical public launch; the local authoring CLI exists, while a graphical editor does not.
+The 2026-11-19 task authorizes promotion of the approved PR #4 candidate, root application integration, Demo archival, paragraph rendering, tests/documentation and commit/push to the existing PR. `index.html` now runs the canonical Atlas from `public/datasets/canonical/`: 70 systems, seven historical Cantums, 199 system descriptions and 35 Cantum descriptions. The five JSON files are byte-identical to approved revision `fa53a770eb848f45031dce4da7787dc2a26c7bb5`; unrelated dates, coordinates and histories are preserved.
 
-## Implemented product and environment boundaries
+The existing NEXUS opening and single audio controller remain. The two-page teaser/Demo arrangement is superseded in the repository. The Demo is retained under `tests/fixtures/archived-demo/` for isolated regressions, never as a production fallback. Calibration and protected legacy v0.1 data remain separate. No individual canonical system interiors or physical routes are added.
 
-The read-only NEXUS viewer loads only the v1.3 NONCANONICAL Demo: four released system charts, one archival-only system and two TEST factions. Implemented capabilities include historical navigation/InfoCards, routes and catalogue/search, physical celestial models/proxies, 2D/3D cameras, zones, approximate governing-Cantum influence, original NEXUS artwork, targeting, motion and approved audio.
+Production remains static and read-only with `publicDir: false`, exact inventory-based imports, pinned media and complete output reachability. The single canonical HTML entry is `index.html`. [Integration report and verification](CANONICAL_APPLICATION_INTEGRATION.md).
 
-Development/calibration uses separate finite registered synthetic scenarios with replayable presets. Protected legacy v0.1 Canon, frozen v1.1/v1.2 fixtures and v1.2 examples remain separate. There is no public dataset selector or automatic Canon migration.
+The subsequent creator task explicitly authorizes the Holographic Transmission InfoCard and staging repository version **1.0.0 as the canonical launch candidate**, with validation, commit/push and PR #4 updates. The centered card is bounded to 600 × 720 CSS pixels, retains a compact mobile NEXUS portrait, opens on Description and preserves Technical/Description selection across historical-year updates. See [current visual contract](NEXUS_VISUAL_IDENTITY.md#ordinary-infocard) and [candidate verification](CANONICAL_APPLICATION_INTEGRATION.md#holographic-infocard-and-100-candidate--2026-11-19).
 
-The Demo uses a provisional shared 24-ly influence radius; frozen v1.2 and calibration radii remain unchanged. No canonical radius or new worldbuilding facts are established by this page.
-
-Production is an audited static two-page website (NEXUS homepage and separate Demo) with `publicDir: false`, exact registered inputs, pinned original assets and private/Canon exclusions. There is no backend or write endpoint. The audited two-page site is live on GitHub Pages. Future publication still requires a successful authorized manual dispatch; a repository push or passing verification does not change the published website.
+The creator has confirmed canonical Atlas/InfoCard visual inspection; final UI review now applies to the subsequent navigation refinement below. PR #4 remains unmerged; no Pages dispatch, tag or Release is authorized. The published website remains the October 27 noncanonical **0.5.0** release described above. A normal push starts verification only. The canonical public launch is not complete. Atlas Creator and further canonical content remain separately authorized.
 
 ## Verified baseline and limits
+
+### Final Cantum hierarchy polish - 2026-11-20
+
+The creator visually approved the world-space name size/placement/orientation,
+component elevation, camera behavior and zoom crossfade at PR #5 HEAD `62c4927`.
+The subsequent task authorizes only rendering priority, opacity/contrast, matched
+screenshots, full checks (including governance/Phase 3F browser callbacks), docs
+and commit/push/update of the same draft PR #5. Names use order 4.5 after markers
+at 4 and .82 overview opacity while preserving spatial depth tests. No geographic
+or influence-field recalculation, data or version migration. Final compositing
+review remains pending. Both merges, parent changes and publication stay gated.
+
+### Isolated Cantum nameplate refinement — 2026-11-20
+
+The subsequent creator task authorizes adaptive horizontal Cantum nameplate
+fitting, complete rendered-box measurement, focused synthetic/browser tests,
+documentation, commit/push and a **draft stacked PR** from
+`refine/cantum-adaptive-nameplates` into `review/canonical-velara-cantum-migration`.
+The verified parent PR #4 HEAD is `e1ae55c1ea65477b003278bc49f2090fa662172f`.
+The world-space geometry/camera/crossfade is now creator-approved; final
+compositing review remains pending under the task above. This does not
+authorize updating the parent branch, merging either PR, deployment, tag or Release.
+The subsequent creator revision explicitly supersedes the old DOM clamp, billboarding
+and zoom-only fade with world-space region sizing and coordinated 1.15x-1.50x
+caption visibility. Same branch/draft PR #5; only the final compositing review
+remains pending.
+Canonical data and protected cartographic behavior remain unchanged. Version stays
+**1.0.0 canonical launch candidate** by explicit request; no increment is warranted
+for this preparation refinement. [Algorithm, comparisons and validation](CANTUM_NAMEPLATE_REFINEMENT.md).
+
+### Current navigation refinement
+
+The subsequent creator task confirms canonical Atlas/InfoCard visual inspection and authorizes NEXUS Navigation & Responsive Control Bars implementation, tests/documentation, commit/push and PR #4 updates. The current interface uses four top utilities, a modal Catalogue, three exclusive reserved-space horizontal bottom toolbars with a protected 10-second timeout, and modal Map Controls Help. [Behavior](VIEWER_SPECIFICATION.md#current-navigation-and-control-bars--2026-11-19) and [verification](CANONICAL_APPLICATION_INTEGRATION.md#navigation-and-responsive-control-bars--2026-11-19). Final UI review remains pending for this refinement. Version remains **1.0.0 canonical launch candidate** by explicit creator instruction; no increment is warranted for this preparation refinement. The published **0.5.0** site, merge, tag/Release and deployment gates remain unchanged.
 
 At this audit's start, local `main` matched `origin/main` at `f0d8d140f6b8c61dc5c6585edf34c49aa485201f`. Its [post-merge CI run](https://github.com/VukMar/Velara_Atlas/actions/runs/40368118735) passed both Ubuntu and Windows Node 24 jobs, including tests, read-only connection freshness, validation, builds and release audits. These results supersede older reports that say hosted CI is pending. CI never regenerates navigation.
 
