@@ -4,6 +4,22 @@
 
 **Checkpoint 5 — First Public Deployment — Complete and Creator-Approved (2026-10-27).** Velara Atlas v0.5.0 is now an operational noncanonical public pre-release on GitHub Pages. The creator configured Pages, manually deployed the approved site, tested the live website and confirmed acceptance. Further deployments require separate authorization; this task documents the existing release and does not deploy it again. [VERSIONING_POLICY](VERSIONING_POLICY.md) distinguishes repository and published versions; no increment is appropriate for this documentation-only closeout.
 
+## Canonical 1.0.0 pre-deployment reconciliation - 2026-11-20
+
+PRs #4/#5 are merged and the creator accepts the canonical application. Repository metadata remains 1.0.0; [PROJECT_STATUS](PROJECT_STATUS.md) owns current approval gates. The latest verified successful Pages run is still October 27's `40587944992`, publishing 0.5.0 at `77d2ab0ea484770eb6e40f6d0ac5aaa581d74209`. No 1.0.0 deployment is recorded here. Documentation reconciliation is followed by creator review/merge, inspection of the resulting main commit and separate manual deployment authorization.
+
+The unchanged workflow uses only `workflow_dispatch`, requires main, verifies under Node 24, runs the release audit and uploads only audited `dist/`. Deployment depends on the successful build. A documentation commit or successful CI does not publish.
+
+### Evidence to record after an authorized canonical deployment
+
+- [ ] Actual workflow run URL/ID and attempt.
+- [ ] Exact published commit SHA and package version at that SHA.
+- [ ] Successful build/deployment job results and publication timestamp.
+- [ ] Live URL, verification date and the actual functional/browser/device checks performed, including any limitations.
+- [ ] Creator acceptance of that deployed public application.
+
+Do not prefill a future deployment SHA from the current main tip. Preserve the complete previous release record below.
+
 ## First successful public deployment - 2026-10-27
 
 | Release evidence | Recorded value and source |

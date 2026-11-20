@@ -28,11 +28,7 @@ Every record may involve (1) **in-universe historical timing** and (2) **real-wo
 7. **Generate/review public JSON**, validate it, run tests, inspect rendered results, and review the Git diff before commit/push.
 8. **Publish:** only the reviewed data and assets are committed to the public repository and built/deployed as a static site.
 
-Canonical steps 5–8 remain manual and separately approved. For already public-safe
-noncanonical demo JSON, use [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md): edit
-system declarations, manually generate connections, check freshness, test/build and
-review. That offline generator is not a private-lore publisher and must not be
-redirected to canonical data as part of this workflow.
+Canonical steps 5–8 remain manual and separately approved. Under an explicit canonical authoring scope, follow [NAVIGATION_AUTHORING.md](NAVIGATION_AUTHORING.md): edit reviewed system declarations, explicitly generate connections, check freshness, test/build and review. The CLI is fixed to Canonical; generation and authoring/recovery writes require separate authorization. It is not a private-lore publisher. Archived Demo examples authorize no canonical writes.
 
 ## Extraction standards
 
@@ -44,7 +40,7 @@ redirected to canonical data as part of this workflow.
 - Naming conventions: approved proper place names follow the MCR Continuance Naming Protocol; existing approved names stay unchanged. If a source requires a newly coined name, request a separate naming approval; do not improvise replacements during extraction.
 - Public descriptions must be specifically approved for the reader. Private notes, editorial remarks, future story revelations, and hidden objects must be absent **from all files committed to public Git**, not only from `public/data/`.
 
-## Release checklist and local Demo dry run
+## Release checklist and local canonical dry run
 
 Completed, creator-approved Architecture Phase 6 adds `npm run release:check`:
 fixed canonical validation, read-only navigation freshness, static build
@@ -59,27 +55,22 @@ The human content review below remains required.
 - [ ] New entries use permanent IDs and valid foreign-key references.
 - [ ] Selected year changes only historically appropriate values; null/unknown discovery dates are handled explicitly.
 - [ ] All included content is approved for public release (including examples, docs, code comments, test fixtures, build assets).
-- [ ] JSON syntax, current versioned schema and relationships validate; demo `npm run validate` includes read-only connection/gate-position freshness. Canonical legacy data keeps its separate tests until approved migration.
+- [ ] JSON syntax, current versioned schema and relationships validate; canonical `npm run validate` includes read-only connection/gate-position freshness. Canonical legacy data keeps its separate tests until approved migration.
 - [ ] `npm test` passes and significant output has been reviewed.
 - [ ] NEXUS fallback works for indexed systems with no published details.
 - [ ] Previewed pages contain no concealed plot spoilers in visible UI, source JSON, HTML, browser bundles, or network requests.
 - [ ] `git status` and `git diff --staged` show only intentional changes; no private source files or local reference caches.
-- [ ] Demo `npm run build` and its input/output audit pass; inspect `dist/` for disclosure and URL errors. Future canonical publication needs its own reviewed release allowlist.
+- [ ] Canonical `npm run build` and its input/output audit pass; inspect `dist/` for disclosure and URL errors. The existing canonical allowlist remains closed; new publication inputs require separate review.
 
 ## If private lore was accidentally committed
 
 Stop publishing. Removing a file in a new commit does not erase it from public Git history. Treat the content as disclosed, check deployed artifacts and caches, and carefully plan history cleanup/credential rotation if relevant. Never assume `.gitignore` or a new commit makes previously published secrets private again.
 
-## Representative Demo and creator review
+## Canonical integration and isolated fixture review
 
-For future separately authorized significant viewer-facing features, use:
-implement -> automated tests -> representative NONCANONICAL Demo update -> creator
-visual review -> corrections -> explicit creator approval -> separately authorized
-documentation/commit/push. Add an example when existing Demo data cannot show the
-feature adequately; internal refactors, security, documentation and nonvisual
-tooling need no artificial filler. This policy never authorizes new canon.
+For future separately authorized significant viewer-facing features, use Canonical for integration review, with an explicit isolated synthetic fixture when generic object coverage is needed. Follow implementation -> automated checks -> creator visual review -> corrections -> explicit acceptance -> separately authorized documentation/commit/push. Internal refactors, security, documentation and nonvisual tooling need no filler entities. This policy authorizes no new canon.
 
-TEST invalid/edge fixtures, specialized Development/calibration, the coherent
-normal Demo and Canon remain separate datasets. Never automatically import TEST
+TEST invalid/edge fixtures, specialized Development/calibration, the archived
+Demo and active Canonical remain separate datasets. Never automatically import TEST
 fixtures into Demo. A curated Demo example is deliberately authored/reviewed JSON,
 not an automated promotion of a fixture. See [DEMO_SHOWCASE](DEMO_SHOWCASE.md).

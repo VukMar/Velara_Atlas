@@ -6,7 +6,7 @@ does not authorize further visual changes.
 **Original target:** post-Checkpoint-3.6 labeling. Starter icons/physical models and
 Cantum Stages 1-4 are now implemented; final artistic refinement remains deferred.
 **Scope:** World-space Cantum region lettering in Sector View; adaptive screen-space navigational captions in both map levels; independent layer controls.  
-**Baseline:** Existing square chart and 8×8 system grid, floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.  
+**Historical baseline:** Existing square chart and 8×8 system grid, then-floating panels, camera modes/gesture controls, Schema v1.2 navigation, historical resolver, and Cantum influence visualization.
 **Design authorities:** `docs/VIEWER_SPECIFICATION.md`, `docs/NEXUS_VISUAL_IDENTITY.md`, `docs/CANTUM_TERRITORY_RENDERING.md`, `docs/DATA_MODEL.md`, and `AGENTS.md`. This specification adds only the labeling behavior approved in the conversation; it does not supersede unrelated requirements.
 
 ## Final visual hierarchy polish - 2026-11-20
@@ -28,11 +28,13 @@ world-size, fit, position, orientation, elevation or lifecycle changes. At the
 1.15x/1.50x thresholds are unchanged on every viewport. No influence adjustment:
 soft Gaussian boundaries and .16/.22 alpha caps remain. See
 [matched screenshots, GPU compositing and regressions](CANTUM_NAMEPLATE_REFINEMENT.md).
-Final creator compositing approval remains pending; version stays 1.0.0 candidate.
+Final compositing is creator-accepted and merged through PRs #5/#4. Repository version stays 1.0.0 candidate; [current status and publication gates](PROJECT_STATUS.md) remain authoritative.
+
+<a id="adaptive-horizontal-fitting-refinement--2026-11-20"></a>
 
 ## World-space typography and coordinated visibility - 2026-11-20
 
-The subsequent creator request revises draft PR #5 from starting SHA
+The implemented creator revision in merged PR #5 started from SHA
 `bd8d2dafab722b0a98b2beb9c1f6c39589e27717`. This is the current presentation
 contract; it supersedes the earlier 14-24 CSS-pixel clamp, camera-facing DOM
 plates, screen-space edge containment and 1x-5x zoom-only fade. Historical

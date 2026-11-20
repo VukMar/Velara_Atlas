@@ -1,6 +1,8 @@
-# Living NONCANONICAL Demo showcase
+# Archived NONCANONICAL Demo showcase
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
+
+> The Phase 3F-6 closeout immediately below is historical. Later canonical integration and publication status live in [PROJECT_STATUS](PROJECT_STATUS.md).
 
 Phase 3F implementation and the normal graphical Demo showcase are complete and
 creator-approved. Overall Architecture Phase 3, including 3A-3F, is complete.
@@ -11,15 +13,13 @@ Phases 5 and 6 are complete and creator-approved. The architecture optimization
 roadmap is complete; the Demo remains unchanged by those phases. See [readiness evidence](PERFORMANCE_AND_RELEASE_READINESS.md). No deployment, Canon migration
 or graphical Atlas Creator is implemented.
 
-## Open the ordinary Atlas
+## Open the isolated archived showcase
 
 ```bash
-npm run demo
+node tests/preview-archived-demo.mjs
 ```
 
-Open **http://127.0.0.1:5173/Velara_Atlas/demo.html** directly, or follow **Indulge your curiosity** from the [NEXUS homepage](PUBLIC_ENTRANCE.md). First-entry completion/audio preferences are shared. Everything below is available in this
-normal graphical Demo; no fixture server is needed. All added names, dates,
-measurements and positions are explicit TEST choices, not MCR history.
+Open **http://127.0.0.1:5177/Velara_Atlas/**. This explicit fixture preview reuses the current viewer with archived noncanonical data; its historical HTML/landing sources are not public routes. `npm run demo` now aliases the canonical Atlas on 5173, and the old production `demo.html` route is retired. All showcase names, dates, measurements and positions below are explicit TEST choices, not MCR history. The walkthrough preserves earlier showcase evidence; later UI and world-space typography contracts supersede old presentation details.
 
 ## Political walkthrough
 
@@ -156,7 +156,7 @@ the five showcase objects, generates its complete route, and checks histories,
 governance, flat/envelope fields, detached political identity, eager loading,
 negative variants and the audited build. No temporary record enters the live Demo.
 `tests/browser-phase3f-showcase.mjs` runs the boundary walkthrough above against
-the **normal Demo on 5173**, including InfoCards, resources, mobile and controls.
+the **isolated archived Demo on 5177**, including InfoCards, resources, mobile and controls.
 Existing browser suites and negative/recovery/frozen regressions remain separate.
 
 - `npm run dev` / `npm run preview:calibration`: specialized 5174 calibration,
@@ -167,25 +167,23 @@ Existing browser suites and negative/recovery/frozen regressions remain separate
 These previews use their own datasets; Demo never imports them. Stop each with
 Ctrl+C to close its server and clean temporary files. The public build still
 uses `publicDir: false`, exact registered JSON/asset admission and output audits.
-There is no public write endpoint, arbitrary dataset selector or Canon launcher.
+There is no public write endpoint or arbitrary dataset selector. Canonical has its own `npm run atlas` launcher on 5173.
 
 ## Feature-to-review policy
 
-For future **separately authorized** viewer-facing work:
+For future **separately authorized** viewer-facing work, use Canonical for integration review and an explicit isolated synthetic fixture when generic object coverage is needed:
 
 ```text
-Implement feature -> automated tests -> representative NONCANONICAL Demo update
+Implement feature -> automated tests -> Canonical integration / isolated fixture review
 -> creator visual review -> corrections -> explicit creator approval
 -> documentation closeout + commit + push (when separately authorized)
 ```
 
-Add a representative example when a significant visible feature is ready for
-review and the existing Demo cannot show it adequately. Internal refactoring,
-security, documentation and nonvisual tooling do not require filler entities.
-TEST edge cases, specialized Development/calibration, the curated Demo and Canon
-remain distinct. A Demo showcase authorizes no canonical content or deployment.
+Internal refactoring, security, documentation and nonvisual tooling require no filler entities. TEST edge cases, specialized Development/calibration, archived Demo and Canonical remain distinct. This policy authorizes neither new canonical content nor fixture promotion or deployment.
 
 ## Completed Phase 5 Development preview
+
+> Historical Phase 5 closeout: the Canon/no-deployment statements below predate subsequent canonical integration and the 0.5.0 release; they are not current status.
 
 Phase 5 expands only Development, leaving this approved normal-Demo walkthrough
 and all Demo JSON unchanged. Use `npm run dev` (or `preview:calibration`) on

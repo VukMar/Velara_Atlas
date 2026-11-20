@@ -4,7 +4,7 @@
 
 > **2026-10-26 public entrance amendment:** [Two-page website and shared first entry](PUBLIC_ENTRANCE.md). NEXUS Public Entrance Integration is complete and creator-approved, including manual visual/functional acceptance. Public deployment remains separately gated. The Checkpoint 4.2G-I records below retain their historical scope.
 
-**Current status:** See [PROJECT_STATUS](PROJECT_STATUS.md). Checkpoint 4 is complete and creator-approved, including final integrated acceptance. Architecture Phases 1-6 are complete. Cantum Visual Stage 5 is deferred and does not block release planning. Checkpoint 5 release preparation requires separate authorization; Canon migration, Atlas Creator and deployment remain separately gated.
+**Current status:** See [PROJECT_STATUS](PROJECT_STATUS.md). Checkpoint 4 and Architecture Phases 1-6 are complete and creator-approved. Canonical integration, Holographic InfoCards, navigation/control bars and world-anchored Cantum typography with final polish are creator-accepted and merged through PRs #4/#5 into main at `bc4c529664fce1df4dab4117bb3f0794a41f5531`. Repository version is 1.0.0; documentation reconciliation precedes the separately authorized manual canonical deployment. Latest verified publication remains 0.5.0. Cantum Visual Stage 5 stays deferred; future canonical expansion, protected legacy migration and Atlas Creator remain separately gated.
 
 This document retains original milestone scope, approval sequence and dated implementation evidence. Historical closeout statements about pending work describe their dates, not current permission or blockers. Active technical rules live in the subject specifications linked by [INDEX](INDEX.md).
 
@@ -816,7 +816,15 @@ This final amendment closes the initial public-launch objective after Phase 1's 
 
 Automatic Ubuntu/Windows verification and manual-only deployment remain unchanged. An ordinary push does not publish. Existing browser, accessibility, device and scaling limitations remain; creator acceptance and successful deployment do not certify every environment. No further deployment is part of this closeout.
 
-## Future canonical direction - not current authorization
+## Canonical integration complete; publication and expansion remain gated
+
+The original Stages A-D distinguished creator-controlled worldbuilding, dataset planning, application integration and public release. The initial approved canonical content and v1.3 dataset are now integrated: 70 systems, seven historical Cantums and 234 descriptions. `src/viewer/index.html` is the canonical Atlas; the former teaser/Demo is archived under `tests/fixtures/archived-demo/`. PRs #4/#5 are merged and the creator accepts the integrated application. [Implementation and dated evidence](CANONICAL_APPLICATION_INTEGRATION.md).
+
+This completes the approved initial integration, not all possible future worldbuilding or protected legacy crosswalks. Repository 1.0.0 is in pre-deployment documentation reconciliation. Stage D's public canonical launch remains uncompleted until an authorized manual deployment and live acceptance are recorded. Future content expansion, protected legacy migration, Atlas Creator and publication require separate scopes. Earlier roadmap concepts do not become authorized through this acceptance.
+
+### Original Stages A-D - historical planning
+
+> The original direction below predates the accepted canonical integration. Its future promotion/archival statements describe that planning checkpoint, not current blockers or permission. The current completion and publication boundary is recorded immediately above.
 
 - **Stage A - Canonical worldbuilding:** The creator develops and approves the sector's history, geography, star systems, Cantums, political history, settlements and foundational lore. This work is creator-controlled and may remain private outside public Git.
 - **Stage B - Canonical dataset planning:** Once a coherent portion is approved, plan its representation in the existing model. Review compatibility, chronology, spatial positions, permanent IDs, connections and authoring requirements before any migration.
@@ -841,12 +849,7 @@ Architecture Phase 4 is complete and creator-approved; Phase 5 is complete and c
 
 ## Feature showcase gate
 
-Significant authorized viewer features need automated tests and a representative
-normal-Demo example before creator visual review, unless the creator opts out.
-After corrections, explicit approval and a separate closeout authorize docs,
-commit and push. Nonvisual/internal work needs no filler entities. Preserve TEST,
-Development/calibration, Demo and Canon separation. [DEMO_SHOWCASE](DEMO_SHOWCASE.md)
-records the completed, creator-approved Phase 3F walkthrough and intentional additions.
+Significant authorized viewer features need automated tests and Canonical integration review, with an explicit isolated synthetic fixture when generic object coverage is needed, followed by creator visual review. Corrections, explicit approval and separate closeout authorize docs/commit/push. Nonvisual/internal work needs no filler entities. Preserve TEST, Development/calibration, archived Demo and Canonical separation. [DEMO_SHOWCASE](DEMO_SHOWCASE.md) preserves the completed Phase 3F walkthrough and current review policy.
 
 ## Completed Architecture Phase 4 boundary
 
@@ -864,6 +867,6 @@ Atlas Creator, Canon migration or deployment is authorized. Phase 5 is complete 
 The local Development preview now has named JSON scenarios, replayable presets,
 validated presentation controls and read-only diagnostics. The original 15-system
 calibration JSON and normal v1.3 Demo remain unchanged. See [scenario operations,
-presets and tests](../README.md#named-local-preview-scenarios-completed-phase-5).
+presets and tests](LOCAL_DEVELOPMENT.md#named-local-preview-scenarios).
 Phase 5 is complete and creator-approved. Its implementation and status
 documentation are committed together. Phase 6 is complete and creator-approved; no editor, Canon migration or deployment is authorized.

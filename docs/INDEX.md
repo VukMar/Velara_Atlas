@@ -28,7 +28,7 @@ The active canonical application is v1.3; the archived Demo remains an isolated 
 | [PERFORMANCE_AND_RELEASE_READINESS](PERFORMANCE_AND_RELEASE_READINESS.md#local-publication-dry-run-and-security) | Local release checks and profiling operations; dated measurements remain historical |
 | [Examples entry point](../examples/README.md) / [v1.2 family guide](../examples/v1_2/README.md) | Noncanonical learning references; not runtime data |
 
-[CANONICAL_APPLICATION_INTEGRATION](CANONICAL_APPLICATION_INTEGRATION.md) governs the current single-page canonical application. [PUBLIC_ENTRANCE](PUBLIC_ENTRANCE.md) is the superseded 2026-10-26 amendment for the homepage, separate Demo, shared first entry and two-page audits. The integration is complete and creator-approved, including manual visual/functional acceptance. [Verification and closeout evidence](PUBLIC_ENTRANCE_VERIFICATION.md) distinguish automated results and remaining coverage limits.
+[CANONICAL_APPLICATION_INTEGRATION](CANONICAL_APPLICATION_INTEGRATION.md) describes the current single-page canonical integration and its dated verification. PRs #4/#5 are merged and the creator accepts the application; [PROJECT_STATUS](PROJECT_STATUS.md) owns the current pre-deployment gates. [PUBLIC_ENTRANCE](PUBLIC_ENTRANCE.md) and [its verification](PUBLIC_ENTRANCE_VERIFICATION.md) preserve the creator-approved 2026-10-26 two-page entrance milestone, superseded by canonical integration.
 
 ## Technical rules
 
@@ -49,9 +49,14 @@ The active canonical application is v1.3; the archived Demo remains an isolated 
 | [VISUAL_ASSET_POLICY](VISUAL_ASSET_POLICY.md) | Exact SVG/PNG/MP3/content admission, fallbacks and original-byte safeguards |
 | [LEGACY_MIGRATION_PLAN](LEGACY_MIGRATION_PLAN.md) | Canon migration preconditions; no migration authorization |
 
+## Dated canonical implementation evidence
+
+- [CANONICAL_DESCRIPTION_MIGRATION](CANONICAL_DESCRIPTION_MIGRATION.md): approved one-time import, 234 dated descriptions and preservation evidence.
+- [CANTUM_NAMEPLATE_REFINEMENT](CANTUM_NAMEPLATE_REFINEMENT.md): fitting, world-space revision, final compositing polish, screenshots and checkpoint-specific checks. Original draft/review states remain historical.
+
 ## Planning and completed work
 
-[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) retains original milestone scope, completed 4.2 records, historical Checkpoint 5 Phase 1 preparation and the completed first-public-deployment amendment. Its future canonical Stages A-D remain separately gated. Current completion decisions live only in [PROJECT_STATUS](PROJECT_STATUS.md).
+[DEVELOPMENT_ROADMAP](DEVELOPMENT_ROADMAP.md) retains original milestone scope, completed 4.2 records, historical Checkpoint 5 Phase 1 preparation and the completed first-public-deployment amendment. Its initial canonical integration is complete; public canonical deployment, future content expansion and protected legacy migration remain separately gated. Current completion decisions live only in [PROJECT_STATUS](PROJECT_STATUS.md).
 
 The [Architecture Optimization Roadmap](ATLAS_ARCHITECTURE_OPTIMIZATION_ROADMAP.md) is **completed history**, retained at its well-linked path. Its old implementation tasks and Phase 6 authorization must not be executed again.
 

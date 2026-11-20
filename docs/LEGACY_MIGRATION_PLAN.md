@@ -2,15 +2,13 @@
 
 > **2026-11-19 canonical application integration:** the repository now serves the canonical Atlas at `/Velara_Atlas/` through `index.html`. The former two-page teaser/Demo architecture is superseded; its dated evidence below is historical. See [canonical integration](CANONICAL_APPLICATION_INTEGRATION.md) for active paths, commands, checks and review limits. The October 27 noncanonical website remains the published release until a separately authorized deployment.
 
-**Status: PLAN ONLY for canonical content.** No canonical migration is authorized.
+**Status: safeguards for future protected legacy v0.1 migration only.** The accepted canonical v1.3 Atlas is implemented and merged; this plan does not reopen that integration or imply that every legacy identity crosswalk has been approved. Further changes to protected legacy records require a separate creator scope.
 
 `public/data/political.json`, `public/data/sector.json` and
 `src/timeline/resolve.mjs` retain the legacy v0.1 contract and permanent IDs.
-The modern pure resolver, versioned schemas, generator and four-chart viewer are
-implemented for **noncanonical `public/datasets/demo/` only**. Frozen v1.1 and
-v1.2 test datasets preserve earlier behavior; none is a canonical release.
+The modern resolver, versioned schemas, fixed-root canonical tools and single-entry viewer serve `public/datasets/canonical/`. The archived noncanonical Demo and frozen v1.1/v1.2 test datasets preserve separate earlier contracts and are not production fallback data.
 
-## Required before a future canonical migration
+## Required before a future protected legacy migration
 
 1. Secure the creator's explicit scope and a reviewed backup/checkpoint.
 2. Propose an identity crosswalk from legacy IDs such as `cantum_a` and
@@ -25,9 +23,9 @@ v1.2 test datasets preserve earlier behavior; none is a canonical release.
    or migration tests. The resolver already supports dated InfoCards, knowledge,
    existence, zones and archival fallback; preserve the independent legacy tests.
 6. Review any adopted v1.2 navigation declarations and dedicated lifetime pairs.
-   The current generator/loader are deliberately demo-allowlisted; canonical
-   publication needs a separately approved input/release design, not a wider
-   directory scan or a path switch in the CLI.
+   The current generator/loader use the closed canonical inventory. Additional
+   approved legacy inputs must preserve that admission boundary; do not widen
+   directory scans or introduce a CLI path switch.
 7. Verify schema, references, interval semantics, unknown/null distinctions,
    coordinates/units, generated freshness, historical boundary cases and reader
    disclosure. A known-by date is never an invented exact discovery.

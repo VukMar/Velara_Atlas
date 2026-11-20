@@ -17,7 +17,7 @@ Velara_Atlas/
   .gitattributes                  Stable JSON/SVG bytes; binary PNG/MP3
   .github/workflows/verify.yml     Read-only Ubuntu/Windows Node 24 CI
   .github/workflows/deploy-pages.yml Manual-only main Pages workflow; first public release complete
-  vite.config.mjs                  Two-page root/base and strict input/build admission
+  vite.config.mjs                  Single canonical entry/base and strict input/build admission
   docs/
     INDEX.md / PROJECT_STATUS.md   Navigation / current completion and gates
     LOCAL_DEVELOPMENT.md           Local environments, scenarios and checks
